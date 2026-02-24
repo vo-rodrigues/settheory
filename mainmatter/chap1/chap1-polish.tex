@@ -1,0 +1,305 @@
+\section{Léxicos para a notação polonesa}
+A Lógica, e por extensão a Matemática, é construída sobre uma linguagem formal, composta por símbolos e regras de formação.
+Por isso, antes de perguntarmos se uma afirmação é matematicamente verdadeira, devemos verificar se ela é uma expressão bem formada.
+
+Para fins expositórios, consideremos expressões do tipo $A=B$, como, por exemplo, $2+2=5$ ou $2=7$.
+Tais expressões comparam dois \emph{termos}, que, nos exemplos acima, são $2+2$ e $5$, ou $2$ e $7$.
+Termos são sequências de símbolos que, intuitivamente, representam objetos.
+Assim, termos não são ``verdadeiros'' ou ``falsos'', mas objetos sobre os quais formulamos afirmações.
+
+Para decidir se uma expressão do tipo $A=B$ é válida, é necessário verificar previamente se $A$ e $B$ são termos bem formados, como $5$ ou $2+2$.
+Se $A$ for $2+3+$, ou se $B$ for $+++$, então, $A$ e $B$ não são termos bem formados.
+
+Dando um passo adicional, a expressão $2+2 = 5$~$3$ parece composta dos termos $2+2$, $5$ e $3$, mas não é bem formada, pois o símbolo $=$ --- que, intuitivamente, compara dois objetos --- está relacionando $2+2$ e $5$, deixando o símbolo $3$ sem função sintática.
+
+Tanto $+$ quanto $=$ são exemplos do que chamamos de símbolos \emph{binários}, ou de \emph{aridade} $2$: requerem dois operandos para formar uma expressão bem formada.
+Nem todos os símbolos na matemática são binários.
+Na teoria dos números reais, por exemplo, o símbolo $|\cdot|$, chamado módulo, associa a cada número real $x$ o seu valor absoluto $|x|$, tendo, portanto, aridade $1$ (unário).
+Não faz sentido aplicá-lo a dois números, como em $|x~y|$, nem a nenhum, como em $|~|$.
+
+Há ainda operações de aridade superior a $2$.
+Um exemplo é o produto vetorial misto, de aridade $3$: dados $u,v,w\in\mathbb R^3$, escreve-se $[u,v,w]$ para denotar $u\cdot(v\times w)$.
+Esse exemplo pode parecer artificial, por consistir em uma composição de operações binárias; contudo, nem sempre operações de maior aridade se reduzem naturalmente a composições binárias, inclusive fora da matemática pura.
+Considere, por exemplo, a operação que recebe um vetor $v$ com ao menos $n$ elementos e números $m,n$ com $m<n$, retornando o subvetor que vai do $m$-ésimo ao $n$-ésimo elemento.
+Em termos formais, dados $(v_1,\dots,v_k)$, $m$ e $n$, obtém-se $(v_m,\dots,v_n)$.
+Tal operação é comum em programação; em PHP, por exemplo, a função \texttt{array\_slice} possui exatamente esse comportamento.
+
+A noção de aridade não se aplica apenas a termos.
+A igualdade possui aridade $2$, isto é, deve atuar sobre dois --- e somente dois --- termos para formar uma expressão à qual se possa atribuir um valor de verdade.
+O mesmo ocorre com símbolos como $<$ e $>$.
+Existem também símbolos relacionais de aridade diferente.
+Em geometria plana, por exemplo, pode-se utilizar um símbolo $\triangle$ para representar a relação de que três pontos $A,B,C$ formam um triângulo; assim, $\triangle(A,B,C)$ é verdadeira se, e somente se, $A,B,C$ não são colineares.
+
+Observemos que, para expressar uma relação ternária como $\triangle$, foi necessário escrevê-la à esquerda dos elementos sobre os quais atua.
+Não é possível, por uma questão espacial, escrevê-la de forma infixa, como fazemos na igualdade ao escrever $A=B$.
+Poderíamos tentar escrever $A\triangle B\triangle C$, mas isso sugeriria que $A\triangle B$ fosse uma expressão bem formada, além de introduzir ambiguidades.
+Por outro lado, nada impede que escrevamos $=(A,B)$ em vez de $A=B$.
+
+Para obter um tratamento unificado, adotamos a \emph{notação polonesa}, ou \emph{notação prefixa}, que será descrita a seguir, e na qual o operador é sempre escrito antes dos operandos, independentemente de sua aridade.
+Essa abordagem fornece um tratamento uniforme para expressões de diferentes aridades e elimina a necessidade de parênteses para evitar ambiguidades --- algo indispensável na notação usual.
+Sua desvantagem é afastar-se da prática corrente da escrita matemática.
+A filosofia adotada será a seguinte: utilizaremos a notação polonesa majoritariamente como ferramenta fundacional.
+No restante do texto, empregaremos a notação matemática usual sem ressalvas.
+
+
+\subsection{Metateorias: uma breve digressão}
+Sem mais delongas, definamos o que é um léxico para a notação polonesa.
+\begin{metadefinition}
+Um \emph{léxico}\index{léxico} para uma notação polonesa é uma coleção de símbolos $\mathcal L$ tal que, para cada símbolo $s \in \mathcal L$, é atribuído um número inteiro não negativo $n_s$, chamado de \emph{aridade} de $s$.
+\end{metadefinition}
+
+O conteúdo da metadefinição acima é justificado pela discussão anterior.
+Entretanto, a forma como foi enunciada pode suscitar algumas dúvidas.
+Façamos, portanto, uma breve digressão acerca da natureza do que está sendo discutido, o que nos conduz ao conceito de metateoria.
+
+Comecemos examinando o motivo de termos optado por escrever \emph{Metadefinição} em vez de \emph{Definição}.
+Em Matemática, ao estabelecer-se uma coleção de conceitos primitivos e axiomas, é possível definir novos conceitos e provar proposições, lemas, teoremas, corolários, etc.
+
+Neste texto, as teorias com as quais lidaremos serão teorias de conjuntos, como ZF e ZFC.
+No caso presente, porém, não estamos definindo algo no interior dessas teorias.
+Encontramo-nos em um estágio prévio à sua discussão: estamos em um universo de discurso que inclui falar sobre teorias.
+É esperado que isso não seja de todo novo para o leitor --- quando dizemos, em um curso de Análise Real, Teoria dos Corpos ou mesmo Álgebra Linear, que ``o símbolo $\forall$ chama-se quantificador universal'', por exemplo, estamos lidando com a noção prévia de \emph{símbolo}, pertencente a esse nível anterior à teoria formal em questão.
+
+Com isso em mente, reservaremos as palavras \emph{Definição}, \emph{Teorema}, \emph{Lema}, \emph{Proposição}, \emph{Corolário}, etc. para enunciar afirmações no interior de uma teoria de conjuntos específica (como ZF ou ZFC), indicando, sempre que necessário, qual é a teoria considerada.
+
+No presente contexto, optamos por chamar tal definição de \emph{metadefinição}, uma vez que se trata de uma definição utilizada neste nível mais alto.
+De modo análogo, empregaremos expressões como \emph{metateorema} e \emph{metaproposição}.
+
+Tais considerações situam-se no âmbito da chamada \emph{metateoria}, entendida como uma teoria utilizada para o estudo de teorias formais.
+O leitor pode então perguntar: ``qual é essa metateoria?''.
+Não fixaremos nenhuma metateoria específica, mas é oportuno esclarecer alguns dos princípios que estamos implicitamente assumindo.
+
+Ao discutir teorias formais, nosso objeto de estudo são fórmulas e sequências de fórmulas (por exemplo, demonstrações formais).
+Em suma, uma metateoria deve ser capaz de lidar com uma quantidade infinita potencial de símbolos (sempre finitos de cada vez), reconhecer e comparar ordenações desses símbolos, e realizar raciocínios indutivos elementares, formalizando operações sobre sequências finitas (que podem ser codificadas por números naturais).
+
+Os famosos Axiomas de Peano, por exemplo, podem ser tomados como metateoria.
+Contudo, o esquema completo de indução presente na aritmética de Peano é mais forte do que o necessário para nossos propósitos, além de requerer o uso explícito de quantificadores.
+Uma teoria menos poderosa, que, de alguma forma, parece possuir o ``mínimo necessário'' para formalizar uma metateoria para a discussão sobre léxicos, lógica e provas de consistência, é a Aritmética Primitiva Recursiva (Primitive Recursive Arithmetic, PRA).
+Nós não a desenvolveremos nesse texto.
+Para uma abordagem moderna, o leitor interessado pode consultar \cite{avigad2022mathematical}.
+
+Adotaremos também a postura de que uma boa metateoria deve ser finitária: deve tratar de objetos e métodos finitos, ``concretos'', que podem ser escritos e verificados.
+Ao falarmos de léxicos e expressões, estamos tratando de manipulações concretas de cadeias de símbolos.
+Embora a Teoria dos Conjuntos nos permita falar de infinitos atuais de complexidade inimaginável, a lógica que a sustenta é construída passo a passo, como um jogo cujas regras podem ser verificadas mecanicamente por métodos finitos.
+Conforme veremos, a Lógica de Primeira Ordem possui, em seu alfabeto, infinitos símbolos para variáveis.
+Mas cada fórmula é finita e sabemos decidir se um símbolo é ou não uma variável em tempo finito.
+Assim, a metateoria não exige que ``acreditemos'' em coleções infinitas, apenas exige que saibamos reconhecer símbolos e seguir algoritmos para tarefas como substituição, comparação e concatenação.
+
+Ressaltamos, porém, que a fixação de uma metateoria específica não resolve o problema filosófico sobre a fundamentação da matemática, ou a natureza da matemática, uma vez que, por ser também uma teoria, a discussão sobre ela do ponto de vista do observador externo cairia no mesmo problema que estamos descrevendo.
+
+Uma segunda possível dúvida diz respeito ao termo ``coleção'', uma vez que ainda não adentramos na teoria dos conjuntos.
+Nesse contexto, ele designa simplesmente uma pluralidade bem delimitada de símbolos convencionados para escrever ou comunicar uma teoria, disponíveis, por assim dizer, para serem registrados em papel ou em um quadro.
+Tal coleção pode consistir em símbolos aritméticos, como $+$, $-$, $\cdot$, ou em símbolos lógicos, como $\neg$, $\wedge$, $\vee$.
+
+Por fim, notemos que a metadefinição pressupõe o conhecimento dos números inteiros não negativos (que também chamaremos de números naturais).
+Assumimos apenas um conhecimento rudimentar de contagem e operações elementares, no nível mais básico da compreensão humana.
+Tais noções podem, se desejado, ser formalizadas no âmbito da metateoria.
+
+\subsection{Expressões e unicidade de leitura}
+Feita a digressão, retomemos a discussão sobre léxicos para a notação polonesa.
+Fixado um léxico, podemos definir o que é uma expressão bem formada.
+\begin{metadefinition}
+Dado um léxico $\mathcal L$, uma \emph{expressão bem formada} (ou, simplesmente, \emph{expressão})\index{expressão bem formada} é uma sequência (finita) de símbolos de $\mathcal L$ que pode ser construída a partir das seguintes regras.
+\begin{enumerate}[label=(\roman*)]
+    \item Se $s\in\mathcal L$ é um símbolo de aridade $0$, então $s$ é uma expressão.
+    \item Se $s\in\mathcal L$ é um símbolo de aridade $n$ maior do que $0$ e $e_1,\dots,e_n$ são expressões bem formadas, então a sequência $se_1\dots e_n$, obtida pela concatenação de $s$, $e_1,\dots,e_n$, é uma expressão bem formada.
+    \item Toda expressão bem formada é obtida por meio de um número finito de aplicações das regras (i) e (ii).
+\end{enumerate}
+\end{metadefinition}
+
+Daremos alguns exemplos.
+\begin{example}
+Consideremos o léxico $\mathcal L$ que consiste dos símbolos $1$ e $2$, ambos de aridade $0$, e do símbolo $+$, de aridade $2$.
+As expressões bem formadas nesse léxico incluem:
+
+\begin{itemize}
+    \item $1$ e $2$, por serem símbolos de aridade $0$.
+    \item $+12$, $+21$, $+11$ e $+22$, por serem concatenações do símbolo $+$ com as expressões bem formadas $1$ e $2$.
+    Na notação usual, tais expressões corresponderiam a $1+2$, $2+1$, $1+1$ e $2+2$.
+    Ressaltamos que, aqui, não estamos tratando dos números 12 (doze), 21 (vinte e um), 11 (onze) ou 22 (vinte e dois), mas sim de expressões formadas pela concatenação dos símbolos $1$ e $2$.
+    Neste momento, não trataremos da construção do sistema decimal justapositivo usual a partir de um léxico.
+    \item ${+}{+}121$, por ser a concatenação do símbolo $+$ com as expressões bem formadas $+12$ e $1$.
+    Tal expressão corresponderia a $(1+2)+1$ na notação usual.
+    \item $+{+}12{+}21$, por ser a concatenação do símbolo $+$ com as expressões bem formadas $+12$ e $+21$.
+    Tal expressão corresponderia a $(1+2)+(2+1)$ na notação usual.
+    \item $2{+}2$ não é uma expressão bem formada: ela não é uma expressão bem formada pela regra (i), pois não consiste em um único símbolo de aridade $0$, e tampouco é uma expressão bem formada pela regra (ii), pois o primeiro símbolo da expressão, que é $2$, não é um símbolo de aridade $n>0$.
+    \item $+2{+}3$ não é uma expressão bem formada.
+    Novamente, ela não é uma expressão bem formada pela regra (i), pois não consiste em um único símbolo de aridade $0$.
+    Caso fosse uma expressão bem formada pela regra (ii), sendo o símbolo $+$ o primeiro símbolo da expressão, ela deveria ser, portanto, da forma $+e_1e_2$, onde $e_1$ e $e_2$ são expressões bem formadas.
+    O símbolo seguinte de $+$ é $2$ e deve iniciar a expressão $e_1$.
+    A única chance do símbolo $2$ iniciar $e_1$ é se $e_1$ for $2$, o que nos levaria a concluir que $e_2$ deveria ser $+3$, que não é uma expressão bem formada.
+\end{itemize}
+\end{example}
+
+Nos voltemos agora a uma importante vantagem teórica da notação polonesa: a eliminação da necessidade do uso de parênteses.
+Examinemos, na notação usual, a seguinte expressão: $2/3*4$.
+O símbolo $3$ deve ser interpretado como o segundo operando de $/$ ou como o primeiro operando de $*$?
+A resposta é que a expressão é, a princípio, ambígua, e, portanto, requer o uso de parênteses, como em $(2/3)*4$ ou $2/(3*4)$, ou a adoção de uma convenção de precedência.
+
+As metaproposições restantes nessa subseção demonstrarão que, na notação polonesa, não existe tal ambiguidade.
+Com elas, conclui-se que uma expressão na notação polonesa possui uma única forma de leitura.
+\begin{metadefinition}
+Dado um léxico $\mathcal L$, $n\geq 0$ e uma expressão bem formada $a_0\dots a_n$, uma subexpressão de $a_0\dots a_n$ é uma sequência $a_i\dots a_j$ com $0\leq i\leq j\leq n$ que também é uma expressão bem formada.
+
+Um segmento inicial de uma sequência $a_0\dots a_n$ é uma sequência de símbolos do tipo $a_0\dots a_k$ com $0\leq k\leq n$, ou a sequência vazia.
+Um segmento inicial é dito \emph{próprio} se for diferente da sequência original.
+\end{metadefinition}
+
+Notemos que toda expressão bem formada, por ser finita, possui um número finito de subexpressões distintas.
+
+Isso abre margem para argumentos indutivos: para provar que uma propriedade sobre expressões vale para toda expressão, basta provar que, caso valham para toda subexpressão própria de uma expressão dada, também vale para a expressão dada.
+
+Como só existe um número finito de subexpressões, essa verificação é finitária, podendo ser realizada de forma concreta, seja qual for a metateoria adotada.
+
+\begin{metaproposition}
+Dado um léxico $\mathcal L$, $n\geq 0$ e uma expressão bem formada $a_0\dots a_n$, então:
+
+\begin{enumerate}[label=(\roman*)]
+    \item Nenhum segmento inicial próprio de $a_0\dots a_n$ é uma expressão bem formada.
+    \item Existe um único número $k$ e únicas expressões bem formadas $e_0,\dots,e_{k-1}$ tais que $a_0\dots a_n$ é $a_0e_0\dots e_{k-1}$ (se $k=0$, entende-se que $a_0 e_0\dots e_{k-1}$ é apenas $a_0$).
+    Tal $k$ é a aridade do símbolo $a_0$.
+\end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    A prova é por indução sobre a estrutura: supondo provado que vale tal proposição para todas as subexpressões próprias de $a_0\dots a_n$, provaremos que ela vale para $a_0\dots a_n$.
+
+
+    Suponha que as teses valem para toda subexpressão própria de $a_0\dots a_n$.
+
+    Se $n$ for $0$, a nossa expressão bem formada é $a_0$.
+    O único segmento inicial próprio de $a_0$ é a sequência vazia, que não é uma expressão bem formada.
+    Além disso, a única forma de que $k$ seja um número natural para o qual existam $e_0,\dots,e_{k-1}$ expressões bem formadas, tais que $a_0\dots a_n$ seja $a_0e_0\dots e_{k-1}$, é quando $k=0$ (de modo que não exista $e_i$ algum).
+
+    Agora, se $n>0$, chamando $a_0\dots a_n$ de $S$, provaremos o seguinte.
+    
+    \begin{claim} Suponha que:
+        \begin{itemize}
+            \item $S$ é $a_0e_0\dots e_{k-1}$ com $e_0, \dots, e_{k-1}$ expressões bem formadas, e
+            \item se $a_0 e_0'\dots e_{l-1}'$ é um segmento inicial de $S$ com $e_0',\dots,e_{l-1}'$ expressões bem formadas,
+        \end{itemize}
+        então $l\leq k$ e $e_i=e_i'$ para cada $i<l$.
+    \end{claim}
+    \begin{proof}[Prova da afirmação]
+        Provaremos, por indução, que para todo $i<l$, vale $i<k$ e $e_i=e_i'$.
+        Para $i=0$, temos que $k>0$, ou teríamos que $S$ é $a_0$, que é diferente de $a_0e_0'\dots e_{l-1}'$.
+        Além disso, $e_0$ e $e_0'$ são subexpressões de $S$ iniciadas por $a_1$.
+        Dessa forma, devemos ter que $e_0$ é segmento inicial de $e_0'$, ou que $e_0'$ é segmento inicial de $e_0$.
+        Como ambas são expressões, por (i) na hipótese indutiva, são iguais.
+
+        Agora, suponha que a tese vale para $0, \dots, i$ e que $i+1<l$.
+        Temos, por hipótese de indução, que $i<k$ e que $e_0=e_0', \dots, e_i=e_i'$.
+        Em particular, $i+1\leq k$.
+        
+        Se $i+1=k$, segue que $S$ é $a_0e_0\dots e_i$, que é um segmento inicial próprio de $a_0e_0'\dots e_{l-1}'$, que é um segmento inicial de $S$.
+        Dessa forma, $S$ é um segmento inicial próprio de $S$, o que é absurdo.
+        Por isso, $i+1<k$.
+
+        Agora, $a_0e_0\dots e_{i-1}$ e $a_0e_0'\dots e_{i-1}'$ são a mesma sequência de símbolos, de modo que $e_i$ e $e_i'$ são subexpressões de $S$ iniciadas na mesma posição.
+        Dessa forma, uma deve ser segmento inicial da outra, de modo que, por (i), são iguais.
+    \end{proof}
+
+    Com a afirmação, facilmente completamos a prova de (i) e (ii).
+    Para (ii), basta notar que escrevendo $S$ como $a_0e_0\dots e_{k-1}$ e $a_0e_0'\dots e_{l-1}'$, temos que ambas as sequências são segmentos iniciais de $S$, de modo que, pela afirmação aplicada duas vezes, $k=l$ e $e_i=e_i'$ para cada $i<k$.
+    A aridade deve ser $k$, pois, por definição de expressão bem formada, sendo $l$ a aridade de $a_0$, $S$ é $a_0e_0'\dots e_{l-1}'$ para algumas subexpressões bem formadas $e_0',\dots,e_{l-1}'$.
+
+    Para (i), escrevamos, portanto, $S$ como $a_0e_0\dots e_{k-1}$, em que $k$ é a aridade de $a_0$.
+    Se $S'$ é um segmento inicial não vazio de $S$ que forma uma expressão bem formada, então $S'$ é da forma $a_0e_0'\dots e_{k-1}'$ para algumas expressões bem formadas $e_0',\dots,e_{k-1}'$.
+    Pela afirmação, $e_0=e_0', \dots, e_{k-1}=e_{k-1}'$, de modo que $S'=S$.
+\end{proof}
+
+Na demonstração anterior, utilizamos indução no sentido de que, provado um resultado para todas as subexpressões próprias de uma expressão dada, provamos que ele vale para a expressão dada.
+No futuro, vamos nos referir a esse tipo de indução como \emph{indução sobre a estrutura de uma expressão}\index{indução!sobre a estrutura de uma expressão}.
+\begin{metaproposition}
+    Seja $\mathcal L$ um léxico e $a_0\dots a_n$ uma expressão bem formada.
+    Então cada símbolo $a_i$ inicia uma única subexpressão $a_i\dots a_j$ de $a_0\dots a_n$.
+    Mais formalmente, para cada $i\leq n$, existe um único $j\leq n$ tal que $i\leq j\leq n$ e $a_i\dots a_j$ é uma expressão bem formada.
+\end{metaproposition}
+
+\begin{proof}
+
+    A unicidade é imediata de (i) da proposição anterior: caso houvesse duas subexpressões iniciadas por $a_i$, uma delas seria um segmento inicial da outra, o que é impossível por (i) da proposição anterior.
+    Assim, basta provar a existência.
+
+    A prova é por indução: supondo provado que vale tal proposição para todas as subexpressões próprias de $a_0\dots a_n$, provaremos que ela vale para $a_0\dots a_n$.
+
+    Se $n$ for $0$, temos que $a_0\dots a_n$ é $a_0$, e a prova é imediata.
+
+    Agora, se $n>0$, chamando $a_0\dots a_n$ de $S$, escrevamos $S$ como $a_0e_0\dots e_{k-1}$.
+
+    Se $i$ for $0$, existe uma subexpressão iniciada por $a_0$, que é a própria expressão $S$.
+    Se $i$ for maior do que $0$, então $a_i$ ocorre em $e_j$ para algum $j<k$, e, por hipótese de indução, ela inicia uma única subexpressão de $e_j$, que é, também, uma subexpressão de $a_0\dots a_n$.
+\end{proof}
+
+A proposição anterior nos diz que todo símbolo em uma expressão na notação polonesa possui uma função sintática muito bem delimitada, o que elimina qualquer ambiguidade na leitura de uma expressão.
+Além disso, ela também nos permite definir a noção de \emph{escopo}, o que é muito útil na discussão sobre quantificadores, que será realizada na próxima seção.
+
+\begin{metadefinition}
+Dado um léxico $\mathcal L$, $n\geq 0$ e uma expressão bem formada $a_0\dots a_n$, então, para cada $i\leq n$, a única subexpressão $a_i\dots a_j$ iniciada por $a_i$ é chamada de \emph{escopo}\index{escopo} (da ocorrência do) símbolo $a_i$ em $a_0\dots a_n$.
+\end{metadefinition}
+
+Notemos que o escopo é uma propriedade da ocorrência do símbolo dentro da expressão, e não do símbolo em si.
+Ou seja, se uma expressão possui a ocorrência do mesmo símbolo em mais de uma posição, cada ocorrência terá um escopo diferente.
+
+Finalizaremos esta seção com exemplos que ilustram a noção de escopo.
+
+\begin{example}
+    Consideremos o léxico $\mathcal L$ que consiste dos símbolos $1$ e $2$, ambos de aridade $0$, e dos símbolos $+$ e $-$, sendo $+$ de aridade $2$ e $-$ de aridade $1$.
+
+    \begin{itemize}
+        \item Na expressão $+1-2$:
+        \begin{itemize}
+            \item O símbolo $+$ tem escopo $+1-2$.
+            \item O símbolo $1$ tem escopo $1$.
+            \item O símbolo $-$ tem escopo $-2$.
+            \item O símbolo $2$ tem escopo $2$.
+        \end{itemize}
+    \end{itemize}
+    \begin{itemize}
+        \item Na expressão $++1-2+12$:
+        \begin{itemize}
+            \item O primeiro símbolo tem escopo $++1-2+12$.
+            \item O segundo símbolo tem escopo $+1-2$.
+            \item O terceiro símbolo tem escopo $1$.
+            \item O quarto símbolo tem escopo $-2$.
+            \item O quinto símbolo tem escopo $2$.
+            \item O sexto símbolo tem escopo $+12$.
+            \item O sétimo símbolo tem escopo $1$.
+            \item O oitavo símbolo tem escopo $2$.
+        \end{itemize}
+    \end{itemize}
+\end{example}
+
+\subsection*{Exercícios}
+\begin{exercise}
+    Considere o léxico cujos símbolos são:
+    \begin{itemize}
+        \item $e$ e $1$, ambos de aridade $0$.
+        \item $+$, de aridade $2$.
+        \item $\#$, de aridade $3$.
+    \end{itemize}
+    Decida quais das seguintes sequências de símbolos são expressões bem formadas na notação polonesa, justificando sua resposta.
+\begin{enumerate}[label=(\alph*)]
+    \item $e$.
+    \item $1$.
+    \item $+e1$.
+    \item $1+e$.
+    \item $\#+11$.
+    \item $+\#11e$.
+    \item $++e1\#+11e1$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Considere o léxico do exercício anterior, adicionado um novo símbolo $f$ de aridade $n$.
+    Em cada item, decida se existe um número natural $n$ tal que a sequência de símbolos seja uma expressão bem formada, justificando sua resposta.
+\begin{enumerate}[label=(\alph*)]
+    \item $f$.
+    \item $f1$.
+    \item $f1e$.
+    \item $f1e1$.
+    \item $+ffe$
+    \item $fef+11$.
+    \item $f+f12$.
+\end{enumerate}
+\end{exercise}

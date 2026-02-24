@@ -1,0 +1,164 @@
+\section{Teorias de primeira ordem}
+Até aqui, discutimos o que é uma linguagem de primeira ordem e aprendemos a identificar termos, sentenças e fórmulas, bem como tautologias.
+O próximo passo é entender teorias, teoremas e demonstrações, ou seja, teoria da prova básica.
+
+Para se provar teoremas, é necessário estabelecer axiomas (fórmulas que serão consideradas verdadeiras) e regras de inferência (maneiras de obter novas fórmulas a partir de fórmulas já estabelecidas como verdadeiras).
+
+Os axiomas lógicos adotados variam muito de texto para texto.
+Há quem diga que há tantas formas de axiomatizar a lógica quanto há textos de lógica.
+Acreditamos que, em algum sentido, este texto somará 1 a essa contagem.
+De qualquer modo, a grande maioria das formas é, em algum sentido, equivalente (se tratando de lógica de primeira ordem).
+Não comentaremos outras formas de o fazer com profundidade.
+
+
+Agora estamos prontos para enunciar os axiomas lógicos adotados neste texto.
+Adotaremos um sistema de axiomas estilo Hilbert.
+Além disso, por simplicidade, nos restringiremos a examinar sentenças, ou seja, fórmulas sem variáveis livres.
+Ressaltamos novamente que esse não é o único modo de formalizar a dedução lógica.
+Estamos adotando esse sistema por brevidade e simplicidade, uma vez que é um de apresentação mais rápida e concisa.
+
+\begin{metadefinition}
+    Os axiomas lógicos adotados neste texto consistem em fechos universais dos seguintes esquemas de fórmulas, em que $\phi$ e $\psi$ são fórmulas arbitrárias e $x$, $x_1$, $\dots$, $x_n$, $y$, $y_1, \dots$, $y_n$ são variáveis arbitrárias.
+    \begin{enumerate}
+        \item Tautologias.
+        \item $\forall x \phi \rightarrow \phi[x/t]$, sempre que a substituição $\phi[x/t]$ é válida.
+        \item $\forall x (\phi \rightarrow \psi)\rightarrow (\forall x \phi \rightarrow \forall x \psi)$.
+        \item $\phi \rightarrow \forall x \phi$, se $x$ não ocorre livre em $\phi$.
+        \item $\phi[x/t] \rightarrow \exists x \phi$, sempre que a substituição $\phi[x/t]$ é válida.
+        \item $\forall x \neg \phi \leftrightarrow \neg \exists x \phi$.
+        \item $x=x$.
+        \item $x=y \rightarrow y=x$.
+        \item $x=y \wedge y=z \rightarrow x=z$.
+        \item $x_1=y_1 \wedge \dots \wedge x_n=y_n \rightarrow f(x_1, \dots, x_n) = f(y_1, \dots, y_n)$, sempre que $f$ é um símbolo de função de aridade $n$.
+        \item $x_1=y_1 \wedge \dots \wedge x_n=y_n \rightarrow R(x_1, \dots, x_n) \leftrightarrow R(y_1, \dots, y_n)$, sempre que $R$ é um símbolo de relação de aridade $n$.
+    \end{enumerate}
+\end{metadefinition}
+
+A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
+
+\begin{metadefinition}[Teoria]
+    Uma \emph{teoria de primeira ordem} consiste em um léxico $\mathcal L$ para uma linguagem de primeira ordem munido de uma coleção de sentenças $\Sigma$ de $\mathcal L$, chamadas de \emph{axiomas}.
+    Tais axiomas também podem ser chamados de \emph{axiomas não lógicos}, para distingui-los dos axiomas lógicos enunciados anteriormente.
+\end{metadefinition}
+
+\begin{metadefinition}[Demonstração]
+    Seja $T$ uma teoria de primeira ordem e $\phi$ uma $\mathcal L$-sentença, onde $\mathcal L$ é o léxico de $T$.
+    Uma \emph{demonstração} de $\phi$ a partir de $T$ é uma sequência finita de $\mathcal L$-sentenças $\psi_0, \dots, \psi_n$ tal que para cada $i$:
+    \begin{itemize}
+        \item $\psi_i$ é um axioma lógico, ou
+        \item $\psi_i$ é um axioma de $T$, ou
+        \item $\psi_i$ é obtida a partir de \emph{modus ponens} de duas sentenças anteriores.
+        Ou seja, existem $j, k<i$ tais que $\psi_j$ é  $\psi_k \rightarrow \psi_i$.
+    \end{itemize}
+
+    Caso exista uma demonstração de $\phi$ a partir de $T$, dizemos que $\phi$ é um \emph{teorema} de $T$, e escrevemos $T \vdash \phi$.
+    Caso os axiomas de $T$ sejam $\Sigma$ e o léxico de $T$ seja $\mathcal L$, também podemos escrever $\Sigma \vdash_{\mathcal L} \phi$ (e $\Sigma \nvdash_{\mathcal L} \phi$).
+    Por fim, caso $\mathcal L$ esteja claro pelo contexto, podemos simplesmente escrever $\Sigma \vdash \phi$ (e $\Sigma \nvdash \phi$).
+\end{metadefinition}
+
+Uma \emph{regra de inferência} é uma regra formal que permite obter novas sentenças a partir de sentenças já estabelecidas como verdadeiras.
+No formalismo apresentado, a única regra de inferência é o \emph{modus ponens}, que permite inferir $\psi$ a partir de $\phi$ e $\phi \rightarrow \psi$.
+
+Na prática, quase nunca, em matemática, escrevemos uma demonstração tão formal quanto a definição acima exige.
+Para ajudar a ver que as demonstrações usuais em matemática poderiam, em tese, ser reescritas de forma tão formal, apresentaremos alguns resultados relevantes.
+
+Começaremos com alguns enunciados simples.
+O primeiro resultado pode ser interpretado como a asserção de que resultados já provados podem ser usados para provar novos resultados.
+\begin{metalemma}\label{metalemma:modusponens}
+    Seja $T$ uma teoria de primeira ordem.
+    Se $T \vdash \phi$ e $T \vdash \phi \rightarrow \psi$, então $T \vdash \psi$.
+\end{metalemma}
+\begin{proof}
+    Existem demonstrações de $\phi$ e de $\phi \rightarrow \psi$ a partir de $T$, digamos $\psi_0, \dots, \psi_n$ e $\psi'_0, \dots, \psi'_m$, respectivamente, de modo que $\psi_n$ é $\phi$ e $\psi'_m$ é $\phi \rightarrow \psi$.
+    Considere a seguinte sequência de sentenças:
+    \begin{equation*}
+        \psi_0, \dots, \psi_n, \psi'_0, \dots, \psi'_{m}, \psi.
+    \end{equation*}
+
+    A sequência $\psi_0, \dots, \psi_n, \psi'_0, \dots, \psi'_{m}$, por ser uma concatenação de duas demonstrações, satisfaz claramente as condições para ser uma demonstração.
+    Ao acrescentar $\psi$ ao final da sequência, ainda temos as condições satisfeitas, uma vez que $\psi$ é obtida a partir de \emph{modus ponens} de $\phi$ e $\phi \rightarrow \psi$, que são, respectivamente, $\psi_n$ e $\psi'_m$.
+\end{proof}
+
+O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de $T$, então $T'$ prova todos os teoremas de $T$.
+
+\begin{metaproposition}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem e $\Sigma$, $\Sigma'$ coleções de sentenças de $\mathcal L$ tais que toda sentença de $\Sigma$ é um teorema de $\Sigma'$.
+    Sejam $T$ e $T'$ as teorias de primeira ordem com léxico $\mathcal L$ e axiomas $\Sigma$ e $\Sigma'$, respectivamente.
+
+    Então todo teorema de $T$ é um teorema de $T'$.
+    Em símbolos, para cada $\mathcal L$-sentença $\phi$,
+
+    \begin{equation*}
+        \Sigma \vdash_\mathcal L \phi \implies \Sigma' \vdash_\mathcal L \phi.
+    \end{equation*}
+
+    Em particular, se $T'$ é uma teoria de primeira ordem obtida acrescentando novos axiomas a uma teoria $T$, então todo teorema de $T$ é um teorema de $T'$.
+\end{metaproposition}
+
+\begin{proof}
+    Seja $\phi$ uma $\mathcal L$-sentença tal que $\Sigma \vdash_\mathcal L \phi$.
+    Então existe uma demonstração finita de $\phi$ a partir de $\Sigma$, $\phi_0, \dots, \phi_n$.
+    Veremos, por indução em $m$, para $m\leq n$, que cada $\phi_m$ é um teorema de $T'$.
+
+    Seja dado $m$, e suponha que o resultado é válido para cada $i<m$.
+    
+    \textbf{Caso 1:} $\phi_m$ é um axioma lógico.
+    Nesse caso, $\phi_m$ é trivialmente um teorema de $T'$.
+
+    \textbf{Caso 2:} $\phi_m$ é um axioma de $T$.
+    Nesse caso, por hipótese, $\phi_m$ é um teorema de $T'$.
+
+    \textbf{Caso 3:} $\phi_m$ é obtida a partir de \emph{modus ponens} de duas sentenças anteriores, digamos $\phi_j$ e $\phi_k$, com $j, k<m$ e $\phi_j$ é $\phi_k \rightarrow \phi_m$.
+    Por hipótese de indução, $T' \vdash \phi_k$ e $T' \vdash \phi_k\rightarrow \phi_m$.
+    Do Metalema~\ref{metalemma:modusponens}, temos que $\phi_m$ é um teorema de $T'$.
+\end{proof}
+
+Façamos uma pausa para observar algo importante acontecendo na metateoria (isto é, no nosso raciocínio sobre demonstrações).
+Ambos os resultados acima concluem que ``existem demonstrações''.
+É importante observar que tais provas existenciais são construtivas: elas de fato fornecem um algoritmo para, dados os objetos declarados nas hipóteses, efetivamente redigir uma demonstração.
+
+O próximo lema diz que aumentar a linguagem sem tocar nos axiomas não aumenta o poder de prova de uma teoria com respeito às sentenças da linguagem original.
+A prova é simples, e deixada como exercício.
+
+\begin{metalemma}\label{metalemma:languageextension}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $\Sigma$ uma coleção de sentenças de $\mathcal L$, e $\mathcal L'$ um léxico para uma linguagem de primeira ordem que possui todo símbolo de $\mathcal L$.
+
+    Sejam $T$ e $T'$ as teorias de primeira ordem com léxico $\mathcal L$ e $\mathcal L'$ e axiomas $\Sigma$ e $\Sigma$, respectivamente.
+
+    Então, para cada $\mathcal L$-sentença $\phi$, $\Sigma \vdash_\mathcal L \phi$ se e somente se $\Sigma \vdash_{\mathcal L'} \phi$.
+    Em símbolos:
+
+    \begin{equation*}
+        \Sigma \vdash_\mathcal L \phi \iff \Sigma \vdash_{\mathcal L'} \phi.
+    \end{equation*}
+\end{metalemma}
+\begin{proof}
+    Ver Exercício~\ref{exercise:languageextension}.
+\end{proof}
+
+O próximo resultado nos mostra o motivo de contradições serem tão indesejáveis em Matemática: na Lógica Clássica, ao admitir uma, não estamos apenas sendo incoerentes, estamos abrindo margem para provar qualquer coisa: um verdadeiro desastre.
+
+\begin{metadefinition}
+    Seja $T$ uma teoria de primeira ordem.
+    Dizemos que $T$ é \emph{inconsistente} se existe uma $\mathcal L$-sentença $\phi$ tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
+\end{metadefinition}
+
+\begin{metaproposition}[Princípio da explosão]
+    Seja $T$ uma teoria de primeira ordem.
+    Se $T$ é inconsistente, então para cada $\mathcal L$-sentença $\phi$, $T \vdash \phi$.
+\end{metaproposition}
+\begin{proof}
+    Seja $\phi$ uma sentença tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
+
+    Note que $A\rightarrow (\neg A\rightarrow B)$ é uma tautologia.
+    Assim, $\phi \rightarrow (\neg \phi \rightarrow \phi)$ é uma instância de tautologia, e uma sentença, e, portanto, um axioma lógico.
+    Desta forma, $T \vdash \phi \rightarrow (\neg \phi \rightarrow \phi)$.
+
+    Como $T \vdash \phi$, do Metalema~\ref{metalemma:modusponens} temos que $T \vdash \neg \phi \rightarrow \phi$.
+
+    Como $T \vdash \neg \phi$, novamente do Metalema~\ref{metalemma:modusponens}, segue que $T \vdash \phi$.
+\end{proof}
+\section*{Exercícios}
+\begin{exercise}\label{exercise:languageextension}
+    Prove o Metalema~\ref{metalemma:languageextension}.
+\end{exercise}

@@ -1,0 +1,68 @@
+# LaTeX temporary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.lb
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.synctex(busy)
+
+# Intermediate files
+*.dvi
+*.ps
+*.ilg
+*.idx
+*.ind
+
+# PDF output
+*.pdf
+
+# Bibliography auxiliary files
+*.bib.bak
+
+# beamer
+*.nav
+*.snm
+*.vrb
+
+# glossaries
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+
+# hyperref
+*.brf
+
+# Makeindex log files
+*.mkp
+*.mks
+
+# Locally stored "eclipse launch configurations"
+*.launch
+
+# Texpad
+.texpadtmp
+
+# Vim
+*~
+*.swp
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/

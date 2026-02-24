@@ -1,0 +1,139 @@
+\section{Elementos sintáticos de uma linguagem de primeira ordem}
+
+Nesta seção, trabalharemos um pouco mais com elementos e definições sintáticas de uma linguagem de primeira ordem, como substituições e fechos universais.
+
+\begin{metadefinition}[Variáveis ligadas e livres]
+    Dada uma fórmula $\varphi$ e uma ocorrência de um quantificador $Q$ (que pode ser $\forall$ ou $\exists$), dizemos que $Q$ \emph{age} em uma variável $x$ se o próximo símbolo de $\varphi$ após $Q$ for $x$ (ou seja, se o escopo de $Q$ for da forma $Q x \psi$).
+
+    Dizemos que uma ocorrência de uma variável $x$ em $\varphi$ é \emph{ligada}, ou \emph{quantificada}, se ela estiver no escopo de um quantificador $Q$ que age em $x$.
+    Caso contrário, dizemos que a ocorrência de $x$ é \emph{livre}.
+
+    Caso $\varphi$ não possua variáveis livres, dizemos que $\varphi$ é uma \emph{sentença}.
+\end{metadefinition}
+
+\begin{example}
+    Na fórmula $x_1 = x_2 \wedge \forall \textcolor{red}{x_1} (\textcolor{red}{x_1} \in x_3)$, a segunda e a terceira ocorrência de $x_1$ são ligadas (grafadas em vermelho).
+    Todas as outras ocorrências de variáveis são livres.
+\end{example}
+
+\begin{example}Sobre sentenças:
+\begin{itemize}
+        \item Se $P$ é um símbolo de predicado de aridade $0$, então $P$ é uma sentença, pois não possui variáveis livres.
+    
+        \item $\forall x (x = x)$ é uma sentença, pois a única variável que aparece nela é $x$, e todas as ocorrências de $x$ são ligadas.
+    
+        \item $x = x \wedge \forall x \,(x \in x)$ não é uma sentença, pois a primeira ocorrência de $x$ é livre.
+\end{itemize}
+\end{example}
+
+Conforme veremos, optaremos, por simplicidade, explicitar a teoria da prova para lógica de primeira ordem clássica apenas para sentenças.
+Por isso, o conceito de fecho universal será essencial.
+
+\begin{metadefinition}[Fecho universal]
+    Dada uma fórmula $\varphi$, um fecho universal de $\varphi$ é uma fórmula do tipo $\forall x_1 \dots \forall x_n \varphi$ sem variáveis livres, em que $x_1, \dots, x_n$ são variáveis.
+\end{metadefinition}
+
+\begin{example}
+    Se $\varphi$ é $x_1 = x_2$, então $\forall x_1 \forall x_2 \,(x_1 = x_2)$ é um fecho universal de $\varphi$.
+\end{example}
+
+Para trabalharmos com quantificadores, precisaremos da noção de substituição de símbolos em fórmulas, feita como se segue:
+
+\begin{definition}[Substituição em termos]
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
+
+    Dado um termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências livres de $x$ por $t$.
+    Formalmente, define-se $s[x/t]$ por indução sobre a estrutura de $s$, como se segue.
+    \begin{itemize}
+        \item Se $s$ é $x$, então $s[x/t]$ é $t$.
+        \item Se $s$ é constante ou uma variável diferente de $x$, então $s[x/t]$ é $s$.
+        \item Se $s$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário e $e_1, \dots, e_n$ são termos para os quais $s[x/t]$ já foi definido, então $s[x/t]$ é $fe_1[x/t] \dots e_n[x/t]$.
+    \end{itemize}
+\end{definition}
+Prova-se, por um argumento indutivo simples, que se $s$ é um termo, então $s[x/t]$ é um termo.
+
+
+Sigamos para alguns exemplos.
+
+\begin{example}
+    Considere a linguagem da teoria dos anéis do Exemplo~\ref{ex:exemplosLexicos}.
+    \begin{itemize}
+        \item $x_1[x_1/0]$ é $0$.
+        \item $x_1[x_2/0]$ é $x_1$.
+        \item $(x_1 + x_2)[x_1/0]$ é $0 + x_2$.
+        \item $(x_1 + x_2)[x_2/(x_1 + x_2)]$ é $x_1 + (x_1 + x_2)$.
+    \end{itemize}
+\end{example}
+
+\begin{definition}[Substituição em fórmulas]
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
+
+    Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida a partir de $\varphi$ substituindo-se todas as ocorrências \underline{livres} de $x$ por $t$.
+    Formalmente, define-se $\varphi[x/t]$ por indução sobre a estrutura de $\varphi$ através do algoritmo a seguir.
+    \begin{itemize}
+        \item Se $\varphi$ é $P e_1 \dots e_n$, em que $P$ é um símbolo de predicado $n$-ário ($n>0$) e $e_1, \dots, e_n$ são termos, então $\varphi[x/t]$ é $P e_1[x/t] \dots e_n[x/t]$.
+        \item Se $\varphi$ é $= e_1 e_2$, em que $e_1$ e $e_2$ são termos, então $\varphi[x/t]$ é $= e_1[x/t] e_2[x/t]$.
+        \item Se $\varphi$ é um símbolo de predicado 0-ário, então $\varphi[x/t]$ é $\varphi$.
+        \item Se $\varphi$ é $\neg \psi$, então $\varphi[x/t]$ é $\neg \psi[x/t]$.
+        \item Se $\varphi$ é $\psi \square \theta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\varphi[x/t]$ é $\psi[x/t] \square \theta[x/t]$.
+        \item Se $\varphi$ é $\forall y \psi$ ou $\exists y \psi$, em que $y$ é uma variável diferente de $x$, então $\varphi[x/t]$ é $\forall y \psi[x/t]$ ou $\exists y \psi[x/t]$.
+        \item Se $\varphi$ é $\forall x \psi$ ou $\exists x \psi$, então $\varphi[x/t]$ é $\varphi$.
+    \end{itemize}
+\end{definition}
+
+Novamente, por uma indução simples, prova-se que se $\varphi$ é uma fórmula, então $\varphi[x/t]$ é uma fórmula.
+
+Por fim, apresentamos uma definição.
+
+\begin{definition}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
+    Dizemos que $x$ é substituível por $t$ em uma fórmula $\varphi$ (ou que a substituição $\varphi[x/t]$ é válida) se nenhuma ocorrência livre de $x$ em $\varphi$ estiver no escopo de um quantificador que age em alguma variável que ocorre em $t$.
+\end{definition}
+
+Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando do conhecimento prévio do leitor, podemos justificar a definição acima com exemplos.
+
+\begin{example}
+    Considere a fórmula $\exists y \, (x \neq y)$, que, intuitivamente, pode ser verdadeira para alguns valores de $x$.
+
+    A variável $x$ não é substituível pelo termo $y$ nessa forma, pois $x$ está no escopo de um quantificador de uma variável que ocorre em $y$ (o próprio $y$).
+
+    Notemos que, ao substituir $x$ por $y$ nessa fórmula, obtemos $\exists y \, (y \neq y)$, que é intuitivamente falso.
+\end{example}
+
+\begin{example}
+    Considere a fórmula $\forall x \exists y \, (x \neq y)$.
+
+    A substituição de $x$ e $y$ por qualquer termo $t$ é válida, pois a fórmula não possui variáveis livres.
+    Notemos que para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, (x \neq y)$ e $\varphi[y/t]$ é $\forall x \exists y \, (x \neq y)$, ou seja, a fórmula é invariante por tais substituições.
+\end{example}
+
+\subsection*{Exercícios}
+
+\begin{exercise}
+    Determine quais são as ocorrências de variáveis livres e ligadas nas seguintes fórmulas.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\forall x \, (x = x)$
+        \item $\exists x \, (x = y)$
+        \item $\forall x \, (x = y) \rightarrow \exists y \, (y = z \wedge x=y)$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Considere a linguagem da teoria dos anéis do Exemplo~\ref{ex:exemplosLexicos}.
+    Em cada item, determine $\varphi[x/t]$ e se a substituição é válida.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\varphi$ é $x = x \cdot y$ e $t$ é $y$.
+        \item $\varphi$ é $\forall x \, (x = x \cdot y)$ e $t$ é $y$.
+        \item $\varphi$ é $\forall x \, (x = x \cdot y \wedge \forall y\, \neg (x = x))$ e $t$ é $y$.
+        \item $\varphi$ é $ \neg (x+y =y+x) \wedge \forall y \, (x = x \cdot y)$ e $t$ é $y$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Determine dois fechos universais distintos para cada uma das fórmulas abaixo.
+\begin{enumerate}[label=(\alph*)]
+    \item $x = y$;
+    \item $\exists z\,(x \neq z)$;
+    \item $(x = y) \wedge (z = x)$.
+\end{enumerate}
+\end{exercise}

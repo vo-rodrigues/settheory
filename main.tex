@@ -1,0 +1,38 @@
+\documentclass{book}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{import}
+\usepackage{imakeidx}
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\geometry{a4paper, margin=1in}
+
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\AC}{AC}
+\DeclareMathOperator{\subst}{subst}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definição}[section]
+\newtheorem{metadefinition}[definition]{Metadefinição}
+\newtheorem{example}[definition]{Exemplo}
+\newtheorem{proposition}[definition]{Proposição}
+\newtheorem{metaproposition}[definition]{Metaproposição}
+\newtheorem{claim}{Afirmação}[definition]
+\newtheorem{convention}{Convenção}[definition]
+\newtheorem{metalemma}[definition]{Metalema}
+
+\newtheorem{exercise}{Exercício}[section]
+\makeindex[title=Índice]
+
+\title{Teoria dos Conjuntos}
+\author{Vinicius de Oliveira Rodrigues}
+\begin{document}
+    \import{frontmatter/}{frontmatter.tex}
+    \import{mainmatter/}{mainmatter.tex}
+    \import{backmatter/}{backmatter.tex}
+\end{document}
