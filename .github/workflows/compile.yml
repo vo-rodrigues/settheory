@@ -19,14 +19,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Set up Git repository
+        uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: main.tex
+      - name: Install TeX Live (minimal)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-science \
+            texlive-pictures \
+            texlive-lang-portuguese
+
+      - name: Compile LaTeX
+        run: |
+          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex
 
       - name: Prepare site
+        if: github.event_name == 'push'
         run: |
           mkdir -p site
           mv main.pdf site/setTheory.pdf
