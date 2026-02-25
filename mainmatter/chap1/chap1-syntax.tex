@@ -26,6 +26,16 @@ Nesta seção, trabalharemos um pouco mais com elementos e definições sintáti
 \end{itemize}
 \end{example}
 
+A seguinte convenção é muito útil nas mais diversas situações.
+
+\begin{convention}\label{convention:variaveislivres}
+    Seja $\varphi$ uma fórmula.
+    A notação $\varphi(x_1, \dots, x_n)$ indica que todas as variáveis com ocorrência livre de $\varphi$ estão entre $x_1, \dots, x_n$.
+
+    Dessa forma, $x_1, \dots, x_n$ podem não ocorrer todas livres em $\varphi$ (não precisam nem mesmo ocorrer em $\varphi$).
+    Porém, nenhuma outra variável ocorre livre em $\varphi$.
+\end{convention}
+
 Conforme veremos, optaremos, por simplicidade, explicitar a teoria da prova para lógica de primeira ordem clássica apenas para sentenças.
 Por isso, o conceito de fecho universal será essencial.
 
@@ -42,12 +52,12 @@ Para trabalharmos com quantificadores, precisaremos da noção de substituição
 \begin{definition}[Substituição em termos]
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
-    Dado um termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências livres de $x$ por $t$.
+    Dado um termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências de $x$ por $t$.
     Formalmente, define-se $s[x/t]$ por indução sobre a estrutura de $s$, como se segue.
     \begin{itemize}
         \item Se $s$ é $x$, então $s[x/t]$ é $t$.
         \item Se $s$ é constante ou uma variável diferente de $x$, então $s[x/t]$ é $s$.
-        \item Se $s$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário e $e_1, \dots, e_n$ são termos para os quais $s[x/t]$ já foi definido, então $s[x/t]$ é $fe_1[x/t] \dots e_n[x/t]$.
+        \item Se $s$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário e $e_1, \dots, e_n$ são termos para os quais $e_1[x/t], \dots, e_n[x/t]$ já foram definidos, então $s[x/t]$ é $fe_1[x/t] \dots e_n[x/t]$.
     \end{itemize}
 \end{definition}
 Prova-se, por um argumento indutivo simples, que se $s$ é um termo, então $s[x/t]$ é um termo.
@@ -95,13 +105,13 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
 \begin{example}
     Considere a fórmula $\exists y \, (x \neq y)$, que, intuitivamente, pode ser verdadeira para alguns valores de $x$.
 
-    A variável $x$ não é substituível pelo termo $y$ nessa forma, pois $x$ está no escopo de um quantificador de uma variável que ocorre em $y$ (o próprio $y$).
+    A variável $x$ não é substituível pelo termo $y$ nesta fórmula, pois $x$ está no escopo de um quantificador de uma variável que ocorre em $y$ (o próprio $y$).
 
     Notemos que, ao substituir $x$ por $y$ nessa fórmula, obtemos $\exists y \, (y \neq y)$, que é intuitivamente falso.
 \end{example}
 
 \begin{example}
-    Considere a fórmula $\forall x \exists y \, (x \neq y)$.
+    Considere a fórmula $\varphi$ dada por $\forall x \exists y \, (x \neq y)$.
 
     A substituição de $x$ e $y$ por qualquer termo $t$ é válida, pois a fórmula não possui variáveis livres.
     Notemos que para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, (x \neq y)$ e $\varphi[y/t]$ é $\forall x \exists y \, (x \neq y)$, ou seja, a fórmula é invariante por tais substituições.
@@ -130,10 +140,10 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
 \end{exercise}
 
 \begin{exercise}
-Determine dois fechos universais distintos para cada uma das fórmulas abaixo.
-\begin{enumerate}[label=(\alph*)]
-    \item $x = y$;
-    \item $\exists z\,(x \neq z)$;
-    \item $(x = y) \wedge (z = x)$.
-\end{enumerate}
+    Determine dois fechos universais distintos para cada uma das fórmulas abaixo.
+    \begin{enumerate}[label=(\alph*)]
+        \item $x = y$;
+        \item $\exists z\,(x \neq z)$;
+        \item $(x = y) \wedge (z = x)$.
+    \end{enumerate}
 \end{exercise}
