@@ -1,0 +1,44 @@
+\section{Mais sobre demonstrações formais}
+Nesta seção, veremos resultados adicionais sobre demonstrações formais.
+Tais resultados formalizam parte dos raciocínios matemáticos usualmente utilizados.
+
+Iniciaremos pelo Teorema da Dedução, que diz que para provar uma implicação, podemos tomar o antecedente como hipótese e provar o consequente.
+
+\begin{metatheorem}[Teorema da Dedução]
+    Seja $T$ uma teoria e $\phi, \psi$ fórmulas.
+    São equivalentes:
+    \begin{enumerate}[label=(\roman*)]
+        \item $T \vdash \phi \to \psi$;
+        \item $T, \phi \vdash \psi$.
+    \end{enumerate}
+
+    Em que $T, \phi$ é a teoria $T$ com a fórmula $\phi$ adicionada como axioma.
+\end{metatheorem}
+
+\begin{proof}
+    $(i) \Rightarrow (ii)$: se $T \vdash \phi \to \psi$, então, pela Metaproposição~\ref{metaproposition:theoryextension}, $T, \phi \vdash \phi \to \psi$.
+    Como $T, \phi\vdash \phi$, segue de modus ponens que $T, \phi \vdash \psi$.
+
+    $(ii) \Rightarrow (i)$: suponha que $T, \phi \vdash \psi$.
+    Existe uma demonstração $\theta_0, \dots, \theta_n$ de $\psi$ a partir de $T, \phi$.
+    Veremos, por indução em $i\leq n$, que $T \vdash \phi \to \theta_i$.
+
+    Suponha que a tese vale para todo $j<i$.
+    
+    \textbf{Caso 1:} $\theta_i$ é um axioma de $T$, ou um axioma lógico.
+    Nesse caso, $\theta_i\rightarrow (\phi\rightarrow \theta_i)$ é uma instância de tautologia, e, portanto, $T\vdash \theta_i\rightarrow (\phi\rightarrow \theta_i)$.
+    Como $T\vdash \theta_i$, segue de modus ponens que $T\vdash \phi\rightarrow \theta_i$.
+
+    \textbf{Caso 2:} $\theta_i$ é a fórmula $\phi$.
+    Nesse caso, $\phi\rightarrow \phi$ é uma instância de tautologia, e, portanto, $T\vdash \phi\rightarrow \phi$.
+
+    \textbf{Caso 3:} $\theta_i$ é obtida por modus ponens a partir de $\theta_j$ e $\theta_k$, com $j,k<i$, em que $\theta_k$ é a fórmula $\theta_j\rightarrow \theta_i$.
+    Nesse caso, pela hipótese de indução, $T\vdash \phi\rightarrow \theta_j$ e $T\vdash \phi\rightarrow (\theta_j\rightarrow \theta_i)$.
+    Note que $(\phi\rightarrow \theta_j)\rightarrow ((\phi\rightarrow (\theta_j\rightarrow \theta_i))\rightarrow (\phi\rightarrow \theta_i))$ é uma instância de tautologia, e, portanto:
+
+    \begin{equation*}
+        T\vdash (\phi\rightarrow \theta_j)\rightarrow ((\phi\rightarrow (\theta_j\rightarrow \theta_i))\rightarrow (\phi\rightarrow \theta_i)).
+    \end{equation*}
+
+    Por duas aplicações sucessivas de modus ponens, segue que $T\vdash \phi\rightarrow \theta_i$.
+\end{proof}
