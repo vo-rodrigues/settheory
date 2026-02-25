@@ -6,7 +6,7 @@ Ele deve ser encarado como um rascunho incompleto, sujeito a mudanças, erros e 
 O uso deste texto para estudo por conta própria deve ser feito com cautela.
 Em caso de dúvidas ou sugestões, o autor pode ser contatado por e-mail: [vinior@ime.usp.br](mailto:vinior@ime.usp.br)
 
-- **PDF (versão canônica):** `https://vo-rodrigues.github.io/setTheory/setTheory.pdf`
+- **PDF (versão canônica):** `[https://vo-rodrigues.github.io/setTheory/setTheory.pdf](https://vo-rodrigues.github.io/settheory/setTheory.pdf)`
 - **Como contribuir:** veja [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 ## Licença
