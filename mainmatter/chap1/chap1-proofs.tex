@@ -2,17 +2,18 @@
 Nesta seção, veremos resultados adicionais sobre demonstrações formais.
 Tais resultados formalizam parte dos raciocínios matemáticos usualmente utilizados.
 
-Iniciaremos pelo Teorema da Dedução, que diz que para provar uma implicação, podemos tomar o antecedente como hipótese e provar o consequente.
+Iniciaremos pelo Teorema da Dedução.
+Este teorema formaliza a ideia de que para provar uma implicação, podemos tomar o antecedente como hipótese para demonstrar o consequente.
 
 \begin{metatheorem}[Teorema da Dedução]
-    Seja $T$ uma teoria e $\phi, \psi$ fórmulas.
+    Seja $T$ uma teoria e $\phi, \psi$ sentenças da linguagem de $T$.
     São equivalentes:
     \begin{enumerate}[label=(\roman*)]
         \item $T \vdash \phi \to \psi$;
         \item $T, \phi \vdash \psi$.
     \end{enumerate}
 
-    Em que $T, \phi$ é a teoria $T$ com a fórmula $\phi$ adicionada como axioma.
+    Em que $T, \phi$ é a teoria $T$ com a sentença $\phi$ adicionada como axioma.
 \end{metatheorem}
 
 \begin{proof}
@@ -33,8 +34,13 @@ Iniciaremos pelo Teorema da Dedução, que diz que para provar uma implicação,
     Nesse caso, $\phi\rightarrow \phi$ é uma instância de tautologia, e, portanto, $T\vdash \phi\rightarrow \phi$.
 
     \textbf{Caso 3:} $\theta_i$ é obtida por modus ponens a partir de $\theta_j$ e $\theta_k$, com $j,k<i$, em que $\theta_k$ é a fórmula $\theta_j\rightarrow \theta_i$.
-    Nesse caso, pela hipótese de indução, $T\vdash \phi\rightarrow \theta_j$ e $T\vdash \phi\rightarrow (\theta_j\rightarrow \theta_i)$.
-    Note que $(\phi\rightarrow \theta_j)\rightarrow ((\phi\rightarrow (\theta_j\rightarrow \theta_i))\rightarrow (\phi\rightarrow \theta_i))$ é uma instância de tautologia, e, portanto:
+    Nesse caso, pela hipótese de indução:
+    
+    \begin{equation*}
+        T\vdash \phi\rightarrow \theta_j \text{ e } T\vdash \phi\rightarrow (\theta_j\rightarrow \theta_i).
+    \end{equation*}
+    Note que $(\phi\rightarrow \theta_j)\rightarrow ((\phi\rightarrow (\theta_j\rightarrow \theta_i))\rightarrow (\phi\rightarrow \theta_i))$ é uma instância de tautologia.
+    Segue que:
 
     \begin{equation*}
         T\vdash (\phi\rightarrow \theta_j)\rightarrow ((\phi\rightarrow (\theta_j\rightarrow \theta_i))\rightarrow (\phi\rightarrow \theta_i)).
@@ -42,3 +48,29 @@ Iniciaremos pelo Teorema da Dedução, que diz que para provar uma implicação,
 
     Por duas aplicações sucessivas de modus ponens, segue que $T\vdash \phi\rightarrow \theta_i$.
 \end{proof}
+
+O Teorema da Dedução justifica o uso de hipóteses temporárias nas provas usuais.
+
+A seguir, veremos teoremas que justificam o uso de constantes temporárias.
+Por exemplo: em um contexto de análise real, para provar que uma função é contínua, costumamos ``fixar'' um $\epsilon>0$.
+Antes disso, o $\epsilon$ era uma variável quantificada por um quantificador universal.
+Após ser fixado, é tratado como um objeto específico, constante.
+
+Imaginemos, agora, o contexto de aplicação de um teorema sobre existência de pontos fixos.
+Um exemplo é o Teorema do Ponto Fixo de Banach, que diz que toda contração forte possui um ponto fixo.
+Tais teoremas são existenciais.
+Para utilizá-los, ``fixamos'' um ponto fixo e o tratamos como uma constante específica.
+Feito isso, prosseguimos para provar algum novo resultado desejado.
+
+\begin{metatheorem}[Inferências sobre quantificação]
+    Seja $T$ uma teoria de primeira ordem com axiomas $\Sigma$ e léxico $\mathcal L$.
+    Considere\footnote{Lembre-se da Convenção~\ref{convention:variaveislivres}.} uma $\mathcal L$-fórmula $\phi(x)$ e uma $\mathcal L$-sentença $\psi$, em que $x$ é uma variável, e um símbolo de constante $c$ que não faz parte de $\mathcal L$.
+    Sejam $\mathcal L'$ o léxico $\mathcal L$ acrescido de $c$, e $T'$ a teoria de primeira ordem com léxico $\mathcal L'$ e axiomas $\Sigma$.
+
+    \begin{enumerate}[label=(\Roman*)]
+        \item (Instanciação Universal) Se $T \vdash \forall x \phi$, então $T \vdash \phi[x/t]$, para cada termo $t$ tal que a substituição $\phi[x/t]$ é válida.
+        \item (Generalização Existencial) Se $T \vdash \phi[x/t]$, para algum termo $t$ tal que a substituição $\phi[x/t]$ é válida, então $T \vdash \exists x \phi$.
+        \item (Instanciação Existencial) Se $T'\vdash \phi[x/c]\rightarrow \psi$, então $T \vdash (\exists x \phi) \rightarrow \psi$.
+        \item (Generalização Universal) Se $T'\vdash \phi[x/c]$, então $T \vdash \forall x \phi$.
+    \end{enumerate}
+\end{metatheorem}
