@@ -18,7 +18,7 @@ Ressaltamos novamente que esse não é o único modo de formalizar a dedução l
 Estamos adotando esse sistema por brevidade e simplicidade, uma vez que é um de apresentação mais rápida e concisa.
 
 \begin{metadefinition}
-    Os axiomas lógicos adotados neste texto consistem em fechos universais dos seguintes esquemas de fórmulas, em que $\phi$ e $\psi$ são fórmulas arbitrárias e $x$, $x_1$, $\dots$, $x_n$, $y$, $y_1, \dots$, $y_n$ são variáveis arbitrárias.
+    Os axiomas lógicos adotados neste texto consistem em fechos universais dos seguintes esquemas de fórmulas, em que $\phi$ e $\psi$ são fórmulas arbitrárias e $x$, $x_1$, $\dots$, $x_n$, $y$, $y_1, \dots$, $y_n$ são variáveis arbitrárias, e $t$ um termo.
     \begin{enumerate}
         \item Tautologias.
         \item $\forall x \phi \rightarrow \phi[x/t]$, sempre que a substituição $\phi[x/t]$ é válida.
@@ -56,7 +56,7 @@ A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
     Por fim, caso $\mathcal L$ esteja claro pelo contexto, podemos simplesmente escrever $\Sigma \vdash \phi$ (e $\Sigma \nvdash \phi$).
 \end{metadefinition}
 
-Uma \emph{regra de inferência} é uma regra formal que permite obter novas sentenças a partir de sentenças já estabelecidas como verdadeiras.
+Uma \emph{regra de inferência} é uma regra formal que permite obter novas sentenças a partir de sentenças já demonstradas.
 No formalismo apresentado, a única regra de inferência é o \emph{modus ponens}, que permite inferir $\psi$ a partir de $\phi$ e $\phi \rightarrow \psi$.
 
 Na prática, quase nunca, em matemática, escrevemos uma demonstração tão formal quanto a definição acima exige.
@@ -145,18 +145,19 @@ O próximo resultado nos mostra o motivo de contradições serem tão indesejáv
 
 \begin{metaproposition}[Princípio da explosão]
     Seja $T$ uma teoria de primeira ordem.
-    Se $T$ é inconsistente, então para cada $\mathcal L$-sentença $\phi$, $T \vdash \phi$.
+    Se $T$ é inconsistente, então para cada $\mathcal L$-sentença $\psi$, $T \vdash \psi$.
 \end{metaproposition}
 \begin{proof}
+    Tome $\psi$ uma $\mathcal L$-sentença arbitrária.
     Seja $\phi$ uma sentença tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
 
     Note que $A\rightarrow (\neg A\rightarrow B)$ é uma tautologia.
-    Assim, $\phi \rightarrow (\neg \phi \rightarrow \phi)$ é uma instância de tautologia, e uma sentença, e, portanto, um axioma lógico.
-    Desta forma, $T \vdash \phi \rightarrow (\neg \phi \rightarrow \phi)$.
+    Assim, $\phi \rightarrow (\neg \phi \rightarrow \psi)$ é uma instância de tautologia, e uma sentença, e, portanto, um axioma lógico.
+    Desta forma, $T \vdash \phi \rightarrow (\neg \phi \rightarrow \psi)$.
 
-    Como $T \vdash \phi$, do Metalema~\ref{metalemma:modusponens} temos que $T \vdash \neg \phi \rightarrow \phi$.
+    Como $T \vdash \phi$, do Metalema~\ref{metalemma:modusponens} temos que $T \vdash \neg \phi \rightarrow \psi$.
 
-    Como $T \vdash \neg \phi$, novamente do Metalema~\ref{metalemma:modusponens}, segue que $T \vdash \phi$.
+    Como $T \vdash \neg \phi$, novamente do Metalema~\ref{metalemma:modusponens}, segue que $T \vdash \psi$.
 \end{proof}
 \section*{Exercícios}
 \begin{exercise}\label{exercise:languageextension}
