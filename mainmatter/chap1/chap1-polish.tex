@@ -7,7 +7,7 @@ Tais expressões comparam dois \emph{termos}, que, nos exemplos acima, são $2+2
 Termos são sequências de símbolos que, intuitivamente, representam objetos.
 Assim, termos não são ``verdadeiros'' ou ``falsos'', mas objetos sobre os quais formulamos afirmações.
 
-Para decidir se uma expressão do tipo $A=B$ ``faz sentido'', é necessário verificar previamente se $A$ e $B$ são termos bem formados, como $5$ ou $2+2$.
+Para decidir se uma expressão do tipo $A=B$ faz sentido, é necessário verificar previamente se $A$ e $B$ são termos bem formados, como $5$ ou $2+2$.
 Se $A$ for $2+3+$, ou se $B$ for $+++$, então, $A$ e $B$ não são termos bem formados.
 
 Dando um passo adicional, a expressão $2+2 = 5$~$3$ parece composta dos termos $2+2$, $5$ e $3$, mas não é bem formada, pois o símbolo $=$ --- que, intuitivamente, compara dois objetos --- está relacionando $2+2$ e $5$, deixando o símbolo $3$ sem função sintática.
@@ -18,7 +18,7 @@ Na teoria dos números reais, por exemplo, o símbolo $|\cdot|$, chamado módulo
 Não faz sentido aplicá-lo a dois números, como em $|x~y|$, nem a nenhum, como em $|~|$.
 
 Há ainda operações de aridade superior a $2$.
-Um exemplo é o produto vetorial misto, de aridade $3$: dados $u,v,w\in\mathbb R^3$, escreve-se $[u,v,w]$ para denotar $u\cdot(v\times w)$.
+Um exemplo é o produto vetorial misto, de aridade $3$: dados $u,v,w$ em $\mathbb R^3$, escreve-se $[u,v,w]$ para denotar $u\cdot(v\times w)$.
 Esse exemplo pode parecer artificial, por consistir em uma composição de operações binárias; contudo, nem sempre operações de maior aridade se reduzem naturalmente a composições binárias, inclusive fora da matemática pura.
 Considere, por exemplo, a operação que recebe um vetor $v$ com ao menos $n$ elementos e números $m,n$ com $m<n$, retornando o subvetor que vai do $m$-ésimo ao $n$-ésimo elemento.
 Em termos formais, dados $(v_1,\dots,v_k)$, $m$ e $n$, obtém-se $(v_m,\dots,v_n)$.
@@ -45,7 +45,7 @@ No restante do texto, empregaremos a notação matemática usual sem ressalvas.
 \subsection{Metateorias: uma breve digressão}
 Sem mais delongas, definamos o que é um léxico para a notação polonesa.
 \begin{metadefinition}
-Um \emph{léxico}\index{léxico} para uma notação polonesa é uma coleção de símbolos $\mathcal L$ tal que, para cada símbolo $s \in \mathcal L$, é atribuído um número inteiro não negativo $n_s$, chamado de \emph{aridade} de $s$.
+Um \emph{léxico}\index{léxico} para uma notação polonesa é uma coleção de símbolos $\mathcal L$ tal que, para cada símbolo $s$ de $\mathcal L$, é atribuído um número inteiro não negativo $n_s$, chamado de \emph{aridade} de $s$.
 \end{metadefinition}
 
 O conteúdo da metadefinição acima é justificado pela discussão anterior.
@@ -101,8 +101,8 @@ Fixado um léxico, podemos definir o que é uma expressão bem formada.
 \begin{metadefinition}
 Dado um léxico $\mathcal L$, uma \emph{expressão bem formada} (ou, simplesmente, \emph{expressão})\index{expressão bem formada} é uma sequência (finita) de símbolos de $\mathcal L$ que pode ser construída a partir das seguintes regras.
 \begin{enumerate}[label=(\roman*)]
-    \item Se $s$ em $\mathcal L$ é um símbolo de aridade $0$, então $s$ é uma expressão.
-    \item Se $s$ em $\mathcal L$ é um símbolo de aridade $n$ maior do que $0$ e $e_1,\dots,e_n$ são expressões bem formadas, então a sequência $se_1\dots e_n$, obtida pela concatenação de $s$, $e_1,\dots,e_n$, é uma expressão bem formada.
+    \item Se $s$ é um símbolo de $\mathcal L$ de aridade $0$, então $s$ é uma expressão.
+    \item Se $s$ é um símbolo de $\mathcal L$ de aridade $n$ maior do que $0$ e $e_1,\dots,e_n$ são expressões bem formadas, então a sequência $se_1\dots e_n$, obtida pela concatenação de $s$, $e_1,\dots,e_n$, é uma expressão bem formada.
     \item Toda expressão bem formada é obtida por meio de um número finito de aplicações das regras (i) e (ii).
 \end{enumerate}
 \end{metadefinition}
@@ -220,7 +220,7 @@ No futuro, vamos nos referir a esse tipo de indução como \emph{indução sobre
 
 \begin{proof}
 
-    A unicidade é imediata de (i) da proposição anterior: caso houvesse duas subexpressões iniciadas por $a_i$, uma delas seria um segmento inicial da outra, o que é impossível por (i) da proposição anterior.
+    A unicidade é imediata por (i) da proposição anterior: caso houvesse duas subexpressões iniciadas por $a_i$, uma delas seria um segmento inicial da outra, o que é impossível por (i) da proposição anterior.
     Assim, basta provar a existência.
 
     A prova é por indução: supondo provado que vale tal proposição para todas as subexpressões próprias de $a_0\dots a_n$, provaremos que ela vale para $a_0\dots a_n$.
