@@ -3,7 +3,7 @@
 Nesta seção, trabalharemos um pouco mais com elementos e definições sintáticas de uma linguagem de primeira ordem, como substituições e fechos universais.
 
 \begin{metadefinition}[Variáveis ligadas e livres]
-    Dada uma fórmula $\varphi$ e uma ocorrência de um quantificador $Q$ (que pode ser $\forall$ ou $\exists$), dizemos que $Q$ \emph{age} em uma variável $x$ se o próximo símbolo de $\varphi$ após $Q$ for $x$ (ou seja, se o escopo de $Q$ for da forma $Q x \psi$).
+    Dada uma fórmula $\varphi$ e uma ocorrência de um quantificador $Q$ (que pode ser $\forall$ ou $\exists$), dizemos que $Q$ \emph{age} em uma variável $x$ se o próximo símbolo de $\varphi$ após $Q$ for $x$ (ou seja, se o escopo desta ocorrência de $Q$ for da forma $Q x \psi$).
 
     Dizemos que uma ocorrência de uma variável $x$ em $\varphi$ é \emph{ligada}, ou \emph{quantificada}, se ela estiver no escopo de um quantificador $Q$ que age em $x$.
     Caso contrário, dizemos que a ocorrência de $x$ é \emph{livre}.
@@ -49,7 +49,7 @@ Por isso, o conceito de fecho universal será essencial.
 
 Para trabalharmos com quantificadores, precisaremos da noção de substituição de símbolos em fórmulas, feita como se segue:
 
-\begin{definition}[Substituição em termos]
+\begin{metadefinition}[Substituição em termos]
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
     Dado um termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências de $x$ por $t$.
@@ -59,7 +59,7 @@ Para trabalharmos com quantificadores, precisaremos da noção de substituição
         \item Se $s$ é constante ou uma variável diferente de $x$, então $s[x/t]$ é $s$.
         \item Se $s$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário e $e_1, \dots, e_n$ são termos para os quais $e_1[x/t], \dots, e_n[x/t]$ já foram definidos, então $s[x/t]$ é $fe_1[x/t] \dots e_n[x/t]$.
     \end{itemize}
-\end{definition}
+\end{metadefinition}
 Prova-se, por um argumento indutivo simples, que se $s$ é um termo, então $s[x/t]$ é um termo.
 
 
@@ -75,7 +75,7 @@ Sigamos para alguns exemplos.
     \end{itemize}
 \end{example}
 
-\begin{definition}[Substituição em fórmulas]
+\begin{metadefinition}[Substituição em fórmulas]
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
     Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida a partir de $\varphi$ substituindo-se todas as ocorrências \underline{livres} de $x$ por $t$.
@@ -89,16 +89,16 @@ Sigamos para alguns exemplos.
         \item Se $\varphi$ é $\forall y \psi$ ou $\exists y \psi$, em que $y$ é uma variável diferente de $x$, então $\varphi[x/t]$ é $\forall y \psi[x/t]$ ou $\exists y \psi[x/t]$.
         \item Se $\varphi$ é $\forall x \psi$ ou $\exists x \psi$, então $\varphi[x/t]$ é $\varphi$.
     \end{itemize}
-\end{definition}
+\end{metadefinition}
 
 Novamente, por uma indução simples, prova-se que se $\varphi$ é uma fórmula, então $\varphi[x/t]$ é uma fórmula.
 
 Por fim, apresentamos uma definição.
 
-\begin{definition}
+\begin{metadefinition}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
     Dizemos que $x$ é substituível por $t$ em uma fórmula $\varphi$ (ou que a substituição $\varphi[x/t]$ é válida) se nenhuma ocorrência livre de $x$ em $\varphi$ estiver no escopo de um quantificador que age em alguma variável que ocorre em $t$.
-\end{definition}
+\end{metadefinition}
 
 Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando do conhecimento prévio do leitor, podemos justificar a definição acima com exemplos.
 
