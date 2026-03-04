@@ -43,36 +43,59 @@ Isso é formalizado pelo resultado a seguir.
 
 \subsection{Definindo definições}
 Agora estamos prontos para falar formalmente sobre definições.
+
 \begin{metadefinition}[Definição explícita]\label{def:definicao-explicita}\index{definição!explícita}\index{símbolo!definido}
-    Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mathcal L'$ um léxico que estende $\mathcal L$.
+Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mathcal L'$ um léxico que estende $\mathcal L$.
 
-    \begin{enumerate}[label=(\roman*)]
-        \item \textbf{Predicados.}
-        Se $P\in\mathcal L'\setminus\mathcal L$ é um símbolo de predicado $n$-ário, uma \emph{$T$-definição} de $P$ é uma sentença da forma
-        \[
-            \forall x_1\ldots \forall x_n\bigl(P(x_1,\ldots,x_n)\leftrightarrow \varphi(x_1,\ldots,x_n)\bigr),
-        \]
-        em que $\varphi$ é uma $\mathcal L$-fórmula.
-        No caso $n=0$, uma $T$-definição de $P$ é uma sentença $P\leftrightarrow \varphi$, com $\varphi$ uma $\mathcal L$-sentença.
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Predicados.}
+    Seja $P\in\mathcal L'\setminus\mathcal L$ um símbolo de predicado $n$-ário.
+    Uma \emph{$T$-definição} de $P$ é uma sentença da forma
+    \[
+        \forall x_1\ldots \forall x_n\bigl(P(x_1,\ldots,x_n)\leftrightarrow \varphi(x_1,\ldots,x_n)\bigr),
+    \]
+    em que $\varphi$ é uma $\mathcal L$-fórmula.
+    No caso $n=0$, uma $T$-definição de $P$ é uma sentença $P\leftrightarrow \varphi$,
+    com $\varphi$ uma $\mathcal L$-sentença.
 
-        \item \textbf{Funções.}
-        Se $f\in\mathcal L'\setminus\mathcal L$ é um símbolo funcional $n$-ário ($n\geq 1$), uma \emph{$T$-definição} de $f$ é uma sentença da forma
-        \[
-            \forall x_1\ldots \forall x_n\,\forall y\bigl(f(x_1,\ldots,x_n)=y \leftrightarrow \varphi(x_1,\ldots,x_n,y)\bigr),
-        \]
-        em que $\varphi$ é uma $\mathcal L$-fórmula tal que
-        \[
-            T\vdash \forall x_1\ldots \forall x_n\,\exists!y\,\varphi(x_1,\ldots,x_n,y).
-        \]
-        (Ou seja, $T$ prova que $\varphi$ define \emph{unicamente} um valor $y$ para cada entrada $x_1,\ldots,x_n$.)
+    \item \textbf{Funções.}
+    Seja $f\in\mathcal L'\setminus\mathcal L$ um símbolo de função $n$-ário, com $n\geq 1$.
+    Uma \emph{$T$-definição} de $f$ é uma sentença da forma
+    \[
+        \forall x_1\ldots \forall x_n\,\forall y\bigl(f(x_1,\ldots,x_n)=y \leftrightarrow \varphi(x_1,\ldots,x_n,y)\bigr),
+    \]
+    em que $\varphi$ é uma $\mathcal L$-fórmula tal que
+    \[
+        T\vdash \forall x_1\ldots \forall x_n\,\exists!y\,\varphi(x_1,\ldots,x_n,y).
+    \]
+    (Intuitivamente, $T$ prova que $\varphi$ define \emph{unicamente} um valor $y$ para cada entrada $x_1,\ldots,x_n$.)
 
-        \item \textbf{Constantes.}
-        Se $c\in\mathcal L'\setminus\mathcal L$ é um símbolo de constante, uma \emph{$T$-definição} de $c$ é uma sentença da forma
-        \[
-            \forall y\bigl(c=y \leftrightarrow \varphi(y)\bigr),
-        \]
-        em que $\varphi$ é uma $\mathcal L$-fórmula tal que $T\vdash \exists!y\,\varphi(y)$.
-    \end{enumerate}
+    \item \textbf{Constantes.}
+    Seja $c\in\mathcal L'\setminus\mathcal L$ um símbolo de constante.
+    Uma \emph{$T$-definição} de $c$ é uma sentença da forma
+    \[
+        \forall y\bigl(c=y \leftrightarrow \varphi(y)\bigr),
+    \]
+    em que $\varphi$ é uma $\mathcal L$-fórmula tal que $T\vdash \exists!y\,\varphi(y)$.
+\end{enumerate}
+
+Em cada um dos casos acima, dizemos que $\varphi$ é a \emph{fórmula definidora} do símbolo novo.
+Quando for conveniente, escreveremos essa fórmula como
+\[
+\Def_P(x_1,\ldots,x_n),\qquad \Def_f(x_1,\ldots,x_n,y),\qquad \Def_c(y),
+\]
+conforme o caso.
+
+Além disso, se $P$, $f$ ou $c$ são símbolos destes respectivos tipos em $\mathcal L$, convencionamos:
+
+\begin{itemize}
+    \item $\Def_P(x_1,\ldots,x_n)$ é a fórmula $P(x_1,\ldots,x_n)$.
+    \item $\Def_f(x_1,\ldots,x_n,y)$ é a fórmula $f(x_1,\ldots,x_n)=y$.
+    \item $\Def_c(y)$ é a fórmula $c=y$.
+    \item Se $z$ é uma variável, então $\Def_{z}(z, y)$ é a fórmula $y=z$.
+\end{itemize}
+
+Note que nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são $\mathcal L$-fórmulas.
 \end{metadefinition}
 
 \begin{example}\label{ex:definicoes-exemplos}Ainda que não tenhamos apresentado a Teoria dos Conjuntos, vejamos alguns exemplos.
@@ -83,6 +106,7 @@ Agora estamos prontos para falar formalmente sobre definições.
         \forall x\,\forall y\Bigl(x\subseteq y\ \leftrightarrow\ \forall z\,(z\in x\rightarrow z\in y)\Bigr).
     \]
     Aqui $\subseteq$ é um novo símbolo de predicado binário, definido por uma $\mathcal L$-fórmula (em que $\mathcal L=\{\in\}$).
+    Nesse caso, $\Def_\subseteq$ é a fórmula $\forall z\,(z\in x\rightarrow z\in y)$.
 
     \item \textbf{Teoria dos grupos.}
     Considere a teoria de grupos na linguagem \emph{sem} símbolo de constante para a identidade,
@@ -93,82 +117,71 @@ Agora estamos prontos para falar formalmente sobre definições.
     \]
     A condição de aplicabilidade é que a teoria em questão prove $\exists!y\,\forall x(x\cdot y=x\wedge y\cdot x=x)$.
     Em uma axiomatização usual de grupos \emph{sem} constante, isso é demonstrável.
+    Nesse caso, $\Def_e$ é a fórmula $\forall x\,\bigl(x\cdot y=x \wedge y\cdot x=x\bigr)$.
 \end{itemize}
 \end{example}
 
-Agora podemos definir quando uma teoria é uma extensão por definição de outra.
+Agora podemos definir a noção de extensão por definição, uma formalização da prática de introduzir definições como abreviações.
 
 \begin{metadefinition}[Extensão por definição]\label{def:extensao-por-definicao}\index{extensão por definição}
     Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$.
     Dizemos que uma teoria $T'$ é uma \emph{extensão por definição} de $T$ se:
     \begin{itemize}
         \item o léxico de $T'$ é um léxico $\mathcal L'$ que estende $\mathcal L$;
-        \item os axiomas de $T'$ consistem nos axiomas de $T$ mais, para cada símbolo novo de $\mathcal L'\setminus\mathcal L$,
-        uma (única) definição explícita no sentido da Definição~\ref{def:definicao-explicita}.
+        \item os axiomas de $T'$ consistem nos axiomas de $T$ e, para cada símbolo novo de $\mathcal L'\setminus\mathcal L$,
+        em uma (única) definição explícita no sentido da Definição~\ref{def:definicao-explicita}.
     \end{itemize}
 \end{metadefinition}
 
-Tal noção de extensão por definição pode causar certo estranhamento ao leitor, uma vez que estamos introduzindo a adição de definições na forma de axiomas, além de, formalmente, estarmos alterando a teoria base.
+Esta noção pode causar estranhamento: estamos formalizando a introdução de definições como a adição de novos axiomas e, portanto, alterando a teoria base.
 
-De certa forma, isso é necessário dentro do nosso formalismo, uma vez que ele não captura diretamente a prática de introdução de definições como abreviações.
+Isso é necessário no formalismo adotado, pois ele não captura diretamente a prática informal de introduzir definições como meras abreviações.
 
-Porém, a seguir, veremos teoremas que mostram que, ao introduzir definições, a nova teoria obtida não adiciona nem poder de prova (todas as afirmações da linguagem antiga prováveis na nova teoria já eram prováveis na teoria antiga) nem poder de expressividade (tudo que poderia ser expresso na nova linguagem já poderia ser expresso na linguagem antiga).
+A seguir, veremos que extensões por definição não aumentam nem o poder de prova sobre sentenças da linguagem original, nem o poder de expressão.
+Tudo que é expressável ou demonstrável na linguagem estendida, também é expressável ou demonstrável na linguagem original, respectivamente.
+Portanto, apesar de, formalmente, estarmos adicionando novos símbolos e axiomas, a extensão por definição captura as propriedades essenciais da prática de introduzir definições como abreviações.
 
 
 \subsection{Eliminação de símbolos definidos: termos}
 
-Seja $T'$ uma extensão por definição de $T$, com léxicos $\mathcal L\subseteq \mathcal L'$.
-Para cada símbolo novo $s\in\mathcal L'\setminus\mathcal L$, fixemos uma notação para sua fórmula definidora na linguagem original:
-\begin{itemize}
-    \item se $P$ é predicado $n$-ário novo, escrevemos $\Def_P(\bar x)$ para a $\mathcal L$-fórmula que o define;
-    \item se $f$ é função $n$-ária nova, escrevemos $\Def_f(\bar x,y)$ para a $\mathcal L$-fórmula que o define;
-    \item se $c$ é constante nova, escrevemos $\Def_c(y)$ para a $\mathcal L$-fórmula que a define.
-\end{itemize}
-Essas fórmulas são tais que suas sentenças definidoras pertencem aos axiomas de $T'$.
-
-A ideia central é associar a cada termo $t$ da linguagem $\mathcal L'$ uma fórmula da linguagem $\mathcal L$ que descreve o \emph{valor} de $t$.
+A ideia central é associar a cada termo $t$ da linguagem $\mathcal L'$ uma fórmula da linguagem $\mathcal L$ que semanticamente descreve $t$.
 Isto substitui termos com símbolos definidos por uma descrição na linguagem original.
 
 \begin{metadefinition}[Fórmula do valor de um termo]\label{def:delta-termo}\index{termo!fórmula do valor}\index{eliminação de símbolos!termos}
-    Seja $t$ um termo de $\mathcal L'$ cujas variáveis estejam entre $x_1,\ldots,x_n$.
-    Definimos por recursão uma $\mathcal L$-fórmula $\delta_t(x_1,\ldots,x_n,y)$, lida como
+    Suponha que $T'$ é uma extensão por definição de $T$, com léxicos $\mathcal L'$ e $\mathcal L$ respectivamente.
+    Seja $t$ um termo de $\mathcal L'$.
+    Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres são as mesmas variáveis de $t$ e mais uma nova variável $y$, lida como
     ``$y$ é o valor do termo $t$'', como segue.
 
     \begin{enumerate}[label=(\roman*)]
-        \item Se $t$ é uma variável $x_i$, então $\delta_t(\bar x,y)$ é a fórmula $y=x_i$.
-        \item Se $t$ é uma constante $c$ de $\mathcal L$ (i.e.\ já presente na linguagem original), então $\delta_t(\bar x,y)$ é $y=c$.
-        \item Se $t$ é uma constante nova $c\in\mathcal L'\setminus\mathcal L$, então $\delta_t(\bar x,y)$ é $\Def_c(y)$.
-        \item Se $t$ é $f(t_1,\ldots,t_m)$, definimos:
+        \item Se $t$ é um símbolo de constante $c$, então $\delta_t(y)$ é a fórmula $\Def_c(y)$.
+        \item Se $t$ é um símbolo de variável $z$, então $\delta_t(z,y)$ é a fórmula $y=z$, ou seja, $\Def_z(z,y)$.
+        \item Se $t$ é $f(t_1,\ldots,t_m)$, então $\delta_t(x_1, \dots, x_n,y)$ é:
         \[
-            \delta_t(\bar x,y)\ :=\ \exists y_1\ldots \exists y_m\Bigl(
-            \bigwedge_{i=1}^m \delta_{t_i}(\bar x,y_i)\ \wedge\ \Theta_f(y_1,\ldots,y_m,y)\Bigr),
+            \exists y_1\ldots \exists y_m\Bigl(
+            \bigwedge_{i=1}^m \delta_{t_i}(x_1, \dots, x_n,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr),
         \]
-        onde
-        \[
-            \Theta_f(y_1,\ldots,y_m,y)\ :=
-            \begin{cases}
-                y=f(y_1,\ldots,y_m), & \text{se } f\in\mathcal L,\\
-                \Def_f(y_1,\ldots,y_m,y), & \text{se } f\in\mathcal L'\setminus\mathcal L.
-            \end{cases}
-        \]
+        em que $x_1, \dots, x_n$ são variáveis que ocorrem em $t$ (e estas incluem as de $t_1, \dots, t_m)$, $y_1, \dots, y_m$ são as variáveis auxiliares introduzidas para descrever os termos $t_1, \dots, t_m$ (alteradas para serem distintas de $x_1, \dots, x_n$ se necessário), e $y$ distinta de todas as outras.
     \end{enumerate}
 \end{metadefinition}
 
-A definição acima usa variáveis auxiliares $y_1,\ldots,y_m$.
-Por renomeação de variáveis ligadas, a fórmula resultante é bem definida a menos de equivalência lógica; isto é,
-a escolha dos nomes dessas variáveis não altera o conteúdo lógico (cf.\ Metalema~\ref{metalemma:existsunique-indep} para a ideia geral).
+A definição acima introduz variáveis auxiliares $y_1,\ldots,y_m$ na fórmula $\delta_t$,
+todas elas quantificadas existencialmente.
+Assim, a escolha dos nomes dessas variáveis auxiliares não altera o conteúdo lógico de $\delta_t$,
+pois renomeações de variáveis quantificadas produzem fórmulas logicamente equivalentes
+(cf.\ Metalema~\ref{metalemma:renomeacaoUniversal} e seu análogo existencial).
 
 \begin{metalemma}[Eliminação de termos]\label{metalemma:elim-termos}\index{eliminação de símbolos!termos}
     Seja $T'$ uma extensão por definição de $T$, com $\mathcal L\subseteq \mathcal L'$.
-    Seja $t$ um termo de $\mathcal L'$ cujas variáveis estejam entre $x_1,\ldots,x_n$, e seja $\delta_t$ como na
-    Definição~\ref{def:delta-termo}. Então:
+    Seja $t$ um termo de $\mathcal L'$ cujas variáveis estejam entre $x_1,\ldots,x_n$,
+    e seja $y$ uma variável distinta de $x_1,\ldots,x_n$.
+    Seja $\delta_t(x_1,\ldots,x_n,y)$ como na Definição~\ref{def:delta-termo}. Então:
     \begin{enumerate}[label=(\arabic*)]
         \item $T'\vdash \forall x_1\ldots \forall x_n\,\forall y\bigl(t=y \leftrightarrow \delta_t(x_1,\ldots,x_n,y)\bigr)$.
         \item $T\vdash \forall x_1\ldots \forall x_n\,\exists!y\,\delta_t(x_1,\ldots,x_n,y)$.
     \end{enumerate}
 
     Além disso, se $t$ é um $\mathcal L$-termo, então:
-
     \begin{enumerate}[label=(\arabic*)]
         \setcounter{enumi}{2}
         \item $T\vdash \forall x_1\ldots \forall x_n\,\forall y\bigl(t=y \leftrightarrow \delta_t(x_1,\ldots,x_n,y)\bigr)$.
@@ -176,117 +189,131 @@ a escolha dos nomes dessas variáveis não altera o conteúdo lógico (cf.\ Meta
 \end{metalemma}
 
 \begin{proof}
-    A prova é por indução sobre a estrutura de $t$.
+Provaremos (1), (2) e (3) simultaneamente por indução sobre a complexidade do termo $t$.
+Escreva $\bar x$ para $x_1,\ldots,x_n$.
 
-    \smallskip
-    \textbf{Base 1:} $t=x_i$.
-    Então $\delta_t(\bar x,y)$ é $y=x_i$.
-    A sentença
-    \[
-        \forall\bar x\,\forall y\,(x_i=y\leftrightarrow y=x_i)
-    \]
-    é uma instância de tautologia, logo vale em qualquer teoria; em particular, obtemos (1) e também (3).
-    Para (2), $T$ prova $\exists!y\,(y=x_i)$: existência segue de $\exists y\,(y=x_i)$,
-    e unicidade segue de $y=x_i\wedge z=x_i\rightarrow y=z$, usando apenas axiomas de igualdade.
+\smallskip
+\textbf{Base 1: $t$ é uma constante $c$.}
+Pela Definição~\ref{def:delta-termo}, $\delta_t(y)$ é $\Def_c(y)$.
 
-    \smallskip
-    \textbf{Base 2:} $t=c$ constante.
-    Há dois subcasos.
+\emph{(1).} Se $c\in\mathcal L'\setminus\mathcal L$, então a sentença definidora de $c$ pertence a $T'$ e tem a forma
+$\forall y\,(c=y\leftrightarrow \Def_c(y))$, que é exatamente (1).
+Se $c\in\mathcal L$, então por convenção $\Def_c(y)$ é $c=y$, logo
+$\forall y\,(c=y\leftrightarrow \Def_c(y))$ é uma instância de tautologia.
 
-    \emph{(a) $c\in\mathcal L$.}
-    Então $\delta_t(\bar x,y)$ é $y=c$.
-    Como no caso da variável, $\forall\bar x\,\forall y\,(c=y\leftrightarrow y=c)$ é uma instância de tautologia;
-    assim, (1) e (3) valem.
-    Para (2), $T$ prova $\exists!y\,(y=c)$ pelos axiomas de igualdade.
+\emph{(2).} Se $c$ é novo, a própria hipótese de ``introdução por definição'' garante
+$T\vdash \exists!y\,\Def_c(y)$.
+Se $c\in\mathcal L$, então $\Def_c(y)$ é $c=y$; provamos $T\vdash \exists!y\,(c=y)$:
+\begin{itemize}
+    \item \emph{Existência.} Do axioma de igualdade $x=x$ obtemos $\forall x(x=x)$ como axioma lógico, e pela instanciação universal
+    (esquema (2)) segue $T\vdash c=c$.
+    Aplicando o esquema (5) à fórmula $\phi(y)\equiv (c=y)$ com o termo $t=c$, obtemos o axioma lógico
+    $(c=c)\rightarrow \exists y(c=y)$; por \emph{modus ponens}, $T\vdash \exists y(c=y)$.
+    \item \emph{Unicidade.} Dos axiomas de igualdade, temos $c=y\rightarrow y=c$ (simetria) e
+    $y=c\wedge c=z\rightarrow y=z$ (transitividade). Assim,
+    $(c=y\wedge c=z)\rightarrow y=z$, e portanto a parte de unicidade de $\exists!y(c=y)$.
+\end{itemize}
 
-    \emph{(b) $c\in\mathcal L'\setminus\mathcal L$.}
-    Então $\delta_t(\bar x,y)$ é $\Def_c(y)$.
-    A sentença definidora de $c$ pertence a $T'$ e é
-    $\forall y\,(c=y\leftrightarrow \Def_c(y))$, que é exatamente (1).
-    A condição $T\vdash \exists!y\,\Def_c(y)$ é parte da hipótese de que $c$ é introduzida por definição,
-    logo (2) vale. (O item (3) não se aplica aqui, pois $t$ não é um $\mathcal L$-termo.)
+\emph{(3).} Se $t$ é um $\mathcal L$-termo, então necessariamente $c\in\mathcal L$ e, como acima,
+$\forall y\,(c=y\leftrightarrow \Def_c(y))$ é tautológica; logo vale em $T$.
 
-    \smallskip
-    \textbf{Passo indutivo:} $t=f(t_1,\ldots,t_m)$.
+\smallskip
+\textbf{Base 2: $t$ é uma variável $z$.}
+Pela Definição~\ref{def:delta-termo}, $\delta_t(z,y)$ é $y=z$, isto é, $\Def_{z}(z,y)$.
 
-    \smallskip
-    \emph{(1) Trabalhando em $T'$.}
-    Pela hipótese de indução, para cada $i\le m$,
-    \[
-        T'\vdash \forall \bar x\,\forall y_i\bigl(t_i=y_i\leftrightarrow \delta_{t_i}(\bar x,y_i)\bigr).
-    \]
-    Pela definição de $\delta_t$,
-    \[
-        \delta_t(\bar x,y)\ \equiv\ \exists \bar y\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,y_i)\wedge \Theta_f(\bar y,y)\Bigr).
-    \]
-    Substituindo as $\delta_{t_i}$ por $t_i=y_i$ via as equivalências acima e raciocínio proposicional, obtemos em $T'$:
-    \[
-        \delta_t(\bar x,y)\ \leftrightarrow\ \exists \bar y\Bigl(\bigwedge_{i=1}^m (t_i=y_i)\wedge \Theta_f(\bar y,y)\Bigr).
-    \]
-    Agora há dois casos.
+\emph{(1).} Queremos $T'\vdash \forall z\,\forall y\,(z=y\leftrightarrow y=z)$.
+Pelo axioma lógico de simetria da igualdade (esquema (8)), temos
+$T'\vdash z=y\rightarrow y=z$ e também $T'\vdash y=z\rightarrow z=y$.
+Por uma instância da tautologia proposicional
+\[
+(P\rightarrow Q)\rightarrow\bigl((Q\rightarrow P)\rightarrow (P\leftrightarrow Q)\bigr),
+\]
+obtemos $T'\vdash z=y\leftrightarrow y=z$, e tomando fecho universal em $z,y$ concluímos (1).
 
-    \emph{(a) $f\in\mathcal L$.}
-    Então $\Theta_f(\bar y,y)$ é $y=f(\bar y)$.
-    Da fórmula $\exists \bar y(\bigwedge_i (t_i=y_i)\wedge y=f(\bar y))$ segue $y=f(t_1,\ldots,t_m)$
-    por substitutividade da igualdade em símbolos funcionais (axioma lógico (10)).
-    Reciprocamente, de $y=f(t_1,\ldots,t_m)$ basta tomar $y_i:=t_i$ para obter o existencial.
-    Conclui-se que
-    \[
-        T'\vdash \forall\bar x\,\forall y\bigl(t=y\leftrightarrow \delta_t(\bar x,y)\bigr).
-    \]
+\emph{(2).} Provamos $T\vdash \forall z\,\exists!y\,(y=z)$.
+A existência segue de $z=z$ (instância de $\forall x(x=x)$) e do esquema (5) aplicado a $\phi(y)\equiv (y=z)$ com o termo $t=z$.
+A unicidade segue de $(y=z\wedge y'=z)\rightarrow y=y'$, obtida por simetria e transitividade da igualdade.
+Logo vale (2) no caso variável.
 
-    \emph{(b) $f\in\mathcal L'\setminus\mathcal L$.}
-    Então $\Theta_f(\bar y,y)$ é $\Def_f(\bar y,y)$.
-    A sentença definidora de $f$ em $T'$ é:
-    \[
-        \forall \bar u\,\forall v\bigl(f(\bar u)=v \leftrightarrow \Def_f(\bar u,v)\bigr).
-    \]
-    Substituindo $\bar u$ por $\bar y$ e $v$ por $y$, obtemos
-    \[
-        f(\bar y)=y\ \leftrightarrow\ \Def_f(\bar y,y).
-    \]
-    Logo,
-    \[
-        \exists \bar y\Bigl(\bigwedge_i (t_i=y_i)\wedge \Def_f(\bar y,y)\Bigr)
-        \ \leftrightarrow\
-        \exists \bar y\Bigl(\bigwedge_i (t_i=y_i)\wedge f(\bar y)=y\Bigr),
-    \]
-    e como no caso (a), a última fórmula é equivalente a $f(t_1,\ldots,t_m)=y$ por substitutividade da igualdade em funções.
-    Isto conclui (1).
+\emph{(3).} Como variáveis já pertencem à linguagem, o argumento de (1) funciona igualmente dentro de $T$.
 
-    \smallskip
-    \emph{(2) Trabalhando em $T$.}
-    Pela hipótese de indução, para cada $i\le m$,
-    \[
-        T\vdash \forall\bar x\,\exists!y_i\,\delta_{t_i}(\bar x,y_i).
-    \]
-    Queremos provar $T\vdash \forall\bar x\,\exists!y\,\delta_t(\bar x,y)$.
-    Pela definição,
-    \[
-        \delta_t(\bar x,y)\equiv \exists \bar y\Bigl(\bigwedge_i \delta_{t_i}(\bar x,y_i)\wedge \Theta_f(\bar y,y)\Bigr),
-    \]
-    onde $\Theta_f(\bar y,y)$ é $y=f(\bar y)$ se $f\in\mathcal L$,
-    e é $\Def_f(\bar y,y)$ se $f$ é novo.
-    Para cada $\bar x$, pela unicidade dos $y_i$, existe um único $\bar y$ satisfazendo $\bigwedge_i \delta_{t_i}(\bar x,y_i)$.
-    Fixado tal $\bar y$, no caso $f\in\mathcal L$ existe um único $y$ com $y=f(\bar y)$ (pela lógica com igualdade);
-    no caso $f$ novo, a existência e unicidade de $y$ com $\Def_f(\bar y,y)$ é garantida pela condição
-    $T\vdash \forall \bar u\,\exists!v\,\Def_f(\bar u,v)$ da Definição~\ref{def:definicao-explicita}.
-    Combinando essas unicidades, obtemos $T\vdash \forall\bar x\,\exists!y\,\delta_t(\bar x,y)$, isto é, (2).
+\smallskip
+\textbf{Passo indutivo: $t=f(t_1,\ldots,t_m)$.}
+Sejam $\bar x$ as variáveis que ocorrem em $t$ (no sentido da sua convenção: todas as variáveis livres estão dentre $\bar x$).
+Pela Definição~\ref{def:delta-termo},
+\[
+\delta_t(\bar x,y)\ \equiv\ \exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr).
+\]
 
-    \smallskip
-    \emph{(3) Caso adicional: $t$ é um $\mathcal L$-termo.}
-    Suponha agora que $t$ é um $\mathcal L$-termo.
-    Então $f\in\mathcal L$ e cada $t_i$ é também um $\mathcal L$-termo.
-    Pela hipótese de indução aplicada a cada $t_i$ no caso $\mathcal L$,
-    \[
-        T\vdash \forall\bar x\,\forall y_i\bigl(t_i=y_i\leftrightarrow \delta_{t_i}(\bar x,y_i)\bigr).
-    \]
-    Repetindo palavra por palavra a prova do item (1) no subcaso (a), mas agora inteiramente em $T$,
-    concluímos que
-    \[
-        T\vdash \forall\bar x\,\forall y\bigl(f(t_1,\ldots,t_m)=y\leftrightarrow \delta_t(\bar x,y)\bigr),
-    \]
-    isto é, (3).
+\smallskip
+\emph{(1) Trabalhando em $T'$.}
+Pela hipótese de indução aplicada a cada $t_i$, temos
+\[
+T'\vdash \forall \bar x\,\forall y_i\bigl(t_i=y_i\leftrightarrow \delta_{t_i}(\bar x,y_i)\bigr)\qquad (i=1,\ldots,m).
+\]
+Usando essas equivalências dentro do existencial (raciocínio proposicional), obtemos em $T'$:
+\[
+\delta_t(\bar x,y)\ \leftrightarrow\
+\exists \bar y\Bigl(\bigwedge_{i=1}^m (t_i=y_i)\ \wedge\ \Def_f(\bar y,y)\Bigr).
+\]
+Agora, em $T'$ temos sempre
+\[
+\forall \bar u\,\forall v\bigl(f(\bar u)=v\leftrightarrow \Def_f(\bar u,v)\bigr),
+\]
+pois ou $f\in\mathcal L$ e então isto é tautológico pela convenção $\Def_f(\bar u,v)\equiv f(\bar u)=v$,
+ou $f$ é novo e esta é precisamente a sentença definidora de $f$.
+Logo podemos substituir $\Def_f(\bar y,y)$ por $f(\bar y)=y$ dentro de $T'$.
+
+Com isso, e usando o axioma lógico de congruência para funções (esquema (10)) e a transitividade da igualdade (esquema (9)),
+temos a equivalência (em $T'$):
+\[
+f(t_1,\ldots,t_m)=y\ \leftrightarrow\ \exists \bar y\Bigl(\bigwedge_{i=1}^m (t_i=y_i)\wedge f(\bar y)=y\Bigr).
+\]
+Juntando com a equivalência anterior para $\delta_t(\bar x,y)$, concluímos
+\[
+T'\vdash \forall \bar x\,\forall y\bigl(t=y\leftrightarrow \delta_t(\bar x,y)\bigr),
+\]
+isto é, (1).
+
+\smallskip
+\emph{(2) Trabalhando em $T$.}
+Pela hipótese de indução, para cada $i\le m$,
+\[
+T\vdash \forall\bar x\,\exists!y_i\,\delta_{t_i}(\bar x,y_i).
+\]
+Fixe $\bar x$. Pela parte existencial, existem (únicos) $y_1,\ldots,y_m$ tais que $\delta_{t_i}(\bar x,y_i)$.
+Agora mostramos que existe um único $y$ tal que $\Def_f(y_1,\ldots,y_m,y)$:
+\begin{itemize}
+    \item Se $f$ é novo, isto é exatamente a condição da Definição~\ref{def:definicao-explicita}:
+    $T\vdash \forall \bar u\,\exists!v\,\Def_f(\bar u,v)$.
+    \item Se $f\in\mathcal L$, então $\Def_f(\bar u,v)$ é $f(\bar u)=v$.
+    Para a existência, a partir de $\forall x(x=x)$ obtemos $f(\bar u)=f(\bar u)$ por instanciação universal com o termo $f(\bar u)$,
+    e então pelo esquema (5) aplicado à fórmula $\phi(v)\equiv (f(\bar u)=v)$ com o termo $t=f(\bar u)$, segue $\exists v\,f(\bar u)=v$.
+    Para a unicidade, de $f(\bar u)=v$ e $f(\bar u)=w$ obtemos $v=w$ por simetria e transitividade da igualdade.
+\end{itemize}
+Portanto, existe um único $y$ tal que $\Def_f(y_1,\ldots,y_m,y)$.
+Logo existe um único $y$ tal que
+\[
+\exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr),
+\]
+isto é, $\exists!y\,\delta_t(\bar x,y)$.
+Como $\bar x$ foi arbitrário, concluímos (2):
+\[
+T\vdash \forall \bar x\,\exists!y\,\delta_t(\bar x,y).
+\]
+
+\smallskip
+\emph{(3) Caso adicional: $t$ é um $\mathcal L$-termo.}
+Se $t$ é um $\mathcal L$-termo, então $f\in\mathcal L$ e cada $t_i$ também é $\mathcal L$-termo.
+Pela hipótese de indução (3) aplicada a cada $t_i$, temos as equivalências $t_i=y_i\leftrightarrow \delta_{t_i}(\bar x,y_i)$ agora em $T$.
+Repetindo o argumento de (1) inteiramente dentro de $T$ (e usando que $\Def_f(\bar y,y)$ é $f(\bar y)=y$ por convenção),
+obtemos
+\[
+T\vdash \forall \bar x\,\forall y\bigl(t=y\leftrightarrow \delta_t(\bar x,y)\bigr),
+\]
+isto é, (3).
+
+Isso conclui a indução e a prova do metalema.
 \end{proof}
 
 \subsection{Eliminação de símbolos definidos: fórmulas}
