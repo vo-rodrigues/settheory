@@ -39,7 +39,7 @@ Por exemplo, a Teoria dos Conjuntos necessita do símbolo de pertencimento, $\in
 Tais símbolos são chamados de \emph{símbolos não lógicos} e, conforme veremos, compõem o léxico de uma teoria de primeira ordem.
 
 A segunda dúvida diz respeito ao fato de que nem toda expressão na notação polonesa é o que consideramos ser uma fórmula matemática válida.
-Por exemplo, $\wedge x_1 = x_2 \neg x_3$ -- o que, na notação usual, se traduziria como $x_1 \wedge (x_2 = \neg x_3)$ -- não costuma ser aceito como fórmula válida.
+Por exemplo, considere a expressão na notação polonesa $\wedge x_1 = x_2 \neg x_3$ -- o que, na notação usual, se traduziria como $x_1 \wedge (x_2 = \neg x_3)$ -- não costuma ser aceito como fórmula válida.
 De fato, conforme veremos, nem toda expressão na notação polonesa é uma fórmula bem formada de primeira ordem.
 
 Iniciaremos trabalhando a primeira dúvida.
@@ -48,12 +48,12 @@ Iniciaremos trabalhando a primeira dúvida.
     Um léxico $\mathcal L$ para uma teoria de primeira ordem consiste no seguinte.
 
     \begin{itemize}
-        \item Em uma coleção de $\mathcal P$ de símbolos de predicado (ou relacionais), cada um com uma aridade associada.
-        \item Em uma coleção de $\mathcal F$ de símbolos funcionais, cada um com uma aridade associada.
+        \item Em uma coleção $\mathcal P$ de símbolos de predicado (ou relacionais), cada um com uma aridade associada.
+        \item Em uma coleção $\mathcal F$ de símbolos funcionais, cada um com uma aridade associada.
     \end{itemize}
     As duas coleções acima não podem possuir símbolos em comum, nem possuir símbolos lógicos.
     Os símbolos de $\mathcal P$ e $\mathcal F$ são chamados de símbolos não lógicos de $\mathcal L$.
-    Juntamente com os símbolos lógicos da Definição~\ref{def:simbolos-logicos}, eles constituem o léxico total da linguagem.
+    Juntamente com os símbolos lógicos da Metadefinição~\ref{def:simbolos-logicos}, eles constituem o léxico total da linguagem.
 \end{metadefinition}
 
 Exemplos de símbolos de predicado não lógicos incluem $\in$ (pertencimento, comum em teoria dos conjuntos), $<$ (ordem, comum ao estudar números reais), $\triangle$ (não colinearidade entre três pontos, comum em geometria plana).
@@ -104,7 +104,7 @@ Vamos dar alguns exemplos.
     \begin{itemize}
         \item Na teoria dos grupos, $\cdot x_1 e$ é um termo (na notação usual, $x_1 \cdot e$).
         \item Na teoria dos anéis, $+ x_1 \cdot -x_20$ é um termo (na notação usual, $x_1 + (-x_2 \cdot 0)$).
-        \item Considere a linguagem básica da teoria de conjuntos.
+        \item Considere o léxico básico da teoria de conjuntos.
         Os únicos termos são as variáveis (adiante, veremos que mais termos podem ser introduzidos por definição).
         \item Na teoria de grupos, $\wedge x_1 e$ não é um termo, pois $\wedge$ é um símbolo de conectivo lógico, e não um símbolo funcional.
     \end{itemize}
@@ -141,7 +141,7 @@ Vamos dar alguns exemplos.
         \item Na teoria dos grupos, $= \cdot x_1 e x_2$ é uma fórmula equacional (na notação usual, $x_1 \cdot e = x_2$).
         \item Na teoria de conjuntos, $\in x_1 x_2$ é uma fórmula atômica (na notação usual, $x_1 \in x_2$).
         \item Em qualquer léxico para uma teoria de primeira ordem ${=}x_1 x_2$ é uma fórmula equacional (na notação usual, $x_1 = x_2$).
-        \item Na teoria dos conjuntos, ${\wedge} {\in} x_1 x_2 = x_2 x_3$ é uma fórmula (na notação usual, $(x_1 \in x_2) \wedge (x_2 = x_3)$).
+        \item Na teoria dos conjuntos, ${\wedge} {\in} x_1 x_2 {=} x_2 x_3$ é uma fórmula (na notação usual, $(x_1 \in x_2) \wedge (x_2 = x_3)$).
         \item Na teoria dos conjuntos, ${\in}{\wedge} x_1 x_2 {=} x_2 x_3$ não é uma fórmula, pois a única chance de uma expressão começada por $\in$ ser fórmula é pela regra (i), mas, nesse caso, deveria haver um termo contendo $\wedge$, o que não é possível.
         Na notação usual, a expressão acima se traduziria como $(x_1 \wedge x_2) \in (x_2 = x_3)$.
         \item No léxico da teoria de conjuntos, $\forall x_1 {\in} x_1 x_2$ é uma fórmula (na notação usual, $\forall x_1 (x_1 \in x_2)$).
@@ -152,10 +152,10 @@ Vamos dar alguns exemplos.
 
 Agora sabemos, com precisão, o que são fórmulas.
 
-A partir deste ponto, deixaremos de, a menos que necessário, escrever termos e fórmulas na notação polonesa.
+A partir deste ponto, deixaremos de escrever termos e fórmulas na notação polonesa, a menos que isso seja necessário.
 Seguiremos as seguintes convenções.
 
-\begin{definition}Utilizaremos as seguintes convenções de escrita.
+\begin{convention}Utilizaremos as seguintes convenções de escrita.
     Escreveremos:
 \begin{itemize}
     \item $\phi \wedge \psi$ ao invés de ${\wedge}\phi\psi$;
@@ -167,7 +167,7 @@ Seguiremos as seguintes convenções.
     \item $f(t_1, \dots, t_n)$ ao invés de $f t_1 \dots t_n$, em que $f$ é um símbolo funcional de aridade $n>0$ e $t_1, \dots, t_n$ são termos.
 \end{itemize}
 Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
-\end{definition}
+\end{convention}
 
 \subsection*{Exercícios}
 
@@ -179,7 +179,7 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
         \item $\cdot x_1 e$;
         \item $= \cdot x_1 e x_2$;
         \item ${\wedge} {\cdot} x_1 e {=} x_2 x_3$;
-        \item $\exists e {=} e\cdot e$;
+        \item $\exists e {=} e{\cdot} e e$;
         \item $\cdot \cdot x_1 e x_2$;
         \item $=\wedge \cdot x_1 e x_2$.
     \end{enumerate}
