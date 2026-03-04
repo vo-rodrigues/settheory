@@ -7,7 +7,7 @@ Tais expressões comparam dois \emph{termos}, que, nos exemplos acima, são $2+2
 Termos são sequências de símbolos que, intuitivamente, representam objetos.
 Assim, termos não são ``verdadeiros'' ou ``falsos'', mas objetos sobre os quais formulamos afirmações.
 
-Para decidir se uma expressão do tipo $A=B$ é válida, é necessário verificar previamente se $A$ e $B$ são termos bem formados, como $5$ ou $2+2$.
+Para decidir se uma expressão do tipo $A=B$ ``faz sentido'', é necessário verificar previamente se $A$ e $B$ são termos bem formados, como $5$ ou $2+2$.
 Se $A$ for $2+3+$, ou se $B$ for $+++$, então, $A$ e $B$ não são termos bem formados.
 
 Dando um passo adicional, a expressão $2+2 = 5$~$3$ parece composta dos termos $2+2$, $5$ e $3$, mas não é bem formada, pois o símbolo $=$ --- que, intuitivamente, compara dois objetos --- está relacionando $2+2$ e $5$, deixando o símbolo $3$ sem função sintática.
@@ -191,12 +191,14 @@ Dado um léxico $\mathcal L$, $n\geq 0$ e uma expressão bem formada $a_0\dots a
         Temos, por hipótese de indução, que $i<k$ e que $e_0=e_0', \dots, e_i=e_i'$.
         Em particular, $i+1\leq k$.
         
-        Se $i+1=k$, segue que $S$ é $a_0e_0\dots e_i$, que é um segmento inicial próprio de $a_0e_0'\dots e_{l-1}'$, que é um segmento inicial de $S$.
-        Dessa forma, $S$ é um segmento inicial próprio de $S$, o que é absurdo.
-        Por isso, $i+1<k$.
+        Se $i+1=k$, então, como $i+1<l$, a sequência $a_0e_0'\dots e_{l-1}'$ estende propriamente
+        $a_0e_0'\dots e_i'=a_0e_0\dots e_i=S$, o que contradiz o fato de
+        $a_0e_0'\dots e_{l-1}'$ ser um segmento inicial de $S$.
+        Logo, $i+1<k$.
 
-        Agora, $a_0e_0\dots e_{i-1}$ e $a_0e_0'\dots e_{i-1}'$ são a mesma sequência de símbolos, de modo que $e_i$ e $e_i'$ são subexpressões de $S$ iniciadas na mesma posição.
-        Dessa forma, uma deve ser segmento inicial da outra, de modo que, por (i), são iguais.
+        Como $a_0e_0\dots e_i$ e $a_0e_0'\dots e_i'$ são a mesma sequência de símbolos,
+        $e_{i+1}$ e $e_{i+1}'$ são subexpressões de $S$ iniciadas na mesma posição.
+        Assim, uma é segmento inicial da outra e, por (i) na hipótese indutiva, são iguais.
     \end{proof}
 
     Com a afirmação, facilmente completamos a prova de (i) e (ii).
@@ -298,7 +300,7 @@ Finalizaremos esta seção com exemplos que ilustram a noção de escopo.
     \item $f1$.
     \item $f1e$.
     \item $f1e1$.
-    \item $+ffe$
+    \item $+ffe$.
     \item $fef+11$.
     \item $f+f12$.
 \end{enumerate}
