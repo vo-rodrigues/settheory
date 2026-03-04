@@ -5,11 +5,11 @@ Um dos caminhos para o fazer é o de, primeiro, trabalhar a noção de tautologi
 A noção de tautologia corresponde a uma noção de validade puramente proposicional.
 Mais adiante, introduziremos a noção completa de demonstração.
 
-\begin{definition}[Fórmulas proposicionais]
+\begin{metadefinition}[Fórmulas proposicionais]
     O léxico para lógica proposicional é o léxico para a notação polonesa cujos símbolos básicos são apenas os conectivos lógicos $\neg$, $\vee$, $\wedge$, $\rightarrow$ e $\leftrightarrow$, além de símbolos $0$-ários $P_0, P_1, \dots$, chamados de variáveis proposicionais.
 
-    Uma fórmula proposicional é expressão bem formada neste léxico.
-\end{definition}
+    Uma fórmula proposicional é uma expressão bem formada neste léxico.
+\end{metadefinition}
 
 Por vezes, ao invés de $P_1, P_2, \dots$, utilizaremos letras como $A$, $B$, $C$ para denotar variáveis proposicionais.
 Adotaremos a convenção de que símbolos distintos se referem a variáveis proposicionais distintas.
@@ -115,7 +115,7 @@ Como qualquer valoração restrita às variáveis que ocorrem na fórmula, corre
 A seguir, definiremos uma \emph{instância de tautologia}, que é uma fórmula proposicional em que cada variável proposicional é substituída por uma fórmula arbitrária.
 Para isso, precisamos definir, formalmente, o que significa tal substituição.
 
-\begin{proposition}
+\begin{metaproposition}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem.
     Uma atribuição de variáveis proposicionais a fórmulas de $\mathcal L$ é um mapeamento $\rho$ que atribui a cada variável proposicional $P$ uma fórmula $\rho(P)$ da linguagem de primeira ordem de $\mathcal L$.
 
@@ -124,14 +124,19 @@ Para isso, precisamos definir, formalmente, o que significa tal substituição.
     \begin{itemize}
         \item Se $\theta$ é uma variável proposicional $P$, então $\subst(\theta, \rho)$ é $\rho(P)$.
         \item Se $\theta$ é $\neg \psi$, então $\subst(\theta, \rho)$ é $\neg \subst(\psi, \rho)$.
-        \item Se $\theta$ é $\square \psi \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\subst(\theta, \rho)$ é $\subst(\psi, \rho) \square \subst(\eta, \rho)$.
+        \item Se $\theta$ é $ \psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\subst(\theta, \rho)$ é $\subst(\psi, \rho) \square \subst(\eta, \rho)$.
     \end{itemize}
-\end{proposition}
+\end{metaproposition}
 
 \begin{example}
     Considere a fórmula proposicional $\neg P_1 \rightarrow (P_1 \vee P_2)$ e a atribuição $\rho$ que atribui $P_1$ à fórmula $x \in y$ e $P_2$ à fórmula $\neg (z \in w)$.
     Então $\subst(\neg P_1 \rightarrow (P_1 \vee P_2), \rho)$ é $\neg (x \in y) \rightarrow ((x \in y) \vee \neg (z \in w))$.
 \end{example}
+
+\begin{metadefinition}[Instância de tautologia]
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem.
+    Dizemos que uma fórmula $\varphi$ da linguagem de primeira ordem de $\mathcal L$ é uma \emph{instância de tautologia} se existe uma tautologia proposicional $\theta$ e uma atribuição $\rho$ de variáveis proposicionais a fórmulas de $\mathcal L$ tais que $\varphi$ é $\subst(\theta,\rho)$.
+\end{metadefinition}
 
 \begin{example}
     Considere a fórmula $(x \in y) \vee \neg (x \in y)$.
