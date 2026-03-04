@@ -6,23 +6,23 @@ Iniciaremos pelo Teorema da Dedução.
 Este teorema formaliza a ideia de que para provar uma implicação, podemos tomar o antecedente como hipótese para demonstrar o consequente.
 
 \begin{metatheorem}[Teorema da Dedução]
-    Seja $T$ uma teoria e $\phi, \psi$ sentenças da linguagem de $T$.
+    Seja $T$ uma teoria de primeira ordem e $\phi, \psi$ sentenças da linguagem de $T$.
     São equivalentes:
     \begin{enumerate}[label=(\roman*)]
-        \item $T \vdash \phi \to \psi$;
+        \item $T \vdash \phi \rightarrow \psi$;
         \item $T, \phi \vdash \psi$.
     \end{enumerate}
 
-    Em que $T, \phi$ é a teoria $T$ com a sentença $\phi$ adicionada como axioma.
+    Em que $T,\phi$ denota a teoria obtida de $T$ acrescentando a sentença $\phi$ como axioma.
 \end{metatheorem}
 
 \begin{proof}
-    $(i) \Rightarrow (ii)$: se $T \vdash \phi \to \psi$, então, pela Metaproposição~\ref{metaproposition:theoryextension}, $T, \phi \vdash \phi \to \psi$.
+    $(i) \Rightarrow (ii)$: se $T \vdash \phi \rightarrow \psi$, então, pela Metaproposição~\ref{metaproposition:theoryextension}, $T, \phi \vdash \phi \rightarrow \psi$.
     Como $T, \phi\vdash \phi$, segue de modus ponens que $T, \phi \vdash \psi$.
 
     $(ii) \Rightarrow (i)$: suponha que $T, \phi \vdash \psi$.
     Existe uma demonstração $\theta_0, \dots, \theta_n$ de $\psi$ a partir de $T, \phi$.
-    Veremos, por indução em $i\leq n$, que $T \vdash \phi \to \theta_i$.
+    Veremos, por indução em $i\leq n$, que $T \vdash \phi \rightarrow \theta_i$.
 
     Suponha que a tese vale para todo $j<i$.
     
@@ -47,6 +47,8 @@ Este teorema formaliza a ideia de que para provar uma implicação, podemos toma
     \end{equation*}
 
     Por duas aplicações sucessivas de modus ponens, segue que $T\vdash \phi\rightarrow \theta_i$.
+
+    Em particular, para $i=n$, obtemos $T\vdash \phi\rightarrow \theta_n$, isto é, $T\vdash \phi\rightarrow \psi$.
 \end{proof}
 
 O Teorema da Dedução justifica o uso de hipóteses temporárias nas provas usuais.
@@ -62,15 +64,299 @@ Tais teoremas são existenciais.
 Para utilizá-los, ``fixamos'' um ponto fixo e o tratamos como uma constante específica.
 Feito isso, prosseguimos para provar algum novo resultado desejado.
 
+Notemos que se $t$ é um termo sem variáveis, então qualquer substituição $\phi[x/t]$ é válida, pois $t$ não possui variáveis que possam ser capturadas por quantificadores.
+
+Precisaremos do seguinte lema:
+
+\begin{metalemma}[Renomeação de variável universal]\label{metalemma:renomeacaoUniversal}
+    Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
+    Seja $y$ uma variável que não ocorre em $\phi$.
+
+    Então, se $T\vdash \forall y\,\phi[x/y]$, segue que $T\vdash \forall x\,\phi$.
+
+    Reciprocamente, se $T\vdash \forall x\,\phi$, segue que $T\vdash \forall y\,\phi[x/y]$.
+\end{metalemma}
+
+\begin{proof}
+    Suponha $T\vdash \forall y\,\phi[x/y]$.
+
+    \smallskip
+    \textbf{Passo 1:} $\forall x(\forall y\,\phi[x/y]\rightarrow \phi)$ é um axioma lógico.
+
+    De fato, aplique o esquema (2) à fórmula $\psi:=\phi[x/y]$, tomando o quantificador $\forall y$
+    e o termo $x$.
+    Obtemos a instância
+    \[
+        \forall y\,\phi[x/y]\rightarrow (\phi[x/y])[y/x].
+    \]
+    Como $y$ não ocorre em $\phi$, temos $(\phi[x/y])[y/x]$ é $\phi$ (veja o Exercício~\ref{exercise:substituicao}).
+    Além disso, a substituição $(\phi[x/y])[y/x]$ é válida, pois as ocorrências livres de $y$ em $\phi[x/y]$
+    correspondem às ocorrências livres de $x$ em $\phi$, logo, por definição de ocorrência livre, nenhuma delas está no escopo de quantificador que age em $x$.
+    Tomando fecho universal em $x$, concluímos que
+    \[
+        \forall x(\forall y\,\phi[x/y]\rightarrow \phi)
+    \]
+    é um axioma lógico, logo $T\vdash \forall x(\forall y\,\phi[x/y]\rightarrow \phi)$.
+
+    \smallskip
+    \textbf{Passo 2:} $T\vdash \forall x\forall y\,\phi[x/y]\rightarrow \forall x\,\phi$.
+
+    Pelo esquema (3), a sentença
+    \[
+        \forall x(\forall y\,\phi[x/y]\rightarrow \phi)\rightarrow
+        (\forall x\forall y\,\phi[x/y]\rightarrow \forall x\,\phi)
+    \]
+    é um axioma lógico. Por \emph{modus ponens} com o Passo 1, obtemos
+    \[
+        T\vdash \forall x\forall y\,\phi[x/y]\rightarrow \forall x\,\phi.
+    \]
+
+    \smallskip
+    \textbf{Passo 3:} $T\vdash \forall x\forall y\,\phi[x/y]$.
+
+    Como $\forall y\,\phi[x/y]$ é uma sentença, $x$ não ocorre livre nela.
+    Pelo esquema (4), temos como axioma lógico
+    \[
+        \forall y\,\phi[x/y]\rightarrow \forall x\forall y\,\phi[x/y].
+    \]
+    Por \emph{modus ponens} com a hipótese $T\vdash \forall y\,\phi[x/y]$, concluímos
+    \[
+        T\vdash \forall x\forall y\,\phi[x/y].
+    \]
+
+    \smallskip
+    \textbf{Conclusão.}
+    Aplicando \emph{modus ponens} entre o Passo 3 e o Passo 2, obtemos $T\vdash \forall x\,\phi$.
+
+    Para a recíproca, suponha $T\vdash \forall x\,\phi$.
+
+    Pelo esquema (2), tomando o termo $y$, a sentença
+    \[
+        \forall x\,\phi \rightarrow \phi[x/y]
+    \]
+    é um axioma lógico (a substituição é válida porque $y$ não ocorre em $\phi$).
+    Tomando fecho universal em $y$, obtemos que
+    \[
+        \forall y(\forall x\,\phi \rightarrow \phi[x/y])
+    \]
+    é um axioma lógico.
+
+    Pelo esquema (3), também é um axioma lógico que
+    \[
+        \forall y(\forall x\,\phi \rightarrow \phi[x/y])\rightarrow
+        (\forall y\forall x\,\phi \rightarrow \forall y\,\phi[x/y]).
+    \]
+    Por \emph{modus ponens}, concluímos
+    \[
+        T\vdash \forall y\forall x\,\phi \rightarrow \forall y\,\phi[x/y].
+    \]
+
+    Como $\forall x\,\phi$ é uma sentença, $y$ não ocorre livre nela; pelo esquema (4),
+    \[
+        \forall x\,\phi \rightarrow \forall y\forall x\,\phi
+    \]
+    é um axioma lógico. Por \emph{modus ponens} com a hipótese $T\vdash \forall x\,\phi$, obtemos
+    $T\vdash \forall y\forall x\,\phi$. Aplicando \emph{modus ponens} novamente, segue que
+    $T\vdash \forall y\,\phi[x/y]$.
+\end{proof}
+
+\begin{metacorollary}[Renomeação de variável existencial]
+\label{metacorollary:renomeacaoExistencial}
+    Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
+    Seja $y$ uma variável que não ocorre em $\phi$.
+
+    Então, se $T\vdash \exists y\,\phi[x/y]$, segue que $T\vdash \exists x\,\phi$.
+
+    Reciprocamente, se $T\vdash \exists x\,\phi$, segue que $T\vdash \exists y\,\phi[x/y]$.
+\end{metacorollary}
+
+\begin{proof}
+    Provaremos a direção $T\vdash \exists y\,\phi[x/y]\Rightarrow T\vdash \exists x\,\phi$;
+    a recíproca é análoga.
+
+    Suponha $T\vdash \exists y\,\phi[x/y]$.
+    Pelo axioma (6) (com a fórmula $\phi[x/y]$), temos o seguinte axioma.
+    \[
+        \forall y\,\neg\phi[x/y]\leftrightarrow \neg\exists y\,\phi[x/y].
+    \]
+    Pela tautologia proposicional $(A\leftrightarrow \neg B)\rightarrow(\neg A\leftrightarrow B)$,
+    obtemos
+    \[
+        \neg\forall y\,\neg\phi[x/y]\leftrightarrow \exists y\,\phi[x/y].
+    \]
+    Logo, por \emph{modus ponens}, $T\vdash \neg\forall y\,\neg\phi[x/y]$.
+
+    Aplicando o Metalema~\ref{metalemma:renomeacaoUniversal} à fórmula $\neg\phi$
+    (e usando tautologias proposicionais para passar ao negado), obtemos
+    $T\vdash \neg\forall x\,\neg\phi$.
+    Finalmente, pelo axioma (6) e uma instância de tautologia, segue que $T\vdash \exists x\,\phi$.
+
+    Para a recíproca e demais detalhes, veja o Exercício~\ref{exercise:renomeacaoExistencial}.
+\end{proof}
+
 \begin{metatheorem}[Inferências sobre quantificação]
     Seja $T$ uma teoria de primeira ordem com axiomas $\Sigma$ e léxico $\mathcal L$.
     Considere\footnote{Lembre-se da Convenção~\ref{convention:variaveislivres}.} uma $\mathcal L$-fórmula $\phi(x)$ e uma $\mathcal L$-sentença $\psi$, em que $x$ é uma variável, e um símbolo de constante $c$ que não faz parte de $\mathcal L$.
     Sejam $\mathcal L'$ o léxico $\mathcal L$ acrescido de $c$, e $T'$ a teoria de primeira ordem com léxico $\mathcal L'$ e axiomas $\Sigma$.
 
     \begin{enumerate}[label=(\Roman*)]
-        \item (Instanciação Universal) Se $T \vdash \forall x \phi$, então $T \vdash \phi[x/t]$, para cada termo $t$ tal que a substituição $\phi[x/t]$ é válida.
-        \item (Generalização Existencial) Se $T \vdash \phi[x/t]$, para algum termo $t$ tal que a substituição $\phi[x/t]$ é válida, então $T \vdash \exists x \phi$.
+        \item (Instanciação Universal) Se $T \vdash \forall x \phi$, então $T \vdash \phi[x/t]$, para cada termo $t$ sem variáveis.
+        \item (Generalização Existencial) Se $T \vdash \phi[x/t]$, para algum termo $t$ sem variáveis, então $T \vdash \exists x \phi$.
         \item (Instanciação Existencial) Se $T'\vdash \phi[x/c]\rightarrow \psi$, então $T \vdash (\exists x \phi) \rightarrow \psi$.
         \item (Generalização Universal) Se $T'\vdash \phi[x/c]$, então $T \vdash \forall x \phi$.
     \end{enumerate}
 \end{metatheorem}
+
+\begin{proof}
+\textbf{(I) Instanciação Universal.}
+Suponha $T\vdash \forall x\,\phi$ e seja $t$ um termo sem variáveis.
+Pelo esquema de axiomas lógicos (2), temos como axioma lógico a sentença
+\[
+\forall x\,\phi \rightarrow \phi[x/t].
+\]
+Aplicando \emph{modus ponens} com $T\vdash \forall x\,\phi$, obtemos $T\vdash \phi[x/t]$.
+
+\medskip
+\textbf{(II) Generalização Existencial.}
+Suponha $T\vdash \phi[x/t]$ para algum termo $t$ sem variáveis.
+Pelo esquema de axiomas lógicos (5), temos como axioma lógico a sentença
+\[
+\phi[x/t]\rightarrow \exists x\,\phi.
+\]
+Aplicando \emph{modus ponens} com $T\vdash \phi[x/t]$, obtemos $T\vdash \exists x\,\phi$.
+
+\medskip
+\textbf{(IV) Generalização Universal.}
+Suponha $T'\vdash \phi[x/c]$.
+Fixe uma demonstração (formal) em $T'$ da sentença $\phi[x/c]$,
+digamos $\psi_0,\dots,\psi_n$, com $\psi_n=\phi[x/c]$.
+Como a demonstração é finita, apenas finitas variáveis aparecem nos $\psi_i$.
+Escolha uma variável $y$ que \emph{não ocorra em nenhum} $\psi_i$ (isso é possível pois há infinitas variáveis).
+
+Para cada $i\le n$, seja $\psi_i^\ast$ a fórmula obtida de $\psi_i$ substituindo-se
+\emph{todas} as ocorrências do símbolo de constante $c$ pela variável $y$.
+Note que $\psi_i^\ast$ é agora uma fórmula (possivelmente com $y$ livre) na linguagem original $\mathcal L$.
+Defina ainda a sentença
+\[
+\widehat{\psi_i}\ :=\ \forall y\,\psi_i^\ast.
+\]
+Afirmamos que, para todo $i\le n$, vale $T\vdash \widehat{\psi_i}$.
+Provaremos por indução em $i$.
+
+\smallskip
+\emph{Caso 1:} $\psi_i$ é um axioma de $T'$ (isto é, $\psi_i\in\Sigma$).
+Então $\psi_i$ não envolve $c$, logo $\psi_i^\ast=\psi_i$ e $\widehat{\psi_i}=\forall y\,\psi_i$.
+Como $\psi_i$ é axioma de $T$, temos $T\vdash \psi_i$.
+Como $y$ não ocorre livre em $\psi_i$ (pois $\psi_i$ é sentença), pelo esquema lógico (4) obtemos
+$T\vdash \psi_i\rightarrow \forall y\,\psi_i$, e por \emph{modus ponens} segue $T\vdash \forall y\,\psi_i=\widehat{\psi_i}$.
+
+\smallskip
+\emph{Caso 2:} $\psi_i$ é um axioma lógico.
+Então $\psi_i$ é um fecho universal de alguma instância de um dos esquemas (1)--(11),
+envolvendo possivelmente o símbolo novo $c$ como parte de algum termo.
+Ao substituir $c$ por $y$ obtemos novamente uma instância do \emph{mesmo} esquema,
+agora na linguagem $\mathcal L$ (pois $y$ é um termo, e $y$ foi escolhido de modo a não introduzir conflitos de variáveis).
+Para mais informações, veja o Exercício~\ref{exercise:axiom-subst-const}.
+Logo, $\widehat{\psi_i}=\forall y\,\psi_i^\ast$ é (também) um axioma lógico de $T$.
+Assim, $T\vdash \widehat{\psi_i}$.
+
+\smallskip
+\emph{Caso 3:} $\psi_i$ é obtida por \emph{modus ponens} de duas sentenças anteriores.
+Então existem $j,k<i$ tais que $\psi_k$ é $\psi_j\rightarrow \psi_i$.
+Após substituir $c$ por $y$, temos $\psi_k^\ast=\psi_j^\ast\rightarrow \psi_i^\ast$.
+Pela hipótese de indução, $T\vdash \forall y\,\psi_j^\ast$ e $T\vdash \forall y\,(\psi_j^\ast\rightarrow \psi_i^\ast)$.
+Pelo esquema lógico (3) (com a variável $y$),
+\[
+\forall y\,(\psi_j^\ast\rightarrow \psi_i^\ast)\rightarrow
+(\forall y\,\psi_j^\ast\rightarrow \forall y\,\psi_i^\ast)
+\]
+é um axioma lógico; por duas aplicações de \emph{modus ponens}, obtemos $T\vdash \forall y\,\psi_i^\ast$,
+isto é, $T\vdash \widehat{\psi_i}$.
+
+\smallskip
+Isso conclui a indução. Em particular, para $i=n$ obtemos
+\[
+T\vdash \widehat{\psi_n}=\forall y\,\bigl(\phi[x/c]\bigr)^\ast=\forall y\,\phi[x/y].
+\]
+Portanto, do Metalema~\ref{metalemma:renomeacaoUniversal} segue que $T\vdash \forall x\,\phi$, como queríamos.
+
+\medskip
+\textbf{(III) Instanciação Existencial.}
+Suponha $T'\vdash \phi[x/c]\rightarrow \psi$.
+Aplique (IV) à fórmula $\chi(x):=(\phi\rightarrow \psi)$.
+Como $\psi$ é sentença, $\chi$ tem como únicas variáveis livres as de $\phi(x)$, isto é, apenas $x$.
+Além disso, $\chi[x/c]$ é exatamente $\phi[x/c]\rightarrow \psi$.
+Logo, por (IV),
+\[
+T\vdash \forall x\,(\phi\rightarrow \psi).
+\]
+Mostraremos agora, em $T$, que de $\forall x(\phi\rightarrow\psi)$ segue $(\exists x\,\phi)\rightarrow \psi$.
+
+Considere a tautologia proposicional
+\[
+(P\rightarrow Q)\rightarrow(\neg Q\rightarrow \neg P).
+\]
+Substituindo $P$ por $\phi$ e $Q$ por $\psi$, e tomando fecho universal em $x$, obtemos como axioma lógico
+\[
+\forall x\,\bigl((\phi\rightarrow \psi)\rightarrow(\neg \psi\rightarrow \neg \phi)\bigr).
+\]
+Pelo esquema lógico (3), temos:
+\[
+\forall x\,\bigl((\phi\rightarrow \psi)\rightarrow(\neg \psi\rightarrow \neg \phi)\bigr)\rightarrow
+\bigl(\forall x(\phi\rightarrow \psi)\rightarrow \forall x(\neg \psi\rightarrow \neg \phi)\bigr).
+\]
+Como $T\vdash \forall x(\phi\rightarrow\psi)$ e
+$T\vdash \forall x((\phi\rightarrow \psi)\rightarrow(\neg \psi\rightarrow \neg \phi))$,
+por duas aplicações de \emph{modus ponens} concluímos
+\[
+T\vdash \forall x(\neg\psi\rightarrow \neg\phi).
+\]
+Pelo esquema (3) novamente,
+\[
+T\vdash \forall x(\neg \psi\rightarrow \neg \phi)\ \rightarrow\ (\forall x\,\neg\psi\rightarrow \forall x\,\neg\phi),
+\]
+logo $T\vdash (\forall x\,\neg\psi\rightarrow \forall x\,\neg\phi)$.
+
+Agora trabalhamos sob a hipótese $\neg\psi$.
+Como $x$ não ocorre livre em $\neg\psi$ (pois $\psi$ é sentença), pelo esquema (4) temos
+$\neg\psi\rightarrow \forall x\,\neg\psi$; portanto, de $\neg\psi$ segue $\forall x\,\neg\psi$,
+e então segue $\forall x\,\neg\phi$.
+Pelo Teorema da Dedução, concluímos
+\[
+T\vdash \neg\psi\rightarrow \forall x\,\neg\phi.
+\]
+Pelo esquema (6), $\forall x\,\neg\phi \leftrightarrow \neg\exists x\,\phi$ é um axioma lógico.
+Usando a tautologia proposicional $(A\leftrightarrow B)\rightarrow(A\rightarrow B)$,
+obtemos $T\vdash \forall x\,\neg\phi \rightarrow \neg\exists x\,\phi$,
+e portanto
+\[
+T\vdash \neg\psi\rightarrow \neg\exists x\,\phi.
+\]
+Por fim, pela tautologia proposicional $(\neg Q\rightarrow \neg P)\rightarrow(P\rightarrow Q)$,
+substituindo $P$ por $\exists x\,\phi$ e $Q$ por $\psi$, concluímos
+\[
+T\vdash (\exists x\,\phi)\rightarrow \psi.
+\]
+Isso prova (III).
+\end{proof}
+
+\section*{Exercícios}
+
+\begin{exercise}\label{exercise:substituicao}
+    Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
+    Seja $y$ uma variável que não ocorre em $\phi$.
+
+    Então $\phi[x/y][y/x]$ é $\phi$.
+\end{exercise}
+
+\begin{exercise}\label{exercise:renomeacaoExistencial}
+    Complete a prova do Metacorolário~\ref{metacorollary:renomeacaoExistencial} utilizando o Metalema~\ref{metalemma:renomeacaoUniversal}.
+\end{exercise}
+
+\begin{exercise}\label{exercise:axiom-subst-const}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem contendo um símbolo de constante $c$, e $\phi$ uma fórmula de $\mathcal L$ que é instância de um dos esquemas (1)--(11) da metadefinição dos axiomas lógicos.
+
+    Para cada subfórmula $\psi$ de $\phi$, seja $\psi^\ast$ a fórmula obtida de $\psi$ substituindo-se cada símbolo de constante $c$ por uma variável $y$ que não ocorre em $\psi$.
+
+    Mostre que $\forall y \psi^\ast$ é uma instância do mesmo esquema (1)--(11) da metadefinição dos axiomas lógicos.
+\end{exercise}
