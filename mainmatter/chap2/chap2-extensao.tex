@@ -1,0 +1,157 @@
+\section{O Axioma da Extensão e o Esquema da Compreensão}\label{sec:axioma-extensao}
+O \emph{Axioma da Extensão}\index{Axioma da Extensão} é um dos axiomas fundamentais da Teoria dos Conjuntos.
+Ele estabelece que dois conjuntos são iguais se e somente se eles têm os mesmos elementos.
+Formalmente, o axioma pode ser enunciado da seguinte maneira.
+
+\begin{axiom}[Axioma da Extensão]
+\label{axiom:extensao}
+Para quaisquer conjuntos $x$ e $y$, se $x$ e $y$ possuem exatamente os mesmos elementos, então $x=y$.
+Formalmente:
+
+\begin{equation}
+\forall x \forall y \left( \left( \forall z (z \in x \leftrightarrow z \in y) \right) \rightarrow x = y \right)
+\end{equation}
+\end{axiom}
+
+Tal axioma pode, intuitivamente, ser visto como uma asserção forte sobre a identidade de um conjunto.
+Ele estabelece que um conjunto é determinado exclusivamente por seus elementos.
+Desta forma, no universo dos conjuntos, dois objetos que possuem exatamente os mesmos ente são, em verdade, o mesmo ente.
+
+No contexto do Axioma da Extensão, é muito útil a noção de ser um \emph{subconjunto}\index{Subconjunto}.
+
+\begin{definition}
+    Sejam $x$ e $y$ conjuntos.
+    Dizemos que $x$ é um \emph{subconjunto} de $y$, denotado por $x \subseteq y$, se e somente se todo elemento de $x$ é também um elemento de $y$.
+    Formalmente:
+    \begin{equation}
+        \forall x \forall y \left( x \subseteq y \leftrightarrow \forall z (z \in x \rightarrow z \in y) \right).
+    \end{equation}
+\end{definition}
+
+Com esta noção, podemos provar o seguinte resultado básico amplamente utilizado em todas as áreas da matemática, que depende apenas do Axioma da Extensão.
+
+\begin{proposition}
+    Para quaisquer conjuntos $x$ e $y$, $x=y$ se e somente se $x \subseteq y$ e $y \subseteq x$.
+    Formalmente:
+    \begin{equation}
+        \forall x \forall y \left( x = y \leftrightarrow (x \subseteq y \land y \subseteq x) \right).
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    Sejam $x$ e $y$ conjuntos.
+    
+    Suponha primeiramente $x=y$.
+    Devemos ver que $\forall t \in x (t \in y)$ e $\forall t \in y (t \in x)$.
+    Ora, dado $t \in x$, como $x=y$, segue que $t \in y$.
+    De maneira análoga, dado $t \in y$, como $x=y$, segue que $t \in x$.
+
+    Agora, suponha $x \subseteq y$ e $y \subseteq x$.
+    Devemos ver que $x=y$.
+    Para isso, pelo Axioma da Extensão, basta mostrar que $\forall t (t \in x \leftrightarrow t \in y)$.
+    Dado $t \in x$, como $x \subseteq y$, segue que $t \in y$.
+    De maneira análoga, dado $t \in y$, como $y \subseteq x$, segue que $t \in x$.
+    Assim, concluímos que $x=y$.
+\end{proof}
+
+O Axioma da Extensão, apesar de nos dar um importante critério de identidade para conjuntos, não é suficiente para garantir a existência de nenhum conjunto particular.
+Da Metaproposição~\ref{metaproposition:nonempty}, segue que existe algum conjunto.
+Porém, não sabemos nada a respeito dele, e nem mesmo podemos afirmar se este conjunto é ou não o único conjunto (em termos formais, não é possível provar ou refutar a sentença $\forall x \forall y (x=y)$ a partir do Axioma da Extensão).
+
+Para garantir a existência de conjuntos particulares, precisamos de outros axiomas, como o Esquema de Axiomas da Compreensão.
+
+Historicamente, um predecessor de tal esquema é o Princípio da Compreensão Irrestrita, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
+No entanto, este princípio leva a contradições, como o Famoso Paradoxo de Russell.
+
+\begin{proposition}[Paradoxo de Russell]
+    Considere a fórmula $P(x)$ dada por $x\notin x$.
+    Então $\neg(\exists y \forall x (x \in y \leftrightarrow P(x)))$.
+\end{proposition}
+\begin{proof}
+    Suponha que tal $y$ exista.
+    Então $\forall x (x \in y \leftrightarrow x \notin x)$.
+    Pondo $x=y$, segue que $y \in y \leftrightarrow y \notin y$.
+    Assim, se $y\in y$, temos $y \notin y$, e se $y \notin y$, temos $y \in y$.
+    Como deve valer $y \in y$ ou $y \notin y$, temos um absurdo.
+\end{proof}
+
+No lugar do Princípio da Compreensão Irrestrita, adotamos o Esquema de Axiomas da Compreensão, um enfraquecimento do princípio original que permite apenas tomar subcoleções de conjuntos já existentes.
+
+\begin{axiom}[Esquema de Axiomas da Compreensão]
+    Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$.
+    A seguinte sentença é um axioma:
+    \begin{equation}
+        \forall A \forall t_1 \ldots \forall t_n \exists y \forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))).
+    \end{equation}
+
+\end{axiom}
+
+    Intuitivamente, dado um conjunto $A$ e parâmetros $t_1, \ldots, t_n$, o axioma garante a existência de um conjunto $y$ que contém exatamente os elementos de $A$ que satisfazem a propriedade $\phi$.
+
+    O Axioma da Extensão nos garante que tal conjunto deve ser único.
+
+\begin{proposition}[Esquema]
+    Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$.
+    A seguinte sentença é teorema:
+    \begin{equation}
+        \forall A \forall t_1 \ldots \forall t_n \exists! y \forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    A existência de tal $y$ é garantida pelo Esquema de Axiomas da Compreensão.
+    Para a unicidade, suponha que $y$ e $y'$ sejam tais que $\forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$ e $\forall x (x \in y' \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$.
+    Então, para todo $x$, temos $x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))$ e $x \in y' \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))$.
+    Assim, para todo $x$, temos $x \in y \leftrightarrow x \in y'$.
+    Pelo Axioma da Extensão, segue que $y=y'$.
+\end{proof}
+
+A proposição acima nos permite utilizar a seguinte notação, muito usual em toda a Matemática.
+
+\begin{definition}[Esquema]
+    Seja $\phi(x, A, t_1, \ldots, t_n)$ uma fórmula.
+    Para todo conjunto $A$ e parâmetros $t_1, \ldots, t_n$, denotamos por $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ o único conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$.
+
+    Formalmente, inserimos o símbolo de função $n+1$-ário $\{x \in \cdot: \phi(x, \cdot, \cdot, \ldots, \cdot)\}$ e o seguinte axioma definicional.
+    \begin{equation*}
+        \forall A \forall t_1 \ldots \forall t_n \forall x (x \in \{x \in A : \phi(x, A, t_1, \ldots, t_n)\} \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))).
+    \end{equation*}    
+\end{definition}
+
+Neste ponto, notemos que, em nossa teoria, por enquanto, não provamos a existência de nenhum conjunto ``concretamente'' conhecido.
+
+Abaixo, provaremos a existência de um primeiro tal conjunto:
+o conjunto vazio.
+
+\begin{proposition}
+    Existe um único conjunto que não possui nenhum elemento.
+    Formalmente:
+    \begin{equation}
+        \exists! y \forall x (x \notin y).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Sabemos que $\exists A (A=A)$.
+    Fixe um tal $A$.
+    Pelo Esquema de Axiomas da Compreensão, existe um conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land x \neq x))$.
+    Fixe um tal $y$.
+
+    Mostraremos que $\forall x (x \notin y)$.
+    De fato, dado $x \in X$, se $x \in y$, segue que $x\neq x$, o que é um absurdo.
+    Assim, $x \notin y$.
+
+    Isso prova a existência.
+    Para a unicidade, suponha que $y$ e $y'$ sejam tais que $\forall x (x \notin y)$ e $\forall x (x \notin y')$.
+    
+    Basta ver que $\forall x (x \in y \leftrightarrow x \in y')$.
+    Equivalentemente, basta ver que $\forall x (x \notin y \leftrightarrow x \notin y')$.
+    Como $\forall x (x \notin y)$ e $\forall x (x \notin y')$, segue que $\forall x (x \notin y \leftrightarrow x \notin y')$.
+    Dessa forma, segue do Axioma da Extensão que $y=y'$.
+\end{proof}
+
+\begin{definition}
+    O conjunto vazio, denotado por $\emptyset$, é o único conjunto que não possui nenhum elemento.
+    Formalmente, insere-se na teoria, por definição, um símbolo de constante $\emptyset$ e o seguinte axioma definicional.
+    \begin{equation*}
+        \forall y (y \in \emptyset \leftrightarrow \forall x (x \notin y)).
+    \end{equation*}
+\end{definition}

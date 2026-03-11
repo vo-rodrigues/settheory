@@ -162,6 +162,25 @@ O próximo resultado nos mostra o motivo de contradições serem tão indesejáv
 
     Como $T \vdash \neg \phi$, novamente do Metalema~\ref{metalemma:modusponens}, segue que $T \vdash \psi$.
 \end{proof}
+
+Abaixo, provaremos, como exemplo, um teorema da lógica pura que intuitivamente diz que o universo de discurso é não vazio.
+
+\begin{metaproposition}\label{metaproposition:nonempty}
+    Para cada teoria de primeira ordem $T$, $T \vdash \exists x (x=x)$.
+\end{metaproposition}
+\begin{proof}
+    Considere a seguinte demonstração.
+
+    \begin{align*}
+    1.\ & \forall x (x=x) & \text{(axioma lógico 7.)} \\
+    2.\ & \forall x (x=x \rightarrow \exists x (x=x)) & \text{(axioma lógico 5.)} \\
+    3.\ & \forall x ((x=x) \rightarrow \exists x (x=x))\rightarrow (\forall x (x=x) \rightarrow \forall x \exists x (x=x)) & \text{(axioma lógico 3.)} \\
+    4.\ & \forall x (x=x) \rightarrow \forall x \exists x (x=x) & \text{(modus ponens de 2. e 3.)} \\
+    5.\ & \forall x\exists x (x=x) & \text{(modus ponens de 1. e 4.)} \\
+    6.\ & \forall x\exists x (x=x) \rightarrow \exists x(x=x) & \text{(axioma lógico 2.)} \\
+    7.\ & \exists x (x=x) & \text{(modus ponens de 5. e 6.)}
+    \end{align*}
+\end{proof}
 \section*{Exercícios}
 \begin{exercise}\label{exercise:languageextension}
     Prove o Metalema~\ref{metalemma:languageextension}.

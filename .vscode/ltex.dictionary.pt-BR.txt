@@ -3,3 +3,4 @@ ponens
 ário
 Metalema
 subcasos
+definicional
