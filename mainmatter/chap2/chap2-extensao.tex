@@ -1,41 +1,46 @@
 \section{O Axioma da Extensão e o Esquema da Compreensão}\label{sec:axioma-extensao}
-O \emph{Axioma da Extensão}\index{Axioma da Extensão} é um dos axiomas fundamentais da Teoria dos Conjuntos.
-Ele estabelece que dois conjuntos são iguais se e somente se eles têm os mesmos elementos.
-Formalmente, o axioma pode ser enunciado da seguinte maneira.
-
+O \emph{Axioma da Extensão}\index{Axioma da Extensão} é um dos axiomas mais fundamentais da Teoria dos Conjuntos.
+Ele afirma que um conjunto é completamente determinado por seus elementos.
+Em outras palavras, dois conjuntos são iguais se, e somente se, têm os mesmos elementos.
 \begin{axiom}[Axioma da Extensão]
 \label{axiom:extensao}
-Para quaisquer conjuntos $x$ e $y$, se $x$ e $y$ possuem exatamente os mesmos elementos, então $x=y$.
-Formalmente:
+Para quaisquer conjuntos $x$ e $y$, se $x$ e $y$ possuem os mesmos elementos, então $x=y$.
+Formalmente,
 
-\begin{equation}
-\forall x \forall y \left( \left( \forall z (z \in x \leftrightarrow z \in y) \right) \rightarrow x = y \right)
-\end{equation}
+\[
+\forall x \forall y \Bigl(\bigl(\forall z\,(z \in x \leftrightarrow z \in y)\bigr) \rightarrow x=y\Bigr).
+\]
 \end{axiom}
 
-Tal axioma pode, intuitivamente, ser visto como uma asserção forte sobre a identidade de um conjunto.
-Ele estabelece que um conjunto é determinado exclusivamente por seus elementos.
-Desta forma, no universo dos conjuntos, dois objetos que possuem exatamente os mesmos ente são, em verdade, o mesmo ente.
+O Axioma da Extensão fornece, portanto, um critério de identidade para conjuntos:
+no universo dos conjuntos, não há distinção entre objetos que tenham exatamente os mesmos elementos.
 
-No contexto do Axioma da Extensão, é muito útil a noção de ser um \emph{subconjunto}\index{Subconjunto}.
+A implicação recíproca, isto é, que $x=y$ implica $\forall z\,(z \in x \leftrightarrow z \in y)$, não faz parte especificamente do Axioma da Extensão, mas decorre dos princípios lógicos básicos discutidos no capítulo anterior.
+Assim, o axioma fornece precisamente a direção não trivial do critério de identidade para conjuntos.
+
+
+No contexto desse axioma, é conveniente introduzir a noção de subconjunto, com a qual esperamos que o leitor já tenha alguma familiaridade.
 
 \begin{definition}
-    Sejam $x$ e $y$ conjuntos.
-    Dizemos que $x$ é um \emph{subconjunto} de $y$, denotado por $x \subseteq y$, se e somente se todo elemento de $x$ é também um elemento de $y$.
-    Formalmente:
-    \begin{equation}
-        \forall x \forall y \left( x \subseteq y \leftrightarrow \forall z (z \in x \rightarrow z \in y) \right).
-    \end{equation}
+Sejam $x$ e $y$ conjuntos.
+Dizemos que $x$ é um \emph{subconjunto} de $y$, e escrevemos $x \subseteq y$, se todo elemento de $x$ é também elemento de $y$; isto é,
+\[
+x \subseteq y \quad \text{se, e somente se,} \quad \forall z\,(z \in x \rightarrow z \in y).
+\]
 \end{definition}
 
-Com esta noção, podemos provar o seguinte resultado básico amplamente utilizado em todas as áreas da matemática, que depende apenas do Axioma da Extensão.
+Com essa notação, obtemos imediatamente a seguinte caracterização da igualdade.
 
 \begin{proposition}
-    Para quaisquer conjuntos $x$ e $y$, $x=y$ se e somente se $x \subseteq y$ e $y \subseteq x$.
-    Formalmente:
-    \begin{equation}
-        \forall x \forall y \left( x = y \leftrightarrow (x \subseteq y \land y \subseteq x) \right).
-    \end{equation}
+\label{prop:igualdade-por-inclusao}
+Para quaisquer conjuntos $x$ e $y$, tem-se
+\[
+x=y \quad \text{se, e somente se,} \quad x \subseteq y \ \text{e} \ y \subseteq x.
+\]
+Mais formalmente,
+\[
+\forall x \forall y \Bigl(x=y \leftrightarrow \bigl(\forall z\,(z \in x \rightarrow z \in y)\ \land\ \forall z\,(z \in y \rightarrow z \in x)\bigr)\Bigr).
+\]
 \end{proposition}
 
 \begin{proof}
@@ -48,24 +53,33 @@ Com esta noção, podemos provar o seguinte resultado básico amplamente utiliza
 
     Agora, suponha $x \subseteq y$ e $y \subseteq x$.
     Devemos ver que $x=y$.
-    Para isso, pelo Axioma da Extensão, basta mostrar que $\forall t (t \in x \leftrightarrow t \in y)$.
+    Para isso, pelo Axioma da Extensão, basta mostrar que $\forall t\,(t \in x \leftrightarrow t \in y)$.
     Dado $t \in x$, como $x \subseteq y$, segue que $t \in y$.
     De maneira análoga, dado $t \in y$, como $y \subseteq x$, segue que $t \in x$.
     Assim, concluímos que $x=y$.
 \end{proof}
 
-O Axioma da Extensão, apesar de nos dar um importante critério de identidade para conjuntos, não é suficiente para garantir a existência de nenhum conjunto particular.
-Da Metaproposição~\ref{metaproposition:nonempty}, segue que existe algum conjunto.
+A proposição anterior será usada constantemente no restante do texto.
+Em muitas situações, para provar que dois conjuntos são iguais, será mais conveniente verificar separadamente as inclusões $x \subseteq y$ e $y \subseteq x$ do que trabalhar diretamente com a igualdade.
+
+O Axioma da Extensão, embora nos dê um critério fundamental de identidade, não garante por si só a existência de nenhum conjunto particular.
+Pela Metaproposição~\ref{metaproposition:nonempty}, sabemos que existe ao menos um conjunto.
 Porém, não sabemos nada a respeito dele, e nem mesmo podemos afirmar se este conjunto é ou não o único conjunto (em termos formais, não é possível provar ou refutar a sentença $\forall x \forall y (x=y)$ a partir do Axioma da Extensão).
 
-Para garantir a existência de conjuntos particulares, precisamos de outros axiomas, como o Esquema de Axiomas da Compreensão.
+Para garantir a existência de conjuntos particulares, precisamos de outros axiomas.
+O próximo princípio a ser introduzido não é, estritamente falando, um único axioma, mas sim um esquema de axiomas, o \emph{Esquema de Axiomas da Compreensão}\index{Esquema de Axiomas da Compreensão}.
+Em outras palavras, designamos, metateoricamente, uma lista de axiomas que, embora potencialmente infinita, é gerada por uma única prescrição.
 
-Historicamente, um predecessor de tal esquema é o Princípio da Compreensão Irrestrita, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
-No entanto, este princípio leva a contradições, como o Famoso Paradoxo de Russell.
+Historicamente, um predecessor de tal esquema é o Princípio da Compreensão Irrestrita\index{Princípio da Compreensão Irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
+No entanto, esse princípio leva a contradições, como o famoso Paradoxo de Russell.
 
 \begin{proposition}[Paradoxo de Russell]
     Considere a fórmula $P(x)$ dada por $x\notin x$.
-    Então $\neg(\exists y \forall x (x \in y \leftrightarrow P(x)))$.
+    Então
+    
+    \[
+        \neg \exists y \forall x\,(x \in y \leftrightarrow x \notin x).
+    \]
 \end{proposition}
 \begin{proof}
     Suponha que tal $y$ exista.
@@ -75,7 +89,8 @@ No entanto, este princípio leva a contradições, como o Famoso Paradoxo de Rus
     Como deve valer $y \in y$ ou $y \notin y$, temos um absurdo.
 \end{proof}
 
-No lugar do Princípio da Compreensão Irrestrita, adotamos o Esquema de Axiomas da Compreensão, um enfraquecimento do princípio original que permite apenas tomar subcoleções de conjuntos já existentes.
+A lição do paradoxo é que podem aparecer problemas ao se tentar formar, sem qualquer restrição prévia, ``o conjunto de todos os objetos'' que satisfazem uma certa condição.
+No lugar do Princípio da Compreensão Irrestrita, adotamos, portanto, o Esquema de Axiomas da Compreensão, um enfraquecimento do princípio original que permite apenas tomar subcoleções de conjuntos já existentes, exigindo sempre que a seleção seja feita \emph{dentro de um conjunto já dado}.
 
 \begin{axiom}[Esquema de Axiomas da Compreensão]
     Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$.
@@ -83,14 +98,15 @@ No lugar do Princípio da Compreensão Irrestrita, adotamos o Esquema de Axiomas
     \begin{equation}
         \forall A \forall t_1 \ldots \forall t_n \exists y \forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))).
     \end{equation}
-
 \end{axiom}
 
-    Intuitivamente, dado um conjunto $A$ e parâmetros $t_1, \ldots, t_n$, o axioma garante a existência de um conjunto $y$ que contém exatamente os elementos de $A$ que satisfazem a propriedade $\phi$.
+Intuitivamente, dado um conjunto $A$ e parâmetros $t_1, \ldots, t_n$, o axioma garante a existência de um conjunto $y$ que contém exatamente os elementos de $A$ que satisfazem a propriedade $\phi$.
 
-    O Axioma da Extensão nos garante que tal conjunto deve ser único.
+A presença dos parâmetros $t_1,\ldots,t_n$ é essencial: ela nos permite definir subconjuntos de $A$ por propriedades que dependem não apenas do elemento $x$, mas também de outros objetos previamente fixados.
 
-\begin{proposition}[Esquema]
+O Axioma da Extensão nos garante que tal conjunto deve ser único.
+
+\begin{proposition}[Esquema da Unicidade na compreensão]
     Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$.
     A seguinte sentença é teorema:
     \begin{equation}
@@ -107,7 +123,7 @@ No lugar do Princípio da Compreensão Irrestrita, adotamos o Esquema de Axiomas
 
 A proposição acima nos permite utilizar a seguinte notação, muito usual em toda a Matemática.
 
-\begin{definition}[Esquema]
+\begin{definition}[Esquema da notação por compreensão]
     Seja $\phi(x, A, t_1, \ldots, t_n)$ uma fórmula.
     Para todo conjunto $A$ e parâmetros $t_1, \ldots, t_n$, denotamos por $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ o único conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$.
 
@@ -117,10 +133,29 @@ A proposição acima nos permite utilizar a seguinte notação, muito usual em t
     \end{equation*}    
 \end{definition}
 
+Neste ponto, convém dar um exemplo que envolva objetos ainda não definidos formalmente, mas com os quais o leitor provavelmente já está familiarizado, para ilustrar o uso de parâmetros no esquema da compreensão.
+
+\begin{example}
+    Mais adiante, quando tivermos introduzido formalmente os números naturais, para cada $n \in \mathbb{N}$ poderemos considerar o conjunto
+    \[
+        [0, n[=\{k \in \mathbb{N} : k < n\}.
+    \]
+
+    Aqui, $k$ é a variável que percorre $\mathbb{N}$, ao passo que $n$ é um parâmetro previamente fixado, e $<$ será introduzido por definição.
+    Esquematicamente, a instância da compreensão correspondente será:
+
+    \[
+        \forall A\forall n\exists y \forall k (k \in y \leftrightarrow (k \in A \land k < n)).
+    \]
+
+    Neste caso, a variável $A$ é instanciada por $\mathbb{N}$, e $n$ representa um parâmetro previamente fixado.
+    A variável $k$ permanece ligada pelo quantificador universal e percorre os elementos do conjunto ambiente.
+\end{example}
+
 Neste ponto, notemos que, em nossa teoria, por enquanto, não provamos a existência de nenhum conjunto ``concretamente'' conhecido.
 
-Abaixo, provaremos a existência de um primeiro tal conjunto:
-o conjunto vazio.
+O próximo resultado fornece um primeiro exemplo de tal conjunto: o conjunto vazio.
+A ideia da prova é simples: partimos de um conjunto qualquer já existente e selecionamos, dele, os elementos que satisfazem uma condição impossível.
 
 \begin{proposition}
     Existe um único conjunto que não possui nenhum elemento.
@@ -130,28 +165,65 @@ o conjunto vazio.
     \end{equation}
 \end{proposition}
 \begin{proof}
-    Sabemos que $\exists A (A=A)$.
+    Pela Metaproposição~\ref{metaproposition:nonempty}, $\exists A (A=A)$.
     Fixe um tal $A$.
     Pelo Esquema de Axiomas da Compreensão, existe um conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land x \neq x))$.
     Fixe um tal $y$.
 
     Mostraremos que $\forall x (x \notin y)$.
-    De fato, dado $x \in X$, se $x \in y$, segue que $x\neq x$, o que é um absurdo.
+    De fato, seja $x$ arbitrário.
+    Se $x \in y$, segue que $x \neq x$, o que é um absurdo.
     Assim, $x \notin y$.
 
     Isso prova a existência.
     Para a unicidade, suponha que $y$ e $y'$ sejam tais que $\forall x (x \notin y)$ e $\forall x (x \notin y')$.
-    
-    Basta ver que $\forall x (x \in y \leftrightarrow x \in y')$.
-    Equivalentemente, basta ver que $\forall x (x \notin y \leftrightarrow x \notin y')$.
-    Como $\forall x (x \notin y)$ e $\forall x (x \notin y')$, segue que $\forall x (x \notin y \leftrightarrow x \notin y')$.
-    Dessa forma, segue do Axioma da Extensão que $y=y'$.
+    Então, para todo $x$, temos $x \in y \leftrightarrow x \in y'$, pois para todo $x$, $x \in y$ é falso e $x \in y'$ é falso.
+    Pelo Axioma da Extensão, segue que $y=y'$.
 \end{proof}
 
 \begin{definition}
     O conjunto vazio, denotado por $\emptyset$, é o único conjunto que não possui nenhum elemento.
     Formalmente, insere-se na teoria, por definição, um símbolo de constante $\emptyset$ e o seguinte axioma definicional.
     \begin{equation*}
-        \forall y (y \in \emptyset \leftrightarrow \forall x (x \notin y)).
+        \forall y (y = \emptyset \leftrightarrow \forall x (x \notin y)).
     \end{equation*}
 \end{definition}
+
+\section*{Exercícios}
+\begin{exercise}
+    Prove o seguinte esquema de teoremas.
+
+    Suponha que $\phi(x, t_1, \ldots, t_n)$ é uma fórmula para a qual
+    \[
+        \exists y \forall x \bigl(x \in y \leftrightarrow \phi(x, t_1, \ldots, t_n)\bigr)
+    \]
+    é um teorema.
+    Prove que
+    \[
+        \exists! y \forall x \bigl(x \in y \leftrightarrow \phi(x, t_1, \ldots, t_n)\bigr)
+    \]
+    também é um teorema.
+    Em outras palavras, prove que, para quaisquer $t_1, \ldots, t_n$, o seguinte conjunto está bem-definido:
+    \[
+        \{x : \phi(x, t_1, \ldots, t_n)\}.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Seja $A$ um conjunto.
+    Prove que
+    \[
+        \{x \in A : x=x\}=A
+        \qquad\text{e}\qquad
+        \{x \in A : x\neq x\}=\emptyset.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Prove que:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\forall x\ (x\subseteq x)$;
+        \item $\forall x \forall y \bigl((x\subseteq y \land y\subseteq x) \rightarrow x=y\bigr)$;
+        \item $\forall x \forall y \forall z \bigl((x\subseteq y \land y\subseteq z) \rightarrow x\subseteq z\bigr)$.
+    \end{enumerate}
+\end{exercise}

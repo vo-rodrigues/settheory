@@ -4,3 +4,4 @@ ponens
 Metalema
 subcasos
 definicional
+Russell
