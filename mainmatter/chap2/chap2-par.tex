@@ -118,6 +118,8 @@ Por razões históricas, boa parte dos textos modernos de Teoria dos Conjuntos a
 A propriedade ``é um par ordenado'' é uma notação ``em texto'' para denotar um símbolo de predicado unário introduzido por definição.
 Poderíamos, alternativamente, ao invés de escrever ``$z$ é um par ordenado'', escrever ``$P(z)$'', onde $P$ é um símbolo de predicado unário definido por $\forall z\,P(z) \leftrightarrow \exists x \exists y (z = (x, y))$. 
 
+A partir dessa codificação, será possível definir posteriormente produtos cartesianos, relações e funções inteiramente em termos de conjuntos.
+
 Insistimos no fato de que a definição de par ordenado não consiste em uma afirmação ontológica sobre a natureza do que deveria ser a noção de par ordenado, mas sim em uma definição formal por meio da qual se constroem objetos que satisfazem propriedades específicas.
 No caso presente, a propriedade fundamental é a da proposição seguinte.
 \begin{proposition}\index{propriedade do par ordenado}
@@ -162,7 +164,22 @@ No caso presente, a propriedade fundamental é a da proposição seguinte.
 
 \section*{Exercícios}
 \begin{exercise}
-    Prove que, para quaisquer conjuntos $x$ e $y$, $\{ x, y \} = \{ y, x \}$.
+    Prove que, para quaisquer conjuntos $x, y, u, v$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\{ x, y \} = \{ y, x \}$.
+        \item $\{ x, x \} = \{ x \}$.
+        \item $\{ x \} = \{ y \}$ se e somente se $x = y$.
+        \item $\{x, y\}=\{u\}$ se e somente se $x=y=u$.
+        \item $\{ x, y \} = \{ u, v \}$ se e somente se ($x = u$ e $y = v$) ou ($x = v$ e $y = u$).
+        \item Com a definição de Kuratowski, $(x, x)=\{x\}$.
+    \end{enumerate}
+\end{exercise}
+\begin{exercise}
+    Prove que, para quaisquer conjuntos $x$ e $y$,
+    \[
+        (x,y)=(y,x)
+    \]
+    se e somente se $x=y$.
 \end{exercise}
 \begin{exercise}\label{exer:unic-singletos}
     Justifique mais detalhadamente a unicidade dos singletos (Lema~\ref{lem:exist-singletos}).
@@ -171,4 +188,18 @@ No caso presente, a propriedade fundamental é a da proposição seguinte.
     Defina, para todo $x, y$, o conjunto $P(x, y) = \{\{\{x\}, \emptyset\}, \{\{y\}\}\}$. Prove que $P(x, y) = P(u, v)$ se e somente se $x = u$ e $y = v$.
 
     Tal definição é uma alternativa à definição de par ordenado de Kuratowski, e é conhecida como definição de Wiener \cite{wiener1914simplification}.
+\end{exercise}
+\begin{exercise}
+    Defina outra definição alternativa para pares ordenados que satisfaça a propriedade de que $(x, y) = (u, v)$ se e somente se $x = u$ e $y = v$.
+\end{exercise}
+\begin{exercise}
+    Prove que, se $z$ é um par ordenado, então existem únicos conjuntos $x$ e $y$ tais que $z=(x,y)$.
+
+    Formalmente, prove que
+    \[
+        \forall z\, (z \text{ é um par ordenado} \rightarrow \exists! x \exists y (z = (x, y))),
+    \]
+    \[
+        \forall z\, (z \text{ é um par ordenado} \rightarrow \exists! y \exists x (z = (x, y))).
+    \]
 \end{exercise}
