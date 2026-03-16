@@ -1,0 +1,174 @@
+\section{O Axioma do Par}\label{sec:axioma-par}
+
+Por enquanto, os únicos axiomas introduzidos foram o Axioma da Extensão e o Esquema da Compreensão.
+O primeiro é fundamental para a caracterização da igualdade entre conjuntos, enquanto o segundo é crucial para a construção, a partir de um conjunto já existente, de subconjuntos definidos por fórmulas.
+
+Porém, juntos, esses axiomas não garantem a existência de nenhum conjunto particular além do vazio.
+
+Para introduzir novos conjuntos, precisamos de novos axiomas.
+
+O primeiro deles é o Axioma do Par.
+
+Em sua axiomatização de 1908, geralmente considerada a primeira axiomatização publicada da teoria dos conjuntos, Zermelo introduziu o que hoje reconhecemos como este axioma.
+Nesta formulação, o Axioma do Par não aparece isoladamente, mas dentro de seu Axioma II, juntamente com a existência do vazio e dos singletos \cite{zermelo1908untersuchungen}.
+Na formulação de 1930, Zermelo isolou o Axioma do Par, que passou a ser o Axioma P (\emph{Axiom der Paarung}) de sua axiomatização \cite{zermelo1930grundlagen}.
+
+\begin{axiom}\index{Axioma do Par}
+    Para quaisquer conjuntos $x$ e $y$, existe um conjunto $z$ que os tem como elementos.
+
+    Em símbolos:
+
+    \[
+    \forall x \forall y \exists z (x \in z \land y \in z)
+    \]
+\end{axiom}
+
+Notemos que, nesta formulação, o Axioma do Par não garante a existência de um conjunto cujos \emph{únicos} elementos sejam $x$ e $y$, mas apenas de um conjunto que contenha $x$ e $y$ como elementos.
+Vários textos optam por essa formulação mais forte.
+Porém, em presença do Esquema da Compreensão, essa formulação mais forte não é necessária.
+
+\begin{lemma}\index{Existência do Par}
+    Para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
+
+    Em símbolos:
+
+    \[
+    \forall x \forall y \exists! z \,\forall w (w \in z \leftrightarrow (w = x \lor w = y))
+    \]
+\end{lemma}
+
+\begin{proof}
+    Dado $x$ e $y$, pelo Axioma do Par, existe um conjunto $z'$ tal que $x \in z'$ e $y \in z'$.
+    Agora, tomemos o conjunto $z = \{ w \in z' : w = x \lor w = y \}$ (que está bem definido, conforme a discussão da seção anterior).
+    
+    Mostremos que $z$ satisfaz a condição desejada.
+    Se $w \in z$, então $w \in z'$, então $w = x$ ou $w = y$ pela definição de $z$.
+    Por outro lado, se $w=x$ ou $w=y$, então, como $x\in z'$ e $y\in z'$, segue por substituição de iguais que $w\in z'$.
+    Logo, pela definição de $z$, temos $w\in z$.
+
+    A unicidade segue do Axioma da Extensão: se $z_1$ e $z_2$ satisfazem a condição, então, para todo $w$:
+    \[
+    w \in z_1 \leftrightarrow (w = x \lor w = y) \leftrightarrow w \in z_2
+    \]
+
+    Assim, $\forall w\,(w\in z_1 \leftrightarrow w \in z_2)$, e então $z_1 = z_2$.
+\end{proof}
+
+Com isso, podemos definir os pares não ordenados.
+
+\begin{definition}\index{par não ordenado}
+    Dado $x$ e $y$, o \emph{par não ordenado} de $x$ e $y$ é o conjunto $\{ x, y \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
+    
+    Formalmente, conforme discutido no capítulo 1, introduzimos na linguagem um símbolo de função binário $\{ \cdot, \cdot \}$, por meio do seguinte axioma definicional.
+
+    \[
+        \forall x \forall y \forall z (z = \{ x, y \} \leftrightarrow \forall w (w \in z \leftrightarrow (w = x \lor w = y))).
+    \]
+
+    Tal introdução é legitimada pelo lema anterior, que garante a existência e unicidade do conjunto $z$ para quaisquer $x$ e $y$.
+\end{definition}
+
+Também é possível definir os \emph{singletos}, ou \emph{conjuntos unitários}.
+
+\begin{definition}\index{singleto}
+    Dado um conjunto $x$, o \emph{singleto}, ou \emph{conjunto unitário} de $x$ é o conjunto $\{ x \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
+
+    \[
+        \forall x \forall z (z = \{ x \} \leftrightarrow \forall w (w \in z \leftrightarrow w = x)).
+    \]
+\end{definition}
+
+Como ocorreu com os pares não ordenados, a introdução formal dessa notação deve ser justificada.
+No lema seguinte, demonstramos a existência de tal conjunto e deixamos a verificação da unicidade como exercício ao leitor.
+\begin{lemma}\index{Existência de singletos}\label{lem:exist-singletos}
+    Para todo conjunto $x$, existe um único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
+
+    Em símbolos:
+
+    \[
+        \forall x \exists! z \forall w\, (w \in z \leftrightarrow w = x)
+    \]
+\end{lemma}
+\begin{proof}
+    Dado $x$, considere $z=\{x, x\}$.
+    Então, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = x$, o que é equivalente a $w = x$.
+    Assim, $z$ satisfaz a condição.
+
+    A unicidade segue do Axioma da Extensão (ver Exercício~\ref{exer:unic-singletos}).
+\end{proof}
+
+Também é possível definir o par ordenado.
+Neste texto, adotaremos a definição de Kuratowski \cite{kuratowski1921notion}.
+Por razões históricas, boa parte dos textos modernos de Teoria dos Conjuntos adota essa definição, embora existam outras opções igualmente válidas.
+\begin{definition}\index{par ordenado}
+    Dado $x$ e $y$, o \emph{par ordenado} de $x$ e $y$ é o conjunto $(x, y)$ definido como $\{ \{ x \}, \{ x, y \} \}$.
+
+    Formalmente, introduzimos na linguagem um símbolo de função binário $(\cdot, \cdot)$, por meio do seguinte axioma definicional.
+    \[
+        \forall x \forall y\, \bigl((x, y) = \{ \{ x \}, \{ x, y \} \}\bigr)
+    \]
+
+    Dizemos que um conjunto $z$ é um par ordenado se existem $x$ e $y$ tais que $z = (x, y)$.
+    Em símbolos:
+    \[
+        \forall z\, (z \text{ é um par ordenado} \leftrightarrow \exists x \exists y (z = (x, y)))
+    \]
+\end{definition}
+
+A propriedade ``é um par ordenado'' é uma notação ``em texto'' para denotar um símbolo de predicado unário introduzido por definição.
+Poderíamos, alternativamente, ao invés de escrever ``$z$ é um par ordenado'', escrever ``$P(z)$'', onde $P$ é um símbolo de predicado unário definido por $\forall z\,P(z) \leftrightarrow \exists x \exists y (z = (x, y))$. 
+
+Insistimos no fato de que a definição de par ordenado não consiste em uma afirmação ontológica sobre a natureza do que deveria ser a noção de par ordenado, mas sim em uma definição formal por meio da qual se constroem objetos que satisfazem propriedades específicas.
+No caso presente, a propriedade fundamental é a da proposição seguinte.
+\begin{proposition}\index{propriedade do par ordenado}
+    Para quaisquer conjuntos $x$, $y$, $u$ e $v$, $(x, y) = (u, v)$ se e somente se $x = u$ e $y = v$.
+
+    Em símbolos:
+
+    \[
+        \forall x \forall y \forall u \forall v\, ((x, y) = (u, v) \leftrightarrow (x = u \land y = v)).
+    \]
+\end{proposition}
+\begin{proof}
+    Sejam dados $x$, $y$, $u$ e $v$.
+    É imediato da lógica de primeira ordem que $(x = u \land y = v) \rightarrow (x, y) = (u, v)$.
+    Para a outra direção, suponha que $(x, y) = (u, v)$.
+    Pela definição de par ordenado, temos
+
+    \[
+    \{ \{ x \}, \{ x, y \} \} = \{ \{ u \}, \{ u, v \} \}
+    \]
+    Chamemos $A=\{\{ x \}, \{ x, y \} \}$ e $B=\{ \{ u \}, \{ u, v \} \}$.
+
+    Como $\{x, y\}\in B$, então $\{x, y\} = \{u\}$ ou $\{x, y\} = \{u, v\}$.
+
+    \textbf{Caso 1:} $\{x, y\} = \{u\}$.
+
+    Neste caso, $x \in \{u\}$ e $y \in \{u\}$, então $x = u$ e $y = u$, e, portanto, $x = u$.
+    Além disso, $\{u, v\} \in A$, então $\{u, v\} = \{x\}$ ou $\{u, v\} = \{x, y\}$.
+    Em qualquer caso, $v=u=x=y$, e, portanto, segue a tese.
+
+
+    \textbf{Caso 2:} $\{x, y\} \neq \{u\}$.
+
+    Neste caso, como $\{u\} \in A$ e $\{u\}\neq \{x, y\}$, então $\{u\} = \{x\}$, e, portanto, $u = x$.
+    
+    Como $\{x, y\} \in B$ e $\{x, y\} \neq \{u\}$, temos $\{x, y\} = \{u, v\}$.
+    Assim, $y=u$ ou $y=v$.
+    Se $y=u$, então $\{x, y\} = \{u\}$, o que é falso.
+    Logo, $y=v$ e segue a tese.
+\end{proof}
+
+
+\section*{Exercícios}
+\begin{exercise}
+    Prove que, para quaisquer conjuntos $x$ e $y$, $\{ x, y \} = \{ y, x \}$.
+\end{exercise}
+\begin{exercise}\label{exer:unic-singletos}
+    Justifique mais detalhadamente a unicidade dos singletos (Lema~\ref{lem:exist-singletos}).
+\end{exercise}
+\begin{exercise}
+    Defina, para todo $x, y$, o conjunto $P(x, y) = \{\{\{x\}, \emptyset\}, \{\{y\}\}\}$. Prove que $P(x, y) = P(u, v)$ se e somente se $x = u$ e $y = v$.
+
+    Tal definição é uma alternativa à definição de par ordenado de Kuratowski, e é conhecida como definição de Wiener \cite{wiener1914simplification}.
+\end{exercise}

@@ -5,3 +5,5 @@ Metalema
 subcasos
 definicional
 Russell
+Zermelo
+Kuratowski
