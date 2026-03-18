@@ -1,4 +1,4 @@
-\section{O Axioma da União}
+\section{Uniões, interseções e diferenças}
 Por enquanto, dispomos apenas dos axiomas não lógicos da Extensão, da Compreensão e do Par.
 Com esses axiomas, provamos a existência do conjunto vazio, conjuntos de um elemento e conjuntos de dois elementos.
 
@@ -12,6 +12,7 @@ Para provar a existência de conjuntos com mais de dois elementos, precisaremos 
 Um dos axiomas que nos permitirão ultrapassar essa limitação é o Axioma da União.
 Tal axioma consta na formulação de 1908 de Zermelo \cite{zermelo1908untersuchungen} como seu Axioma V (\emph{Axiom der Vereinigung}).
 
+\subsection{Uniões e o Axioma da União}
 \begin{axiom}[União]\index{Axioma da União}
     Para todo conjunto $x$, existe um conjunto $y$ que tem como elementos todos os elementos dos elementos de $x$.
 
@@ -23,7 +24,7 @@ Tal axioma consta na formulação de 1908 de Zermelo \cite{zermelo1908untersuchu
 \end{axiom}
 
 Esta formulação do Axioma da União garante a existência de um conjunto $y$ que tem como elementos todos os elementos dos elementos de $x$, mas não garante que $y$ tenha como elementos apenas os elementos dos elementos de $x$.
-Contudo, em presença do Esquema da Compreensão e do Axioma da Extensão, obtém-se a caracterização exata da união, como enuncia o lema abaixo.
+Contudo, em presença do Esquema da Compreensão e do Axioma da Extensão, obtém-se a caracterização exata da união, como afirma o lema abaixo.
 A demonstração é deixada como exercício (ver Exercício~\ref{ex:uniao}).
 
 \begin{lemma}\index{Existência da União}\label{lem:existencia-uniao}
@@ -48,13 +49,14 @@ Devido ao lema acima, a definição abaixo se justifica.
 \end{definition}
 
 É possível que o leitor não esteja familiarizado com a notação de união de um conjunto, sendo esperado que o símbolo $\bigcup$ possua índices superiores ou inferiores.
-Após definirmos formalmente famílias, definiremos formalmente tais notações.
-Porém, pode ser útil para o entendimento do leitor adiantar que a notação $\bigcup x$ corresponde ao conjunto $\bigcup_{w \in x} w$.
+Pode ser útil para o entendimento do leitor adiantar que a notação $\bigcup x$ corresponderá, após definirmos formalmente a união de uma família, ao conjunto $\bigcup_{w \in x} w$.
+Apesar disso, a notação $\bigcup x$ é bastante conveniente e aparece frequentemente em conjunto com a notação de famílias; por isso, incentivamos o leitor a se familiarizar com ela.
 
-A partir do já exposto, é possível definir a usual união entre dois conjuntos, $x\cup y$, como abaixo.
+A partir do já exposto, é natural introduzir a união binária entre dois conjuntos, $x\cup y$.
+A legitimidade dessa introdução será justificada no lema subsequente.
 
 \begin{definition}
-    Para quaisquer conjuntos $x$ e $y$, a \emph{união de $x$ e $y$}, denotada por $x\cup y$ é o único conjunto $z$ cujos elementos são exatamente os de $x$ e mais os de $y$.
+    Para quaisquer conjuntos $x$ e $y$, a \emph{união de $x$ e $y$}, denotada por $x\cup y$, é o único conjunto $z$ cujos elementos são exatamente os elementos de $x$ ou os elementos de $y$.
     Formalmente, a união de dois conjuntos é regida pelo seguinte axioma definicional.
 
     \[
@@ -62,10 +64,8 @@ A partir do já exposto, é possível definir a usual união entre dois conjunto
     \]
 \end{definition}
 
-A definição acima requer justificativa, o que é feito no lema abaixo.
-
 \begin{lemma}
-    Para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ cujos elementos são exatamente os de $x$ e mais os de $y$.
+    Para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ cujos elementos são exatamente os elementos de $x$ ou os elementos de $y$.
 
     Em símbolos:
 
@@ -75,24 +75,27 @@ A definição acima requer justificativa, o que é feito no lema abaixo.
 \end{lemma}
 \begin{proof}
     Para a existência, tome o conjunto $z = \bigcup \{ x, y \}$.
-    Se $w \in z$, então existe um $w'$ tal que $w' \in \{ x, y \}$ e $w \in w'$.
+    Pela definição de união, se $w \in z$, então existe um $w'$ tal que $w' \in \{ x, y \}$ e $w \in w'$.
     Assim, $w' = x$ ou $w' = y$, e então $w \in x$ ou $w \in y$.
 
-    Por outro lado, se $w \in x$ ou $w \in y$, então $w \in w'$ para algum $w' \in \{ x, y \}$, e então $w \in z$.
-    Assim, $w \in z$ se e somente se $w \in x$ ou $w \in y$.
+    Por outro lado, se $w \in x$, então, como $x \in \{x,y\}$, segue que $w \in z$.
+    Analogamente, se $w \in y$, então, como $y \in \{x,y\}$, segue que $w \in z$.
+    Portanto, se $w \in x$ ou $w \in y$, então $w \in z$.
 
     Para a unicidade, suponha que $z_1$ e $z_2$ sejam conjuntos tais que, para todo $w$, $w \in z_1$ se e somente se $w \in x$ ou $w \in y$, e $w \in z_2$ se e somente se $w \in x$ ou $w \in y$.
-    Então, $\forall w \, (w \in z_1 \leftrightarrow (w \in x \lor w \in y) \leftrightarrow w \in z_2)$, e então $z_1 = z_2$ pelo Axioma da Extensão.
+    Então, para todo $w$, temos $w \in z_1 \leftrightarrow w \in z_2$.
+    Logo, $z_1 = z_2$ pelo Axioma da Extensão.
 \end{proof}
 
-Interessantemente, apesar de ser necessário a introdução de um novo axioma para garantir a existência de conjuntos com mais de dois elementos, o mesmo não ocorre para a definição de interseções.
+\subsection{Interseções}
+Interessantemente, apesar de ser necessária a introdução de um novo axioma para garantir a existência de conjuntos com mais de dois elementos, o mesmo não ocorre para provar a existência da interseção de um conjunto não vazio.
 
-Perceba que, para provar o lema abaixo, necessitamos apenas do Axioma da Extensão e do Esquema da Compreensão.
+Para provar o lema abaixo, basta o Axioma da Extensão e o Esquema da Compreensão.
 \begin{lemma}
     Seja $x$ um conjunto não vazio.
-    Então, existe um único conjunto $y$ tal que, para todo $z$, $z \in y$ se e somente se $z$ é um elemento de todos os elementos de $x$.
+    Então, existe um único conjunto $y$ tal que, para todo $z$, $z \in y$ se e somente se $z$ pertence a cada elemento de $x$.
 
-    Em símbolos,
+    Em símbolos:
 
     \[
         \forall x\, (x \neq \emptyset \rightarrow \exists! y\, \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w))).
@@ -101,7 +104,12 @@ Perceba que, para provar o lema abaixo, necessitamos apenas do Axioma da Extens�
 \begin{proof}
     Fixado $x\neq \emptyset$, tome um elemento $w'$ de $x$.
     Agora, tome o conjunto $y = \{ z \in w' : \forall w\, (w \in x \rightarrow z \in w) \}$.
-    Como $w' \in x$, é imediato que para todo $z$, $z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)$.
+    Como $w' \in x$, se $\forall w\, (w \in x \rightarrow z \in w)$, então em particular $z \in w'$.
+    Logo,
+    \[
+    z \in y \leftrightarrow \bigl(z \in w' \land \forall w\, (w \in x \rightarrow z \in w)\bigr)
+    \leftrightarrow \forall w\, (w \in x \rightarrow z \in w).
+    \]
 
     A unicidade é uma consequência imediata do Axioma da Extensão.
 \end{proof}
@@ -110,7 +118,7 @@ Perceba que, para provar o lema abaixo, necessitamos apenas do Axioma da Extens�
     Seja $x$ um conjunto não vazio.
     A \emph{interseção de $x$} é o conjunto $\bigcap x$ definido como o único conjunto $y$ cujos elementos são exatamente os elementos comuns a todos os elementos de $x$.
 
-    Formalmente, a interseção obedece o seguinte axioma definicional.
+    A seguinte sentença rege a interseção de conjuntos não vazios.
 
     \[
         \forall x\, (x \neq \emptyset \rightarrow \forall y\, (y = \bigcap x \leftrightarrow \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)))).
@@ -137,35 +145,132 @@ Apesar de só ser desejável definir $\alpha+\beta$ quando $\alpha$ e $\beta$ s�
 
 Uma solução padrão para este tipo de problema é definir, de forma arbitrária, um valor qualquer, porém fixo, para os casos em que se gostaria de deixar o símbolo funcional ``indefinido''.
 
-Para tanto, reformularemos, abaixo, a definição de interseção, atribuindo um valor arbitrário para $\bigcap \emptyset$.
+Para tanto, introduziremos formalmente, abaixo, o símbolo funcional $\bigcap$, atribuindo um valor arbitrário para $\bigcap \emptyset$.
 
 \begin{definition}\index{interseção}\label{def:intersecao2}
     Inserimos o símbolo funcional unário $\bigcap$ por definição, a partir do seguinte axioma definicional.
 
     \[
-        \forall x\, \forall y\, \bigl(y = \bigcap x \leftrightarrow ((x = \emptyset \land y = \emptyset) \lor (x \neq \emptyset \land\forall z\, (z \in y \leftrightarrow   \forall w\, (w \in x \rightarrow z \in w))))\bigr).
+    \forall x\, \forall y\,
+    \Bigl(
+    y = \bigcap x \leftrightarrow
+    \bigl(
+    (x = \emptyset \land y = \emptyset)
+    \lor
+    (x \neq \emptyset \land \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)))
+    \bigr)
+    \Bigr).
     \]
 \end{definition}
 
 No caso, atribuímos o valor arbitrário de $\emptyset$ para $\bigcap \emptyset$.
-Tal atribuição não possui consequências na teoria, uma vez que sempre evitaremos intersectar o conjunto vazio (o que faríamos de qualquer modo caso ele estivesse ``indefinido'').
+Tal atribuição não terá impacto no desenvolvimento da teoria, uma vez que sempre evitaremos intersectar o conjunto vazio (o que faríamos de qualquer modo caso ele estivesse ``indefinido'').
 É importante ressaltar que $\bigcap x$ apenas é o conjunto cujos elementos são exatamente os elementos comuns a todos os elementos de $x$ quando $x$ é um conjunto não vazio.
-\section*{Exercícios}
+
+\subsection{Diferença de conjuntos}
+Outra operação cuja introdução não requer a introdução de um novo axioma é a diferença entre conjuntos.
+A existência e a unicidade da diferença são consequências imediatas de uma instância do Esquema da Compreensão e do Axioma da Extensão, e sua demonstração é deixada como exercício ao leitor (Exercício~\ref{ex:diferenca}).
+\begin{definition}
+    Dados conjuntos $x$ e $y$, a \emph{diferença entre $x$ e $y$}, denotada por $x\setminus y$, é o conjunto de todos os elementos de $x$ que não pertencem a $y$.
+
+    Formalmente, a diferença é regida pelo seguinte axioma definicional.
+
+    \[
+        \forall x \forall y \forall z\, (z = x \setminus y \leftrightarrow \forall w\, (w \in z \leftrightarrow (w \in x \land w \notin y))).
+    \]
+\end{definition}
+\subsection*{Exercícios}
 \begin{exercise}\label{ex:uniao}
     Prove o Lema~\ref{lem:existencia-uniao}.
 \end{exercise}
 
 \begin{exercise}
+    Sejam $A$, $B$ e $b$ conjuntos.
+    Prove que
+    \begin{enumerate}[label=(\alph*)]
+        \item $\bigcup \{A,\{b\}\}=A\cup\{b\}$.
+        \item $\bigcup \{A\} = A$.
+        \item $\bigcup \emptyset = \emptyset$.
+        \item Se $A\subseteq B$, então $\bigcup A \subseteq \bigcup B$.
+        \item Se $A\subseteq B$, e $A\neq \emptyset$, então $\bigcap B \subseteq \bigcap A$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
     Seja $X$ um conjunto.
-    Prove que $\bigcup X$ corresponde ao supremo de $X$ na ordem delimitada por $\subseteq$ no universo dos conjuntos.
+    Prove que $\bigcup X$ é o supremo de $X$ com respeito à ordem parcial dada por $\subseteq$.
     Ou seja, prove os itens abaixo.
     \begin{enumerate}
         \item Para todo $x \in X$, $x \subseteq \bigcup X$.
-        \item Se $Y$ é um conjunto tal que, para todo $x \in X$, $x \subseteq Y$, então $\bigcup X \subseteq Y$.
+        \item Seja $Y$ um conjunto.
+        Se $Y$ é um conjunto tal que, para todo $x \in X$, $x \subseteq Y$, então $\bigcup X \subseteq Y$.
+        \item Conclua que, se $W$ também satisfaz os itens anteriores com $\bigcup X$ substituído por $W$, então $W=\bigcup X$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Seja $X$ um conjunto não vazio.
+    Prove que $\bigcap X$ é o ínfimo de $X$ com respeito à ordem parcial dada por $\subseteq$.
+    Ou seja, prove os itens abaixo.
+    \begin{enumerate}
+        \item Para todo $x \in X$, $\bigcap X \subseteq x$.
+        \item Se $Y$ é um conjunto tal que, para todo $x \in X$, $Y \subseteq x$, então $Y \subseteq \bigcap X$.
+        \item Conclua que, se $W$ também satisfaz os itens anteriores com $\bigcap X$ substituído por $W$, então $W=\bigcap X$.
     \end{enumerate}
 \end{exercise}
 
 \begin{exercise}\label{ex:uniao-sem-intersecao}
-    Prove que, não existe $y$ tal que, para todo $z$, $z \in y$ se e somente se $\forall w\, (w \in \emptyset \rightarrow z \in w)$.
+    Prove que não existe $y$ tal que, para todo $z$, $z \in y$ se e somente se $\forall w\, (w \in \emptyset \rightarrow z \in w)$.
     Mais informalmente, mostre que $\{x: \forall w\, (w \in \emptyset \rightarrow x \in w)\}$ não é um conjunto.
+\end{exercise}
+
+\begin{exercise}
+    Sejam $A$ e $B$ conjuntos.
+    Prove as seguintes afirmações.
+    \begin{enumerate}
+        \item $\bigcup (A \cup B) = \bigcup A \cup \bigcup B$.
+        \item $\bigcup (A \cap B) \subseteq \bigcup A \cap \bigcup B$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{ex:diferenca}
+    Prove que, para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w \in x$ e $w \notin y$.
+    
+    Em outras palavras, mostre que a diferença de conjuntos $x\setminus y$ está bem definida.
+\end{exercise}
+
+\begin{exercise}
+    A diferença simétrica entre dois conjuntos $x$ e $y$, denotada por $x \triangle y$, é definida por
+    \[
+    x \triangle y = (x \setminus y) \cup (y \setminus x).
+    \]
+    Sejam $A$, $B$ e $C$ conjuntos. Prove as seguintes afirmações.
+    \begin{enumerate}[label=(\alph*)]
+        \item $A\cap B=B\cap A$.
+        \item $A\cup B=B\cup A$.
+        \item $(A\cap B)\cap C = A\cap (B\cap C)$.
+        \item $(A \cup B)\cup C = A\cup (B\cup C)$.
+        \item $A\cap (B\cup C) = (A\cap B)\cup (A\cap C)$.
+        \item $A\cup (B\cap C) = (A\cup B)\cap (A\cup C)$.
+        \item $A\setminus(B\cup C) = (A\setminus B)\cap (A\setminus C)$.
+        \item $A\setminus(B\cap C) = (A\setminus B)\cup (A\setminus C)$.
+        \item $A\cup B=B \leftrightarrow A\subseteq B$.
+        \item $A\cap B=A \leftrightarrow A\subseteq B$.
+        \item $A = (A\setminus B)\cup (A\cap B)$.
+        \item $(A\setminus B)\cap (A\cap B)=\emptyset$.
+        \item $A\setminus B=A \leftrightarrow A\cap B=\emptyset$.
+        \item $A\setminus B=\emptyset \leftrightarrow A\subseteq B$.
+        \item $A\triangle A = \emptyset$.
+        \item $A\triangle \emptyset = A$.
+        \item $A\triangle B = B\triangle A$.
+        \item $A\triangle (B\triangle C) = (A\triangle B)\triangle C$.
+        \item $A\triangle C = B\triangle C \leftrightarrow A=B$
+
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Sejam $a$ e $b$ conjuntos. Mostre que $\bigcup(a, b)=\{a, b\}$.
+    
+    Observação: lembre-se que estamos utilizando a definição de Kuratowski para pares ordenados.
 \end{exercise}
