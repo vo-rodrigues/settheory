@@ -1,0 +1,58 @@
+\section{Relações e funções}
+Nesta seção, introduziremos formalmente os conceitos básicos relacionados a funções e relações.
+Oportunamente, introduziremos o Axioma da Potência.
+
+\begin{definition}
+    Uma \textbf{relação} é um conjunto de pares ordenados.
+    Formalmente,
+
+    \[
+        \forall R\, \bigr(R \text{ é uma relação} \leftrightarrow \forall z \in R\, z\text{ é um par ordenado}\bigr).
+    \]
+\end{definition}
+
+Conceitos fundamentais associados a relações são os de domínio e imagem.
+Enunciaremos suas definições formais, e, a seguir, mostraremos que a existência de tais conjuntos pode ser justificada com os axiomas já introduzidos.
+
+\begin{definition}
+    Seja $R$ um conjunto.
+    O domínio de $R$, denotado por $\dom R$, é o conjunto $z$ cujos elementos são as primeiras coordenadas dos pares ordenados de $R$.
+    Formalmente,
+    \[
+        \forall z\,(z = \dom R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\,(t, u) \in R))\bigr).
+    \]
+
+    A imagem de $R$, denotada por $\ran R$, é o conjunto $z$ cujos elementos são as segundas coordenadas dos pares ordenados de $R$.
+    Formalmente,
+    \[
+        \forall z\,(z = \ran R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\,(u, t) \in R))\bigr).
+    \]
+\end{definition}
+\begin{lemma}
+    Na notação acima, os conjuntos $\dom R$ e $\ran R$ estão bem definidos.
+    Ou seja,
+    \[
+        \forall R\, \bigr(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(t, u) \in R))\bigr).
+    \]
+    \[
+        \forall R\, \bigr(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(u, t) \in R))\bigr).
+    \]
+\end{lemma}
+\begin{proof}
+    Seja $R$ um conjunto e $u \in R$ um par ordenado.
+    Existem $a, b$ tais que $u = (a, b)=\{\{a\}, \{a, b\}\}$.
+    Assim,
+    \[
+        \{a, b\} \in u \in R \implies \{a, b\} \in \bigcup R \implies \bigl(a \in \bigcup\bigcup R\bigr) \land \bigl(b \in \bigcup\bigcup R\bigr).
+    \]
+
+    Seja $z=\{a \in \bigcup\bigcup R : \exists u\,(a, u) \in R\}$.
+    Vamos verificar que $z$ é tal que $\forall t\,(t \in z \leftrightarrow \exists u\,(t, u) \in R)$.
+
+    Ora, dado $t \in z$, temos que $t \in \bigcup\bigcup R$ e $\exists u\,(t, u) \in R$ pela definição de $z$.
+    Reciprocamente, se $\exists u\,(t, u) \in R$, então, pelo exposto acima, $t \in \bigcup\bigcup R$, e, portanto, $t \in z$.
+
+    Da mesma forma, sendo $z'=\{b \in \bigcup\bigcup R : \exists u\,(u, b) \in R\}$, temos que $\forall t\,(t \in z' \leftrightarrow \exists u\,(u, t) \in R)$.
+
+    A unicidade de conjuntos como $z$ e $z'$ decorre do Axioma da Extensão.
+\end{proof}
