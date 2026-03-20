@@ -194,6 +194,16 @@ Vamos aproveitar a oportunidade para introduzi-la.
 
     A unicidade decorre do Axioma da Extensão.
 \end{proof}
+
+Podemos também definir a composição de relações.
+
+\begin{definition}
+    Sejam $R$ e $S$ relações.
+    A composição de $R$ e $S$, denotada por $R\circ S$, é definida por
+    \[
+        R\circ S = \{(a, c)\in \dom S \times \ran R : \exists b\,((a, b) \in S \land (b, c) \in R)\}.
+    \]
+\end{definition}
 \subsection{Funções}
 Conforme usualmente definido, uma função é um tipo especial de relação.
 
@@ -213,9 +223,38 @@ Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único 
 
     Em símbolos,
     \[
-        f(a) = b \leftrightarrow (a, b) \in f.
+        \forall b\,\bigl(f(a) = b \leftrightarrow (a, b) \in f\bigr).
     \]
 \end{definition}
+
+Convém formalizar a notação usual $f:A\rightarrow B$.
+
+\begin{definition}
+    Sejam $f$ uma função e $A$ e $B$ conjuntos.
+    \begin{enumerate}[label=(\alph*)]
+        \item Dizemos que $f$ é uma função de $A$ em $B$, o que denotamos por $f:A\rightarrow B$, se $\dom f = A$ e $\ran f \subseteq B$.
+        \item Dizemos que $f$ é uma função de $A$ se $\dom f = A$.
+        \item Dizemos que $f$ é uma função parcial de $A$ se $\dom f \subseteq A$.
+        \item Dizemos que $f$ é uma função em $B$ se $\ran f \subseteq B$.
+        \item Dizemos que $f$ é uma função sobre $B$ se $\ran f = B$.
+        \item Dizemos que $B$ é um contradomínio para $f$ se $\ran f \subseteq B$.
+    \end{enumerate}
+\end{definition}
+
+As notações de imagem inversa, direta e de restrição também são as usuais.
+
+\begin{definition}
+    Sejam $f$ uma função, $A$ um conjunto e $B$ um conjunto.
+    \begin{enumerate}[label=(\alph*)]
+        \item A imagem direta de $A$ por $f$, denotada por $f[A]$, é o conjunto $\{b \in \ran f : \exists a \in A\, (f(a) = b)\}$.
+        \item A imagem inversa de $B$ por $f$, denotada por $f^{-1}[B]$, é o conjunto $\{a \in \dom f : f(a) \in B\}$.
+        \item A restrição de $f$ a $A$, denotada por $f\restriction A$, é a função cujos elementos são exatamente os pares $(a,b)\in f$ tais que $a\in A$.
+    \end{enumerate}
+\end{definition}
+
+Notemos que as notações $f[A]$ e $f^{-1}[B]$ e $f\restriction A$ estão bem definidas mesmo que $A$ não seja um subconjunto de $\dom f$ ou $B$ não seja um subconjunto de $\ran f$.
+Isso não é um problema, e, na verdade, é desejável em muitos momentos.
+    
 \subsection*{Exercícios}
 \begin{exercise}\label{exercicio:existenciaPotencia}
     Justifique a existência de $\mathcal P(x)$.
@@ -225,11 +264,20 @@ Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único 
     \]
 \end{exercise}
 \begin{exercise}
-    Seja $R$ uma relação.
+    Sejam $R$ e $S$ relações.
     Prove as seguintes afirmações.
     \begin{enumerate}[label=(\alph*)]
         \item $\dom R^{-1} = \ran R$;
         \item $\ran R^{-1} = \dom R$;
-        \item $(R^{-1})^{-1} = R$.
+        \item $(R^{-1})^{-1} = R$;
+        \item $\dom(R\circ S) \subseteq \dom S$;
+        \item $\ran(R\circ S) \subseteq \ran R$;
+        \item $(R\circ S)^{-1} = S^{-1}\circ R^{-1}$.
     \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Sejam $f:A\rightarrow B$ e $C$ um conjunto.
+    Mostre que $\dom (f\restriction C) = A\cap C$.
+    Em particular, mostre que se $C \subseteq A$, então $\dom (f\restriction C) = C$.
 \end{exercise}
