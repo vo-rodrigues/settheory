@@ -167,6 +167,66 @@ No caso, atribuímos o valor arbitrário de $\emptyset$ para $\bigcap \emptyset$
 Tal atribuição não terá impacto no desenvolvimento da teoria, uma vez que sempre evitaremos intersectar o conjunto vazio (o que faríamos de qualquer modo caso ele estivesse ``indefinido'').
 É importante ressaltar que $\bigcap x$ apenas é o conjunto cujos elementos são exatamente os elementos comuns a todos os elementos de $x$ quando $x$ é um conjunto não vazio.
 
+\subsection{Convenção sobre inserção de símbolos funcionais}
+Aproveitando a discussão anterior sobre a inserção do símbolo de interseção, adotaremos uma convenção geral para inserir símbolos funcionais que, intuitivamente, não estão bem definidos para todos os valores de seus argumentos.
+
+\begin{convention}\label{conv:insercao-simbolo-funcional}
+    Considere fórmulas $\phi(x_1, \dots, x_n, y)$ e $\psi(x_1, \dots, x_n)$ tais que
+    \[
+        \forall x_1\, \dots\, \forall x_n\,
+        \bigl(\psi(x_1,\dots,x_n) \rightarrow \exists! y\,\phi(x_1,\dots,x_n,y)\bigr).
+    \]
+
+    Sendo $f$ um símbolo funcional $n$-ário, com $n\geq 1$, escreveremos que
+    \emph{para todos $x_1, \dots, x_n$ tais que $\psi(x_1, \dots, x_n)$,
+    $f(x_1, \dots, x_n)$ é introduzido por definição pela fórmula}
+    \[
+        f(x_1, \dots, x_n)=y\leftrightarrow \phi(x_1, \dots, x_n, y)
+    \]
+    para indicar que o símbolo $f$ está sendo introduzido por definição a partir do seguinte axioma definicional.
+    \[
+        \forall x_1\, \dots\, \forall x_n\, \forall y\,
+        \bigl(f(x_1,\dots,x_n)=y \leftrightarrow
+        ((\psi(x_1,\dots,x_n)\land \phi(x_1,\dots,x_n,y))
+        \vee (\neg\psi(x_1,\dots,x_n)\land y=\emptyset))\bigr).
+    \]
+\end{convention}
+
+De acordo com essa convenção, sempre que, para todos $x_1,\dots,x_n$ tais que $\psi(x_1,\dots,x_n)$, $f(x_1,\dots,x_n)$ for introduzido por definição pela fórmula
+\[
+    f(x_1,\dots,x_n)=y \leftrightarrow \phi(x_1,\dots,x_n,y),
+\]
+temos
+\[
+    \forall x_1\, \dots\, \forall x_n\,
+    \bigl(\psi(x_1,\dots,x_n) \rightarrow \forall y\,(f(x_1,\dots,x_n)=y \leftrightarrow \phi(x_1,\dots,x_n,y))\bigr).
+\]
+
+Logo, sempre que as hipóteses naturais de definição estiverem satisfeitas, a introdução efetivamente utilizada do novo símbolo coincide com a Metadefinição~\ref{def:extensao-por-definicao}.
+\begin{example}
+    Temos que para todo $x \neq \emptyset$, existe um único $y$ tal que
+    \[
+        \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)).
+    \]
+    Para todo $x$ tal que $x \neq \emptyset$, introduzimos $\bigcap x$ por definição a partir da fórmula
+    \[
+        \bigcap x = y \leftrightarrow \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)).
+    \]
+\end{example}
+
+\begin{example}
+    Como outro exemplo, antecipemos um caso futuro familiar ao leitor, envolvendo a noção de função.
+    Naquela altura, será definida uma operação binária $f(a)$, a avaliação da função $f$ no argumento $a$.
+    
+    Na Seção~\ref{sec:relacoes}, introduziremos o predicado unário ``$f$ é uma função'' e o símbolo funcional unário $\dom$, de modo que $\dom f$ seja o domínio de $f$.
+
+    Para todos $f$, $a$ tais que $f$ é uma função e $a \in \dom f$, existe um único $b$ tal que $(a, b) \in f$.
+
+    Assim, para todos $f$, $a$ tais que $f$ é uma função e $a \in \dom f$, introduzimos $f(a)$ por definição a partir da fórmula $f(a) = b \leftrightarrow (a, b) \in f$.
+\end{example}
+
+Não nos apegaremos rigidamente à redação da Convenção~\ref{conv:insercao-simbolo-funcional}, de modo que admitiremos formulações em português equivalentes àquela discutida.
+
 \subsection{Diferença de conjuntos}
 Outra operação cuja introdução não requer a introdução de um novo axioma é a diferença entre conjuntos.
 A existência e a unicidade da diferença são consequências imediatas de uma instância do Esquema da Compreensão e do Axioma da Extensão, e sua demonstração é deixada como exercício ao leitor (Exercício~\ref{ex:diferenca}).

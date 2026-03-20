@@ -1,13 +1,13 @@
-\section{Relações e funções}
-Nesta seção, introduziremos formalmente os conceitos básicos relacionados a funções e relações.
+\section{Relações e funções}\label{sec:relacoes}
+Nesta seção, introduziremos formalmente os conceitos básicos relacionados a relações e funções.
 Oportunamente, introduziremos o Axioma da Potência.
-
+\subsection{Relações}
 \begin{definition}
     Uma \textbf{relação} é um conjunto de pares ordenados.
     Formalmente,
 
     \[
-        \forall R\, \bigr(R \text{ é uma relação} \leftrightarrow \forall z \in R\, z\text{ é um par ordenado}\bigr).
+        \forall R\, \bigl(R \text{ é uma relação} \leftrightarrow \forall z \in R\, z \text{ é um par ordenado}\bigr).
     \]
 \end{definition}
 
@@ -19,28 +19,28 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
     O domínio de $R$, denotado por $\dom R$, é o conjunto $z$ cujos elementos são as primeiras coordenadas dos pares ordenados de $R$.
     Formalmente,
     \[
-        \forall z\,(z = \dom R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\,(t, u) \in R))\bigr).
+        \forall z\,\bigl(z = \dom R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\, (t,u) \in R)\bigr).
     \]
 
     A imagem de $R$, denotada por $\ran R$, é o conjunto $z$ cujos elementos são as segundas coordenadas dos pares ordenados de $R$.
     Formalmente,
     \[
-        \forall z\,(z = \ran R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\,(u, t) \in R))\bigr).
+        \forall z\,\bigl(z = \ran R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\,(u,t) \in R)\bigr).
     \]
 \end{definition}
 \begin{lemma}
     Na notação acima, os conjuntos $\dom R$ e $\ran R$ estão bem definidos.
     Ou seja,
     \[
-        \forall R\, \bigr(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(t, u) \in R))\bigr).
+        \forall R\,\bigl(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(t,u) \in R)\bigr).
     \]
+
     \[
-        \forall R\, \bigr(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(u, t) \in R))\bigr).
+        \forall R\,\bigl(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(u,t) \in R)\bigr).
     \]
 \end{lemma}
 \begin{proof}
-    Seja $R$ um conjunto e $u \in R$ um par ordenado.
-    Existem $a, b$ tais que $u = (a, b)=\{\{a\}, \{a, b\}\}$.
+    Seja $R$ um conjunto. Se $u \in R$ é um par ordenado, então existem $a, b$ tais que $u = (a, b)=\{\{a\}, \{a, b\}\}$.
     Assim,
     \[
         \{a, b\} \in u \in R \implies \{a, b\} \in \bigcup R \implies \bigl(a \in \bigcup\bigcup R\bigr) \land \bigl(b \in \bigcup\bigcup R\bigr).
@@ -54,5 +54,182 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
 
     Da mesma forma, sendo $z'=\{b \in \bigcup\bigcup R : \exists u\,(u, b) \in R\}$, temos que $\forall t\,(t \in z' \leftrightarrow \exists u\,(u, t) \in R)$.
 
-    A unicidade de conjuntos como $z$ e $z'$ decorre do Axioma da Extensão.
+    Note que a existência de $z$ e $z'$ decorre do Esquema da Compreensão aplicado ao conjunto $\bigcup\bigcup R$.
+    A unicidade decorre do Axioma da Extensão.
 \end{proof}
+
+\begin{definition}
+    Dado um conjunto $A$, dizemos que uma relação $R$ é uma \emph{relação em $A$} se $\dom R \subseteq A$ e $\ran R \subseteq A$.
+\end{definition}
+\subsection{O Axioma da Potência e o produto Cartesiano}
+Dados conjuntos $A$ e $B$, é natural considerar o conjunto de todos os pares ordenados $(a,b)$ tais que $a \in A$ e $b \in B$.
+Quando existe, esse conjunto é usualmente chamado de produto cartesiano de $A$ e $B$.
+É possível demonstrar que não é possível provar que tal relação existe para todos os conjuntos $A$ e $B$ utilizando apenas os axiomas já introduzidos.
+Para garantir tal existência, introduziremos o Axioma da Potência.
+Uma alternativa seria utilizar o Esquema da Substituição, mas optaremos por adiar a introdução desse axioma para um capítulo posterior.
+\begin{axiom}[Axioma da Potência]
+    Para qualquer conjunto $x$, existe um conjunto $y$ tal que todo subconjunto de $x$ é elemento de $y$.
+    Formalmente,
+    \[
+        \forall x\, \exists y\, \forall z\,(z \subseteq x \rightarrow z \in y).
+    \]
+\end{axiom}
+
+Utilizando uma instância do esquema da compreensão, dado um conjunto $x$, pode-se restringir o conjunto $y$ fornecido pelo Axioma da Potência para obter o conjunto cujos elementos são exatamente os subconjuntos de $x$.
+Deixamos os detalhes ao leitor (Exercício~\ref{exercicio:existenciaPotencia}).
+
+\begin{definition}
+    Dado um conjunto $x$, o conjunto $\mathcal P(x)$ é o conjunto cujos elementos são exatamente os subconjuntos de $x$.
+    Formalmente,
+\[
+    \forall y\,\bigl(y = \mathcal P(x) \leftrightarrow \forall z\,(z \in y \leftrightarrow z \subseteq x)\bigr).
+\]
+\end{definition}
+
+Utilizando o conjunto das partes, podemos garantir a existência do produto cartesiano de quaisquer conjuntos $A$ e $B$, conforme exposto a seguir.
+\begin{lemma}
+    Dados conjuntos $A$ e $B$, existe um único conjunto $C$ que tem como elementos exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
+    Formalmente,
+    \[
+        \forall A\, \forall B\, \exists! C\, \forall z\,\bigl(z \in C \leftrightarrow \exists a\in A\, \exists b\in B\,(z = (a, b))\bigr).
+    \]
+\end{lemma}
+\begin{proof}
+    Dados $a \in A$ e $b \in B$, temos que $\{a\}, \{a, b\} \in \mathcal P(A\cup B)$, e, portanto, $(a, b) = \{\{a\}, \{a, b\}\} \in \mathcal P(\mathcal P(A\cup B))$.
+    Seja $C = \{z \in \mathcal P(\mathcal P(A\cup B)) : \exists a\in A\, \exists b\in B\,(z = (a, b))\}$.
+
+    Verifiquemos que $C$ é tal que $\forall z\,\bigl(z \in C \leftrightarrow \exists a\in A\, \exists b\in B\,(z = (a, b))\bigr)$.
+    Dado $z \in C$, temos que $z \in \mathcal P(\mathcal P(A\cup B))$ e $\exists a\in A\, \exists b\in B\,(z = (a, b))$ pela definição de $C$.
+    Reciprocamente, se $\exists a\in A\, \exists b\in B\,(z = (a, b))$, então, pelo exposto acima, $z \in \mathcal P(\mathcal P(A\cup B))$, e, portanto, $z \in C$.
+
+    A existência de $C$ decorre do Esquema da Compreensão aplicado ao conjunto $\mathcal P(\mathcal P(A\cup B))$.
+    A unicidade decorre do Axioma da Extensão.
+\end{proof}
+
+\begin{definition}
+    Dado quaisquer conjuntos $A$ e $B$, o produto cartesiano de $A$ e $B$, denotado por $A \times B$, é o conjunto cujos elementos são exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
+    Formalmente,
+    \[
+        \forall C\,\bigl(C = A \times B \leftrightarrow \forall z\,(z \in C \leftrightarrow \exists a\in A\, \exists b\in B\,(z = (a, b)))\bigr).
+    \]
+\end{definition}
+
+Outra operação natural associada a uma relação é a formação de sua inversa.
+Intuitivamente, a relação inversa de $R$ é obtida trocando-se a ordem das coordenadas em cada par ordenado pertencente a $R$.
+
+Por simplicidade, definiremos $R^{-1}$ para qualquer conjunto, independentemente de $R$ ser ou não uma relação.
+Porém, raramente tal notação será utilizada no caso de $R$ não ser uma relação.
+
+\begin{definition}
+    Seja $R$ um conjunto.
+    Definimos $R^{-1}$ como o conjunto dos pares ordenados $(b,a)$ tais que $(a,b) \in R$.
+    Formalmente,
+    \[
+        \forall z\,\bigl(z = R^{-1} \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists a\,\exists b\,((a,b)\in R \land t=(b,a)))\bigr).
+    \]
+\end{definition}
+
+A escrita explícita acima é demasiadamente enfadonha e pouco natural na prática matemática.
+A notação abaixo é mais natural, porém ainda não foi introduzida formalmente:
+\[
+    \{(b,a)\in \ran R\times \dom R : (a,b)\in R\}.
+\]
+
+Vamos aproveitar a oportunidade para introduzi-la.
+
+\begin{definition}
+    Considere $\varphi(a,b,A,B,t_1,\dots,t_n)$ uma fórmula.
+    Dados conjuntos $A$ e $B$ e parâmetros $t_1, \dots, t_n$, definimos
+    \[
+        \{(a,b)\in A\times B : \varphi(a,b,A,B,t_1,\dots,t_n)\}
+    \]
+    como o conjunto
+    \[
+        \{c \in A\times B : \exists u\,\exists v\,(c=(u,v) \land \varphi(u,v,A,B,t_1,\dots,t_n))\}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    Na notação acima, o conjunto $R^{-1}$ está bem definido.
+    Ou seja,
+    \[
+        \forall R\,\exists! z\,\forall t\,(t \in z \leftrightarrow \exists a\,\exists b\,((a,b)\in R \land t=(b,a))).
+    \]
+\end{lemma}
+\begin{proof}
+    Seja $R$ um conjunto.
+    Considere
+    \[
+        z=\{(u,v)\in \ran R\times \dom R : (v,u)\in R\}.
+    \]
+
+    Vamos verificar que
+    \[
+        \forall t\,(t \in z \leftrightarrow \exists a\,\exists b\,((a,b)\in R \land t=(b,a))).
+    \]
+
+    Suponha que $t \in z$.
+    Pela definição da notação introduzida acima, existem $u$ e $v$ tais que
+    \[
+        t=(u,v) \land (v,u)\in R.
+    \]
+    Tomando $a=v$ e $b=u$, obtemos
+    \[
+        (a,b)\in R \quad\text{e}\quad t=(b,a).
+    \]
+
+    Reciprocamente, suponha que existam $a$ e $b$ tais que
+    \[
+        (a,b)\in R \quad\text{e}\quad t=(b,a).
+    \]
+    Então $a \in \dom R$ e $b \in \ran R$.
+    Logo,
+    \[
+        (b,a)\in \ran R\times \dom R.
+    \]
+    Além disso, como $(a,b)\in R$, segue que
+    \[
+        t=(b,a)\in \{(u,v)\in \ran R\times \dom R : (v,u)\in R\}=z.
+    \]
+
+    A unicidade decorre do Axioma da Extensão.
+\end{proof}
+\subsection{Funções}
+Conforme usualmente definido, uma função é um tipo especial de relação.
+
+\begin{definition}
+    Uma \textbf{função} é uma relação $f$ tal que, para cada $a \in \dom f$, existe um único $b \in \ran f$ tal que $(a, b) \in f$.
+    Formalmente,
+    \[
+        \forall f\,\bigl(f \text{ é uma função} \leftrightarrow f \text{ é uma relação} \land \forall a\in\dom f\,\exists! b\in\ran f\,((a,b)\in f)\bigr).
+    \]
+\end{definition}
+
+Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único $b$ tal que $(a, b) \in f$, quando $f$ é uma função e $a \in \dom f$.
+
+\begin{definition}
+    Sejam $f$ uma função e $a \in \dom f$.
+    O valor de $f$ em $a$, denotado por $f(a)$, é o único $b$ tal que $(a,b)\in f$.
+
+    Em símbolos,
+    \[
+        f(a) = b \leftrightarrow (a, b) \in f.
+    \]
+\end{definition}
+\subsection*{Exercícios}
+\begin{exercise}\label{exercicio:existenciaPotencia}
+    Justifique a existência de $\mathcal P(x)$.
+    Ou seja, mostre que
+    \[
+        \forall x\, \exists! y\, \forall z\,(z \in y \leftrightarrow z \subseteq x).
+    \]
+\end{exercise}
+\begin{exercise}
+    Seja $R$ uma relação.
+    Prove as seguintes afirmações.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\dom R^{-1} = \ran R$;
+        \item $\ran R^{-1} = \dom R$;
+        \item $(R^{-1})^{-1} = R$.
+    \end{enumerate}
+\end{exercise}
