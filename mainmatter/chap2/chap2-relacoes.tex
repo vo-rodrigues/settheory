@@ -204,6 +204,7 @@ Podemos também definir a composição de relações.
         R\circ S = \{(a, c)\in \dom S \times \ran R : \exists b\,((a, b) \in S \land (b, c) \in R)\}.
     \]
 \end{definition}
+
 \subsection{Funções}
 Conforme usualmente definido, uma função é um tipo especial de relação.
 
@@ -230,18 +231,19 @@ Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único 
 Convém formalizar a notação usual $f:A\rightarrow B$.
 
 \begin{definition}
-    Sejam $f$ uma função e $A$ e $B$ conjuntos.
+    Sejam $f$ uma função e $A$, $B$ conjuntos.
+    Dizemos que:
     \begin{enumerate}[label=(\alph*)]
-        \item Dizemos que $f$ é uma função de $A$ em $B$, o que denotamos por $f:A\rightarrow B$, se $\dom f = A$ e $\ran f \subseteq B$.
-        \item Dizemos que $f$ é uma função de $A$ se $\dom f = A$.
-        \item Dizemos que $f$ é uma função parcial de $A$ se $\dom f \subseteq A$.
-        \item Dizemos que $f$ é uma função em $B$ se $\ran f \subseteq B$.
-        \item Dizemos que $f$ é uma função sobre $B$ se $\ran f = B$.
-        \item Dizemos que $B$ é um contradomínio para $f$ se $\ran f \subseteq B$.
+        \item $f$ é uma função de $A$ em $B$, o que denotamos por $f:A\rightarrow B$, se $\dom f = A$ e $\ran f \subseteq B$;
+        \item $f$ é uma função de $A$ se $\dom f = A$;
+        \item $f$ é uma função parcial de $A$ se $\dom f \subseteq A$;
+        \item $f$ é uma função em $B$ se $\ran f \subseteq B$;
+        \item $f$ é uma função sobre $B$ se $\ran f = B$;
+        \item $B$ é um contradomínio para $f$ se $\ran f \subseteq B$.
     \end{enumerate}
 \end{definition}
 
-As notações de imagem inversa, direta e de restrição também são as usuais.
+As notações de imagem direta, imagem inversa e restrição também são as usuais.
 
 \begin{definition}
     Sejam $f$ uma função, $A$ um conjunto e $B$ um conjunto.
@@ -252,9 +254,74 @@ As notações de imagem inversa, direta e de restrição também são as usuais.
     \end{enumerate}
 \end{definition}
 
-Notemos que as notações $f[A]$ e $f^{-1}[B]$ e $f\restriction A$ estão bem definidas mesmo que $A$ não seja um subconjunto de $\dom f$ ou $B$ não seja um subconjunto de $\ran f$.
+Notemos que as notações $f[A]$, $f^{-1}[B]$ e $f\restriction A$ estão bem definidas mesmo que $A$ não seja um subconjunto de $\dom f$ ou $B$ não seja um subconjunto de $\ran f$.
 Isso não é um problema, e, na verdade, é desejável em muitos momentos.
-    
+
+Além disso, é imediato que se $f$ é uma função e $A$ um conjunto, $f\restriction A$ é uma função.
+\begin{lemma}
+    Sejam $f:A\rightarrow B$ e $g:C\rightarrow D$ funções.
+    Então $g\circ f$ é uma função, $g\circ f:f^{-1}[C] \rightarrow D$ e, para todos $a \in f^{-1}[C]$, temos que $(g\circ f)(a) = g(f(a))$.
+\end{lemma}
+
+\begin{proof}
+    É imediato da definição de composição de relações que $g\circ f$ é uma relação e que $\ran(g\circ f)\subseteq D$.
+
+    Vamos verificar que $g\circ f$ é uma função.
+    Tome $a, d, d'$ tais que $(a, d) \in g\circ f$ e $(a, d') \in g\circ f$.
+    Pela definição de composição de relações, existem $b$ e $b'$ tais que $(a, b) \in f$, $(b, d) \in g$, $(a, b') \in f$ e $(b', d') \in g$.
+    Como $f$ é uma função, $b = b'$.
+    Como $g$ é uma função, $d = d'$.
+    Logo, $g\circ f$ é uma função.
+
+    Vejamos agora que $\dom(g\circ f)=f^{-1}[C]$.
+    Para todo $a$,
+    \[
+    \begin{aligned}
+        a \in \dom(g\circ f)
+        &\leftrightarrow \exists d\,((a,d)\in g\circ f) \\
+        &\leftrightarrow \exists c\,\exists d\,((a,c)\in f \land (c,d)\in g) \\
+        &\leftrightarrow \exists c\,((a,c)\in f \land c\in \dom g) \\
+        &\leftrightarrow \exists c\,((a,c)\in f \land c\in C) \\
+        &\leftrightarrow a\in f^{-1}[C].
+    \end{aligned}
+    \]
+
+    Finalmente, para todo $a \in f^{-1}[C]$, seja $c=f(a)$.
+    Como $a\in f^{-1}[C]$, temos $c\in C=\dom g$.
+    Seja então $d=g(c)$.
+    Então $(a, c) \in f$ e $(c, d) \in g$, e, portanto, $(a, d) \in g\circ f$.
+    Assim, $(g\circ f)(a) = d = g(c) = g(f(a))$.
+\end{proof}
+
+\begin{definition}
+    Uma função $f$ é dita ser \textbf{injetora} se, para quaisquer $a, a' \in \dom f$ e $b \in \ran f$, se $f(a) = b$ e $f(a') = b$, então $a = a'$.
+
+    Dizemos que $f$ é \textbf{invertível} se, e somente se $f^{-1}$ é uma função.
+\end{definition}
+
+Dentro do formalismo de Teoria dos Conjuntos, tais noções são equivalentes.
+
+\begin{lemma}
+    Uma função $f$ é injetora se, e somente se, $f$ é invertível.
+\end{lemma}
+\begin{proof}
+    ($\Rightarrow$) Suponha que $f$ é injetora.
+    Vamos verificar que $f^{-1}$ é uma função.
+    Tome $b, a, a'$ tais que $(b, a) \in f^{-1}$ e $(b, a') \in f^{-1}$.
+    Pela definição de $f^{-1}$, temos que $(a, b) \in f$ e $(a', b) \in f$.
+    Como $f$ é injetora, segue que $a = a'$.
+    Logo, $f^{-1}$ é uma função.
+
+    ($\Leftarrow$) Suponha que $f$ é invertível.
+    Vamos verificar que $f$ é injetora.
+    Tome $a, a' \in \dom f$ e $b \in \ran f$ tais que $f(a) = b$ e $f(a') = b$.
+    Pela definição de $f^{-1}$, temos que $(b, a) \in f^{-1}$ e $(b, a') \in f^{-1}$.
+    Como $f^{-1}$ é uma função, segue que $a = a'$.
+    Logo, $f$ é injetora.
+\end{proof}
+
+
+
 \subsection*{Exercícios}
 \begin{exercise}\label{exercicio:existenciaPotencia}
     Justifique a existência de $\mathcal P(x)$.
