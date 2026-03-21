@@ -61,7 +61,7 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
 \begin{definition}
     Dado um conjunto $A$, dizemos que uma relação $R$ é uma \emph{relação em $A$} se $\dom R \subseteq A$ e $\ran R \subseteq A$.
 \end{definition}
-\subsection{O Axioma da Potência e o produto Cartesiano}
+\subsection{O Axioma da Potência e o produto cartesiano}
 Dados conjuntos $A$ e $B$, é natural considerar o conjunto de todos os pares ordenados $(a,b)$ tais que $a \in A$ e $b \in B$.
 Quando existe, esse conjunto é usualmente chamado de produto cartesiano de $A$ e $B$.
 É possível demonstrar que não é possível provar que tal relação existe para todos os conjuntos $A$ e $B$ utilizando apenas os axiomas já introduzidos.
@@ -107,14 +107,18 @@ Utilizando o conjunto das partes, podemos garantir a existência do produto cart
 \end{proof}
 
 \begin{definition}
-    Dado quaisquer conjuntos $A$ e $B$, o produto cartesiano de $A$ e $B$, denotado por $A \times B$, é o conjunto cujos elementos são exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
+    Dados quaisquer conjuntos $A$ e $B$, o produto cartesiano de $A$ e $B$, denotado por $A \times B$, é o conjunto cujos elementos são exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
     Formalmente,
     \[
         \forall C\,\bigl(C = A \times B \leftrightarrow \forall z\,(z \in C \leftrightarrow \exists a\in A\, \exists b\in B\,(z = (a, b)))\bigr).
     \]
 \end{definition}
 
-Outra operação natural associada a uma relação é a formação de sua inversa.
+\subsection{Inversas e composições de relações}
+Uma vez garantida a existência do produto cartesiano, podemos passar a estudar operações naturais sobre relações.
+Entre as mais básicas estão a formação da relação inversa e a composição.
+
+Comecemos pela inversa.
 Intuitivamente, a relação inversa de $R$ é obtida trocando-se a ordem das coordenadas em cada par ordenado pertencente a $R$.
 
 Por simplicidade, definiremos $R^{-1}$ para qualquer conjunto, independentemente de $R$ ser ou não uma relação.
@@ -205,6 +209,8 @@ Podemos também definir a composição de relações.
     \]
 \end{definition}
 
+As noções introduzidas até aqui permitem tratar adequadamente um caso particular de grande importância: o das funções.
+
 \subsection{Funções}
 Conforme usualmente definido, uma função é um tipo especial de relação.
 
@@ -228,13 +234,13 @@ Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único 
     \]
 \end{definition}
 
-Convém formalizar a notação usual $f:A\rightarrow B$.
+Convém formalizar a notação usual $f:A\to B$.
 
 \begin{definition}
     Sejam $f$ uma função e $A$, $B$ conjuntos.
     Dizemos que:
     \begin{enumerate}[label=(\alph*)]
-        \item $f$ é uma função de $A$ em $B$, o que denotamos por $f:A\rightarrow B$, se $\dom f = A$ e $\ran f \subseteq B$;
+        \item $f$ é uma função de $A$ em $B$, o que denotamos por $f:A\to B$, se $\dom f = A$ e $\ran f \subseteq B$;
         \item $f$ é uma função de $A$ se $\dom f = A$;
         \item $f$ é uma função parcial de $A$ se $\dom f \subseteq A$;
         \item $f$ é uma função em $B$ se $\ran f \subseteq B$;
@@ -259,8 +265,8 @@ Isso não é um problema, e, na verdade, é desejável em muitos momentos.
 
 Além disso, é imediato que se $f$ é uma função e $A$ um conjunto, $f\restriction A$ é uma função.
 \begin{lemma}
-    Sejam $f:A\rightarrow B$ e $g:C\rightarrow D$ funções.
-    Então $g\circ f$ é uma função, $g\circ f:f^{-1}[C] \rightarrow D$ e, para todos $a \in f^{-1}[C]$, temos que $(g\circ f)(a) = g(f(a))$.
+    Sejam $f:A\to B$ e $g:C\to D$ funções.
+    Então $g\circ f$ é uma função, $g\circ f:f^{-1}[C] \to D$ e, para todos $a \in f^{-1}[C]$, temos que $(g\circ f)(a) = g(f(a))$.
 \end{lemma}
 
 \begin{proof}
@@ -294,13 +300,16 @@ Além disso, é imediato que se $f$ é uma função e $A$ um conjunto, $f\restri
 \end{proof}
 
 \begin{definition}
-    Uma função $f$ é dita ser \textbf{injetora} se, para quaisquer $a, a' \in \dom f$ e $b \in \ran f$, se $f(a) = b$ e $f(a') = b$, então $a = a'$.
+    Uma função $f$ é \textbf{injetora} se, para quaisquer $a, a' \in \dom f$ e $b \in \ran f$, se $f(a) = b$ e $f(a') = b$, então $a = a'$.
 
     Dizemos que $f$ é \textbf{invertível} se, e somente se $f^{-1}$ é uma função.
+
+    Dizemos que uma função $f$ é uma bijeção de $A$ em $B$, ou que $f: A \to B$ é uma bijeção, se $f$ é uma função de $A$ em $B$ e $f$ é injetora e sobre $B$.
+
+    Finalmente, escrevemos que $f: A \to B$ é sobrejetora se $f$ é uma função de $A$ em $B$ e $f$ é sobre $B$.
 \end{definition}
 
-Dentro do formalismo de Teoria dos Conjuntos, tais noções são equivalentes.
-
+No contexto da Teoria dos Conjuntos, as noções de injetividade e invertibilidade são equivalentes.
 \begin{lemma}
     Uma função $f$ é injetora se, e somente se, $f$ é invertível.
 \end{lemma}
@@ -320,8 +329,120 @@ Dentro do formalismo de Teoria dos Conjuntos, tais noções são equivalentes.
     Logo, $f$ é injetora.
 \end{proof}
 
+Com a introdução do Axioma da Potência, também podemos garantir a existência de todas as funções de $A$ em $B$.
+\begin{definition}
+    Sejam $A$ e $B$ conjuntos.
+    O conjunto $B^A$ é o conjunto de todas as funções de $A$ em $B$.
+\end{definition}
+Abaixo, justificaremos a existência de $B^A$.
+\begin{lemma}
+    Dados conjuntos $A$ e $B$, existe um único conjunto $C$ que tem como elementos exatamente as funções de $A$ em $B$.
+    Formalmente,
+    \[
+        \forall A\,\forall B\,\exists! C\,\forall z\,\bigl(z \in C \leftrightarrow z \text{ é uma função de } A \text{ em } B\bigr).
+    \]
+\end{lemma}
+\begin{proof}
+    Se $f:A\to B$, então $f\subseteq A\times B$.
+    Desse modo, $f\in \mathcal P(A\times B)$.
+    Seja $C=\{z \in \mathcal P(A\times B) : z \text{ é uma função de } A \text{ em } B\}$.
+    Como toda função $f:A\to B$ está em $\mathcal P(A\times B)$, é imediato que $C$ satisfaz o necessário.
+    
+    A unicidade decorre do Axioma da Extensão.
+\end{proof}
+
+\subsection{Famílias e produtos cartesianos}
+Às vezes, é útil pensar em funções como indexadoras de objetos.
+Em alguns desses casos, convém adotar a notação de \emph{famílias}.
+
+\begin{definition}
+    Uma \textbf{família} é uma função.
+    Se $a$ é uma família e $I$ é seu domínio, dizemos que $a$ é uma família indexada por $I$.
+    
+    Seja agora $a$ uma família indexada por $I$.
+    Definimos as notações abaixo:
+    \begin{center}
+    \begin{tabular}{@{}l@{\qquad}l@{}}
+    $a_i$ & para $a(i)$ $(i \in I)$; \\
+    $\{a_i : i \in I\}$ & para $\ran a$; \\
+    $(a_i)_{i\in I}$ & para $a$; \\
+    $(a_i : i \in I)$ & para $a$, novamente.
+    \end{tabular}
+    \end{center}
+\end{definition}
 
 
+Com essa notação, podemos dar sentido à notação usual de união e interseção de famílias, a saber, $\bigcup_{i\in I} A_i$ e $\bigcap_{i\in I} A_i$.
+
+\begin{definition}
+    Seja $I$ um conjunto e $(A_i: i \in I)$ uma família.
+    A união de $(A_i: i \in I)$, denotada por $\bigcup_{i\in I} A_i$, é o conjunto $\bigcup\{A_i: i \in I\}$.
+
+    Se $I\neq \emptyset$, a interseção de $(A_i: i \in I)$, denotada por $\bigcap_{i\in I} A_i$, é o conjunto $\bigcap\{A_i: i \in I\}$.
+\end{definition}
+Dada uma família $(A_i: i \in I)$, é natural considerar a coleção de todas as famílias $(a_i: i \in I)$ tais que $a_i \in A_i$ para todo $i \in I$.
+Tal coleção é usualmente chamada de produto cartesiano de $(A_i: i \in I)$.
+\begin{definition}
+    Seja $I$ um conjunto e $(A_i: i \in I)$ uma família.
+    O produto cartesiano de $(A_i: i \in I)$, denotado por $\prod_{i\in I} A_i$, é o conjunto de todas as famílias $(a_i: i \in I)$ tais que $a_i \in A_i$ para todo $i \in I$.
+\end{definition}
+\begin{lemma}
+    Dado um conjunto $I$ e uma família $(A_i: i \in I)$, existe um único conjunto que tem como elementos exatamente as famílias $a$ indexadas por $I$ tais que $a_i \in A_i$ para todo $i \in I$.
+\end{lemma}
+\begin{proof}
+    Para a existência, considere
+    \[
+        C=\{a \in (\bigcup_{i\in I} A_i)^I : \forall i \in I\, (a(i) \in A_i)\}.
+    \]
+    Como os elementos de $(\bigcup_{i\in I} A_i)^I$ são exatamente as funções com domínio $I$ e valores em $\bigcup_{i\in I} A_i$, segue que os elementos de $C$ são precisamente as famílias $a$ indexadas por $I$ tais que $a_i \in A_i$ para todo $i \in I$.
+
+    A unicidade decorre do Axioma da Extensão.
+\end{proof}
+
+\subsection{Funções compatíveis}
+Em muitas situações, será útil reunir várias funções numa única função maior.
+A noção adequada para isso é a de compatibilidade entre funções.
+\begin{definition}
+    Dizemos que duas funções $f$ e $g$ são \textbf{compatíveis} se, para todo $a \in \dom f \cap \dom g$, temos que $f(a) = g(a)$.
+\end{definition}
+\begin{lemma}
+    Sejam $f$ e $g$ funções.
+    Então $f$ e $g$ são compatíveis se, e somente se, $f\cup g$ é uma função.
+\end{lemma}
+\begin{proof}
+    ($\Rightarrow$) Suponha que $f$ e $g$ são compatíveis.
+    Vamos verificar que $f\cup g$ é uma função.
+    Tome $a, b, b'$ tais que $(a, b) \in f\cup g$ e $(a, b') \in f\cup g$.
+
+    Se $(a,b)$ e $(a,b')$ pertencem ambos a $f$, então, como $f$ é uma função, temos $b=b'$.
+    Analogamente, se $(a,b)$ e $(a,b')$ pertencem ambos a $g$, então, como $g$ é uma função, temos $b=b'$.
+
+    Resta o caso em que um dos pares pertence a $f$ e o outro pertence a $g$.
+    Sem perda de generalidade, suponha que $(a,b)\in f$ e $(a,b')\in g$.
+    Então $a\in \dom f\cap \dom g$.
+    Como $f$ e $g$ são compatíveis, segue que $f(a)=g(a)$, isto é, $b=b'$.
+
+    Portanto, $f\cup g$ é uma função.
+
+    ($\Leftarrow$) Suponha que $f\cup g$ é uma função.
+    Vamos verificar que para todo $a \in \dom f \cap \dom g$, temos que $f(a) = g(a)$.
+    Tome um tal $a$.
+    Então existem $b$ e $b'$ tais que $(a,b)\in f$ e $(a,b')\in g$. Assim,
+    \[
+        (a,b)\in f\cup g \quad\text{e}\quad (a,b')\in f\cup g.
+    \]
+    Como $f\cup g$ é uma função, segue que $b=b'$, ou seja, $f(a)=g(a)$.
+\end{proof}
+\begin{proposition}
+    Seja $\mathcal F$ uma coleção de funções tais que para todas $f, g \in \mathcal F$, $f$ e $g$ são compatíveis.
+    Então $\bigcup \mathcal F$ é uma função.
+\end{proposition}
+\begin{proof}
+    Para verificar que $\bigcup \mathcal F$ é uma função, tome $a, b, b'$ tais que $(a, b) \in \bigcup \mathcal F$ e $(a, b') \in \bigcup \mathcal F$.
+    Então existem $f, g \in \mathcal F$ tais que $(a, b) \in f$ e $(a, b') \in g$.
+    Como $f$ e $g$ são compatíveis, segue que $b=f(a)=g(a)=b'$.
+    Assim, $\bigcup \mathcal F$ é uma função.
+\end{proof}
 \subsection*{Exercícios}
 \begin{exercise}\label{exercicio:existenciaPotencia}
     Justifique a existência de $\mathcal P(x)$.
@@ -344,7 +465,30 @@ Dentro do formalismo de Teoria dos Conjuntos, tais noções são equivalentes.
 \end{exercise}
 
 \begin{exercise}
-    Sejam $f:A\rightarrow B$ e $C$ um conjunto.
+    Sejam $f:A\to B$ e $C$ um conjunto.
     Mostre que $\dom (f\restriction C) = A\cap C$.
     Em particular, mostre que se $C \subseteq A$, então $\dom (f\restriction C) = C$.
+\end{exercise}
+
+\begin{exercise}
+    Seja $A$ um conjunto.
+    A identidade em $A$ é o conjunto $\id_A = \{(a, a) \in A\times A : a \in A\}$.
+    Sejam $f$ uma função e $A$, $B$ conjuntos tais que $f:A\to B$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que $\id_A: A\to A$ é uma bijeção.
+        \item Mostre que são equivalentes:
+        \begin{enumerate}[label=(\roman*)]
+            \item Existe uma função $g:B\to A$ tal que $g\circ f = \id_A$ e $f\circ g = \id_B$;
+            \item $f$ é uma bijeção de $A$ em $B$.
+        \end{enumerate}
+        \item Suponha que $B\neq \emptyset$.
+        Mostre que são equivalentes:
+        \begin{enumerate}[label=(\roman*)]
+            \item Existe uma função $g:B\to A$ tal que $g\circ f = \id_A$;
+            \item $f$ é injetora.
+        \end{enumerate}
+        Tal função $g$ é única?
+        \item Mostre que se existe uma função $g:B\to A$ tal que $f\circ g = \id_B$, então $\ran f=B$.
+    \end{enumerate}
+    A recíproca da última afirmação depende do Axioma da Escolha, conforme estudaremos em um capítulo futuro.
 \end{exercise}
