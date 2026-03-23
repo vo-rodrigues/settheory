@@ -1,12 +1,13 @@
 \section{Introdução}
-Queremos definir, dentro da teoria dos conjuntos, o que significa um conjunto ter $0$, $1$, $2$, $3$... elementos.
+Queremos definir, dentro da teoria dos conjuntos, o que significa um conjunto ter $0$, $1$, $2$, $3$, \dots\ elementos.
 
-Porém, para o fazer, precisamos definir conjuntos específicos que possam ser usados para representar os números naturais, o que parece ser um problema não óbvio de ser resolvido.
+Para isso, precisamos escolher conjuntos específicos que possam representar os números naturais.
 
-É natural definir que dois conjuntos tem o mesmo número de elementos caso exista, entre eles, uma relação biunívoca, ou seja, uma função bijetora.
+A ideia central é a seguinte: dois conjuntos devem representar o mesmo número natural quando têm a mesma quantidade de elementos. Isso nos leva ao conceito de equipotência.
 
-Mesmo fora da matemática, se não tenha-se conhecimento sobre números mas quer-se manter registro sobre a quantidade de ovelhas em um pasto, pode-se, por exemplo, carregar consigo um saco de pedras, e, a cada ovelha que se queira contar, coloca-se uma pedra no saco.
-Assim ao final do dia, tira-se do saco uma pedra para cada ovelha que se queira contar, e ver se sobrou alguma pedra no saco ou se o saco ficou vazio antes de contar todas as ovelhas.
+Mesmo fora da matemática, é possível comparar quantidades sem recorrer previamente aos números.
+Para registrar a quantidade de ovelhas em um pasto, pode-se levar um saco de pedras e, para cada ovelha contada, colocar uma pedra no saco.
+Mais tarde, ao comparar as ovelhas com as pedras, verifica-se se a correspondência segue exata.
 
 \begin{definition}
     Sejam $A$, $B$ conjuntos.
@@ -50,10 +51,16 @@ Não está imediatamente claro o que o ``e assim por diante'' significaria, mas 
 \end{lemma}
 
 \begin{proof}
-Suponha que exista e considere $V=\bigcup A$.
-Então, para todo $x \in A$, $x \in \{x\}\subseteq A$, e, portanto, $\forall x\, (x \in A \rightarrow x \in V)$.
+    Suponha que exista tal conjunto $A$ e considere $V=\bigcup A$.
 
-Conforme já discutido não existe um conjunto $V$ com tal propriedade, e, portanto, chegamos a um absurdo.
+    Mostraremos que todo conjunto pertence a $V$.
+    Seja $x$ um conjunto arbitrário.
+    Pela hipótese, $\{x\}\in A$.
+    Como $x\in\{x\}$, segue da definição de união que $x\in\bigcup A=V$.
+
+    Portanto, $\forall x\, (x\in V)$.
+    Mas já foi mostrado anteriormente que não existe um conjunto com essa propriedade.
+    Chegamos, assim, a uma contradição.
 \end{proof}
 
 Seguimos para a estratégia seguinte.
@@ -110,11 +117,18 @@ O Axioma do Infinito diz precisamente que um tal conjunto existe.
 
 \begin{axiom}
     Existe um conjunto indutivo.
-    Formalmente, $\exists I\, (0 \in A \land \forall x \in A\, S(x) \in A)$.
+    Formalmente,
+    \[
+        \exists I\,\bigl(0\in I \land \forall x\,(x\in I \rightarrow S(x)\in I)\bigr).
+    \]
 
     Escrevendo apenas na linguagem original, tal axioma se traduz como:
 
     \[
-    \exists A\, (\exists x (\forall y (y \notin x)) \land \forall x (x \in A \rightarrow \exists y \in A \forall z (z \in y \leftrightarrow (z \in x \lor z = x)))).
+    \exists I\,\Bigl(
+        \exists z\,(\forall w\,(w\notin z) \land z\in I)
+        \land
+        \forall x\,(x\in I \rightarrow \exists y\,(y\in I \land \forall z\,(z\in y \leftrightarrow (z\in x \lor z=x))))
+    \Bigr).
     \]
 \end{axiom}
