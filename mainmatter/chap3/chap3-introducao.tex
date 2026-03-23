@@ -1,0 +1,120 @@
+\section{Introdução}
+Queremos definir, dentro da teoria dos conjuntos, o que significa um conjunto ter $0$, $1$, $2$, $3$... elementos.
+
+Porém, para o fazer, precisamos definir conjuntos específicos que possam ser usados para representar os números naturais, o que parece ser um problema não óbvio de ser resolvido.
+
+É natural definir que dois conjuntos tem o mesmo número de elementos caso exista, entre eles, uma relação biunívoca, ou seja, uma função bijetora.
+
+Mesmo fora da matemática, se não tenha-se conhecimento sobre números mas quer-se manter registro sobre a quantidade de ovelhas em um pasto, pode-se, por exemplo, carregar consigo um saco de pedras, e, a cada ovelha que se queira contar, coloca-se uma pedra no saco.
+Assim ao final do dia, tira-se do saco uma pedra para cada ovelha que se queira contar, e ver se sobrou alguma pedra no saco ou se o saco ficou vazio antes de contar todas as ovelhas.
+
+\begin{definition}
+    Sejam $A$, $B$ conjuntos.
+    Dizemos que $A$ e $B$ tem o mesmo número de elementos (ou que são equipotentes) se existe uma função bijetora de $A$ em $B$.
+    Escrevemos $A \approx B$ para denotar que $A$ e $B$ são equipotentes.
+    
+    Formalmente, $\forall A \forall B\, (A \approx B \leftrightarrow \exists f (f:A\to B \land f \text{ é bijetora}))$.
+\end{definition}
+
+Seguem as propriedades mais elementares da equipotência.
+\begin{proposition}
+    A equipotência é uma relação de equivalência no universo dos conjuntos.
+    Mais formalmente:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\forall A \, A\approx A$.
+        \item $\forall A \forall B\, (A \approx B \rightarrow B \approx A)$.
+        \item $\forall A \forall B \forall C\, (A \approx B \land B \approx C \rightarrow A \approx C)$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Para (a), seja $A$ um conjunto.
+    A função identidade em $A$, dada por $\id_A = \{(x, x) : x \in A\}$, é uma função bijetora de $A$ em $A$, e, portanto, $A \approx A$.
+
+    Para (b), sejam $A$ e $B$ conjuntos tais que $A \approx B$.
+    Então existe uma função bijetora de $A$ em $B$, digamos $f:A\to B$.
+    Segue que $f^{-1}:B\to A$ é bijetora, e, portanto, $B \approx A$.
+
+    Para (c), sejam $A$, $B$ e $C$ conjuntos tais que $A \approx B$ e $B \approx C$.
+    Então existe uma função bijetora de $A$ em $B$, digamos $f:A\to B$, e existe uma função bijetora de $B$ em $C$, digamos $g:B\to C$.
+    Assim, a composição de funções é uma função bijetora de $A$ em $C$, ou seja, existe uma função bijetora de $A$ em $C$, e, portanto, segue que $A \approx C$.
+\end{proof}
+
+Em geometria plana, é relativamente comum definir geometricamente um vetor como a classe de equivalência de segmentos orientados, onde dois segmentos orientados são equivalentes se são paralelos, tem o mesmo comprimento e a mesma direção.
+
+Uma primeira ideia para definir-se, digamos, o número $1$, seria adotar uma estratégia análoga e definir o número $1$ como a classe de equivalência de conjuntos que tem exatamente um elemento.
+Ou seja, o ``conjunto de todos os singletos''.
+De forma análoga, o número $2$ seria o ``conjunto de todos os pares não ordenados que não são singletos'', e ``assim por diante''.
+Não está imediatamente claro o que o ``e assim por diante'' significaria, mas não divagaremos sobre isso, uma vez que o lema abaixo nos mostra que essa estratégia é invariavelmente condenada ao fracasso.
+\begin{lemma}
+    Não existe um conjunto $A$ tal que, para todo conjunto $x$, $\{x\} \in A$.
+\end{lemma}
+
+\begin{proof}
+Suponha que exista e considere $V=\bigcup A$.
+Então, para todo $x \in A$, $x \in \{x\}\subseteq A$, e, portanto, $\forall x\, (x \in A \rightarrow x \in V)$.
+
+Conforme já discutido não existe um conjunto $V$ com tal propriedade, e, portanto, chegamos a um absurdo.
+\end{proof}
+
+Seguimos para a estratégia seguinte.
+Ao invés de definirmos o número $1$ como a classe de equivalência de todos os singletos, definiremos o número $1$ como um \emph{representante} dessa classe.
+
+Mas qual escolher?
+Podemos tomar $\{\{\{\}\}\}$, ou $\{\{\}\}$, ou $\{\{\{\{\}\}\}\}$, e, em um primeiro momento, não parece haver nenhuma razão para escolher um representante em detrimento de outro.
+
+Vamos tentar racionalizar um processo que torne tal escolha natural.
+Comecemos com o número $0$.
+Queremos que $0$ corresponda a um conjunto sem nenhum elemento.
+Ora, tal escolha é trivial, pois só há um tal conjunto, o vazio.
+
+Define-se, assim, $0=\emptyset$.
+
+O próximo passo é definir o número $1$.
+Queremos um conjunto que tenha exatamente um elemento, ou seja, um singleto.
+Para tanto, precisamos escolher um tal elemento.
+Ora, já temos um conjunto em mãos, o $0$. Assim, define-se $1=\{0\}$.
+
+Agora já escolhemos o $0$ e o $1$.
+O próximo passo é definir o número $2$.
+Queremos um conjunto que tenha exatamente dois elementos, ou seja, um par não ordenado. Para tanto, precisamos escolher dois tais elementos.
+Ora, já temos dois conjuntos em mãos, o $0$ e o $1$. Assim, define-se $2=\{0,1\}$.
+
+De forma geral, queremos definir:
+
+\begin{align*}
+    0 &= \emptyset,\\
+    1 &= \{0\} &= 0 \cup \{0\},\\
+    2 &= \{0,1\} &= 1 \cup \{1\},\\
+    3 &= \{0,1,2\} &= 2 \cup \{2\},\\
+     &\vdots
+\end{align*}
+
+Porém, tal definição é informal, devido às reticências.
+
+Porém, parece que encontramos um mecanismo de ``escolher o próximo número'', que é formalizado pela definição a seguir.
+
+\begin{definition}
+    Dado um conjunto $x$, o \emph{sucessor} de $x$ é o conjunto $S(x) = x \cup \{x\}$.
+\end{definition}
+
+Com isso em mente, como definir o conjunto dos números naturais?
+Ora, tal conjunto deve ter o $0$, e, sempre que tem um conjunto $x$, deve ter seu sucessor $S(x)$.
+Um conjunto com essa propriedade é chamado de conjunto indutivo.
+
+\begin{definition}
+    Dizemos que um conjunto $A$ é \textbf{indutivo} se $0 \in A$ e, para todo $x \in A$, $S(x) \in A$.
+\end{definition}
+
+Com os axiomas que temos até então não é possível garantir a existência de um conjunto indutivo.
+O Axioma do Infinito diz precisamente que um tal conjunto existe.
+
+\begin{axiom}
+    Existe um conjunto indutivo.
+    Formalmente, $\exists I\, (0 \in A \land \forall x \in A\, S(x) \in A)$.
+
+    Escrevendo apenas na linguagem original, tal axioma se traduz como:
+
+    \[
+    \exists A\, (\exists x (\forall y (y \notin x)) \land \forall x (x \in A \rightarrow \exists y \in A \forall z (z \in y \leftrightarrow (z \in x \lor z = x)))).
+    \]
+\end{axiom}
