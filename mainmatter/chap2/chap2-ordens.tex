@@ -25,7 +25,7 @@ Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial 
 
 Há também versões estritas.
 
-\begin{definition}
+\begin{definition}\index{ordem parcial estrita}
     Uma \emph{ordem parcial estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma relação binária em $P$ tal que para todo $x, y, z \in P$, valem as seguintes condições.
     \begin{itemize}
         \item Não existe $x$ tal que $x < x$ (irreflexividade).
@@ -33,7 +33,7 @@ Há também versões estritas.
     \end{itemize}
 \end{definition}
 
-\begin{definition}
+\begin{definition}\index{ordem total estrita}
     Uma \emph{ordem total estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma ordem parcial estrita e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Para todo $x, y \in P$, ou $x < y$ ou $y < x$ ou $x = y$ (totalidade).
@@ -78,7 +78,7 @@ Dualmente, temos a seguinte proposição.
 
 Por isso, ao se estudar ordens parciais, não há perda em se restringir ao estudo de ordens estritas ou não estritas.
 Além disso, ao longo deste livro, ao estabelecer que $\leq$ é uma ordem parcial, iremos, sem aviso, utilizar a ordem estrita $<$ associada a $\leq$ e vice-versa.
-Outros símbolos que poderão ser usados para denotar ordens parciais fazendo jus a esta convenção são $\preceq$ e $\prec$, $\sqsubseteq$ e $\sqsubset$, $\leqslant$ e $\lneqq$, entre outros.
+Outros símbolos que poderão ser usados para denotar ordens parciais fazendo jus a esta convenção são $\preceq$ e $\prec$, $\sqsubseteq$ e $\sqsubset$, dentre outros.
 
 \begin{example}
     Seja $A$ qualquer conjunto.
@@ -101,8 +101,8 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
         \item $x$ é um \emph{mínimo} de $A$, ou um \emph{menor elemento} de $A$, se é uma cota inferior de $A$ e $x \in A$;
         \item $x$ é \emph{maximal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $x \leq a$, segue que $a\leq x$;
         \item $x$ é \emph{minimal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $a \leq x$, segue que $x \leq a$;
-        \item $x$ é um \emph{supremo} de $A$ se é a menor cota superior de $A$, ou seja, $x$ é uma cota superior de $A$ e para toda cota superior $y$ de $A$, segue que $x \leq y$;
-        \item $x$ é um \emph{ínfimo} de $A$ se é a maior cota inferior de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$.
+        \item $x$ é um \emph{supremo} de $A$ se é uma cota superior mínima de $A$, ou seja, $x$ é uma cota superior de $A$ e para toda cota superior $y$ de $A$, segue que $x \leq y$;
+        \item $x$ é um \emph{ínfimo} de $A$ se é uma cota inferior máxima de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$.
     \end{itemize}
 \end{definition}
 
