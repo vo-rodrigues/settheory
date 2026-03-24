@@ -2,7 +2,7 @@
 Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial e ordem total, bem como suas versões estritas e conceitos associados.
 
 \begin{definition}[Pré-ordem]\index{pré-ordem}
-    Uma \emph{pré-ordem} é um par $(A, \leq)$ onde $A$ é um conjunto e $\leq$ é uma relação binária em $A$ tal que para todo $x, y, z \in A$:
+    Uma \emph{pré-ordem} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma relação binária em $P$ tal que para todo $x, y, z \in P$:
     \begin{itemize}
         \item $x \leq x$ (reflexividade)
         \item Se $x \leq y$ e $y \leq z$, então $x \leq z$ (transitividade).
@@ -10,16 +10,16 @@ Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial 
 \end{definition}
 
 \begin{definition}[Ordem parcial]\index{ordem parcial}
-    Uma \emph{ordem parcial} é um par $(A, \leq)$ onde $A$ é um conjunto e $\leq$ é uma pré-ordem e, além disso, satisfaz a seguinte condição.
+    Uma \emph{ordem parcial} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma pré-ordem e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Se $x \leq y$ e $y \leq x$, então $x = y$ (antissimetria).
     \end{itemize}
 \end{definition}
 
 \begin{definition}[Ordem total]\index{ordem total}\index{ordem linear}
-    Uma \emph{ordem total}, ou \emph{ordem linear} é um par $(A, \leq)$ onde $A$ é um conjunto e $\leq$ é uma ordem parcial e, além disso, satisfaz a seguinte condição.
+    Uma \emph{ordem total}, ou \emph{ordem linear} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma ordem parcial e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
-        \item Para todo $x, y \in A$, ou $x \leq y$ ou $y \leq x$ (totalidade).
+        \item Para todo $x, y \in P$, ou $x \leq y$ ou $y \leq x$ (totalidade).
     \end{itemize}
 \end{definition}
 
@@ -36,8 +36,7 @@ Há também versões estritas.
 \begin{definition}
     Uma \emph{ordem total estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma ordem parcial estrita e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
-        \item Para todo $x, y \in P$, ou $x < y$ ou $y
-         < x$ ou $x = y$ (totalidade).
+        \item Para todo $x, y \in P$, ou $x < y$ ou $y < x$ ou $x = y$ (totalidade).
     \end{itemize}
 \end{definition}
 
@@ -61,25 +60,34 @@ As seguintes duas proposições são deixadas como exercício ao leitor (Exercí
         \item A ordem parcial estrita induzida por $(P, \leq)$ é de fato uma ordem parcial estrita.
         \item Seja $(P, <)$ a ordem parcial estrita induzida por $(P, \leq)$.
         Então a ordem parcial não estrita induzida por $(P, <)$ é $(P, \leq)$.
-        \item $(A, \leq)$ é uma ordem total se e somente se $(A, <)$ é uma ordem total estrita.
+        \item $(P, \leq)$ é uma ordem total se e somente se $(P, <)$ é uma ordem total estrita.
     \end{enumerate}
 \end{proposition}
 
 Dualmente, temos a seguinte proposição.
 
 \begin{proposition}\label{prop:ordens-duais-2}
-    Seja $(A, <)$ uma ordem parcial estrita.
+    Seja $(P, <)$ uma ordem parcial estrita.
     \begin{enumerate}[label=(\alph*)]
-        \item A ordem parcial induzida por $(A, <)$ é de fato uma ordem parcial.
-        \item Seja $(A, \leq)$ a ordem parcial induzida por $(A, <)$.
-        Então a ordem parcial estrita induzida por $(A, \leq)$ é $(A, <)$.
-        \item $(A, <)$ é uma ordem total estrita se e somente se $(A, \leq)$ é uma ordem total.
+        \item A ordem parcial induzida por $(P, <)$ é de fato uma ordem parcial.
+        \item Seja $(P, \leq)$ a ordem parcial induzida por $(P, <)$.
+        Então a ordem parcial estrita induzida por $(P, \leq)$ é $(P, <)$.
+        \item $(P, <)$ é uma ordem total estrita se e somente se $(P, \leq)$ é uma ordem total.
     \end{enumerate}
 \end{proposition}
 
 Por isso, ao se estudar ordens parciais, não há perda em se restringir ao estudo de ordens estritas ou não estritas.
 Além disso, ao longo deste livro, ao estabelecer que $\leq$ é uma ordem parcial, iremos, sem aviso, utilizar a ordem estrita $<$ associada a $\leq$ e vice-versa.
-Outros símbolos que poderão ser usados para denotar ordens parciais fazendo jus a esta dualidade são $\preceq$ e $\prec$, $\sqsubseteq$ e $\sqsubset$, $\leqslant$ e $\lneqq$, entre outros.
+Outros símbolos que poderão ser usados para denotar ordens parciais fazendo jus a esta convenção são $\preceq$ e $\prec$, $\sqsubseteq$ e $\sqsubset$, $\leqslant$ e $\lneqq$, entre outros.
+
+\begin{example}
+    Seja $A$ qualquer conjunto.
+    Define-se $\subseteq_A=\{(X, Y) \in \mathcal{P}(A) \times \mathcal{P}(A) : X \subseteq Y\}$.
+    Então $(\mathcal{P}(A), \subseteq_A)$ é uma ordem parcial.
+    
+    É usual denotá-la por $(\mathcal{P}(A), \subseteq)$, omitindo o subíndice $A$.
+\end{example}
+
 
 Abaixo, definiremos os conceitos de máximo, mínimo, maior elemento e menor elemento de um conjunto em uma pré-ordem.
 Para ordens parciais estritas, tais conceitos são definidos a partir da ordem parcial não estrita associada.
@@ -89,11 +97,11 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
     \begin{itemize}
         \item $x$ é uma \emph{cota superior} de $A$ se para todo $a \in A$, $a \leq x$;
         \item $x$ é uma \emph{cota inferior} de $A$ se para todo $a \in A$, $x \leq a$;
-        \item $x$ é um \emph{máximo} de $A$ se é uma cota superior de $A$ e $x \in A$.
-        \item $x$ é um \emph{mínimo} de $A$ se é uma cota inferior de $A$ e $x \in A$.
-        \item $x$ é \emph{maximal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $x \leq a$, segue que $a\leq x$.
-        \item $x$ é \emph{minimal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $a \leq x$, segue que $x \leq a$.
-        \item $x$ é um \emph{supremo} de $A$ se é a menor cota superior de $A$, ou seja, $x$ é uma cota superior de $A$ e para toda cota superior $y$ de $A$, segue que $x \leq y$.
+        \item $x$ é um \emph{máximo} de $A$, ou um \emph{maior elemento} de $A$, se é uma cota superior de $A$ e $x \in A$;
+        \item $x$ é um \emph{mínimo} de $A$, ou um \emph{menor elemento} de $A$, se é uma cota inferior de $A$ e $x \in A$;
+        \item $x$ é \emph{maximal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $x \leq a$, segue que $a\leq x$;
+        \item $x$ é \emph{minimal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $a \leq x$, segue que $x \leq a$;
+        \item $x$ é um \emph{supremo} de $A$ se é a menor cota superior de $A$, ou seja, $x$ é uma cota superior de $A$ e para toda cota superior $y$ de $A$, segue que $x \leq y$;
         \item $x$ é um \emph{ínfimo} de $A$ se é a maior cota inferior de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$.
     \end{itemize}
 \end{definition}
@@ -107,8 +115,8 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
         \item Se existe um mínimo de $A$, então ele é o único mínimo, e o denotamos por $\min A$.
         \item Se existe um supremo de $A$, então ele é o único supremo, e o denotamos por $\sup A$.
         \item Se existe um ínfimo de $A$, então ele é o único ínfimo, e o denotamos por $\inf A$.
-        \item $x \in A$, então $x$ é um elemento maximal de $A$ se e somente se para todo $a \in A$, se $x \leq a$, então $x=a$.
-        \item $x \in A$, então $x$ é um elemento minimal de $A$ se e somente se para todo $a \in A$, se $a \leq x$, então $x=a$.
+        \item Se $x \in A$, então $x$ é um elemento maximal de $A$ se e somente se para todo $a \in A$, se $x \leq a$, então $x=a$.
+        \item Se $x \in A$, então $x$ é um elemento minimal de $A$ se e somente se para todo $a \in A$, se $a \leq x$, então $x=a$.
     \end{itemize}
 \end{proposition}
 \subsection*{Exercícios}
@@ -127,4 +135,8 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
 \begin{exercise}
     Seja $(P, <)$ uma ordem parcial estrita tal que qualquer conjunto de $2$ elementos de $P$ tem um elemento mínimo.
     Prove que $(P, <)$ é uma ordem total estrita.
+\end{exercise}
+
+\begin{exercise}
+    Mostre que se $A$ tem dois elementos distintos, então $(\mathcal{P}(A), \subseteq)$ não é uma ordem total.
 \end{exercise}
