@@ -89,10 +89,10 @@ Outros símbolos que poderão ser usados para denotar ordens parciais fazendo ju
 \end{example}
 
 
-Abaixo, definiremos os conceitos de máximo, mínimo, maior elemento e menor elemento de um conjunto em uma pré-ordem.
+Abaixo, definiremos os conceitos de cota superior, cota inferior, máximo, mínimo, elemento maximal, elemento minimal, supremo e ínfimo de um conjunto em uma pré-ordem.
 Para ordens parciais estritas, tais conceitos são definidos a partir da ordem parcial não estrita associada.
 
-\begin{definition}
+\begin{definition}\index{cota superior}\index{cota inferior}\index{máximo}\index{mínimo}\index{elemento maximal}\index{elemento minimal}\index{supremo}\index{ínfimo}
     Seja $(P, \leq)$ uma pré-ordem e $A \subseteq P$. Dizemos que:
     \begin{itemize}
         \item $x$ é uma \emph{cota superior} de $A$ se para todo $a \in A$, $a \leq x$;
@@ -119,6 +119,24 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
         \item Se $x \in A$, então $x$ é um elemento minimal de $A$ se e somente se para todo $a \in A$, se $a \leq x$, então $x=a$.
     \end{itemize}
 \end{proposition}
+
+Finalmente, introduzimos a noção de isomorfismo.
+\begin{definition}[Isomorfismo entre relações binárias]\index{isomorfismo de ordens}
+    Sejam $P$ e $Q$ conjuntos e $R$ e $S$ relações binárias em $P$ e $Q$, respectivamente.
+    Um \emph{isomorfismo} entre $(P, R)$ e $(Q, S)$ é uma bijeção $f : P \to Q$ tal que para todo $x, y \in P$, $x R y$ se e somente se $f(x) S f(y)$.
+\end{definition}
+
+Para ordens totais, basta a verificação de um dos lados da implicação, como mostra a seguinte proposição.
+
+\begin{proposition}
+    Sejam $P$ e $Q$ conjuntos e $\leq$, $\preceq$ ordens totais em $P$ e $Q$, respectivamente.
+    Uma bijeção $f : P \to Q$ é um isomorfismo entre $(P, \leq)$ e $(Q, \preceq)$ se e somente se para todo $x, y \in P$, $x \leq y$ implica $f(x) \preceq f(y)$.
+\end{proposition}
+
+\begin{proof}
+    Suponha que $f(x) \preceq f(y)$.
+    Se $y<x$, teríamos $f(y) \preceq f(x)$. Porém, como $y<x$ e $f$ é injetora, segue que $f(y) \prec f(x)$, o que é uma contradição.
+\end{proof}
 \subsection*{Exercícios}
 \begin{exercise}\label{ex:ordens-duais}
     Prove as proposições \ref{prop:ordens-duais} e \ref{prop:ordens-duais-2}.
@@ -130,6 +148,11 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
     Seja $(P, \leq)$ uma ordem total, $A\subseteq P$ e $x \in P$.
     Prove que $x$ é elemento maximal de $A$ se e somente se $x$ é o máximo de $A$.
     Enuncie e prove um resultado análogo para elementos minimais e mínimos.
+\end{exercise}
+
+\begin{exercise}
+    Seja $(P, \leq)$ uma ordem total.
+    Mostre que para todo $x, y \in P$, não vale simultaneamente $x<y$ e $y\leq x$
 \end{exercise}
 
 \begin{exercise}
@@ -147,10 +170,10 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
     Prove as seguintes afirmações.
 
     \begin{itemize}
-        \item Se $(A, R)$ é uma pré-ordem, então $(Q, R \cap (Q \times Q))$ é uma pré-ordem.
-        \item Se $(A, R)$ é uma ordem parcial, então $(Q, R \cap (Q \times Q))$ é uma ordem parcial.
-        \item Se $(A, R)$ é uma ordem total, então $(Q, R \cap (Q \times Q))$ é uma ordem total.
-        \item Se $(A, R)$ é uma ordem parcial estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem parcial estrita.
-        \item Se $(A, R)$ é uma ordem total estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem total estrita.
+        \item Se $(P, R)$ é uma pré-ordem, então $(Q, R \cap (Q \times Q))$ é uma pré-ordem.
+        \item Se $(P, R)$ é uma ordem parcial, então $(Q, R \cap (Q \times Q))$ é uma ordem parcial.
+        \item Se $(P, R)$ é uma ordem total, então $(Q, R \cap (Q \times Q))$ é uma ordem total.
+        \item Se $(P, R)$ é uma ordem parcial estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem parcial estrita.
+        \item Se $(P, R)$ é uma ordem total estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem total estrita.
     \end{itemize}
 \end{exercise}
