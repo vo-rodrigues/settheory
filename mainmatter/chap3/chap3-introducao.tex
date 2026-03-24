@@ -7,11 +7,11 @@ A ideia central é a seguinte: dois conjuntos devem representar o mesmo número 
 
 Mesmo fora da matemática, é possível comparar quantidades sem recorrer previamente aos números.
 Para registrar a quantidade de ovelhas em um pasto, pode-se levar um saco de pedras e, para cada ovelha contada, colocar uma pedra no saco.
-Mais tarde, ao comparar as ovelhas com as pedras, verifica-se se a correspondência segue exata.
+Mais tarde, ao comparar as ovelhas com as pedras, verifica-se se a correspondência é exata.
 
 \begin{definition}
     Sejam $A$, $B$ conjuntos.
-    Dizemos que $A$ e $B$ tem o mesmo número de elementos (ou que são equipotentes) se existe uma função bijetora de $A$ em $B$.
+    Dizemos que $A$ e $B$ possuem o mesmo número de elementos (ou que são equipotentes) se existe uma função bijetora de $A$ em $B$.
     Escrevemos $A \approx B$ para denotar que $A$ e $B$ são equipotentes.
     
     Formalmente, $\forall A \forall B\, (A \approx B \leftrightarrow \exists f (f:A\to B \land f \text{ é bijetora}))$.
@@ -40,7 +40,7 @@ Seguem as propriedades mais elementares da equipotência.
     Assim, a composição de funções é uma função bijetora de $A$ em $C$, ou seja, existe uma função bijetora de $A$ em $C$, e, portanto, segue que $A \approx C$.
 \end{proof}
 
-Em geometria plana, é relativamente comum definir geometricamente um vetor como a classe de equivalência de segmentos orientados, onde dois segmentos orientados são equivalentes se são paralelos, tem o mesmo comprimento e a mesma direção.
+Em geometria plana, é relativamente comum definir geometricamente um vetor como a classe de equivalência de segmentos orientados, onde dois segmentos orientados são equivalentes se são paralelos, possuem o mesmo comprimento e a mesma direção.
 
 Uma primeira ideia para definir-se, digamos, o número $1$, seria adotar uma estratégia análoga e definir o número $1$ como a classe de equivalência de conjuntos que tem exatamente um elemento.
 Ou seja, o ``conjunto de todos os singletos''.
@@ -81,7 +81,7 @@ Queremos um conjunto que tenha exatamente um elemento, ou seja, um singleto.
 Para tanto, precisamos escolher um tal elemento.
 Ora, já temos um conjunto em mãos, o $0$. Assim, define-se $1=\{0\}$.
 
-Agora já escolhemos o $0$ e o $1$.
+Agora já escolhemos conjuntos correspondentes ao $0$ e ao $1$.
 O próximo passo é definir o número $2$.
 Queremos um conjunto que tenha exatamente dois elementos, ou seja, um par não ordenado. Para tanto, precisamos escolher dois tais elementos.
 Ora, já temos dois conjuntos em mãos, o $0$ e o $1$. Assim, define-se $2=\{0,1\}$.
@@ -132,3 +132,153 @@ O Axioma do Infinito diz precisamente que um tal conjunto existe.
     \Bigr).
     \]
 \end{axiom}
+
+Um conjunto indutivo $I$ tem $0$ como elemento por definição.
+Portanto, também tem $S(0)=\{0\}=1$ como elemento.
+Assim, $I$ tem $S(1)=\{0,1\}=2$ como elemento.
+Intuitivamente, ele deverá conter todos os números naturais.
+Porém, nada garante que ele não contenha outros elementos além destes.
+
+Buscaremos então definir o \emph{menor conjunto indutivo}.
+
+\begin{definition}
+    O conjunto dos números naturais, denotado por $\omega$, é o único conjunto $J$ tal que
+    \[
+        \forall x\, \bigl(x \in J \leftrightarrow \forall I\, (I \text{ é indutivo} \rightarrow x \in I)\bigr).
+    \]
+\end{definition}
+
+Vamos mostrar que tal conjunto existe e é único.
+
+\begin{lemma}
+    Existe um único conjunto $J$ como acima.
+\end{lemma}
+\begin{proof}
+    Seja $I'$ um conjunto indutivo, o que existe pelo Axioma do Infinito.
+
+    Seja $J=\{x \in I' : \forall I\, (I \text{ é indutivo} \rightarrow x \in I)\}$.
+
+    Mostraremos que $J$ tem a propriedade desejada.
+
+    Seja $K$ um conjunto indutivo.
+    Segue que $J\subseteq K$, pois, para todo $x\in J$, $x$ é tal que $\forall I\, (I \text{ é indutivo} \rightarrow x \in I)$, e, portanto, $x\in K$.
+
+    Reciprocamente, seja $x$ tal que $\forall I\, (I \text{ é indutivo} \rightarrow x \in I)$.
+    Como $I'$ é indutivo, segue que $x\in I'$.
+    Assim, $x\in J$.
+
+    Para a unicidade, sejam $J_1$ e $J_2$ conjuntos com a propriedade desejada.
+    Segue que para todo $x$:
+
+    \[
+        x \in J_1 \leftrightarrow \forall I\, (I \text{ é indutivo} \rightarrow x \in I) \leftrightarrow x \in J_2.
+    \]
+
+    Assim, pelo Axioma da Extensão, $J_1=J_2$.
+\end{proof}
+
+Vejamos algumas propriedades básicas de $\omega$.
+
+\begin{proposition}
+    $\omega$ é um conjunto indutivo.
+\end{proposition}
+\begin{proof}
+    $0\in\omega$, pois, para todo conjunto indutivo $I$, $0\in I$.
+
+    Seja $x\in\omega$.
+    Assim, $\forall I\, (I \text{ é indutivo} \rightarrow x \in I)$.
+    Seja $I$ um conjunto indutivo.
+    Segue que $S(x)\in I$, pois $I$ é indutivo.
+    Assim, $\forall I\, (I \text{ é indutivo} \rightarrow S(x) \in I)$, e, portanto, $S(x)\in\omega$.
+\end{proof}
+
+\begin{proposition}
+    O único subconjunto indutivo de $\omega$ é $\omega$.
+\end{proposition}
+
+\begin{proof}
+    Temos que $\omega$ é um conjunto indutivo.
+    Se $J\subseteq \omega$ é indutivo, segue da definição de $\omega$ que $\omega \subseteq J$.
+    Assim, $J=\omega$.
+\end{proof}
+
+Agora é possível demonstrar que $\omega$ satisfaz o esquema da indução.
+
+\begin{proposition}
+    Considere uma fórmula $\phi(x, t_1, \dots, t_n)$.
+
+    O seguinte é um teorema:
+    \[
+    \forall t_1, \dots, t_n \Bigl(
+        \bigl(
+            \phi(0, t_1, \dots, t_n)
+            \land
+            \forall x \in \omega\, (\phi(x, t_1, \dots, t_n) \rightarrow \phi(S(x), t_1, \dots, t_n))
+        \bigr)
+        \rightarrow
+        \forall x \in \omega\, \phi(x, t_1, \dots, t_n)
+    \Bigr).
+    \]
+\end{proposition}
+
+\begin{proof}
+    Sejam dados $t_1, \dots, t_n$.
+    Considere o conjunto $I = \{x \in \omega : \phi(x, t_1, \dots, t_n)\}$.
+    Mostraremos que $I$ é indutivo.
+
+    Por hipótese, $\phi(0, t_1, \dots, t_n)$, e, portanto, $0\in I$.
+    Seja $x\in I$.
+    Assim, $\phi(x, t_1, \dots, t_n)$ e $x \in \omega$.
+    Como $\omega$ é indutivo, segue ainda que $S(x)\in\omega$.
+    Por hipótese, $\phi(S(x), t_1, \dots, t_n)$, e, portanto, $S(x)\in I$.
+    Assim, $I$ é indutivo.
+
+    Como o único subconjunto indutivo de $\omega$ é $\omega$, segue que $I=\omega$.
+    Assim, $\forall x \in \omega \, \phi(x, t_1, \dots, t_n)$.
+\end{proof}
+
+Podemos agora formalmente definir os $10$ primeiros números naturais:
+\begin{definition}
+    \begin{align*}
+        0 &= \emptyset,\\
+        1 &= S(0) = \{0\},\\
+        2 &= S(1) = \{0,1\},\\
+        3 &= S(2) = \{0,1,2\},\\
+        4 &= S(3) = \{0,1,2,3\},\\
+        5 &= S(4) = \{0,1,2,3,4\},\\
+        6 &= S(5) = \{0,1,2,3,4,5\},\\
+        7 &= S(6) = \{0,1,2,3,4,5,6\},\\
+        8 &= S(7) = \{0,1,2,3,4,5,6,7\},\\
+        9 &= S(8) = \{0,1,2,3,4,5,6,7,8\}.
+    \end{align*}
+\end{definition}
+
+\subsection{A ordem dos números naturais}
+
+Nesta seção, estudaremos algumas propriedades básicas acerca da ordem dos números naturais.
+
+Das definições de $1$ até $9$, intuitivamente fica aparente que, para todo número natural $n$, deverá valer $n = \{m \in \omega: m<n\}$.
+Tal igualdade de fato será verdadeira, como veremos nas próximas páginas.
+Por isso, parece natural definir que a ordem dos números naturais é dada pela relação de pertencimento.
+
+\begin{definition}
+    Sejam $m, n \in \omega$.
+    Dizemos que $m$ é menor que $n$, e escrevemos $m < n$, se, e somente se $m \in n$.
+
+    Define-se que $m\leq n$ se, e somente se $m < n$ ou $m = n$.
+\end{definition}
+
+\begin{lemma}
+    Para todo $n \in \omega$, $0\leq n$.
+\end{lemma}
+\begin{proof}
+    A prova segue por indução em $n$.
+    Para $n=0$, $0\leq 0$ pois $0=0$.
+    
+    Suponha que $0\leq n$.
+    Então $0<n$ ou $0=n$.
+
+    Se $0<n$, temos que $0\in n\subseteq n\cup\{n\}=S(n)$, e, portanto, $0<S(n)$.
+    Se $0=n$, então $0\in \{0\}=S(0)=S(n)$, e, portanto, $0<S(n)$.
+    De qualquer forma, $0\leq S(n)$.
+\end{proof}
