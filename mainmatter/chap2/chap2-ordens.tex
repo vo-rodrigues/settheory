@@ -17,7 +17,7 @@ Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial 
 \end{definition}
 
 \begin{definition}[Ordem total]\index{ordem total}\index{ordem linear}
-    Uma \emph{ordem total}, ou \emph{ordem linear} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma ordem parcial e, além disso, satisfaz a seguinte condição.
+    Uma \emph{ordem total}, ou \emph{ordem linear}, é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma ordem parcial e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Para todo $x, y \in P$, ou $x \leq y$ ou $y \leq x$ (totalidade).
     \end{itemize}
@@ -101,8 +101,8 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
         \item $x$ é um \emph{mínimo} de $A$, ou um \emph{menor elemento} de $A$, se é uma cota inferior de $A$ e $x \in A$;
         \item $x$ é \emph{maximal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $x \leq a$, segue que $a\leq x$;
         \item $x$ é \emph{minimal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $a \leq x$, segue que $x \leq a$;
-        \item $x$ é um \emph{supremo} de $A$ se é uma cota superior mínima de $A$, ou seja, $x$ é uma cota superior de $A$ e para toda cota superior $y$ de $A$, segue que $x \leq y$;
-        \item $x$ é um \emph{ínfimo} de $A$ se é uma cota inferior máxima de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$.
+        \item $x$ é um \emph{supremo} de $A$ se é uma menor cota superior de $A$, ou seja, $x$ é uma cota superior de $A$ e para toda cota superior $y$ de $A$, segue que $x \leq y$;
+        \item $x$ é um \emph{ínfimo} de $A$ se é uma maior cota inferior de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$.
     \end{itemize}
 \end{definition}
 
@@ -139,4 +139,18 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
 
 \begin{exercise}
     Mostre que se $A$ tem dois elementos distintos, então $(\mathcal{P}(A), \subseteq)$ não é uma ordem total.
+\end{exercise}
+
+\begin{exercise}
+    Seja $P$ um conjunto e $Q \subseteq P$.
+    Seja $R$ uma relação binária em $P$.
+    Prove as seguintes afirmações.
+
+    \begin{itemize}
+        \item Se $(A, R)$ é uma pré-ordem, então $(Q, R \cap (Q \times Q))$ é uma pré-ordem.
+        \item Se $(A, R)$ é uma ordem parcial, então $(Q, R \cap (Q \times Q))$ é uma ordem parcial.
+        \item Se $(A, R)$ é uma ordem total, então $(Q, R \cap (Q \times Q))$ é uma ordem total.
+        \item Se $(A, R)$ é uma ordem parcial estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem parcial estrita.
+        \item Se $(A, R)$ é uma ordem total estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem total estrita.
+    \end{itemize}
 \end{exercise}
