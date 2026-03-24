@@ -32,7 +32,7 @@ Nem toda pré-ordem é uma ordem parcial.
 
 Há também versões estritas.
 
-\begin{definition}\index{ordem parcial estrita}
+\begin{definition}[Ordem parcial estrita]\index{ordem parcial estrita}
     Uma \emph{ordem parcial estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma relação binária em $P$ tal que para todo $x, y, z \in P$, valem as seguintes condições.
     \begin{itemize}
         \item Não existe $x$ tal que $x < x$ (irreflexividade).
@@ -40,7 +40,7 @@ Há também versões estritas.
     \end{itemize}
 \end{definition}
 
-\begin{definition}\index{ordem total estrita}
+\begin{definition}[Ordem total estrita]\index{ordem total estrita}
     Uma \emph{ordem total estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma ordem parcial estrita e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Para todo $x, y \in P$, ou $x < y$ ou $y < x$ ou $x = y$ (totalidade).
@@ -113,6 +113,44 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
     \end{itemize}
 \end{definition}
 
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    every node/.style={circle, draw, minimum size=7mm, inner sep=0pt},
+    every path/.style={semithick}
+]
+
+%--------------------------------
+% Esquerda: elementos maximais, mas sem máximo
+%--------------------------------
+\begin{scope}[xshift=0cm]
+    \node (x) at (0,0) {$x$};
+    \node (y) at (-1,1.6) {$y$};
+    \node (z) at (1,1.6) {$z$};
+
+    \draw (x) -- (y);
+    \draw (x) -- (z);
+\end{scope}
+
+%--------------------------------
+% Direita: existe máximo
+%--------------------------------
+\begin{scope}[xshift=6cm]
+    \node (x2) at (0,0) {$x$};
+    \node (y2) at (-1,1.6) {$y$};
+    \node (z2) at (1,1.6) {$z$};
+    \node (w2) at (0,3.2) {$w$};
+
+    \draw (x2) -- (y2);
+    \draw (x2) -- (z2);
+    \draw (y2) -- (w2);
+    \draw (z2) -- (w2);
+\end{scope}
+
+\end{tikzpicture}
+\caption{À esquerda, há elementos maximais sem elemento máximo. À direita, há um elemento máximo.}
+\end{figure}
+
 Deixamos também os seguintes fatos básicos para verificação do leitor (Exercício~\ref{ex:ordens-basicas}).
 
 \begin{proposition}\label{prop:ordens-basicas}
@@ -126,27 +164,42 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
         \item Se $x \in A$, então $x$ é um elemento minimal de $A$ se e somente se para todo $a \in A$, se $a \leq x$, então $x=a$.
     \end{itemize}
 \end{proposition}
-
-\begin{definition}
-    Uma boa ordem é uma ordem total estrita $(P, <)$ tal que para todo $A \subseteq P$ não vazio possui um elemento mínimo.
+Chamaremos de boa ordem uma ordem total estrita em que todo subconjunto não vazio admite um primeiro elemento.
+Essa noção desempenhará papel central mais adiante, e será a base para a definição de número ordinal, um dos temas centrais de Teoria dos Conjuntos.
+\begin{definition}[Boa ordem]\index{boa ordem}
+    Uma \emph{boa ordem} é uma ordem total estrita $(P, <)$ tal que todo subconjunto não vazio de $P$ possui um elemento mínimo.
 \end{definition}
-
 Finalmente, introduzimos a noção de isomorfismo.
 \begin{definition}[Isomorfismo entre relações binárias]\index{isomorfismo de ordens}
     Sejam $P$ e $Q$ conjuntos e $R$ e $S$ relações binárias em $P$ e $Q$, respectivamente.
     Um \emph{isomorfismo} entre $(P, R)$ e $(Q, S)$ é uma bijeção $f : P \to Q$ tal que para todo $x, y \in P$, $x R y$ se e somente se $f(x) S f(y)$.
+
+    Um \emph{homomorfismo} entre $(P, R)$ e $(Q, S)$ é uma função $f : P \to Q$ tal que para todo $x, y \in P$, $x R y$ implica $f(x) S f(y)$.
+
+    Caso $(P, R)$ e $(Q, S)$ sejam pré-ordens, um homomorfismo entre elas é chamado de \emph{função monótona}, ou \emph{função não-decrescente}.
+
+    Caso $(P, R)$ e $(Q, S)$ sejam ordens parciais estritas, um homomorfismo entre elas é chamado de \emph{função estritamente monótona}, ou \emph{função crescente}.
 \end{definition}
 
 Para ordens totais, basta a verificação de um dos lados da implicação, como mostra a seguinte proposição.
 
 \begin{proposition}
     Sejam $P$ e $Q$ conjuntos e $\leq$, $\preceq$ ordens totais em $P$ e $Q$, respectivamente.
-    Uma bijeção $f : P \to Q$ é um isomorfismo entre $(P, \leq)$ e $(Q, \preceq)$ se e somente se para todo $x, y \in P$, $x \leq y$ implica $f(x) \preceq f(y)$.
+    Uma bijeção $f : P \to Q$ é um isomorfismo entre $(P, \leq)$ e $(Q, \preceq)$ se e somente se for monótona.
 \end{proposition}
 
 \begin{proof}
-    Suponha que $f(x) \preceq f(y)$.
-    Se $y<x$, teríamos $f(y) \preceq f(x)$. Porém, como $y<x$ e $f$ é injetora, segue que $f(y) \prec f(x)$, o que é uma contradição.
+    A implicação direta é imediata.
+    Provaremos a recíproca.
+    Basta ver que se $f(x) \preceq f(y)$, então $x \leq y$.
+    Assim, fixe $x,y\in P$ tais que $f(x)\preceq f(y)$.
+
+    Suponha, por absurdo, que $x\not\le y$.
+    Como $\le$ é uma ordem total, segue que $y<x$.
+    Pela hipótese, obtemos $f(y)\preceq f(x)$.
+    Como $f$ é injetora e $y\neq x$, temos $f(y)\neq f(x)$.
+    Logo, $f(y)\prec f(x)$, em contradição com $f(x)\preceq f(y)$.
+    Portanto, $x\le y$.
 \end{proof}
 \subsection*{Exercícios}
 \begin{exercise}\label{ex:ordens-duais}
@@ -163,16 +216,23 @@ Para ordens totais, basta a verificação de um dos lados da implicação, como 
 
 \begin{exercise}
     Seja $(P, \leq)$ uma ordem total.
-    Mostre que para todo $x, y \in P$, não vale simultaneamente $x<y$ e $y\leq x$
+    Mostre que para todo $x, y \in P$, não vale simultaneamente $x<y$ e $y\leq x$.
 \end{exercise}
 
 \begin{exercise}
-    Seja $(P, <)$ uma ordem parcial estrita tal que qualquer conjunto de $2$ elementos de $P$ tem um elemento mínimo.
+    Seja $(P, <)$ uma ordem parcial estrita  tal que qualquer conjunto de $2$ elementos de $P$ tem um elemento mínimo.
     Prove que $(P, <)$ é uma ordem total estrita.
 \end{exercise}
 
 \begin{exercise}
     Mostre que se $A$ tem dois elementos distintos, então $(\mathcal{P}(A), \subseteq)$ não é uma ordem total.
+\end{exercise}
+
+\begin{exercise}
+    Seja $A$ um conjunto e considere a ordem parcial $(\mathcal{P}(A), \subseteq)$.
+    Prove que para todo $X \subseteq \mathcal{P}(A)$, $\sup X = \bigcup X$ e $\inf X = \bigcap X$.
+
+    Para resolver esse exercício, interprete $\bigcap \emptyset$ como $A$ (intuitivamente, por que isso faz sentido?).
 \end{exercise}
 
 \begin{exercise}
@@ -187,4 +247,33 @@ Para ordens totais, basta a verificação de um dos lados da implicação, como 
         \item Se $(P, R)$ é uma ordem parcial estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem parcial estrita.
         \item Se $(P, R)$ é uma ordem total estrita, então $(Q, R \cap (Q \times Q))$ é uma ordem total estrita.
     \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    Sejam $(P, \leq)$ e $(Q, \preceq)$ ordens parciais e $(P, <)$ e $(Q, \prec)$ as ordens estritas associadas a elas, respectivamente.
+    Prove que $f : P \to Q$ é um isomorfismo entre $(P, \leq)$ e $(Q, \preceq)$ se e somente se $f$ é um isomorfismo entre $(P, <)$ e $(Q, \prec)$.
+\end{exercise}
+
+\begin{exercise}
+    Seja $(P, \leq^*)$ uma pré-ordem.
+    Defina uma relação binária $\sim$ em $P$ por
+    \[
+    x \sim y \iff x \leq^* y \land y \leq^* x.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que $\sim$ é uma relação de equivalência em $P$.
+        \item Seja $Q=P/{\sim}$ e defina uma relação binária $\leq$ em $Q$ por
+        \[
+        A \leq B \iff \exists p \in A\, \exists q \in B\, (p \leq^* q).
+        \]
+        Prove que para todos $x, y \in P$, $[x] \leq [y]$ se e somente se $x \leq^* y$.
+        \item Prove que $(Q,\leq)$ é uma ordem parcial.
+        \item Prove que a projeção canônica $\pi: P \to Q$ dada por $\pi(x)=[x]$ é monótona e sobrejetora.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Sejam $(P,<)$ e $(Q,\prec)$ ordens totais estritas.
+    Suponha que $f:P\to Q$ seja um isomorfismo.
+    Prove que $(P,<)$ é uma boa ordem se e somente se $(Q,\prec)$ é uma boa ordem.
 \end{exercise}
