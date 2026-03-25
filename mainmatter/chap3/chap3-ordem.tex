@@ -192,3 +192,38 @@ Disso, decorre o esquema da indução forte.
     Porém, $m \in B$, o que é uma contradição.
     Assim, $n \in B$.
 \end{proof}
+
+Conforme veremos até o fim deste capítulo, as seguintes propriedades caracterizam a ordem dos números naturais a menos de isomorfismo.
+Para provar tal fato, é necessário já termos em mãos o Teorema da Recursão, que será apresentado em breve.
+
+\begin{proposition}
+    A ordem dos números naturais satisfaz as seguintes propriedades:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\omega$ não possui elemento máximo;
+        \item $\omega$ é não vazio;
+        \item $\omega$ é uma boa ordem;
+        \item todo subconjunto de $\omega$ não vazio limitado superiormente possui um máximo.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Já vimos que $\omega$ é uma boa ordem, e $\omega$ é não vazio pois $0 \in \omega$.
+
+    $\omega$ não possui elemento máximo, pois, para todo $n \in \omega$, $n < S(n)$.
+
+    Por fim, seja $A\subseteq \omega$ não vazio e limitado superiormente.
+    Seja $B=\{n \in \omega : \forall m \in A\, (m \leq n)\}$ e seja $n$ o elemento mínimo de $B$, que é não vazio pois $A$ é limitado superiormente.
+
+    Se $n=0$, como $A$ é não vazio e o único número natural $n$ tal que $n\leq 0$ é o próprio $0$, segue que $A\subseteq\{0\}$.
+    Como $A\neq \emptyset$, segue que $A=\{0\}$ e, portanto, $0$ é o máximo de $A$.
+
+    Se $n\neq 0$, então $n=S(m)$ para algum $m \in \omega$.
+    Como $n$ é o elemento mínimo de $B$, segue que $m \notin B$, ou seja, existe $k \in A$ tal que $k \not\leq m$.
+    Assim, $m<k$, e, portanto, $n=S(m)\leq k$ pelo Lema~\ref{lem:ordem-menor-que-sucessor}.
+    Por outro lado, $k \leq n$, pois $n$ é uma cota superior de $A$.
+    Logo, $k=n$, e $n\in A$ é o máximo de $A$.
+\end{proof}
+
+\subsection*{Exercícios}
+\begin{exercise}
+    Mostre que a função $S:\omega \to \omega$ é creixente, ou seja, para quaisquer $m, n \in \omega$, se $m < n$, então $S(m) < S(n)$.
+\end{exercise}
