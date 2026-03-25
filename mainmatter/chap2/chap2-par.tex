@@ -203,3 +203,16 @@ No caso presente, a propriedade fundamental é a da proposição seguinte.
         \forall z\, (z \text{ é um par ordenado} \rightarrow \exists! y \exists x (z = (x, y))).
     \]
 \end{exercise}
+
+\begin{exercise}\label{exer:compreensao-autorreferente}
+    Mostre que, no esquema da compreensão, é essencial que a variável $y$ que fará o papel do conjunto resultante da compreensão não apareça na fórmula $\phi$ da seguinte forma.
+
+    Considere a fórmula $\phi(x, y)$ dada por $x \notin y$.
+
+    Mostre que o seguinte é falso:
+    \[
+    \forall A \exists y \forall x (x \in y \leftrightarrow (x \in A \land x \notin y)).
+    \]
+
+    Este exercício nos mostra que tentativas de construções autorreferentes, como $\{x \in y: \phi(x, y)\}$ podem ser problemáticas em Teoria dos Conjuntos.
+\end{exercise}
