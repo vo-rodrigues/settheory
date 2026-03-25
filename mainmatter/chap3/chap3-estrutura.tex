@@ -1,0 +1,66 @@
+\section{Propriedades estruturais dos números naturais}
+A construção dos números naturais apresentada implica as seguintes propriedades estruturais.
+
+\begin{proposition}
+    Para todo $n \in \omega$, $n\subseteq \omega$.
+\end{proposition}
+
+\begin{proof}
+    Procede-se por indução em $n$.
+    Temos que $n\subseteq \omega$ para $n=0$, pois $0=\emptyset$.
+    Suponha que $n\in \omega$ e que $n\subseteq \omega$.
+    Então $S(n)=n\cup\{n\}\subseteq \omega$, o que completa a indução.
+\end{proof}
+
+\begin{corollary}
+    Para quaisquer $m, n \in \omega$, $m\leq n$ se, e somente se, $m\subseteq n$.
+\end{corollary}
+\begin{proof}
+    Para a direção da esquerda para a direita, suponha que $m\leq n$.
+    Se $m=n$, então $m\subseteq n$.
+
+    Se $m<n$, então $m\in n$.
+    Vejamos que $m\subseteq n$.
+    Tome $k\in m$.
+    Pela proposição anterior, $k\in \omega$.
+    Assim, $k<m$ e $m<n$.
+    Pela propriedade transitiva, $k<n$, e, portanto, $k\in n$.
+    Assim, $m\subseteq n$.
+
+    Para a recíproca, procedemos pela contrapositiva.
+    Se $m\not\leq n$, segue da tricotomia que $n<m$.
+    Da direção já provada, temos que $n\subseteq m$.
+    Como $m\neq n$, não pode valer $m\subseteq n$, e, portanto, $m\not\subseteq n$.
+\end{proof}
+
+Afirmações como $n \in m$, apesar de serem úteis em vários aspectos da Teoria dos Conjuntos, podem ser pouco intuitivas e soarem até mesmo como indesejáveis.
+Números costumam ser pensados como ``elementos'', e não como conjuntos, de modo que seria desejável que houvesse uma lista de propriedades que caracterizassem os números naturais de modo que não dependa da construção específica adotada.
+
+Os Axiomas de Peano \cite{peano1889arithmetices}, formulados por Giuseppe Peano em 1889 \cite{peano1889arithmetic}, constituem um sistema de axiomas muito conhecido que tem como objetivo formalizar os números naturais.
+
+Em linguagem moderna, eles dizem que $\mathbb N$ é um conjunto munido de uma função $S$ definida em $\mathbb N$, que, junto de um objeto $0$, o seguinte é satisfeito.
+\begin{enumerate}[label=(\arabic*)]
+    \item $0\in \mathbb N$;
+    \item para todo $n \in \mathbb N$, $S(n)\in \mathbb N$;
+    \item para todo $n \in \mathbb N$, $S(n)\neq 0$;
+    \item para todo $n, m \in \mathbb N$, se $S(n) = S(m)$, então $n = m$.
+    \item se $A\subseteq \mathbb N$ é tal que $0\in A$ e para todo $n \in A$, $S(n)\in A$, então $A=\mathbb N$.
+\end{enumerate}
+
+A nossa construção satisfaz os axiomas (1) e (2) pelo fato de $\omega$ ser indutivo, e satisfaz o axioma (3) pelo fato de $0$ ser o conjunto vazio, e verificamos também o axioma (5).
+Abaixo, verificamos o axioma (4).
+
+\begin{proposition}
+    Para quaisquer $n, m \in \omega$, se $S(n) = S(m)$, então $n = m$.
+\end{proposition}
+\begin{proof}
+    Procederemos pela contrapositiva.
+    Se $n\neq m$, então, sem perda de generalidade, $n<m$.
+    Assim, $S(n)\leq m<S(m)$, e, portanto, $S(n)\neq S(m)$.
+\end{proof}
+
+Com isso, a construção de $\omega$ apresentada satisfaz os Axiomas de Peano, e, portanto, pode ser vista como uma legítima construção dos números naturais dentro da Teoria dos Conjuntos.
+
+Porém, ressaltamos que a noção elementar de número precede a própria Teoria dos Conjuntos: conforme discutido no Capítulo~1, precisamos dela para descrever a própria linguagem de primeira ordem.
+Assim, afirmações como $1\in 2$ não devem necessariamente ser vistas como uma afirmação ontológica sobre a natureza última dos números.
+Uma postura mais defensável é que tal construção é uma internalização da noção de número natural interna à Teoria dos Conjuntos que captura propriedades fundamentais da noção primitiva de número.

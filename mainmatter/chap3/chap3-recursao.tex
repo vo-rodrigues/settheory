@@ -1,0 +1,75 @@
+\section{Recursão nos números naturais}
+
+Intuitivamente, o significado de $m+n$ consiste em tomar $m$ e aplicar a operação de sucessor $n$ vezes.
+Como uma criança aprendendo a somar, parte-se de $m$ e, ``contando nos dedos'', percorre-se $n$ números, e o resultante é $m+n$.
+Assim, $m+5$, por exemplo, deveria ser definido como $S(S(S(S(S(m)))))$.
+Pensamos em $m+0$ como o próprio $m$.
+De modo geral, pensa-se que $m+n=S(S(\dots S(m)\dots))$, onde $S$ é aplicado $n$ vezes.
+Porém, como formalizar isso?
+
+Uma definição recursiva que costuma ser apresentada é a seguinte.
+
+Fixado $m \in \omega$, quer-se definir $m+n$ \emph{recursivamente}, de modo que:
+
+\begin{equation}\label{eq:recursao-soma}
+    m+n =
+    \begin{cases}
+        m & \text{se } n=0\\
+        S(m+k) & \text{se } n=S(k)
+    \end{cases}
+\end{equation}
+Seguindo o roteiro dado pela Equação~\ref{eq:recursao-soma}, temos:
+
+\begin{align*}
+m+0 &= m\\
+m+1 &= m+S(0) = S(m+0) = S(m)\\
+m+2 &= m+S(1) = S(m+1) = S(S(m))\\
+m+3 &= m+S(2) = S(m+2) = S(S(S(m)))\\
+m+4 &= m+S(3) = S(m+3) = S(S(S(S(m))))\\
+\end{align*}
+\emph{E assim por diante.}
+
+Parece funcionar. Mas podemos, de fato, definir $m+n$ por meio da Equação~\ref{eq:recursao-soma}?
+Tal equação é, de certa forma, autorreferente: usa-se $+$, ainda que para ``números menores'', para definir $+$.
+Lembramos ao leitor que construções autorreferentes, no geral, podem ser problemáticas em Teoria dos Conjuntos (ver, por exemplo, o Exercício~\ref{exer:compreensao-autorreferente}).
+Assim, faz-se necessária uma justificativa formal apropriada para a definição dada pela Equação~\ref{eq:recursao-soma} (que, conforme veremos, será, sim, lícita).
+Para chegarmos ao enunciado do Teorema da recursão, vamos investigar o que está acontecendo na Equação~\ref{eq:recursao-soma}.
+
+Lá, temos um \emph{parâmetro} fixado, $m$.
+Podemos pensar que estamos, para cada $m$, definindo uma sequência $f_m$ de números naturais, em que $f_m(n)$ representa $m+n$.
+
+Além disso, para definirmos $f_m(S(k))$, precisamos conhecer $f_m(k)$.
+Assim, a definição de $f_m(n)$ é dada por uma condição que envolve um parâmetro $m$ e o valor de $f_m$ para o antecessor de $n$ (caso $n\neq 0$).
+
+Porém, apenas o conhecimento do valor anterior não é sempre suficiente.
+Temos, por exemplo, a seguinte famosa sequência de números naturais, conhecida como \emph{sequência de Fibonacci}:
+\begin{align*}
+F(0) &= 0\\
+F(1)&= 1\\
+F(n)&= F(n-1) + F(n-2) \text{ para } n\geq 2
+\end{align*}
+
+Fica claro que, para $n\geq 2$ $F(n)$ não depende apenas do valor anterior, mas dos dois anteriores.
+
+A exposição recursiva da sequência de Fibonacci acima parte de $0$ e $1$ como primeiros elementos.
+Algumas pessoas preferem iniciá-la de $1$ e $1$.
+No geral, poderíamos utilizar qualquer par de números para iniciar a sequência (e obter assim sequências potencialmente diferentes).
+Podemos pensar no par $(0, 1)$ como um parâmetro da sequência.
+No geral, podemos pensar em definir uma sequência de Fibonacci parametrizada por um par $p=(a, b)$ de números naturais, em que $F_p(0)=a$, $F_p(1)=b$ e $F_p(n)=F_p(n-1)+F_p(n-2)$ para $n\geq 2$.
+
+
+
+No geral, ao se definir uma sequência $s_p=(s_p(n): n \in \omega)$, $s_n$ pode depender de todos os valores anteriores, $t=(s_p(k): k < n)$, e não apenas do valor imediatamente anterior, $s_{n-1}$, bem como de parâmetros $p$ que ajam em toda a sequência, como $m$ na definição de $m+n$.
+Definida uma sequência inicial $t$ da sequência final, efetuamos uma operação $G(p, t)$ para obter o próximo elemento da sequência.
+
+No caso, $G:\omega^2\times \omega^{<\omega}\to \omega$ é dada por:
+
+\begin{align*}
+G(p, t) =
+\begin{cases}
+    p(0) & \text{se } t=\emptyset\\
+    p(1) & \text{se } t \in \omega^1\\
+    t(n-1)+t(n-2) & \text{se } t\in \omega^n \text{ para } n\geq 2
+\end{cases}
+\end{align*}
+
