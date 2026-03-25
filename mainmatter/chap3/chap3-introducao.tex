@@ -252,3 +252,21 @@ Podemos agora formalmente definir os $10$ primeiros números naturais:
         9 &= S(8) = \{0,1,2,3,4,5,6,7,8\}.
     \end{align*}
 \end{definition}
+
+Finalizaremos esta subseção com um fato básico sobre os números naturais: todo número natural ou é $0$, ou é o sucessor de algum número natural.
+
+\begin{proposition}\label{prop:ordem-sucessor}
+    Para todo $n \in \omega$, $n=0$ ou existe $m \in \omega$ tal que $n=S(m)$.
+\end{proposition}
+\begin{proof}
+    Procedemos por indução em $n \in \omega$.
+    
+    Para $n=0$, a tese é verdadeira.
+    
+    Suponha que a tese seja verdadeira para um $m \in \omega$.
+    Devemos ver que a tese é verdadeira para $S(m)$.
+    Mas $S(m)$ é o sucessor de $m$, e $m \in \omega$ por hipótese.
+    Assim, $S(m)$ é o sucessor de um número natural, e a tese é verdadeira para $S(m)$.
+
+    Logo, por indução, a tese é verdadeira para todo $n \in \omega$.
+\end{proof}
