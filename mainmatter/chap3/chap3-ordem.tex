@@ -1,0 +1,194 @@
+\subsection{A ordem dos números naturais}
+
+Nesta seção, estudaremos algumas propriedades básicas acerca da ordem dos números naturais.
+
+Das definições de $1$ até $9$, intuitivamente fica aparente que, para todo número natural $n$, deverá valer $n = \{m \in \omega: m<n\}$.
+Tal igualdade de fato será verdadeira, como veremos nas próximas páginas.
+Por isso, parece natural definir que a ordem dos números naturais é dada pela relação de pertencimento.
+
+\begin{definition}
+    Sejam $m, n \in \omega$.
+    Dizemos que $m$ é menor que $n$, e escrevemos $m < n$, se, e somente se $m \in n$.
+
+    Define-se que $m\leq n$ se, e somente se $m < n$ ou $m = n$.
+\end{definition}
+
+\begin{lemma}\label{lem:ordemZero}
+    Para todo $n \in \omega$, $0\leq n$.
+\end{lemma}
+\begin{proof}
+    A prova segue por indução em $n$.
+    Para $n=0$, $0\leq 0$ pois $0=0$.
+    
+    Suponha que $0\leq n$.
+    Então $0<n$ ou $0=n$.
+
+    Se $0<n$, temos que $0\in n\subseteq n\cup\{n\}=S(n)$, e, portanto, $0<S(n)$.
+    Se $0=n$, então $0\in \{0\}=S(0)=S(n)$, e, portanto, $0<S(n)$.
+    De qualquer forma, $0\leq S(n)$.
+\end{proof}
+
+\begin{lemma}\label{lem:ordem-sucessor}
+    Para quaisquer $m, n \in \omega$, $m < S(n)$ se e somente se $m \leq n$.
+\end{lemma}
+\begin{proof}
+    Temos:
+    \begin{align*}
+        m < S(n) &\leftrightarrow m \in S(n)\\
+        &\leftrightarrow m \in n \cup \{n\}\\
+        &\leftrightarrow m \in n \lor m = n\\
+        &\leftrightarrow m < n \lor m = n\\
+        &\leftrightarrow m \leq n.
+    \end{align*}
+\end{proof}
+Veremos que a ordem dos números naturais é uma ordem total.
+Iniciaremos pela transitividade.
+\begin{lemma}
+    Para quaisquer $l, m, n \in \omega$, se $l < m$ e $m < n$, então $l < n$.
+\end{lemma}
+\begin{proof}
+    Provaremos por indução em $n$ que para todo $n \in \omega$, para quaisquer $l, m \in \omega$, se $l < m$ e $m < n$, então $l < n$.
+
+    Para $n=0$, a hipótese $m < n$ é falsa, e, portanto, a tese é verdadeira.
+    Suponha que a tese seja verdadeira para um $n \in \omega$.
+    Devemos mostrar que para quaisquer $l, m \in \omega$, se $l < m$ e $m < S(n)$, então $l < S(n)$.
+    
+    Assim, sejam $l, m \in \omega$ tais que $l < m$ e $m < S(n)$.
+    Pelo Lema~\ref{lem:ordem-sucessor}, $l < m$ e $m \leq n$.
+
+    Como $m\leq n$, temos que $m<n$ ou $m=n$.
+    Se $m<n$, segue da hipótese de indução que $l < n$.
+    Se $m=n$, então $l < n$ pois $l < m$.
+    Em qualquer caso, portanto, $l<n$.
+    Assim, $l \in n \subseteq n \cup \{n\}=S(n)$, e, portanto, $l < S(n)$.
+\end{proof}
+
+Agora provaremos a irreflexibilidade da ordem dos números naturais.
+\begin{lemma}
+    Para todo $n \in \omega$, $n \not< n$.
+\end{lemma}
+\begin{proof}
+    A prova segue por indução em $n$.
+    Para $n=0$, $0\not< 0$ pois $0\notin 0=\emptyset$.
+    Suponha que $n \not< n$. Devemos ver que $S(n) \not< S(n)$.
+    Suponha, para fins de contradição, que $S(n) < S(n)$.
+    Pelo Lema~\ref{lem:ordem-sucessor}, $S(n) \leq n$.
+    Ademais, $n< S(n)$.
+    
+    Se $S(n)<n$, segue da transitividade que $n<n$, o que nos dá um absurdo.
+    Já se $S(n)=n$, então substituindo em $n< S(n)$, temos novamente o absurdo $n<n$.
+    Logo, $S(n)\not< S(n)$.
+\end{proof}
+
+Resta demonstrar a totalidade da ordem dos números naturais.
+Para tanto, precisaremos de um lema auxiliar dual ao Lema~\ref{lem:ordem-sucessor}.
+
+\begin{lemma}\label{lem:ordem-menor-que-sucessor}
+    Para quaisquer $n, m \in \omega$, $S(n) \leq m$ se e somente se $n < m$.
+\end{lemma}
+\begin{proof}
+    Se $S(n)\leq m$, então $n<m$, pois $n<S(n)\leq m$ e vale a transitividade.
+
+    Para a recíproca, utilizaremos indução em $m$ para mostrar que para todo $m \in \omega$, para quaisquer $n \in \omega$, se $n < m$, então $S(n) \leq m$.
+
+    Para $m=0$, a hipótese $n < m$ é falsa, e, portanto, a tese é verdadeira.
+    
+    Suponha que a tese seja verdadeira para um $m \in \omega$.
+    Seja $n \in \omega$ tal que $n < S(m)$.
+    Assim, pelo Lema~\ref{lem:ordem-sucessor}, $n \leq m$.
+    Se $n=m$, então $S(n)=S(m)\leq S(m)$.
+    Se $n<m$, então, pela hipótese de indução, $S(n) \leq m<S(m)$.
+    De qualquer forma, $S(n) \leq S(m)$.
+\end{proof}
+
+Agora estamos prontos para provar a totalidade da ordem dos números naturais.
+\begin{proposition}
+    $(\omega, <)$ é uma ordem total estrita.
+\end{proposition}
+\begin{proof}
+    Já vimos que $(\omega, <)$ é uma ordem parcial estrita.
+    Por indução em $n$, veremos que para todo $n \in \omega$, para todo $m \in \omega$, $m < n$ ou $m = n$ ou $n < m$.
+
+    Para $n=0$, a tese segue do Lema~\ref{lem:ordemZero}.
+
+    Suponha que a tese seja verdadeira para um $n \in \omega$.
+    Seja $m \in \omega$.
+    Devemos ver que $m < S(n)$ ou $m = S(n)$ ou $S(n) < m$.
+
+    Pela hipótese de indução, sabemos que $m<n$ ou $m = n$ ou $n < m$.
+
+    Se $m\leq n$, temos que $m\leq n<S(n)$, logo, por transitividade, $m<S(n)$.
+    Já se $n<m$, segue do Lema~\ref{lem:ordem-menor-que-sucessor} que $S(n)\le m$.
+    Logo, $S(n)=m$ ou $S(n)<m$, o que conclui a prova.
+\end{proof}
+
+Nosso próximo passo é provar que a ordem dos números naturais é uma boa ordem.
+Primeiro provaremos que o conjunto dos números naturais satisfaz o esquema da indução forte.
+
+\begin{proposition}\label{prop:inducao-fort-set}
+    Seja $A\subseteq \omega$.
+    Se $\forall n \in \omega\, (\forall m < n\, (m \in A) \rightarrow n \in A)$, então $A = \omega$.
+\end{proposition}
+\begin{proof}
+    É suficiente provar que $\omega \subseteq A$.
+
+    Seja $B=\{n \in \omega : \forall m < n\, (m \in A)\}$.
+    Veremos que $B$ é indutivo.
+    Por vacuidade, $0\in B$.
+    
+    Suponha que $n \in B$.
+    Vejamos que $S(n) \in B$.
+    Seja $k < S(n)$.
+    Devemos ver que $k \in A$.
+    Pelo Lema~\ref{lem:ordem-sucessor}, $k \leq n$.
+    Se $k<n$, então $k \in A$ pois $n \in B$.
+    Se $k=n$, temos que $\forall m < n\, (m \in A)\rightarrow n \in A$, e também que $\forall m < n\, (m \in A)$, pois $n \in B$.
+    Assim, por modus ponens, $n \in A$.
+    Isso conclui que $S(n) \in B$.
+    Assim, $B$ é indutivo.
+
+    Logo, $\omega \subseteq B$.
+    Seja $n \in \omega$.
+    Temos que $S(n) \in B$ e que $n < S(n)$.
+    Assim, $n \in A$.
+\end{proof}
+
+Disso, decorre o esquema da indução forte.
+\begin{proposition}
+    Considere uma fórmula $\phi(x, t_1, \dots, t_n)$.
+
+    O seguinte é um teorema:
+    \[
+    \forall t_1, \dots, t_n \Bigl(
+        \bigl(
+            \forall n \in \omega\, (\forall m < n\, \phi(m, t_1, \dots, t_n) \rightarrow \phi(n, t_1, \dots, t_n))
+        \bigr)
+        \rightarrow
+        \forall n \in \omega\, \phi(n, t_1, \dots, t_n)
+    \Bigr).
+    \]
+\end{proposition}
+\begin{proof}
+    Sejam dados $t_1, \dots, t_n$.
+    Considere o conjunto $A = \{n \in \omega : \phi(n, t_1, \dots, t_n)\}$.
+    Da Proposição~\ref{prop:inducao-fort-set} e da hipótese, segue imediatamente que $A=\omega$.
+\end{proof}
+
+\begin{corollary}
+    $(\omega, <)$ é uma boa ordem.
+\end{corollary}
+\begin{proof}
+    Já vimos que $(\omega, <)$ é uma ordem total estrita.
+    Resta mostrar que todo subconjunto não vazio de $\omega$ tem um elemento mínimo.
+
+    Seja $A\subseteq \omega$ sem elemento mínimo.
+    Veremos que $A$ é vazio.
+    Para tanto, basta mostrar que $B=\omega\setminus A$ coincide com $\omega$.
+    Pela Proposição~\ref{prop:inducao-fort-set}, é suficiente mostrar que $\forall n \in \omega\, (\forall m < n\, (m \in B) \rightarrow n \in B)$.
+
+    Ora, seja $n \in \omega$ tal que $\forall m < n\, (m \in B)$.
+    Suponha, para fins de contradição, que $n \notin B$, ou seja, $n \in A$.
+    Como $A$ não possui mínimo, existe $m < n$ tal que $m \in A$.
+    Porém, $m \in B$, o que é uma contradição.
+    Assim, $n \in B$.
+\end{proof}

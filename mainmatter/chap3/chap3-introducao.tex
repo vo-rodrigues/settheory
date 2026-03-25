@@ -139,7 +139,7 @@ Assim, $I$ tem $S(1)=\{0,1\}=2$ como elemento.
 Intuitivamente, ele deverá conter todos os números naturais.
 Porém, nada garante que ele não contenha outros elementos além destes.
 
-Buscaremos então definir o \emph{menor conjunto indutivo}.
+Buscaremos então definir o \emph{menor conjunto indutivo}, ou seja, um conjunto indutivo que está contido em todos os outros, mínimo com relação à inclusão $\subseteq$.
 
 \begin{definition}
     O conjunto dos números naturais, denotado por $\omega$, é o único conjunto $J$ tal que
@@ -252,33 +252,3 @@ Podemos agora formalmente definir os $10$ primeiros números naturais:
         9 &= S(8) = \{0,1,2,3,4,5,6,7,8\}.
     \end{align*}
 \end{definition}
-
-\subsection{A ordem dos números naturais}
-
-Nesta seção, estudaremos algumas propriedades básicas acerca da ordem dos números naturais.
-
-Das definições de $1$ até $9$, intuitivamente fica aparente que, para todo número natural $n$, deverá valer $n = \{m \in \omega: m<n\}$.
-Tal igualdade de fato será verdadeira, como veremos nas próximas páginas.
-Por isso, parece natural definir que a ordem dos números naturais é dada pela relação de pertencimento.
-
-\begin{definition}
-    Sejam $m, n \in \omega$.
-    Dizemos que $m$ é menor que $n$, e escrevemos $m < n$, se, e somente se $m \in n$.
-
-    Define-se que $m\leq n$ se, e somente se $m < n$ ou $m = n$.
-\end{definition}
-
-\begin{lemma}
-    Para todo $n \in \omega$, $0\leq n$.
-\end{lemma}
-\begin{proof}
-    A prova segue por indução em $n$.
-    Para $n=0$, $0\leq 0$ pois $0=0$.
-    
-    Suponha que $0\leq n$.
-    Então $0<n$ ou $0=n$.
-
-    Se $0<n$, temos que $0\in n\subseteq n\cup\{n\}=S(n)$, e, portanto, $0<S(n)$.
-    Se $0=n$, então $0\in \{0\}=S(0)=S(n)$, e, portanto, $0<S(n)$.
-    De qualquer forma, $0\leq S(n)$.
-\end{proof}
