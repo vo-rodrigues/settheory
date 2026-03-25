@@ -101,7 +101,7 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
 
 \begin{definition}\index{cota superior}\index{cota inferior}\index{máximo}\index{mínimo}\index{elemento maximal}\index{elemento minimal}\index{supremo}\index{ínfimo}
     Seja $(P, \leq)$ uma pré-ordem e $A \subseteq P$. Dizemos que:
-    \begin{itemize}
+    \begin{enumerate}[label=(\roman*)]
         \item $x$ é uma \emph{cota superior} de $A$ se para todo $a \in A$, $a \leq x$;
         \item $x$ é uma \emph{cota inferior} de $A$ se para todo $a \in A$, $x \leq a$;
         \item $x$ é um \emph{máximo} de $A$, ou um \emph{maior elemento} de $A$, se é uma cota superior de $A$ e $x \in A$;
@@ -112,11 +112,13 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
         \item $x$ é um \emph{ínfimo} de $A$ se é uma maior cota inferior de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$;
         \item se $A$ possui uma cota superior, dizemos que $A$ é \emph{limitado superiormente};
         \item se $A$ possui uma cota inferior, dizemos que $A$ é \emph{limitado inferiormente}.
-    \end{itemize}
+    \end{enumerate}
 \end{definition}
 
-\begin{figure}[h]
-\centering
+Em ordens lineares, não há distinção entre elementos maximais e máximo, ou entre elementos minimais e mínimo.
+No entanto, em ordens parciais, pode haver elementos maximais sem que haja um elemento máximo, ou elementos minimais sem que haja um elemento mínimo, como mostra a Figura~\ref{fig:maximais-maximo}.
+
+\begin{center}
 \begin{tikzpicture}[
     every node/.style={circle, draw, minimum size=7mm, inner sep=0pt},
     every path/.style={semithick}
@@ -150,9 +152,10 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
 \end{scope}
 
 \end{tikzpicture}
-\caption{À esquerda, há elementos maximais sem elemento máximo.
-À direita, há um elemento máximo.}
-\end{figure}
+\captionsetup{hypcap=false}
+\captionof{figure}{À esquerda, há elementos maximais sem elemento máximo. À direita, há um elemento máximo.}
+\label{fig:maximais-maximo}
+\end{center}
 
 Deixamos também os seguintes fatos básicos para verificação do leitor (Exercício~\ref{ex:ordens-basicas}).
 
