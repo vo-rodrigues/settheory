@@ -109,7 +109,9 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
         \item $x$ é \emph{maximal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $x \leq a$, segue que $a\leq x$;
         \item $x$ é \emph{minimal} em $A$ se $x \in A$ e para todo $a \in A$, tal que $a \leq x$, segue que $x \leq a$;
         \item $x$ é um \emph{supremo} de $A$ se é uma menor cota superior de $A$, ou seja, $x$ é uma cota superior de $A$ e para toda cota superior $y$ de $A$, segue que $x \leq y$;
-        \item $x$ é um \emph{ínfimo} de $A$ se é uma maior cota inferior de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$.
+        \item $x$ é um \emph{ínfimo} de $A$ se é uma maior cota inferior de $A$, ou seja, $x$ é uma cota inferior de $A$ e para toda cota inferior $y$ de $A$, segue que $y \leq x$;
+        \item se $A$ possui uma cota superior, dizemos que $A$ é \emph{limitado superiormente};
+        \item se $A$ possui uma cota inferior, dizemos que $A$ é \emph{limitado inferiormente}.
     \end{itemize}
 \end{definition}
 
@@ -148,7 +150,8 @@ Para ordens parciais estritas, tais conceitos são definidos a partir da ordem p
 \end{scope}
 
 \end{tikzpicture}
-\caption{À esquerda, há elementos maximais sem elemento máximo. À direita, há um elemento máximo.}
+\caption{À esquerda, há elementos maximais sem elemento máximo.
+À direita, há um elemento máximo.}
 \end{figure}
 
 Deixamos também os seguintes fatos básicos para verificação do leitor (Exercício~\ref{ex:ordens-basicas}).
