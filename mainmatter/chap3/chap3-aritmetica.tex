@@ -1,0 +1,188 @@
+\section{A aritmética dos números naturais}
+De posse do Teorema da Recursão, podemos definir as operações básicas dos números naturais.
+Nesta seção, introduziremos a adição, a subtração, a multiplicação e a potenciação de números naturais.
+
+\begin{proposition}
+    Existe uma única função $+: \omega^2\to \omega$ tal que:
+    \begin{enumerate}[label=(\roman*)]
+        \item $n+0=n$ para todo $n \in \omega$;
+        \item $m+S(n)=S(m+n)$ para todo $m, n \in \omega$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Para a existência, considere $G:\omega\times \omega^{<\omega}\to \omega$ dada por
+    \[G(m, t)=\begin{cases}
+        m & \text{se } \dom t = 0\\
+        S(t(n)) & \text{se } \exists n \,\dom t = S(n)
+    \end{cases}
+    \]
+
+    Note que $G$ está bem definida: se $\dom t\neq 0$, como $\dom t\in\omega$, existe um único
+    $n\in\omega$ tal que $\dom t=S(n)$.
+    Assim, pelo Teorema da Recursão, existe uma única função $f:\omega\times \omega\to \omega$ tal que, para todo $m, n \in \omega$, $f_m(n)=G(m, f_m\restriction n)$.
+
+    Temos que $f(m, 0)=f_m(0)=G(m, \emptyset)=m$, e, para todo $n \in \omega$, $f(m, S(n))=f_m(S(n))=G(m, f_m\restriction S(n))=S(f_m(n))=S(f(m, n))$.
+
+    Para a unicidade, fixe uma função $h:\omega\times \omega\to \omega$ como no enunciado.
+    Devemos mostrar que $f=h$.
+    Para isso, basta mostrar que para todo $m, n \in \omega$, $f(m, n)=h(m, n)$.
+    Para isso, fixamos $m$ e procede-se por indução em $n$.
+    Para $n=0$, $f(m, 0)=m=h(m, 0)$.
+    Suponha que $n\in \omega$ e que $f(m, n)=h(m, n)$.
+    Assim, $f(m, S(n))=S(f(m, n))=S(h(m, n))=h(m, S(n))$, o que completa a indução.
+\end{proof}
+
+\begin{definition}
+    A \emph{adição} é a única função $+: \omega\times \omega\to \omega$ como na proposição acima.
+\end{definition}
+
+Note que, para todo $n \in \omega$, $n+1=n+S(0)=S(n+0)=S(n)$.
+Assim, a partir deste ponto, raramente escreveremos $S(n)$, preferindo escrever $n+1$.
+Além disso, note que se $m, n$ são naturais, então $(m+n)+1=S(m+n)=m+S(n)=m+(n+1)$.
+Dessa forma, $(m+n)+1=m+(n+1)$ para todo $m, n \in \omega$.
+
+O nosso próximo objetivo é definir a subtração de números naturais.
+
+Para isso, utilizaremos a seguinte proposição.
+\begin{proposition}
+    Para todos $m, k, k'$ números naturais, se $k<k'$ então $m+k<m+k'$.
+\end{proposition}
+\begin{proof}
+    Procedemos por indução em $k'$.
+    Para $k'=0$, a hipótese $k<k'$ é falsa, e, portanto, a tese é verdadeira.
+
+    Se a tese é verdadeira para um $k' \in \omega$, então ela é verdadeira para $k'+1$.
+    Se $k<k'+1$, então $k\leq k'$.
+    Caso $k<k'$, vale $m+k<m+k'$ pela hipótese de indução, e $m+k'<(m+k')+1=m+(k'+1)$, o que completa a indução.
+    Caso $k=k'$, vale $m+k=m+k'<S(m+k')=m+(k'+1)$, o que completa a indução.
+\end{proof}
+
+\begin{proposition}
+    Para todos $n, m$ números naturais, se $m\leq n$, então existe um único $k \in \omega$ tal que $n=m+k$.
+\end{proposition}
+\begin{proof}
+    A unicidade decorre do lema acima:
+    Se $k\neq k'$ são tais que $n=m+k$ e $n=m+k'$, sem perda de generalidade podemos supor que $k<k'$.
+    Mas então $n=m+k<m+k'=n$, o que é uma contradição.
+
+    Para a existência, procede-se por indução em $n$.
+    Para $n=0$, a hipótese $m\leq n$ implica que $m=0$, e, portanto, $n=m+0$.
+
+    Suponha que $n\in \omega$ e que, para todo $m\in \omega$, se $m\leq n$, então existe um único $k \in \omega$ tal que $n=m+k$.
+    Veremos que o mesmo vale para $n+1$.
+
+    Tome $m \leq n+1$.
+    Se $m=n+1$, então $n+1=m+0$.
+    Se $m<n+1$, então $m\leq n$, e, portanto, existe um $k\in \omega$ tal que $n=m+k$.
+    Assim, $n+1=(m+k)+1=m+(k+1)$, o que completa a indução.
+\end{proof}
+
+\begin{definition}
+    Sejam $m\leq n$ números naturais.
+    Define-se a \emph{subtração} $n-m$ como o único número natural $k$ tal que $n=m+k$.
+\end{definition}
+
+Abaixo, definiremos produto e potência de números naturais.
+Deixaremos a prova de todas as propriedades usuais dessas operações como exercício ao leitor.
+
+\begin{proposition}
+    Existe uma única função $\cdot: \omega\times \omega\to \omega$ tal que:
+    \begin{enumerate}[label=(\roman*)]
+        \item $m\cdot 0=0$ para todo $m \in \omega$;
+        \item $m\cdot S(n)=(m\cdot n)+m$ para todo $m, n \in \omega$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Para a existência, considere $G:\omega\times \omega^{<\omega}\to \omega$ dada por
+    \[G(m, t)=\begin{cases}
+        0 & \text{se } \dom t = 0\\
+        t(n)+m & \text{se } \exists n \,\dom t = n+1
+    \end{cases}
+    \]
+
+
+    Pelo Teorema da Recursão, existe uma única função $f:\omega\times \omega\to \omega$ tal que, para todo $m, n \in \omega$, $f_m(n)=G(m, f_m\restriction n)$.
+
+    Temos que $f(m, 0)=f_m(0)=G(m, \emptyset)=0$, e, para todo $n \in \omega$, $f(m, n+1)=f_m(n+1)=G(m, f_m\restriction (n+1))=f(m, n)+m$, o que completa a existência.
+
+    Para a unicidade, fixe uma função $h:\omega\times \omega\to \omega$ como no enunciado.
+    Dado $m \in \omega$, veremos por indução em $n$ que para todo $n \in \omega$, $f(m, n)=h(m, n)$.
+    Para $n=0$, $f(m, 0)=0=h(m, 0)$.
+    Suponha que $n\in \omega$ e que $f(m, n)=h(m, n)$.
+    Assim, $f(m, n+1)=f(m, n)+m=h(m, n)+m=h(m, n+1)$, o que completa a indução.
+\end{proof}
+
+\begin{definition}
+    A \emph{multiplicação} é a única função $\cdot: \omega\times \omega\to \omega$ como na proposição acima.
+\end{definition}
+
+\begin{proposition}
+    Existe uma única função $\exp: \omega\times \omega\to \omega$ tal que:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\exp(m, 0)=1$ para todo $m \in \omega$;
+        \item $\exp(m, n+1)=(\exp(m, n))\cdot m$ para todo $m, n \in \omega$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Para a existência, considere $G:\omega\times \omega^{<\omega}\to \omega$ dada por
+    \[G(m, t)=\begin{cases}
+        1 & \text{se } \dom t = 0\\
+        t(n)\cdot m & \text{se } \exists n \,\dom t = n+1.
+    \end{cases}
+    \]
+
+    Pelo Teorema da Recursão, existe uma única função $f:\omega\times \omega\to \omega$ tal que, para todo $m, n \in \omega$, $f_m(n)=G(m, f_m\restriction n)$.
+
+    Temos que $f(m, 0)=f_m(0)=G(m, \emptyset)=1$, e, para todo $n \in \omega$, $f(m, n+1)=f_m(n+1)=G(m, f_m\restriction (n+1))=f(m, n)\cdot m$, o que completa a existência.
+
+    Para a unicidade, fixe uma outra função $h:\omega\times \omega\to \omega$ como no enunciado.
+    Devemos mostrar que $f=h$.
+    Para isso, basta mostrar que para todo $m, n \in \omega$, $f(m, n)=h(m, n)$.
+    Para isso, fixamos $m$ e procede-se por indução em $n$.
+    Para $n=0$, $f(m, 0)=1=h(m, 0)$.
+    Suponha que $n\in \omega$ e que $f(m, n)=h(m, n)$.
+    Assim, $f(m, n+1)=f(m, n)\cdot m=h(m, n)\cdot m=h(m, n+1)$, o que completa a indução.
+\end{proof}
+
+\begin{definition}
+    A \emph{potenciação} é a única função $\exp: \omega\times \omega\to \omega$ como na proposição acima.
+    Denotamos $\exp(m, n)$ por $m^n$.
+\end{definition}
+
+\section*{Exercícios}
+
+\begin{exercise}
+    Prove que, para todo $m, n, p, k \in \omega$, valem as seguintes propriedades.
+    \begin{enumerate}[label=(\roman*)]
+        \item $p+(m+n)=(p+m)+n$ (propriedade associativa da adição);
+        \item $m+0=0+m=m$ (identidade aditiva);
+        \item $m+1=1+m=S(m)$;
+        \item $m+n=n+m$ (propriedade comutativa da adição);
+        \item $m<n\rightarrow p+m<p+n$ (propriedade monotônica da adição);
+        \item $m+n=p+n\rightarrow m=p$ (lei cancelativa da adição);
+        \item $k+m\leq n\rightarrow n-(k+m)=(n-k)-m$;
+        \item $n-n=0$;
+        \item $k\leq n\rightarrow (m+n)-k=(m+(n-k))$;
+        \item $p<m<n\rightarrow m-p<n-p$;
+        \item $p(m+n)=pm+pn$ (propriedade distributiva da multiplicação);
+        \item $(p+m)n=pn+mn$ (propriedade distributiva da multiplicação);
+        \item $m\leq n \leftrightarrow \exists k\in \omega\, (n=m+k)$;
+        \item $0m=m0=0$ (anulação da multiplicação);
+        \item $1m=m1=m$ (identidade multiplicativa);
+        \item $(pm)n=p(mn)$ (propriedade associativa da multiplicação);
+        \item $mn=nm$ (propriedade comutativa da multiplicação);
+        \item $p<m \land n\neq 0 \rightarrow pn<mn$ (propriedade monotônica da multiplicação);
+        \item $pm=pn \land p\neq 0 \rightarrow m=n$ (lei cancelativa da multiplicação);
+        \item $mn=0 \rightarrow m=0 \vee n=0$;
+        \item $0<m\leq n \rightarrow \exists!(d, r)\in \omega\times \omega\, (n=md+r \land r<m)$ (divisão com resto);
+        \item $m^0=1$;
+        \item $n\neq 0 \rightarrow m^{n+1}=m^nm$;
+        \item $p^{m+n}=p^mp^n$;
+        \item $p^{mn}=(p^m)^n$;
+        \item $(mp)^n=m^np^n$;
+        \item $1^n=1$;
+        \item $n>0 \rightarrow 0^n=0$;
+        \item $p>1 \land m<n \rightarrow p^m<p^n$ (propriedade monotônica da potenciação);
+        \item $n\geq 1 \land m<p \rightarrow m^n<p^n$ (propriedade monotônica da potenciação).
+    \end{enumerate}
+\end{exercise}
