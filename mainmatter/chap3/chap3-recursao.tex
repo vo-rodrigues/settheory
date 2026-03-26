@@ -73,3 +73,83 @@ G(p, t) =
 \end{cases}
 \end{align*}
 
+Na prática, como calcular $F_p(n)$?
+Ora, a priori, deve-se calcular toda a sequência $F_p(0), F_p(1), \dots, F_p(n-1)$, de forma iterada, até chegar em $F_p(n)$.
+Iniciamos sem conhecimento de nenhum elemento, ou seja, temos a sequência vazia $t_0=\emptyset$.
+Calcula-se $F_p(0)=G(p, t_0)=p(0)$, e, assim, $t_1=(F_p(0))$.
+Calcula-se $F_p(1)=G(p, t_1)=p(1)$, e, assim, $t_2=(F_p(0), F_p(1))$.
+Calcula-se $F_p(2)=G(p, t_2)=t_2(1)+t_2(0)=F_p(1)+F_p(0)$, e, assim, $t_3=(F_p(0), F_p(1), F_p(2))$.
+Procedendo-se dessa forma, chega-se a $F_p(n)=G(p, t_n)$, onde $t_n=(F_p(k): k<n)$.
+Tal raciocínio é formalizado na prova do Teorema da Recursão, enunciado abaixo.
+
+Antes, introduziremos uma notação.
+
+\begin{definition}
+    Sejam $A, B, C$ conjuntos.
+    Dada $f: A\times B\to C$ e $a\in A$, definimos $f_a: B\to C$ por $f_a(b)=f(a, b)$.
+
+    Reciprocamente, dada uma família de funções $f_a: B\to C$ indexada por $a\in A$, definimos $f: A\times B\to C$ por $f(a, b)=f_a(b)$.
+\end{definition}
+
+\begin{theorem}[Teorema da Recursão]\label{thm:recursion}
+    Sejam $A, P$ conjuntos e $G: P\times A^{<\omega}\to A$ uma função.
+    Então, para cada $p\in P$, existe uma função $f:P\times \omega\to A$ tal que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$.
+\end{theorem}
+
+\begin{proof}
+    Dado $p \in P$ e $n \in \omega$, define-se que $t \in \omega^{<\omega}$ é uma \emph{computação parcial baseada em $G$ e $p$ de comprimento $n$} se, e somente se, $t\in A^n$ e, para todo $k<n$, $t(k)=G(p, t\restriction k)$.
+    
+    \begin{claim}
+        Se $p \in P$ e $t$ e $t'$ são computações parciais baseadas em $G$ e $p$ de comprimento $n$, $n'$ respectivamente, então $t$ e $t'$ são compatíveis.
+    \end{claim}
+    \begin{proof}[Prova da afirmação]
+        Sem perda de generalidade, suponha que $n\leq n'$.
+        Assim, $\dom t\cap \dom t'=\dom t=n$.
+        Devemos ver que para todo $k<n$, $t(k)=t'(k)$.
+
+        Suponha que não.
+        Seja $m$ o menor número natural tal que $m<k$ e $t(m)\neq t'(m)$.
+        Assim, $t\restriction m=t'\restriction m$.
+        Logo, $t(m)=G(p, t\restriction m)=G(p, t'\restriction m)=t'(m)$, o que é uma contradição.
+    \end{proof}
+    \begin{claim}
+        Para todo $p \in  P$ e $n \in \omega$, existe uma computação parcial baseada em $G$ e $p$ de comprimento $n$.
+    \end{claim}
+    \begin{proof}[Prova da afirmação]
+        Procede-se por indução em $n$.
+        Para $n=0$, a sequência vazia é uma computação parcial baseada em $G$ e $p$ de comprimento $0$.
+
+        Suponha que $n\in \omega$ e que existe uma computação parcial baseada em $G$ e $p$ de comprimento $n$.
+        Seja $t$ tal computação.
+        Assim, $t\in A^n$ e, para todo $k<n$, $t(k)=G(p, t\restriction k)$.
+        Defina-se $t'=t\cup \{(n, G(p, t))\}$.
+        Assim, $t'\in A^{n+1}$ e, para todo $k<n+1$, temos que:
+        \begin{itemize}
+            \item se $k<n$, então $t'(k)=t(k)=G(p, t\restriction k)=G(p, t'\restriction k)$;
+            \item se $k=n$, então $t'(k)=G(p, t)=G(p, t'\restriction k)$.
+        \end{itemize}
+        Logo, $t'$ é uma computação parcial baseada em $G$ e $p$ de comprimento $n+1$, o que completa a indução.
+    \end{proof}
+
+    Dado $p \in P$ e $n \in \omega$, seja $\mathcal f_p=\bigcup\{t: t \text{ é uma computação parcial baseada em } G \text{ e } p\}$.
+
+    Formalmente, acima estamos definindo $h:P\rightarrow [\omega\times A]^{<\omega}$ por
+    \[h(p)=\{t \in [\omega\times A]^{<\omega}: t \text{ é uma computação parcial baseada em } G \text{ e } p\},
+    \]
+    o que é possível pelo Esquema da Compreensão.
+
+    Para cada $p \in P$, $f_p$ é uma função, pois é uma união de funções compatíveis.
+    Além disso, $\dom f_p = \bigcup\{\dom t: t \text{ é uma computação parcial baseada em } G \text{ e } p\}=\omega$, pois, para cada $n\in \omega$, existe uma computação parcial baseada em $G$ e $p$ de comprimento $n$.
+
+    Dessa forma, para cada $p \in P$ e $f_p: \omega\to A$.
+    Seja $f:P\times \omega\to A$ dada por $f(p, n)=f_p(n)$.
+    Dado $p \in P$ e $n \in \omega$, seja $t$ uma computação parcial baseada em $G$ e $p$ de comprimento $S(N)$.
+    Temos que $t\subseteq f_p$, e, portanto, $t\restriction n\subseteq f_p\restriction n$.
+    Assim, $f_p(n)=t(n)=G(p, t\restriction n)=G(p, f_p\restriction n)$, o que completa a prova da existência.
+
+    Para a unicidade, veremos que $f:P\times \omega\to A$ e $g:P\times \omega\to A$ são tais que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$ e $g_p(n)=G(p, g_p\restriction n)$, então $f=g$.
+
+    Fixado $p$, veremos por indução forte que para todo $n\in \omega$, $f_p(n)=g_p(n)$.
+    Provada a tese para todo $k<n$, temos que $f_p\restriction n=g_p\restriction n$.
+    Assim, $f_p(n)=G(p, f_p\restriction n)=G(p, g_p\restriction n)=g_p(n)$, o que completa a indução.
+\end{proof}
