@@ -12,6 +12,8 @@ A construção dos números naturais apresentada implica as seguintes propriedad
     Então $S(n)=n\cup\{n\}\subseteq \omega$, o que completa a indução.
 \end{proof}
 
+Em particular, para cada $n\in\omega$, os elementos de $n$ são exatamente os números naturais estritamente menores do que $n$.
+
 \begin{corollary}
     Para quaisquer $m, n \in \omega$, $m\leq n$ se, e somente se, $m\subseteq n$.
 \end{corollary}
@@ -47,8 +49,8 @@ Em linguagem moderna, eles dizem que $\mathbb N$ é um conjunto munido de uma fu
     \item se $A\subseteq \mathbb N$ é tal que $0\in A$ e para todo $n \in A$, $S(n)\in A$, então $A=\mathbb N$.
 \end{enumerate}
 
-A nossa construção satisfaz os axiomas (1) e (2) pelo fato de $\omega$ ser indutivo, e satisfaz o axioma (3) pelo fato de $0$ ser o conjunto vazio, e verificamos também o axioma (5).
-Abaixo, verificamos o axioma (4).
+A nossa construção satisfaz os axiomas (1) e (2) porque $\omega$ é indutivo, satisfaz o axioma (3) porque $0=\emptyset$, e satisfaz o axioma (5) pela propriedade de indução já estabelecida para $\omega$.
+Resta verificar o axioma (4).
 
 \begin{proposition}
     Para quaisquer $n, m \in \omega$, se $S(n) = S(m)$, então $n = m$.
@@ -62,5 +64,5 @@ Abaixo, verificamos o axioma (4).
 Com isso, a construção de $\omega$ apresentada satisfaz os Axiomas de Peano, e, portanto, pode ser vista como uma legítima construção dos números naturais dentro da Teoria dos Conjuntos.
 
 Porém, ressaltamos que a noção elementar de número precede a própria Teoria dos Conjuntos: conforme discutido no Capítulo~1, precisamos dela para descrever a própria linguagem de primeira ordem.
-Assim, afirmações como $1\in 2$ não devem necessariamente ser vistas como uma afirmação ontológica sobre a natureza última dos números.
-Uma postura mais defensável é que tal construção é uma internalização da noção de número natural interna à Teoria dos Conjuntos que captura propriedades fundamentais da noção primitiva de número.
+Assim, afirmações como $1\in 2$ não devem ser necessariamente interpretadas como teses ontológicas sobre a natureza última dos números.
+Uma postura mais defensável é que tal construção é uma internalização, na Teoria dos Conjuntos, da noção de número natural que captura propriedades fundamentais da noção primitiva de número.
