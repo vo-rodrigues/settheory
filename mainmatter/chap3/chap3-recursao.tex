@@ -93,11 +93,11 @@ Antes, introduziremos uma notação.
 
 \begin{theorem}[Teorema da Recursão]\label{thm:recursion}
     Sejam $A, P$ conjuntos e $G: P\times A^{<\omega}\to A$ uma função.
-    Então, para cada $p\in P$, existe uma função $f:P\times \omega\to A$ tal que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$.
+    Então existe uma única função $f:P\times \omega\to A$ tal que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$.
 \end{theorem}
 
 \begin{proof}
-    Dado $p \in P$ e $n \in \omega$, define-se que $t \in \omega^{<\omega}$ é uma \emph{computação parcial baseada em $G$ e $p$ de comprimento $n$} se, e somente se, $t\in A^n$ e, para todo $k<n$, $t(k)=G(p, t\restriction k)$.
+    Dado $p \in P$ e $n \in \omega$, define-se que $t \in A^{<\omega}$ é uma \emph{computação parcial baseada em $G$ e $p$ de comprimento $n$} se, e somente se, $t\in A^n$ e, para todo $k<n$, $t(k)=G(p, t\restriction k)$.
     
     \begin{claim}
         Se $p \in P$ e $t$ e $t'$ são computações parciais baseadas em $G$ e $p$ de comprimento $n$, $n'$ respectivamente, então $t$ e $t'$ são compatíveis.
@@ -108,7 +108,7 @@ Antes, introduziremos uma notação.
         Devemos ver que para todo $k<n$, $t(k)=t'(k)$.
 
         Suponha que não.
-        Seja $m$ o menor número natural tal que $m<k$ e $t(m)\neq t'(m)$.
+        Seja $m$ o menor número natural tal que $m<n$ e $t(m)\neq t'(m)$.
         Assim, $t\restriction m=t'\restriction m$.
         Logo, $t(m)=G(p, t\restriction m)=G(p, t'\restriction m)=t'(m)$, o que é uma contradição.
     \end{proof}
