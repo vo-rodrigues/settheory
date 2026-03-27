@@ -1,0 +1,27 @@
+\section{Equipotência}
+
+No início do Capítulo~3, introduzimos a noção de \emph{equipotência} $\approx$ (definição \ref{def:equipotencia}) como forma de iniciar a discussão sobre números naturais.
+Vimos ainda que tal relação constitui uma relação de equivalência no universo dos conjuntos (Proposição \ref{prop:equipotencia-equivalencia}).
+
+Nesta seção, estudaremos com mais profundidade aquela noção.
+
+\begin{definition}\label{def:menorIgual}
+    Dizemos que a cardinalidade de um conjunto $A$ é menor ou igual à cardinalidade de um conjunto $B$ (escrevemos $A\preceq B$ --- teremos uma notação mais usual no futuro) se existe uma função injetora de $A$ em $B$.
+
+    Dizemos que a cardinalidade de um conjunto $A$ é menor do que a cardinalidade de um conjunto $B$ (escrevemos $A\prec B$) se $A\preceq B$ e $A\not\approx B$.
+\end{definition}
+
+O lema abaixo, cuja demonstração é deixada como exercício ao leitor, diz que $\preceq$ é uma pré-ordem no universo dos conjuntos.
+
+\begin{lemma}\label{lem:pre-ordem}
+    Para quaisquer conjuntos $A$, $B$ e $C$, temos:
+    \begin{enumerate}[label=(\roman*)]
+        \item $A\preceq A$;
+        \item se $A\preceq B$ e $B\preceq C$, então $A\preceq C$;
+        \item se $A\prec B$, então $B\not\prec A$.
+    \end{enumerate}
+\end{lemma}
+\subsection*{Exercícios}
+\begin{exercise}
+    Prove o Lema \ref{lem:pre-ordem}.
+\end{exercise}
