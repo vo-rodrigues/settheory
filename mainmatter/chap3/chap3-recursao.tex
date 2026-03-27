@@ -131,9 +131,9 @@ Antes, introduziremos uma notação.
         Logo, $t'$ é uma computação parcial baseada em $G$ e $p$ de comprimento $n+1$, o que completa a indução.
     \end{proof}
 
-    Dado $p \in P$ e $n \in \omega$, seja $f_p=\bigcup\{t: t \text{ é uma computação parcial baseada em } G \text{ e } p\}$.
+    Dado $p \in P$, seja $f_p=\bigcup\{t: t \text{ é uma computação parcial baseada em } G \text{ e } p\}$.
 
-    Formalmente, acima estamos definindo $h:P\to\mathcal P([\omega\times A]^{<\omega})$ por
+    Formalmente, acima estamos definindo $h:P\to\mathcal P(\omega\times A)$ por
     \[h(p)=\bigcup \{t \in [\omega\times A]^{<\omega}: t \text{ é uma computação parcial baseada em } G \text{ e } p\},
     \]
     o que é possível pelo Esquema da Compreensão, e escrevendo $f_p=h(p)$.
@@ -141,7 +141,7 @@ Antes, introduziremos uma notação.
     Para cada $p \in P$, $f_p$ é uma função, pois é uma união de funções compatíveis.
     Além disso, $\dom f_p = \bigcup\{\dom t: t \text{ é uma computação parcial baseada em } G \text{ e } p\}=\omega$, pois, para cada $n\in \omega$, existe uma computação parcial baseada em $G$ e $p$ de comprimento $n$.
 
-    Dessa forma, para cada $p \in P$ e $f_p: \omega\to A$.
+    Dessa forma, para cada $p \in P$, obtemos uma função $f_p: \omega\to A$.
     Seja $f:P\times \omega\to A$ dada por $f(p, n)=f_p(n)$.
     Dado $p \in P$ e $n \in \omega$, seja $t$ uma computação parcial baseada em $G$ e $p$ de comprimento $S(n)$.
     Temos que $t\subseteq f_p$, e, portanto, $t\restriction n= f_p\restriction n$.

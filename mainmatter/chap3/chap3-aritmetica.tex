@@ -186,3 +186,32 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
         \item $n\geq 1 \land m<p \rightarrow m^n<p^n$ (propriedade monotônica da potenciação).
     \end{enumerate}
 \end{exercise}
+
+\begin{exercise}
+    Justifique formalmente, que a sequência de Fibonacci está bem definida.
+    Ou seja, que existe uma única função $f:\omega\to \omega$ tal que:
+    \[
+        f(n)=\begin{cases}
+            0 & \text{se } n=0\\
+            1 & \text{se } n=1\\
+            f(n-1)+f(n-2) & \text{se } n\geq 2
+        \end{cases}
+    \] 
+\end{exercise}
+
+\begin{exercise}
+    Justifique formalmente que existe uma única função $f:\omega\to\omega$ tal que
+    \[
+        f(n)=\begin{cases}
+            0 & \text{se } n=0\\
+            (n+1)n! & \text{se } n \in \omega
+        \end{cases}
+    \]
+    para todo $n\in\omega$.
+\end{exercise}
+
+\begin{exercise}
+    Seja $(N, <)$ uma boa ordem não vazia, sem máximo, tal que todo subconjunto de $N$ limitado superiormente possui um máximo.
+
+    Mostre que existe um isomorfismo de ordens entre $(\omega, <)$ e $(N, <)$, construindo-o recursivamente e explicitando a função de construção $G$ utilizada no Teorema da Recursão.
+\end{exercise}
