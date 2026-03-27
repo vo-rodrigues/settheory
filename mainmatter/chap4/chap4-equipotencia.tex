@@ -20,6 +20,19 @@ O lema abaixo, cuja demonstração é deixada como exercício ao leitor, diz que
         \item se $A\preceq B$ e $B\preceq C$, então $A\preceq C$;
     \end{enumerate}
 \end{lemma}
+
+Toda pré-ordem induz naturalmente uma relação de equivalência (ver item (a) do Exercício \ref{ex:preOrdemIsomorfismo}).
+Conforme discutido no Lema~\ref{lem:naoExisteConjuntoDeSingletos}, pode não ser possível falar de classes de equivalência quando a relação de equivalência em questão é introduzida para todos os conjuntos via definição, como é o caso da equipotência.
+Porém, nada nos impede de definirmos globalmente uma relação de equivalência global.
+
+O Teorema de Cantor-Bernstein diz que a relação de equivalência induzida por $\preceq$ é exatamente a equipotência.
+
+Para prová-lo com facilidade, utilizaremos o seguinte lema.
+
+\begin{lemma}
+    Sejam $A, B, A_1$ conjuntos tais que $A_1\subseteq B\subseteq A$.
+    Se $A\preceq A_1$, então $A\approx B$.    
+\end{lemma}
 \subsection*{Exercícios}
 \begin{exercise}
     Prove o Lema \ref{lem:pre-ordem}.
