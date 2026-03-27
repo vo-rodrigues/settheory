@@ -8,3 +8,4 @@ Russell
 Zermelo
 Kuratowski
 asseração
+equipotência
