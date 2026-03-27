@@ -496,10 +496,21 @@ A noção adequada para isso é a de compatibilidade entre funções.
 \begin{lemma}
     Seja $\mathcal R$ uma coleção de relações.
     Prove as seguintes afirmações.
-    \begin{enumerate}
+    \begin{enumerate}[label=(\alph*)]
         \item $\bigcup \mathcal R$ é uma relação;
         \item $\dom(\bigcup \mathcal R) = \bigcup\{\dom R : R \in \mathcal R\}$;
         \item $\ran(\bigcup \mathcal R) = \bigcup\{\ran R : R \in \mathcal R\}$.
     \end{enumerate}
     Nota: é necessário mostrar que $\{\dom R : R \in \mathcal R\}$ e $\{\ran R : R \in \mathcal R\}$ estão ``bem definidos''.
+\end{lemma}
+
+\begin{lemma}
+    Sejam $f:A\rightarrow B$ e $B\rightarrow C$ funções.
+    Mostre que:
+    \begin{enumerate}[label=(\alph*)]
+        \item $g\circ f: A\to C$ é uma função;
+        \item se $f$ e $g$ são injetoras, então $g\circ f$ é injetora;
+        \item se $f$ e $g$ são sobrejetoras em $B, C$, então $g\circ f$ é sobrejetora em $C$;
+        \item se $f$ e $g$ são bijeções entre $A, B$ e $B, C$, então $g\circ f$ é uma bijeção entre $A$ e $C$.
+    \end{enumerate}
 \end{lemma}
