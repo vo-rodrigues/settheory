@@ -9,3 +9,5 @@ Zermelo
 Kuratowski
 asseração
 equipotência
+antissimetria
+equipotente
