@@ -88,35 +88,140 @@ Novamente, como $\alpha$ é transitivo, $\delta \in \alpha$.
 Assim, $\delta<\gamma<\beta$ em $\alpha$, e, portanto, $\delta <\beta$, ou seja, $\delta \in \beta$.
 \end{proof}
 
-Outros exemplos de ordinais podem ser construídos a partir de sucessores.
+A relação $\in$ é, em verdade, uma boa ordem na classe dos ordinais.
+
+Precisaremos de alguns lemas.
 
 \begin{lemma}
-    Se $\alpha$ é um ordinal, então $\alpha \notin \alpha$.
-
-    Ademais, não existe $\beta \in \alpha$ tal que $\alpha \in \beta$.
+    Seja $A$ um conjunto não vazio de ordinais.
+    Então $\bigcap A$ é um ordinal.
 \end{lemma}
 \begin{proof}
-    Se $\alpha\in \alpha$, então $\exists x \in \alpha(x \in x)$, o que é impossível, pois $\in$ é irreflexivo em $\alpha$.
+    Seja $\alpha\subseteq A$ qualquer.
+    Então $\bigcap A\subseteq \alpha$, logo, $\bigcap A$ é um conjunto bem-ordenado por $\in$.
 
-    Ademais, não existe $\beta \in \alpha$ tal que $\alpha \in \beta$, pois, se existisse, $\alpha \in \alpha$, pois $\alpha$ é transitivo.
+    Resta ver que $\bigcap A$ é transitivo.
+    Seja $\beta \in \bigcap A$ e $\gamma \in \beta$.
+    Para todo $\xi \in A$, $\beta \in \xi$, logo, $\gamma \in \xi$ (pois $\xi$ é transitivo).
+    Assim, $\gamma \in \bigcap A$.
+\end{proof}
+
+Dados $\alpha, \beta$ ordinais, pela nossa convenção de escrita, temos que $\alpha<\beta$ se, e somente se $\alpha\in \beta$.
+
+O seguinte lema nos dá uma equivalência para $\leq$.
+\begin{lemma}
+    Sejam $\alpha, \beta$ ordinais.
+    Então $\alpha\subseteq \beta$ se, e somente se $(\alpha=\beta \land \alpha\in \beta)$.
+\end{lemma}
+\begin{proof}
+    Se $\alpha=\beta$, é imediato que $\alpha\subseteq \beta$.
+    Se $\alpha\in \beta$, então $\alpha\subseteq \beta$, pois $\beta$ é transitivo.
+
+    Reciprocamente, suponha que $\alpha\subseteq \beta$.
+    Suponha ainda que $\alpha\neq \beta$.
+    Veremos que $\alpha\in \beta$.
+
+    Seja $X=\beta\setminus \alpha$ e $\delta=\min X$.
+    Veremos que $\delta=\alpha$, o que completa a prova uma vez que $\delta\in \beta$.
+
+    Ora, temos que se $\xi<\delta$, então $\xi\notin X$.
+    Como $\xi\in \beta$, então $\xi\in \alpha$.
+    Isso nos mostra que $\delta\subseteq \alpha$.
+
+    Suponha por absurdo que existe $\gamma \in \alpha\setminus \delta$.
+    Então $\gamma, \delta \in \beta$ (pois $\beta$ é transitivo), logo $\gamma$ e $\delta$ são comparáveis.
+    
+    Como $\gamma\notin \delta$, temos que $\delta\in \gamma$ ou $\delta=\gamma$.
+    $\delta=\gamma$ é impossível, pois $\delta\notin \alpha$ e $\gamma\in \alpha$.
+    Por outro lado, $\delta \in \gamma$ é impossível, pois teríamos $\delta\in \gamma \in \alpha$, e, portanto, $\delta\in \alpha$, o que é absurdo.
+
+    Assim, $\alpha\subseteq \delta$, e, portanto, $\alpha=\delta$.
+\end{proof}
+\begin{proposition}
+    Sejam $\alpha, \beta, \gamma$ ordinais.
+    Então:
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $\alpha\notin \alpha$;
+        \item se $\alpha\in \beta$ e $\beta\in \gamma$, então $\alpha\in \gamma$;
+        \item $\alpha\in \beta$ ou $\alpha=\beta$ ou $\beta\in \alpha$.
+        \item Todo conjunto não vazio de ordinais tem um elemento mínimo.
+        Ainda mais, se $X$ é um conjunto não vazio de ordinais, $\bigcap X=\min X$.
+    \end{enumerate}        
+\end{proposition}
+\begin{proof}
+    (a) Se $\alpha\in \alpha$, então $\exists x \in \alpha(x \in x)$, o que é impossível, pois $\in$ é irreflexivo em $\alpha$.
+
+    (b) Suponha que $\alpha\in \beta$ e $\beta\in \gamma$.
+    Como $\gamma$ é transitivo, $\beta\subseteq \gamma$, logo, $\alpha\in \gamma$.
+
+    (c) Sejam dados $\alpha, \beta$ ordinais.
+    Temos que $\gamma=\alpha\cap \beta$ é um ordinal, e $\gamma\subseteq \alpha$ e $\gamma\subseteq \beta$.
+
+    Se $\gamma=\alpha$, temos que $\alpha\subseteq \beta$, logo, $\alpha=\beta$ ou $\alpha\in \beta$.
+
+    Se $\gamma=\beta$, temos que $\beta\subseteq \alpha$, logo, $\alpha=\beta$ ou $\beta\in \alpha$.
+
+    Se $\gamma\subsetneq \alpha$ e $\gamma\subsetneq \beta$, então $\gamma\in \alpha$ e $\gamma\in \beta$, logo, $\gamma\in \alpha\cap \beta=\gamma$, o que é absurdo.
+
+    (d) Seja $X$ um conjunto não vazio de ordinais e $\alpha=\bigcap X$.
+    Para todo $\beta\in X$, $\alpha\subseteq \beta$, logo, $\alpha\leq \beta$ para todo $\beta\in X$.
+    Resta ver que $\alpha \in X$.
+    Ora, para todo $\delta \in X$, temos que $\alpha\subseteq \delta$.
+    Se $\alpha\notin X$, então $\alpha\in \delta$ para todo $\delta \in X$, logo, $\alpha\in \bigcap X=\alpha$, o que é absurdo.
+\end{proof}
+
+\begin{corollary}
+Todo conjunto de ordinais é bem-ordenado por $\in$.
+Assim, um conjunto de ordinais transitivo é um ordinal.
+\end{corollary}
+\begin{corollary}
+Não existe $X$ tal que $\forall \alpha(\alpha \text{ é ordinal} \rightarrow \alpha\in X)$.
+\end{corollary}
+\begin{proof}
+    Se existisse, seja $O=\{\alpha \in X: \alpha \text{ é ordinal}\}$.
+    Então $O$ é o conjunto de todos os ordinais, e, portanto, é bem-ordenado por $\in$.
+    Como todo elemento de um ordinal é um ordinal, $O$ é transitivo, logo, $O$ é um ordinal.
+    Assim, $O\in O$, o que é absurdo.
 \end{proof}
 \begin{lemma}
     Para todo ordinal $\alpha$, então $S(\alpha)=\alpha\cup\{\alpha\}$ é um ordinal.
 \end{lemma}
+
+\begin{proposition}
+    Seja $\alpha$ um ordinal.
+    Então $S(\alpha)$ é um ordinal.
+    Mais especificamente, $S(\alpha)$ é o menor ordinal $\beta$ tal que $\alpha<\beta$.
+\end{proposition}
 \begin{proof}
-    $\in$ é irreflexivo em $S(\alpha)$, pois $\alpha\notin \alpha$ e, para todo $\beta \in \alpha$, $\beta\notin \beta$.
+    $S(\alpha)$ é um conjunto de ordinais, então basta ver que ele é transitivo.
+    Se $\beta \in S(\alpha)$, então $\beta\in \alpha$ ou $\beta=\alpha$.
+    Em qualquer caso, $\beta\subseteq \alpha\subseteq S(\alpha)$.
+    Assim, $S(\alpha)$ é um ordinal.
 
-    $\in$ é transitivo em $\alpha$: se $\delta\in \gamma\in \beta$ com $\beta, \gamma, \delta\in S(\alpha)$, então $\delta\in \beta$.
-    Pelo lema anterior, não podemos ter $\delta=\alpha$, nem $\gamma=\alpha$.
-    Assim, $\delta, \gamma \in \alpha$.
-    Se $\beta=\alpha$, então $\delta\in \beta$ trivialmente.
-    Se $\beta\in \alpha$, então $\delta\in \beta$ pois $\in$ é uma relação transitiva em $\alpha$.
-
-    Vejamos que todo conjunto não vazio $B\subseteq S(\alpha)$ tem um elemento mínimo.
-    Se $B=\{\alpha\}$, temos que $\alpha$ é o elemento mínimo de $B$.
-    Se não, $B\cap \alpha\neq \emptyset$ e $B\subseteq \alpha$, e, portanto, possui elemento mínimo $\beta$.
-    Temos que $\beta\leq \gamma$ para todo $\beta\in B\cap \alpha$.
-    Além disso, $\beta \in \alpha$, logo, $\beta=\min B$.
-
-    Por fim, $S(\alpha)$ é totalmente ordenado por $\in$, pois, se $\beta, \gamma \in S(\alpha)$, então $\{\beta, \gamma\}$ tem mínimo.
+    Obviamente, $\alpha \in S(\alpha)$.
+    Finalmente, se $\gamma<S(\alpha)$ é um ordinal, então $\gamma\leq \alpha$, assim, não existe $\gamma$ tal que $\alpha<\gamma<S(\alpha)$.
 \end{proof}
+
+A classe de todos os ordinais é denotada por $\ON$.
+Formalmente, $\ON$ não é uma relação unária, e escrevemos $\alpha \in \ON$ como uma outra forma de escrever $\ON(\alpha)$, que se traduz como ``$\alpha$ é um ordinal''.
+
+
+\begin{lemma}
+    Seja $X$ um conjunto de ordinais.
+    Então $\bigcup X$ é um ordinal.
+    Além disso, $\bigcup X$ é o supremo de $X$ em $\ON$, ou seja, o menor ordinal $\alpha$ tal que $\beta\leq \alpha$ para todo $\beta\in X$.
+\end{lemma}
+\begin{proof}
+    Como $X$ é um conjunto de ordinais, e todo elemento de um ordinal é um ordinal, segue que $\bigcup X$ é um conjunto de ordinais.
+    Temos que $\bigcup X$ é transitivo, pois se $\alpha \in \bigcup X$, então $\alpha\in \beta$ para algum $\beta\in X$, e, portanto, $\alpha\subseteq \beta\subseteq \bigcup X$.
+
+    Assim, $\bigcup X$ é um ordinal e, para todo $\alpha \in X$, $\alpha\subseteq \bigcup X$, ou seja, $\alpha\leq \bigcup X$.
+
+    Finalmente, se $\beta<\bigcup X$, temos que existe $\alpha \in X$ tal que $\beta\in \alpha$, logo, $\bigcup X$ é a menor cota superior de $X$.
+\end{proof}
+
+\subsection*{Exercícios}
+\begin{exercise}
+    Prove que a interseção de uma coleção não vazia de conjuntos transitivos é um conjunto transitivo.
+\end{exercise}
