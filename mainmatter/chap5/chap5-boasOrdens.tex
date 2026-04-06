@@ -94,13 +94,14 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
 \begin{theorem}
     Sejam $A$ e $B$ boas ordens.
     Então uma, e somente uma das seguintes alternativas é verdadeira:
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $A$ é isomorfo à $B$;
+        \item $A$ é isomorfo a um segmento inicial próprio de $B$;
+        \item $B$ é isomorfo a um segmento inicial próprio de $A$.
+    \end{enumerate} 
+    Em qualquer caso, o isomorfismo é único.
 \end{theorem}
-\begin{enumerate}[label=(\alph*)]
-    \item $A$ é isomorfo à $B$;
-    \item $A$ é isomorfo a um segmento inicial próprio de $B$;
-    \item $B$ é isomorfo a um segmento inicial próprio de $A$.
-\end{enumerate} 
-Em qualquer caso, o isomorfismo é único.
 \begin{proof}
     A unicidade do isomorfismo decorre do corolário anterior.
     Iniciaremos mostrando que somente uma alternativa é possível.
@@ -122,8 +123,14 @@ Em qualquer caso, o isomorfismo é único.
     $f$ é uma função: se $(a, b), (a, b')\in f$, então $B[b]$ e $B[b']$ são isomorfos.
     Como um deles é um segmento inicial do outro, eles são iguais, e, portanto, $b=b'$.
 
-    $f$ é crescente: se $a<a'$ estão em $\dom f$, então existe um isomorfismo $g: A[a']\to B[f(a')]$.
-    Temos que $g|A[a]: A[a]\to B[g(a)]$ é um isomorfismo, e, assim, $f(a)=g(a)<g(a')=f(a')$.
+    $f$ é crescente: se $a<a'$ estão em $\dom f$, então existe um isomorfismo
+    $g: A[a']\to B[f(a')]$.
+    Como $a<a'$, temos $a\in A[a']$, logo $g(a)$ está definido.
+    Pelo lema anterior, $g|A[a]: A[a]\to B[g(a)]$ é um isomorfismo.
+    Assim, $(a,g(a))\in f$.
+    Como $f$ é função e $(a,f(a))\in f$, segue que $f(a)=g(a)$.
+    Além disso, como $g(a)\in B[f(a')]$, temos $g(a)<f(a')$.
+    Portanto, $f(a)<f(a')$.
 
     Se $A=\dom f$ ou $B=\ran f$, então uma das três alternativas é verdadeira.
     
@@ -140,7 +147,10 @@ Em qualquer caso, o isomorfismo é único.
 \end{exercise}
 \begin{exercise}
     De forma mais geral, seja $(I, <_I)$ uma boa ordem e, para cada $i\in I$, seja $(A_i, <_{A_i})$ uma boa ordem.
-    Prove que $\bigcup_{i\in I} \{i\}\times A_i$ é uma boa ordem com a ordem lexicográfica, ou seja, com a ordem dada por $f<g$ se, e somente se $f\neq g$ e $f(i)<_{A_i} g(i)$, onde $i=\min\{j\in I : f(j)\neq g(j)\}$.
+    Prove que $\bigcup_{i\in I} \{i\}\times A_i$ é uma boa ordem com a ordem dada por
+    \[
+    (i,a)<(j,b)\iff i<_I j \text{ ou } (i=j \text{ e } a<_{A_i} b).
+    \]
 \end{exercise}
 \begin{exercise}
 Em particular, mostre que se $(A_0, <_{A_0})$ e $(A_1, <_{A_1})$ são boas ordens, então $\{0\}\times A_0\cup \{1\}\times A_1$ é uma boa ordem com a ordem lexicográfica, ou seja, com a ordem dada por $(i, a)<(j, b)$ se $i<j$, ou ($i=j$ e $a<_{A_i} b$).
