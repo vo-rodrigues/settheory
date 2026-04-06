@@ -221,7 +221,31 @@ Formalmente, $\ON$ não é uma relação unária, e escrevemos $\alpha \in \ON$ 
     Finalmente, se $\beta<\bigcup X$, temos que existe $\alpha \in X$ tal que $\beta\in \alpha$, logo, $\bigcup X$ é a menor cota superior de $X$.
 \end{proof}
 
+Nem todo ordinal é o sucessor de outro ordinal.
+Por exemplo, $\omega$ não é o sucessor de nenhum ordinal.
+
+\begin{definition}
+    Um ordinal $\beta$ é dito \emph{sucessor} se é da forma $\beta=S(\alpha)$ para algum ordinal $\alpha$.
+
+    Um \emph{ordinal limite} é um ordinal que não é $0$ nem sucessor.
+\end{definition}
+
+\begin{proposition}
+    $\omega$ é um ordinal limite.
+\end{proposition}
+\begin{proof}
+Se existisse $\alpha$ tal que $S(\alpha)=\omega$, teríamos que $\alpha\in \omega$.
+Porém, isso implica que $\omega=S(\alpha)=\omega$, um absurdo.
+Por outro lado, $\omega\neq 0$, pois $0\in \omega$ e $0\notin 0$.
+\end{proof}
+
 \subsection*{Exercícios}
 \begin{exercise}
     Prove que a interseção de uma coleção não vazia de conjuntos transitivos é um conjunto transitivo.
+\end{exercise}
+\begin{exercise}
+    Prove que a união de uma coleção de conjuntos transitivos é um conjunto transitivo.
+\end{exercise}
+\begin{exercise}
+    Prove que $\omega$ é o menor ordinal limite, ou seja, que $\omega$ é um ordinal limite e, para todo ordinal limite $\alpha$, $\omega\leq \alpha$.
 \end{exercise}
