@@ -1,0 +1,150 @@
+\section{Boas ordens}
+Nesta seção, nos aprofundaremos um pouco mais na noção de boa ordem.
+
+\begin{definition}
+Seja $(A, <)$ uma boa ordem.
+Dizemos que $S\subseteq A$ é um \emph{segmento inicial} de $A$ se, para todo $x\in S$ e todo $y\in A$, se $y<x$, então $y\in S$.
+Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
+\end{definition}
+
+\begin{lemma}
+    Seja $A$ uma boa ordem e $\phi: A\to A$ uma função crescente.
+    Então, para todo $a\in A$, $a\leq \phi(a)$.
+\end{lemma}
+\begin{proof}
+    Se não, seja $a=\min\{x\in A:\phi(x)<x\}$.
+    Como $\phi$ é crescente e $\phi(a)<a$, temos
+    \[
+        \phi(\phi(a))<\phi(a).
+    \]
+    Mas $\phi(a)<a$, de modo que, pela minimalidade de $a$, não pode valer
+    \[
+        \phi(\phi(a))<\phi(a).
+    \]
+    Contradição.
+\end{proof}
+
+\begin{lemma}
+    Seja $S$ um segmento inicial de uma boa ordem $A$ e $f:A\to S$ um isomorfismo.
+    Então $S=A$ e $f$ é a função identidade de $A$.
+\end{lemma}
+\begin{proof}
+    Pelo lema anterior, para todo $a\in A$, $a\leq f(a)$.
+    Como $f(a)\in S$ e $S$ é um segmento inicial de $A$, segue que $a\in S$.
+    Assim, $S=A$.
+
+    Pelo lema anterior novamente aplicado à $f^{-1}: A\to A$, para todo $a\in A$, $a\leq f^{-1}(a)$.
+    Aplicando $f$ em ambos os lados, temos que $f(a)\leq a$.
+    Assim, $a=f(a)$ para todo $a\in A$.
+\end{proof}
+
+\begin{corollary}
+    Sejam $A$ e $B$ boas ordens.
+    Se $A$ é isomorfo à $B$, então existe um único isomorfismo de $A$ em $B$.
+\end{corollary}
+\begin{proof}
+    Sejam $f, g: A\to B$ isomorfismos.
+    Então $g^{-1}\circ f: A\to A$ é um isomorfismo.
+    Pelo lema anterior, $g^{-1}\circ f$ é a função identidade de $A$, e, assim, $f=g$.
+\end{proof}
+
+\begin{definition}
+    Seja $A$ uma boa ordem e $a\in A$.
+    Definimos $A[a] = \{x\in A : x<a\}$.
+\end{definition}
+\begin{lemma}
+    Seja $A$ uma boa ordem e $a\in A$.
+    Então $A[a]$ é um segmento inicial próprio de $A$.
+    Reciprocamente, se $S$ é um segmento inicial próprio de $A$, então existe um único $a\in A$ tal que $S=A[a]$.
+\end{lemma}
+\begin{proof}
+    Seja $a\in A$.
+    Para todo $x\in A[a]$ e todo $y\in A$, se $y<x$, então $y\in A[a]$, logo, $A[a]$ é um segmento inicial de $A$.
+    Ele é próprio, pois $a\in A$ e $a\notin A[a]$.
+
+    Seja $S$ um segmento inicial próprio de $A$.
+    Seja $a=\min\{x\in A : x\notin S\}$.
+    Temos que $A[a]\subseteq S$ pela minimalidade de $a$.
+    Além disso, $S\subseteq A[a]$, pois, se $x\in S$ e $x\notin A[a]$, então $a<x$, o que implica que $a\in S$, um absurdo.
+\end{proof}
+
+\begin{lemma}
+    Sejam $A$ e $B$ boas ordens e $f:A\to B$ um isomorfismo.
+    Então, para todo $a\in A$, $f|A[a]: A[a]\to B[f(a)]$ é um isomorfismo.
+\end{lemma}
+\begin{proof}
+    É claro que $f|A[a]: A[a]\to B$ é uma função crescente, e, portanto, injetora.
+
+    Se $x\in A[a]$, então $x<a$, e, como $f$ é crescente, $f(x)<f(a)$, ou seja, $f(x)\in B[f(a)]$.
+    Assim, $f|A[a]: A[a]\to B[f(a)]$ é uma função crescente.
+
+    Se $y \in B[f(a)]$, então $y<f(a)$, e, como $f$ é sobrejetora, existe um único $x\in A$ tal que $f(x)=y<f(a)$.
+    Como $f$ é um isomorfismo, temos que $x<a$, ou seja, $x\in A[a]$.
+    Assim, $f|A[a]: A[a]\to B[f(a)]$ é uma função bijetora, e, portanto, um isomorfismo.
+\end{proof}
+
+\begin{lemma}\label{lem:segmentos-iniciais}
+    Seja $A$ uma boa ordem e $b<a$ elementos de $A$.
+    Então $(A[a])[b]=A[b]$.
+\end{lemma}
+\begin{proof}
+    Exercício.
+\end{proof}
+
+\begin{theorem}
+    Sejam $A$ e $B$ boas ordens.
+    Então uma, e somente uma das seguintes alternativas é verdadeira:
+\end{theorem}
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ é isomorfo à $B$;
+    \item $A$ é isomorfo a um segmento inicial próprio de $B$;
+    \item $B$ é isomorfo a um segmento inicial próprio de $A$.
+\end{enumerate} 
+Em qualquer caso, o isomorfismo é único.
+\begin{proof}
+    A unicidade do isomorfismo decorre do corolário anterior.
+    Iniciaremos mostrando que somente uma alternativa é possível.
+    Se valem (a) e (b), compondo os isomorfismos, temos que $A$ é isomorfo a um segmento inicial próprio de $A$, o que é impossível pelo segundo lema desta seção.
+    Analogamente, (a) e (c) não podem valer simultaneamente.
+
+    Se valem (b) e (c), então $A$ é isomorfo a um segmento inicial próprio de $B$, digamos, $B[b]$, e $B$ é isomorfo a um segmento inicial próprio de $A$, digamos, $A[a]$.
+    Seja $f:B\to A[a]$ um isomorfismo.
+    Então $f|B[b]: B[b]\to (A[a])[f(b)]=A[f(b)]$ é um isomorfismo, e, assim, $A$ é isomorfo a um segmento inicial próprio de $A$, o que é impossível.
+
+    Agora provaremos que um dos itens vale.
+    Seja $f=\{(a, b)\in A\times B : A[a]\text{ é isomorfo a }B[b]\}$.
+
+    $\dom f$ é um segmento inicial de $A$: se $a\in \dom f$ e $x<a$, então existe um isomorfismo $g: A[a]\to B[b]$ para algum $b\in B$.
+    Então $g|A[x]: A[x]\to B[g(x)]$ é um isomorfismo, e, assim, $x\in \dom f$.
+
+    Analogamente, $\ran f$ é um segmento inicial de $B$.
+
+    $f$ é uma função: se $(a, b), (a, b')\in f$, então $B[b]$ e $B[b']$ são isomorfos.
+    Como um deles é um segmento inicial do outro, eles são iguais, e, portanto, $b=b'$.
+
+    $f$ é crescente: se $a<a'$ estão em $\dom f$, então existe um isomorfismo $g: A[a']\to B[f(a')]$.
+    Temos que $g|A[a]: A[a]\to B[g(a)]$ é um isomorfismo, e, assim, $f(a)=g(a)<g(a')=f(a')$.
+
+    Se $A=\dom f$ ou $B=\ran f$, então uma das três alternativas é verdadeira.
+    
+    Já se $A\neq \dom f$ e $B\neq \ran f$, $\dom f=A[a]$ e $\ran f=B[b]$ para algum $a\in A$ e $b\in B$.
+    Pelo exposto acima, $f: A[a]\to B[b]$ é um isomorfismo, e, assim, $(a, b)\in f$, logo, $a \in \dom f=A[a]$, um absurdo.
+\end{proof}
+
+\subsection{Exercícios}
+\begin{exercise}
+    Prove o Lema~\ref{lem:segmentos-iniciais}.
+\end{exercise}
+\begin{exercise}
+    Prove que se $(A, <_A)$ e $(B, <_B)$ são boas ordens, então $A\times B$ é uma boa ordem com a ordem lexicográfica, ou seja, com a ordem dada por $(a, b)<(a', b')$ se $a<_A a'$, ou ($a=a'$ e $b<_B b'$).
+\end{exercise}
+\begin{exercise}
+    De forma mais geral, seja $(I, <_I)$ uma boa ordem e, para cada $i\in I$, seja $(A_i, <_{A_i})$ uma boa ordem.
+    Prove que $\bigcup_{i\in I} \{i\}\times A_i$ é uma boa ordem com a ordem lexicográfica, ou seja, com a ordem dada por $f<g$ se, e somente se $f\neq g$ e $f(i)<_{A_i} g(i)$, onde $i=\min\{j\in I : f(j)\neq g(j)\}$.
+\end{exercise}
+\begin{exercise}
+Em particular, mostre que se $(A_0, <_{A_0})$ e $(A_1, <_{A_1})$ são boas ordens, então $\{0\}\times A_0\cup \{1\}\times A_1$ é uma boa ordem com a ordem lexicográfica, ou seja, com a ordem dada por $(i, a)<(j, b)$ se $i<j$, ou ($i=j$ e $a<_{A_i} b$).
+
+Mostre ainda que se $A_0$ e $A_1$ são conjuntos disjuntos, e $B=A_0\cup A_1$, e $<_B$ é a ordem dada por $a<_B b$ se $a, b\in A_i$ e $a<_{A_i} b$, ou $a\in A_0$ e $b\in A_1$, então $(B, <_B)$ é uma boa ordem isomorfa a $\{0\}\times A_0\cup \{1\}\times A_1$.
+Mostre que $(A_0, <_{A_0})$ é um segmento inicial de $(B, <_B)$, e que este é um segmento inicial próprio se, e somente se, $A_1\neq \emptyset$.
+\end{exercise}
