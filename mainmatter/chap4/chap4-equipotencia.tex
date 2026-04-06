@@ -23,17 +23,159 @@ O lema abaixo, cuja demonstração é deixada como exercício ao leitor, diz que
 
 Toda pré-ordem induz naturalmente uma relação de equivalência (ver item (a) do Exercício \ref{ex:preOrdemIsomorfismo}).
 Conforme discutido no Lema~\ref{lem:naoExisteConjuntoDeSingletos}, pode não ser possível falar de classes de equivalência quando a relação de equivalência em questão é introduzida para todos os conjuntos via definição, como é o caso da equipotência.
-Porém, nada nos impede de definirmos globalmente uma relação de equivalência global.
+Porém, nada nos impede de definirmos globalmente uma relação de equivalência através da introdução via definição de um símbolo de relação binária.
 
-O Teorema de Cantor-Bernstein diz que a relação de equivalência induzida por $\preceq$ é exatamente a equipotência.
+O Teorema de Cantor-Schröder-Bernstein diz que a relação de equivalência induzida por $\preceq$ é exatamente a equipotência.
 
 Para prová-lo com facilidade, utilizaremos o seguinte lema.
 
-\begin{lemma}
-    Sejam $A, B, A_1$ conjuntos tais que $A_1\subseteq B\subseteq A$.
-    Se $A\preceq A_1$, então $A\approx B$.    
+\begin{lemma}\label{lem:schroder-bernstein}
+    Sejam $A, B, A'$ conjuntos tais que $A'\subseteq B\subseteq A$.
+    Se $A\approx A'$, então $A\approx B$.    
 \end{lemma}
+
+\begin{proof}
+    Seja $f: A\to A'$ uma função bijetora.
+
+    Recursivamente, defina uma sequência $(A_n)_{n\in\omega}$ de subconjuntos de $A$ por $A_0 = A$ e $A_{n+1} = f[A_n]$ para todo $n\in\omega$.
+    Analogamente, defina uma sequência $(B_n)_{n\in\omega}$ de subconjuntos de $B$ por $B_0 = B$ e $B_{n+1} = f[B_n]$ para todo $n\in\omega$.
+
+    Por indução, temos que, para todo $n\in\omega$, $A_{n+1}\subseteq B_n\subseteq A_n$.
+    De fato, para $n=0$, temos $A_1 = f[A] = A' \subseteq B = B_0 \subseteq A = A_0$.
+    Suponha que $A_{n+1}\subseteq B_n\subseteq A_n$.
+    Então, $A_{n+2} = f[A_{n+1}] \subseteq f[B_n] = B_{n+1} \subseteq f[A_n] = A_{n+1}$.
+
+    Assim, temos que $A_0\supseteq B_0 \supseteq A_1 \supseteq B_1 \supseteq A_2 \supseteq B_2 \supseteq \cdots$.
+
+    Para cada $n\in\omega$, defina $C_n = A_n\setminus B_n$.
+    Notemos que, para cada $n \in \omega$, $f[C_n]=f[A_n\setminus B_n] = f[A_n]\setminus f[B_n] = A_{n+1}\setminus B_{n+1} = C_{n+1}$, pois $f$ é injetora.
+
+    Seja $C=\bigcup_{n\in\omega} C_n$.
+    Pelo exposto acima, $f[C]\subseteq C$.
+
+    Defina $g: A\rightarrow A$ dada por:
+    \[
+        g(x) = \begin{cases}
+            f(x), & \text{se } x\in C\\
+            x, & \text{caso contrário}
+        \end{cases}
+    \]
+
+    $g[A]\subseteq B$: Fixe $x \in A$.
+    Se $x\in C$, temos que $g(x)=f(x)\in f[A]\subseteq B$.
+    Por outro lado, se $x\not\in C$, então $x\notin A\setminus B=C_0$, e, assim, $x \in B$.
+    Nesse caso, $g(x)=x\in B$.
+
+    $B\subseteq g[A]$: Fixe $y \in B$.
+    Se $y\notin C$, temos que $g(y)=y\in g[A]$.
+    Por outro lado, se $y\in C$, então $y\in C_n$ para algum $n\in\omega$.
+    Temos que $n>0$, pois $C_0=A\setminus B$ e $y\in B$.
+    Assim, existe $m$ tal que $n=m+1$.
+    Logo, $y\in C_{m+1} = f[C_m]=g[C_m]\subseteq g[A]$.
+
+    $g$ é injetora: Fixe $x,x'\in A$ tais que $g(x)=g(x')$.
+
+    Caso $1$: $x\in C$ e $x'\in C$.
+    Nesse caso, $f(x)=g(x)=g(x')=f(x')$, e, assim, $x=x'$.
+
+    Caso $2$: $x\notin C$ e $x'\notin C$.
+    Nesse caso, $x=g(x)=g(x')=x'$.
+
+    Caso $3$: $x\in C$ e $x'\notin C$.
+    Nesse caso, $f(x)=g(x)=g(x')=x'$, o que é impossível, pois $f(x)\in C$ e $x'\notin C$.
+
+    Caso $4$: $x\notin C$ e $x'\in C$.
+    Nesse caso, $x=g(x)=g(x')=f(x')$, o que é impossível, pois $x\notin C$ e $f(x')\in C$.
+
+    Assim, em todos os casos possíveis, temos que $x=x'$, e, portanto, $g$ é injetora.
+
+    Portanto, $g$ é uma função bijetora de $A$ em $B$, e, assim, $A\approx B$.
+\end{proof}
+
+\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantor-bernstein}
+    Para quaisquer conjuntos $A$ e $B$, se $A\preceq B$ e $B\preceq A$, então $A\approx B$.
+\end{theorem}
+\begin{proof}
+    Sejam $f: A\to B$ e $g: B\to A$ funções injetoras.
+    Então, $g\circ f: A\to A$ é uma função injetora.
+
+    Seja $A' = (g\circ f)[A]$.
+    Como $g\circ f:A\to A'$ é bijetora, temos $A\approx A'$, e $A'=(g\circ f)[A]=g[f[A]]\subseteq g[B]\subseteq A$.
+
+    Pelo lema anterior, $g[B]\approx A$.
+    Por outro lado, $g[B]\approx B$, e, assim, $A\approx B$ pela transitividade da equipotência.
+\end{proof}
+
+O axioma da potência nos garante que a pré-ordem $\preceq$ não possui elementos maximais.
+
+\begin{theorem}[Cantor]\label{thm:cantor}
+    Para todo conjunto $A$, $A\prec \mathcal P(A)$.
+\end{theorem}
+\begin{proof}
+    Temos que $A\preceq \mathcal P(A)$, pois a função $f:A\to \mathcal P(A)$ dada por $f(x)=\{x\}$ é injetora.
+
+    Veremos que não existe uma função sobrejetora de $A$ em $\mathcal P(A)$.
+    Portanto, $A\prec \mathcal P(A)$.
+
+
+    Seja $f:A\to \mathcal P(A)$ uma função qualquer.
+    Considere $B=\{x\in A : x\notin f(x)\}$.
+    Afirmamos que $B\notin f[A]$.
+    De fato, suponha por absurdo que $B=f(y)$ para algum $y\in A$.
+    Segue que:
+    \[
+        y\in B \Longleftrightarrow y\notin f(y) \Longleftrightarrow y\notin B,
+    \]
+    o que é uma contradição.
+    Assim, $B\notin f[A]$.
+\end{proof}
+
+
 \subsection*{Exercícios}
 \begin{exercise}
     Prove o Lema \ref{lem:pre-ordem}.
+\end{exercise}
+
+\begin{exercise}
+Seja $A$ um conjunto e $F:\mathcal P(A)\to \mathcal{P}(A)$ uma função tal que, para todos $X, Y\subseteq A$, se $X\subseteq Y$, então $F(X)\subseteq F(Y)$.
+Prove que existe um conjunto $X\subseteq A$ tal que $F(X)=X$.
+
+Sugestão: Considere $S=\{Y\subseteq A : F(Y)\subseteq Y\}$.
+\end{exercise}
+
+\begin{exercise}
+Prove o Teorema de Cantor-Schröder-Bernstein sem utilizar Axioma do Infinito.
+
+Sugestão: prove primeiro o Lema~\ref{lem:schroder-bernstein} sem fazer uso do Axioma do Infinito.
+
+Para isso, fixe $A, A', B$ conjuntos tais que $A'\subseteq B\subseteq A$ e $A\approx A'$.
+Seja $f: A\to A'$ uma função bijetora.
+Defina $F:\mathcal P(A)\to \mathcal P(A)$ dada por $F(X) = (A\setminus B) \cup f[X]$.
+Fixe $C$ tal que $F(C)=C$ e defina $g: A\to B$ bijetora análoga à da prova original do Lema~\ref{lem:schroder-bernstein}.
+\end{exercise}
+\begin{exercise}
+    Sejam $A$, $A'$, $B$, $B'$ e $C$ conjuntos. Prove que:
+    \begin{enumerate}[label=(\alph*)]
+        \item se $A\cap B=\emptyset$, $A'\cap B'=\emptyset$, $A\approx A'$ e $B\approx B'$, então $A\cup B \approx A'\cup B'$;
+
+        \item se $A\approx A'$ e $B\approx B'$, então $A\times B \approx A'\times B'$;
+        \item prove os itens acima com $\approx$ substituído por $\preceq$.
+        \item se $A\approx A'$ e $B\approx B'$, então $A^B \approx (A')^{B'}$;
+
+
+        \item $A\times A \approx A^2$, onde $A^2$ denota o conjunto das funções de $2$ em $A$;
+        \item $A^1\approx A$, onde $A^1$ denota o conjunto das funções de $1$ em $A$;
+        \item $(A\times B)\times C \approx A\times (B\times C)$;
+
+        \item $A\times B \approx B\times A$;
+
+        \item $A^{B\times C} \approx (A^B)^C$;
+
+        \item $(A\times B)^C \approx A^C \times B^C$;
+
+        \item se $B\cap C=\emptyset$, então $A^{B\cup C} \approx A^B \times A^C$;
+
+        \item $2^A \approx \mathcal P(A)$.
+        \item $A\prec 2^A$.
+    \end{enumerate}
 \end{exercise}

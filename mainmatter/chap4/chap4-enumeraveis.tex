@@ -1,0 +1,148 @@
+\section{Conjuntos enumeráveis}
+
+\begin{definition}
+    Um conjunto $A$ é \emph{enumerável} se é finito, ou se é equipotente a $\omega$.
+\end{definition}
+
+\begin{lemma}\label{lem:subconjunto-enumeravel}
+    Todo subconjunto de $\omega$ é enumerável.
+\end{lemma}
+\begin{proof}
+    Seja $X\subseteq \omega$.
+    Se $X$ é finito, então $X$ é enumerável.
+    Caso contrário, $X$ é infinito.
+
+    Recursivamente, defina $f:\omega\to X$ tal que, para todo $n \in \omega$,
+
+    \begin{align*}
+        f(n) = \begin{cases}
+            \min(X\setminus \{f(m) : m<n\}), & \text{se } X\setminus \{f(m) : m<n\}\neq \emptyset\\
+            \min X, & \text{caso contrário}
+        \end{cases}
+    \end{align*}
+
+    Por indução em $n$, vê-se que $f|n$ é injetora e que $f(n)=\min(X\setminus \{f(m) : m<n\})$.
+    Isso é imediato para $n=0$.
+    
+    Sendo verdade para $n$, temos que $f(n)>f(m)$ para todo $m<n$, de modo que $f|(n+1)$ é injetora.
+    Como $X$ é infinito, $X\setminus \{f(m) : m<n+1\}\neq \emptyset$, ou $f|(n+1): n+1\to X$ seria uma bijeção.
+    Assim, $f(n+1)=\min(X\setminus \{f(m) : m<n+1\})$.
+
+    Portanto, temos que $f$ é uma função injetora de $\omega$ em $X$.
+    Deste modo, $\omega\preceq X$.
+    Como $X\subseteq \omega$, segue do Teorema de Cantor-Schröder-Bernstein que $X\approx \omega$, e, portanto, $X$ é enumerável.
+\end{proof}
+
+\begin{proposition}
+Seja $A$ um conjunto.
+São equivalentes:
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ é enumerável.
+    \item Existe $f:A\rightarrow \omega$ uma função injetora.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+    Basta provar que (b) implica (a).
+    Seja $f:A\to \omega$ uma função injetora e $X=f[A]$.
+    Como $X\subseteq \omega$, pelo Lema~\ref{lem:subconjunto-enumeravel}, $X$ é enumerável.
+    Assim, $X$ é finito ou $X\approx \omega$.
+    Em qualquer caso, como $A\approx X$, segue a tese.
+\end{proof}
+
+\begin{proposition}
+    $\omega\times \omega$ é infinito enumerável.
+\end{proposition}
+\begin{proof}
+    Note que $f:\omega\times \omega\to \omega$ dada por $f(m,n)=2^m(2n+1)-1$ é uma função bijetora.
+
+    Para a injetividade, sejam $m, m', n, n'\in \omega$ tais que $f(m,n)=f(m',n')$.
+    Suponha por absurdo que $m<m'$.
+    Então:
+    \begin{align*}
+        &2^m(2n+1)-1 = 2^{m'}(2n'+1)-1 \geq 2^{m+1}-1\\
+        \implies &2n+1 =2^{m'-m}(2n'+1).
+    \end{align*}
+    um absurdo, pois o resto da divisão por $2$ de $2n+1$ é $1$, enquanto o resto da divisão por $2$ de $2^{m'-m}(2n'+1)$ é $0$.
+    Analogamente, se $m'>m$,temos um absurdo.
+
+    Assim, $m=m'$. Cancelando $2^m=2^{m'}$, temos que $2n+1=2n'+1$, e, portanto, $n=n'$.
+
+    Para a sobrejetividade, lembre-se que dizemos que um número natural $a$ divide um número natural $b$ se existe um número natural $c$ tal que $ac=b$.
+    Denotamos ``$a$ divide $b$'' por $a|b$.
+    Note que, se $a|b$ e $b\neq 0$, temos que existe $c$ tal que $b=ac\geq a1=a$.
+    
+    Dado $l\in \omega$, seja $X=\{m\in \omega : 2^m|(l+1)\}$.
+    Temos que, para todo $m \in \omega$, $2^m>m$, logo, $X\subseteq l+1$.
+    Além disso, $X\neq \emptyset$, pois $2^0=1$ divide $l+1$.
+    Logo, $X$ possui um máximo, $m$.
+
+    Seja $x\in \omega$ tal que $l+1=2^mx$.
+    Existe $r<2$ e $n\in \omega$ tais que $x=2n+r$.
+    Se $r=0$, então $l+1=2^m2n=2^{m+1}n$, o que é impossível, pois $m$ é o máximo de $X$.
+    Assim, $r=1$, e, portanto, $l+1=2^m(2n+1)$.
+    Logo, $f(m,n)=l$.
+\end{proof}
+\subsection*{Exercícios}
+
+\begin{exercise}
+    Mostre que a função $f$ construída na prova do Lema~\ref{lem:subconjunto-enumeravel} no caso em que $X$ é infinito é uma função bijetora de $\omega$ em $X$.
+    Além disso, determine uma função $G:X^{<\omega}\to X$ tal que para todo $n \in \omega$, $f(n)=G(f|n)$.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A$ é um conjunto para o qual existe $f:\omega\rightarrow A$ uma função sobrejetora, então $A$ é enumerável.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A, B$ são enumeráveis, então $A\cup B$ é enumerável.
+\end{exercise}
+\begin{exercise}
+    Suponha que $(A_n)_{n\in\omega}$ seja uma sequência de conjuntos enumeráveis para a qual existe uma família $(f_n)_{n\in\omega}$ tal que para cada $n\in\omega$, $f_n:A_n\rightarrow \omega$ é uma função injetora.
+    Prove que $\bigcup_{n\in\omega} A_n$ é enumerável.
+
+    Observação: não é possível demonstrar, em ZF, que se $(B_n)_{n\in\omega}$ é uma sequência de conjuntos enumeráveis, então $\bigcup_{n\in\omega} B_n$ é enumerável.
+    Na presença do Axioma da Escolha, tal enunciado é verdadeiro.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A, B$ são enumeráveis, então $A\times B$ é enumerável.
+\end{exercise}
+\begin{exercise}
+    Seja $(A_n)_{n\in\omega}$ uma sequência de conjuntos enumeráveis.
+    Prove que para todo $k\in \omega$, $\prod_{n<k} A_n$ é enumerável.
+    
+    Em particular, conclua que se $A$ é enumerável, então $A^k$ é enumerável para todo $k\in \omega$.
+\end{exercise}
+
+\begin{exercise}
+    Seja $A$ um conjunto enumerável.
+    Mostre que $A^{<\omega}=\bigcup_{n\in\omega} A^n$ é enumerável.
+
+    O seguinte roteiro é sugerido.
+    
+    \begin{enumerate}
+        \item Mostre que se $f:A^n\rightarrow \omega$ é uma função, então $f \in \mathcal P(A^{<\omega}\times \omega)$.
+        Conclua que existe o conjunto $B=\bigcup_{n\in\omega}\omega^{A^n}$.
+
+        \item Fixe $h:A\to \omega$ uma função injetora e $g:\omega\times\omega\to \omega$ uma função injetora.
+
+        Defina $\phi:B\to B$ da seguinte forma: para todo $n\in \omega$ e toda função $u:A^n\to \omega$,
+        a função $\phi(u):A^{n+1}\to \omega$ é dada por
+        \[
+            \phi(u)(s)=g(u(s|n),h(s(n))).
+        \]
+
+        Observe que $\phi$ está bem definida e que, se $u$ é uma função injetora, então $\phi(u)$ é uma função injetora.
+
+        \item Fixe uma função injetora $f_0:A^0\to \omega$.
+        Aplique o Exercício~\ref{ex:recursionComposition} à função $\phi:B\to B$ e defina, para cada $n\in\omega$,
+        \[
+            f_n=\phi^n(f_0).
+        \]
+        Conclua que, para cada $n\in\omega$, $f_n:A^n\to \omega$ é uma função injetora.
+        \item Conclua que $A^{<\omega}$ é enumerável.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Seja $A$ um conjunto enumerável.
+    Mostre que o conjunto $[A]^{<\omega}=\bigcup_{n\in\omega}[A]^n=\{s \in \mathcal P(A) : s \text{ é finito}\}$ é enumerável.
+\end{exercise}
+

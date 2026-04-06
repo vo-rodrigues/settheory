@@ -1,0 +1,202 @@
+\section{Conjuntos finitos}
+
+Conforme vimos, se $n>0$ é um número natural, $n=\{0,1,\ldots,n-1\}$, ou, mais formalmente, $n=\{m\in\omega : m<n\}$.
+
+Ao se contar uma coleção finita, de, digamos, 35 elementos, o que se faz, corriqueiramente, é estabelecer uma correspondência biunívoca entre os elementos da coleção e os números naturais $\{1, 2, \ldots, 35\}$, ou, equivalentemente, $\{0, 1, \ldots, 34\}$.
+
+Dessa forma, podemos definir a noção de conjunto finito.
+
+\begin{definition}
+    Dizemos que um conjunto $A$ é \emph{finito} se existe um número natural $n$ tal que $A\approx n$.
+    Nesse caso, dizemos que a cardinalidade de $A$ é $n$.
+    Caso contrário, dizemos que $A$ é \emph{infinito}.
+\end{definition}
+
+Note que, para cada número natural $n$, $n$ é finito, pois $n\approx n$, e a cardinalidade de $n$ é $n$.
+
+Intuitivamente, se um conjunto tem 35 elementos, ele não pode ter 33 elementos, nem 38 elementos.
+Veremos que, se um conjunto é finito, o natural $n$ com o qual ele é equipotente é único.
+
+Primeiro provaremos o seguinte lema.
+
+\begin{lemma}
+    Para todo $n \in \omega$ e para todo $X\subseteq n$, se $X\neq n$, então $X\not\approx n$.
+\end{lemma}
+\begin{proof}
+    Seguimos por indução em $n$.
+    Para $n=0$, o único subconjunto de $n$ é $n$, assim, o resultado é trivial.
+
+    Suponha que o resultado seja verdadeiro para todo $m<n$.
+    Seja $X\subseteq n+1=n\cup\{n\}$ tal que $X\neq n+1$.
+    Suponha por absurdo que existe uma função bijetora $f: n+1\to X$.
+
+    Caso 1: $n\notin X$.
+    Nesse caso, $f(n)\neq n$.
+    Como $f$ é injetora, $X'=f[n]$ é um subconjunto de $n$.
+    Além disso, a restrição $f\restriction n:n\to X'$ é bijetora, de modo que $X'\approx n$.
+    Como $f(n)\in n$ e $f(n)\notin X'$, temos $X'\neq n$, um absurdo.
+
+    Caso 2: $n\in X$.
+    Seja $k\in n+1$ tal que $f(k)=n$.
+    Considere $g:n\to X\setminus \{n\}$ dada por
+    \[
+        g(m) = \begin{cases}
+            f(m), & \text{se } m\neq k\\
+            f(n), & \text{se } m=k.
+        \end{cases}
+    \]
+
+    Da injetividade de $f$, decorre que $g$ é injetora.
+
+    Além disso, $g$ é sobrejetora sobre $X\setminus\{n\}$.
+    De fato, seja $y\in X\setminus\{n\}$.
+    Como $f$ é sobrejetora, existe $m\in n+1$ tal que $f(m)=y$.
+    Se $m<n$ e $m\neq k$, então $g(m)=y$.
+    Se $m=n$, então $g(k)=f(n)=y$.
+
+    Portanto, $g:n\to X\setminus\{n\}$ é bijetora.
+    Como $X\setminus\{n\}\subseteq n$, segue pela hipótese indutiva que $X\setminus\{n\}=n$.
+    Logo, $X=n\cup\{n\}=n+1$, um absurdo.
+\end{proof}
+
+
+\begin{corollary}Sobre finitude, temos o seguinte.
+    \begin{enumerate}[label=(\alph*)]
+        \item Para todos $n, m\in \omega$, $n\preceq m$ se, e somente se $n\leq m$.
+        \item Para todos $n, m\in \omega$, $n\approx m$ se, e somente se $n=m$.
+        \item Para todo conjunto finito $A$, existe um único número natural $n$ tal que $A\approx n$.
+        \item $\omega$ é infinito.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    Para (a), seja $n, m\in \omega$.
+    Se $m<n$, temos que $m \not \approx n$, pois $m$ é um subconjunto próprio de $n$.
+    Como $m\preceq n$, segue que $n\not\preceq m$.
+
+    Assim, se $n\preceq m$, então $n\leq m$.
+    Reciprocamente, se $n\leq m$, então $n\subseteq m$, e, assim, $n\preceq m$.
+
+    Para (b), seja $n, m\in \omega$.
+    Temos que, do item (a):
+    \[
+        n\approx m \Longleftrightarrow n\preceq m \text{ e } m\preceq n \Longleftrightarrow n\leq m \text{ e } m\leq n \Longleftrightarrow n=m.
+    \]
+
+    Para (c), seja $A$ um conjunto finito.
+    Por definição, existe um número natural $n$ tal que $A\approx n$.
+    Se $m, n$ são números naturais tais que $A\approx m$ e $A\approx n$, então $m\approx n$, pelo item (b), e, assim, $m=n$.
+
+    Para (d), suponha por absurdo que $\omega$ é finito.
+    Então, existe um número natural $n$ tal que $\omega\approx n$.
+    Porém, $n\subsetneq n+1\subseteq \omega$, e, assim, pelo Teorema de Cantor-Schröder-Bernstein, $n+1\approx \omega\approx n$, um absurdo por (c). 
+\end{proof}
+
+\begin{lemma}
+    Seja $(A, <)$ uma ordem total estrita não vazia tal que $A$ é finito.
+    Então $A$ possui um elemento mínimo e um elemento máximo.
+\end{lemma}
+\begin{proof}
+    Provaremos por indução na cardinalidade de $A$.
+    Se $A\approx 0$, é trivial.
+
+    Suponha que a afirmação seja verdadeira para toda ordem total estrita de cardinalidade $n$.
+    Seja $A$ uma ordem total estrita de cardinalidade $n+1$.
+    Tome $a\in A$ qualquer e seja $A' = A\setminus\{a\}$ com a ordem restrita.
+    $A'$ é uma ordem total estrita de cardinalidade $n$.
+    Se $A'=\emptyset$, então $A=\{a\}$, e $a$ é o elemento mínimo e o elemento máximo de $A$.
+    Caso contrário, $A'$ possui um elemento mínimo $m$ e um elemento máximo $M$.
+    
+    Se $a<m$, então $a$ é o elemento mínimo de $A$.
+    Caso contrário, $m$ é o elemento mínimo de $A$.
+
+    Da mesma forma, se $a>M$, então $a$ é o elemento máximo de $A$.
+    Caso contrário, $M$ é o elemento máximo de $A$.
+\end{proof}
+
+\begin{corollary}
+Toda ordem total estrita finita é uma boa ordem.
+\end{corollary}
+
+\begin{proposition}
+    Seja $(A, <)$ uma ordem total estrita tal que $A$ é finito.
+    Então existe um único número natural $n$ tal que $(A, <)$ é isomorfo à $(n, <)$.
+\end{proposition}
+\begin{proof}
+A unicidade segue da unicidade do número natural equipotente a $A$.
+
+Para a existência, utilizaremos indução na cardinalidade de $A$.
+
+Se $A\approx 0$, temos que $A=\emptyset$, logo, $(A, <)=(0, <)$.
+
+Suponha que o resultado seja verdadeiro para todo conjunto finito de cardinalidade $n$.
+Seja $A$ uma ordem total de $n+1$ elementos.
+Seja $a=\max A$.
+Seja $A' = A\setminus\{a\}$ com a ordem restrita.
+Por hipótese indutiva, existe $\phi': A'\to n$ um isomorfismo de ordens.
+Defina $f': A\to n+1$ dada por
+\[
+    f'(x) = \begin{cases}
+        \phi'(x), & \text{se } x\neq a\\
+        n, & \text{se } x=a.
+    \end{cases}
+\]
+Verifica-se facilmente que $f'$ é um isomorfismo de ordens de $(A, <)$ em $(n+1, <)$.
+\end{proof}
+
+
+\subsection*{Exercícios}
+\begin{exercise}
+    Prove que para todo $n\in\omega$ e todo $X\subseteq n$, $X$ é finito.
+\end{exercise}
+\begin{exercise}
+    Prove que se $B$ é finito e $A\preceq B$, então $A$ é finito.
+\end{exercise}
+\begin{exercise}
+    Prove que se $B$ é finito e existe $f:B\to A$ função sobrejetora, então $A$ é finito.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A\approx m$, $B\approx n$ e $A\cap B=\emptyset$, então $A\cup B \approx m+n$.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A\approx m$, $B\approx n$ e $A\subseteq B$, então $B\setminus A \approx n-m$.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A$ e $B$ são finitos, então $A\cup B$ é finito e que $A\cup B\approx(m+n)-k$, onde $m$ é a cardinalidade de $A$, $n$ é a cardinalidade de $B$ e $k$ é a cardinalidade de $A\cap B$.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A$ e $B$ são finitos com $A\approx m$ e $B\approx n$, então $A\times B$ é finito e que $A\times B \approx m\cdot n$.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A$ e $B$ são finitos, com $A\approx m$ e $B\approx n$, então $A^B$ é finito e que $A^B \approx m^n$.
+\end{exercise}
+\begin{exercise}
+    Prove que se $A$ é finito e possui $n$ elementos, então $\mathcal P(A)$ é finito e possui $2^n$ elementos.
+\end{exercise}
+\begin{exercise}
+    Seja $n \in \omega$ e $A, B$ conjuntos com $A\approx n\approx B$.
+    Seja $f:A\to B$ uma função.
+    Mostre que são equivalentes:
+    \begin{enumerate}[label=(\alph*)]
+        \item $f$ é injetora;
+        \item $f$ é sobrejetora;
+        \item $f$ é bijetora.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Mostre que, se $X$ é um conjunto tal que $\omega\preceq X$, então $X$ é infinito.
+
+    Observação: a recíproca não é demonstrável em ZF. Ela segue, por exemplo, do Axioma da Escolha.
+\end{exercise}
+
+\begin{exercise}
+    Seja $A$ um conjunto finito de $n$ elementos e $k\leq n$.
+    Mostre que o número de funções injetoras de $k$ em $A$ é $\frac{n!}{(n-k)!}$.
+\end{exercise}
+
+
+\begin{exercise}
+    Seja $A$ um conjunto finito com $A\approx n$.
+    Para cada $k \in \omega$, $[A]^k$ é o conjunto dos subconjuntos de $A$ com exatamente $k$ elementos.
+    Prove, por indução em $n$, que para todo $k\leq n$, $[A]^k$ é finito e que $[A]^k\approx \binom{n}{k}$, onde $\binom{n}{k}=\frac{n!}{k!(n-k)!}$.
+\end{exercise}
