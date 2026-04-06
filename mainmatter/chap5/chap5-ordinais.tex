@@ -1,1 +1,122 @@
 \section{Números ordinais}
+Vimos que cada natural $0, 1, 2, \dots$ é um conjunto bem ordenado.
+Se $n$ é um número natural, $S(n) = n\cup\{n\}$ é também um número natural, e portanto um conjunto bem ordenado.
+O conjunto $\omega$ é um conjunto bem ordenado.
+A ordem de todos esses conjuntos é dada pela relação de pertencimento $\in$.
+
+Vimos também que toda boa ordem finita é isomorfa a um único número natural.
+Assim, os números naturais servem como representantes de todas as boas ordens finitas.
+
+Gostaríamos de encontrar representantes de todas as boas ordens, independente de serem infinitas ou não.
+A tentativa natural é seguir executando o mesmo processo de construção dos números naturais, ou seja, continuar a sequência:
+
+\[
+0, 1, 2, \dots, \omega, S(\omega), S(S(\omega)), \dots
+\]
+
+Podemos chamar $S(\omega)$ de $\omega+1$, $S(S(\omega))$ de $\omega+2$, e, de forma geral, $S^n(\omega)$ de $\omega+n$.
+\[
+0, 1, 2, \dots, \omega, \omega+1, \omega+2, \dots
+\]
+
+Tal processo de fato produz boas ordens: pode-se verificar diretamente que $\omega+1, \omega+2, \omega+3$ são conjuntos bem ordenados por $\in$.
+Assim, uma primeira ideia é simplesmente definir um ordinal como um conjunto bem ordenado por $\in$.
+No entanto, a unicidade de representantes de boas ordens não é garantida por essa definição.
+Considere os dois conjuntos abaixo:
+\[
+    A=5=\{0, 1, 2, 3, 4\}
+\]
+\[
+    B=\{0, 1, 2, 3, 6\}
+\]
+Ambos são conjuntos bem ordenados por $\in$ (pois são finitos), e são isomorfos, mas são distintos.
+O ``truque'' utilizado para construir $B$ foi remover de $7$ um elemento que ``deveria estar lá''.
+Em termos mais precisos, existe um $a \in 6$ tal que $a \notin B$ (no caso, $a=5$).
+Em fórmula de primeira ordem:
+
+\[
+    \exists b\in B \exists a\in b (a\notin B).
+\]
+
+Optaremos por proibir esse ``truque''.
+A negação de tal fórmula é a seguinte:
+\[
+    \forall b\in B \forall a\in b (a\in B).
+\]
+Ou seja:
+\[
+    \forall b\in B (b\subseteq B).
+\]
+
+Conforme veremos, com a presença do Axioma da Substituição, que será introduzido na próxima seção, conjuntos bem ordenados por $\in$ que satisfazem essa condição são exatamente os representantes de todas as boas ordens.
+
+\begin{definition}
+    Um conjunto $A$ é dito \emph{transitivo} se, para todo $a\in A$, $a\subseteq A$.
+\end{definition}
+
+Agora podemos definir um ordinal.
+
+\begin{definition}
+    Um \emph{ordinal} é um conjunto $A$ tal que:
+    \begin{enumerate}[label=(\alph*)]
+        \item $A$ é bem-ordenado por $\in$ (ou seja, $(A, \in_A)$ é uma boa ordem);
+        \item $A$ é transitivo.
+    \end{enumerate}
+\end{definition}
+No contexto de ordinais, escrevemos sempre que for conveniente, $a<b$ para $a\in b$.
+
+\begin{example}
+    $\omega$ é um ordinal: já vimos que $\omega$ é um conjunto bem-ordenado por $\in$, e, para todo $a\in \omega$, $a$ é um número natural, e, portanto, $a\subseteq \omega$.
+\end{example}
+
+Além disso, todos os números naturais são ordinais pelo lema abaixo.
+
+\begin{lemma}
+    Seja $\alpha$ um ordinal.
+    Então todo elemento de $\alpha$ é um ordinal.
+\end{lemma}
+\begin{proof}
+Seja $\beta \in \alpha$.
+Temos que $\beta\subseteq \alpha$, logo, $\beta$ é um conjunto bem-ordenado por $\in$.
+Resta ver que $\beta$ é transitivo.
+Seja $\gamma \in \beta$.
+Vejamos que $\gamma\subseteq \beta$.
+Para isso, tome $\delta \in \gamma$.
+Temos que $\delta \in \gamma \in \beta \in \alpha$.
+Como $\alpha$ é transitivo, $\delta \in \gamma \in \alpha$.
+Novamente, como $\alpha$ é transitivo, $\delta \in \alpha$.
+Assim, $\delta<\gamma<\beta$ em $\alpha$, e, portanto, $\delta <\beta$, ou seja, $\delta \in \beta$.
+\end{proof}
+
+Outros exemplos de ordinais podem ser construídos a partir de sucessores.
+
+\begin{lemma}
+    Se $\alpha$ é um ordinal, então $\alpha \notin \alpha$.
+
+    Ademais, não existe $\beta \in \alpha$ tal que $\alpha \in \beta$.
+\end{lemma}
+\begin{proof}
+    Se $\alpha\in \alpha$, então $\exists x \in \alpha(x \in x)$, o que é impossível, pois $\in$ é irreflexivo em $\alpha$.
+
+    Ademais, não existe $\beta \in \alpha$ tal que $\alpha \in \beta$, pois, se existisse, $\alpha \in \alpha$, pois $\alpha$ é transitivo.
+\end{proof}
+\begin{lemma}
+    Para todo ordinal $\alpha$, então $S(\alpha)=\alpha\cup\{\alpha\}$ é um ordinal.
+\end{lemma}
+\begin{proof}
+    $\in$ é irreflexivo em $S(\alpha)$, pois $\alpha\notin \alpha$ e, para todo $\beta \in \alpha$, $\beta\notin \beta$.
+
+    $\in$ é transitivo em $\alpha$: se $\delta\in \gamma\in \beta$ com $\beta, \gamma, \delta\in S(\alpha)$, então $\delta\in \beta$.
+    Pelo lema anterior, não podemos ter $\delta=\alpha$, nem $\gamma=\alpha$.
+    Assim, $\delta, \gamma \in \alpha$.
+    Se $\beta=\alpha$, então $\delta\in \beta$ trivialmente.
+    Se $\beta\in \alpha$, então $\delta\in \beta$ pois $\in$ é uma relação transitiva em $\alpha$.
+
+    Vejamos que todo conjunto não vazio $B\subseteq S(\alpha)$ tem um elemento mínimo.
+    Se $B=\{\alpha\}$, temos que $\alpha$ é o elemento mínimo de $B$.
+    Se não, $B\cap \alpha\neq \emptyset$ e $B\subseteq \alpha$, e, portanto, possui elemento mínimo $\beta$.
+    Temos que $\beta\leq \gamma$ para todo $\beta\in B\cap \alpha$.
+    Além disso, $\beta \in \alpha$, logo, $\beta=\min B$.
+
+    Por fim, $S(\alpha)$ é totalmente ordenado por $\in$, pois, se $\beta, \gamma \in S(\alpha)$, então $\{\beta, \gamma\}$ tem mínimo.
+\end{proof}
