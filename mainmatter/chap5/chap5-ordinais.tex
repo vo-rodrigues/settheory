@@ -7,7 +7,7 @@ A ordem de todos esses conjuntos é dada pela relação de pertencimento $\in$.
 Vimos também que toda boa ordem finita é isomorfa a um único número natural.
 Assim, os números naturais servem como representantes de todas as boas ordens finitas.
 
-Gostaríamos de encontrar representantes de todas as boas ordens, independente de serem infinitas ou não.
+Gostaríamos de encontrar representantes de todas as boas ordens, independentemente de serem infinitas ou não.
 A tentativa natural é seguir executando o mesmo processo de construção dos números naturais, ou seja, continuar a sequência:
 
 \[
@@ -264,12 +264,56 @@ Dois ordinais distintos não podem ser isomorfos.
 \begin{exercise}
     Prove que a união de uma coleção de conjuntos transitivos é um conjunto transitivo.
 \end{exercise}
-\begin{exercise}
-    Prove que $\omega$ é o menor ordinal limite, ou seja, que $\omega$ é um ordinal limite e, para todo ordinal limite $\alpha$, $\omega\leq \alpha$.
-\end{exercise}
+
 \begin{exercise}
     Mostre que para todo ordinal limite $\gamma$, $\bigcup \gamma=\gamma$.
 \end{exercise}
 \begin{exercise}
     Mostre que para todo ordinal $\beta$, $\bigcup S(\beta)=\beta$.
+\end{exercise}
+\begin{exercise}
+    Prove que, para todos os ordinais $\alpha, \beta$, $\alpha\cup \beta=\max\{\alpha, \beta\}$ e $\alpha\cap \beta=\min\{\alpha, \beta\}$.
+\end{exercise}
+\begin{exercise}
+    Sejam $\alpha$ e $\beta$ ordinais.
+    Mostre que
+    \[
+    \alpha\subsetneq \beta \iff \alpha\in \beta.
+    \]
+\end{exercise}
+\begin{exercise}
+    Sejam $\alpha,\beta$ ordinais.
+    Mostre que
+    \[
+    \alpha<\beta \iff S(\alpha)\leq \beta.
+    \]
+\end{exercise}
+\begin{exercise}
+    Sejam $\alpha$ um ordinal e $\beta\in \alpha$.
+    Mostre que o segmento inicial de $\alpha$ determinado por $\beta$ é exatamente $\beta$, isto é,
+    \[
+    \alpha[\beta]=\beta.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Seja $\alpha$ um ordinal.
+    Mostre que os segmentos iniciais próprios de $\alpha$ são exatamente os elementos de $\alpha$.
+    Mais precisamente, prove que, para todo $S\subseteq \alpha$,
+    \[
+    S \text{ é segmento inicial próprio de }\alpha \iff \exists \beta\in \alpha \ (S=\beta).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Seja $\gamma$ um ordinal.
+    Prove que são equivalentes:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\gamma$ é um ordinal limite;
+        \item $\gamma\neq 0$ e, para todo ordinal $\beta$, se $\beta<\gamma$, tem-se $S(\beta)< \gamma$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Prove que $\omega$ é o menor ordinal limite, ou seja, que $\omega$ é um ordinal limite e, para todo ordinal limite $\alpha$, $\omega\leq \alpha$.
 \end{exercise}
