@@ -97,7 +97,7 @@ Precisaremos de alguns lemas.
     Então $\bigcap A$ é um ordinal.
 \end{lemma}
 \begin{proof}
-    Seja $\alpha\subseteq A$ qualquer.
+    Seja $\alpha\in A$ qualquer.
     Então $\bigcap A\subseteq \alpha$, logo, $\bigcap A$ é um conjunto bem-ordenado por $\in$.
 
     Resta ver que $\bigcap A$ é transitivo.
@@ -218,7 +218,8 @@ Formalmente, $\ON$ é uma relação unária, e escrevemos $\alpha \in \ON$ como 
 
     Assim, $\bigcup X$ é um ordinal e, para todo $\alpha \in X$, $\alpha\subseteq \bigcup X$, ou seja, $\alpha\leq \bigcup X$.
 
-    Finalmente, se $\beta<\bigcup X$, temos que existe $\alpha \in X$ tal que $\beta\in \alpha$, logo, $\bigcup X$ é a menor cota superior de $X$.
+    Finalmente, se $\beta<\bigcup X$, temos que existe $\alpha \in X$ tal que $\beta\in \alpha$, logo, $\beta$ não é uma cota superior de $X$.
+    Portanto, $\bigcup X$ é o menor ordinal $\alpha$ tal que $\beta\leq \alpha$ para todo $\beta\in X$.
 \end{proof}
 
 Devido ao lema acima, quando $X$ é um conjunto de ordinais, podemos escrever $\sup X$ para $\bigcup X$.
