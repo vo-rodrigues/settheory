@@ -1,4 +1,7 @@
 \backmatter
-\bibliographystyle{plain}
-\bibliography{includes/bibliography}
-\printindex
+
+\tikzifexternalizing{}{%
+  \bibliographystyle{plain}
+  \bibliography{includes/bibliography}
+  \printindex
+}

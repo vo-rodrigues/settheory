@@ -10,7 +10,8 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{positioning,decorations.pathreplacing, cd, calc}
+\usetikzlibrary{positioning,decorations.pathreplacing, cd, calc, external}
+\tikzexternalize[prefix=figures/]
 \usepackage{caption}
 \usepackage{hyperref}
 \geometry{a4paper, margin=1in}
@@ -44,7 +45,9 @@
 
 \newtheorem{claim}{Afirmação}[definition]
 
-\makeindex[title=Índice]
+\tikzifexternalizing{}{%
+  \makeindex[title=Índice]
+}
 
 \title{Teoria dos Conjuntos}
 \author{Vinicius de Oliveira Rodrigues}

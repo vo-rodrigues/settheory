@@ -16,6 +16,7 @@
 *.toc
 *.synctex.gz
 *.synctex(busy)
+*.auxlock
 
 # Intermediate files
 *.dvi
@@ -23,6 +24,8 @@
 *.ilg
 *.idx
 *.ind
+*.md5
+*.dpth
 
 # PDF output
 *.pdf
