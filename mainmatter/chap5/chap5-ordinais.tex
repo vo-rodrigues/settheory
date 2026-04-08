@@ -29,7 +29,7 @@ Considere os dois conjuntos abaixo:
 \[
     B=\{0, 1, 2, 3, 6\}
 \]
-Ambos são conjuntos bem ordenados por $\in$ (pois são finitos), e são isomorfos, mas são distintos.
+Ambos são conjuntos bem ordenados por $\in$ (pois são finitos, ver Corolário~\ref{cor:finitoBoaOrdem}), e são isomorfos, mas são distintos.
 O ``truque'' utilizado para construir $B$ foi remover de $7$ um elemento que ``deveria estar lá''.
 Em termos mais precisos, existe um $a \in 6$ tal que $a \notin B$ (no caso, $a=5$).
 Em fórmula de primeira ordem:
@@ -204,7 +204,7 @@ Não existe $X$ tal que $\forall \alpha(\alpha \text{ é ordinal} \rightarrow \a
 \end{proof}
 
 A classe de todos os ordinais é denotada por $\ON$.
-Formalmente, $\ON$ não é uma relação unária, e escrevemos $\alpha \in \ON$ como uma outra forma de escrever $\ON(\alpha)$, que se traduz como ``$\alpha$ é um ordinal''.
+Formalmente, $\ON$ é uma relação unária, e escrevemos $\alpha \in \ON$ como uma outra forma de escrever $\ON(\alpha)$, que se traduz como ``$\alpha$ é um ordinal''.
 
 
 \begin{lemma}
@@ -221,6 +221,8 @@ Formalmente, $\ON$ não é uma relação unária, e escrevemos $\alpha \in \ON$ 
     Finalmente, se $\beta<\bigcup X$, temos que existe $\alpha \in X$ tal que $\beta\in \alpha$, logo, $\bigcup X$ é a menor cota superior de $X$.
 \end{proof}
 
+Devido ao lema acima, quando $X$ é um conjunto de ordinais, podemos escrever $\sup X$ para $\bigcup X$.
+
 Nem todo ordinal é o sucessor de outro ordinal.
 Por exemplo, $\omega$ não é o sucessor de nenhum ordinal.
 
@@ -235,8 +237,7 @@ Por exemplo, $\omega$ não é o sucessor de nenhum ordinal.
 \end{proposition}
 \begin{proof}
 Se existisse $\alpha$ tal que $S(\alpha)=\omega$, teríamos que $\alpha\in \omega$.
-Porém, isso implica que $\omega=S(\alpha)=\omega$, um absurdo.
-Por outro lado, $\omega\neq 0$, pois $0\in \omega$ e $0\notin 0$.
+Porém, para todo $\alpha \in \omega$, temos que $S(\alpha)\in \omega$, o que implica que $\omega\in \omega$, um absurdo.
 \end{proof}
 
 Dois ordinais distintos não podem ser isomorfos.
