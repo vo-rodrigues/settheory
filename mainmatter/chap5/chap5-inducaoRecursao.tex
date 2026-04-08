@@ -1,0 +1,267 @@
+\section{Indução e Recursão transfinitas}
+Vimos que $\in$ é uma boa ordem sobre a classe dos ordinais.
+Em particular, vimos que se $X$ é um conjunto de ordinais, então $X$ possui um elemento mínimo.
+
+\begin{proposition}[Esquema de boa ordenação]
+    Seja $\phi(\alpha, t_1, \dots, t_n)$ uma fórmula.
+    Suponha que, para alguns $t_1, \dots, t_n$ fixados, exista um ordinal $\alpha$ tal que $\phi(\alpha, t_1, \dots, t_n)$.
+
+    Então existe o menor ordinal $\alpha$ tal que $\phi(\alpha, t_1, \dots, t_n)$.
+
+    Em símbolos:
+
+    \[
+        \forall t_1 \dots \forall t_n \Big( \exists \alpha \in \ON \phi(\alpha, t_1, \dots, t_n) \rightarrow \exists! \alpha \in \ON (\phi(\alpha, t_1, \dots, t_n) \wedge \forall \beta <\alpha (\neg\phi(\beta, t_1, \dots, t_n)))\Big).
+    \]
+\end{proposition}
+\begin{proof}
+    Para a existência, seja $\xi$ um ordinal tal que $\phi(\xi, t_1, \dots, t_n)$.
+    Se $\forall \alpha <\xi \neg\phi(\alpha, t_1, \dots, t_n)$, então está provada a existência.
+    Se não, considere $X=\{\alpha <\xi : \phi(\alpha, t_1, \dots, t_n)\}$.
+    Temos que $X$ é um conjunto de ordinais não vazio, logo, possui elemento mínimo $\alpha$.
+    Segue que para todo $\beta<\alpha$, temos $\beta\notin X$, mas $\beta<\xi$, de modo que $\neg\phi(\beta, t_1, \dots, t_n)$.
+    Assim, $\alpha$ é como queríamos.
+
+    Para a unicidade, suponha que $\alpha'$ também satisfaça
+    \[
+        \phi(\alpha', t_1,\dots,t_n)\land \forall \beta<\alpha'\,\neg\phi(\beta,t_1,\dots,t_n).
+    \]
+    Se $\alpha'<\alpha$, então, como $\phi(\alpha', t_1,\dots,t_n)$, isso contradiz a minimalidade de $\alpha$.
+    Analogamente, não pode ocorrer $\alpha<\alpha'$.
+    Logo, $\alpha=\alpha'$.
+\end{proof}
+
+A indução transfinita nada mais é do que a aplicação sistemática do princípio do menor contraexemplo aos ordinais. A ideia é simples: para provar que uma propriedade vale para todo ordinal, basta mostrar que ela vale em um ordinal sempre que já valha em todos os ordinais anteriores.
+
+Assim como na indução usual sobre $\omega$, o que se faz é excluir a possibilidade de um primeiro contraexemplo. A diferença é que agora o domínio de indução não é apenas $\omega$, mas toda a classe dos ordinais.
+
+\begin{proposition}[Esquema da indução transfinita]
+    Seja $\phi(\alpha, t_1, \dots, t_n)$ uma fórmula.
+    
+    Suponha que, para alguns $t_1, \dots, t_n$ fixados e para todo ordinal $\alpha$, se $\forall \beta <\alpha \phi(\beta, t_1, \dots, t_n)$, então $\phi(\alpha, t_1, \dots, t_n)$.
+
+    Então $\forall \alpha \in \ON \phi(\alpha, t_1, \dots, t_n)$.
+    
+    Em símbolos:
+    \[
+        \forall t_1 \dots \forall t_n \Big( \forall \alpha \in \ON ((\forall \beta <\alpha \phi(\beta, t_1, \dots, t_n)) \rightarrow \phi(\alpha, t_1, \dots, t_n)) \rightarrow \forall \alpha \in \ON \phi(\alpha, t_1, \dots, t_n)\Big).
+    \]
+\end{proposition}
+\begin{proof}
+    Fixe $t_1, \dots, t_n$ e suponha que a tese é falsa.
+    Então existe um ordinal $\alpha$ tal que $\neg\phi(\alpha, t_1, \dots, t_n)$.
+    Pelo esquema de boa ordenação, existe o menor ordinal $\alpha$ tal que $\neg\phi(\alpha, t_1, \dots, t_n)$.
+    Assim, para todo $\beta <\alpha$, temos $\phi(\beta, t_1, \dots, t_n)$.
+    Mas então $\phi(\alpha, t_1, \dots, t_n)$, o que é uma contradição.
+\end{proof}
+
+\begin{definition}
+    Uma sequência transfinita é uma função cujo domínio é um ordinal.
+    Se $s$ é uma sequência transfinita, escrevemos $s \in V^{<\ON}$.
+\end{definition}
+
+É importante distinguir indução transfinita de recursão transfinita.
+
+A indução transfinita é um \emph{método de demonstração}: ela serve para provar que uma propriedade vale para todos os ordinais.
+
+Já a recursão transfinita é um \emph{método de definição}: ela serve para construir uma função $F$ definida em todos os ordinais, de modo que o valor $F(\alpha)$ seja determinado a partir dos valores anteriores, $F|\alpha$.
+
+Um importante exemplo, sobre o qual discutiremos mais a fundo na próxima seção, é a \emph{soma de ordinais}, que é uma extensão natural da soma usual de números naturais.
+Ela é definida a partir das seguintes propriedades, em que $\alpha$ e $\beta$ são ordinais:
+\begin{itemize}
+    \item $\beta+0=\beta$;
+    \item $\beta+S(\alpha)=S(\beta+\alpha)$;
+    \item $\beta+\alpha=\sup\{\beta+\xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+\end{itemize}
+Ou seja, começa-se definindo $\beta+0=\beta$.
+Definido $\beta+\alpha$, define-se $\beta+S(\alpha)$ como o ordinal sucessor de $\beta+\alpha$.
+Finalmente, se $\alpha$ é um ordinal limite, define-se $\beta+\alpha$ como o supremo de $\{\beta+\xi : \xi <\alpha\}$.
+
+Para se executar essa definição, para se definir $\beta+\alpha$, é necessário ter o conhecimento prévio do valor de potencialmente todos os valores $\beta+\xi$ para $\xi <\alpha$.
+
+Diferentemente do que acontece na recursão de números naturais, o objeto resultante não é uma função.
+Se fosse, no caso, a função $+$ teria domínio $\ON\times \ON$, que não é um conjunto.
+O objeto resultante é um símbolo de função $+$ introduzido por definição, ou, analogamente, uma definição para introduzir tal símbolo.
+
+\begin{metatheorem}[Esquema da recursão transfinita]
+    Suponha que um símbolo de função binário $G(p, s)$ seja introduzido por definição de modo que
+    \[
+        \forall s \in V^{<\ON}\forall p\forall y
+        \Bigl(G(p,s)=y \leftrightarrow \phi(s,y,p)\Bigr).
+    \]
+
+    Então é possível introduzir um símbolo de função binário $F(p, \alpha)$ de modo que
+    \[
+        \forall \alpha \in \ON \forall p \Big( F_{p}(\alpha)=G(p, F_p|\alpha)\Big).
+    \]
+
+    Ademais, se $H$ é um símbolo de função binário adicionado por definição tal que
+    \[
+        \forall p \forall \alpha \in \ON \Bigl( H_p(\alpha)=G(p, H_p|\alpha)\Bigr),
+    \]
+    então
+    \[
+        \forall p \forall \alpha \in \ON \Bigl( F_p(\alpha)=H_p(\alpha)\Bigr).
+    \]
+\end{metatheorem}
+Chamamos o resultado acima de metateorema porque ele não afirma apenas uma propriedade de conjuntos já dados na teoria: ele afirma que, a partir de um símbolo de função $G$ introduzido por definição, é possível introduzir um novo símbolo de função $F$ satisfazendo a equação recursiva desejada.
+
+Ou seja, o conteúdo do resultado é que o processo de definição recursiva transfinita pode ser formalizado dentro da teoria. A partir disso, os resultados concretos sobre a função assim definida passam a ser teoremas internos da teoria.
+
+Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de aplicação do mesmo.
+\begin{example}
+    Considere o operador binário $G$ definido por:
+    \[
+        G(p, s)=\begin{cases}
+            p & \text{se } s=\emptyset,\\
+            S(s(\alpha)) & \text{se } s\text{ é função } \land  \exists \alpha \in \ON \dom(s)=\alpha+1,\\
+            \bigcup_{\xi \in \alpha} s(\xi) & \text{se } s\text{ é função } \land \exists \alpha \in \ON \dom(s)=\alpha \text{ é limite}.
+        \end{cases}
+    \]
+
+    O esquema da recursão nos dá uma receita para introduzir por definição $F(p, \alpha)$ tal que $F_p(\alpha)=G(p, F_p|\alpha)$ para todo $p$ e $\alpha$.
+    Se $\beta$ é um ordinal, denotando $F_\beta(\alpha)=\beta+\alpha$, temos que:
+
+    \begin{itemize}
+        \item $\beta+0=G(\beta, F_\beta|0)=\beta$;
+        \item $\beta+S(\alpha)=S(\beta+\alpha)$;
+        \item $\beta+\alpha=\bigcup\{\beta+\xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+    \end{itemize}
+
+    Por uma indução transfinita simples, vê-se que $\beta+\alpha \in \ON$ para todo $\beta, \alpha \in \ON$: suponha que para todo ordinal $\xi<\alpha$, $\beta+\xi$ é um ordinal.
+    O mesmo vale para $\alpha$. Com efeito, se $\alpha=0$, temos que $\beta+0=\beta$ é um ordinal.
+    Se $\alpha=\xi+1$ é um ordinal sucessor, por hipótese de indução, $\beta+\xi$ é um ordinal, logo, $S(\beta+\xi)$ é um ordinal.
+    Finalmente, se $\alpha$ é um ordinal limite, por hipótese de indução, $\beta+\xi$ é um ordinal para todo $\xi <\alpha$, logo, $\beta+\alpha=\bigcup\{\beta+\xi : \xi <\alpha\}$ é um ordinal.
+    
+    Portanto, $\beta+\alpha=\sup\{\beta+\xi : \xi <\alpha\}$ se $\alpha$ é um ordinal limite.
+\end{example}
+
+Dedicaremos o resto da seção para a prova do metateorema acima.
+Iniciaremos pelo seguinte esquema de definições.
+\begin{definition}
+    Seja $G(p, s)$ um símbolo de função binário introduzido por definição de modo que
+    \[
+        \forall s \in V^{<\ON}\forall p\forall y
+        \Bigl(G(p,s)=y \leftrightarrow \phi(s,y,p)\Bigr).
+    \]
+
+    Para todo ordinal $\alpha$ e todo $p$, uma computação parcial de comprimento $\alpha$ e parâmetro $p$ baseada em $G$ é uma função $h$ tal que $\dom(h)=\alpha$ e para todo $\beta <\alpha$, $h(\beta)=G(p, h|\beta)$.
+    
+    Nesse caso, escrevemos $\Ap_G(h, \alpha, p)$.
+    Em símbolos:
+
+    \[
+        \forall h\forall \alpha\forall p
+        \Bigl(\Ap_G(h,\alpha,p) \leftrightarrow
+        h \text{ é função} \land \alpha\in\ON \land \dom(h)=\alpha \land
+        \forall \beta<\alpha\bigl(h(\beta)=G(p,h|\beta)\bigr)\Bigr).
+    \]
+\end{definition}
+Uma computação parcial de comprimento $\alpha$ deve ser vista como uma tentativa de construir a função recursiva apenas até o estágio $\alpha$.
+Ela contém, para cada $\beta<\alpha$, exatamente o valor que a regra recursiva prescreve a partir do trecho já construído $h|\beta$.
+
+
+Agora provaremos o seguinte esquema de lemas.
+\begin{lemma}
+    Seja $G(p, s)$ um símbolo de função introduzido por definição.
+    Para todos $p, \alpha, \alpha', h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha', p)$, então $h$ e $h'$ são compatíveis.
+\end{lemma}
+\begin{proof}
+    Fixe $p, \alpha, \alpha', h, h'$ tais que $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha', p)$.
+
+    Se $h$ e $h'$ não são compatíveis, então existe $\beta\in \alpha\cap \alpha'=\min\{\alpha, \alpha'\}$ tal que $h(\beta)\neq h'(\beta)$.
+    Tome $\beta$ o menor tal ordinal.
+
+    Então $\beta\subseteq \alpha\cap \alpha'$ e $h|\beta=h'|\beta$, de modo que
+    \[
+        h(\beta)=G(p, h|\beta)=G(p, h'|\beta)=h'(\beta),
+    \]
+    o que é uma contradição.
+\end{proof}
+
+\begin{corollary}
+    Seja $G(p, s)$ um símbolo de função introduzido por definição.
+    Para todos $p, \alpha, h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha, p)$, então $h=h'$.
+\end{corollary}
+\begin{proof}
+    Se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha, p)$, então $h$ e $h'$ são compatíveis.
+    Mas $\dom(h)=\dom(h')=\alpha$, logo $h=h'$.
+\end{proof}
+Resta agora mostrar que tais computações parciais de fato existem para todo comprimento ordinal.
+Uma vez estabelecida essa existência, poderemos definir o valor da iteração no estágio $\alpha$ escolhendo qualquer computação parcial suficientemente longa e lendo nela o valor na posição $\alpha$.
+
+A compatibilidade provada acima garantirá que essa escolha independe da computação parcial utilizada.
+\begin{lemma}
+    Seja $G(p, s)$ um símbolo de função introduzido por definição.
+    Para todo $p$ e todo ordinal $\alpha$, existe uma computação parcial de comprimento $\alpha$ e parâmetro $p$ baseada em $G$.
+\end{lemma}
+\begin{proof}
+    Fixe $p$.
+    Procederemos por indução transfinita sobre $\alpha$.
+
+    Suponha que para todo $\beta <\alpha$, existe uma computação parcial de comprimento $\beta$ e parâmetro $p$ baseada em $G$.
+    Vejamos que o mesmo vale para $\alpha$.
+
+    Se $\alpha=0$, tome $h=\emptyset$.
+
+    Se $\alpha=\beta+1$ é um ordinal sucessor, por hipótese de indução, existe uma computação parcial $h$ de comprimento $\beta$ e parâmetro $p$ baseada em $G$.
+    Então, tome $h'=h\cup\{(\beta, G(p, h))\}$.
+    Assim, $h$ é função, $\dom(h')=\beta\cup\{\beta\}=\alpha$ e para todo $\gamma <\beta$, $h'(\gamma)=h(\gamma)=G(p, h|\gamma)=G(p, h'|\gamma)$.
+    Finalmente, $h'(\beta)=G(p, h)=G(p, h'|\beta)$.
+    Assim, $\Ap_G(h', \alpha, p)$.
+
+    Finalmente, se $\alpha$ é um ordinal limite, para cada $\beta <\alpha$, por hipótese de indução e pelo corolário anterior, existe uma única computação parcial $h_\beta$ de comprimento $\beta$ e parâmetro $p$ baseada em $G$.
+    Pelo esquema da substituição, seja $H=\{h_\beta : \beta <\alpha\}$.
+    
+    Pelo lema, $H$ é um conjunto de funções compatíveis, logo, $h=\bigcup H$ é uma função de domínio $\bigcup_{\beta <\alpha} \beta=\alpha$.
+    Finalmente, se $\beta <\alpha$, então $\beta+1\leq \alpha$.
+    Como $\alpha$ é limite, temos que $\beta+1<\alpha$.
+    Temos que $h(\beta)=h_{\beta+1}(\beta)=G(p, h_{\beta+1}|\beta)=G(p, h|\beta)$.
+    Assim, $\Ap_G(h, \alpha, p)$.
+\end{proof}
+
+\begin{definition}
+    Seja $G(p, s)$ um símbolo de função introduzido por definição.
+    A $\alpha$-ésima iteração de $G$ com parâmetro $p$, denotada por $F^G(p, \alpha)$ (ou simplesmente $F(p, \alpha)$ se $G$ for claro do contexto), é $h(\alpha)$, em que $h$ é alguma computação parcial de comprimento $\beta>\alpha$ e parâmetro $p$ baseada em $G$.
+    Em símbolos:
+    \[
+        \forall p\forall \alpha\in\ON\forall y
+        \Bigl(F^G(p,\alpha)=y \leftrightarrow
+        \exists h\exists \beta\bigl(\Ap_G(h,\beta,p)\land \alpha<\beta \land h(\alpha)=y\bigr)\Bigr).
+    \]
+\end{definition}
+Pelos lemas, $F^G(p, \alpha)$ é bem definido, pois tal $y$ existe e é único.
+Assim, temos o seguinte metateorema.
+\begin{theorem}
+    Seja $G(p, s)$ um símbolo de função binário introduzido por definição.
+
+    Denote por $F_p(\alpha)=F(p, \alpha)$ a $\alpha$-ésima iteração de $G$.
+
+    Então
+    \[
+        \forall p \forall \alpha \in \ON \Bigl( F_p(\alpha)=G(p, F_p|\alpha)\Bigr).
+    \]
+\end{theorem}
+\begin{proof}
+    Seja $p$ e $\alpha$ fixados.
+    Seja $h$ uma computação parcial de comprimento $\beta>\alpha$ e parâmetro $p$ baseada em $G$ tal que $h(\alpha)=F_p(\alpha)$.
+    Pela definição de $F$, temos que $h(\xi)=F_p(\xi)$ para todo $\xi <\alpha$.
+    Assim, $h|\alpha=F_p|\alpha$.
+
+    Desta forma, $F_p(\alpha)=h(\alpha)=G(p, h|\alpha)=G(p, F_p|\alpha)$.
+\end{proof}
+O passo final consiste em mostrar que a solução recursiva obtida é única.
+Isto é, qualquer outra função que satisfaça a mesma equação recursiva deve coincidir com $F$ em todos os ordinais, independente de como ela seja definida.
+
+Novamente, a ferramenta apropriada para isso é a indução transfinita.
+\begin{theorem}
+    Seja $G(p, s)$ e $F'(p, \alpha)$ dois símbolos de função binários introduzidos por definição e $F$ a $\alpha$-ésima iteração de $G$.
+    Seja $p$ tal que $\forall \alpha \in \ON \Bigl( F'_p(\alpha)=G(p, F'_p  |\alpha)\Bigr)$.
+
+    Então $\forall \alpha \in \ON \Bigl( F_p(\alpha)=F'_p(\alpha)\Bigr)$.
+\end{theorem}
+\begin{proof}
+    Procedemos por indução transfinita sobre $\alpha$.
+    Se o resultado vale para todo $\beta <\alpha$, então $F'_p|\alpha=F_p|\alpha$.
+    Assim, $F'_p(\alpha)=G(p, F'_p|\alpha)=G(p, F_p|\alpha)=F_p(\alpha)$.
+\end{proof}
