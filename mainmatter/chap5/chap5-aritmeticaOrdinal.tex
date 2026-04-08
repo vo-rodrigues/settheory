@@ -1,0 +1,198 @@
+\section{Aritmética ordinal}
+Nesta seção, definiremos soma, produto e exponenciação de ordinais.
+
+O Exemplo~\ref{ex:soma-ordinal} justifica a definição de soma ordinal abaixo.
+\begin{definition}\label{def:soma-ordinal}
+    Sejam $\beta$ e $\alpha$ ordinais.
+    Define-se a soma ordinal de $\beta$ e $\alpha$, denotada por $\beta+\alpha$, recursivamente em $\alpha$, de modo que:
+    \begin{itemize}
+        \item $\beta+0=\beta$;
+        \item $\beta+S(\alpha)=S(\beta+\alpha)$;
+        \item $\beta+\alpha=\bigcup\{\beta+\xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+    \end{itemize}
+\end{definition}
+
+Note que tal definição é uma extensão da soma de números naturais.
+Observe que ela não é comutativa.
+
+\begin{example}
+    Temos que $\omega+1=\omega\cup\{\omega\}\neq \omega$.
+    Por outro lado, $1+\omega=\sup\{1+n: n\in \omega\}=\omega$.
+\end{example}
+
+
+A subtração de ordinais também é passível de ser definida.
+
+\begin{lemma}
+    Sejam $\alpha, \beta$ ordinais.
+    Então $\alpha+\beta\geq \beta$.
+\end{lemma}
+\begin{proof}
+    Procedemos por indução em $\beta$.
+
+    Para $\beta=0$, é trivial.
+
+    Suponha que $\alpha+\beta\geq \beta$ para um $\beta\in \ON$.
+    Então $\alpha+S(\beta)=S(\alpha+\beta)\geq S(\beta)$, pois $\alpha+\beta\geq \beta$.
+
+    Finalmente, suponha que $\beta$ seja um ordinal limite e que $\alpha+\xi\geq \xi$ para todo $\xi<\beta$.
+    Então $\alpha+\beta=\bigcup\{\alpha+\xi : \xi <\beta\}\geq \bigcup\{\xi : \xi <\beta\}=\beta$.
+\end{proof}
+
+\begin{lemma}
+    Sejam $\alpha, \beta, \gamma$ ordinais.
+    Se $\beta<\gamma$, então $\alpha+\beta<\alpha+\gamma$.
+\end{lemma}
+\begin{proof}
+    Procedemos por indução em $\gamma$.
+
+    Para $\gamma=0$, a hipótese $\beta<\gamma$ é falsa, e, portanto, a tese é verdadeira.
+
+    Suponha que a tese seja verdadeira para um $\gamma\in \ON$.
+    Vejamos que é verdadeira para $S(\gamma)=\gamma+1$.
+
+    Se $\beta<\gamma+1$, então $\beta\leq \gamma$.
+    
+    Caso $\beta=\gamma$, então $\alpha+\beta=\alpha+\gamma$.
+    Caso $\beta<\gamma$, então $\alpha+\beta<\alpha+\gamma$ pela hipótese de indução.
+    De qualquer forma, $\alpha+\beta\leq \alpha+\gamma<(\alpha+\gamma)+1=\alpha+(\gamma+1)$.
+
+    Finalmente, se $\gamma$ é um ordinal limite e $\beta<\gamma$, então $\beta\leq \xi$ para algum $\xi<\gamma$.
+    Assim, $\alpha+\beta\leq \alpha+\xi<\alpha+(\xi+1)\leq \alpha+\gamma$.
+\end{proof}
+
+\begin{proposition}
+    Para quaisquer ordinais $\beta$ e $\alpha$, se $\beta\leq \alpha$, então existe um único ordinal $\xi$ tal que $\beta+\xi=\alpha$.
+    Tal ordinal é denotado por $\alpha-\beta$.
+\end{proposition}
+\begin{proof}
+    Para a existência, dado $\alpha$, existe um ordinal $\xi$ tal que $\beta+\xi>\alpha$ (por exemplo, $\alpha+1$).
+    Seja $\xi$ o menor tal ordinal.
+
+    Temos que $\xi=0$ é impossível, pois $\beta+0=\beta\leq \alpha$.
+    $\xi$ também não pode ser limite, pois teríamos $\beta+\xi=\bigcup\{\beta+\zeta : \zeta <\xi\}\leq \alpha$ pela minimalidade de $\xi$.
+
+    Assim, $\xi=S(\gamma)$ para algum $\gamma\in \ON$.
+    Temos que $\beta+\gamma\leq \alpha$ pela minimalidade de $\xi$.
+    Se $\beta+\gamma<\alpha$, temos que $\beta+\xi=\beta+S(\gamma)=S(\beta+\gamma)\leq \alpha$, um absurdo.
+    Assim, $\beta+\gamma=\alpha$.
+
+    Para a unicidade, temos que, se $\gamma'$ fosse outro ordinal tal que $\beta+\gamma'=\alpha$, digamos que, sem perda de generalidade, $\gamma<\gamma'$.
+    Então temos $\alpha=\beta+\gamma<\beta+\gamma'=\alpha$, um absurdo.
+\end{proof}
+
+Uma interpretação da soma ordinal é dada pela seguinte proposição.
+
+\begin{proposition}
+    Para quaisquer ordinais $\beta$ e $\alpha$, $\beta+\alpha$ é o tipo da ordem de $C_{\beta, \alpha}=\{0\}\times \beta\cup\{1\}\times \alpha$, ordenado pela relação de ordem lexicográfica.
+\end{proposition}
+\begin{proof}
+    Procedemos por indução em $\alpha$.
+    Para $\alpha=0$, $\{0\}\times \beta\cup\{1\}\times 0=\{0\}\times \beta$ é isomorfo a $\beta$ pela função $(0, \xi)\to \xi$.
+
+    Suponha que a tese seja verdadeira para um $\alpha\in \ON$.
+    Então $C_{\beta, S(\alpha)}=C_{\beta, \alpha}\cup\{(1, S(\alpha))\}$, e $C_{\beta, \alpha}$ é um segmento inicial de $C_{\beta, S(\alpha)}$.
+    Seja $f: C_{\beta, \alpha}\to \beta+\alpha$ um isomorfismo.
+    Estenda $f$ para $f': C_{\beta, S(\alpha)}\to \beta+S(\alpha)$ de modo que $f'((1, S(\alpha)))=\beta+\alpha$.
+    Então $f'$ é um isomorfismo entre $C_{\beta, S(\alpha)}$ e $\beta+(\alpha+1)=(\beta+\alpha)+1$.
+
+    Finalmente, suponha que $\alpha$ seja um ordinal limite e que a tese seja verdadeira para todo $\xi<\alpha$.
+    Então $C_{\beta, \alpha}=\bigcup_{\xi<\alpha} C_{\beta, \xi}$, cada $C_{\beta, \xi}$ é isomorfo a $\beta+\xi$ e é um segmento inicial de $C_{\beta, \alpha}$.
+
+    Para cada $\xi<\alpha$, seja $f_\xi: C_{\beta, \xi}\to \beta+\xi$ o único isomorfismo entre estas boas ordens.
+    
+    Pela unicidade do isomorfismo, para cada $\delta<\xi<\alpha$, $f_\xi|C_{\beta, \delta}=f_\delta$.
+    Assim, $f=\bigcup_{\xi<\alpha} f_\xi: C_{\beta, \alpha}\to \bigcup_{\xi<\alpha} \beta+\xi=\beta+\alpha$ é um isomorfismo.
+\end{proof}
+
+A multiplicação de ordinais é definida como se segue.
+
+\begin{definition}
+    O produto de ordinais $\beta\cdot \alpha=\beta\alpha$ é definido recursivamente em $\alpha$ por:
+    \begin{itemize}
+        \item $\beta \cdot 0=0$;
+        \item $\beta \cdot S(\alpha)=\beta\cdot \alpha+\beta$;
+        \item $\beta\cdot \alpha=\sup\{\beta\cdot \xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+    \end{itemize}
+
+    Tal definição se justifica como se segue:
+    considere um operador binário $G(\beta, s)$ que satisfaça, para todo ordinal $\beta$:
+    \[
+        G(\beta, s)=
+        \begin{cases}
+            0 & \text{se } s=\emptyset,\\
+            s(\alpha)+\beta & \text{se } s\text{ é função } \land  \exists \alpha \in \ON \dom(s)=\alpha+1,\\
+            \bigcup_{\xi \in \alpha} s(\xi) & \text{se } s\text{ é função } \land \exists \alpha \in \ON \dom(s)=\alpha \text{ é limite}.
+        \end{cases}
+    \]
+    O teorema da recursão nos dá, então, uma receita para introduzir por definição $F(\beta, \alpha)=\beta\cdot \alpha$ tal que:
+    \begin{itemize}
+        \item $\beta\cdot 0=G(\beta, F_\beta|\emptyset)=0$;
+        \item $\beta\cdot S(\alpha)=G(\beta, F_\beta|S(\alpha))=F_\beta(\alpha)+\beta=\beta\cdot \alpha+\beta$;
+        \item $\beta\cdot \alpha=G(\beta, F_\beta|\alpha)=\bigcup_{\xi \in \alpha} F_\beta(\xi)=\sup\{\beta\cdot \xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+    \end{itemize}
+\end{definition}
+
+Notemos que o produto de ordinais também não é comutativo: $2\cdot \omega=\sup\{2n: n\in \omega\}=\omega$, mas $\omega\cdot 2=\omega+\omega>\omega$.
+
+A distributiva à esquerda também não é válida: $(1+1)\omega=2\omega=\omega$, mas $1\cdot \omega+1\cdot \omega=\omega+\omega>\omega$.
+
+Finalmente, a exponenciação de ordinais é definida como se segue.
+
+\begin{definition}
+    A exponenciação de ordinais $\beta^\alpha$ é definida recursivamente em $\alpha$ por:
+    \begin{itemize}
+        \item $\beta^0=1$;
+        \item $\beta^{S(\alpha)}=\beta^\alpha\cdot \beta$;
+        \item $\beta^\alpha=\sup\{\beta^\xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+    \end{itemize}
+
+    Tal definição se justifica como se segue:
+    considere um operador binário $G(\beta, s)$ que satisfaça, para todo ordinal $\beta$:
+    \[
+        G(\beta, s)=
+        \begin{cases}
+            1 & \text{se } s=\emptyset,\\
+            s(\alpha)\cdot \beta & \text{se } s\text{ é função } \land  \exists \alpha \in \ON \dom(s)=\alpha+1,\\
+            \bigcup_{\xi \in \alpha} s(\xi) & \text{se } s\text{ é função } \land \exists \alpha \in \ON \dom(s)=\alpha \text{ é limite}.
+            \end{cases}
+        \]
+    O teorema da recursão nos dá, então, uma receita para introduzir por definição $F(\beta, \alpha)=\beta^\alpha$ tal que:
+    \begin{itemize}
+        \item $\beta^0=G(\beta, F_\beta|\emptyset)=1$;
+        \item $\beta^{S(\alpha)}=G(\beta, F_\beta|S(\alpha))=F_\beta(\alpha)\cdot \beta=\beta^\alpha\cdot \beta$;
+        \item $\beta^\alpha=G(\beta, F_\beta|\alpha)=\bigcup_{\xi \in \alpha} F_\beta(\xi)=\sup\{\beta^\xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+    \end{itemize}
+\end{definition}
+
+\section*{Exercícios}
+\begin{exercise}
+    Assuma que $+$ e $+'$ são duas operações introduzidas por definição que satisfazem as propriedades descritas na definição \ref{def:soma-ordinal}.
+    Prove que para todo $\beta, \alpha \in \ON$, $\beta+\alpha=\beta+' \alpha$.
+\end{exercise}
+
+\begin{exercise}
+    Prove que, para todos $\alpha, \beta, \gamma \in \ON$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$;
+        \item $\alpha+0=0+\alpha=\alpha$;
+        \item Se $\beta<\gamma$, então $\alpha+\beta<\alpha+\gamma$.
+        \item Se $\beta<\gamma$, então $\beta+\alpha\leq \gamma+\alpha$.
+        A desigualdade estrita é preservada?
+        \item Se $\alpha$ é um ordinal limite, então $\beta+\alpha$ é um ordinal limite.
+        \item Se $X$ um conjunto de ordinais e $\alpha=\sup X$, então $\sup_{\xi \in X}\beta+\xi=\beta+\alpha$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Prove que, para todos $\alpha, \beta, \gamma \in \ON$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\alpha\cdot (\beta+\gamma)=\alpha\cdot \beta+\alpha\cdot \gamma$;
+        \item $(\alpha\cdot \beta)\cdot \gamma=\alpha\cdot (\beta\cdot \gamma)$;
+        \item Se $\beta<\gamma$, então $\alpha\cdot \beta<\alpha\cdot \gamma$.
+        \item Se $\beta<\gamma$, então $\beta\cdot \alpha\leq \gamma\cdot \alpha$.
+        \item Se $\alpha$ é um ordinal limite e $\beta\neq 0$, então $\beta\cdot \alpha$ é um ordinal limite.
+        \item Se $X$ um conjunto de ordinais e $\alpha=\sup X$, então $\sup_{\xi \in X}\beta\cdot \xi=\beta\cdot \alpha$.
+        \item Se $0<\beta\leq\alpha$, existe um maior ordinal $\gamma$ tal que $\beta\cdot \gamma\leq \alpha$.
+    \end{enumerate}
+\end{exercise}

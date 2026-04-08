@@ -109,7 +109,7 @@ Chamamos o resultado acima de metateorema porque ele não afirma apenas uma prop
 Ou seja, o conteúdo do resultado é que o processo de definição recursiva transfinita pode ser formalizado dentro da teoria. A partir disso, os resultados concretos sobre a função assim definida passam a ser teoremas internos da teoria.
 
 Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de aplicação do mesmo.
-\begin{example}
+\begin{example}\label{ex:soma-ordinal}
     Considere o operador binário $G$ definido por:
     \[
         G(p, s)=\begin{cases}
@@ -125,7 +125,7 @@ Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de apl
     \begin{itemize}
         \item $\beta+0=G(\beta, F_\beta|0)=\beta$;
         \item $\beta+S(\alpha)=S(\beta+\alpha)$;
-        \item $\beta+\alpha=\bigcup\{\beta+\xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
+        \item $\beta+\alpha=\sup\{\beta+\xi : \xi <\alpha\}$, se $\alpha$ é um ordinal limite.
     \end{itemize}
 
     Por uma indução transfinita simples, vê-se que $\beta+\alpha \in \ON$ para todo $\beta, \alpha \in \ON$: suponha que para todo ordinal $\xi<\alpha$, $\beta+\xi$ é um ordinal.
