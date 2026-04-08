@@ -22,11 +22,12 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: Install TeX Live (minimal)
+      - name: Install LaTeX
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             latexmk \
+            lmodern \
             texlive-latex-base \
             texlive-latex-recommended \
             texlive-latex-extra \
