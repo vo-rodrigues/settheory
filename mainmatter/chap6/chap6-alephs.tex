@@ -1,0 +1,113 @@
+\section{A sequência dos alephs}
+Na seção anterior, vimos que, dado um cardinal $\kappa$, existe um cardinal $\kappa^+$ que é o menor cardinal maior que $\kappa$.
+Além disso, temos que a união de uma coleção de cardinais é um cardinal.
+Além disso, $\omega$ é o menor cardinal infinito.
+
+Isso nos induz a definir, naturalmente, uma sequência de cardinais:
+
+\[
+    \omega<\omega^+<\omega^{++}<\ldots
+\]
+
+Ao definir os primeiros $\omega$ termos dessa sequência, temos que $\omega$, é possível definir o próximo cardinal:
+\[
+    \bigcup\{\omega, \omega^+, \omega^{++}, \ldots\}
+\]
+A formalização deste raciocínio nos leva à sequência dos alephs, que é definida da seguinte forma:
+\begin{definition}
+    Define-se, recursivamente, $\aleph_\alpha$ para cada ordinal $\alpha$ de modo que:
+    
+    \begin{itemize}
+        \item $\aleph_0 = \omega$;
+        \item $\aleph_{\alpha+1} = \aleph_\alpha^+$;
+        \item $\aleph_\alpha = \sup\{\aleph_\beta : \beta < \alpha\}$, para $\alpha$ um ordinal limite.
+    \end{itemize}
+\end{definition}
+Pelo Teorema da Recursão, tal feito é possível.
+
+\begin{lemma}
+    Para cada ordinal $\alpha$, $\aleph_\alpha$ é um cardinal e, para todo $\beta<\alpha$, $\aleph_\beta < \aleph_\alpha$.
+\end{lemma}
+\begin{proof}
+Procedemos por indução transfinita.
+Suponha que a afirmação seja verdadeira para todo $\beta<\alpha$.
+
+Se $\alpha=0$, então $\aleph_0 = \omega$ é um cardinal, e a outra parte da afirmação é trivial.
+
+Para $\alpha = \beta + 1$, temos que $\aleph_\alpha = \aleph_\beta^+$ é um cardinal.
+Seja $\gamma < \alpha=\beta+1$.
+Segue que $\gamma \leq \beta$.
+Por hipótese de indução, $\aleph_\gamma \leq \aleph_\beta$.
+Como $\aleph_\beta < \aleph_\beta^+ = \aleph_\alpha$, temos que $\aleph_\gamma < \aleph_\alpha$.
+
+Se $\alpha$ é um ordinal limite, então $\aleph_\alpha = \sup\{\aleph_\beta : \beta < \alpha\}$ é um cardinal, uma vez que é a união de cardinais.
+Seja $\gamma < \alpha$.
+Como $\alpha$ é limite, $\gamma+1<\alpha$.
+Assim, $\aleph_\gamma < \aleph_{\gamma+1} \leq \aleph_\alpha$.
+\end{proof}
+
+A sequência dos alephs é, em verdade, a sequência de todos os cardinais infinitos.
+Antes, provaremos outro lema.
+
+\begin{lemma}
+    Para todo ordinal $\alpha$, $\aleph_\alpha\geq \alpha$.
+\end{lemma}
+\begin{proof}
+Procedemos por indução transfinita.
+Suponha que a afirmação seja verdadeira para todo $\beta<\alpha$.
+Se $\alpha=0$, então $\aleph_0 = \omega \geq 0$.
+
+Se $\alpha = \beta + 1$, então $\aleph_\alpha = \aleph_\beta^+>\aleph_\beta \geq \beta$.
+Assim, $\beta<\aleph_{\alpha}$, e, portanto, $\alpha=\beta+1 \leq \aleph_\alpha$.
+
+Se $\alpha$ é um ordinal limite, então $\aleph_\alpha = \sup\{\aleph_\beta : \beta < \alpha\}\geq \sup\{\beta : \beta < \alpha\} = \alpha$.
+\end{proof}
+\begin{theorem}
+    Para cada cardinal infinito $\kappa$, existe um ordinal $\alpha$ tal que $\kappa = \aleph_\alpha$.
+\end{theorem}
+\begin{proof}
+    Seja $\kappa$ um cardinal infinito.
+    Assuma que, para cada ordinal $\alpha$, $\kappa \neq \aleph_\alpha$.
+
+    Por indução, veremos que, para todo ordinal $\alpha$, $\aleph_\alpha<\kappa$.
+    Suponha que a hipótese de indução seja verdadeira para todo $\beta<\alpha$.
+
+    Para $\alpha=0$, $\kappa \geq \omega = \aleph_0$, pois $\kappa$ é infinito.
+    Como $\kappa \neq \aleph_0$, segue que $\aleph_0<\kappa$.
+
+    Suponha que $\alpha = \beta + 1$ para algum ordinal $\beta$.
+    Como $\aleph_\beta < \kappa$ por hipótese de indução, $\aleph_\alpha=\aleph_\beta^+ \leq \kappa$, pois $\aleph_\beta^+$ é o menor cardinal maior que $\aleph_\beta$.
+    Por hipótese de absurdo, $\kappa \neq \aleph_\alpha$, e, portanto, $\aleph_\alpha < \kappa$.
+
+    Por fim, suponha que $\alpha$ é um ordinal limite.
+    Temos que, por hipótese de indução, $\aleph_\alpha=\sup\{\aleph_\beta : \beta < \alpha\} \leq \kappa$.
+    Assim, $\aleph_\alpha < \kappa$
+
+    Isso completa a indução.
+    Em particular, $\aleph_{\kappa+1} < \kappa$, o que é absurdo, pois $\kappa <\kappa+1\leq \aleph_{\kappa+1}$.
+\end{proof}
+
+\subsection{Exercícios}
+\begin{exercise}
+Justifique, formalmente, a partir de alguma versão do Teorema da Recursão, a introdução por definição da sequência dos alephs.
+Mostre, ainda, que se $F$ é um símbolo de função introduzido por definição tal que:
+\begin{itemize}
+    \item $F(0)= \omega$;
+    \item $F(\alpha+1) = F(\alpha)^+$ para todo ordinal $\alpha$;
+    \item $F(\alpha)= \sup\{F(\beta) : \beta < \alpha\}$ para $\alpha$ ordinal limite;
+\end{itemize}
+então $F(\alpha) = \aleph_\alpha$ para todo ordinal $\alpha$.
+\end{exercise}
+\begin{exercise}
+    Mostre que não existe um conjunto que tenha todos os cardinais como elementos.
+\end{exercise}
+\begin{exercise}
+    Seja $\alpha$ um ordinal qualquer.
+    Defina, recursivamente, uma sequência de ordinais $(\alpha_n)_{n\in\omega}$, de modo que:
+    \begin{align*}
+        \alpha_0 & = \alpha; \\
+        \alpha_{n+1} & = \aleph_{\alpha_n}.
+    \end{align*}
+    Seja $\beta=\sup\{\alpha_n : n\in\omega\}$.
+    Mostre que $\beta=\aleph_\beta$ e que $\beta\geq\alpha$.
+\end{exercise}

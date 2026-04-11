@@ -169,6 +169,10 @@ Com o Axioma da Potência, tal feito se faz possível.
     Temos que $\kappa$ não injeta em $\alpha$, e, portanto, $h(\alpha)\leq \kappa$.
 \end{proof}
 
+\begin{definition}
+    Dado um ordinal $\alpha$, o número de Hartogs de $\alpha$ é denotado por $\alpha^+$.
+\end{definition}
+
 Por fim, temos que a união de uma coleção de cardinais é um cardinal.
 
 \begin{lemma}
@@ -182,6 +186,29 @@ Por fim, temos que a união de uma coleção de cardinais é um cardinal.
     Como $\kappa$ é um cardinal, $\kappa$ não injeta em $\beta$, e, portanto, $\bigcup A$, que contém $\kappa$, não injeta em $\beta$.
 \end{proof}
 
+Finalizamos com um lema que restringe a estrutura dos cardinais.
+
+\begin{lemma}
+Seja $\kappa$ um cardinal infinito.
+Então $\kappa$ é um ordinal limite.
+\end{lemma}
+\begin{proof}
+    Por definição, $\kappa$ é um ordinal.
+    Como ele é infinito, $\kappa\neq 0$.
+    Suponha por absurdo que $\kappa=\alpha+1$ para algum ordinal $\alpha$.
+    Como $\kappa$ é infinito e $\kappa=\alpha\cup\{\alpha\}$, temos que $\alpha$ é infinito.
+    Assim, $\omega\subseteq \alpha$.
+    Seja $f:\kappa \to \alpha$ dada por:
+    \[
+    f(\xi) = \begin{cases}
+        \xi+1, & \text{se } \xi<\omega\\
+        \xi, & \text{se } \omega \leq \xi < \alpha\\
+        0, & \text{se } \xi=\alpha
+    \end{cases}
+    \]
+    É fácil verificar que $f$ é uma função bijetora, de modo que $\kappa$ não é um cardinal.
+\end{proof}
+
 \subsection*{Exercícios}
 Nos exercícios dessa seção, NÃO assuma o Axioma da Escolha (este ainda não foi introduzido!).
 \begin{exercise}
@@ -190,4 +217,14 @@ Nos exercícios dessa seção, NÃO assuma o Axioma da Escolha (este ainda não 
 \begin{exercise}
     Seja $A$ um conjunto.
     Mostre que $h(A)$ é o menor ordinal tal que $A$ não injeta em $h(A)$.
+\end{exercise}
+\begin{exercise}
+    Seja $\kappa$ um cardinal.
+    Mostre que não existe um cardinal $\lambda$ tal que $\kappa<\lambda<\kappa^+$.
+
+    É possível que existam ordinais $\alpha$ tais que $\kappa<\alpha<\kappa^+$?
+    Em que casos?
+\end{exercise}
+\begin{exercise}
+Mostre que se $\alpha$ é um ordinal infinito, então $\alpha+1\approx \alpha$.
 \end{exercise}
