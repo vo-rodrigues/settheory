@@ -1,11 +1,14 @@
 \section{Linguagens de primeira ordem}
+\index{linguagem de primeira ordem}
+\index{símbolo lógico}
+\index{símbolo não lógico}
 
 Discutida a notação polonesa de forma geral, estamos prontos para avançar para a linguagem da lógica de primeira ordem.
 
 Iniciaremos apresentando os símbolos lógicos.
 Enfatizamos, desde já, que consideraremos a igualdade como um símbolo lógico, o que é uma escolha comum, mas não universal, na literatura.
 
-\begin{metadefinition}\label{def:simbolos-logicos}
+\begin{metadefinition}\label{def:simbolos-logicos}\index{símbolo lógico}\index{conectivo lógico}\index{quantificador}
     Os símbolos lógicos (da lógica de primeira ordem) são os seguintes.
     \begin{itemize}
         \item Os símbolos de conectivos lógicos:
@@ -44,7 +47,7 @@ De fato, conforme veremos, nem toda expressão na notação polonesa é uma fór
 
 Iniciaremos trabalhando a primeira dúvida.
 
-\begin{metadefinition}
+\begin{metadefinition}\index{léxico!de primeira ordem}\index{símbolo não lógico}\index{símbolo de predicado}\index{símbolo funcional}
     Um léxico $\mathcal L$ para uma teoria de primeira ordem consiste no seguinte.
 
     \begin{itemize}
@@ -87,7 +90,7 @@ Para isso, devemos definir, precisamente, o que são termos e fórmulas.
 
 Iniciaremos pelos termos.
 
-\begin{metadefinition}
+\begin{metadefinition}\index{termo}\index{constante}
     Dado um léxico $\mathcal L$ para uma teoria de primeira ordem, os termos de $\mathcal L$ são definidos recursivamente da seguinte forma.
 \begin{enumerate}[label=(\roman*)]
     \item Toda variável é um termo.
@@ -112,7 +115,7 @@ Vamos dar alguns exemplos.
 
 Agora podemos definir o que são fórmulas.
 
-\begin{metadefinition}
+\begin{metadefinition}\index{fórmula}\index{fórmula!atômica}\index{fórmula!equacional}\index{subfórmula}
     Dado um léxico $\mathcal L$ para uma teoria de primeira ordem, as fórmulas de $\mathcal L$ são definidas recursivamente da seguinte forma.
 \begin{enumerate}[label=(\roman*)]
     \item Se $P$ é um símbolo de predicado de aridade $n>0$ e $t_1,\dots,t_n$ são termos, então $Pt_1\dots t_n$ é uma fórmula.

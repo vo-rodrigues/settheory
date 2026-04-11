@@ -1,8 +1,11 @@
 \section{Relações e funções}\label{sec:relacoes}
+\index{relação}
+\index{função}
+\index{produto cartesiano}
 Nesta seção, introduziremos formalmente os conceitos básicos relacionados a relações e funções.
 Oportunamente, introduziremos o Axioma da Potência.
 \subsection{Relações}
-\begin{definition}
+\begin{definition}\index{relação}
     Uma \textbf{relação} é um conjunto de pares ordenados.
     Formalmente,
 
@@ -14,7 +17,7 @@ Oportunamente, introduziremos o Axioma da Potência.
 Conceitos fundamentais associados a relações são os de domínio e imagem.
 Enunciaremos suas definições formais, e, a seguir, mostraremos que a existência de tais conjuntos pode ser justificada com os axiomas já introduzidos.
 
-\begin{definition}
+\begin{definition}\index{domínio}\index{imagem}
     Seja $R$ um conjunto.
     O domínio de $R$, denotado por $\dom R$, é o conjunto $z$ cujos elementos são as primeiras coordenadas dos pares ordenados de $R$.
     Formalmente,
@@ -58,7 +61,7 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
     A unicidade decorre do Axioma da Extensão.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{relação!em um conjunto}
     Dado um conjunto $A$, dizemos que uma relação $R$ é uma \emph{relação em $A$} se $\dom R \subseteq A$ e $\ran R \subseteq A$.
 \end{definition}
 \subsection{O Axioma da Potência e o produto cartesiano}
@@ -67,7 +70,7 @@ Quando existe, esse conjunto é usualmente chamado de produto cartesiano de $A$ 
 É possível demonstrar que não é possível provar que tal relação existe para todos os conjuntos $A$ e $B$ utilizando apenas os axiomas já introduzidos.
 Para garantir tal existência, introduziremos o Axioma da Potência.
 Uma alternativa seria utilizar o Esquema da Substituição, mas optaremos por adiar a introdução desse axioma para um capítulo posterior.
-\begin{axiom}[Axioma da Potência]
+\begin{axiom}[Axioma da Potência]\index{Axioma da Potência}
     Para qualquer conjunto $x$, existe um conjunto $y$ tal que todo subconjunto de $x$ é elemento de $y$.
     Formalmente,
     \[
@@ -78,7 +81,7 @@ Uma alternativa seria utilizar o Esquema da Substituição, mas optaremos por ad
 Utilizando uma instância do esquema da compreensão, dado um conjunto $x$, pode-se restringir o conjunto $y$ fornecido pelo Axioma da Potência para obter o conjunto cujos elementos são exatamente os subconjuntos de $x$.
 Deixamos os detalhes ao leitor (Exercício~\ref{exercicio:existenciaPotencia}).
 
-\begin{definition}
+\begin{definition}\index{conjunto das partes}
     Dado um conjunto $x$, o conjunto $\mathcal P(x)$ é o conjunto cujos elementos são exatamente os subconjuntos de $x$.
     Formalmente,
 \[
@@ -106,7 +109,7 @@ Utilizando o conjunto das partes, podemos garantir a existência do produto cart
     A unicidade decorre do Axioma da Extensão.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{produto cartesiano}
     Dados quaisquer conjuntos $A$ e $B$, o produto cartesiano de $A$ e $B$, denotado por $A \times B$, é o conjunto cujos elementos são exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
     Formalmente,
     \[
@@ -124,7 +127,7 @@ Intuitivamente, a relação inversa de $R$ é obtida trocando-se a ordem das coo
 Por simplicidade, definiremos $R^{-1}$ para qualquer conjunto, independentemente de $R$ ser ou não uma relação.
 Porém, raramente tal notação será utilizada no caso de $R$ não ser uma relação.
 
-\begin{definition}
+\begin{definition}\index{relação inversa}
     Seja $R$ um conjunto.
     Definimos $R^{-1}$ como o conjunto dos pares ordenados $(b,a)$ tais que $(a,b) \in R$.
     Formalmente,
@@ -201,7 +204,7 @@ Vamos aproveitar a oportunidade para introduzi-la.
 
 Podemos também definir a composição de relações.
 
-\begin{definition}
+\begin{definition}\index{composição de relações}
     Sejam $R$ e $S$ relações.
     A composição de $R$ e $S$, denotada por $R\circ S$, é definida por
     \[
@@ -214,7 +217,7 @@ As noções introduzidas até aqui permitem tratar adequadamente um caso particu
 \subsection{Funções}
 Conforme usualmente definido, uma função é um tipo especial de relação.
 
-\begin{definition}
+\begin{definition}\index{função}
     Uma \textbf{função} é uma relação $f$ tal que, para cada $a \in \dom f$, existe um único $b \in \ran f$ tal que $(a, b) \in f$.
     Formalmente,
     \[
@@ -224,7 +227,7 @@ Conforme usualmente definido, uma função é um tipo especial de relação.
 
 Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único $b$ tal que $(a, b) \in f$, quando $f$ é uma função e $a \in \dom f$.
 
-\begin{definition}
+\begin{definition}\index{avaliação de função}
     Sejam $f$ uma função e $a \in \dom f$.
     O valor de $f$ em $a$, denotado por $f(a)$, é o único $b$ tal que $(a,b)\in f$.
 
@@ -236,7 +239,7 @@ Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único 
 
 Convém formalizar a notação usual $f:A\to B$.
 
-\begin{definition}
+\begin{definition}\index{função parcial}\index{contradomínio}
     Sejam $f$ uma função e $A$, $B$ conjuntos.
     Dizemos que:
     \begin{enumerate}[label=(\alph*)]
@@ -251,7 +254,7 @@ Convém formalizar a notação usual $f:A\to B$.
 
 As notações de imagem direta, imagem inversa e restrição também são as usuais.
 
-\begin{definition}
+\begin{definition}\index{imagem direta}\index{imagem inversa}\index{restrição}
     Sejam $f$ uma função, $A$ um conjunto e $B$ um conjunto.
     \begin{enumerate}[label=(\alph*)]
         \item A imagem direta de $A$ por $f$, denotada por $f[A]$, é o conjunto $\{b \in \ran f : \exists a \in A\, (f(a) = b)\}$.
@@ -299,7 +302,7 @@ Além disso, é imediato que se $f$ é uma função e $A$ um conjunto, $f\restri
     Assim, $(g\circ f)(a) = d = g(c) = g(f(a))$.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{função!injetora}\index{função!invertível}\index{bijeção}\index{função!sobrejetora}
     Uma função $f$ é \textbf{injetora} se, para quaisquer $a, a' \in \dom f$ e $b \in \ran f$, se $f(a) = b$ e $f(a') = b$, então $a = a'$.
 
     Dizemos que $f$ é \textbf{invertível} se, e somente se $f^{-1}$ é uma função.
@@ -330,7 +333,7 @@ No contexto da Teoria dos Conjuntos, as noções de injetividade e invertibilida
 \end{proof}
 
 Com a introdução do Axioma da Potência, também podemos garantir a existência de todas as funções de $A$ em $B$.
-\begin{definition}
+\begin{definition}\index{conjunto de funções}
     Sejam $A$ e $B$ conjuntos.
     O conjunto $B^A$ é o conjunto de todas as funções de $A$ em $B$.
 \end{definition}
@@ -355,7 +358,7 @@ Abaixo, justificaremos a existência de $B^A$.
 Às vezes, é útil pensar em funções como indexadoras de objetos.
 Em alguns desses casos, convém adotar a notação de \emph{famílias}.
 
-\begin{definition}
+\begin{definition}\index{família}
     Uma \textbf{família} é uma função.
     Se $a$ é uma família e $I$ é seu domínio, dizemos que $a$ é uma família indexada por $I$.
     
@@ -374,7 +377,7 @@ Em alguns desses casos, convém adotar a notação de \emph{famílias}.
 
 Com essa notação, podemos dar sentido à notação usual de união e interseção de famílias, a saber, $\bigcup_{i\in I} A_i$ e $\bigcap_{i\in I} A_i$.
 
-\begin{definition}
+\begin{definition}\index{união!de família}\index{interseção!de família}
     Seja $I$ um conjunto e $(A_i: i \in I)$ uma família.
     A união de $(A_i: i \in I)$, denotada por $\bigcup_{i\in I} A_i$, é o conjunto $\bigcup\{A_i: i \in I\}$.
 
@@ -382,7 +385,7 @@ Com essa notação, podemos dar sentido à notação usual de união e interseç
 \end{definition}
 Dada uma família $(A_i: i \in I)$, é natural considerar a coleção de todas as famílias $(a_i: i \in I)$ tais que $a_i \in A_i$ para todo $i \in I$.
 Tal coleção é usualmente chamada de produto cartesiano de $(A_i: i \in I)$.
-\begin{definition}
+\begin{definition}\index{produto cartesiano!de famílias}
     Seja $I$ um conjunto e $(A_i: i \in I)$ uma família.
     O produto cartesiano de $(A_i: i \in I)$, denotado por $\prod_{i\in I} A_i$, é o conjunto de todas as famílias $(a_i: i \in I)$ tais que $a_i \in A_i$ para todo $i \in I$.
 \end{definition}
@@ -402,7 +405,7 @@ Tal coleção é usualmente chamada de produto cartesiano de $(A_i: i \in I)$.
 \subsection{Funções compatíveis}
 Em muitas situações, será útil reunir várias funções numa única função maior.
 A noção adequada para isso é a de compatibilidade entre funções.
-\begin{definition}
+\begin{definition}\index{funções compatíveis}
     Dizemos que duas funções $f$ e $g$ são \textbf{compatíveis} se, para todo $a \in \dom f \cap \dom g$, temos que $f(a) = g(a)$.
 \end{definition}
 \begin{lemma}

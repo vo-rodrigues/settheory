@@ -1,4 +1,6 @@
 \section{Os Axiomas da Substituição}
+\index{Axioma da Substituição}
+\index{tipo de uma boa ordem}
 Nesta seção, veremos que toda boa ordem é isomorfa a um único número ordinal.
 Para isso, precisamos introduzir um novo axioma, o \emph{axioma da substituição}.
 
@@ -51,7 +53,7 @@ Tais símbolos fazem parte da linguagem, mas não denotam conjuntos.
 
 O \emph{esquema de axiomas da substituição} é um axioma introduzido por Fraenkel que garante que, sob condições análogas às de $F$ (cujo domínio ``seria um conjunto''), mas não às de $S$ (cujo domínio ``não seria comportado por um conjunto''), tais funções existem.
 
-\begin{axiom}[Esquema de axiomas da substituição]
+\begin{axiom}[Esquema de axiomas da substituição]\index{Esquema de Axiomas da Substituição}
     Para cada fórmula $\phi(x, y, A, t_1, \dots, t_n)$, a seguinte fórmula é um axioma.
     \[
         \forall t_1, \dots, t_n \forall A \left( \forall x\in A \exists! y \phi(x, y, A, t_1, \dots, t_n) \rightarrow \exists B \forall y (\exists x\in A \phi(x, y, A, t_1, \dots, t_n)\rightarrow y \in B)\right).
@@ -61,7 +63,7 @@ O \emph{esquema de axiomas da substituição} é um axioma introduzido por Fraen
 O Axioma da substituição garante que, fixados parâmetros $t$ e um conjunto $A$ para o qual todo $x\in A$ corresponde a um único $y$, existe um conjunto $B$ que possui como elementos todos os tais $y$.
 Porém, $B$ pode conter outros elementos além dos tais $y$.
 Através do esquema da compreensão, é possível eliminar tais elementos.
-\begin{proposition}[Esquema da substituição compreendida]\label{prop:substituicaoCompreendida}
+\begin{proposition}[Esquema da substituição compreendida]\label{prop:substituicaoCompreendida}\index{substituição!compreendida}
     Para cada fórmula $\phi(x, y, A, t_1, \dots, t_n)$, a seguinte fórmula é um teorema
     \[
         \forall t_1, \dots, t_n \forall A \left( \forall x\in A \exists! y \phi(x, y, A, t_1, \dots, t_n) \rightarrow \exists B \forall y (\exists x\in A \phi(x, y, A, t_1, \dots, t_n)\leftrightarrow y \in B)\right).
@@ -108,7 +110,7 @@ De posse do esquema dos axiomas da substituição, podemos provar que toda boa o
 
 Para a demonstração abaixo, perceba que se $\beta$ é um ordinal e $\xi \in \beta$, então $\beta[\xi]=\{\alpha \in \beta : \alpha<\xi\}=\xi$ (ver Exercício~\ref{ex:segmentoInicialOrdinal}).
 
-\begin{theorem}
+\begin{theorem}\index{tipo de uma boa ordem}
     Para toda boa ordem $A$, existe um único número ordinal $\alpha$ tal que $A$ é isomorfo a $\alpha$.
 \end{theorem}
 \begin{proof}
@@ -148,7 +150,7 @@ Para a demonstração abaixo, perceba que se $\beta$ é um ordinal e $\xi \in \b
     Assim, $X=A$ e $f: A\to \alpha$ é um isomorfismo.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{tipo de uma boa ordem}
 Seja $A$ uma boa ordem.
 O \emph{tipo de $A$}, denotado por $\tp(A)$, é o único número ordinal isomorfo a $A$.
 \end{definition}

@@ -1,4 +1,9 @@
 \section{A aritmética dos números naturais}
+\index{aritmética!dos números naturais}
+\index{adição}
+\index{subtração}
+\index{multiplicação}
+\index{potenciação}
 De posse do Teorema da Recursão, podemos definir as operações básicas dos números naturais.
 Nesta seção, introduziremos a adição, a subtração, a multiplicação e a potenciação de números naturais.
 
@@ -32,7 +37,7 @@ Nesta seção, introduziremos a adição, a subtração, a multiplicação e a p
     Assim, $f(m, S(n))=S(f(m, n))=S(h(m, n))=h(m, S(n))$, o que completa a indução.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{adição}
     A \emph{adição} é a única função $+: \omega\times \omega\to \omega$ como na proposição acima.
 \end{definition}
 
@@ -77,7 +82,7 @@ Para isso, utilizaremos a seguinte proposição.
     Assim, $n+1=(m+k)+1=m+(k+1)$, o que completa a indução.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{subtração}
     Sejam $m\leq n$ números naturais.
     Define-se a \emph{subtração} $n-m$ como o único número natural $k$ tal que $n=m+k$.
 \end{definition}
@@ -112,7 +117,7 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
     Assim, $f(m, n+1)=f(m, n)+m=h(m, n)+m=h(m, n+1)$, o que completa a indução.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{multiplicação}
     A \emph{multiplicação} é a única função $\cdot: \omega\times \omega\to \omega$ como na proposição acima.
 \end{definition}
 
@@ -144,7 +149,7 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
     Assim, $f(m, n+1)=f(m, n)\cdot m=h(m, n)\cdot m=h(m, n+1)$, o que completa a indução.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{potenciação}
     A \emph{potenciação} é a única função $\exp: \omega\times \omega\to \omega$ como na proposição acima.
     Denotamos $\exp(m, n)$ por $m^n$.
 \end{definition}

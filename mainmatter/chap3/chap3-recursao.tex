@@ -1,4 +1,7 @@
 \section{Recursão nos números naturais}
+\index{recursão}
+\index{Teorema da Recursão}
+\index{sequência de Fibonacci}
 
 Intuitivamente, o significado de $m+n$ consiste em tomar $m$ e aplicar a operação de sucessor $n$ vezes.
 Como uma criança aprendendo a somar, parte-se de $m$ e, ``contando nos dedos'', percorre-se $n$ números, e o resultante é $m+n$.
@@ -91,7 +94,7 @@ Antes, introduziremos uma notação.
     Reciprocamente, dada uma família de funções $f_a: B\to C$ indexada por $a\in A$, definimos $f: A\times B\to C$ por $f(a, b)=f_a(b)$.
 \end{definition}
 
-\begin{theorem}[Teorema da Recursão]\label{thm:recursion}
+\begin{theorem}[Teorema da Recursão]\label{thm:recursion}\index{Teorema da Recursão}
     Sejam $A, P$ conjuntos e $G: P\times A^{<\omega}\to A$ uma função.
     Então existe uma única função $f:P\times \omega\to A$ tal que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$.
 \end{theorem}

@@ -1,4 +1,7 @@
 \section{Introdução}
+\index{equipotência}
+\index{sucessor}
+\index{conjunto indutivo}
 Queremos definir, dentro da teoria dos conjuntos, o que significa um conjunto ter $0$, $1$, $2$, $3$, \dots\ elementos.
 
 Para isso, precisamos escolher conjuntos específicos que possam representar os números naturais.
@@ -9,7 +12,7 @@ Mesmo fora da matemática, é possível comparar quantidades sem recorrer previa
 Para registrar a quantidade de ovelhas em um pasto, pode-se levar um saco de pedras e, para cada ovelha contada, colocar uma pedra no saco.
 Mais tarde, ao comparar as ovelhas com as pedras, verifica-se se a correspondência é exata.
 
-\begin{definition}\label{def:equipotencia}
+\begin{definition}\label{def:equipotencia}\index{equipotência}
     Sejam $A$, $B$ conjuntos.
     Dizemos que $A$ e $B$ possuem o mesmo número de elementos (ou que são equipotentes) se existe uma função bijetora de $A$ em $B$.
     Escrevemos $A \approx B$ para denotar que $A$ e $B$ são equipotentes.
@@ -100,7 +103,7 @@ Porém, tal definição é informal, devido às reticências.
 
 Porém, parece que encontramos um mecanismo de ``escolher o próximo número'', que é formalizado pela definição a seguir.
 
-\begin{definition}
+\begin{definition}\index{sucessor}
     Dado um conjunto $x$, o \emph{sucessor} de $x$ é o conjunto $S(x) = x \cup \{x\}$.
 \end{definition}
 
@@ -108,14 +111,14 @@ Com isso em mente, como definir o conjunto dos números naturais?
 Ora, tal conjunto deve ter o $0$, e, sempre que tem um conjunto $x$, deve ter seu sucessor $S(x)$.
 Um conjunto com essa propriedade é chamado de conjunto indutivo.
 
-\begin{definition}
+\begin{definition}\index{conjunto indutivo}
     Dizemos que um conjunto $A$ é \textbf{indutivo} se $0 \in A$ e, para todo $x \in A$, $S(x) \in A$.
 \end{definition}
 
 Com os axiomas que temos até então não é possível garantir a existência de um conjunto indutivo.
 O Axioma do Infinito diz precisamente que um tal conjunto existe.
 
-\begin{axiom}
+\begin{axiom}\index{Axioma do Infinito}
     Existe um conjunto indutivo.
     Formalmente,
     \[
@@ -141,7 +144,7 @@ Porém, nada garante que ele não contenha outros elementos além destes.
 
 Buscaremos então definir o \emph{menor conjunto indutivo}, ou seja, um conjunto indutivo que está contido em todos os outros, mínimo com relação à inclusão $\subseteq$.
 
-\begin{definition}
+\begin{definition}\index{conjunto dos números naturais}
     O conjunto dos números naturais, denotado por $\omega$, é o único conjunto $J$ tal que
     \[
         \forall x\, \bigl(x \in J \leftrightarrow \forall I\, (I \text{ é indutivo} \rightarrow x \in I)\bigr).
@@ -204,7 +207,7 @@ Vejamos algumas propriedades básicas de $\omega$.
 
 Agora é possível demonstrar que $\omega$ satisfaz o esquema da indução.
 
-\begin{proposition}
+\begin{proposition}\index{indução}
     Considere uma fórmula $\phi(x, t_1, \dots, t_n)$.
 
     O seguinte é um teorema:

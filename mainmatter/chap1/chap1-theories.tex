@@ -1,4 +1,6 @@
 \section{Teorias de primeira ordem}
+\index{teoria da prova}
+\index{sistema de Hilbert}
 Até aqui, discutimos o que é uma linguagem de primeira ordem e aprendemos a identificar termos, sentenças e fórmulas, bem como tautologias.
 O próximo passo é entender teorias, teoremas e demonstrações, ou seja, teoria da prova básica.
 
@@ -17,7 +19,7 @@ Além disso, por simplicidade, nos restringiremos a examinar sentenças, ou seja
 Ressaltamos novamente que esse não é o único modo de formalizar a dedução lógica.
 Estamos adotando esse sistema por brevidade e simplicidade, uma vez que é um de apresentação mais rápida e concisa.
 
-\begin{metadefinition}
+\begin{metadefinition}\index{axioma lógico}
     Os axiomas lógicos adotados neste texto consistem em fechos universais dos seguintes esquemas de fórmulas, em que $\phi$ e $\psi$ são fórmulas arbitrárias e $x$, $x_1$, $\dots$, $x_n$, $y$, $y_1, \dots$, $y_n$, $z$ são variáveis arbitrárias, e $t$ um termo.
     \begin{enumerate}
         \item Instâncias de tautologia.
@@ -40,12 +42,12 @@ Cada item gera potencialmente infinitas sentenças, e cada uma delas é um axiom
 
 A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
 
-\begin{metadefinition}[Teoria]
+\begin{metadefinition}[Teoria]\index{teoria}\index{axioma não lógico}
     Uma \emph{teoria de primeira ordem} consiste em um léxico $\mathcal L$ para uma linguagem de primeira ordem munido de uma coleção de sentenças $\Sigma$ de $\mathcal L$, chamadas de \emph{axiomas}.
     Tais axiomas também podem ser chamados de \emph{axiomas não lógicos}, para distingui-los dos axiomas lógicos enunciados anteriormente.
 \end{metadefinition}
 
-\begin{metadefinition}[Demonstração]
+\begin{metadefinition}[Demonstração]\index{demonstração formal}\index{teorema}\index{modus ponens}
     Seja $T$ uma teoria de primeira ordem e $\phi$ uma $\mathcal L$-sentença, onde $\mathcal L$ é o léxico de $T$.
     Uma \emph{demonstração} de $\phi$ a partir de $T$ é uma sequência finita de $\mathcal L$-sentenças $\psi_0, \dots, \psi_n$ tal que para cada $i$:
     \begin{itemize}
@@ -141,12 +143,12 @@ A prova é simples, e deixada como exercício.
 
 O próximo resultado nos mostra o motivo de contradições serem tão indesejáveis em Matemática: na Lógica Clássica, ao admitir uma, não estamos apenas sendo incoerentes, estamos abrindo margem para provar qualquer coisa: um verdadeiro desastre.
 
-\begin{metadefinition}
+\begin{metadefinition}\index{inconsistência}
     Seja $T$ uma teoria de primeira ordem.
     Dizemos que $T$ é \emph{inconsistente} se existe uma sentença $\phi$ tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
 \end{metadefinition}
 
-\begin{metaproposition}[Princípio da explosão]
+\begin{metaproposition}[Princípio da explosão]\index{princípio da explosão}
     Seja $T$ uma teoria de primeira ordem.
     Se $T$ é inconsistente, então para cada sentença $\psi$, $T \vdash \psi$.
 \end{metaproposition}

@@ -1,11 +1,13 @@
 \section{Mais sobre demonstrações formais}
+\index{teoria da prova}
+\index{teorema da dedução}
 Nesta seção, veremos resultados adicionais sobre demonstrações formais.
 Tais resultados formalizam parte dos raciocínios matemáticos usualmente utilizados.
 
 Iniciaremos pelo Teorema da Dedução.
 Este teorema formaliza a ideia de que para provar uma implicação, podemos tomar o antecedente como hipótese para demonstrar o consequente.
 
-\begin{metatheorem}[Teorema da Dedução]
+\begin{metatheorem}[Teorema da Dedução]\index{teorema da dedução}
     Seja $T$ uma teoria de primeira ordem e $\phi, \psi$ sentenças da linguagem de $T$.
     São equivalentes:
     \begin{enumerate}[label=(\roman*)]
@@ -68,7 +70,7 @@ Notemos que se $t$ é um termo sem variáveis, então qualquer substituição $\
 
 Precisaremos do seguinte lema:
 
-\begin{metalemma}[Renomeação de variável universal]\label{metalemma:renomeacaoUniversal}
+\begin{metalemma}[Renomeação de variável universal]\label{metalemma:renomeacaoUniversal}\index{renomeação de variável!universal}
     Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
     Seja $y$ uma variável que não ocorre em $\phi$.
 
@@ -160,7 +162,7 @@ Precisaremos do seguinte lema:
     $T\vdash \forall y\,\phi[x/y]$.
 \end{proof}
 
-\begin{metacorollary}[Renomeação de variável existencial]
+\begin{metacorollary}[Renomeação de variável existencial]\index{renomeação de variável!existencial}
 \label{metacorollary:renomeacaoExistencial}
     Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
     Seja $y$ uma variável que não ocorre em $\phi$.
@@ -194,7 +196,7 @@ Precisaremos do seguinte lema:
     Para a recíproca e demais detalhes, veja o Exercício~\ref{exercise:renomeacaoExistencial}.
 \end{proof}
 
-\begin{metatheorem}[Inferências sobre quantificação]
+\begin{metatheorem}[Inferências sobre quantificação]\index{instanciação universal}\index{generalização existencial}\index{instanciação existencial}\index{generalização universal}
     Seja $T$ uma teoria de primeira ordem com axiomas $\Sigma$ e léxico $\mathcal L$.
     Considere\footnote{Lembre-se da Convenção~\ref{convention:variaveislivres}.} uma $\mathcal L$-fórmula $\phi(x)$ e uma $\mathcal L$-sentença $\psi$, em que $x$ é uma variável, e um símbolo de constante $c$ que não faz parte de $\mathcal L$.
     Sejam $\mathcal L'$ o léxico $\mathcal L$ acrescido de $c$, e $T'$ a teoria de primeira ordem com léxico $\mathcal L'$ e axiomas $\Sigma$.

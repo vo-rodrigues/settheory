@@ -1,4 +1,6 @@
 \section{Números ordinais}
+\index{ordinal}
+\index{conjunto transitivo}
 Vimos que cada natural $0, 1, 2, \dots$ é um conjunto bem ordenado.
 Se $n$ é um número natural, $S(n) = n\cup\{n\}$ é também um número natural, e portanto um conjunto bem ordenado.
 O conjunto $\omega$ é um conjunto bem ordenado.
@@ -50,13 +52,13 @@ Ou seja:
 
 Conforme veremos, com a presença do Axioma da Substituição, que será introduzido na próxima seção, conjuntos bem ordenados por $\in$ que satisfazem essa condição são exatamente os representantes de todas as boas ordens.
 
-\begin{definition}
+\begin{definition}\index{conjunto transitivo}
     Um conjunto $A$ é dito \emph{transitivo} se, para todo $a\in A$, $a\subseteq A$.
 \end{definition}
 
 Agora podemos definir um ordinal.
 
-\begin{definition}
+\begin{definition}\index{ordinal}
     Um \emph{ordinal} é um conjunto $A$ tal que:
     \begin{enumerate}[label=(\alph*)]
         \item $A$ é bem-ordenado por $\in$ (ou seja, $(A, \in_A)$ é uma boa ordem);
@@ -200,13 +202,14 @@ Não existe $X$ tal que $\forall \alpha(\alpha \text{ é ordinal} \rightarrow \a
     Finalmente, se $\gamma<S(\alpha)$ é um ordinal, então $\gamma\leq \alpha$, assim, não existe $\gamma$ tal que $\alpha<\gamma<S(\alpha)$.
 \end{proof}
 
+\index{classe dos ordinais}
 A classe de todos os ordinais é denotada por $\ON$.
 Formalmente, $\ON$ não é um conjunto, ou seja, não é um símbolo de constante que foi adicionado por definição.
 $\ON$ é uma símbolo de predicado unário, e escrevemos $\alpha \in \ON$ como uma outra forma de escrever $\ON(\alpha)$, que se traduz como ``$\alpha$ é um ordinal''.
 Dessa forma, expressões como $\mathcal P(\ON)$ não são termos bem formados.
 
 
-\begin{lemma}
+\begin{lemma}\index{supremo!de ordinais}
     Seja $X$ um conjunto de ordinais.
     Então $\bigcup X$ é um ordinal.
     Além disso, $\bigcup X$ é o supremo de $X$ em $\ON$, ou seja, o menor ordinal $\alpha$ tal que $\beta\leq \alpha$ para todo $\beta\in X$.
@@ -226,7 +229,7 @@ Devido ao lema acima, quando $X$ é um conjunto de ordinais, podemos escrever $\
 Nem todo ordinal é o sucessor de outro ordinal.
 Por exemplo, $\omega$ não é o sucessor de nenhum ordinal.
 
-\begin{definition}
+\begin{definition}\index{ordinal!sucessor}\index{ordinal!limite}
     Um ordinal $\beta$ é dito \emph{sucessor} se é da forma $\beta=S(\alpha)$ para algum ordinal $\alpha$.
 
     Um \emph{ordinal limite} é um ordinal que não é $0$ nem sucessor.

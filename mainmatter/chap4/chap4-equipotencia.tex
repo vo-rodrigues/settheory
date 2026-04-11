@@ -1,11 +1,13 @@
 \section{Equipotência}
+\index{equipotência}
+\index{cardinalidade!comparação}
 
 No início do Capítulo~3, introduzimos a noção de \emph{equipotência} $\approx$ (definição \ref{def:equipotencia}) como forma de iniciar a discussão sobre números naturais.
 Vimos ainda que tal relação constitui uma relação de equivalência no universo dos conjuntos (Proposição \ref{prop:equipotencia-equivalencia}).
 
 Nesta seção, estudaremos com mais profundidade aquela noção.
 
-\begin{definition}\label{def:menorIgual}
+\begin{definition}\label{def:menorIgual}\index{cardinalidade!menor ou igual}\index{cardinalidade!estritamente menor}
     Dizemos que a cardinalidade de um conjunto $A$ é menor ou igual à cardinalidade de um conjunto $B$ (escrevemos $A\preceq B$ --- teremos uma notação mais usual no futuro) se existe uma função injetora de $A$ em $B$.
 
     Dizemos que a cardinalidade de um conjunto $A$ é menor do que a cardinalidade de um conjunto $B$ (escrevemos $A\prec B$) se $A\preceq B$ e $A\not\approx B$.
@@ -92,7 +94,7 @@ Para prová-lo com facilidade, utilizaremos o seguinte lema.
     Portanto, $g$ é uma função bijetora de $A$ em $B$, e, assim, $A\approx B$.
 \end{proof}
 
-\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantor-bernstein}
+\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantor-bernstein}\index{Teorema de Cantor-Schröder-Bernstein}
     Para quaisquer conjuntos $A$ e $B$, se $A\preceq B$ e $B\preceq A$, então $A\approx B$.
 \end{theorem}
 \begin{proof}
@@ -108,7 +110,7 @@ Para prová-lo com facilidade, utilizaremos o seguinte lema.
 
 O axioma da potência nos garante que a pré-ordem $\preceq$ não possui elementos maximais.
 
-\begin{theorem}[Cantor]\label{thm:cantor}
+\begin{theorem}[Cantor]\label{thm:cantor}\index{Teorema de Cantor}
     Para todo conjunto $A$, $A\prec \mathcal P(A)$.
 \end{theorem}
 \begin{proof}

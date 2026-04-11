@@ -1,4 +1,5 @@
 \section{Adição de símbolos por definição}
+\index{extensão por definição}
 
 A teoria dos conjuntos é uma teoria cuja linguagem não lógica inicial consiste apenas no símbolo de pertencimento ($\in$).
 Conforme veremos, precisaremos rapidamente de símbolos funcionais adicionais, como o símbolo de constante $\emptyset$ (que representa o conjunto vazio), o operador binário de união de dois conjuntos ($\cup$), e o operador unário do conjunto das partes ($\mathcal{P}$).
@@ -9,6 +10,7 @@ Intuitivamente, isto significa que eles servem apenas como abreviações: em vez
 O ponto central desta seção é formalizar essa prática e justificar que ela não aumenta o poder de prova da teoria com respeito às sentenças da linguagem original.
 
 \subsection{O quantificador \texorpdfstring{$\exists!$}{∃!}}
+\index{quantificador!existência única}
 
 Os quantificadores primitivos da lógica de primeira ordem, neste texto, consistem apenas do quantificador universal ($\forall$) e do quantificador existencial ($\exists$).
 
@@ -17,7 +19,7 @@ Intuitivamente, $\exists! x \varphi$ significa que existe exatamente um $x$ tal 
 
 Introduziremos este operador como uma abreviação, conforme explicitado na definição a seguir.
 
-\begin{metadefinition}[Quantificador de existência única]
+\begin{metadefinition}[Quantificador de existência única]\index{existência única}
     Seja $\varphi$ uma fórmula.
     A notação $\exists!x\,\varphi$ é uma abreviação para a fórmula
     \begin{equation}\label{eq:exists-unique}
@@ -143,11 +145,12 @@ Portanto, apesar de, formalmente, estarmos adicionando novos símbolos e axiomas
 
 
 \subsection{Eliminação de símbolos definidos: termos}
+\index{eliminação de símbolos definidos}
 
 A ideia central é associar a cada termo $t$ da linguagem $\mathcal L'$ uma fórmula da linguagem $\mathcal L$ que semanticamente descreve $t$.
 Isto substitui termos com símbolos definidos por uma descrição na linguagem original.
 
-\begin{metadefinition}[Fórmula do valor de um termo]\label{def:delta-termo}\index{termo!fórmula do valor}\index{eliminação de símbolos!termos}
+\begin{metadefinition}[Fórmula do valor de um termo]\label{def:delta-termo}\index{termo!fórmula do valor}\index{eliminação de símbolos definidos!termos}
     Suponha que $T'$ é uma extensão por definição de $T$, com léxicos $\mathcal L'$ e $\mathcal L$ respectivamente.
     Seja $t$ um termo de $\mathcal L'$.
     Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres são as mesmas variáveis de $t$ e mais uma nova variável $y$, lida como
@@ -171,7 +174,7 @@ Assim, a escolha dos nomes dessas variáveis auxiliares não altera o conteúdo 
 pois renomeações de variáveis quantificadas produzem fórmulas logicamente equivalentes
 (cf.\ Metalema~\ref{metalemma:renomeacaoUniversal} e seu análogo existencial).
 
-\begin{metalemma}[Eliminação de termos]\label{metalemma:elim-termos}\index{eliminação de símbolos!termos}
+\begin{metalemma}[Eliminação de termos]\label{metalemma:elim-termos}\index{eliminação de símbolos definidos!termos}
     Seja $T'$ uma extensão por definição de $T$, com $\mathcal L\subseteq \mathcal L'$.
     Seja $t$ um termo de $\mathcal L'$ cujas variáveis estejam entre $x_1,\ldots,x_n$,
     e seja $y$ uma variável distinta de $x_1,\ldots,x_n$.
@@ -317,10 +320,11 @@ Isso conclui a indução e a prova do metalema.
 \end{proof}
 
 \subsection{Eliminação de símbolos definidos: fórmulas}
+\index{eliminação de símbolos definidos}
 
 Agora eliminamos símbolos definidos de fórmulas.
 
-\begin{metadefinition}[Tradução $\psi\mapsto \psi^\ast$]\label{def:traducao-formulas}\index{eliminação de símbolos!fórmulas}
+\begin{metadefinition}[Tradução $\psi\mapsto \psi^\ast$]\label{def:traducao-formulas}\index{eliminação de símbolos definidos!fórmulas}
     Seja $\psi$ uma fórmula da linguagem $\mathcal L'$ cujas variáveis livres estejam entre $x_1,\ldots,x_n$.
     Definimos por recursão uma $\mathcal L$-fórmula $\psi^\ast$ (com as mesmas variáveis livres) como segue.
 
@@ -353,7 +357,7 @@ Agora eliminamos símbolos definidos de fórmulas.
     \end{enumerate}
 \end{metadefinition}
 
-\begin{metalemma}[Eliminação de fórmulas]\label{metalemma:elim-formulas}\index{eliminação de símbolos!fórmulas}
+\begin{metalemma}[Eliminação de fórmulas]\label{metalemma:elim-formulas}\index{eliminação de símbolos definidos!fórmulas}
     Seja $T'$ uma extensão por definição de $T$.
     Para toda fórmula $\psi(x_1, \dots, x_n)$ da linguagem $\mathcal L'$,
     existe uma fórmula $\psi^\ast$ na linguagem $\mathcal L$ (como na Definição~\ref{def:traducao-formulas})

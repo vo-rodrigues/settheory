@@ -1,11 +1,14 @@
 \section{Tautologias e valorações de verdade}
+\index{lógica proposicional}
+\index{tautologia}
+\index{contradição}
 Nosso próximo passo no desenvolvimento da lógica de primeira ordem é estabelecer um sistema de axiomas e regras de inferência que nos permita provar teoremas.
 
 Um dos caminhos para o fazer é o de, primeiro, trabalhar a noção de tautologia.
 A noção de tautologia corresponde a uma noção de validade puramente proposicional.
 Mais adiante, introduziremos a noção completa de demonstração.
 
-\begin{metadefinition}[Fórmulas proposicionais]
+\begin{metadefinition}[Fórmulas proposicionais]\index{fórmula proposicional}
     O léxico para lógica proposicional é o léxico para a notação polonesa cujos símbolos básicos são apenas os conectivos lógicos $\neg$, $\vee$, $\wedge$, $\rightarrow$ e $\leftrightarrow$, além de símbolos $0$-ários $P_0, P_1, \dots$, chamados de variáveis proposicionais.
 
     Uma fórmula proposicional é uma expressão bem formada neste léxico.
@@ -26,7 +29,7 @@ Manteremos a convenção de, salvo necessidade, utilizar a notação usual (infi
     \end{itemize}
 \end{example}
 
-\begin{metadefinition}[Valoração]
+\begin{metadefinition}[Valoração]\index{contradição}\index{tabela-verdade}
     Uma \emph{valoração}\index{valoração} é um mapeamento que atribui a cada variável proposicional $P$ um valor de verdade $V(P)$, ou seja, $T$ ou $F$ (que são símbolos distintos arbitrariamente escolhidos).
 
     Dada uma valoração $V$, estendemos recursivamente o mapeamento $V$ às fórmulas proposicionais $\phi$ a partir do seguinte algoritmo.
@@ -133,7 +136,7 @@ Para isso, precisamos definir, formalmente, o que significa tal substituição.
     Então $\subst(\neg P_1 \rightarrow (P_1 \vee P_2), \rho)$ é $\neg (x \in y) \rightarrow ((x \in y) \vee \neg (z \in w))$.
 \end{example}
 
-\begin{metadefinition}[Instância de tautologia]
+\begin{metadefinition}[Instância de tautologia]\index{instância de tautologia}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem.
     Dizemos que uma fórmula $\varphi$ da linguagem de primeira ordem de $\mathcal L$ é uma \emph{instância de tautologia} se existe uma tautologia proposicional $\theta$ e uma atribuição $\rho$ de variáveis proposicionais a fórmulas de $\mathcal L$ tais que $\varphi$ é $\subst(\theta,\rho)$.
 \end{metadefinition}

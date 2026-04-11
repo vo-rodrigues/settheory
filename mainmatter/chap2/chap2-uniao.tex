@@ -1,4 +1,8 @@
 \section{Uniões, interseções e diferenças}
+\index{Axioma da União}
+\index{união}
+\index{interseção}
+\index{diferença de conjuntos}
 Por enquanto, dispomos apenas dos axiomas não lógicos da Extensão, da Compreensão e do Par.
 Com esses axiomas, provamos a existência do conjunto vazio, conjuntos de um elemento e conjuntos de dois elementos.
 
@@ -55,7 +59,7 @@ Apesar disso, a notação $\bigcup x$ é bastante conveniente e aparece frequent
 A partir do já exposto, é natural introduzir a união binária entre dois conjuntos, $x\cup y$.
 A legitimidade dessa introdução será justificada no lema subsequente.
 
-\begin{definition}
+\begin{definition}\index{união!binária}
     Para quaisquer conjuntos $x$ e $y$, a \emph{união de $x$ e $y$}, denotada por $x\cup y$, é o único conjunto $z$ cujos elementos são exatamente os elementos de $x$ ou os elementos de $y$.
     Formalmente, a união de dois conjuntos é regida pelo seguinte axioma definicional.
 
@@ -170,7 +174,7 @@ Tal atribuição não terá impacto no desenvolvimento da teoria, uma vez que se
 \subsection{Convenção sobre inserção de símbolos funcionais}
 Aproveitando a discussão anterior sobre a inserção do símbolo de interseção, adotaremos uma convenção geral para inserir símbolos funcionais que, intuitivamente, não estão bem definidos para todos os valores de seus argumentos.
 
-\begin{convention}\label{conv:insercao-simbolo-funcional}
+\begin{convention}\label{conv:insercao-simbolo-funcional}\index{símbolo funcional!introdução por definição}
     Considere fórmulas $\phi(x_1, \dots, x_n, y)$ e $\psi(x_1, \dots, x_n)$ tais que
     \[
         \forall x_1\, \dots\, \forall x_n\,
@@ -230,7 +234,7 @@ Não nos apegaremos rigidamente à redação da Convenção~\ref{conv:insercao-s
 \subsection{Diferença de conjuntos}
 Outra operação cuja introdução não requer a introdução de um novo axioma é a diferença entre conjuntos.
 A existência e a unicidade da diferença são consequências imediatas de uma instância do Esquema da Compreensão e do Axioma da Extensão, e sua demonstração é deixada como exercício ao leitor (Exercício~\ref{ex:diferenca}).
-\begin{definition}
+\begin{definition}\index{diferença de conjuntos}
     Dados conjuntos $x$ e $y$, a \emph{diferença entre $x$ e $y$}, denotada por $x\setminus y$, é o conjunto de todos os elementos de $x$ que não pertencem a $y$.
 
     Formalmente, a diferença é regida pelo seguinte axioma definicional.

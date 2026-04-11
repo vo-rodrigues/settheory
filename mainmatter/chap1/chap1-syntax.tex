@@ -1,8 +1,9 @@
 \section{Elementos sintáticos de uma linguagem de primeira ordem}
+\index{sintaxe}
 
 Nesta seção, trabalharemos um pouco mais com elementos e definições sintáticas de uma linguagem de primeira ordem, como substituições e fechos universais.
 
-\begin{metadefinition}[Variáveis ligadas e livres]
+\begin{metadefinition}[Variáveis ligadas e livres]\index{variável!ligada}\index{variável!livre}\index{sentença}
     Dada uma fórmula $\varphi$ e uma ocorrência de um quantificador $Q$ (que pode ser $\forall$ ou $\exists$), dizemos que $Q$ \emph{age} em uma variável $x$ se o próximo símbolo de $\varphi$ após $Q$ for $x$ (ou seja, se o escopo desta ocorrência de $Q$ for da forma $Q x \psi$).
 
     Dizemos que uma ocorrência de uma variável $x$ em $\varphi$ é \emph{ligada}, ou \emph{quantificada}, se ela estiver no escopo de um quantificador $Q$ que age em $x$.
@@ -39,7 +40,7 @@ A seguinte convenção é muito útil nas mais diversas situações.
 Conforme veremos, optaremos, por simplicidade, explicitar a teoria da prova para lógica de primeira ordem clássica apenas para sentenças.
 Por isso, o conceito de fecho universal será essencial.
 
-\begin{metadefinition}[Fecho universal]
+\begin{metadefinition}[Fecho universal]\index{fecho universal}
     Dada uma fórmula $\varphi$, um fecho universal de $\varphi$ é uma fórmula do tipo $\forall x_1 \dots \forall x_n \varphi$ sem variáveis livres, em que $x_1, \dots, x_n$ são variáveis.
 \end{metadefinition}
 
@@ -49,7 +50,7 @@ Por isso, o conceito de fecho universal será essencial.
 
 Para trabalharmos com quantificadores, precisaremos da noção de substituição de símbolos em fórmulas, feita como se segue:
 
-\begin{metadefinition}[Substituição em termos]
+\begin{metadefinition}[Substituição em termos]\index{substituição!em termos}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
     Dado um termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências de $x$ por $t$.
@@ -75,7 +76,7 @@ Sigamos para alguns exemplos.
     \end{itemize}
 \end{example}
 
-\begin{metadefinition}[Substituição em fórmulas]
+\begin{metadefinition}[Substituição em fórmulas]\index{substituição!em fórmulas}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
     Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida a partir de $\varphi$ substituindo-se todas as ocorrências \underline{livres} de $x$ por $t$.
@@ -95,7 +96,7 @@ Novamente, por uma indução simples, prova-se que se $\varphi$ é uma fórmula,
 
 Por fim, apresentamos uma definição.
 
-\begin{metadefinition}
+\begin{metadefinition}\index{substituição!válida}\index{substituível}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
     Dizemos que $x$ é substituível por $t$ em uma fórmula $\varphi$ (ou que a substituição $\varphi[x/t]$ é válida) se nenhuma ocorrência livre de $x$ em $\varphi$ estiver no escopo de um quantificador que age em alguma variável que ocorre em $t$.
 \end{metadefinition}

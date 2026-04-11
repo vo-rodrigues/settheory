@@ -1,4 +1,6 @@
 \section{O Axioma da Extensão e o Esquema da Compreensão}\label{sec:axioma-extensao}
+\index{Axioma da Extensão}
+\index{Esquema de Axiomas da Compreensão}
 O \emph{Axioma da Extensão}\index{Axioma da Extensão} é um dos axiomas mais fundamentais da Teoria dos Conjuntos.
 Ele afirma que um conjunto é completamente determinado por seus elementos.
 Em outras palavras, dois conjuntos são iguais se, e somente se, têm os mesmos elementos.
@@ -24,7 +26,7 @@ Em 1888, Dedekind também já havia registrado a ideia de que um conjunto é det
 
 No contexto desse axioma, é conveniente introduzir a noção de subconjunto, com a qual esperamos que o leitor já tenha alguma familiaridade.
 
-\begin{definition}
+\begin{definition}\index{subconjunto}
 Sejam $x$ e $y$ conjuntos.
 Dizemos que $x$ é um \emph{subconjunto} de $y$, e escrevemos $x \subseteq y$, se todo elemento de $x$ é também elemento de $y$; isto é,
 \[
@@ -76,7 +78,7 @@ Em outras palavras, designamos, metateoricamente, uma lista de axiomas que, embo
 Historicamente, um predecessor de tal esquema é o Princípio da Compreensão Irrestrita\index{Princípio da Compreensão Irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
 No entanto, esse princípio leva a contradições, como o famoso Paradoxo de Russell.
 
-\begin{proposition}[Paradoxo de Russell]
+\begin{proposition}[Paradoxo de Russell]\index{Paradoxo de Russell}
     Considere a fórmula $P(x)$ dada por $x\notin x$.
     Então
     
@@ -130,7 +132,7 @@ O Axioma da Extensão nos garante que tal conjunto deve ser único.
 
 A proposição acima nos permite utilizar a seguinte notação, muito usual em toda a Matemática.
 
-\begin{definition}[Esquema da notação por compreensão]
+\begin{definition}[Esquema da notação por compreensão]\index{notação por compreensão}
     Seja $\phi(x, A, t_1, \ldots, t_n)$ uma fórmula.
     Para todo conjunto $A$ e parâmetros $t_1, \ldots, t_n$, denotamos por $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ o único conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$.
 
@@ -164,7 +166,7 @@ Neste ponto, notemos que, em nossa teoria, por enquanto, não provamos a existê
 O próximo resultado fornece um primeiro exemplo de tal conjunto: o conjunto vazio.
 A ideia da prova é simples: partimos de um conjunto qualquer já existente e selecionamos, dele, os elementos que satisfazem uma condição impossível.
 
-\begin{proposition}
+\begin{proposition}\index{conjunto vazio}
     Existe um único conjunto que não possui nenhum elemento.
     Formalmente:
     \begin{equation}
@@ -188,7 +190,7 @@ A ideia da prova é simples: partimos de um conjunto qualquer já existente e se
     Pelo Axioma da Extensão, segue que $y=y'$.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\index{conjunto vazio}
     O conjunto vazio, denotado por $\emptyset$, é o único conjunto que não possui nenhum elemento.
     Formalmente, insere-se na teoria, por definição, um símbolo de constante $\emptyset$ e o seguinte axioma definicional.
     \begin{equation*}
