@@ -211,11 +211,12 @@ Finalmente, a exponenciação de ordinais é definida como se segue.
         \item $1^\alpha=1$ para todo $\alpha\in \ON$.
         \item Se $0<\alpha<\beta$ e $\gamma>0$, então $\alpha^\gamma\leq\beta^\gamma$.
         \item Se $\beta\geq 2$, então $\beta^\alpha\geq \alpha$.
+        \item Se $\theta\geq 0$, $\beta\geq 2$, $\xi_0< \dots < \xi_0<\theta$ e $\gamma_0, \dots, \gamma_n<\beta$, são ordinais, então $\beta^{\xi_0}\cdot \gamma_0+\dots+\beta^{\xi_n}\cdot \gamma_n<\beta^\theta$.
+        Dica: utilize indução em $\theta$.
         \item Se $2\leq \beta$ e $1\leq \alpha$, existe um maior ordinal $\xi$ tal que $\beta^\xi\leq \alpha$.
-        \item Se $0<\beta\leq \alpha$, existe um maior ordinal $\xi$ tal que $\beta^\xi\leq \alpha$.
-        \item (Forma Normal de Cantor) se $2\leq \beta$ e $1\leq \alpha$, existem únicos ordinais $n\geq 1$ e ordinais $\xi_1<\dots<\xi_n$ e ordinais $\gamma_1,\dots,\gamma_n$ com $1\leq \gamma_i<\beta$ para todo $i\leq n$ tais que
+        \item (Forma Normal de Cantor) se $2\leq \beta$ e $1\leq \alpha$, existem únicos ordinais $n\geq 1$ e ordinais $\xi_0<\dots<\xi_n$ e ordinais $\gamma_0,\dots,\gamma_n$ com $1\leq \gamma_i<\beta$ para todo $i\leq n$ tais que
         \[
-            \alpha=\beta^{\xi_n}\cdot \gamma_n+\dots+\beta^{\xi_1}\cdot \gamma_1.
+            \alpha=\beta^{\xi_n}\cdot \gamma_n+\dots+\beta^{\xi_0}\cdot \gamma_0.
         \]
         Sugestão: para a existência, proceda por indução em $\alpha$.
         Tome $\xi$ como no item anterior e escreva $\alpha=\beta^\xi\cdot \gamma+\delta$ para algum $\gamma$ e $\delta$ com $\delta<\beta^\xi$.
@@ -223,7 +224,11 @@ Finalmente, a exponenciação de ordinais é definida como se segue.
         Se $\delta=0$, está pronto.
         Se não, aplique a hipótese de indução em $\delta$ e verifique o que for necessário.
 
-        Para a unicidade, proceda novamente por indução em $\alpha$.
+        Para a unicidade, utilize indução em $\alpha$.
+        
+        \item Sejam $2\leq \beta$ $n\geq 1$, $\xi_0<\dots<\xi_n$ ordinais e $\gamma_0,\dots,\gamma_n, \delta_0, \dots, \delta_n$ ordinais com $1\leq \gamma_i<\beta$ e $0\leq \delta_i<\beta$ para todo $i\leq n$.
+        Mostre que $\beta^{\xi_n}\cdot \gamma_n+\dots+\beta^{\xi_0}\cdot \gamma_0<\beta^{\xi_n}\cdot \delta_n+\dots+\beta^{\xi_0}\cdot \delta_0$ se, e somente se, $(\gamma_n, \dots, \gamma_0)<_{lex}(\delta_n, \dots, \delta_0)$.
 
+        Dica: para uma das direções, prove primeiro $\leq$ e depois utilize o item anterior.
     \end{enumerate}
 \end{exercise}
