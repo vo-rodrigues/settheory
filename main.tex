@@ -47,6 +47,20 @@
 
 \newtheorem{claim}{Afirmação}[definition]
 
+\newtheoremstyle{namedaxiom}
+  {6pt}
+  {6pt}
+  {}
+  {}
+  {\bfseries}
+  {}
+  {\newline}
+  {#3}
+\theoremstyle{namedaxiom}
+
+\newtheorem*{displayaxiominner}{}
+\newenvironment{displayaxiom}[1]{\begin{displayaxiominner}[#1]}{\end{displayaxiominner}}
+
 \tikzifexternalizing{}{%
   \makeindex[title=Índice]
 }

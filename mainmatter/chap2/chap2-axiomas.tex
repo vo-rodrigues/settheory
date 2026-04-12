@@ -1,0 +1,113 @@
+\section{Os Axiomas}
+\index{axioma}
+\index{ZF}
+\index{ZFC}
+\index{Z}
+\index{ZC}
+
+A teoria dos conjuntos moderna é usualmente desenvolvida em uma linguagem cujo único símbolo não lógico primitivo é $\in$.
+Os princípios não lógicos que regem essa linguagem são os axiomas.
+O sistema hoje chamado $ZFC$ tem sua origem na axiomatização de Zermelo de 1908, concebida para evitar os paradoxos da compreensão irrestrita \cite{zermelo1908untersuchungen}.
+Em 1922, Fraenkel e, independentemente, Skolem observaram que a teoria de Zermelo era insuficiente para justificar certas construções recursivas elementares e propuseram o princípio que deu origem ao atual Esquema da Substituição \cite{fraenkel1922grundlagen,skolem1923bemerkungen}.
+Pouco depois, von Neumann introduziu o Axioma da Regularidade, também chamado de Axioma da Fundação \cite{vonneumann1925axiomatisierung}.
+A reformulação de Zermelo de 1930 consolidou uma apresentação já bastante próxima das axiomatizações contemporâneas \cite{zermelo1930grenzzahlen}.
+
+Neste texto, enunciaremos desde já todos os axiomas de $ZFC$.
+Não apresentaremos nenhuma explicação sobre eles nessa seção.
+Por ora, queremos apenas introduzir a terminologia que usaremos para se referir aos axiomas.
+
+Os axiomas serão introduzidos e estudados em detalhe ao longo dos capítulos inicias do texto.
+Em particular, o Axioma do Infinito será estudado apenas no Capítulo~\ref{chap:numerosNaturais}, o Esquema da Substituição no Capítulo~\ref{chap:numerosOrdinais} e o Axioma da Escolha no Capítulo~\ref{chap:axiomaDaEscolha}.
+
+\subsection{Enunciado dos axiomas}
+
+Enunciaremos os axiomas na forma em que eles serão usados no texto.
+Em alguns casos, como nos axiomas do Par, da União e da Potência, adotamos uma formulação levemente mais fraca do que a formulação ``exata'' usual; na presença do Esquema da Compreensão, as versões usuais seguem imediatamente.
+
+\begin{displayaxiom}{Axioma da Extensão}\index{axioma!da extensão}
+    \[
+        \forall x \forall y \Bigl(\bigl(\forall z\,(z \in x \leftrightarrow z \in y)\bigr) \rightarrow x=y\Bigr).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Esquema de Axiomas da Compreensão}\index{axioma!esquema da compreensão}\index{axioma!esquema da separação}
+    Para cada fórmula $\phi(x, A, t_1, \ldots, t_n)$, a seguinte sentença é um axioma:
+    \[
+        \forall A \forall t_1 \ldots \forall t_n \exists y \forall x \Bigl(x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Axioma do Par}\index{axioma!do par}
+    \[
+        \forall x \forall y \exists z (x \in z \land y \in z).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Axioma da União}\index{axioma!da união}
+    \[
+        \forall x \exists y \forall z\, (\exists w\, (w \in x \land z \in w)\rightarrow z \in y).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Axioma da Potência}\index{axioma!da potência}
+    \[
+        \forall x\, \exists y\, \forall z\, \Bigl((\forall w\,(w \in z \rightarrow w \in x)) \rightarrow z \in y\Bigr).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Axioma do Infinito}\index{axioma!do infinito}
+    \[
+        \exists I\,\Bigl(
+            \exists z\,(\forall w\,(w\notin z) \land z\in I)
+            \land
+            \forall x\,(x\in I \rightarrow \exists y\,(y\in I \land \forall z\,(z\in y \leftrightarrow (z\in x \lor z=x))))
+        \Bigr).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Esquema de Axiomas da Substituição}
+    \index{axioma!esquema da substituição}
+    Para cada fórmula $\phi(x, y, A, t_1, \dots, t_n)$, a seguinte sentença é um axioma:
+    \[
+        \forall t_1, \dots, t_n \forall A \left( \forall x\in A \exists! y \phi(x, y, A, t_1, \dots, t_n) \rightarrow \exists B \forall y (\exists x\in A \phi(x, y, A, t_1, \dots, t_n)\rightarrow y \in B)\right).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Axioma da Regularidade (ou da Fundação)}\index{axioma!da regularidade}\index{axioma!da fundação}
+    \[
+        \forall x\,\Bigl((\exists y\,(y\in x)) \rightarrow \exists y\,\bigl(y\in x \land \neg \exists z\,(z\in x \land z\in y)\bigr)\Bigr).
+    \]
+\end{displayaxiom}
+
+\begin{displayaxiom}{Axioma da Escolha}\index{axioma!da escolha}
+    \[
+        \forall A\,\Bigl(
+            \Bigl(
+                \forall x\in A\, \exists y\,(y\in x)
+                \land
+                \forall x\in A \forall y\in A \bigl(x\neq y \rightarrow \neg \exists z\,(z\in x \land z\in y)\bigr)
+            \Bigr)
+            \rightarrow
+            \exists C\, \forall x\in A\, \exists! y\,(y\in x \land y\in C)
+        \Bigr)
+    \]
+\end{displayaxiom}
+
+No Capítulo~\ref{chap:axiomaDaEscolha}, estudaremos esse axioma e algumas de suas formulações equivalentes.
+
+\subsection{Nomenclatura}
+    As letras $Z$ e $F$ em $ZF$ e $ZFC$ remete a Fraenkel.
+    Já $C$, remete ao Axioma da Escolha.
+    Abaixo, $P$ remete ao Axioma da Potência.
+\begin{metadefinition}[Nomes das teorias]
+    Ao longo do livro, adotaremos as seguintes nomenclaturas.
+    \label{mdef:nomesDasTeorias}
+    \begin{itemize}
+        \item $Z$ é a teoria formada pelos seguintes axiomas e esquemas: extensão, Compreensão, Par, União, Potência, Infinito e Regularidade.
+        \item $ZF$ é a teoria $Z$ acrescida do Esquema da Substituição.
+        \item $ZC$ é a teoria $Z$ acrescida do Axioma da Escolha.
+        \item $ZFC$ é a teoria $ZF$ acrescida do Axioma da Escolha.
+        \item Se $T$ é uma das teorias acima, $T^-$ é a teoria obtida ao se remover de $T$ o Axioma da regularidade.
+        \item Se $T$ é uma das teorias acima, $T-P$ é a teoria obtida ao se remover de $T$ o Axioma da Potência.
+    \end{itemize}
+\end{metadefinition}
