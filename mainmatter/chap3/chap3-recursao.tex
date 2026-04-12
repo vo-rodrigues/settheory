@@ -36,7 +36,7 @@ Parece funcionar. Mas podemos, de fato, definir $m+n$ por meio da Equação~\ref
 Tal equação é, de certa forma, autorreferente: usa-se $+$, ainda que para ``números menores'', para definir $+$.
 Lembramos ao leitor que construções autorreferentes, no geral, podem ser problemáticas em Teoria dos Conjuntos (ver, por exemplo, o Exercício~\ref{exr:compreensaoAutorreferente}).
 Assim, faz-se necessária uma justificativa formal apropriada para a definição dada pela Equação~\ref{eq:recursao-soma} (que, conforme veremos, será, sim, lícita).
-Para chegarmos ao enunciado do Teorema da recursão, vamos investigar o que está acontecendo na Equação~\ref{eq:recursao-soma}.
+Para chegarmos ao enunciado do Teorema da Recursão, vamos investigar o que está acontecendo na Equação~\ref{eq:recursao-soma}.
 
 Lá, temos um \emph{parâmetro} fixado, $m$.
 Podemos pensar que estamos, para cada $m$, definindo uma sequência $f_m$ de números naturais, em que $f_m(n)$ representa $m+n$.
@@ -62,7 +62,7 @@ No geral, podemos pensar em definir uma sequência de Fibonacci parametrizada po
 
 
 
-No geral, ao se definir uma sequência $s_p=(s_p(n): n \in \omega)$, $s_n$ pode depender de todos os valores anteriores, $t=(s_p(k): k < n)$, e não apenas do valor imediatamente anterior, $s_{n-1}$, bem como de parâmetros $p$ que ajam em toda a sequência, como $m$ na definição de $m+n$.
+No geral, ao se definir uma sequência $s_p=(s_p(n): n \in \omega)$, o valor $s_p(n)$ pode depender de todos os valores anteriores, $t=(s_p(k): k < n)$, e não apenas do valor imediatamente anterior, $s_p(n-1)$, bem como de parâmetros $p$ que atuem em toda a sequência, como $m$ na definição de $m+n$.
 Definida uma sequência inicial $t$ da sequência final, efetuamos uma operação $G(p, t)$ para obter o próximo elemento da sequência.
 
 No caso, $G:\omega^2\times \omega^{<\omega}\to \omega$ é dada por:
@@ -77,7 +77,8 @@ G(p, t) =
 \end{align*}
 
 Na prática, como calcular $F_p(n)$?
-Ora, a priori, deve-se calcular toda a sequência $F_p(0), F_p(1), \dots, F_p(n-1)$, de forma iterada, até chegar em $F_p(n)$.
+Ora, a priori, calculam-se iteradamente os termos anteriores até chegar em $F_p(n)$.
+Mais precisamente, calculam-se $F_p(0), F_p(1), \dots, F_p(n-1)$ antes de chegar em $F_p(n)$.
 Iniciamos sem conhecimento de nenhum elemento, ou seja, temos a sequência vazia $t_0=\emptyset$.
 Calcula-se $F_p(0)=G(p, t_0)=p(0)$, e, assim, $t_1=(F_p(0))$.
 Calcula-se $F_p(1)=G(p, t_1)=p(1)$, e, assim, $t_2=(F_p(0), F_p(1))$.
@@ -150,7 +151,7 @@ Antes, introduziremos uma notação.
     Temos que $t\subseteq f_p$, e, portanto, $t\restriction n= f_p\restriction n$.
     Assim, $f_p(n)=t(n)=G(p, t\restriction n)=G(p, f_p\restriction n)$, o que completa a prova da existência.
 
-    Para a unicidade, veremos que $f:P\times \omega\to A$ e $g:P\times \omega\to A$ são tais que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$ e $g_p(n)=G(p, g_p\restriction n)$, então $f=g$.
+    Para a unicidade, veremos que, se $f:P\times \omega\to A$ e $g:P\times \omega\to A$ são tais que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$ e $g_p(n)=G(p, g_p\restriction n)$, então $f=g$.
 
     Fixado $p$, veremos por indução forte que para todo $n\in \omega$, $f_p(n)=g_p(n)$.
     Provada a tese para todo $k<n$, temos que $f_p\restriction n=g_p\restriction n$.
