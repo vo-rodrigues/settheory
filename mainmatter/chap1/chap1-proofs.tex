@@ -234,19 +234,19 @@ digamos $\psi_0,\dots,\psi_n$, com $\psi_n=\phi[x/c]$.
 Como a demonstração é finita, apenas finitas variáveis aparecem nos $\psi_i$.
 Escolha uma variável $y$ que \emph{não ocorra em nenhum} $\psi_i$ (isso é possível pois há infinitas variáveis).
 
-Para cada $i\le n$, seja $\psi_i^\ast$ a fórmula obtida de $\psi_i$ substituindo-se
+Para cada $i\le n$, seja $\psi_i^\dagger$ a fórmula obtida de $\psi_i$ substituindo-se
 \emph{todas} as ocorrências do símbolo de constante $c$ pela variável $y$.
-Note que $\psi_i^\ast$ é agora uma fórmula (possivelmente com $y$ livre) na linguagem original $\mathcal L$.
+Note que $\psi_i^\dagger$ é agora uma fórmula (possivelmente com $y$ livre) na linguagem original $\mathcal L$.
 Defina ainda a sentença
 \[
-\widehat{\psi_i}\ :=\ \forall y\,\psi_i^\ast.
+\widehat{\psi_i}\ :=\ \forall y\,\psi_i^\dagger.
 \]
 Afirmamos que, para todo $i\le n$, vale $T\vdash \widehat{\psi_i}$.
 Provaremos por indução em $i$.
 
 \smallskip
 \emph{Caso 1:} $\psi_i$ é um axioma de $T'$ (isto é, $\psi_i\in\Sigma$).
-Então $\psi_i$ não envolve $c$, logo $\psi_i^\ast=\psi_i$ e $\widehat{\psi_i}=\forall y\,\psi_i$.
+Então $\psi_i$ não envolve $c$, logo $\psi_i^\dagger=\psi_i$ e $\widehat{\psi_i}=\forall y\,\psi_i$.
 Como $\psi_i$ é axioma de $T$, temos $T\vdash \psi_i$.
 Como $y$ não ocorre livre em $\psi_i$ (pois $\psi_i$ é sentença), pelo esquema lógico (4) obtemos
 $T\vdash \psi_i\rightarrow \forall y\,\psi_i$, e por \emph{modus ponens} segue $T\vdash \forall y\,\psi_i=\widehat{\psi_i}$.
@@ -258,26 +258,26 @@ envolvendo possivelmente o símbolo novo $c$ como parte de algum termo.
 Ao substituir $c$ por $y$ obtemos novamente uma instância do \emph{mesmo} esquema,
 agora na linguagem $\mathcal L$ (pois $y$ é um termo, e $y$ foi escolhido de modo a não introduzir conflitos de variáveis).
     Para mais informações, veja o Exercício~\ref{exr:axiomaSubstituicaoDeConstante}.
-Logo, $\widehat{\psi_i}=\forall y\,\psi_i^\ast$ é (também) um axioma lógico de $T$.
+Logo, $\widehat{\psi_i}=\forall y\,\psi_i^\dagger$ é (também) um axioma lógico de $T$.
 Assim, $T\vdash \widehat{\psi_i}$.
 
 \smallskip
 \emph{Caso 3:} $\psi_i$ é obtida por \emph{modus ponens} de duas sentenças anteriores.
 Então existem $j,k<i$ tais que $\psi_k$ é $\psi_j\rightarrow \psi_i$.
-Após substituir $c$ por $y$, temos $\psi_k^\ast=\psi_j^\ast\rightarrow \psi_i^\ast$.
-Pela hipótese de indução, $T\vdash \forall y\,\psi_j^\ast$ e $T\vdash \forall y\,(\psi_j^\ast\rightarrow \psi_i^\ast)$.
+Após substituir $c$ por $y$, temos $\psi_k^\dagger=\psi_j^\dagger\rightarrow \psi_i^\dagger$.
+Pela hipótese de indução, $T\vdash \forall y\,\psi_j^\dagger$ e $T\vdash \forall y\,(\psi_j^\dagger\rightarrow \psi_i^\dagger)$.
 Pelo esquema lógico (3) (com a variável $y$),
 \[
-\forall y\,(\psi_j^\ast\rightarrow \psi_i^\ast)\rightarrow
-(\forall y\,\psi_j^\ast\rightarrow \forall y\,\psi_i^\ast)
+\forall y\,(\psi_j^\dagger\rightarrow \psi_i^\dagger)\rightarrow
+(\forall y\,\psi_j^\dagger\rightarrow \forall y\,\psi_i^\dagger)
 \]
-é um axioma lógico; por duas aplicações de \emph{modus ponens}, obtemos $T\vdash \forall y\,\psi_i^\ast$,
+é um axioma lógico; por duas aplicações de \emph{modus ponens}, obtemos $T\vdash \forall y\,\psi_i^\dagger$,
 isto é, $T\vdash \widehat{\psi_i}$.
 
 \smallskip
 Isso conclui a indução. Em particular, para $i=n$ obtemos
 \[
-T\vdash \widehat{\psi_n}=\forall y\,\bigl(\phi[x/c]\bigr)^\ast=\forall y\,\phi[x/y].
+T\vdash \widehat{\psi_n}=\forall y\,\bigl(\phi[x/c]\bigr)^\dagger=\forall y\,\phi[x/y].
 \]
     Portanto, do Metalema~\ref{mlem:renomeacaoVariavelUniversal} segue que $T\vdash \forall x\,\phi$, como queríamos.
 
@@ -357,7 +357,7 @@ Isso prova (III).
 \begin{exercise}\label{exr:axiomaSubstituicaoDeConstante}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem contendo um símbolo de constante $c$, e $\phi$ uma fórmula de $\mathcal L$ que é instância de um dos esquemas (1)--(11) da metadefinição dos axiomas lógicos.
 
-    Para cada subfórmula $\psi$ de $\phi$, seja $\psi^\ast$ a fórmula obtida de $\psi$ substituindo-se cada símbolo de constante $c$ por uma variável $y$ que não ocorre em $\psi$.
+    Para cada subfórmula $\psi$ de $\phi$, seja $\psi^\dagger$ a fórmula obtida de $\psi$ substituindo-se cada símbolo de constante $c$ por uma variável $y$ que não ocorre em $\psi$.
 
-    Mostre que $\forall y \psi^\ast$ é uma instância do mesmo esquema (1)--(11) da metadefinição dos axiomas lógicos.
+    Mostre que $\forall y \psi^\dagger$ é uma instância do mesmo esquema (1)--(11) da metadefinição dos axiomas lógicos.
 \end{exercise}
