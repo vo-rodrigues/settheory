@@ -42,16 +42,16 @@ Números costumam ser pensados como ``elementos'', e não como conjuntos, de mod
 
 Os Axiomas de Peano, formulados por Giuseppe Peano \cite{peano1889arithmetices}, constituem um sistema de axiomas muito conhecido que visa formalizar os números naturais.
 
-Em linguagem moderna, eles dizem que $\mathbb N$ é um conjunto munido de uma função $S$ definida em $\mathbb N$, que, junto de um objeto $0$, o seguinte é satisfeito.
+Em linguagem moderna, eles dizem que $\mathbb N$ é um conjunto munido de uma função $S$ definida em $\mathbb N$ e de um objeto $0$, de modo que o seguinte é satisfeito.
 \begin{enumerate}[label=(\arabic*)]
     \item $0\in \mathbb N$;
     \item para todo $n \in \mathbb N$, $S(n)\in \mathbb N$;
     \item para todo $n \in \mathbb N$, $S(n)\neq 0$;
-    \item para todo $n, m \in \mathbb N$, se $S(n) = S(m)$, então $n = m$.
+    \item para todo $n, m \in \mathbb N$, se $S(n) = S(m)$, então $n = m$;
     \item se $A\subseteq \mathbb N$ é tal que $0\in A$ e para todo $n \in A$, $S(n)\in A$, então $A=\mathbb N$.
 \end{enumerate}
 
-A nossa construção satisfaz os axiomas (1) e (2) porque $\omega$ é indutivo, satisfaz o axioma (3) porque $0=\emptyset$, e satisfaz o axioma (5) pela propriedade de indução já estabelecida para $\omega$.
+A nossa construção satisfaz os axiomas (1) e (2) porque $\omega$ é indutivo, satisfaz o axioma (3) porque $0=\emptyset$ e, para todo $n \in \omega$, temos $n\in S(n)$, de modo que $S(n)\neq \emptyset=0$, e satisfaz o axioma (5) pela propriedade de indução já estabelecida para $\omega$.
 Resta verificar o axioma (4).
 
 \begin{proposition}\label{prop:injetividadeDoSucessorNosNaturais}
