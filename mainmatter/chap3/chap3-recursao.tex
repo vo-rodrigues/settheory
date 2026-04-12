@@ -1,4 +1,4 @@
-\section{Recursão nos números naturais}
+\section{Recursão nos números naturais}\label{sec:recursaoNosNaturais}
 \index{recursão}
 \index{Teorema da Recursão}
 \index{sequência de Fibonacci}
@@ -34,7 +34,7 @@ m+4 &= m+S(3) = S(m+3) = S(S(S(S(m))))\\
 
 Parece funcionar. Mas podemos, de fato, definir $m+n$ por meio da Equação~\ref{eq:recursao-soma}?
 Tal equação é, de certa forma, autorreferente: usa-se $+$, ainda que para ``números menores'', para definir $+$.
-Lembramos ao leitor que construções autorreferentes, no geral, podem ser problemáticas em Teoria dos Conjuntos (ver, por exemplo, o Exercício~\ref{exer:compreensao-autorreferente}).
+Lembramos ao leitor que construções autorreferentes, no geral, podem ser problemáticas em Teoria dos Conjuntos (ver, por exemplo, o Exercício~\ref{exr:compreensaoAutorreferente}).
 Assim, faz-se necessária uma justificativa formal apropriada para a definição dada pela Equação~\ref{eq:recursao-soma} (que, conforme veremos, será, sim, lícita).
 Para chegarmos ao enunciado do Teorema da recursão, vamos investigar o que está acontecendo na Equação~\ref{eq:recursao-soma}.
 
@@ -87,14 +87,14 @@ Tal raciocínio é formalizado na prova do Teorema da Recursão, enunciado abaix
 
 Antes, introduziremos uma notação.
 
-\begin{definition}
+\begin{definition}\label{def:familiasDeFuncoesParametrizadas}
     Sejam $A, B, C$ conjuntos.
     Dada $f: A\times B\to C$ e $a\in A$, definimos $f_a: B\to C$ por $f_a(b)=f(a, b)$.
 
     Reciprocamente, dada uma família de funções $f_a: B\to C$ indexada por $a\in A$, definimos $f: A\times B\to C$ por $f(a, b)=f_a(b)$.
 \end{definition}
 
-\begin{theorem}[Teorema da Recursão]\label{thm:recursion}\index{Teorema da Recursão}
+\begin{theorem}[Teorema da Recursão]\label{thm:teoremaDaRecursao}\index{Teorema da Recursão}
     Sejam $A, P$ conjuntos e $G: P\times A^{<\omega}\to A$ uma função.
     Então existe uma única função $f:P\times \omega\to A$ tal que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$.
 \end{theorem}

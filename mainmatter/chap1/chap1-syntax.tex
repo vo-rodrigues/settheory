@@ -1,9 +1,9 @@
-\section{Elementos sintáticos de uma linguagem de primeira ordem}
+\section{Elementos sintáticos de uma linguagem de primeira ordem}\label{sec:elementosSintaticosPrimeiraOrdem}
 \index{sintaxe}
 
 Nesta seção, trabalharemos um pouco mais com elementos e definições sintáticas de uma linguagem de primeira ordem, como substituições e fechos universais.
 
-\begin{metadefinition}[Variáveis ligadas e livres]\index{variável!ligada}\index{variável!livre}\index{sentença}
+\begin{metadefinition}[Variáveis ligadas e livres]\label{mdef:variaveisLigadasELivres}\index{variável!ligada}\index{variável!livre}\index{sentença}
     Dada uma fórmula $\varphi$ e uma ocorrência de um quantificador $Q$ (que pode ser $\forall$ ou $\exists$), dizemos que $Q$ \emph{age} em uma variável $x$ se o próximo símbolo de $\varphi$ após $Q$ for $x$ (ou seja, se o escopo desta ocorrência de $Q$ for da forma $Q x \psi$).
 
     Dizemos que uma ocorrência de uma variável $x$ em $\varphi$ é \emph{ligada}, ou \emph{quantificada}, se ela estiver no escopo de um quantificador $Q$ que age em $x$.
@@ -12,12 +12,12 @@ Nesta seção, trabalharemos um pouco mais com elementos e definições sintáti
     Caso $\varphi$ não possua variáveis livres, dizemos que $\varphi$ é uma \emph{sentença}.
 \end{metadefinition}
 
-\begin{example}
+\begin{example}\label{exa:variaveisLigadasELivres}
     Na fórmula $x_1 = x_2 \wedge \forall \textcolor{red}{x_1} (\textcolor{red}{x_1} \in x_3)$, a segunda e a terceira ocorrência de $x_1$ são ligadas (grafadas em vermelho).
     Todas as outras ocorrências de variáveis são livres.
 \end{example}
 
-\begin{example}Sobre sentenças:
+\begin{example}\label{exa:sentencas}Sobre sentenças:
 \begin{itemize}
         \item Se $P$ é um símbolo de predicado de aridade $0$, então $P$ é uma sentença, pois não possui variáveis livres.
     
@@ -29,7 +29,7 @@ Nesta seção, trabalharemos um pouco mais com elementos e definições sintáti
 
 A seguinte convenção é muito útil nas mais diversas situações.
 
-\begin{convention}\label{convention:variaveislivres}
+\begin{convention}\label{conv:variaveisLivres}
     Seja $\varphi$ uma fórmula.
     A notação $\varphi(x_1, \dots, x_n)$ indica que todas as variáveis com ocorrência livre de $\varphi$ estão entre $x_1, \dots, x_n$.
 
@@ -40,17 +40,17 @@ A seguinte convenção é muito útil nas mais diversas situações.
 Conforme veremos, optaremos, por simplicidade, explicitar a teoria da prova para lógica de primeira ordem clássica apenas para sentenças.
 Por isso, o conceito de fecho universal será essencial.
 
-\begin{metadefinition}[Fecho universal]\index{fecho universal}
+\begin{metadefinition}[Fecho universal]\label{mdef:fechoUniversal}\index{fecho universal}
     Dada uma fórmula $\varphi$, um fecho universal de $\varphi$ é uma fórmula do tipo $\forall x_1 \dots \forall x_n \varphi$ sem variáveis livres, em que $x_1, \dots, x_n$ são variáveis.
 \end{metadefinition}
 
-\begin{example}
+\begin{example}\label{exa:fechoUniversal}
     Se $\varphi$ é $x_1 = x_2$, então $\forall x_1 \forall x_2 \,(x_1 = x_2)$ é um fecho universal de $\varphi$.
 \end{example}
 
 Para trabalharmos com quantificadores, precisaremos da noção de substituição de símbolos em fórmulas, feita como se segue:
 
-\begin{metadefinition}[Substituição em termos]\index{substituição!em termos}
+\begin{metadefinition}[Substituição em termos]\label{mdef:substituicaoEmTermos}\index{substituição!em termos}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
     Dado um termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências de $x$ por $t$.
@@ -66,8 +66,8 @@ Prova-se, por um argumento indutivo simples, que se $s$ é um termo, então $s[x
 
 Sigamos para alguns exemplos.
 
-\begin{example}
-    Considere a linguagem da teoria dos anéis do Exemplo~\ref{ex:exemplosLexicos}.
+\begin{example}\label{exa:substituicaoEmTermos}
+    Considere a linguagem da teoria dos anéis do Exemplo~\ref{exa:exemplosLexicos}.
     \begin{itemize}
         \item $x_1[x_1/0]$ é $0$.
         \item $x_1[x_2/0]$ é $x_1$.
@@ -76,7 +76,7 @@ Sigamos para alguns exemplos.
     \end{itemize}
 \end{example}
 
-\begin{metadefinition}[Substituição em fórmulas]\index{substituição!em fórmulas}
+\begin{metadefinition}[Substituição em fórmulas]\label{mdef:substituicaoEmFormulas}\index{substituição!em fórmulas}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
     Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida a partir de $\varphi$ substituindo-se todas as ocorrências \underline{livres} de $x$ por $t$.
@@ -96,14 +96,14 @@ Novamente, por uma indução simples, prova-se que se $\varphi$ é uma fórmula,
 
 Por fim, apresentamos uma definição.
 
-\begin{metadefinition}\index{substituição!válida}\index{substituível}
+\begin{metadefinition}\label{mdef:substituibilidade}\index{substituição!válida}\index{substituível}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
     Dizemos que $x$ é substituível por $t$ em uma fórmula $\varphi$ (ou que a substituição $\varphi[x/t]$ é válida) se nenhuma ocorrência livre de $x$ em $\varphi$ estiver no escopo de um quantificador que age em alguma variável que ocorre em $t$.
 \end{metadefinition}
 
-Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando do conhecimento prévio do leitor, podemos justificar a definição acima com exemplos.
+Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando do conhecimento prévio do leitor, podemos justificar a Metadefinição~\ref{mdef:substituibilidade} com exemplos.
 
-\begin{example}
+\begin{example}\label{exa:substituicaoInvalida}
     Considere a fórmula $\exists y \, (x \neq y)$, que, intuitivamente, pode ser verdadeira para alguns valores de $x$.
 
     A variável $x$ não é substituível pelo termo $y$ nesta fórmula, pois $x$ está no escopo de um quantificador de uma variável que ocorre em $y$ (o próprio $y$).
@@ -111,7 +111,7 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
     Notemos que, ao substituir $x$ por $y$ nessa fórmula, obtemos $\exists y \, (y \neq y)$, que é intuitivamente falso.
 \end{example}
 
-\begin{example}
+\begin{example}\label{exa:substituicaoSemVariaveisLivres}
     Considere a fórmula $\varphi$ dada por $\forall x \exists y \, (x \neq y)$.
 
     A substituição de $x$ e $y$ por qualquer termo $t$ é válida, pois a fórmula não possui variáveis livres.
@@ -120,7 +120,7 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
 
 \subsection*{Exercícios}
 
-\begin{exercise}
+\begin{exercise}\label{exr:variaveisLivresELigadas}
     Determine quais são as ocorrências de variáveis livres e ligadas nas seguintes fórmulas.
     \begin{enumerate}[label=(\alph*)]
         \item $\forall x \, (x = x)$
@@ -129,8 +129,8 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
     \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
-    Considere a linguagem da teoria dos anéis do Exemplo~\ref{ex:exemplosLexicos}.
+\begin{exercise}\label{exr:substituicaoEmFormulas}
+    Considere a linguagem da teoria dos anéis do Exemplo~\ref{exa:exemplosLexicos}.
     Em cada item, determine $\varphi[x/t]$ e se a substituição é válida.
     \begin{enumerate}[label=(\alph*)]
         \item $\varphi$ é $x = x \cdot y$ e $t$ é $y$.
@@ -140,7 +140,7 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
     \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}\label{exr:fechosUniversais}
     Determine dois fechos universais distintos para cada uma das fórmulas abaixo.
     \begin{enumerate}[label=(\alph*)]
         \item $x = y$;

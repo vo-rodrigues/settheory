@@ -1,10 +1,10 @@
-\section{Relações de equivalência}
+\section{Relações de equivalência}\label{sec:relacoesDeEquivalencia}
 \index{relação de equivalência}
 \index{partição}
 
 Nesta seção, introduziremos as noções básicas de relação de equivalência, classe de equivalência, conjunto quociente e partição, bem como alguns resultados estruturais associados.
 
-\begin{definition}[Relação de equivalência]\index{relação de equivalência}
+\begin{definition}[Relação de equivalência]\label{def:relacaoDeEquivalencia}\index{relação de equivalência}
     Uma \emph{relação de equivalência} é um par $(A, \sim)$ onde $A$ é um conjunto e $\sim$ é uma relação binária em $A$ tal que para todo $x, y, z \in A$, valem:
     \begin{itemize}
         \item $x \sim x$ (reflexividade)
@@ -15,7 +15,7 @@ Nesta seção, introduziremos as noções básicas de relação de equivalência
 
 Todo conjunto admite uma relação de equivalência trivial, a saber, a relação de igualdade.
 
-\begin{example}
+\begin{example}\label{exa:relacaoDeIgualdade}
     Seja $A$ um conjunto.
     A \emph{relação de igualdade em $A$} é a relação binária $=_A=\{(x, y) \in A \times A : x=y\}$.
     Então $(A, =_A)$ é uma relação de equivalência.
@@ -25,13 +25,13 @@ Todo conjunto admite uma relação de equivalência trivial, a saber, a relaçã
 A relação de equivalência acima é mínima: se $R$ é uma relação de equivalência em $A$, então $=_A \subseteq R$.
 Por outro lado, há a relação de equivalência máxima, a saber, a relação universal.
 
-\begin{example}
+\begin{example}\label{exa:relacaoUniversal}
     Seja $A$ um conjunto.
     Então $(A, A \times A)$ é uma relação de equivalência denominada \emph{relação universal em $A$}.
 \end{example}
 
 Toda função induz naturalmente uma relação de equivalência.
-\begin{example}\label{ex:equiv-funcao}
+\begin{example}\label{exa:relacaoDeEquivalenciaInduzidaPorFuncao}
     Sejam $A$ e $B$ conjuntos e seja $f : A \to B$ uma função.
     Defina a relação binária $\sim_f$ em $A$ por
     \[
@@ -42,7 +42,7 @@ Toda função induz naturalmente uma relação de equivalência.
 
 Dada uma relação de equivalência, é natural agrupar os elementos equivalentes entre si.
 
-\begin{definition}[Classe de equivalência]\index{classe de equivalência}\index{conjunto quociente}
+\begin{definition}[Classe de equivalência]\label{def:classeDeEquivalencia}\index{classe de equivalência}\index{conjunto quociente}
     Seja $(A, \sim)$ uma relação de equivalência e seja $x \in A$.
     A \emph{classe de equivalência} de $x$ é o conjunto
     \[
@@ -52,9 +52,9 @@ Dada uma relação de equivalência, é natural agrupar os elementos equivalente
     O conjunto de todas as classes de equivalência de elementos de $A$ é denotado por $A/{\sim}$.
 \end{definition}
 
-Deixamos os seguintes fatos básicos para verificação do leitor (Exercício~\ref{ex:equiv-basicas}).
+Deixamos os seguintes fatos básicos para verificação do leitor (Exercício~\ref{exr:propriedadesBasicasDasClassesDeEquivalencia}).
 
-\begin{proposition}\label{prop:equiv-basicas}
+\begin{proposition}\label{prop:propriedadesBasicasDasClassesDeEquivalencia}
     Seja $(A, \sim)$ uma relação de equivalência e sejam $x, y \in A$. Então:
     \begin{enumerate}[label=(\alph*)]
         \item $x \in [x]_{\sim}$;
@@ -66,11 +66,11 @@ Deixamos os seguintes fatos básicos para verificação do leitor (Exercício~\r
     \end{enumerate}
 \end{proposition}
 
-A proposição anterior mostra que duas classes de equivalência diferentes são disjuntas, e que, reunidas, elas formam o conjunto $A$.
+A Proposição~\ref{prop:propriedadesBasicasDasClassesDeEquivalencia} mostra que duas classes de equivalência diferentes são disjuntas, e que, reunidas, elas formam o conjunto $A$.
 Assim, podemos imaginar que uma relação de equivalência \emph{particiona} o conjunto $A$ em blocos disjuntos.
 Convém definir o conceito de partição para tornar essa noção mais precisa.
 
-\begin{definition}[Partição]\index{partição}
+\begin{definition}[Partição]\label{def:particao}\index{partição}
     Seja $A$ um conjunto.
     Uma \emph{partição} de $A$ é um conjunto $\mathcal{E}$ tal que:
     \begin{enumerate}[label=(\roman*)]
@@ -80,10 +80,10 @@ Convém definir o conceito de partição para tornar essa noção mais precisa.
     \end{enumerate}
 \end{definition}
 
-Decorre da Proposição~\ref{prop:equiv-basicas} que, dada uma relação de equivalência, o conjunto $A/{\sim}$ é uma partição de $A$.
+Decorre da Proposição~\ref{prop:propriedadesBasicasDasClassesDeEquivalencia} que, dada uma relação de equivalência, o conjunto $A/{\sim}$ é uma partição de $A$.
 Reciprocamente, temos a seguinte proposição.
 
-\begin{proposition}\label{prop:particao-equivalencia}
+\begin{proposition}\label{prop:particaoInduzRelacaoDeEquivalencia}
     Seja $A$ um conjunto e seja $\mathcal{E}$ uma partição de $A$.
     Defina a relação binária $\sim_{\mathcal{E}}$ em $A$ por
     \[
@@ -125,10 +125,10 @@ Reciprocamente, temos a seguinte proposição.
 \end{proof}
 
 Dessa forma, toda relação de equivalência induz uma partição, e toda partição induz uma relação de equivalência.
-Da proposição anterior, iniciando-se com uma relação de equivalência, passando-se para a partição induzida por ela e, depois, passando-se para a relação de equivalência induzida por essa partição, chega-se à relação de equivalência inicial.
+Da Proposição~\ref{prop:particaoInduzRelacaoDeEquivalencia}, iniciando-se com uma relação de equivalência, passando-se para a partição induzida por ela e, depois, passando-se para a relação de equivalência induzida por essa partição, chega-se à relação de equivalência inicial.
 A recíproca é dada a seguir.
 
-\begin{proposition}
+\begin{proposition}\label{prop:relacaoDeEquivalenciaInduzidaPelaParticao}
     Seja $(A, \sim)$ uma relação de equivalência e seja $\mathcal{E}=A/{\sim}$ a partição de $A$ induzida por $\sim$.
     Então $\sim=\sim_{\mathcal{E}}$.
 \end{proposition}
@@ -142,8 +142,8 @@ A recíproca é dada a seguir.
 Assim, partições e relações de equivalência são duas maneiras de descrever o mesmo fenômeno matemático.
 
 \subsection*{Exercícios}
-\begin{exercise}\label{ex:equiv-basicas}
-    Prove a Proposição~\ref{prop:equiv-basicas}.
+\begin{exercise}\label{exr:propriedadesBasicasDasClassesDeEquivalencia}
+    Prove a Proposição~\ref{prop:propriedadesBasicasDasClassesDeEquivalencia}.
 \end{exercise}
 
 \begin{exercise}

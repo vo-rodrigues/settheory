@@ -1,10 +1,10 @@
-\section{Os Axiomas da Substituição}
+\section{Os Axiomas da Substituição}\label{sec:axiomasDaSubstituicao}
 \index{Axioma da Substituição}
 \index{tipo de uma boa ordem}
 Nesta seção, veremos que toda boa ordem é isomorfa a um único número ordinal.
 Para isso, precisamos introduzir um novo axioma, o \emph{axioma da substituição}.
 
-Pelo Exercício \ref{ex:uniao-boas-ordens}, o conjunto $\{0\}\times \omega\cup\{1\}\times \omega$ é, com a ordem lexicográfica, uma boa ordem.
+Pelo Exercício~\ref{exr:uniaoDeBoasOrdens}, o conjunto $\{0\}\times \omega\cup\{1\}\times \omega$ é, com a ordem lexicográfica, uma boa ordem.
 
 
 % no preâmbulo:
@@ -53,7 +53,7 @@ Tais símbolos fazem parte da linguagem, mas não denotam conjuntos.
 
 O \emph{esquema de axiomas da substituição} é um axioma introduzido por Fraenkel que garante que, sob condições análogas às de $F$ (cujo domínio ``seria um conjunto''), mas não às de $S$ (cujo domínio ``não seria comportado por um conjunto''), tais funções existem.
 
-\begin{axiom}[Esquema de axiomas da substituição]\index{Esquema de Axiomas da Substituição}
+\begin{axiom}[Esquema de axiomas da substituição]\label{ax:substituicao}\index{Esquema de Axiomas da Substituição}
     Para cada fórmula $\phi(x, y, A, t_1, \dots, t_n)$, a seguinte fórmula é um axioma.
     \[
         \forall t_1, \dots, t_n \forall A \left( \forall x\in A \exists! y \phi(x, y, A, t_1, \dots, t_n) \rightarrow \exists B \forall y (\exists x\in A \phi(x, y, A, t_1, \dots, t_n)\rightarrow y \in B)\right).
@@ -81,7 +81,7 @@ Através do esquema da compreensão, é possível eliminar tais elementos.
 \end{proof}
 
 Vamos ainda aprimorar a nossa notação um pouco mais a partir de símbolos de função.
-\begin{definition}
+\begin{definition}\label{def:imagemPorSimboloDeFuncao}
     Seja $F(t_1, \dots, t_n, x)$ um símbolo de função introduzido por definição, de modo que para alguma fórmula $\phi(x, t_1, \dots, t_n, y)$, temos
     \[
         \forall t_1 \dots \forall t_n \forall x \exists! y \phi(x, t_1, \dots, t_n, y)
@@ -103,18 +103,18 @@ Vamos ainda aprimorar a nossa notação um pouco mais a partir de símbolos de f
 
     Além disso, $f: A\to B$ tal que $\forall x\in A (f(x)=F_{t_1, \dots, t_n}(x))$ é denotada por $F_{t_1, \dots, t_n}|A$.
 \end{definition}
-Observação: na definição acima, a fórmula $\phi$ não é obrigada a ter parâmetros $t_1, \dots, t_n$.
+Observação: na Definição~\ref{def:imagemPorSimboloDeFuncao}, a fórmula $\phi$ não é obrigada a ter parâmetros $t_1, \dots, t_n$.
 Neste caso, simplesmente utilizamos as notações $F[A]$ e $F|A$.
 
 De posse do esquema dos axiomas da substituição, podemos provar que toda boa ordem é isomorfa a um único número ordinal.
 
-Para a demonstração abaixo, perceba que se $\beta$ é um ordinal e $\xi \in \beta$, então $\beta[\xi]=\{\alpha \in \beta : \alpha<\xi\}=\xi$ (ver Exercício~\ref{ex:segmentoInicialOrdinal}).
+Para a demonstração abaixo, perceba que se $\beta$ é um ordinal e $\xi \in \beta$, então $\beta[\xi]=\{\alpha \in \beta : \alpha<\xi\}=\xi$ (ver Exercício~\ref{exr:segmentoInicialDeOrdinal}).
 
-\begin{theorem}\index{tipo de uma boa ordem}
+\begin{theorem}\label{thm:boaOrdemEhIsomorfaAOrdinal}\index{tipo de uma boa ordem}
     Para toda boa ordem $A$, existe um único número ordinal $\alpha$ tal que $A$ é isomorfo a $\alpha$.
 \end{theorem}
 \begin{proof}
-    A unicidade vem da Proposição \ref{prop:ordinais-nao-isomorfos}.
+    A unicidade vem da Proposição~\ref{prop:ordinaisNaoSaoIsomorfos}.
     
     Para a existência, seja $F(P, a)$ um símbolo de função introduzido por definição como se segue:
     \[
@@ -150,7 +150,7 @@ Para a demonstração abaixo, perceba que se $\beta$ é um ordinal e $\xi \in \b
     Assim, $X=A$ e $f: A\to \alpha$ é um isomorfismo.
 \end{proof}
 
-\begin{definition}\index{tipo de uma boa ordem}
+\begin{definition}\label{def:tipoDeBoaOrdem}\index{tipo de uma boa ordem}
 Seja $A$ uma boa ordem.
 O \emph{tipo de $A$}, denotado por $\tp(A)$, é o único número ordinal isomorfo a $A$.
 \end{definition}

@@ -1,12 +1,12 @@
-\section{Aritmética ordinal}
+\section{Aritmética ordinal}\label{sec:aritmeticaOrdinal}
 \index{aritmética ordinal}
 \index{soma ordinal}
 \index{produto ordinal}
 \index{exponenciação ordinal}
 Nesta seção, definiremos soma, produto e exponenciação de ordinais.
 
-O Exemplo~\ref{ex:soma-ordinal} justifica a definição de soma ordinal abaixo.
-\begin{definition}\label{def:soma-ordinal}\index{soma ordinal}
+O Exemplo~\ref{exa:somaOrdinal} justifica a definição de soma ordinal abaixo.
+\begin{definition}\label{def:somaOrdinal}\index{soma ordinal}
     Sejam $\beta$ e $\alpha$ ordinais.
     Define-se a soma ordinal de $\beta$ e $\alpha$, denotada por $\beta+\alpha$, recursivamente em $\alpha$, de modo que:
     \begin{itemize}
@@ -19,7 +19,7 @@ O Exemplo~\ref{ex:soma-ordinal} justifica a definição de soma ordinal abaixo.
 Note que tal definição é uma extensão da soma de números naturais.
 Observe que ela não é comutativa.
 
-\begin{example}
+\begin{example}\label{exa:somaOrdinalNaoComutativa}
     Temos que $\omega+1=\omega\cup\{\omega\}\neq \omega$.
     Por outro lado, $1+\omega=\sup\{1+n: n\in \omega\}=\omega$.
 \end{example}
@@ -27,7 +27,7 @@ Observe que ela não é comutativa.
 
 A subtração de ordinais também é passível de ser definida.
 
-\begin{lemma}
+\begin{lemma}\label{lem:somaOrdinalMajorizaSegundoTermo}
     Sejam $\alpha, \beta$ ordinais.
     Então $\alpha+\beta\geq \beta$.
 \end{lemma}
@@ -43,7 +43,7 @@ A subtração de ordinais também é passível de ser definida.
     Então $\alpha+\beta=\bigcup\{\alpha+\xi : \xi <\beta\}\geq \bigcup\{\xi : \xi <\beta\}=\beta$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lem:somaOrdinalEstritamenteCrescenteNoSegundoArgumento}
     Sejam $\alpha, \beta, \gamma$ ordinais.
     Se $\beta<\gamma$, então $\alpha+\beta<\alpha+\gamma$.
 \end{lemma}
@@ -65,7 +65,7 @@ A subtração de ordinais também é passível de ser definida.
     Assim, $\alpha+\beta\leq \alpha+\xi<\alpha+(\xi+1)\leq \alpha+\gamma$.
 \end{proof}
 
-\begin{proposition}\index{subtração ordinal}
+\begin{proposition}\label{prop:subtracaoOrdinal}\index{subtração ordinal}
     Para quaisquer ordinais $\beta$ e $\alpha$, se $\beta\leq \alpha$, então existe um único ordinal $\xi$ tal que $\beta+\xi=\alpha$.
     Tal ordinal é denotado por $\alpha-\beta$.
 \end{proposition}
@@ -87,7 +87,7 @@ A subtração de ordinais também é passível de ser definida.
 
 Uma interpretação da soma ordinal é dada pela seguinte proposição.
 
-\begin{proposition}
+\begin{proposition}\label{prop:tipoLexicograficoDaSomaOrdinal}
     Para quaisquer ordinais $\beta$ e $\alpha$, $\beta+\alpha$ é o tipo da ordem de $C_{\beta, \alpha}=\{0\}\times \beta\cup\{1\}\times \alpha$, ordenado pela relação de ordem lexicográfica.
 \end{proposition}
 \begin{proof}
@@ -111,7 +111,7 @@ Uma interpretação da soma ordinal é dada pela seguinte proposição.
 
 A multiplicação de ordinais é definida como se segue.
 
-\begin{definition}\index{produto ordinal}
+\begin{definition}\label{def:produtoOrdinal}\index{produto ordinal}
     O produto de ordinais $\beta\cdot \alpha=\beta\alpha$ é definido recursivamente em $\alpha$ por:
     \begin{itemize}
         \item $\beta \cdot 0=0$;
@@ -129,7 +129,7 @@ A multiplicação de ordinais é definida como se segue.
             \bigcup_{\xi \in \alpha} s(\xi) & \text{se } s\text{ é função } \land \exists \alpha \in \ON \dom(s)=\alpha \text{ é limite}.
         \end{cases}
     \]
-    O teorema da recursão nos dá, então, uma receita para introduzir por definição $F(\beta, \alpha)=\beta\cdot \alpha$ tal que:
+    O Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita} nos dá, então, uma receita para introduzir por definição $F(\beta, \alpha)=\beta\cdot \alpha$ tal que:
     \begin{itemize}
         \item $\beta\cdot 0=G(\beta, F_\beta|\emptyset)=0$;
         \item $\beta\cdot S(\alpha)=G(\beta, F_\beta|S(\alpha))=F_\beta(\alpha)+\beta=\beta\cdot \alpha+\beta$;
@@ -143,7 +143,7 @@ A distributiva à esquerda também não é válida: $(1+1)\omega=2\omega=\omega$
 
 Finalmente, a exponenciação de ordinais é definida como se segue.
 
-\begin{definition}\index{exponenciação ordinal}
+\begin{definition}\label{def:exponenciacaoOrdinal}\index{exponenciação ordinal}
     A exponenciação de ordinais $\beta^\alpha$ é definida recursivamente em $\alpha$ por:
     \begin{itemize}
         \item $\beta^0=1$;
@@ -161,7 +161,7 @@ Finalmente, a exponenciação de ordinais é definida como se segue.
             \bigcup_{\xi \in \alpha} s(\xi) & \text{se } s\text{ é função } \land \exists \alpha \in \ON \dom(s)=\alpha \text{ é limite}.
             \end{cases}
         \]
-    O teorema da recursão nos dá, então, uma receita para introduzir por definição $F(\beta, \alpha)=\beta^\alpha$ tal que:
+    O Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita} nos dá, então, uma receita para introduzir por definição $F(\beta, \alpha)=\beta^\alpha$ tal que:
     \begin{itemize}
         \item $\beta^0=G(\beta, F_\beta|\emptyset)=1$;
         \item $\beta^{S(\alpha)}=G(\beta, F_\beta|S(\alpha))=F_\beta(\alpha)\cdot \beta=\beta^\alpha\cdot \beta$;
@@ -171,7 +171,7 @@ Finalmente, a exponenciação de ordinais é definida como se segue.
 
 \section*{Exercícios}
 \begin{exercise}
-    Assuma que $+$ e $+'$ são duas operações introduzidas por definição que satisfazem as propriedades descritas na definição \ref{def:soma-ordinal}.
+    Assuma que $+$ e $+'$ são duas operações introduzidas por definição que satisfazem as propriedades descritas na Definição~\ref{def:somaOrdinal}.
     Prove que para todo $\beta, \alpha \in \ON$, $\beta+\alpha=\beta+' \alpha$.
     Faça o mesmo para a multiplicação e a exponenciação de ordinais.
 \end{exercise}

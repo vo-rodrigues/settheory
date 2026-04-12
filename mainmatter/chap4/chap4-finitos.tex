@@ -1,14 +1,14 @@
-\section{Conjuntos finitos}
+\section{Conjuntos finitos}\label{sec:conjuntosFinitos}
 \index{conjunto finito}
 \index{conjunto infinito}
 
-Conforme vimos, se $n>0$ é um número natural, $n=\{0,1,\ldots,n-1\}$, ou, mais formalmente, $n=\{m\in\omega : m<n\}$.
+Pela Definição~\ref{def:ordemDosNaturais} e pela Proposição~\ref{prop:naturaisSaoSubconjuntosDeOmega}, se $n>0$ é um número natural, então $n=\{0,1,\ldots,n-1\}$, ou, mais formalmente, $n=\{m\in\omega : m<n\}$.
 
 Ao se contar uma coleção finita, de, digamos, 35 elementos, o que se faz, corriqueiramente, é estabelecer uma correspondência biunívoca entre os elementos da coleção e os números naturais $\{1, 2, \ldots, 35\}$, ou, equivalentemente, $\{0, 1, \ldots, 34\}$.
 
 Dessa forma, podemos definir a noção de conjunto finito.
 
-\begin{definition}\index{finitude}\index{infinitude}
+\begin{definition}\label{def:conjuntoFinito}\index{finitude}\index{infinitude}
     Dizemos que um conjunto $A$ é \emph{finito} se existe um número natural $n$ tal que $A\approx n$.
     Nesse caso, dizemos que a cardinalidade de $A$ é $n$.
     Caso contrário, dizemos que $A$ é \emph{infinito}.
@@ -21,7 +21,7 @@ Veremos que, se um conjunto é finito, o natural $n$ com o qual ele é equipoten
 
 Primeiro provaremos o seguinte lema.
 
-\begin{lemma}
+\begin{lemma}\label{lem:subconjuntoProprioDeNaturalNaoEquipotente}
     Para todo $n \in \omega$ e para todo $X\subseteq n$, se $X\neq n$, então $X\not\approx n$.
 \end{lemma}
 \begin{proof}
@@ -93,7 +93,7 @@ Primeiro provaremos o seguinte lema.
     Porém, $n\subsetneq n+1\subseteq \omega$, e, assim, pelo Teorema de Cantor-Schröder-Bernstein, $n+1\approx \omega\approx n$, um absurdo por (c). 
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lem:ordemTotalEstritaFinitaTemMinimoEMaximo}
     Seja $(A, <)$ uma ordem total estrita não vazia tal que $A$ é finito.
     Então $A$ possui um elemento mínimo e um elemento máximo.
 \end{lemma}
@@ -120,7 +120,7 @@ Primeiro provaremos o seguinte lema.
 Toda ordem total estrita finita é uma boa ordem.
 \end{corollary}
 
-\begin{proposition}
+\begin{proposition}\label{prop:boaOrdemFinitaIsomorfaANatural}
     Seja $(A, <)$ uma ordem total estrita tal que $A$ é finito.
     Então existe um único número natural $n$ tal que $(A, <)$ é isomorfo à $(n, <)$.
 \end{proposition}

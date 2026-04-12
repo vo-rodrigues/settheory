@@ -1,4 +1,4 @@
-\section{Introdução}
+\section{Introdução}\label{sec:introducaoAosNaturais}
 \index{equipotência}
 \index{sucessor}
 \index{conjunto indutivo}
@@ -21,7 +21,7 @@ Mais tarde, ao comparar as ovelhas com as pedras, verifica-se se a correspondên
 \end{definition}
 
 Seguem as propriedades mais elementares da equipotência.
-\begin{proposition}\label{prop:equipotencia-equivalencia}
+\begin{proposition}\label{prop:equipotenciaEquivalencia}
     A equipotência é uma relação de equivalência no universo dos conjuntos.
     Mais formalmente:
     \begin{enumerate}[label=(\alph*)]
@@ -48,7 +48,7 @@ Em geometria plana, é relativamente comum definir geometricamente um vetor como
 Uma primeira ideia para definir-se, digamos, o número $1$, seria adotar uma estratégia análoga e definir o número $1$ como a classe de equivalência de conjuntos que tem exatamente um elemento.
 Ou seja, o ``conjunto de todos os singletos''.
 De forma análoga, o número $2$ seria o ``conjunto de todos os pares não ordenados que não são singletos'', e ``assim por diante''.
-Não está imediatamente claro o que o ``e assim por diante'' significaria, mas não divagaremos sobre isso, uma vez que o lema abaixo nos mostra que essa estratégia é invariavelmente condenada ao fracasso.
+Não está imediatamente claro o que o ``e assim por diante'' significaria, mas não divagaremos sobre isso, uma vez que o Lema~\ref{lem:naoExisteConjuntoDeSingletos} nos mostra que essa estratégia é invariavelmente condenada ao fracasso.
 \begin{lemma}\label{lem:naoExisteConjuntoDeSingletos}
     Não existe um conjunto $A$ tal que, para todo conjunto $x$, $\{x\} \in A$.
 \end{lemma}
@@ -62,7 +62,7 @@ Não está imediatamente claro o que o ``e assim por diante'' significaria, mas 
     Como $x\in\{x\}$, segue da definição de união que $x\in\bigcup A=V$.
 
     Portanto, $\forall x\, (x\in V)$.
-    Mas já foi mostrado anteriormente que não existe um conjunto com essa propriedade.
+    Mas já foi mostrado na Proposição~\ref{prop:paradoxoDeRussell} que não existe um conjunto com essa propriedade.
     Chegamos, assim, a uma contradição.
 \end{proof}
 
@@ -103,7 +103,7 @@ Porém, tal definição é informal, devido às reticências.
 
 Porém, parece que encontramos um mecanismo de ``escolher o próximo número'', que é formalizado pela definição a seguir.
 
-\begin{definition}\index{sucessor}
+\begin{definition}\label{def:sucessor}\index{sucessor}
     Dado um conjunto $x$, o \emph{sucessor} de $x$ é o conjunto $S(x) = x \cup \{x\}$.
 \end{definition}
 
@@ -111,14 +111,14 @@ Com isso em mente, como definir o conjunto dos números naturais?
 Ora, tal conjunto deve ter o $0$, e, sempre que tem um conjunto $x$, deve ter seu sucessor $S(x)$.
 Um conjunto com essa propriedade é chamado de conjunto indutivo.
 
-\begin{definition}\index{conjunto indutivo}
+\begin{definition}\label{def:conjuntoIndutivo}\index{conjunto indutivo}
     Dizemos que um conjunto $A$ é \textbf{indutivo} se $0 \in A$ e, para todo $x \in A$, $S(x) \in A$.
 \end{definition}
 
 Com os axiomas que temos até então não é possível garantir a existência de um conjunto indutivo.
 O Axioma do Infinito diz precisamente que um tal conjunto existe.
 
-\begin{axiom}\index{Axioma do Infinito}
+\begin{axiom}\label{ax:infinito}\index{Axioma do Infinito}
     Existe um conjunto indutivo.
     Formalmente,
     \[
@@ -144,7 +144,7 @@ Porém, nada garante que ele não contenha outros elementos além destes.
 
 Buscaremos então definir o \emph{menor conjunto indutivo}, ou seja, um conjunto indutivo que está contido em todos os outros, mínimo com relação à inclusão $\subseteq$.
 
-\begin{definition}\index{conjunto dos números naturais}
+\begin{definition}\label{def:numerosNaturais}\index{conjunto dos números naturais}
     O conjunto dos números naturais, denotado por $\omega$, é o único conjunto $J$ tal que
     \[
         \forall x\, \bigl(x \in J \leftrightarrow \forall I\, (I \text{ é indutivo} \rightarrow x \in I)\bigr).
@@ -153,8 +153,8 @@ Buscaremos então definir o \emph{menor conjunto indutivo}, ou seja, um conjunto
 
 Vamos mostrar que tal conjunto existe e é único.
 
-\begin{lemma}
-    Existe um único conjunto $J$ como acima.
+\begin{lemma}\label{lem:existenciaEUnicidadeDeOmega}
+    Existe um único conjunto $J$ como na Definição~\ref{def:numerosNaturais}.
 \end{lemma}
 \begin{proof}
     Seja $I'$ um conjunto indutivo, o que existe pelo Axioma do Infinito.
@@ -182,7 +182,7 @@ Vamos mostrar que tal conjunto existe e é único.
 
 Vejamos algumas propriedades básicas de $\omega$.
 
-\begin{proposition}
+\begin{proposition}\label{prop:omegaEhIndutivo}
     $\omega$ é um conjunto indutivo.
 \end{proposition}
 \begin{proof}
@@ -195,7 +195,7 @@ Vejamos algumas propriedades básicas de $\omega$.
     Assim, $\forall I\, (I \text{ é indutivo} \rightarrow S(x) \in I)$, e, portanto, $S(x)\in\omega$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:omegaEhUnicoSubconjuntoIndutivoDeSi}
     O único subconjunto indutivo de $\omega$ é $\omega$.
 \end{proposition}
 
@@ -207,7 +207,7 @@ Vejamos algumas propriedades básicas de $\omega$.
 
 Agora é possível demonstrar que $\omega$ satisfaz o esquema da indução.
 
-\begin{proposition}\index{indução}
+\begin{proposition}\label{prop:esquemaDaInducaoNosNaturais}\index{indução}
     Considere uma fórmula $\phi(x, t_1, \dots, t_n)$.
 
     O seguinte é um teorema:
@@ -236,12 +236,12 @@ Agora é possível demonstrar que $\omega$ satisfaz o esquema da indução.
     Por hipótese, $\phi(S(x), t_1, \dots, t_n)$, e, portanto, $S(x)\in I$.
     Assim, $I$ é indutivo.
 
-    Como o único subconjunto indutivo de $\omega$ é $\omega$, segue que $I=\omega$.
+    Como a Proposição~\ref{prop:omegaEhUnicoSubconjuntoIndutivoDeSi} diz que o único subconjunto indutivo de $\omega$ é $\omega$, segue que $I=\omega$.
     Assim, $\forall x \in \omega \, \phi(x, t_1, \dots, t_n)$.
 \end{proof}
 
 Podemos agora formalmente definir os $10$ primeiros números naturais:
-\begin{definition}
+\begin{definition}\label{def:primeirosNaturais}
     \begin{align*}
         0 &= \emptyset,\\
         1 &= S(0) = \{0\},\\
@@ -258,7 +258,7 @@ Podemos agora formalmente definir os $10$ primeiros números naturais:
 
 Finalizaremos esta subseção com um fato básico sobre os números naturais: todo número natural ou é $0$, ou é o sucessor de algum número natural.
 
-\begin{proposition}\label{prop:ordem-sucessor}
+\begin{proposition}\label{prop:todoNaturalEhZeroOuSucessor}
     Para todo $n \in \omega$, $n=0$ ou existe $m \in \omega$ tal que $n=S(m)$.
 \end{proposition}
 \begin{proof}

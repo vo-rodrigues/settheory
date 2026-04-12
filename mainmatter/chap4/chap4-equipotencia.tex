@@ -1,21 +1,21 @@
-\section{Equipotência}
+\section{Equipotência}\label{sec:equipotencia}
 \index{equipotência}
 \index{cardinalidade!comparação}
 
-No início do Capítulo~3, introduzimos a noção de \emph{equipotência} $\approx$ (definição \ref{def:equipotencia}) como forma de iniciar a discussão sobre números naturais.
-Vimos ainda que tal relação constitui uma relação de equivalência no universo dos conjuntos (Proposição \ref{prop:equipotencia-equivalencia}).
+No início do Capítulo~\ref{chap:numerosNaturais}, introduzimos a noção de \emph{equipotência} $\approx$ (Definição~\ref{def:equipotencia}) como forma de iniciar a discussão sobre números naturais.
+Vimos ainda que tal relação constitui uma relação de equivalência no universo dos conjuntos (Proposição~\ref{prop:equipotenciaEquivalencia}).
 
 Nesta seção, estudaremos com mais profundidade aquela noção.
 
-\begin{definition}\label{def:menorIgual}\index{cardinalidade!menor ou igual}\index{cardinalidade!estritamente menor}
+\begin{definition}\label{def:comparacaoDeCardinalidades}\index{cardinalidade!menor ou igual}\index{cardinalidade!estritamente menor}
     Dizemos que a cardinalidade de um conjunto $A$ é menor ou igual à cardinalidade de um conjunto $B$ (escrevemos $A\preceq B$ --- teremos uma notação mais usual no futuro) se existe uma função injetora de $A$ em $B$.
 
     Dizemos que a cardinalidade de um conjunto $A$ é menor do que a cardinalidade de um conjunto $B$ (escrevemos $A\prec B$) se $A\preceq B$ e $A\not\approx B$.
 \end{definition}
 
-O lema abaixo, cuja demonstração é deixada como exercício ao leitor, diz que $\preceq$ é uma pré-ordem no universo dos conjuntos.
+O Lema~\ref{lem:preOrdemDePreceq}, cuja demonstração é deixada como exercício ao leitor, diz que $\preceq$ é uma pré-ordem no universo dos conjuntos.
 
-\begin{lemma}\label{lem:pre-ordem}
+\begin{lemma}\label{lem:preOrdemDePreceq}
     Para quaisquer conjuntos $A$, $B$ e $C$, temos:
     \begin{enumerate}[label=(\roman*)]
         \item $A\preceq A$;
@@ -23,7 +23,7 @@ O lema abaixo, cuja demonstração é deixada como exercício ao leitor, diz que
     \end{enumerate}
 \end{lemma}
 
-Toda pré-ordem induz naturalmente uma relação de equivalência (ver item (a) do Exercício \ref{ex:preOrdemIsomorfismo}).
+Toda pré-ordem induz naturalmente uma relação de equivalência (ver item (a) do Exercício \ref{exr:preOrdemQuocienteIsomorfismo}).
 Conforme discutido no Lema~\ref{lem:naoExisteConjuntoDeSingletos}, pode não ser possível falar de classes de equivalência quando a relação de equivalência em questão é introduzida para todos os conjuntos via definição, como é o caso da equipotência.
 Porém, nada nos impede de definirmos globalmente uma relação de equivalência através da introdução via definição de um símbolo de relação binária.
 
@@ -31,7 +31,7 @@ O Teorema de Cantor-Schröder-Bernstein diz que a relação de equivalência ind
 
 Para prová-lo com facilidade, utilizaremos o seguinte lema.
 
-\begin{lemma}\label{lem:schroder-bernstein}
+\begin{lemma}\label{lem:schroderBernsteinAuxiliar}
     Sejam $A, B, A'$ conjuntos tais que $A'\subseteq B\subseteq A$.
     Se $A\approx A'$, então $A\approx B$.    
 \end{lemma}
@@ -94,7 +94,7 @@ Para prová-lo com facilidade, utilizaremos o seguinte lema.
     Portanto, $g$ é uma função bijetora de $A$ em $B$, e, assim, $A\approx B$.
 \end{proof}
 
-\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantor-bernstein}\index{Teorema de Cantor-Schröder-Bernstein}
+\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantorSchroederBernstein}\index{Teorema de Cantor-Schröder-Bernstein}
     Para quaisquer conjuntos $A$ e $B$, se $A\preceq B$ e $B\preceq A$, então $A\approx B$.
 \end{theorem}
 \begin{proof}
@@ -104,7 +104,7 @@ Para prová-lo com facilidade, utilizaremos o seguinte lema.
     Seja $A' = (g\circ f)[A]$.
     Como $g\circ f:A\to A'$ é bijetora, temos $A\approx A'$, e $A'=(g\circ f)[A]=g[f[A]]\subseteq g[B]\subseteq A$.
 
-    Pelo lema anterior, $g[B]\approx A$.
+    Pelo Lema~\ref{lem:schroderBernsteinAuxiliar}, $g[B]\approx A$.
     Por outro lado, $g[B]\approx B$, e, assim, $A\approx B$ pela transitividade da equipotência.
 \end{proof}
 
@@ -134,8 +134,8 @@ O axioma da potência nos garante que a pré-ordem $\preceq$ não possui element
 
 
 \subsection*{Exercícios}
-\begin{exercise}
-    Prove o Lema \ref{lem:pre-ordem}.
+\begin{exercise}\label{exr:preOrdemDePreceq}
+    Prove o Lema~\ref{lem:preOrdemDePreceq}.
 \end{exercise}
 
 \begin{exercise}
@@ -148,12 +148,12 @@ Sugestão: Considere $S=\{Y\subseteq A : F(Y)\subseteq Y\}$.
 \begin{exercise}
 Prove o Teorema de Cantor-Schröder-Bernstein sem utilizar Axioma do Infinito.
 
-Sugestão: prove primeiro o Lema~\ref{lem:schroder-bernstein} sem fazer uso do Axioma do Infinito.
+Sugestão: prove primeiro o Lema~\ref{lem:schroderBernsteinAuxiliar} sem fazer uso do Axioma do Infinito.
 
 Para isso, fixe $A, A', B$ conjuntos tais que $A'\subseteq B\subseteq A$ e $A\approx A'$.
 Seja $f: A\to A'$ uma função bijetora.
 Defina $F:\mathcal P(A)\to \mathcal P(A)$ dada por $F(X) = (A\setminus B) \cup f[X]$.
-Fixe $C$ tal que $F(C)=C$ e defina $g: A\to B$ bijetora análoga à da prova original do Lema~\ref{lem:schroder-bernstein}.
+Fixe $C$ tal que $F(C)=C$ e defina $g: A\to B$ bijetora análoga à da prova original do Lema~\ref{lem:schroderBernsteinAuxiliar}.
 \end{exercise}
 \begin{exercise}
     Sejam $A$, $A'$, $B$, $B'$ e $C$ conjuntos. Prove que:

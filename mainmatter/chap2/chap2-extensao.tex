@@ -1,11 +1,10 @@
-\section{O Axioma da Extensão e o Esquema da Compreensão}\label{sec:axioma-extensao}
+\section{O Axioma da Extensão e o Esquema da Compreensão}\label{sec:axiomaDaExtensaoECompreensao}
 \index{Axioma da Extensão}
 \index{Esquema de Axiomas da Compreensão}
 O \emph{Axioma da Extensão}\index{Axioma da Extensão} é um dos axiomas mais fundamentais da Teoria dos Conjuntos.
 Ele afirma que um conjunto é completamente determinado por seus elementos.
 Em outras palavras, dois conjuntos são iguais se, e somente se, têm os mesmos elementos.
-\begin{axiom}[Axioma da Extensão]
-\label{axiom:extensao}
+\begin{axiom}[Axioma da Extensão]\label{ax:extensao}
 Para quaisquer conjuntos $x$ e $y$, se $x$ e $y$ possuem os mesmos elementos, então $x=y$.
 Formalmente,
 
@@ -17,7 +16,7 @@ Formalmente,
 O Axioma da Extensão fornece, portanto, um critério de identidade para conjuntos:
 no universo dos conjuntos, não há distinção entre objetos que tenham exatamente os mesmos elementos.
 
-A implicação recíproca, isto é, que $x=y$ implica $\forall z\,(z \in x \leftrightarrow z \in y)$, não faz parte especificamente do Axioma da Extensão, mas decorre dos princípios lógicos básicos discutidos no capítulo anterior.
+A implicação recíproca, isto é, que $x=y$ implica $\forall z\,(z \in x \leftrightarrow z \in y)$, não faz parte especificamente do Axioma da Extensão, mas decorre dos princípios lógicos básicos discutidos no Capítulo~\ref{chap:teoriasPrimeiraOrdem}.
 Assim, o axioma fornece precisamente a direção não trivial do critério de identidade para conjuntos.
 
 O Axioma da Extensão aparece como primeiro Axioma na formalização de Zermelo da Teoria dos Conjuntos de 1908 \cite{zermelo1908untersuchungen} (Axiom der Bestimmtheit).
@@ -26,7 +25,7 @@ Em 1888, Dedekind também já havia registrado a ideia de que um conjunto é det
 
 No contexto desse axioma, é conveniente introduzir a noção de subconjunto, com a qual esperamos que o leitor já tenha alguma familiaridade.
 
-\begin{definition}\index{subconjunto}
+\begin{definition}\label{def:subconjunto}\index{subconjunto}
 Sejam $x$ e $y$ conjuntos.
 Dizemos que $x$ é um \emph{subconjunto} de $y$, e escrevemos $x \subseteq y$, se todo elemento de $x$ é também elemento de $y$; isto é,
 \[
@@ -36,8 +35,7 @@ x \subseteq y \quad \text{se, e somente se,} \quad \forall z\,(z \in x \rightarr
 
 Com essa notação, obtemos imediatamente a seguinte caracterização da igualdade.
 
-\begin{proposition}
-\label{prop:igualdade-por-inclusao}
+\begin{proposition}\label{prop:igualdadePorInclusao}
 Para quaisquer conjuntos $x$ e $y$, tem-se
 \[
 x=y \quad \text{se, e somente se,} \quad x \subseteq y \ \text{e} \ y \subseteq x.
@@ -64,11 +62,11 @@ Mais formalmente,
     Assim, concluímos que $x=y$.
 \end{proof}
 
-A proposição anterior será usada constantemente no restante do texto.
+A Proposição~\ref{prop:igualdadePorInclusao} será usada constantemente no restante do texto.
 Em muitas situações, para provar que dois conjuntos são iguais, será mais conveniente verificar separadamente as inclusões $x \subseteq y$ e $y \subseteq x$ do que trabalhar diretamente com a igualdade.
 
 O Axioma da Extensão, embora nos dê um critério fundamental de identidade, não garante por si só a existência de nenhum conjunto particular.
-Pela Metaproposição~\ref{metaproposition:nonempty}, sabemos que existe ao menos um conjunto.
+Pela Metaproposição~\ref{mprop:universoNaoVazio}, sabemos que existe ao menos um conjunto.
 Porém, não sabemos nada a respeito dele, e nem mesmo podemos afirmar se este conjunto é ou não o único conjunto (em termos formais, não é possível provar ou refutar a sentença $\forall x \forall y (x=y)$ a partir do Axioma da Extensão).
 
 Para garantir a existência de conjuntos particulares, precisamos de outros axiomas.
@@ -78,7 +76,7 @@ Em outras palavras, designamos, metateoricamente, uma lista de axiomas que, embo
 Historicamente, um predecessor de tal esquema é o Princípio da Compreensão Irrestrita\index{Princípio da Compreensão Irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
 No entanto, esse princípio leva a contradições, como o famoso Paradoxo de Russell.
 
-\begin{proposition}[Paradoxo de Russell]\index{Paradoxo de Russell}
+\begin{proposition}[Paradoxo de Russell]\label{prop:paradoxoDeRussell}\index{Paradoxo de Russell}
     Considere a fórmula $P(x)$ dada por $x\notin x$.
     Então
     
@@ -101,7 +99,7 @@ O registro mais antigo do paradoxo de Russell consta em uma carta de Bertrand Ru
 
 O que hoje se conhece como Esquema de Axiomas da Compreensão, ou Esquema de Axiomas da Separação, aparece na axiomatização de Zermelo da Teoria dos Conjuntos de 1908 como o Axioma da Separação (Axiom der Aussonderung).
 
-\begin{axiom}[Esquema de Axiomas da Compreensão]
+\begin{axiom}[Esquema de Axiomas da Compreensão]\label{ax:esquemaDaCompreensao}
     Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$.
     A seguinte sentença é um axioma:
     \begin{equation}
@@ -115,7 +113,7 @@ A presença dos parâmetros $t_1,\ldots,t_n$ é essencial: ela nos permite defin
 
 O Axioma da Extensão nos garante que tal conjunto deve ser único.
 
-\begin{proposition}[Esquema da Unicidade na compreensão]
+\begin{proposition}[Esquema da Unicidade na compreensão]\label{prop:unicidadeNaCompreensao}
     Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$.
     A seguinte sentença é teorema:
     \begin{equation}
@@ -130,9 +128,9 @@ O Axioma da Extensão nos garante que tal conjunto deve ser único.
     Pelo Axioma da Extensão, segue que $y=y'$.
 \end{proof}
 
-A proposição acima nos permite utilizar a seguinte notação, muito usual em toda a Matemática.
+A Proposição~\ref{prop:unicidadeNaCompreensao} nos permite utilizar a seguinte notação, muito usual em toda a Matemática.
 
-\begin{definition}[Esquema da notação por compreensão]\index{notação por compreensão}
+\begin{definition}[Esquema da notação por compreensão]\label{def:notacaoPorCompreensao}\index{notação por compreensão}
     Seja $\phi(x, A, t_1, \ldots, t_n)$ uma fórmula.
     Para todo conjunto $A$ e parâmetros $t_1, \ldots, t_n$, denotamos por $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ o único conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$.
 
@@ -166,7 +164,7 @@ Neste ponto, notemos que, em nossa teoria, por enquanto, não provamos a existê
 O próximo resultado fornece um primeiro exemplo de tal conjunto: o conjunto vazio.
 A ideia da prova é simples: partimos de um conjunto qualquer já existente e selecionamos, dele, os elementos que satisfazem uma condição impossível.
 
-\begin{proposition}\index{conjunto vazio}
+\begin{proposition}\label{prop:existenciaConjuntoVazio}\index{conjunto vazio}
     Existe um único conjunto que não possui nenhum elemento.
     Formalmente:
     \begin{equation}
@@ -174,7 +172,7 @@ A ideia da prova é simples: partimos de um conjunto qualquer já existente e se
     \end{equation}
 \end{proposition}
 \begin{proof}
-    Pela Metaproposição~\ref{metaproposition:nonempty}, $\exists A (A=A)$.
+    Pela Metaproposição~\ref{mprop:universoNaoVazio}, $\exists A (A=A)$.
     Fixe um tal $A$.
     Pelo Esquema de Axiomas da Compreensão, existe um conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land x \neq x))$.
     Fixe um tal $y$.
@@ -190,7 +188,7 @@ A ideia da prova é simples: partimos de um conjunto qualquer já existente e se
     Pelo Axioma da Extensão, segue que $y=y'$.
 \end{proof}
 
-\begin{definition}\index{conjunto vazio}
+\begin{definition}\label{def:conjuntoVazio}\index{conjunto vazio}
     O conjunto vazio, denotado por $\emptyset$, é o único conjunto que não possui nenhum elemento.
     Formalmente, insere-se na teoria, por definição, um símbolo de constante $\emptyset$ e o seguinte axioma definicional.
     \begin{equation*}

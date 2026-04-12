@@ -1,11 +1,11 @@
-\section{Conjuntos enumeráveis}
+\section{Conjuntos enumeráveis}\label{sec:conjuntosEnumeraveis}
 \index{conjunto enumerável}
 
-\begin{definition}\index{enumerabilidade}
+\begin{definition}\label{def:enumerabilidade}\index{enumerabilidade}
     Um conjunto $A$ é \emph{enumerável} se é finito, ou se é equipotente a $\omega$.
 \end{definition}
 
-\begin{lemma}\label{lem:subconjunto-enumeravel}
+\begin{lemma}\label{lem:subconjuntoDeOmegaEhEnumeravel}
     Todo subconjunto de $\omega$ é enumerável.
 \end{lemma}
 \begin{proof}
@@ -34,7 +34,7 @@
     Como $X\subseteq \omega$, segue do Teorema de Cantor-Schröder-Bernstein que $X\approx \omega$, e, portanto, $X$ é enumerável.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:caracterizacaoDaEnumerabilidade}
 Seja $A$ um conjunto.
 São equivalentes:
 \begin{enumerate}[label=(\alph*)]
@@ -45,12 +45,12 @@ São equivalentes:
 \begin{proof}
     Basta provar que (b) implica (a).
     Seja $f:A\to \omega$ uma função injetora e $X=f[A]$.
-    Como $X\subseteq \omega$, pelo Lema~\ref{lem:subconjunto-enumeravel}, $X$ é enumerável.
+    Como $X\subseteq \omega$, pelo Lema~\ref{lem:subconjuntoDeOmegaEhEnumeravel}, $X$ é enumerável.
     Assim, $X$ é finito ou $X\approx \omega$.
     Em qualquer caso, como $A\approx X$, segue a tese.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:omegaQuadradoEhEnumeravel}
     $\omega\times \omega$ é infinito enumerável.
 \end{proposition}
 \begin{proof}
@@ -86,7 +86,7 @@ São equivalentes:
 \subsection*{Exercícios}
 
 \begin{exercise}
-    Mostre que a função $f$ construída na prova do Lema~\ref{lem:subconjunto-enumeravel} no caso em que $X$ é infinito é uma função bijetora de $\omega$ em $X$.
+    Mostre que a função $f$ construída na prova do Lema~\ref{lem:subconjuntoDeOmegaEhEnumeravel} no caso em que $X$ é infinito é uma função bijetora de $\omega$ em $X$.
     Além disso, determine uma função $G:X^{<\omega}\to X$ tal que para todo $n \in \omega$, $f(n)=G(f|n)$.
 \end{exercise}
 \begin{exercise}
@@ -133,7 +133,7 @@ São equivalentes:
         Observe que $\phi$ está bem definida e que, se $u$ é uma função injetora, então $\phi(u)$ é uma função injetora.
 
         \item Fixe uma função injetora $f_0:A^0\to \omega$.
-        Aplique o Exercício~\ref{ex:recursionComposition} à função $\phi:B\to B$ e defina, para cada $n\in\omega$,
+        Aplique o Exercício~\ref{exr:composicaoDeIteradas} à função $\phi:B\to B$ e defina, para cada $n\in\omega$,
         \[
             f_n=\phi^n(f_0).
         \]

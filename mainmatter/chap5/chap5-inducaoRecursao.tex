@@ -1,10 +1,10 @@
-\section{Indução e Recursão transfinitas}
+\section{Indução e Recursão transfinitas}\label{sec:inducaoERecursaoTransfinitas}
 \index{indução transfinita}
 \index{recursão transfinita}
 Vimos que $\in$ é uma boa ordem sobre a classe dos ordinais.
 Em particular, vimos que se $X$ é um conjunto de ordinais, então $X$ possui um elemento mínimo.
 
-\begin{proposition}[Esquema de boa ordenação]\index{esquema de boa ordenação}
+\begin{proposition}[Esquema de boa ordenação]\label{prop:esquemaDaBoaOrdenacao}\index{esquema de boa ordenação}
     Seja $\phi(\alpha, t_1, \dots, t_n)$ uma fórmula.
     Suponha que, para alguns $t_1, \dots, t_n$ fixados, exista um ordinal $\alpha$ tal que $\phi(\alpha, t_1, \dots, t_n)$.
 
@@ -37,7 +37,7 @@ A indução transfinita nada mais é do que a aplicação sistemática do princ�
 
 Assim como na indução usual sobre $\omega$, o que se faz é excluir a possibilidade de um primeiro contraexemplo. A diferença é que agora o domínio de indução não é apenas $\omega$, mas toda a classe dos ordinais.
 
-\begin{proposition}[Esquema da indução transfinita]
+\begin{proposition}[Esquema da indução transfinita]\label{prop:esquemaDaInducaoTransfinita}
     Seja $\phi(\alpha, t_1, \dots, t_n)$ uma fórmula.
     
     Suponha que, para alguns $t_1, \dots, t_n$ fixados e para todo ordinal $\alpha$, se $\forall \beta <\alpha \phi(\beta, t_1, \dots, t_n)$, então $\phi(\alpha, t_1, \dots, t_n)$.
@@ -52,12 +52,12 @@ Assim como na indução usual sobre $\omega$, o que se faz é excluir a possibil
 \begin{proof}
     Fixe $t_1, \dots, t_n$ e suponha que a tese é falsa.
     Então existe um ordinal $\alpha$ tal que $\neg\phi(\alpha, t_1, \dots, t_n)$.
-    Pelo esquema de boa ordenação, existe o menor ordinal $\alpha$ tal que $\neg\phi(\alpha, t_1, \dots, t_n)$.
+    Pela Proposição~\ref{prop:esquemaDaBoaOrdenacao}, existe o menor ordinal $\alpha$ tal que $\neg\phi(\alpha, t_1, \dots, t_n)$.
     Assim, para todo $\beta <\alpha$, temos $\phi(\beta, t_1, \dots, t_n)$.
     Mas então $\phi(\alpha, t_1, \dots, t_n)$, o que é uma contradição.
 \end{proof}
 
-\begin{definition}\index{sequência transfinita}
+\begin{definition}\label{def:sequenciaTransfinita}\index{sequência transfinita}
     Uma sequência transfinita é uma função cujo domínio é um ordinal.
     Se $s$ é uma sequência transfinita, escrevemos $s \in V^{<\ON}$.
 \end{definition}
@@ -85,7 +85,7 @@ Diferentemente do que acontece na recursão de números naturais, o objeto resul
 Se fosse, no caso, a função $+$ teria domínio $\ON\times \ON$, que não é um conjunto.
 O objeto resultante é um símbolo de função $+$ introduzido por definição, ou, analogamente, uma definição para introduzir tal símbolo.
 
-\begin{metatheorem}[Esquema da recursão transfinita]\index{recursão transfinita}
+\begin{metatheorem}[Esquema da recursão transfinita]\label{mthm:esquemaDaRecursaoTransfinita}\index{recursão transfinita}
     Suponha que um símbolo de função binário $G(p, s)$ seja introduzido por definição de modo que
     \[
         \forall s \in V^{<\ON}\forall p\forall y
@@ -106,12 +106,12 @@ O objeto resultante é um símbolo de função $+$ introduzido por definição, 
         \forall p \forall \alpha \in \ON \Bigl( F_p(\alpha)=H_p(\alpha)\Bigr).
     \]
 \end{metatheorem}
-Chamamos o resultado acima de metateorema porque ele não afirma apenas uma propriedade de conjuntos já dados na teoria: ele afirma que, a partir de um símbolo de função $G$ introduzido por definição, é possível introduzir um novo símbolo de função $F$ satisfazendo a equação recursiva desejada.
+Chamamos o resultado dado pelo Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita} de metateorema porque ele não afirma apenas uma propriedade de conjuntos já dados na teoria: ele afirma que, a partir de um símbolo de função $G$ introduzido por definição, é possível introduzir um novo símbolo de função $F$ satisfazendo a equação recursiva desejada.
 
 Ou seja, o conteúdo do resultado é que o processo de definição recursiva transfinita pode ser formalizado dentro da teoria. A partir disso, os resultados concretos sobre a função assim definida passam a ser teoremas internos da teoria.
 
 Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de aplicação do mesmo.
-\begin{example}\label{ex:soma-ordinal}
+\begin{example}\label{exa:somaOrdinal}
     Considere o operador binário $G$ definido por:
     \[
         G(p, s)=\begin{cases}
@@ -138,9 +138,9 @@ Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de apl
     Portanto, $\beta+\alpha=\sup\{\beta+\xi : \xi <\alpha\}$ se $\alpha$ é um ordinal limite.
 \end{example}
 
-Dedicaremos o resto da seção para a prova do metateorema acima.
+Dedicaremos o resto da seção para a prova do Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita}.
 Iniciaremos pelo seguinte esquema de definições.
-\begin{definition}
+\begin{definition}\label{def:computacaoParcialTransfinita}
     Seja $G(p, s)$ um símbolo de função binário introduzido por definição de modo que
     \[
         \forall s \in V^{<\ON}\forall p\forall y
@@ -164,7 +164,7 @@ Ela contém, para cada $\beta<\alpha$, exatamente o valor que a regra recursiva 
 
 
 Agora provaremos o seguinte esquema de lemas.
-\begin{lemma}
+\begin{lemma}\label{lem:compatibilidadeDeComputacoesParciais}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todos $p, \alpha, \alpha', h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha', p)$, então $h$ e $h'$ são compatíveis.
 \end{lemma}
@@ -181,7 +181,7 @@ Agora provaremos o seguinte esquema de lemas.
     o que é uma contradição.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:unicidadeDeComputacaoParcial}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todos $p, \alpha, h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha, p)$, então $h=h'$.
 \end{corollary}
@@ -192,8 +192,8 @@ Agora provaremos o seguinte esquema de lemas.
 Resta agora mostrar que tais computações parciais de fato existem para todo comprimento ordinal.
 Uma vez estabelecida essa existência, poderemos definir o valor da iteração no estágio $\alpha$ escolhendo qualquer computação parcial suficientemente longa e lendo nela o valor na posição $\alpha$.
 
-A compatibilidade provada acima garantirá que essa escolha independe da computação parcial utilizada.
-\begin{lemma}
+A compatibilidade provada no Lema~\ref{lem:compatibilidadeDeComputacoesParciais} garantirá que essa escolha independe da computação parcial utilizada.
+\begin{lemma}\label{lem:existenciaDeComputacoesParciais}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todo $p$ e todo ordinal $\alpha$, existe uma computação parcial de comprimento $\alpha$ e parâmetro $p$ baseada em $G$.
 \end{lemma}
@@ -212,17 +212,17 @@ A compatibilidade provada acima garantirá que essa escolha independe da computa
     Finalmente, $h'(\beta)=G(p, h)=G(p, h'|\beta)$.
     Assim, $\Ap_G(h', \alpha, p)$.
 
-    Finalmente, se $\alpha$ é um ordinal limite, para cada $\beta <\alpha$, por hipótese de indução e pelo corolário anterior, existe uma única computação parcial $h_\beta$ de comprimento $\beta$ e parâmetro $p$ baseada em $G$.
-    Pelo esquema da substituição, seja $H=\{h_\beta : \beta <\alpha\}$.
+    Finalmente, se $\alpha$ é um ordinal limite, para cada $\beta <\alpha$, por hipótese de indução e pelo Corolário~\ref{cor:unicidadeDeComputacaoParcial}, existe uma única computação parcial $h_\beta$ de comprimento $\beta$ e parâmetro $p$ baseada em $G$.
+    Pelo Axioma~\ref{ax:substituicao}, seja $H=\{h_\beta : \beta <\alpha\}$.
     
-    Pelo lema, $H$ é um conjunto de funções compatíveis, logo, $h=\bigcup H$ é uma função de domínio $\bigcup_{\beta <\alpha} \beta=\alpha$.
+    Pelo Lema~\ref{lem:compatibilidadeDeComputacoesParciais}, $H$ é um conjunto de funções compatíveis, logo, $h=\bigcup H$ é uma função de domínio $\bigcup_{\beta <\alpha} \beta=\alpha$.
     Finalmente, se $\beta <\alpha$, então $\beta+1\leq \alpha$.
     Como $\alpha$ é limite, temos que $\beta+1<\alpha$.
     Temos que $h(\beta)=h_{\beta+1}(\beta)=G(p, h_{\beta+1}|\beta)=G(p, h|\beta)$.
     Assim, $\Ap_G(h, \alpha, p)$.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\label{def:iteracaoTransfinita}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     A $\alpha$-ésima iteração de $G$ com parâmetro $p$, denotada por $F^G(p, \alpha)$ (ou simplesmente $F(p, \alpha)$ se $G$ for claro do contexto), é $h(\alpha)$, em que $h$ é alguma computação parcial de comprimento $\beta>\alpha$ e parâmetro $p$ baseada em $G$.
     Em símbolos:
@@ -232,9 +232,9 @@ A compatibilidade provada acima garantirá que essa escolha independe da computa
         \exists h\exists \beta\bigl(\Ap_G(h,\beta,p)\land \alpha<\beta \land h(\alpha)=y\bigr)\Bigr).
     \]
 \end{definition}
-Pelos lemas, $F^G(p, \alpha)$ é bem definido, pois tal $y$ existe e é único.
+Pelos Lemas~\ref{lem:compatibilidadeDeComputacoesParciais} e \ref{lem:existenciaDeComputacoesParciais}, $F^G(p, \alpha)$ é bem definido, pois tal $y$ existe e é único.
 Assim, temos o seguinte metateorema.
-\begin{theorem}
+\begin{theorem}\label{thm:equacaoDaIteracaoTransfinita}
     Seja $G(p, s)$ um símbolo de função binário introduzido por definição.
 
     Denote por $F_p(\alpha)=F(p, \alpha)$ a $\alpha$-ésima iteração de $G$.
@@ -256,7 +256,7 @@ O passo final consiste em mostrar que a solução recursiva obtida é única.
 Isto é, qualquer outra função que satisfaça a mesma equação recursiva deve coincidir com $F$ em todos os ordinais, independente de como ela seja definida.
 
 Novamente, a ferramenta apropriada para isso é a indução transfinita.
-\begin{theorem}
+\begin{theorem}\label{thm:unicidadeDaIteracaoTransfinita}
     Seja $G(p, s)$ e $F'(p, \alpha)$ dois símbolos de função binários introduzidos por definição e $F$ a $\alpha$-ésima iteração de $G$.
     Seja $p$ tal que $\forall \alpha \in \ON \Bigl( F'_p(\alpha)=G(p, F'_p  |\alpha)\Bigr)$.
 

@@ -1,4 +1,4 @@
-\section{Cardinais e o número de Hartogs}
+\section{Cardinais e o número de Hartogs}\label{sec:cardinaisENumeroDeHartogs}
 \index{cardinal}
 \index{número de Hartogs}
 
@@ -14,28 +14,28 @@ Para motivar a nossa definição de cardinal, lembremos a qual o fizemos para co
 Associamos, a cada conjunto finito $A$, o número natural $n$ tal que $A$ bijeta com $n$.
 
 Se $A$ é bem ordenável, este bijeta com um ordinal.
-\begin{lemma}
+\begin{lemma}\label{lem:bemOrdenavelBijetaComOrdinal}
     Seja $A$ um conjunto bem ordenável.
     Então existe um número ordinal $\alpha$ tal que $A$ bijeta com $\alpha$.
 \end{lemma}
 \begin{proof}
     De fato, seja $<$ uma boa ordem sobre $A$.
-    Existe um ordinal $\alpha$ tal que $(A, <)$ é isomorfo a $(\alpha, <)$, e, portanto, $A$ bijeta com $\alpha$.
+    Existe um ordinal $\alpha$ tal que $(A, <)$ é isomorfo a $(\alpha, <)$, pelo Teorema~\ref{thm:boaOrdemEhIsomorfaAOrdinal}, e, portanto, $A$ bijeta com $\alpha$.
 \end{proof}
 
 Porém, diferentemente do que acontece no caso de ordinais finitos, um conjunto infinito não bijeta com um único ordinal.
 
-\begin{example}
+\begin{example}\label{exa:omegaMaisUmEhEnumeravel}
     $\omega+1$ é enumerável, pois é a união de dois conjuntos enumeráveis: $\omega$ e $\{\omega\}$.
 \end{example}
-\begin{example}
+\begin{example}\label{exa:omegaMaisOmegaEhEnumeravel}
     $\omega+\omega$ é enumerável, pois é a união de dois conjuntos enumeráveis: $\omega$ e $\{\omega+n : n\in \omega\}$.
 \end{example}
 
-Pelos exemplos acima, se $A$ é infinito e enumerável, então $A$ bijeta com $\omega$, com $\omega+1$ e com $\omega+\omega$, dentre muitos outros.
+Pelos Exemplos~\ref{exa:omegaMaisUmEhEnumeravel} e \ref{exa:omegaMaisOmegaEhEnumeravel}, se $A$ é infinito e enumerável, então $A$ bijeta com $\omega$, com $\omega+1$ e com $\omega+\omega$, dentre muitos outros.
 Uma saída natural é associar a $A$ o menor ordinal $\alpha$ tal que $A$ bijeta com $\alpha$.
 
-\begin{definition}\index{cardinalidade}
+\begin{definition}\label{def:cardinalidadeDeConjuntoBemOrdenavel}\index{cardinalidade}
     Seja $A$ um conjunto bem ordenável.
     A cardinalidade de $A$, ou número de elementos de $A$, é o menor ordinal $\alpha$ tal que $A$ bijeta com $\alpha$.
     O cardinal de $A$ é denotado por $|A|$.
@@ -44,7 +44,7 @@ Uma saída natural é associar a $A$ o menor ordinal $\alpha$ tal que $A$ bijeta
 A seguir, vamos tentar explicitar tais objetos de forma mais concreta.
 Primeiro, vamos identificar quem são tais ordinais.
 
-\begin{lemma}
+\begin{lemma}\label{lem:ordinaisQueSaoCardinalidades}
     Seja $\alpha$ um ordinal.
     Então $\alpha$ é a cardinalidade de algum conjunto bem ordenável se, e somente se, não existe $\beta<\alpha$ tal que $\alpha$ bijeta com $\beta$.
 \end{lemma}
@@ -58,7 +58,7 @@ Primeiro, vamos identificar quem são tais ordinais.
 
 Com isso, define-se:
 
-\begin{definition}\index{cardinal}
+\begin{definition}\label{def:cardinal}\index{cardinal}
     Um cardinal é um ordinal $\kappa$ que satisfaz alguma das seguintes condições equivalentes:
     \begin{enumerate}[label=(\roman*)]
     \item $\kappa$ é a cardinalidade de algum conjunto bem ordenável;
@@ -70,7 +70,7 @@ Com isso, define-se:
     Todo número natural é um cardinal, pois todo número natural $n$ é um ordinal, e, se $m<n$, temos que $m\subsetneq n$, e, portanto, $m\not\approx n$.
 \end{example}
 \begin{example}
-    $\omega$ é um cardinal, pois, é um ordinal, e, se $n<\omega$, então $n\in \omega$, pois, como já estudamos, $\omega$ é infinito.
+    $\omega$ é um cardinal, pois é um ordinal, e, se $n<\omega$, então $n\in \omega$, enquanto o item (d) do Corolário~\ref{cor:finitoCardinal} mostra que $\omega$ é infinito.
 \end{example}
 \begin{example}
     $\omega+\omega$ não é um cardinal, pois $\omega+\omega\approx \omega$.
@@ -78,7 +78,7 @@ Com isso, define-se:
 
 Um primeiro lema é o seguinte.
 
-\begin{lemma}
+\begin{lemma}\label{lem:cardinalEquivNaoBijetaComOrdinalMenor}
     Seja $\alpha$ um ordinal.
     Então $\alpha$ é um cardinal se, e somente se, para todo $\beta<\alpha$, $\alpha$ não bijeta com $\beta$.
 \end{lemma}
@@ -90,7 +90,7 @@ Um primeiro lema é o seguinte.
 
 Propriedades elementares dos cardinais são as seguintes.
 
-\begin{lemma}
+\begin{lemma}\label{lem:propriedadesElementaresDosCardinais}
     Sejam $A$ e $B$ conjuntos bem ordenáveis.
     Então:
     \begin{enumerate}[label=(\alph*)]
@@ -110,7 +110,7 @@ Propriedades elementares dos cardinais são as seguintes.
     (b) Se $|A|\leq |B|$, então $A\preceq |A|\leq |B|\preceq B$, e, portanto, $A\preceq B$.
 
     Reciprocamente, agimos pela contrapositiva.
-    Se $|B|<|A|$, como $|A|$ é um cardinal, $|A|\not\approx |B|$ pelo lema anterior, e, portanto, $|A|\not\preceq |B|$.
+    Se $|B|<|A|$, como $|A|$ é um cardinal, $|A|\not\approx |B|$ pelo Lema~\ref{lem:cardinalEquivNaoBijetaComOrdinalMenor}, e, portanto, $|A|\not\preceq |B|$.
 
     (c) Decorre de (a) e (b).
 
@@ -122,7 +122,7 @@ Assim, todos os cardinais que conhecemos até agora são os naturais e $\omega$.
 
 Com o Axioma da Potência, tal feito se faz possível.
 
-\begin{proposition}\label{prop:hartogs}\index{teorema de Hartogs}
+\begin{proposition}\label{prop:teoremaDeHartogs}\index{teorema de Hartogs}
     Para todo conjunto $A$, existe um ordinal $\alpha$ tal que $A$ não bijeta com $\alpha$.
 \end{proposition}
 \begin{proof}
@@ -144,11 +144,11 @@ Com o Axioma da Potência, tal feito se faz possível.
     Então $f:(\alpha, <)\to (B, R)$ é um isomorfismo, de modo que $\tp(B, R)=\alpha\in \alpha$, um absurdo.
 \end{proof}
 
-\begin{definition}\index{número de Hartogs}
+\begin{definition}\label{def:numeroDeHartogs}\index{número de Hartogs}
     O número de Hartogs de um conjunto $A$, denotado por $h(A)$, é o menor ordinal $\alpha$ tal que $A$ não injeta em $\alpha$.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{lem:hartogsEhCardinal}
     Seja $A$ um conjunto.
     Então $h(A)$ é um cardinal.
 \end{lemma}
@@ -158,7 +158,7 @@ Com o Axioma da Potência, tal feito se faz possível.
     Pela definição de $h(A)$, $\beta \preceq A$, mas, então, $h(A)\preceq A$, o que é um absurdo.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lem:hartogsEhMenorCardinalMaior}
     Seja $\alpha$ um ordinal.
     Então $h(\alpha)$ é o menor cardinal $\kappa$ tal que $\alpha<\kappa$.
 \end{lemma}
@@ -171,13 +171,13 @@ Com o Axioma da Potência, tal feito se faz possível.
     Temos que $\kappa$ não injeta em $\alpha$, e, portanto, $h(\alpha)\leq \kappa$.
 \end{proof}
 
-\begin{definition}\index{sucessor cardinal}
+\begin{definition}\label{def:sucessorCardinal}\index{sucessor cardinal}
     Dado um ordinal $\alpha$, o número de Hartogs de $\alpha$ é denotado por $\alpha^+$.
 \end{definition}
 
 Por fim, temos que a união de uma coleção de cardinais é um cardinal.
 
-\begin{lemma}
+\begin{lemma}\label{lem:uniaoDeCardinaisEhCardinal}
     Seja $A$ uma coleção de cardinais.
     Então $\bigcup A$ é um cardinal.
 \end{lemma}
@@ -190,7 +190,7 @@ Por fim, temos que a união de uma coleção de cardinais é um cardinal.
 
 Finalizamos com um lema que restringe a estrutura dos cardinais.
 
-\begin{lemma}
+\begin{lemma}\label{lem:cardinalInfinitoEhOrdinalLimite}
 Seja $\kappa$ um cardinal infinito.
 Então $\kappa$ é um ordinal limite.
 \end{lemma}
@@ -214,7 +214,7 @@ Então $\kappa$ é um ordinal limite.
 \subsection*{Exercícios}
 Nos exercícios dessa seção, NÃO assuma o Axioma da Escolha (este ainda não foi introduzido!).
 \begin{exercise}
-    Mostre que o ordinal $\alpha$ construído na demonstração da Proposição~\ref{prop:hartogs} é o número de Hartogs de $A$.
+    Mostre que o ordinal $\alpha$ construído na demonstração da Proposição~\ref{prop:teoremaDeHartogs} é o número de Hartogs de $A$.
 \end{exercise}
 \begin{exercise}
     Seja $A$ um conjunto.

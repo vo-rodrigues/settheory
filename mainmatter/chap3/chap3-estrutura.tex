@@ -1,9 +1,9 @@
-\section{Propriedades estruturais dos números naturais}
+\section{Propriedades estruturais dos números naturais}\label{sec:propriedadesEstruturaisDosNaturais}
 \index{Axiomas de Peano}
 \index{número natural!interpretação conjuntista}
 A construção dos números naturais apresentada implica as seguintes propriedades estruturais.
 
-\begin{proposition}
+\begin{proposition}\label{prop:naturaisSaoSubconjuntosDeOmega}
     Para todo $n \in \omega$, $n\subseteq \omega$.
 \end{proposition}
 
@@ -16,7 +16,7 @@ A construção dos números naturais apresentada implica as seguintes propriedad
 
 Em particular, para cada $n\in\omega$, os elementos de $n$ são exatamente os números naturais estritamente menores do que $n$.
 
-\begin{corollary}
+\begin{corollary}\label{cor:ordemPorInclusaoNosNaturais}
     Para quaisquer $m, n \in \omega$, $m\leq n$ se, e somente se, $m\subseteq n$.
 \end{corollary}
 \begin{proof}
@@ -26,7 +26,7 @@ Em particular, para cada $n\in\omega$, os elementos de $n$ são exatamente os n�
     Se $m<n$, então $m\in n$.
     Vejamos que $m\subseteq n$.
     Tome $k\in m$.
-    Pela proposição anterior, $k\in \omega$.
+    Pela Proposição~\ref{prop:naturaisSaoSubconjuntosDeOmega}, $k\in \omega$.
     Assim, $k<m$ e $m<n$.
     Pela propriedade transitiva, $k<n$, e, portanto, $k\in n$.
     Assim, $m\subseteq n$.
@@ -54,7 +54,7 @@ Em linguagem moderna, eles dizem que $\mathbb N$ é um conjunto munido de uma fu
 A nossa construção satisfaz os axiomas (1) e (2) porque $\omega$ é indutivo, satisfaz o axioma (3) porque $0=\emptyset$, e satisfaz o axioma (5) pela propriedade de indução já estabelecida para $\omega$.
 Resta verificar o axioma (4).
 
-\begin{proposition}
+\begin{proposition}\label{prop:injetividadeDoSucessorNosNaturais}
     Para quaisquer $n, m \in \omega$, se $S(n) = S(m)$, então $n = m$.
 \end{proposition}
 \begin{proof}
@@ -65,6 +65,6 @@ Resta verificar o axioma (4).
 
 Com isso, a construção de $\omega$ apresentada satisfaz os Axiomas de Peano, e, portanto, pode ser vista como uma legítima construção dos números naturais dentro da Teoria dos Conjuntos.
 
-Porém, ressaltamos que a noção elementar de número precede a própria Teoria dos Conjuntos: conforme discutido no Capítulo~1, precisamos dela para descrever a própria linguagem de primeira ordem.
+Porém, ressaltamos que a noção elementar de número precede a própria Teoria dos Conjuntos: conforme discutido no Capítulo~\ref{chap:teoriasPrimeiraOrdem}, precisamos dela para descrever a própria linguagem de primeira ordem.
 Assim, afirmações como $1\in 2$ não devem ser necessariamente interpretadas como teses ontológicas sobre a natureza última dos números.
 Uma postura mais defensável é que tal construção é uma internalização, na Teoria dos Conjuntos, da noção de número natural que captura propriedades fundamentais da noção primitiva de número.

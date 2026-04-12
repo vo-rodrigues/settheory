@@ -1,4 +1,4 @@
-\section{Tautologias e valorações de verdade}
+\section{Tautologias e valorações de verdade}\label{sec:tautologiasEValoracoes}
 \index{lógica proposicional}
 \index{tautologia}
 \index{contradição}
@@ -8,7 +8,7 @@ Um dos caminhos para o fazer é o de, primeiro, trabalhar a noção de tautologi
 A noção de tautologia corresponde a uma noção de validade puramente proposicional.
 Mais adiante, introduziremos a noção completa de demonstração.
 
-\begin{metadefinition}[Fórmulas proposicionais]\index{fórmula proposicional}
+\begin{metadefinition}[Fórmulas proposicionais]\label{mdef:formulasProposicionais}\index{fórmula proposicional}
     O léxico para lógica proposicional é o léxico para a notação polonesa cujos símbolos básicos são apenas os conectivos lógicos $\neg$, $\vee$, $\wedge$, $\rightarrow$ e $\leftrightarrow$, além de símbolos $0$-ários $P_0, P_1, \dots$, chamados de variáveis proposicionais.
 
     Uma fórmula proposicional é uma expressão bem formada neste léxico.
@@ -20,7 +20,7 @@ Ou seja, se ficar implícito do contexto que $A$ e $B$ são variáveis proposici
 
 Manteremos a convenção de, salvo necessidade, utilizar a notação usual (infixa) ao invés da notação polonesa, usando parênteses para eliminar ambiguidades quando necessário.
 
-\begin{example}
+\begin{example}\label{exa:formulasProposicionais}
     São fórmulas proposicionais:
     \begin{itemize}
         \item $\neg P_1$.
@@ -29,7 +29,7 @@ Manteremos a convenção de, salvo necessidade, utilizar a notação usual (infi
     \end{itemize}
 \end{example}
 
-\begin{metadefinition}[Valoração]\index{contradição}\index{tabela-verdade}
+\begin{metadefinition}[Valoração]\label{mdef:valoracao}\index{contradição}\index{tabela-verdade}
     Uma \emph{valoração}\index{valoração} é um mapeamento que atribui a cada variável proposicional $P$ um valor de verdade $V(P)$, ou seja, $T$ ou $F$ (que são símbolos distintos arbitrariamente escolhidos).
 
     Dada uma valoração $V$, estendemos recursivamente o mapeamento $V$ às fórmulas proposicionais $\phi$ a partir do seguinte algoritmo.
@@ -50,19 +50,19 @@ Os símbolos $T$ e $F$ representam, intuitivamente, os valores de verdade ``verd
 
 O seguinte lema metateórico nos mostra que a verificação de que uma fórmula é uma tautologia é finitária.
 
-\begin{metalemma}\label{metalemma:valoracao}
+\begin{metalemma}\label{mlem:valoracao}
     Seja $\phi$ uma fórmula proposicional e $V$, $V'$ valorações tais que $V(P) = V'(P)$ para cada variável proposicional $P$ que ocorre em $\phi$.
     Então $ V(\phi) =  V'(\phi)$.
 \end{metalemma}
 \begin{proof}
     É fácil verificar por indução que, para toda subexpressão $\psi$ de $\phi$, o valor de verdade atribuído por $V$ e por $V'$ é o mesmo.
 
-    A redação completa do argumento é deixada como exercício (ver Exercício~\ref{ex:metalemmaValoracao}).
+    A redação completa do argumento é deixada como exercício (ver Exercício~\ref{exr:metalemaValoracao}).
 \end{proof}
 
 Dessa forma, para verificar se uma fórmula em que apenas $n$ variáveis proposicionais ocorrem, basta verificar as $2^n$ valorações possíveis para essas variáveis proposicionais, como se faz com o método conhecido como \emph{tabela verdade}.
 
-\begin{example}
+\begin{example}\label{exa:formulaNaoTautologica}
     Considere a fórmula $\neg P_1 \rightarrow (P_1 \vee P_2)$.
     A tabela abaixo mostra que essa fórmula não é uma tautologia.
 
@@ -82,7 +82,7 @@ Dessa forma, para verificar se uma fórmula em que apenas $n$ variáveis proposi
     Como as demais linhas resultam em $T$, a fórmula também não é uma contradição.
 \end{example}
 
-\begin{example}
+\begin{example}\label{exa:contradicaoPorTabelaVerdade}
     Considere a fórmula $(A\wedge B) \wedge (\neg A \vee \neg B)$.
     A tabela abaixo mostra que essa fórmula é uma contradição.
 
@@ -100,7 +100,7 @@ Dessa forma, para verificar se uma fórmula em que apenas $n$ variáveis proposi
     Como qualquer valoração, restrita às variáveis que ocorrem na fórmula, corresponde a alguma linha desta tabela verdade, esta fórmula proposicional é uma contradição.
 \end{example}
 
-\begin{example}
+\begin{example}\label{exa:tautologiaPorTabelaVerdade}
     Considere a fórmula $A\rightarrow A$.
     A tabela abaixo mostra que essa fórmula é uma tautologia.
     \begin{center}
@@ -118,7 +118,7 @@ Como qualquer valoração restrita às variáveis que ocorrem na fórmula, corre
 A seguir, definiremos uma \emph{instância de tautologia}, que é uma fórmula proposicional em que cada variável proposicional é substituída por uma fórmula arbitrária.
 Para isso, precisamos definir, formalmente, o que significa tal substituição.
 
-\begin{metaproposition}
+\begin{metaproposition}\label{mprop:substituicaoProposicional}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem.
     Uma atribuição de variáveis proposicionais a fórmulas de $\mathcal L$ é um mapeamento $\rho$ que atribui a cada variável proposicional $P$ uma fórmula $\rho(P)$ da linguagem de primeira ordem de $\mathcal L$.
 
@@ -131,17 +131,17 @@ Para isso, precisamos definir, formalmente, o que significa tal substituição.
     \end{itemize}
 \end{metaproposition}
 
-\begin{example}
+\begin{example}\label{exa:substituicaoProposicional}
     Considere a fórmula proposicional $\neg P_1 \rightarrow (P_1 \vee P_2)$ e a atribuição $\rho$ que atribui $P_1$ à fórmula $x \in y$ e $P_2$ à fórmula $\neg (z \in w)$.
     Então $\subst(\neg P_1 \rightarrow (P_1 \vee P_2), \rho)$ é $\neg (x \in y) \rightarrow ((x \in y) \vee \neg (z \in w))$.
 \end{example}
 
-\begin{metadefinition}[Instância de tautologia]\index{instância de tautologia}
+\begin{metadefinition}[Instância de tautologia]\label{mdef:instanciaDeTautologia}\index{instância de tautologia}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem.
     Dizemos que uma fórmula $\varphi$ da linguagem de primeira ordem de $\mathcal L$ é uma \emph{instância de tautologia} se existe uma tautologia proposicional $\theta$ e uma atribuição $\rho$ de variáveis proposicionais a fórmulas de $\mathcal L$ tais que $\varphi$ é $\subst(\theta,\rho)$.
 \end{metadefinition}
 
-\begin{example}
+\begin{example}\label{exa:instanciaDeTautologia}
     Considere a fórmula $(x \in y) \vee \neg (x \in y)$.
     Chamando de $A$ a fórmula $x \in y$, a fórmula acima corresponde a $A \vee \neg A$.
     Mais formalmente, sendo $A$ uma variável proposicional, $\subst(A \vee \neg A, \rho)$ é $(x \in y) \vee \neg (x \in y)$, onde $\rho$ é uma atribuição tal que $\rho(A)$ é a fórmula $x \in y$.
@@ -161,8 +161,8 @@ Para isso, precisamos definir, formalmente, o que significa tal substituição.
 
 \subsection*{Exercícios}
 
-\begin{exercise}\label{ex:metalemmaValoracao}
-    Prove o Metalema~\ref{metalemma:valoracao}.
+\begin{exercise}\label{exr:metalemaValoracao}
+    Prove o Metalema~\ref{mlem:valoracao}.
 \end{exercise}
 
 \begin{exercise}

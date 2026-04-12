@@ -1,4 +1,4 @@
-\section{Mais sobre demonstrações formais}
+\section{Mais sobre demonstrações formais}\label{sec:maisSobreDemonstracoesFormais}
 \index{teoria da prova}
 \index{teorema da dedução}
 Nesta seção, veremos resultados adicionais sobre demonstrações formais.
@@ -7,7 +7,7 @@ Tais resultados formalizam parte dos raciocínios matemáticos usualmente utiliz
 Iniciaremos pelo Teorema da Dedução.
 Este teorema formaliza a ideia de que para provar uma implicação, podemos tomar o antecedente como hipótese para demonstrar o consequente.
 
-\begin{metatheorem}[Teorema da Dedução]\index{teorema da dedução}
+\begin{metatheorem}[Teorema da Dedução]\label{mthm:teoremaDaDeducao}\index{teorema da dedução}
     Seja $T$ uma teoria de primeira ordem e $\phi, \psi$ sentenças da linguagem de $T$.
     São equivalentes:
     \begin{enumerate}[label=(\roman*)]
@@ -19,7 +19,7 @@ Este teorema formaliza a ideia de que para provar uma implicação, podemos toma
 \end{metatheorem}
 
 \begin{proof}
-    $(i) \Rightarrow (ii)$: se $T \vdash \phi \rightarrow \psi$, então, pela Metaproposição~\ref{metaproposition:theoryextension}, $T, \phi \vdash \phi \rightarrow \psi$.
+    $(i) \Rightarrow (ii)$: se $T \vdash \phi \rightarrow \psi$, então, pela Metaproposição~\ref{mprop:extensaoDeTeoria}, $T, \phi \vdash \phi \rightarrow \psi$.
     Como $T, \phi\vdash \phi$, segue de modus ponens que $T, \phi \vdash \psi$.
 
     $(ii) \Rightarrow (i)$: suponha que $T, \phi \vdash \psi$.
@@ -70,7 +70,7 @@ Notemos que se $t$ é um termo sem variáveis, então qualquer substituição $\
 
 Precisaremos do seguinte lema:
 
-\begin{metalemma}[Renomeação de variável universal]\label{metalemma:renomeacaoUniversal}\index{renomeação de variável!universal}
+\begin{metalemma}[Renomeação de variável universal]\label{mlem:renomeacaoVariavelUniversal}\index{renomeação de variável!universal}
     Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
     Seja $y$ uma variável que não ocorre em $\phi$.
 
@@ -91,7 +91,7 @@ Precisaremos do seguinte lema:
     \[
         \forall y\,\phi[x/y]\rightarrow (\phi[x/y])[y/x].
     \]
-    Como $y$ não ocorre em $\phi$, temos $(\phi[x/y])[y/x]$ é $\phi$ (veja o Exercício~\ref{exercise:substituicao}).
+    Como $y$ não ocorre em $\phi$, temos $(\phi[x/y])[y/x]$ é $\phi$ (veja o Exercício~\ref{exr:substituicaoSimples}).
     Além disso, a substituição $(\phi[x/y])[y/x]$ é válida, pois as ocorrências livres de $y$ em $\phi[x/y]$
     correspondem às ocorrências livres de $x$ em $\phi$, logo, por definição de ocorrência livre, nenhuma delas está no escopo de quantificador que age em $x$.
     Tomando fecho universal em $x$, concluímos que
@@ -162,8 +162,7 @@ Precisaremos do seguinte lema:
     $T\vdash \forall y\,\phi[x/y]$.
 \end{proof}
 
-\begin{metacorollary}[Renomeação de variável existencial]\index{renomeação de variável!existencial}
-\label{metacorollary:renomeacaoExistencial}
+\begin{metacorollary}[Renomeação de variável existencial]\label{mcor:renomeacaoVariavelExistencial}\index{renomeação de variável!existencial}
     Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
     Seja $y$ uma variável que não ocorre em $\phi$.
 
@@ -188,17 +187,17 @@ Precisaremos do seguinte lema:
     \]
     Logo, por \emph{modus ponens}, $T\vdash \neg\forall y\,\neg\phi[x/y]$.
 
-    Aplicando o Metalema~\ref{metalemma:renomeacaoUniversal} à fórmula $\neg\phi$
+    Aplicando o Metalema~\ref{mlem:renomeacaoVariavelUniversal} à fórmula $\neg\phi$
     (e usando tautologias proposicionais para passar ao negado), obtemos
     $T\vdash \neg\forall x\,\neg\phi$.
     Finalmente, pelo axioma (6) e uma instância de tautologia, segue que $T\vdash \exists x\,\phi$.
 
-    Para a recíproca e demais detalhes, veja o Exercício~\ref{exercise:renomeacaoExistencial}.
+    Para a recíproca e demais detalhes, veja o Exercício~\ref{exr:renomeacaoVariavelExistencial}.
 \end{proof}
 
-\begin{metatheorem}[Inferências sobre quantificação]\index{instanciação universal}\index{generalização existencial}\index{instanciação existencial}\index{generalização universal}
+\begin{metatheorem}[Inferências sobre quantificação]\label{mthm:inferenciasSobreQuantificacao}\index{instanciação universal}\index{generalização existencial}\index{instanciação existencial}\index{generalização universal}
     Seja $T$ uma teoria de primeira ordem com axiomas $\Sigma$ e léxico $\mathcal L$.
-    Considere\footnote{Lembre-se da Convenção~\ref{convention:variaveislivres}.} uma $\mathcal L$-fórmula $\phi(x)$ e uma $\mathcal L$-sentença $\psi$, em que $x$ é uma variável, e um símbolo de constante $c$ que não faz parte de $\mathcal L$.
+    Considere\footnote{Lembre-se da Convenção~\ref{conv:variaveisLivres}.} uma $\mathcal L$-fórmula $\phi(x)$ e uma $\mathcal L$-sentença $\psi$, em que $x$ é uma variável, e um símbolo de constante $c$ que não faz parte de $\mathcal L$.
     Sejam $\mathcal L'$ o léxico $\mathcal L$ acrescido de $c$, e $T'$ a teoria de primeira ordem com léxico $\mathcal L'$ e axiomas $\Sigma$.
 
     \begin{enumerate}[label=(\Roman*)]
@@ -258,7 +257,7 @@ Então $\psi_i$ é um fecho universal de alguma instância de um dos esquemas (1
 envolvendo possivelmente o símbolo novo $c$ como parte de algum termo.
 Ao substituir $c$ por $y$ obtemos novamente uma instância do \emph{mesmo} esquema,
 agora na linguagem $\mathcal L$ (pois $y$ é um termo, e $y$ foi escolhido de modo a não introduzir conflitos de variáveis).
-Para mais informações, veja o Exercício~\ref{exercise:axiom-subst-const}.
+    Para mais informações, veja o Exercício~\ref{exr:axiomaSubstituicaoDeConstante}.
 Logo, $\widehat{\psi_i}=\forall y\,\psi_i^\ast$ é (também) um axioma lógico de $T$.
 Assim, $T\vdash \widehat{\psi_i}$.
 
@@ -280,7 +279,7 @@ Isso conclui a indução. Em particular, para $i=n$ obtemos
 \[
 T\vdash \widehat{\psi_n}=\forall y\,\bigl(\phi[x/c]\bigr)^\ast=\forall y\,\phi[x/y].
 \]
-Portanto, do Metalema~\ref{metalemma:renomeacaoUniversal} segue que $T\vdash \forall x\,\phi$, como queríamos.
+    Portanto, do Metalema~\ref{mlem:renomeacaoVariavelUniversal} segue que $T\vdash \forall x\,\phi$, como queríamos.
 
 \medskip
 \textbf{(III) Instanciação Existencial.}
@@ -323,7 +322,7 @@ Agora trabalhamos sob a hipótese $\neg\psi$.
 Como $x$ não ocorre livre em $\neg\psi$ (pois $\psi$ é sentença), pelo esquema (4) temos
 $\neg\psi\rightarrow \forall x\,\neg\psi$; portanto, de $\neg\psi$ segue $\forall x\,\neg\psi$,
 e então segue $\forall x\,\neg\phi$.
-Pelo Teorema da Dedução, concluímos
+  Pelo Metateorema~\ref{mthm:teoremaDaDeducao}, concluímos
 \[
 T\vdash \neg\psi\rightarrow \forall x\,\neg\phi.
 \]
@@ -344,18 +343,18 @@ Isso prova (III).
 
 \section*{Exercícios}
 
-\begin{exercise}\label{exercise:substituicao}
+\begin{exercise}\label{exr:substituicaoSimples}
     Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
     Seja $y$ uma variável que não ocorre em $\phi$.
 
     Então $\phi[x/y][y/x]$ é $\phi$.
 \end{exercise}
 
-\begin{exercise}\label{exercise:renomeacaoExistencial}
-    Complete a prova do Metacorolário~\ref{metacorollary:renomeacaoExistencial} utilizando o Metalema~\ref{metalemma:renomeacaoUniversal}.
+\begin{exercise}\label{exr:renomeacaoVariavelExistencial}
+    Complete a prova do Metacorolário~\ref{mcor:renomeacaoVariavelExistencial} utilizando o Metalema~\ref{mlem:renomeacaoVariavelUniversal}.
 \end{exercise}
 
-\begin{exercise}\label{exercise:axiom-subst-const}
+\begin{exercise}\label{exr:axiomaSubstituicaoDeConstante}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem contendo um símbolo de constante $c$, e $\phi$ uma fórmula de $\mathcal L$ que é instância de um dos esquemas (1)--(11) da metadefinição dos axiomas lógicos.
 
     Para cada subfórmula $\psi$ de $\phi$, seja $\psi^\ast$ a fórmula obtida de $\psi$ substituindo-se cada símbolo de constante $c$ por uma variável $y$ que não ocorre em $\psi$.

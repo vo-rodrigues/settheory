@@ -1,0 +1,73 @@
+\section{Quadrados de ordinais}\label{sec:quadradosDeOrdinais}
+Vimos que $\omega\times \omega$ é infinito enumerável.
+
+Tal fato não é específico de $\aleph_0$.
+De fato, para cada cardinal infinito $\kappa$, $\kappa\times \kappa$ é equipotente a $\kappa$.
+
+Para mostrar isso, utilizaremos algumas definições e resultados sobre ordinais.
+
+\begin{definition}\label{def:ordemCanonicaEmOnQuadrado}
+    Dizemos que um conjunto está em $\ON\times \ON$ se é um par ordenado de ordinais.
+
+    Sejam $(\alpha, \beta)$ e $(\alpha', \beta')$ pares de ordinais.
+    A ordem canônica em $\ON\times \ON$ é a relação $\triangleleft$ definida por:
+    \begin{align*}
+    (\alpha, \beta) \triangleleft (\alpha', \beta') \Longleftrightarrow &(\max\{\alpha, \beta\} < \max\{\alpha', \beta'\}) \\
+    \lor &(\max\{\alpha, \beta\} = \max\{\alpha', \beta'\} \land \alpha < \alpha') \\
+    \lor &(\max\{\alpha, \beta\} = \max\{\alpha', \beta'\} \land \alpha = \alpha' \land \beta < \beta').
+    \end{align*}
+\end{definition}
+\begin{lemma}\label{lem:boaOrdemCanonicaNoQuadradoDeOrdinal}
+    Para cada ordinal $\alpha$, $\alpha\times \alpha$ é uma boa ordem em $\ON\times \ON$, ou seja, para todos $(\alpha, \beta)$, $(\alpha', \beta')$ e $(\alpha'', \beta'')$ pares de ordinais, valem as seguintes propriedades.
+    \begin{enumerate}[label=(\alph*)]
+        \item Se $(\alpha, \beta) \triangleleft (\alpha', \beta')$ e $(\alpha', \beta') \triangleleft (\alpha'', \beta'')$, então $(\alpha, \beta) \triangleleft (\alpha'', \beta'')$.
+        \item $(\alpha, \beta) \ntriangleleft (\alpha, \beta)$.
+        \item $(\alpha, \beta) \triangleleft (\alpha', \beta') \lor (\alpha, \beta) = (\alpha', \beta') \lor (\alpha', \beta') \triangleleft (\alpha, \beta)$.
+        \item Se $X$ é um conjunto não vazio de pares de ordinais, então $X$ tem um $\triangleleft$-menor elemento.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (a) Suponha que $(\alpha, \beta) \triangleleft (\alpha', \beta')$ e $(\alpha', \beta') \triangleleft (\alpha'', \beta'')$.
+    
+    Note que, em qualquer caso, $\max\{\alpha, \beta\} \leq \max\{\alpha', \beta'\} \leq \max\{\alpha'', \beta''\}$.
+    Se alguma das desigualdades forem estritas, então $(\alpha, \beta) \triangleleft (\alpha'', \beta'')$.
+    Caso contrário, $\max\{\alpha, \beta\} = \max\{\alpha', \beta'\} = \max\{\alpha'', \beta''\}$.
+    
+    Nesse caso, temos que $\alpha \leq \alpha' \leq \alpha''$.
+    Se alguma das desigualdades forem estritas, então $(\alpha, \beta) \triangleleft (\alpha'', \beta'')$.
+    Caso contrário, $\alpha = \alpha' = \alpha''$.
+
+    Nesse caso, temos que $\beta < \beta' < \beta''$, de modo que $(\alpha, \beta) \triangleleft (\alpha'', \beta'')$.
+
+    (b) é imediato da definição.
+
+    (c) Suponha que $(\alpha, \beta) \ntriangleleft (\alpha', \beta')$ e $(\alpha', \beta') \ntriangleleft (\alpha, \beta)$.
+    Então, $\max\{\alpha, \beta\} = \max\{\alpha', \beta'\}$, $\alpha = \alpha'$, e $\beta = \beta'$.
+    Assim, $(\alpha, \beta) = (\alpha', \beta')$.
+
+    (d) Seja $X$ um conjunto não vazio de pares de ordinais.
+    Seja $X_0=\{\max\{\alpha, \beta\} : (\alpha, \beta)\in X\}$.
+    Note que $X_0$ é um conjunto de ordinais, e, portanto, tem um menor elemento $\xi$.
+
+    Seja $Y=\{(\alpha, \beta)\in X : \max\{\alpha, \beta\} = \xi\}$.
+    Seja $Y_0=\{\alpha : (\alpha, \beta)\in Y\}$.
+    Note que $Y_0$ é um conjunto de ordinais, e, portanto, tem um menor elemento $\alpha_0$.
+
+    Seja $Z=\{(\alpha, \beta)\in Y : \alpha = \alpha_0\}$.
+    Seja $Z_0=\{\beta : (\alpha, \beta)\in Z\}$.
+    Note que $Z_0$ é um conjunto de ordinais, e, portanto, tem um menor elemento $\beta_0$.
+
+    Temos que $(\alpha_0, \beta_0)\in Z \subseteq Y \subseteq X$.
+
+    Se $(\alpha, \beta)\in X$, temos que $\max\{\alpha, \beta\} \geq \xi$.
+    Se $\max\{\alpha, \beta\} > \xi$, então $(\alpha_0, \beta_0) \triangleleft (\alpha, \beta)$;
+    caso contrário, $\max\{\alpha, \beta\} = \xi$, e, assim, $(\alpha, \beta)\in Y$.
+
+    Como $(\alpha, \beta)\in Y$, temos que $\alpha \geq \alpha_0$.
+    Se $\alpha > \alpha_0$, então $(\alpha_0, \beta_0) \triangleleft (\alpha, \beta)$;
+    caso contrário, $\alpha = \alpha_0$, e, assim, $(\alpha, \beta)\in Z$.
+
+    Como $(\alpha, \beta)\in Z$, temos que $\beta \geq \beta_0$.
+    Dessa forma, $(\alpha_0, \beta_0) \trianglelefteq (\alpha, \beta)$.
+\end{proof}

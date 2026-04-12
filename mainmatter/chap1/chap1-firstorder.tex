@@ -1,4 +1,4 @@
-\section{Linguagens de primeira ordem}
+\section{Linguagens de primeira ordem}\label{sec:linguagensPrimeiraOrdem}
 \index{linguagem de primeira ordem}
 \index{símbolo lógico}
 \index{símbolo não lógico}
@@ -8,7 +8,7 @@ Discutida a notação polonesa de forma geral, estamos prontos para avançar par
 Iniciaremos apresentando os símbolos lógicos.
 Enfatizamos, desde já, que consideraremos a igualdade como um símbolo lógico, o que é uma escolha comum, mas não universal, na literatura.
 
-\begin{metadefinition}\label{def:simbolos-logicos}\index{símbolo lógico}\index{conectivo lógico}\index{quantificador}
+\begin{metadefinition}\label{mdef:simbolosLogicos}\index{símbolo lógico}\index{conectivo lógico}\index{quantificador}
     Os símbolos lógicos (da lógica de primeira ordem) são os seguintes.
     \begin{itemize}
         \item Os símbolos de conectivos lógicos:
@@ -36,7 +36,7 @@ A identificação de um símbolo como variável se dará pelo contexto.
 Observamos desde já que, neste formalismo, os quantificadores, $\forall$ e $\exists$, são símbolos binários.
 De fato, requerem dois objetos para serem utilizados: um símbolo de variável e uma fórmula.
 
-Dito isso, há duas possíveis dúvidas que podem surgir a respeito da definição acima.
+Dito isso, há duas possíveis dúvidas que podem surgir a respeito da Metadefinição~\ref{mdef:simbolosLogicos}.
 A primeira diz respeito ao fato de que uma teoria de primeira ordem não possui apenas esses símbolos.
 Por exemplo, a Teoria dos Conjuntos necessita do símbolo de pertencimento, $\in$, e a Teoria dos Grupos necessita de um símbolo de operação binária, $\cdot$.
 Tais símbolos são chamados de \emph{símbolos não lógicos} e, conforme veremos, compõem o léxico de uma teoria de primeira ordem.
@@ -47,7 +47,7 @@ De fato, conforme veremos, nem toda expressão na notação polonesa é uma fór
 
 Iniciaremos trabalhando a primeira dúvida.
 
-\begin{metadefinition}\index{léxico!de primeira ordem}\index{símbolo não lógico}\index{símbolo de predicado}\index{símbolo funcional}
+\begin{metadefinition}\label{mdef:lexicoPrimeiraOrdem}\index{léxico!de primeira ordem}\index{símbolo não lógico}\index{símbolo de predicado}\index{símbolo funcional}
     Um léxico $\mathcal L$ para uma teoria de primeira ordem consiste no seguinte.
 
     \begin{itemize}
@@ -56,7 +56,7 @@ Iniciaremos trabalhando a primeira dúvida.
     \end{itemize}
     As duas coleções acima não podem possuir símbolos em comum, nem possuir símbolos lógicos.
     Os símbolos de $\mathcal P$ e $\mathcal F$ são chamados de símbolos não lógicos de $\mathcal L$.
-    Juntamente com os símbolos lógicos da Metadefinição~\ref{def:simbolos-logicos}, eles constituem o léxico total da linguagem.
+    Juntamente com os símbolos lógicos da Metadefinição~\ref{mdef:simbolosLogicos}, eles constituem o léxico total da linguagem.
 \end{metadefinition}
 
 Exemplos de símbolos de predicado não lógicos incluem $\in$ (pertencimento, comum em teoria dos conjuntos), $<$ (ordem, comum ao estudar números reais), $\triangle$ (não colinearidade entre três pontos, comum em geometria plana).
@@ -64,7 +64,7 @@ Exemplos de símbolos de predicado não lógicos incluem $\in$ (pertencimento, c
 Exemplos de símbolos funcionais não lógicos incluem $\cdot$ (operação binária, comum em teoria dos grupos), $+$ (operação binária, comum em teoria dos anéis), $-$ (operação unária, comum em teoria dos anéis).
 
 Dando exemplos explícitos de léxicos:
-\begin{example}Consideremos os seguintes léxicos.\label{ex:exemplosLexicos}
+\begin{example}Consideremos os seguintes léxicos.\label{exa:exemplosLexicos}
     \begin{itemize}
         \item O léxico da teoria dos conjuntos é composto por um símbolo de predicado não lógico binário, $\in$.
         \item O léxico da teoria dos grupos é composto pelo símbolo funcional binário $\cdot$ (operação de grupo), pelo símbolo funcional unário $^{-1}$ (inverso) e pelo símbolo funcional $0$-ário $e$ (identidade).
@@ -90,7 +90,7 @@ Para isso, devemos definir, precisamente, o que são termos e fórmulas.
 
 Iniciaremos pelos termos.
 
-\begin{metadefinition}\index{termo}\index{constante}
+\begin{metadefinition}\label{mdef:termosPrimeiraOrdem}\index{termo}\index{constante}
     Dado um léxico $\mathcal L$ para uma teoria de primeira ordem, os termos de $\mathcal L$ são definidos recursivamente da seguinte forma.
 \begin{enumerate}[label=(\roman*)]
     \item Toda variável é um termo.
@@ -103,7 +103,7 @@ Iniciaremos pelos termos.
 
 Vamos dar alguns exemplos.
 
-\begin{example}Utilizando a notação do Exemplo~\ref{ex:exemplosLexicos}, temos os seguintes termos.
+\begin{example}\label{exa:termosPrimeiraOrdem}Utilizando a notação do Exemplo~\ref{exa:exemplosLexicos}, temos os seguintes termos.
     \begin{itemize}
         \item Na teoria dos grupos, $\cdot x_1 e$ é um termo (na notação usual, $x_1 \cdot e$).
         \item Na teoria dos anéis, $+ x_1 \cdot -x_20$ é um termo (na notação usual, $x_1 + (-x_2 \cdot 0)$).
@@ -115,7 +115,7 @@ Vamos dar alguns exemplos.
 
 Agora podemos definir o que são fórmulas.
 
-\begin{metadefinition}\index{fórmula}\index{fórmula!atômica}\index{fórmula!equacional}\index{subfórmula}
+\begin{metadefinition}\label{mdef:formulasPrimeiraOrdem}\index{fórmula}\index{fórmula!atômica}\index{fórmula!equacional}\index{subfórmula}
     Dado um léxico $\mathcal L$ para uma teoria de primeira ordem, as fórmulas de $\mathcal L$ são definidas recursivamente da seguinte forma.
 \begin{enumerate}[label=(\roman*)]
     \item Se $P$ é um símbolo de predicado de aridade $n>0$ e $t_1,\dots,t_n$ são termos, então $Pt_1\dots t_n$ é uma fórmula.
@@ -137,7 +137,7 @@ Finalmente, dizemos que uma \emph{subfórmula} de uma fórmula $\varphi$ é uma 
 
 Vamos dar alguns exemplos.
 
-\begin{example}Utilizando a notação do Exemplo~\ref{ex:exemplosLexicos}, temos as seguintes fórmulas.
+\begin{example}\label{exa:formulasPrimeiraOrdem}Utilizando a notação do Exemplo~\ref{exa:exemplosLexicos}, temos as seguintes fórmulas.
     \begin{itemize}
         \item Na teoria dos grupos, $\cdot x_1 e$ não é uma fórmula, pois $\cdot$ é um símbolo funcional, e não um símbolo de predicado.
         Por outro lado, é um termo (usualmente denotado por $x_1 \cdot e$).
@@ -158,7 +158,7 @@ Agora sabemos, com precisão, o que são fórmulas.
 A partir deste ponto, deixaremos de escrever termos e fórmulas na notação polonesa, a menos que isso seja necessário.
 Seguiremos as seguintes convenções.
 
-\begin{convention}Utilizaremos as seguintes convenções de escrita.
+\begin{convention}\label{conv:convencoesEscritaPrimeiraOrdem}Utilizaremos as seguintes convenções de escrita.
     Escreveremos:
 \begin{itemize}
     \item $\phi \wedge \psi$ ao invés de ${\wedge}\phi\psi$;
@@ -174,8 +174,8 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
 
 \subsection*{Exercícios}
 
-\begin{exercise}
-    Considere a linguagem da Teoria dos Grupos do Exemplo~\ref{ex:exemplosLexicos}.
+\begin{exercise}\label{exr:gruposNotacaoPolonesa}
+    Considere a linguagem da Teoria dos Grupos do Exemplo~\ref{exa:exemplosLexicos}.
     Escreva as expressões abaixo, que estão escritas na notação polonesa, na notação usual, e diga quais delas são termos, quais são fórmulas, e quais não são nem termos, nem fórmulas.
 
     \begin{enumerate}[label=(\roman*)]
@@ -188,8 +188,8 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
     \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
-    Considere a linguagem da Teoria dos Anéis do Exemplo~\ref{ex:exemplosLexicos}.
+\begin{exercise}\label{exr:aneisNotacaoPolonesa}
+    Considere a linguagem da Teoria dos Anéis do Exemplo~\ref{exa:exemplosLexicos}.
     Escreva as expressões abaixo, que estão escritas na notação usual, na notação polonesa.
     Decida quais delas são termos e quais são fórmulas.
     \begin{enumerate}[label=(\roman*)]
@@ -203,14 +203,14 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
     \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}\label{exr:expressaoNaoPodeSerTermoEFormula}
     Mostre que nenhuma sequência de símbolos de um léxico para uma teoria de primeira ordem é, ao mesmo tempo, um termo e uma fórmula.
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}\label{exr:subexpressaoDeFormula}
     Prove ou dê um contra-exemplo: toda subexpressão de uma fórmula é uma fórmula.
 \end{exercise}
-\begin{exercise}
+\begin{exercise}\label{exr:subexpressoesDeFormula}
     Seja $\varphi$ uma fórmula.
     Mostre que uma subexpressão de $\varphi$ é uma fórmula se, e somente se, ela é o escopo de um conectivo lógico, de um quantificador, de um símbolo de igualdade, ou de um símbolo de predicado.
 \end{exercise}

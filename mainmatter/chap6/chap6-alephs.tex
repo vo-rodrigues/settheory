@@ -1,7 +1,7 @@
-\section{A sequência dos alephs}
+\section{A sequência dos alephs}\label{sec:sequenciaDosAlephs}
 \index{aleph}
 \index{sequência dos alephs}
-Na seção anterior, vimos que, dado um cardinal $\kappa$, existe um cardinal $\kappa^+$ que é o menor cardinal maior que $\kappa$.
+Na Seção~\ref{sec:cardinaisENumeroDeHartogs}, vimos que, dado um cardinal $\kappa$, existe um cardinal $\kappa^+$ que é o menor cardinal maior que $\kappa$.
 Além disso, temos que a união de uma coleção de cardinais é um cardinal.
 Além disso, $\omega$ é o menor cardinal infinito.
 
@@ -16,7 +16,7 @@ Ao definir os primeiros $\omega$ termos dessa sequência, temos que $\omega$, é
     \bigcup\{\omega, \omega^+, \omega^{++}, \ldots\}
 \]
 A formalização deste raciocínio nos leva à sequência dos alephs, que é definida da seguinte forma:
-\begin{definition}\index{aleph}
+\begin{definition}\label{def:sequenciaDosAlephs}\index{aleph}
     Define-se, recursivamente, $\aleph_\alpha$ para cada ordinal $\alpha$ de modo que:
     
     \begin{itemize}
@@ -25,9 +25,9 @@ A formalização deste raciocínio nos leva à sequência dos alephs, que é def
         \item $\aleph_\alpha = \sup\{\aleph_\beta : \beta < \alpha\}$, para $\alpha$ um ordinal limite.
     \end{itemize}
 \end{definition}
-Pelo Teorema da Recursão, tal feito é possível.
+Pelo Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita}, tal feito é possível.
 
-\begin{lemma}
+\begin{lemma}\label{lem:propriedadesBasicasDosAlephs}
     Para cada ordinal $\alpha$, $\aleph_\alpha$ é um cardinal e, para todo $\beta<\alpha$, $\aleph_\beta < \aleph_\alpha$.
 \end{lemma}
 \begin{proof}
@@ -51,7 +51,7 @@ Assim, $\aleph_\gamma < \aleph_{\gamma+1} \leq \aleph_\alpha$.
 A sequência dos alephs é, em verdade, a sequência de todos os cardinais infinitos.
 Antes, provaremos outro lema.
 
-\begin{lemma}
+\begin{lemma}\label{lem:alephAlphaMaiorIgualAlpha}
     Para todo ordinal $\alpha$, $\aleph_\alpha\geq \alpha$.
 \end{lemma}
 \begin{proof}
@@ -64,7 +64,7 @@ Assim, $\beta<\aleph_{\alpha}$, e, portanto, $\alpha=\beta+1 \leq \aleph_\alpha$
 
 Se $\alpha$ é um ordinal limite, então $\aleph_\alpha = \sup\{\aleph_\beta : \beta < \alpha\}\geq \sup\{\beta : \beta < \alpha\} = \alpha$.
 \end{proof}
-\begin{theorem}\index{cardinal!infinito}
+\begin{theorem}\label{thm:todoCardinalInfinitoEhAleph}\index{cardinal!infinito}
     Para cada cardinal infinito $\kappa$, existe um ordinal $\alpha$ tal que $\kappa = \aleph_\alpha$.
 \end{theorem}
 \begin{proof}

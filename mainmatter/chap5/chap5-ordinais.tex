@@ -1,4 +1,4 @@
-\section{Números ordinais}
+\section{Números ordinais}\label{sec:numerosOrdinais}
 \index{ordinal}
 \index{conjunto transitivo}
 Vimos que cada natural $0, 1, 2, \dots$ é um conjunto bem ordenado.
@@ -50,15 +50,15 @@ Ou seja:
     \forall b\in B (b\subseteq B).
 \]
 
-Conforme veremos, com a presença do Axioma da Substituição, que será introduzido na próxima seção, conjuntos bem ordenados por $\in$ que satisfazem essa condição são exatamente os representantes de todas as boas ordens.
+Conforme veremos, com a presença do Axioma da Substituição, que será introduzido na Seção~\ref{sec:axiomasDaSubstituicao}, conjuntos bem ordenados por $\in$ que satisfazem essa condição são exatamente os representantes de todas as boas ordens.
 
-\begin{definition}\index{conjunto transitivo}
+\begin{definition}\label{def:conjuntoTransitivo}\index{conjunto transitivo}
     Um conjunto $A$ é dito \emph{transitivo} se, para todo $a\in A$, $a\subseteq A$.
 \end{definition}
 
 Agora podemos definir um ordinal.
 
-\begin{definition}\index{ordinal}
+\begin{definition}\label{def:ordinal}\index{ordinal}
     Um \emph{ordinal} é um conjunto $A$ tal que:
     \begin{enumerate}[label=(\alph*)]
         \item $A$ é bem-ordenado por $\in$ (ou seja, $(A, \in_A)$ é uma boa ordem);
@@ -67,13 +67,13 @@ Agora podemos definir um ordinal.
 \end{definition}
 No contexto de ordinais, escrevemos sempre que for conveniente, $a<b$ para $a\in b$.
 
-\begin{example}
-    $\omega$ é um ordinal: já vimos que $\omega$ é um conjunto bem-ordenado por $\in$, e, para todo $a\in \omega$, $a$ é um número natural, e, portanto, $a\subseteq \omega$.
+\begin{example}\label{exa:omegaEhOrdinal}
+    $\omega$ é um ordinal: pelo Corolário~\ref{cor:boaOrdemDosNaturais}, $\omega$ é um conjunto bem-ordenado por $\in$, e, para todo $a\in \omega$, $a$ é um número natural, e, portanto, $a\subseteq \omega$.
 \end{example}
 
-Além disso, todos os números naturais são ordinais pelo lema abaixo.
+Além disso, todos os números naturais são ordinais pelo Exemplo~\ref{exa:omegaEhOrdinal} e pelo Lema~\ref{lem:elementosDeOrdinalSaoOrdinais}.
 
-\begin{lemma}
+\begin{lemma}\label{lem:elementosDeOrdinalSaoOrdinais}
     Seja $\alpha$ um ordinal.
     Então todo elemento de $\alpha$ é um ordinal.
 \end{lemma}
@@ -94,7 +94,7 @@ A relação $\in$ é, em verdade, uma boa ordem na classe dos ordinais.
 
 Precisaremos de alguns lemas.
 
-\begin{lemma}
+\begin{lemma}\label{lem:intersecaoNaoVaziaDeOrdinaisEhOrdinal}
     Seja $A$ um conjunto não vazio de ordinais.
     Então $\bigcap A$ é um ordinal.
 \end{lemma}
@@ -111,7 +111,7 @@ Precisaremos de alguns lemas.
 Dados $\alpha, \beta$ ordinais, pela nossa convenção de escrita, temos que $\alpha<\beta$ se, e somente se $\alpha\in \beta$.
 
 O seguinte lema nos dá uma equivalência para $\leq$.
-\begin{lemma}
+\begin{lemma}\label{lem:inclusaoDeOrdinaisEquivPertencimentoOuIgualdade}
     Sejam $\alpha, \beta$ ordinais.
     Então $\alpha\subseteq \beta$ se, e somente se $(\alpha=\beta \lor \alpha\in \beta)$.
 \end{lemma}
@@ -139,7 +139,7 @@ O seguinte lema nos dá uma equivalência para $\leq$.
 
     Assim, $\alpha\subseteq \delta$, e, portanto, $\alpha=\delta$.
 \end{proof}
-\begin{proposition}
+\begin{proposition}\label{prop:estruturaBasicaDosOrdinais}
     Sejam $\alpha, \beta, \gamma$ ordinais.
     Então:
 
@@ -173,11 +173,11 @@ O seguinte lema nos dá uma equivalência para $\leq$.
     Se $\alpha\notin X$, então $\alpha\in \delta$ para todo $\delta \in X$, logo, $\alpha\in \bigcap X=\alpha$, o que é absurdo.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:conjuntoTransitivoDeOrdinaisEhOrdinal}
 Todo conjunto de ordinais é bem-ordenado por $\in$.
 Assim, um conjunto de ordinais transitivo é um ordinal.
 \end{corollary}
-\begin{corollary}
+\begin{corollary}\label{cor:naoExisteConjuntoDeTodosOrdinais}
 Não existe $X$ tal que $\forall \alpha(\alpha \text{ é ordinal} \rightarrow \alpha\in X)$.
 \end{corollary}
 \begin{proof}
@@ -187,7 +187,7 @@ Não existe $X$ tal que $\forall \alpha(\alpha \text{ é ordinal} \rightarrow \a
     Assim, $O\in O$, o que é absurdo.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:sucessorDeOrdinalEhOrdinal}
     Seja $\alpha$ um ordinal.
     Então $S(\alpha)$ é um ordinal.
     Mais especificamente, $S(\alpha)$ é o menor ordinal $\beta$ tal que $\alpha<\beta$.
@@ -209,7 +209,7 @@ $\ON$ é uma símbolo de predicado unário, e escrevemos $\alpha \in \ON$ como u
 Dessa forma, expressões como $\mathcal P(\ON)$ não são termos bem formados.
 
 
-\begin{lemma}\index{supremo!de ordinais}
+\begin{lemma}\label{lem:uniaoDeOrdinaisEhSupremo}\index{supremo!de ordinais}
     Seja $X$ um conjunto de ordinais.
     Então $\bigcup X$ é um ordinal.
     Além disso, $\bigcup X$ é o supremo de $X$ em $\ON$, ou seja, o menor ordinal $\alpha$ tal que $\beta\leq \alpha$ para todo $\beta\in X$.
@@ -224,18 +224,18 @@ Dessa forma, expressões como $\mathcal P(\ON)$ não são termos bem formados.
     Portanto, $\bigcup X$ é o menor ordinal $\alpha$ tal que $\beta\leq \alpha$ para todo $\beta\in X$.
 \end{proof}
 
-Devido ao lema acima, quando $X$ é um conjunto de ordinais, podemos escrever $\sup X$ para $\bigcup X$.
+Pelo Lema~\ref{lem:uniaoDeOrdinaisEhSupremo}, quando $X$ é um conjunto de ordinais, podemos escrever $\sup X$ para $\bigcup X$.
 
 Nem todo ordinal é o sucessor de outro ordinal.
 Por exemplo, $\omega$ não é o sucessor de nenhum ordinal.
 
-\begin{definition}\index{ordinal!sucessor}\index{ordinal!limite}
+\begin{definition}\label{def:ordinaisSucessoresELimites}\index{ordinal!sucessor}\index{ordinal!limite}
     Um ordinal $\beta$ é dito \emph{sucessor} se é da forma $\beta=S(\alpha)$ para algum ordinal $\alpha$.
 
     Um \emph{ordinal limite} é um ordinal que não é $0$ nem sucessor.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}\label{prop:omegaEhOrdinalLimite}
     $\omega$ é um ordinal limite.
 \end{proposition}
 \begin{proof}
@@ -247,7 +247,7 @@ Além disso, $\omega\neq 0$ pois $0 \in \omega$ e $0\notin 0$.
 
 Dois ordinais distintos não podem ser isomorfos.
 
-\begin{proposition}\label{prop:ordinais-nao-isomorfos}
+\begin{proposition}\label{prop:ordinaisNaoSaoIsomorfos}
     Sejam $\alpha$ e $\beta$ ordinais.
     Se $\alpha$ é isomorfo à $\beta$, então $\alpha=\beta$.
 \end{proposition}
@@ -255,10 +255,10 @@ Dois ordinais distintos não podem ser isomorfos.
     Suponha que $\alpha$ e $\beta$ são ordinais distintos.
     Sem perda de generalidade, $\alpha<\beta$.
 
-    Temos que $\alpha$ é um segmento inicial próprio de $\beta$: já vimos que $\alpha\subsetneq \beta$, e, se $\xi<\delta$ para algum $\delta\in \alpha$, então $\xi\in \alpha$.
+    Temos que $\alpha$ é um segmento inicial próprio de $\beta$: pelo Lema~\ref{lem:inclusaoDeOrdinaisEquivPertencimentoOuIgualdade}, $\alpha\subsetneq \beta$, e, se $\xi<\delta$ para algum $\delta\in \alpha$, então $\xi\in \alpha$.
     Dessa forma, $\alpha$ é um segmento inicial próprio de $\beta$.
 
-    Como vimos na seção anterior, $\alpha$ não é isomorfo à $\beta$.
+    Pelo Lema~\ref{lem:isomorfismoParaSegmentoInicialEhIdentidade}, $\alpha$ não é isomorfo à $\beta$.
 \end{proof}
 \subsection*{Exercícios}
 \begin{exercise}
@@ -291,7 +291,7 @@ Dois ordinais distintos não podem ser isomorfos.
     \alpha<\beta \iff S(\alpha)\leq \beta.
     \]
 \end{exercise}
-\begin{exercise}\label{ex:segmentoInicialOrdinal}
+\begin{exercise}\label{exr:segmentoInicialDeOrdinal}
     Sejam $\alpha$ um ordinal e $\beta\in \alpha$.
     Mostre que o segmento inicial de $\alpha$ determinado por $\beta$ é exatamente $\beta$, isto é,
     \[

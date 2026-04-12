@@ -1,4 +1,4 @@
-\section{Adição de símbolos por definição}
+\section{Adição de símbolos por definição}\label{sec:adicaoSimbolosPorDefinicao}
 \index{extensão por definição}
 
 A teoria dos conjuntos é uma teoria cuja linguagem não lógica inicial consiste apenas no símbolo de pertencimento ($\in$).
@@ -9,7 +9,7 @@ Neste texto, tais símbolos serão introduzidos \emph{por definição}.
 Intuitivamente, isto significa que eles servem apenas como abreviações: em vez de escrever repetidamente uma fórmula longa, introduzimos um símbolo novo cujo comportamento é \emph{explicitamente} fixado por um axioma.
 O ponto central desta seção é formalizar essa prática e justificar que ela não aumenta o poder de prova da teoria com respeito às sentenças da linguagem original.
 
-\subsection{O quantificador \texorpdfstring{$\exists!$}{∃!}}
+\subsection{O quantificador \texorpdfstring{$\exists!$}{∃!}}\label{subsec:quantificadorExistsUnique}
 \index{quantificador!existência única}
 
 Os quantificadores primitivos da lógica de primeira ordem, neste texto, consistem apenas do quantificador universal ($\forall$) e do quantificador existencial ($\exists$).
@@ -19,34 +19,34 @@ Intuitivamente, $\exists! x \varphi$ significa que existe exatamente um $x$ tal 
 
 Introduziremos este operador como uma abreviação, conforme explicitado na definição a seguir.
 
-\begin{metadefinition}[Quantificador de existência única]\index{existência única}
+\begin{metadefinition}[Quantificador de existência única]\label{mdef:quantificadorExistenciaUnica}\index{existência única}
     Seja $\varphi$ uma fórmula.
     A notação $\exists!x\,\varphi$ é uma abreviação para a fórmula
-    \begin{equation}\label{eq:exists-unique}
+    \begin{equation}\label{eq:existsUnique}
         (\exists x\,\varphi)\ \wedge\ \forall x\,\forall y\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr),
     \end{equation}
     em que $y$ é uma variável que não ocorre em $\varphi$.
 \end{metadefinition}
 
-Na definição acima, a variável $y$ é tida como uma variável auxiliar.
+Na Metadefinição~\ref{mdef:quantificadorExistenciaUnica}, a variável $y$ é tida como uma variável auxiliar.
 Não seria razoável que a escolha de tal variável dependesse da variável $y$ escolhida.
 Isso é formalizado pelo resultado a seguir.
 
 
-\begin{metalemma}[Independência do auxiliar em $\exists!$]\label{metalemma:existsunique-indep}
+\begin{metalemma}[Independência do auxiliar em $\exists!$]\label{mlem:independenciaAuxiliarExistsUnique}
     Seja $\varphi$ uma fórmula.
     Se $y$ e $z$ são variáveis que não ocorrem livres em $\varphi$, então as duas fórmulas obtidas ao expandir
-    $\exists!x\,\varphi$ pela Equação~\eqref{eq:exists-unique} usando $y$ ou usando $z$ são logicamente equivalentes.
+    $\exists!x\,\varphi$ pela Equação~\eqref{eq:existsUnique} usando $y$ ou usando $z$ são logicamente equivalentes.
 \end{metalemma}
 
 \begin{proof}
-    Ver exercício \ref{exercise:existsunique-indep}.
+    Ver o Exercício~\ref{exr:independenciaAuxiliarExistsUnique}.
 \end{proof}
 
-\subsection{Definindo definições}
+\subsection{Definindo definições}\label{subsec:definindoDefinicoes}
 Agora estamos prontos para falar formalmente sobre definições.
 
-\begin{metadefinition}[Definição explícita]\label{def:definicao-explicita}\index{definição!explícita}\index{símbolo!definido}
+\begin{metadefinition}[Definição explícita]\label{mdef:definicaoExplicita}\index{definição!explícita}\index{símbolo!definido}
 Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mathcal L'$ um léxico que estende $\mathcal L$.
 
 \begin{enumerate}[label=(\roman*)]
@@ -100,7 +100,7 @@ Além disso, se $P$, $f$ ou $c$ são símbolos destes respectivos tipos em $\mat
 Note que nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são $\mathcal L$-fórmulas.
 \end{metadefinition}
 
-\begin{example}\label{ex:definicoes-exemplos}Ainda que não tenhamos apresentado a Teoria dos Conjuntos, vejamos alguns exemplos.
+\begin{example}\label{exa:definicoesExplicitas}Ainda que não tenhamos apresentado a Teoria dos Conjuntos, vejamos alguns exemplos.
 \begin{itemize}
     \item \textbf{Teoria dos conjuntos.}
     Uma definição natural de $x\subseteq y$ na linguagem de $\in$ é:
@@ -125,13 +125,13 @@ Note que nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são $\mathcal 
 
 Agora podemos definir a noção de extensão por definição, uma formalização da prática de introduzir definições como abreviações.
 
-\begin{metadefinition}[Extensão por definição]\label{def:extensao-por-definicao}\index{extensão por definição}
+\begin{metadefinition}[Extensão por definição]\label{mdef:extensaoPorDefinicao}\index{extensão por definição}
     Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$.
     Dizemos que uma teoria $T'$ é uma \emph{extensão por definição} de $T$ se:
     \begin{itemize}
         \item o léxico de $T'$ é um léxico $\mathcal L'$ que estende $\mathcal L$;
         \item os axiomas de $T'$ consistem nos axiomas de $T$ e, para cada símbolo novo de $\mathcal L'\setminus\mathcal L$,
-        em uma (única) definição explícita no sentido da Definição~\ref{def:definicao-explicita}.
+        em uma (única) definição explícita no sentido da Metadefinição~\ref{mdef:definicaoExplicita}.
     \end{itemize}
 \end{metadefinition}
 
@@ -144,13 +144,13 @@ Tudo que é expressável ou demonstrável na linguagem estendida, também é exp
 Portanto, apesar de, formalmente, estarmos adicionando novos símbolos e axiomas, a extensão por definição captura as propriedades essenciais da prática de introduzir definições como abreviações.
 
 
-\subsection{Eliminação de símbolos definidos: termos}
+\subsection{Eliminação de símbolos definidos: termos}\label{subsec:eliminacaoSimbolosDefinidosTermos}
 \index{eliminação de símbolos definidos}
 
 A ideia central é associar a cada termo $t$ da linguagem $\mathcal L'$ uma fórmula da linguagem $\mathcal L$ que semanticamente descreve $t$.
 Isto substitui termos com símbolos definidos por uma descrição na linguagem original.
 
-\begin{metadefinition}[Fórmula do valor de um termo]\label{def:delta-termo}\index{termo!fórmula do valor}\index{eliminação de símbolos definidos!termos}
+\begin{metadefinition}[Fórmula do valor de um termo]\label{mdef:formulaDoValorDeUmTermo}\index{termo!fórmula do valor}\index{eliminação de símbolos definidos!termos}
     Suponha que $T'$ é uma extensão por definição de $T$, com léxicos $\mathcal L'$ e $\mathcal L$ respectivamente.
     Seja $t$ um termo de $\mathcal L'$.
     Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres são as mesmas variáveis de $t$ e mais uma nova variável $y$, lida como
@@ -168,17 +168,17 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
     \end{enumerate}
 \end{metadefinition}
 
-A definição acima introduz variáveis auxiliares $y_1,\ldots,y_m$ na fórmula $\delta_t$,
+A Metadefinição~\ref{mdef:formulaDoValorDeUmTermo} introduz variáveis auxiliares $y_1,\ldots,y_m$ na fórmula $\delta_t$,
 todas elas quantificadas existencialmente.
 Assim, a escolha dos nomes dessas variáveis auxiliares não altera o conteúdo lógico de $\delta_t$,
 pois renomeações de variáveis quantificadas produzem fórmulas logicamente equivalentes
-(cf.\ Metalema~\ref{metalemma:renomeacaoUniversal} e seu análogo existencial).
+(cf.\ Metalema~\ref{mlem:renomeacaoVariavelUniversal} e seu análogo existencial).
 
-\begin{metalemma}[Eliminação de termos]\label{metalemma:elim-termos}\index{eliminação de símbolos definidos!termos}
+\begin{metalemma}[Eliminação de termos]\label{mlem:eliminacaoDeTermos}\index{eliminação de símbolos definidos!termos}
     Seja $T'$ uma extensão por definição de $T$, com $\mathcal L\subseteq \mathcal L'$.
     Seja $t$ um termo de $\mathcal L'$ cujas variáveis estejam entre $x_1,\ldots,x_n$,
     e seja $y$ uma variável distinta de $x_1,\ldots,x_n$.
-    Seja $\delta_t(x_1,\ldots,x_n,y)$ como na Definição~\ref{def:delta-termo}. Então:
+    Seja $\delta_t(x_1,\ldots,x_n,y)$ como na Metadefinição~\ref{mdef:formulaDoValorDeUmTermo}. Então:
     \begin{enumerate}[label=(\arabic*)]
         \item $T'\vdash \forall x_1\ldots \forall x_n\,\forall y\bigl(t=y \leftrightarrow \delta_t(x_1,\ldots,x_n,y)\bigr)$.
         \item $T\vdash \forall x_1\ldots \forall x_n\,\exists!y\,\delta_t(x_1,\ldots,x_n,y)$.
@@ -197,7 +197,7 @@ Escreva $\bar x$ para $x_1,\ldots,x_n$.
 
 \smallskip
 \textbf{Base 1: $t$ é uma constante $c$.}
-Pela Definição~\ref{def:delta-termo}, $\delta_t(y)$ é $\Def_c(y)$.
+ Pela Metadefinição~\ref{mdef:formulaDoValorDeUmTermo}, $\delta_t(y)$ é $\Def_c(y)$.
 
 \emph{(1).} Se $c\in\mathcal L'\setminus\mathcal L$, então a sentença definidora de $c$ pertence a $T'$ e tem a forma
 $\forall y\,(c=y\leftrightarrow \Def_c(y))$, que é exatamente (1).
@@ -222,7 +222,7 @@ $\forall y\,(c=y\leftrightarrow \Def_c(y))$ é tautológica; logo vale em $T$.
 
 \smallskip
 \textbf{Base 2: $t$ é uma variável $z$.}
-Pela Definição~\ref{def:delta-termo}, $\delta_t(z,y)$ é $y=z$, isto é, $\Def_{z}(z,y)$.
+Pela Metadefinição~\ref{mdef:formulaDoValorDeUmTermo}, $\delta_t(z,y)$ é $y=z$, isto é, $\Def_{z}(z,y)$.
 
 \emph{(1).} Queremos $T'\vdash \forall z\,\forall y\,(z=y\leftrightarrow y=z)$.
 Pelo axioma lógico de simetria da igualdade (esquema (8)), temos
@@ -243,7 +243,7 @@ Logo vale (2) no caso variável.
 \smallskip
 \textbf{Passo indutivo: $t=f(t_1,\ldots,t_m)$.}
 Sejam $\bar x$ as variáveis que ocorrem em $t$ (no sentido da sua convenção: todas as variáveis livres estão dentre $\bar x$).
-Pela Definição~\ref{def:delta-termo},
+Pela Metadefinição~\ref{mdef:formulaDoValorDeUmTermo},
 \[
 \delta_t(\bar x,y)\ \equiv\ \exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr).
 \]
@@ -287,7 +287,7 @@ T\vdash \forall\bar x\,\exists!y_i\,\delta_{t_i}(\bar x,y_i).
 Fixe $\bar x$. Pela parte existencial, existem (únicos) $y_1,\ldots,y_m$ tais que $\delta_{t_i}(\bar x,y_i)$.
 Agora mostramos que existe um único $y$ tal que $\Def_f(y_1,\ldots,y_m,y)$:
 \begin{itemize}
-    \item Se $f$ é novo, isto é exatamente a condição da Definição~\ref{def:definicao-explicita}:
+    \item Se $f$ é novo, isto é exatamente a condição da Metadefinição~\ref{mdef:definicaoExplicita}:
     $T\vdash \forall \bar u\,\exists!v\,\Def_f(\bar u,v)$.
     \item Se $f\in\mathcal L$, então $\Def_f(\bar u,v)$ é $f(\bar u)=v$.
     Para a existência, a partir de $\forall x(x=x)$ obtemos $f(\bar u)=f(\bar u)$ por instanciação universal com o termo $f(\bar u)$,
@@ -319,12 +319,12 @@ isto é, (3).
 Isso conclui a indução e a prova do metalema.
 \end{proof}
 
-\subsection{Eliminação de símbolos definidos: fórmulas}
+\subsection{Eliminação de símbolos definidos: fórmulas}\label{subsec:eliminacaoSimbolosDefinidosFormulas}
 \index{eliminação de símbolos definidos}
 
 Agora eliminamos símbolos definidos de fórmulas.
 
-\begin{metadefinition}[Tradução $\psi\mapsto \psi^\ast$]\label{def:traducao-formulas}\index{eliminação de símbolos definidos!fórmulas}
+\begin{metadefinition}[Tradução $\psi\mapsto \psi^\ast$]\label{mdef:traducaoFormulas}\index{eliminação de símbolos definidos!fórmulas}
     Seja $\psi$ uma fórmula da linguagem $\mathcal L'$ cujas variáveis livres estejam entre $x_1,\ldots,x_n$.
     Definimos por recursão uma $\mathcal L$-fórmula $\psi^\ast$ (com as mesmas variáveis livres) como segue.
 
@@ -357,10 +357,10 @@ Agora eliminamos símbolos definidos de fórmulas.
     \end{enumerate}
 \end{metadefinition}
 
-\begin{metalemma}[Eliminação de fórmulas]\label{metalemma:elim-formulas}\index{eliminação de símbolos definidos!fórmulas}
+\begin{metalemma}[Eliminação de fórmulas]\label{mlem:eliminacaoDeFormulas}\index{eliminação de símbolos definidos!fórmulas}
     Seja $T'$ uma extensão por definição de $T$.
     Para toda fórmula $\psi(x_1, \dots, x_n)$ da linguagem $\mathcal L'$,
-    existe uma fórmula $\psi^\ast$ na linguagem $\mathcal L$ (como na Definição~\ref{def:traducao-formulas})
+    existe uma fórmula $\psi^\ast$ na linguagem $\mathcal L$ (como na Metadefinição~\ref{mdef:traducaoFormulas})
     com as mesmas variáveis livres que $\psi$ tal que
     \[
         T'\vdash \forall x_1\ldots \forall x_n\,(\psi\leftrightarrow \psi^\ast).
@@ -387,13 +387,13 @@ Agora eliminamos símbolos definidos de fórmulas.
     \]
 
     \smallskip
-    Em cada caso, $\psi^\ast$ é a tradução definida na Definição~\ref{def:traducao-formulas}.
+    Em cada caso, $\psi^\ast$ é a tradução definida na Metadefinição~\ref{mdef:traducaoFormulas}.
 
     \smallskip
     \textbf{Caso atômico 1:} $\psi$ é $t_1=t_2$.
 
     \emph{Prova de A.}
-    Pelo item (1) do Metalema~\ref{metalemma:elim-termos},
+    Pelo item (1) do Metalema~\ref{mlem:eliminacaoDeTermos},
     \[
         T'\vdash \forall \bar x\,\forall u\,(t_1=u\leftrightarrow \delta_{t_1}(\bar x,u))
         \quad\text{e}\quad
@@ -407,7 +407,7 @@ Agora eliminamos símbolos definidos de fórmulas.
 
     \emph{Prova de B.}
     Suponha agora que $\psi$ é uma $\mathcal L$-fórmula; então $t_1$ e $t_2$ são $\mathcal L$-termos.
-    Pelo item (3) do Metalema~\ref{metalemma:elim-termos},
+    Pelo item (3) do Metalema~\ref{mlem:eliminacaoDeTermos},
     \[
         T\vdash \forall \bar x\,\forall u\,(t_1=u\leftrightarrow \delta_{t_1}(\bar x,u))
         \quad\text{e}\quad
@@ -422,7 +422,7 @@ Agora eliminamos símbolos definidos de fórmulas.
     \textbf{Caso atômico 2:} $\psi$ é $R(t_1,\ldots,t_m)$ com $R\in\mathcal L$.
 
     \emph{Prova de A.}
-    Pelo item (1) do Metalema~\ref{metalemma:elim-termos}, para cada $i\le m$,
+    Pelo item (1) do Metalema~\ref{mlem:eliminacaoDeTermos}, para cada $i\le m$,
     \[
         T'\vdash \forall \bar x\,\forall u_i\,(t_i=u_i\leftrightarrow \delta_{t_i}(\bar x,u_i)).
     \]
@@ -436,7 +436,7 @@ Agora eliminamos símbolos definidos de fórmulas.
 
     \emph{Prova de B.}
     Se $\psi$ é uma $\mathcal L$-fórmula, então cada $t_i$ é um $\mathcal L$-termo.
-    Pelo item (3) do Metalema~\ref{metalemma:elim-termos}, para cada $i$,
+    Pelo item (3) do Metalema~\ref{mlem:eliminacaoDeTermos}, para cada $i$,
     \[
         T\vdash \forall \bar x\,\forall u_i\,(t_i=u_i\leftrightarrow \delta_{t_i}(\bar x,u_i)).
     \]
@@ -454,7 +454,7 @@ Agora eliminamos símbolos definidos de fórmulas.
     \[
         T'\vdash \forall \bar u\,(P(\bar u)\leftrightarrow \Def_P(\bar u)).
     \]
-    Combinando isso com o item (1) do Metalema~\ref{metalemma:elim-termos} aplicado a cada $t_i$
+    Combinando isso com o item (1) do Metalema~\ref{mlem:eliminacaoDeTermos} aplicado a cada $t_i$
     e com raciocínio proposicional, obtemos
     \[
         T'\vdash \forall \bar x\Bigl(P(t_1,\ldots,t_m)\leftrightarrow
@@ -504,9 +504,9 @@ Agora eliminamos símbolos definidos de fórmulas.
     Isso conclui a indução e prova simultaneamente as duas afirmações, logo o metalema.
 \end{proof}
 
-\subsection{Extensões por definição são conservativas}
+\subsection{Extensões por definição são conservativas}\label{subsec:extensoesPorDefinicaoSaoConservativas}
 
-\begin{metadefinition}[Extensão conservativa]\label{def:extensao-conservativa}\index{extensão conservativa}
+\begin{metadefinition}[Extensão conservativa]\label{mdef:extensaoConservativa}\index{extensão conservativa}
     Seja $T$ uma teoria de primeira ordem com léxico $\mathcal L$, e seja $T'$ uma teoria com léxico $\mathcal L'$ estendendo $\mathcal L$.
     Dizemos que $T'$ é uma \emph{extensão conservativa} de $T$ se, para cada $\mathcal L$-sentença $\phi$,
     \[
@@ -516,7 +516,7 @@ Agora eliminamos símbolos definidos de fórmulas.
 
 O teorema a seguir formaliza a ideia de que definições são apenas abreviações.
 
-\begin{metatheorem}\label{metatheorem:conservativa}\index{extensão por definição!conservatividade}
+\begin{metatheorem}\label{mthm:conservatividadeDaExtensaoPorDefinicao}\index{extensão por definição!conservatividade}
     Seja $T$ uma teoria de primeira ordem e $T'$ uma extensão por definição de $T$.
     Então $T'$ é uma extensão conservativa de $T$.
 \end{metatheorem}
@@ -529,7 +529,7 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
     \]
     em que $\theta_n$ é $\phi$.
 
-    Para cada $i$, considere a fórmula $\theta_i^\ast$ obtida pela tradução da Definição~\ref{def:traducao-formulas}.
+    Para cada $i$, considere a fórmula $\theta_i^\ast$ obtida pela tradução da Metadefinição~\ref{mdef:traducaoFormulas}.
     Cada $\theta_i^\ast$ é uma $\mathcal L$-sentença.
 
     \smallskip
@@ -541,7 +541,7 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
 
     \begin{itemize}
         \item Se $\theta_i$ é um axioma de $T$, então $\theta_i$ é uma $\mathcal L$-sentença.
-        Pelo Metalema~\ref{metalemma:elim-formulas} (aplicado a uma fórmula já na linguagem $\mathcal L$),
+        Pelo Metalema~\ref{mlem:eliminacaoDeFormulas} (aplicado a uma fórmula já na linguagem $\mathcal L$),
         temos $T'\vdash \theta_i\leftrightarrow \theta_i^\ast$.
         Em particular, $\theta_i^\ast$ é consequência lógica proposicional de $\theta_i$ e de uma instância de tautologia;
         como $\theta_i$ é axioma de $T$, concluímos $T\vdash \theta_i^\ast$.
@@ -554,7 +554,7 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
         \item Se $\theta_i$ é um axioma lógico (no sentido do sistema fixado anteriormente),
         então $\theta_i^\ast$ é demonstrável na lógica pura na linguagem $\mathcal L$.
         (A verificação é sistemática: usa-se que $\ast$ comuta com conectivos/quantificadores e que termos são eliminados pelo
-        Metalema~\ref{metalemma:elim-termos}.
+        Metalema~\ref{mlem:eliminacaoDeTermos}.
         Assim, $T\vdash \theta_i^\ast$.
 
         \item Se $\theta_i$ é obtida por \emph{modus ponens} a partir de $\theta_j$ e $\theta_k=\theta_j\rightarrow \theta_i$,
@@ -567,12 +567,12 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
 
     \smallskip
     Resta observar que, como $\phi$ já está na linguagem $\mathcal L$ e é sentença,
-    o Metalema~\ref{metalemma:elim-formulas} dá $T\vdash \phi\leftrightarrow \phi^\ast$,
+    o Metalema~\ref{mlem:eliminacaoDeFormulas} dá $T\vdash \phi\leftrightarrow \phi^\ast$,
     e portanto $\phi$ é consequência proposicional de $\phi^\ast$.
     Como $T\vdash \phi^\ast$, segue $T\vdash \phi$.
 \end{proof}
 
 \section*{Exercícios}
-\begin{exercise}\label{exercise:existsunique-indep}
-    Prove o Metalema~\ref{metalemma:existsunique-indep}.
+\begin{exercise}\label{exr:independenciaAuxiliarExistsUnique}
+    Prove o Metalema~\ref{mlem:independenciaAuxiliarExistsUnique}.
 \end{exercise}

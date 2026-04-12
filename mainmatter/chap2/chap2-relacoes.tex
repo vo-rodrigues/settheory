@@ -1,11 +1,11 @@
-\section{Relações e funções}\label{sec:relacoes}
+\section{Relações e funções}\label{sec:relacoesEFuncoes}
 \index{relação}
 \index{função}
 \index{produto cartesiano}
 Nesta seção, introduziremos formalmente os conceitos básicos relacionados a relações e funções.
 Oportunamente, introduziremos o Axioma da Potência.
-\subsection{Relações}
-\begin{definition}\index{relação}
+\subsection{Relações}\label{subsec:relacoes}
+\begin{definition}\label{def:relacao}\index{relação}
     Uma \textbf{relação} é um conjunto de pares ordenados.
     Formalmente,
 
@@ -17,7 +17,7 @@ Oportunamente, introduziremos o Axioma da Potência.
 Conceitos fundamentais associados a relações são os de domínio e imagem.
 Enunciaremos suas definições formais, e, a seguir, mostraremos que a existência de tais conjuntos pode ser justificada com os axiomas já introduzidos.
 
-\begin{definition}\index{domínio}\index{imagem}
+\begin{definition}\label{def:dominioEImagem}\index{domínio}\index{imagem}
     Seja $R$ um conjunto.
     O domínio de $R$, denotado por $\dom R$, é o conjunto $z$ cujos elementos são as primeiras coordenadas dos pares ordenados de $R$.
     Formalmente,
@@ -31,7 +31,7 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
         \forall z\,\bigl(z = \ran R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\,(u,t) \in R)\bigr).
     \]
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{lem:existenciaDoDominioEImagem}
     Na notação acima, os conjuntos $\dom R$ e $\ran R$ estão bem definidos.
     Ou seja,
     \[
@@ -61,16 +61,16 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
     A unicidade decorre do Axioma da Extensão.
 \end{proof}
 
-\begin{definition}\index{relação!em um conjunto}
+\begin{definition}\label{def:relacaoEmUmConjunto}\index{relação!em um conjunto}
     Dado um conjunto $A$, dizemos que uma relação $R$ é uma \emph{relação em $A$} se $\dom R \subseteq A$ e $\ran R \subseteq A$.
 \end{definition}
-\subsection{O Axioma da Potência e o produto cartesiano}
+\subsection{O Axioma da Potência e o produto cartesiano}\label{subsec:axiomaDaPotenciaEProdutoCartesiano}
 Dados conjuntos $A$ e $B$, é natural considerar o conjunto de todos os pares ordenados $(a,b)$ tais que $a \in A$ e $b \in B$.
 Quando existe, esse conjunto é usualmente chamado de produto cartesiano de $A$ e $B$.
 É possível demonstrar que não é possível provar que tal relação existe para todos os conjuntos $A$ e $B$ utilizando apenas os axiomas já introduzidos.
 Para garantir tal existência, introduziremos o Axioma da Potência.
 Uma alternativa seria utilizar o Esquema da Substituição, mas optaremos por adiar a introdução desse axioma para um capítulo posterior.
-\begin{axiom}[Axioma da Potência]\index{Axioma da Potência}
+\begin{axiom}[Axioma da Potência]\label{ax:potencia}\index{Axioma da Potência}
     Para qualquer conjunto $x$, existe um conjunto $y$ tal que todo subconjunto de $x$ é elemento de $y$.
     Formalmente,
     \[
@@ -79,9 +79,9 @@ Uma alternativa seria utilizar o Esquema da Substituição, mas optaremos por ad
 \end{axiom}
 
 Utilizando uma instância do esquema da compreensão, dado um conjunto $x$, pode-se restringir o conjunto $y$ fornecido pelo Axioma da Potência para obter o conjunto cujos elementos são exatamente os subconjuntos de $x$.
-Deixamos os detalhes ao leitor (Exercício~\ref{exercicio:existenciaPotencia}).
+Deixamos os detalhes ao leitor (Exercício~\ref{exr:existenciaDaPotencia}).
 
-\begin{definition}\index{conjunto das partes}
+\begin{definition}\label{def:conjuntoDasPartes}\index{conjunto das partes}
     Dado um conjunto $x$, o conjunto $\mathcal P(x)$ é o conjunto cujos elementos são exatamente os subconjuntos de $x$.
     Formalmente,
 \[
@@ -90,7 +90,7 @@ Deixamos os detalhes ao leitor (Exercício~\ref{exercicio:existenciaPotencia}).
 \end{definition}
 
 Utilizando o conjunto das partes, podemos garantir a existência do produto cartesiano de quaisquer conjuntos $A$ e $B$, conforme exposto a seguir.
-\begin{lemma}
+\begin{lemma}\label{lem:existenciaDoProdutoCartesiano}
     Dados conjuntos $A$ e $B$, existe um único conjunto $C$ que tem como elementos exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
     Formalmente,
     \[
@@ -109,7 +109,7 @@ Utilizando o conjunto das partes, podemos garantir a existência do produto cart
     A unicidade decorre do Axioma da Extensão.
 \end{proof}
 
-\begin{definition}\index{produto cartesiano}
+\begin{definition}\label{def:produtoCartesiano}\index{produto cartesiano}
     Dados quaisquer conjuntos $A$ e $B$, o produto cartesiano de $A$ e $B$, denotado por $A \times B$, é o conjunto cujos elementos são exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
     Formalmente,
     \[
@@ -117,7 +117,7 @@ Utilizando o conjunto das partes, podemos garantir a existência do produto cart
     \]
 \end{definition}
 
-\subsection{Inversas e composições de relações}
+\subsection{Inversas e composições de relações}\label{subsec:inversasEComposicoesDeRelacoes}
 Uma vez garantida a existência do produto cartesiano, podemos passar a estudar operações naturais sobre relações.
 Entre as mais básicas estão a formação da relação inversa e a composição.
 
@@ -127,7 +127,7 @@ Intuitivamente, a relação inversa de $R$ é obtida trocando-se a ordem das coo
 Por simplicidade, definiremos $R^{-1}$ para qualquer conjunto, independentemente de $R$ ser ou não uma relação.
 Porém, raramente tal notação será utilizada no caso de $R$ não ser uma relação.
 
-\begin{definition}\index{relação inversa}
+\begin{definition}\label{def:relacaoInversa}\index{relação inversa}
     Seja $R$ um conjunto.
     Definimos $R^{-1}$ como o conjunto dos pares ordenados $(b,a)$ tais que $(a,b) \in R$.
     Formalmente,
@@ -144,7 +144,7 @@ A notação abaixo é mais natural, porém ainda não foi introduzida formalment
 
 Vamos aproveitar a oportunidade para introduzi-la.
 
-\begin{definition}
+\begin{definition}\label{def:notacaoPorCompreensaoDePares}
     Considere $\varphi(a,b,A,B,t_1,\dots,t_n)$ uma fórmula.
     Dados conjuntos $A$ e $B$ e parâmetros $t_1, \dots, t_n$, definimos
     \[
@@ -156,7 +156,7 @@ Vamos aproveitar a oportunidade para introduzi-la.
     \]
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{lem:existenciaDaRelacaoInversa}
     Na notação acima, o conjunto $R^{-1}$ está bem definido.
     Ou seja,
     \[
@@ -204,7 +204,7 @@ Vamos aproveitar a oportunidade para introduzi-la.
 
 Podemos também definir a composição de relações.
 
-\begin{definition}\index{composição de relações}
+\begin{definition}\label{def:composicaoDeRelacoes}\index{composição de relações}
     Sejam $R$ e $S$ relações.
     A composição de $R$ e $S$, denotada por $R\circ S$, é definida por
     \[
@@ -214,10 +214,10 @@ Podemos também definir a composição de relações.
 
 As noções introduzidas até aqui permitem tratar adequadamente um caso particular de grande importância: o das funções.
 
-\subsection{Funções}
+\subsection{Funções}\label{subsec:funcoes}
 Conforme usualmente definido, uma função é um tipo especial de relação.
 
-\begin{definition}\index{função}
+\begin{definition}\label{def:funcao}\index{função}
     Uma \textbf{função} é uma relação $f$ tal que, para cada $a \in \dom f$, existe um único $b \in \ran f$ tal que $(a, b) \in f$.
     Formalmente,
     \[
@@ -227,7 +227,7 @@ Conforme usualmente definido, uma função é um tipo especial de relação.
 
 Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único $b$ tal que $(a, b) \in f$, quando $f$ é uma função e $a \in \dom f$.
 
-\begin{definition}\index{avaliação de função}
+\begin{definition}\label{def:avaliacaoDeFuncao}\index{avaliação de função}
     Sejam $f$ uma função e $a \in \dom f$.
     O valor de $f$ em $a$, denotado por $f(a)$, é o único $b$ tal que $(a,b)\in f$.
 
@@ -239,7 +239,7 @@ Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único 
 
 Convém formalizar a notação usual $f:A\to B$.
 
-\begin{definition}\index{função parcial}\index{contradomínio}
+\begin{definition}\label{def:tiposDeFuncao}\index{função parcial}\index{contradomínio}
     Sejam $f$ uma função e $A$, $B$ conjuntos.
     Dizemos que:
     \begin{enumerate}[label=(\alph*)]
@@ -254,7 +254,7 @@ Convém formalizar a notação usual $f:A\to B$.
 
 As notações de imagem direta, imagem inversa e restrição também são as usuais.
 
-\begin{definition}\index{imagem direta}\index{imagem inversa}\index{restrição}
+\begin{definition}\label{def:imagemDiretaImagemInversaRestricao}\index{imagem direta}\index{imagem inversa}\index{restrição}
     Sejam $f$ uma função, $A$ um conjunto e $B$ um conjunto.
     \begin{enumerate}[label=(\alph*)]
         \item A imagem direta de $A$ por $f$, denotada por $f[A]$, é o conjunto $\{b \in \ran f : \exists a \in A\, (f(a) = b)\}$.
@@ -267,7 +267,7 @@ Notemos que as notações $f[A]$, $f^{-1}[B]$ e $f\restriction A$ estão bem def
 Isso não é um problema, e, na verdade, é desejável em muitos momentos.
 
 Além disso, é imediato que se $f$ é uma função e $A$ um conjunto, $f\restriction A$ é uma função.
-\begin{lemma}
+\begin{lemma}\label{lem:composicaoDeFuncoes}
     Sejam $f:A\to B$ e $g:C\to D$ funções.
     Então $g\circ f$ é uma função, $g\circ f:f^{-1}[C] \to D$ e, para todos $a \in f^{-1}[C]$, temos que $(g\circ f)(a) = g(f(a))$.
 \end{lemma}
@@ -302,7 +302,7 @@ Além disso, é imediato que se $f$ é uma função e $A$ um conjunto, $f\restri
     Assim, $(g\circ f)(a) = d = g(c) = g(f(a))$.
 \end{proof}
 
-\begin{definition}\index{função!injetora}\index{função!invertível}\index{bijeção}\index{função!sobrejetora}
+\begin{definition}\label{def:injetoraSobrejetoraBijetora}\index{função!injetora}\index{função!invertível}\index{bijeção}\index{função!sobrejetora}
     Uma função $f$ é \textbf{injetora} se, para quaisquer $a, a' \in \dom f$ e $b \in \ran f$, se $f(a) = b$ e $f(a') = b$, então $a = a'$.
 
     Dizemos que $f$ é \textbf{invertível} se, e somente se $f^{-1}$ é uma função.
@@ -313,7 +313,7 @@ Além disso, é imediato que se $f$ é uma função e $A$ um conjunto, $f\restri
 \end{definition}
 
 No contexto da Teoria dos Conjuntos, as noções de injetividade e invertibilidade são equivalentes.
-\begin{lemma}
+\begin{lemma}\label{lem:injetividadeEInvertibilidade}
     Uma função $f$ é injetora se, e somente se, $f$ é invertível.
 \end{lemma}
 \begin{proof}
@@ -333,12 +333,12 @@ No contexto da Teoria dos Conjuntos, as noções de injetividade e invertibilida
 \end{proof}
 
 Com a introdução do Axioma da Potência, também podemos garantir a existência de todas as funções de $A$ em $B$.
-\begin{definition}\index{conjunto de funções}
+\begin{definition}\label{def:conjuntoDeFuncoes}\index{conjunto de funções}
     Sejam $A$ e $B$ conjuntos.
     O conjunto $B^A$ é o conjunto de todas as funções de $A$ em $B$.
 \end{definition}
 Abaixo, justificaremos a existência de $B^A$.
-\begin{lemma}
+\begin{lemma}\label{lem:existenciaDoConjuntoDeFuncoes}
     Dados conjuntos $A$ e $B$, existe um único conjunto $C$ que tem como elementos exatamente as funções de $A$ em $B$.
     Formalmente,
     \[
@@ -354,11 +354,11 @@ Abaixo, justificaremos a existência de $B^A$.
     A unicidade decorre do Axioma da Extensão.
 \end{proof}
 
-\subsection{Famílias e produtos cartesianos}
+\subsection{Famílias e produtos cartesianos}\label{subsec:familiasEProdutosCartesianos}
 Às vezes, é útil pensar em funções como indexadoras de objetos.
 Em alguns desses casos, convém adotar a notação de \emph{famílias}.
 
-\begin{definition}\index{família}
+\begin{definition}\label{def:familia}\index{família}
     Uma \textbf{família} é uma função.
     Se $a$ é uma família e $I$ é seu domínio, dizemos que $a$ é uma família indexada por $I$.
     
@@ -377,7 +377,7 @@ Em alguns desses casos, convém adotar a notação de \emph{famílias}.
 
 Com essa notação, podemos dar sentido à notação usual de união e interseção de famílias, a saber, $\bigcup_{i\in I} A_i$ e $\bigcap_{i\in I} A_i$.
 
-\begin{definition}\index{união!de família}\index{interseção!de família}
+\begin{definition}\label{def:uniaoEIntersecaoDeFamilias}\index{união!de família}\index{interseção!de família}
     Seja $I$ um conjunto e $(A_i: i \in I)$ uma família.
     A união de $(A_i: i \in I)$, denotada por $\bigcup_{i\in I} A_i$, é o conjunto $\bigcup\{A_i: i \in I\}$.
 
@@ -385,11 +385,11 @@ Com essa notação, podemos dar sentido à notação usual de união e interseç
 \end{definition}
 Dada uma família $(A_i: i \in I)$, é natural considerar a coleção de todas as famílias $(a_i: i \in I)$ tais que $a_i \in A_i$ para todo $i \in I$.
 Tal coleção é usualmente chamada de produto cartesiano de $(A_i: i \in I)$.
-\begin{definition}\index{produto cartesiano!de famílias}
+\begin{definition}\label{def:produtoCartesianoDeFamilias}\index{produto cartesiano!de famílias}
     Seja $I$ um conjunto e $(A_i: i \in I)$ uma família.
     O produto cartesiano de $(A_i: i \in I)$, denotado por $\prod_{i\in I} A_i$, é o conjunto de todas as famílias $(a_i: i \in I)$ tais que $a_i \in A_i$ para todo $i \in I$.
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{lem:existenciaDoProdutoCartesianoDeFamilias}
     Dado um conjunto $I$ e uma família $(A_i: i \in I)$, existe um único conjunto que tem como elementos exatamente as famílias $a$ indexadas por $I$ tais que $a_i \in A_i$ para todo $i \in I$.
 \end{lemma}
 \begin{proof}
@@ -402,13 +402,13 @@ Tal coleção é usualmente chamada de produto cartesiano de $(A_i: i \in I)$.
     A unicidade decorre do Axioma da Extensão.
 \end{proof}
 
-\subsection{Funções compatíveis}
+\subsection{Funções compatíveis}\label{subsec:funcoesCompativeis}
 Em muitas situações, será útil reunir várias funções numa única função maior.
 A noção adequada para isso é a de compatibilidade entre funções.
-\begin{definition}\index{funções compatíveis}
+\begin{definition}\label{def:funcoesCompativeis}\index{funções compatíveis}
     Dizemos que duas funções $f$ e $g$ são \textbf{compatíveis} se, para todo $a \in \dom f \cap \dom g$, temos que $f(a) = g(a)$.
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{lem:compatibilidadeEUniaoDeFuncoes}
     Sejam $f$ e $g$ funções.
     Então $f$ e $g$ são compatíveis se, e somente se, $f\cup g$ é uma função.
 \end{lemma}
@@ -436,7 +436,7 @@ A noção adequada para isso é a de compatibilidade entre funções.
     \]
     Como $f\cup g$ é uma função, segue que $b=b'$, ou seja, $f(a)=g(a)$.
 \end{proof}
-\begin{proposition}
+\begin{proposition}\label{prop:uniaoDeFuncoesCompativeis}
     Seja $\mathcal F$ uma coleção de funções tais que para todas $f, g \in \mathcal F$, $f$ e $g$ são compatíveis.
     Então $\bigcup \mathcal F$ é uma função.
 \end{proposition}
@@ -447,7 +447,7 @@ A noção adequada para isso é a de compatibilidade entre funções.
     Assim, $\bigcup \mathcal F$ é uma função.
 \end{proof}
 \subsection*{Exercícios}
-\begin{exercise}\label{exercicio:existenciaPotencia}
+\begin{exercise}\label{exr:existenciaDaPotencia}
     Justifique a existência de $\mathcal P(x)$.
     Ou seja, mostre que
     \[
