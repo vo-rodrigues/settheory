@@ -193,7 +193,7 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
 \end{exercise}
 
 \begin{exercise}
-    Justifique formalmente, que a sequência de Fibonacci está bem definida.
+    Justifique formalmente que a sequência de Fibonacci está bem definida.
     Ou seja, que existe uma única função $f:\omega\to \omega$ tal que:
     \[
         f(n)=\begin{cases}
@@ -207,10 +207,11 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
 \begin{exercise}
     Justifique formalmente que existe uma única função $f:\omega\to\omega$ tal que
     \[
-        f(n)=\begin{cases}
-            1 & \text{se } n=0\\
-            (n+1)n! & \text{se } n \in \omega
-        \end{cases}
+        f(0)=1
+    \]
+    e
+    \[
+        f(n+1)=(n+1)\cdot f(n)
     \]
     para todo $n\in\omega$.
 \end{exercise}
@@ -236,5 +237,5 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
     Seja $A$ um conjunto e $f:A\to A$ uma função.
     Mostre que existe uma única sequência de funções $f^n:A\to A$ tal que $f^0$ é a função identidade de $A$ e $f^{n+1}=f^n\circ f$ para todo $n\in\omega$.
 
-    Mostre, que $f^{m+n}=f^m\circ f^n$ para todo $m, n \in \omega$.
+    Mostre que $f^{m+n}=f^m\circ f^n$ para todo $m, n \in \omega$.
 \end{exercise}
