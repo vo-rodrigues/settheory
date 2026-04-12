@@ -1,10 +1,10 @@
 \section{Relações de ordem}\label{sec:relacoesDeOrdem}
 \index{ordem}
-\index{boa ordem}
+\index{ordem!boa}
 \index{isomorfismo de ordens}
 Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial e ordem total, bem como suas versões estritas e conceitos associados.
 
-\begin{definition}[Pré-ordem]\label{def:preOrdem}\index{pré-ordem}
+\begin{definition}[Pré-ordem]\label{def:preOrdem}\index{ordem!pré}
     Uma \emph{pré-ordem} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma relação binária em $P$ tal que para todo $x, y, z \in P$:
     \begin{itemize}
         \item $x \leq x$ (reflexividade)
@@ -12,7 +12,7 @@ Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial 
     \end{itemize}
 \end{definition}
 
-\begin{definition}[Ordem parcial]\label{def:ordemParcial}\index{ordem parcial}
+\begin{definition}[Ordem parcial]\label{def:ordemParcial}\index{ordem!parcial}
     Uma \emph{ordem parcial} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma pré-ordem e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Se $x \leq y$ e $y \leq x$, então $x = y$ (antissimetria).
@@ -26,7 +26,7 @@ Nem toda pré-ordem é uma ordem parcial.
     Se $A$ tem ao menos dois elementos distintos, então $(A, A\times A)$ não é uma ordem parcial.
 \end{example}
 
-\begin{definition}[Ordem total]\label{def:ordemTotal}\index{ordem total}\index{ordem linear}
+\begin{definition}[Ordem total]\label{def:ordemTotal}\index{ordem!total}\index{ordem!linear}
     Uma \emph{ordem total}, ou \emph{ordem linear}, é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma ordem parcial e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Para todo $x, y \in P$, ou $x \leq y$ ou $y \leq x$ (totalidade).
@@ -35,7 +35,7 @@ Nem toda pré-ordem é uma ordem parcial.
 
 Há também versões estritas.
 
-\begin{definition}[Ordem parcial estrita]\label{def:ordemParcialEstrita}\index{ordem parcial estrita}
+\begin{definition}[Ordem parcial estrita]\label{def:ordemParcialEstrita}\index{ordem!parcial estrita}
     Uma \emph{ordem parcial estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma relação binária em $P$ tal que para todo $x, y, z \in P$, valem as seguintes condições.
     \begin{itemize}
         \item Não existe $x$ tal que $x < x$ (irreflexividade).
@@ -43,7 +43,7 @@ Há também versões estritas.
     \end{itemize}
 \end{definition}
 
-\begin{definition}[Ordem total estrita]\label{def:ordemTotalEstrita}\index{ordem total estrita}
+\begin{definition}[Ordem total estrita]\label{def:ordemTotalEstrita}\index{ordem!total estrita}
     Uma \emph{ordem total estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma ordem parcial estrita e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Para todo $x, y \in P$, ou $x < y$ ou $y < x$ ou $x = y$ (totalidade).
@@ -175,11 +175,11 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
 \end{proposition}
 Chamaremos de boa ordem uma ordem total estrita em que todo subconjunto não vazio admite um primeiro elemento.
 Essa noção desempenhará papel central mais adiante, e será a base para a definição de número ordinal, um dos temas centrais de Teoria dos Conjuntos.
-\begin{definition}[Boa ordem]\label{def:boaOrdem}\index{boa ordem}
+\begin{definition}[Boa ordem]\label{def:boaOrdem}\index{ordem!boa}
     Uma \emph{boa ordem} é uma ordem total estrita $(P, <)$ tal que todo subconjunto não vazio de $P$ possui um elemento mínimo.
 \end{definition}
 Finalmente, introduzimos a noção de isomorfismo.
-\begin{definition}[Isomorfismo entre relações binárias]\label{def:isomorfismoDeRelacoesBinarias}\index{isomorfismo de ordens}\index{homomorfismo de ordens}\index{função monótona}\index{função crescente}
+\begin{definition}[Isomorfismo entre relações binárias]\label{def:isomorfismoDeRelacoesBinarias}\index{isomorfismo de ordens}\index{homomorfismo de ordens}\index{função!monótona}\index{função!crescente}
     Sejam $P$ e $Q$ conjuntos e $R$ e $S$ relações binárias em $P$ e $Q$, respectivamente.
     Um \emph{isomorfismo} entre $(P, R)$ e $(Q, S)$ é uma bijeção $f : P \to Q$ tal que para todo $x, y \in P$, $x R y$ se e somente se $f(x) S f(y)$.
 

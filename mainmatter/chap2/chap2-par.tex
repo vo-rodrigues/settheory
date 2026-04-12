@@ -1,7 +1,7 @@
 \section{O Axioma do Par}\label{sec:axiomaDoPar}
-\index{axioma do par}
-\index{par não ordenado}
-\index{par ordenado}
+\index{axioma!do par}
+\index{par!não ordenado}
+\index{par!ordenado}
 
 Por enquanto, os únicos axiomas introduzidos foram o Axioma da Extensão e o Esquema da Compreensão.
 O primeiro é fundamental para a caracterização da igualdade entre conjuntos, enquanto o segundo é crucial para a construção, a partir de um conjunto já existente, de subconjuntos definidos por fórmulas.
@@ -16,7 +16,7 @@ Em sua axiomatização de 1908, geralmente considerada a primeira axiomatizaçã
 Nesta formulação, o Axioma do Par não aparece isoladamente, mas dentro de seu Axioma II, juntamente com a existência do vazio e dos singletos \cite{zermelo1908untersuchungen}.
 Na formulação de 1930, Zermelo isolou o Axioma do Par, que passou a ser o Axioma P (\emph{Axiom der Paarung}) de sua axiomatização \cite{zermelo1930grenzzahlen}.
 
-\begin{axiom}\label{ax:par}\index{axioma do par}
+\begin{axiom}\label{ax:par}\index{axioma!do par}
     Para quaisquer conjuntos $x$ e $y$, existe um conjunto $z$ que os tem como elementos.
 
     Em símbolos:
@@ -59,7 +59,7 @@ Porém, em presença do Esquema da Compreensão, essa formulação mais forte n�
 
 Com isso, podemos definir os pares não ordenados.
 
-\begin{definition}\label{def:parNaoOrdenado}\index{par não ordenado}
+\begin{definition}\label{def:parNaoOrdenado}\index{par!não ordenado}
     Dado $x$ e $y$, o \emph{par não ordenado} de $x$ e $y$ é o conjunto $\{ x, y \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
     
     Formalmente, conforme discutido no capítulo 1, introduzimos na linguagem um símbolo de função binário $\{ \cdot, \cdot \}$, por meio do seguinte axioma definicional.
@@ -103,7 +103,7 @@ No lema seguinte, demonstramos a existência de tal conjunto e deixamos a verifi
 Também é possível definir o par ordenado.
 Neste texto, adotaremos a definição de Kuratowski \cite{kuratowski1921notion}.
 Por razões históricas, boa parte dos textos modernos de Teoria dos Conjuntos adota essa definição, embora existam outras opções igualmente válidas.
-\begin{definition}\label{def:parOrdenadoKuratowski}\index{par ordenado}\index{definição de Kuratowski}
+\begin{definition}\label{def:parOrdenadoKuratowski}\index{par!ordenado}\index{definição!de Kuratowski}
     Dado $x$ e $y$, o \emph{par ordenado} de $x$ e $y$ é o conjunto $(x, y)$ definido como $\{ \{ x \}, \{ x, y \} \}$.
 
     Formalmente, introduzimos na linguagem um símbolo de função binário $(\cdot, \cdot)$, por meio do seguinte axioma definicional.
@@ -125,7 +125,7 @@ A partir dessa codificação, será possível definir posteriormente produtos ca
 
 Insistimos no fato de que a definição de par ordenado não consiste em uma afirmação ontológica sobre a natureza do que deveria ser a noção de par ordenado, mas sim em uma definição formal por meio da qual se constroem objetos que satisfazem propriedades específicas.
 No caso presente, a propriedade fundamental é a da proposição seguinte.
-\begin{proposition}\label{prop:propriedadeDoParOrdenado}\index{propriedade do par ordenado}
+\begin{proposition}\label{prop:propriedadeDoParOrdenado}\index{par!ordenado!propriedade}
     Para quaisquer conjuntos $x$, $y$, $u$ e $v$, $(x, y) = (u, v)$ se e somente se $x = u$ e $y = v$.
 
     Em símbolos:

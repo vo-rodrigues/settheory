@@ -1,5 +1,5 @@
 \section{Adição de símbolos por definição}\label{sec:adicaoSimbolosPorDefinicao}
-\index{extensão por definição}
+\index{definição!extensão por definição}
 
 A teoria dos conjuntos é uma teoria cuja linguagem não lógica inicial consiste apenas no símbolo de pertencimento ($\in$).
 Conforme veremos, precisaremos rapidamente de símbolos funcionais adicionais, como o símbolo de constante $\emptyset$ (que representa o conjunto vazio), o operador binário de união de dois conjuntos ($\cup$), e o operador unário do conjunto das partes ($\mathcal{P}$).
@@ -46,7 +46,7 @@ Isso é formalizado pelo resultado a seguir.
 \subsection{Definindo definições}\label{subsec:definindoDefinicoes}
 Agora estamos prontos para falar formalmente sobre definições.
 
-\begin{metadefinition}[Definição explícita]\label{mdef:definicaoExplicita}\index{definição!explícita}\index{símbolo!definido}
+\begin{metadefinition}[Definição explícita]\label{mdef:definicaoExplicita}\index{definição!explícita}\index{símbolo!não lógico!definido}
 Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mathcal L'$ um léxico que estende $\mathcal L$.
 
 \begin{enumerate}[label=(\roman*)]
@@ -125,7 +125,7 @@ Note que nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são $\mathcal 
 
 Agora podemos definir a noção de extensão por definição, uma formalização da prática de introduzir definições como abreviações.
 
-\begin{metadefinition}[Extensão por definição]\label{mdef:extensaoPorDefinicao}\index{extensão por definição}
+\begin{metadefinition}[Extensão por definição]\label{mdef:extensaoPorDefinicao}\index{definição!extensão por definição}
     Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$.
     Dizemos que uma teoria $T'$ é uma \emph{extensão por definição} de $T$ se:
     \begin{itemize}
@@ -506,7 +506,7 @@ Agora eliminamos símbolos definidos de fórmulas.
 
 \subsection{Extensões por definição são conservativas}\label{subsec:extensoesPorDefinicaoSaoConservativas}
 
-\begin{metadefinition}[Extensão conservativa]\label{mdef:extensaoConservativa}\index{extensão conservativa}
+\begin{metadefinition}[Extensão conservativa]\label{mdef:extensaoConservativa}\index{extensão!conservativa}
     Seja $T$ uma teoria de primeira ordem com léxico $\mathcal L$, e seja $T'$ uma teoria com léxico $\mathcal L'$ estendendo $\mathcal L$.
     Dizemos que $T'$ é uma \emph{extensão conservativa} de $T$ se, para cada $\mathcal L$-sentença $\phi$,
     \[
@@ -516,7 +516,7 @@ Agora eliminamos símbolos definidos de fórmulas.
 
 O teorema a seguir formaliza a ideia de que definições são apenas abreviações.
 
-\begin{metatheorem}\label{mthm:conservatividadeDaExtensaoPorDefinicao}\index{extensão por definição!conservatividade}
+\begin{metatheorem}\label{mthm:conservatividadeDaExtensaoPorDefinicao}\index{definição!extensão por definição!conservatividade}
     Seja $T$ uma teoria de primeira ordem e $T'$ uma extensão por definição de $T$.
     Então $T'$ é uma extensão conservativa de $T$.
 \end{metatheorem}
