@@ -1,0 +1,194 @@
+\section{Aritmética cardinal básica}
+
+É possível definir operações de aritmética cardinal para simplificar o cálculo de cardinalidades infinitas.
+Tais operações, por ora de soma e produto, não coincidem com a noção de aritmética ordinal.
+
+\begin{definition}
+    Sejam $\kappa$ e $\lambda$ cardinais.
+    Define-se a soma cardinal $\kappa + \lambda$ como $|\{0\}\times \kappa \cup \{1\}\times \lambda|$.
+    Define-se o produto cardinal $\kappa \cdot \lambda$ como $|\kappa \times \lambda|$.
+\end{definition}
+
+A definição acima faz sentido, uma vez que os conjuntos $\{0\}\times \kappa \cup \{1\}\times \lambda$ e $\kappa \times \lambda$ são bem ordenáveis, por exemplo, pela ordem lexicográfica ou pela ordem $\triangleleft$ da Seção~\ref{sec:quadradosDeOrdinais}.
+
+\begin{example}
+    Considere $\kappa=\lambda=\omega$.
+    
+    A \textbf{soma ordinal} $\omega+\omega$ é o ordinal $\omega + \omega>\omega$, um ordinal enumerável.
+    O \textbf{produto ordinal} de $\omega\cdot\omega$ é o ordinal $\omega \cdot \omega>\omega+\omega>\omega$, um ordinal enumerável.
+
+    A \textbf{soma cardinal} de $\omega+\omega$ é $|\{0\}\times \omega \cup \{1\}\times \omega|=|\omega|=\omega$.
+    O \textbf{produto cardinal} de $\omega$ e $\omega$ é $|\omega \times \omega|=|\omega|=\omega$.
+\end{example}
+
+Na literatura, as duas notações são utilizadas sem aviso.
+A aritmética cardinal é de uso muito mais comum do que a aritmética ordinal, de modo que, quase sempre, as operações de soma e produto são operações de aritmética cardinal.
+Como o uso de aritmética ordinal é mais restrito, muitas vezes fica claro pelo contexto quando as operações de soma e produto são operações de aritmética ordinal.
+Quando não fica claro, tal ambiguidade é usualmente resolvida por meio de um esclarecimento por escrito.
+Em última instância, algum símbolo diferente para um dos pares de operações é pontualmente adotado, mas isso é raro de ser encontrado na literatura.
+
+Didaticamente, ao utilizarmos letras $\kappa$, $\lambda$ e $\mu$ e $|A|$, bem como alephs, estamos, a menos que dito o contrário, nos referindo a cardinais, e, portanto, as operações de soma e produto que utilizaremos serão operações de aritmética cardinal.
+
+Já ao utilizarmos letras como $\alpha$, $\beta$ e $\gamma$ e $\delta$, estamos, a menos que dito o contrário, nos referindo a ordinais, e, portanto, as operações de soma e produto que utilizaremos serão operações de aritmética ordinal.
+
+Antes de explanarmos como operar aritmética cardinal de forma prática, estudaremos lemas que a tornam extremamente útil.
+
+\begin{lemma}
+    Seja $A$ um conjunto e suponha que exista um conjunto bem ordenável $B$ e $f:B\to A$ uma função sobrejetora.
+    Então $A$ é bem ordenável e $|A|\leq |B|$.
+\end{lemma}
+\begin{proof}
+    Seja $<_B$ uma boa ordem em $B$.
+
+    Defina $g: A\to B$ dada por $g(a)=\min\{ b \in B: f(b)=a\}$.
+
+    $g$ é claramente injetora.
+    Defina uma relação $<_A$ em $A$ por:
+    \[
+    x <_A y \iff g(x) <_B g(y).
+    \]
+    Note que $g: (A, <_A) \to (g[A], <_B)$ é um isomorfismo de ordens, e, portanto, $A$ é bem ordenável.
+\end{proof}
+
+\begin{lemma}
+Sejam $A$ e $B$ conjuntos bem ordenáveis.
+Então $A\times B$ é bem ordenável e $|A\times B|=|A|\cdot |B|$.
+\end{lemma}
+\begin{proof}
+    Sejam $\kappa=|A|$ e $\lambda=|B|$.
+    Sejam $f_A: \kappa \to A$ e $f_B: \lambda \to B$ funções bijetoras.
+    Seja $g: \kappa \times \lambda \to A\times B$ dada por $g(\alpha, \beta) = (f_A(\alpha), f_B(\beta))$.
+    É imediato que $g$ é uma função bijetora, e, portanto, $A\times B$ é bem ordenável e $|A\times B|=|\kappa \times \lambda|=\kappa \cdot \lambda = |A|\cdot |B|$.
+\end{proof}
+
+\begin{lemma}
+Sejam $A$ e $B$ conjuntos bem ordenáveis disjuntos.
+Então $A\cup B$ é bem ordenável e $|A\cup B|=|A|+|B|$.
+\end{lemma}
+\begin{proof}
+    Suponha que $A$ e $B$ são disjuntos.
+    Temos que $A\approx(\{0\}\times A)$ e $B\approx(\{1\}\times B)$.
+    Assim, $A\cup B \approx (\{0\}\times A)\cup (\{1\}\times B)$.
+    Portanto, $A\cup B$ é bem ordenável e $|A\cup B|=|A|+|B|$.
+\end{proof}
+
+Operacionalmente, temos a seguintes preservações de desigualdades.
+\begin{lemma}
+Sejam $\kappa$, $\kappa'$, $\lambda$ e $\lambda'$ cardinais tais que $\kappa \leq \kappa'$ e $\lambda \leq \lambda'$.
+Então $\kappa + \lambda \leq \kappa' + \lambda'$ e $\kappa \cdot \lambda \leq \kappa' \cdot \lambda'$.
+\end{lemma}
+\begin{proof}
+    Para a primeira desigualdade, note que $\{0\}\times \kappa \cup \{1\}\times \lambda \subseteq \{0\}\times \kappa' \cup \{1\}\times \lambda'$.
+    Assim,
+    \[
+    \kappa + \lambda = |\{0\}\times \kappa \cup \{1\}\times \lambda| \leq |\{0\}\times \kappa' \cup \{1\}\times \lambda'| = \kappa' + \lambda'.
+    \]
+    Para a segunda desigualdade, note que $\kappa \times \lambda \subseteq \kappa' \times \lambda'$.
+    Assim,
+    \[
+    \kappa \cdot \lambda = |\kappa \times \lambda| \leq |\kappa' \times \lambda'| = \kappa' \cdot \lambda'.
+    \]
+\end{proof}
+
+Sem assumir a disjunção de $A$ e $B$, temos a seguinte desigualdade.
+\begin{lemma}
+Sejam $A$ e $B$ conjuntos bem ordenáveis.
+Então $A\cup B$ é bem ordenável e $|A\cup B|\leq |A|+|B|$.
+\end{lemma}
+\begin{proof}
+    Seja $B'=B\setminus A$.
+    Temos que $A$ e $B'$ são bem ordenáveis e disjuntos, e, portanto, $A\cup B'=A\cup B$ é bem ordenável e disjunto.
+    Além disso, $|B'|\leq |B|$.
+    Portanto:
+    \[
+    |A\cup B| = |A\cup B'| = |A| + |B'| \leq |A| + |B|.
+    \]
+\end{proof}
+
+Agora mostraremos as principais ferramentas para cálculos envolvendo aritmética cardinal.
+
+\begin{lemma}\label{lem:aritmeticaCardinalComutativa}
+    Sejam $\kappa$ e $\lambda$ cardinais tais que $2\leq \kappa$ e $2\leq \lambda$.
+    Então $\kappa + \lambda=\lambda+\kappa$ e $\kappa \cdot \lambda=\lambda \cdot \kappa$.
+\end{lemma}
+\begin{proof}
+    A prova é simples e deixada como exercício ao leitor.
+\end{proof}
+
+\begin{lemma}\label{lem:aritmeticaCardinalBasica}
+    Sejam $\kappa$ e $\lambda$ cardinais tais que $2\leq \kappa$ e $2\leq \lambda$.
+    Então $\kappa + \lambda\leq \kappa \cdot \lambda$.
+\end{lemma}
+\begin{proof}
+    Seja $\mu=\max\{\kappa, \lambda\}$.
+    Se $\mu=\lambda$, então
+    \[
+    \{0\}\times \kappa \cup \{1\}\times \lambda \subseteq \{0\}\times \kappa \cup \{1\}\times \lambda\subseteq \kappa \times \lambda.
+    \]
+
+    Portanto, $\kappa+\lambda\leq \kappa\cdot \lambda$.
+
+    Já se $\mu=\kappa$, pelo argumento anterior e pelo Lema~\ref{lem:aritmeticaCardinalComutativa}, temos que:
+
+    \[
+    \kappa+\lambda = \lambda + \kappa \leq \lambda \cdot \kappa = \kappa \cdot \lambda.
+    \]
+\end{proof}
+
+\begin{theorem}
+    Sejam $\kappa$ e $\lambda$ cardinais infinitos.
+    Então $\kappa + \lambda = \kappa \cdot \lambda = \max\{\kappa, \lambda\}$.
+\end{theorem}
+\begin{proof}
+    Seja $\mu=\max\{\kappa, \lambda\}$.
+    É imediato que $\mu\leq \kappa + \lambda$, uma vez que $\mu$ injeta em $\{0\}\times \kappa \cup \{1\}\times \lambda$.
+
+    Assim:
+
+    \[
+    \mu \leq \kappa + \lambda \leq \kappa \cdot \lambda \leq \mu \cdot \mu = \mu.
+    \]
+
+    A última desigualdade é verdadeira pelo Corolário~\ref{cor:quadradoDeCardinalInfinito}.
+
+    Portanto, $\kappa + \lambda = \kappa \cdot \lambda = \mu=\max\{\kappa, \lambda\}$.
+\end{proof}
+Operar cardinais finitos com infinitos também é uma tarefa simples.
+\begin{lemma}
+    Seja $n$ um cardinal finito e $\kappa$ um cardinal infinito.
+    Então:
+    \begin{enumerate}[label=(\alph*)]
+        \item $n+\kappa = \kappa + n = \kappa$;
+        \item $n\cdot \kappa = \kappa \cdot n = \kappa$ se $n\neq 0$;
+        \item $0\cdot \kappa = \kappa \cdot 0 = 0$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Para (a), note que $\kappa\leq n+\kappa\leq \kappa+\kappa = \kappa$.
+    Assim, $n+\kappa = \kappa + n = \kappa$.
+
+    Para (b), note que $\kappa\leq n\cdot \kappa\leq \kappa\cdot \kappa = \kappa$.
+    Assim, $n\cdot \kappa = \kappa \cdot n = \kappa$.
+
+    Para (c), note que $0\cdot \kappa =|0\times \kappa|=|\emptyset|=0$.
+\end{proof}
+
+Finalmente, a aritmética cardinal finita coincide com a usual (e, portanto, com a aritmética ordinal).
+
+\begin{lemma}
+    Sejam $m$ e $n$ cardinais finitos (ou seja, números naturais).
+    Então os cardinais $m+n$ e $m\cdot n$ obtidos pelas definições de aritmética cardinal coincidem com os cardinais $m+n$ e $m\cdot n$ obtidos pelas definições usuais de soma e produto de números naturais.
+\end{lemma}
+
+\begin{proof}
+    Sejam $m$ e $n$ cardinais finitos.
+    Então $m\approx \{0\}\times m$ e $n\approx \{0\}\times n$.
+
+    Pelo Exercício~\ref{ex:aritmeticaFinitaUniao} o número $m+n$ obtido pela aritmética cardinal usual coincide com $|\{0\}\times m \cup \{1\}\times n|$, e, portanto, com o número $m+n$ obtido pela aritmética cardinal.
+
+    Analogamente, pelo Exercício~\ref{ex:aritmeticaFinitaProduto} o número $m\cdot n$ obtido pela aritmética cardinal usual coincide com $|m\times n|$, e, portanto, com o número $m\cdot n$ obtido pela aritmética cardinal.
+\end{proof}
+
+\subsection*{Exercícios}
+\begin{exercise}Prove o Lema~\ref{lem:aritmeticaCardinalComutativa}.
+\end{exercise}
