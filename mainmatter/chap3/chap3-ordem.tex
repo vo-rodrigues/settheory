@@ -129,7 +129,7 @@ Primeiro provaremos que o conjunto dos números naturais satisfaz o esquema da i
 
 \begin{proposition}\label{prop:inducaoForteNosNaturais}
     Seja $A\subseteq \omega$.
-    Se $\forall n \in \omega\, (\forall m < n\, (m \in A) \rightarrow n \in A)$, então $A = \omega$.
+    Se $\forall n \in \omega\, ((\forall m < n\, (m \in A)) \rightarrow n \in A)$, então $A = \omega$.
 \end{proposition}
 \begin{proof}
     É suficiente provar que $\omega \subseteq A$.
@@ -144,7 +144,7 @@ Primeiro provaremos que o conjunto dos números naturais satisfaz o esquema da i
     Devemos ver que $k \in A$.
     Pelo Lema~\ref{lem:menorQueSucessorEquivMenorIgual}, $k \leq n$.
     Se $k<n$, então $k \in A$ pois $n \in B$.
-    Se $k=n$, temos que $\forall m < n\, (m \in A)\rightarrow n \in A$, e também que $\forall m < n\, (m \in A)$, pois $n \in B$.
+    Se $k=n$, temos que $(\forall m < n\, (m \in A))\rightarrow n \in A$, e também que $\forall m < n\, (m \in A)$, pois $n \in B$.
     Assim, por modus ponens, $n \in A$.
     Isso conclui que $S(n) \in B$.
     Assim, $B$ é indutivo.
@@ -163,7 +163,7 @@ Disso, decorre o esquema da indução forte.
     \[
     \forall t_1, \dots, t_n \Bigl(
         \bigl(
-            \forall n \in \omega\, (\forall m < n\, \phi(m, t_1, \dots, t_n) \rightarrow \phi(n, t_1, \dots, t_n))
+            \forall n \in \omega\, ((\forall m < n\, \phi(m, t_1, \dots, t_n)) \rightarrow \phi(n, t_1, \dots, t_n))
         \bigr)
         \rightarrow
         \forall n \in \omega\, \phi(n, t_1, \dots, t_n)
@@ -186,7 +186,7 @@ Disso, decorre o esquema da indução forte.
     Seja $A\subseteq \omega$ sem elemento mínimo.
     Veremos que $A$ é vazio.
     Para tanto, basta mostrar que $B=\omega\setminus A$ coincide com $\omega$.
-    Pela Proposição~\ref{prop:inducaoForteNosNaturais}, é suficiente mostrar que $\forall n \in \omega\, (\forall m < n\, (m \in B) \rightarrow n \in B)$.
+    Pela Proposição~\ref{prop:inducaoForteNosNaturais}, é suficiente mostrar que $\forall n \in \omega\, ((\forall m < n\, (m \in B)) \rightarrow n \in B)$.
 
     Ora, seja $n \in \omega$ tal que $\forall m < n\, (m \in B)$.
     Suponha, para fins de contradição, que $n \notin B$, ou seja, $n \in A$.
