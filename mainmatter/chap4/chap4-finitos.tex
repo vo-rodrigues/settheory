@@ -93,9 +93,10 @@ Primeiro provaremos o seguinte lema.
     Porém, $n\subsetneq n+1\subseteq \omega$, e, assim, pelo Teorema de Cantor-Schröder-Bernstein, $n+1\approx \omega\approx n$, um absurdo por (c). 
 \end{proof}
 
-\begin{lemma}\label{lem:ordemTotalEstritaFinitaTemMinimoEMaximo}
+\begin{lemma}\label{prop:finitoBoaOrdem}
     Seja $(A, <)$ uma ordem total estrita não vazia tal que $A$ é finito.
     Então $A$ possui um elemento mínimo e um elemento máximo.
+    Em particular, toda ordem total estrita finita é uma boa ordem.
 \end{lemma}
 \begin{proof}
     Provaremos por indução na cardinalidade de $A$.
@@ -114,11 +115,6 @@ Primeiro provaremos o seguinte lema.
     Da mesma forma, se $a>M$, então $a$ é o elemento máximo de $A$.
     Caso contrário, $M$ é o elemento máximo de $A$.
 \end{proof}
-
-\begin{corollary}\label{cor:finitoBoaOrdem}\index{boa ordem!finita}
-    Toda ordem total estrita finita é uma boa ordem.
-Toda ordem total estrita finita é uma boa ordem.
-\end{corollary}
 
 \begin{proposition}\label{prop:boaOrdemFinitaIsomorfaANatural}
     Seja $(A, <)$ uma ordem total estrita tal que $A$ é finito.
