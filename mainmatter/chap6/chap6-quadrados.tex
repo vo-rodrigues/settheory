@@ -71,3 +71,39 @@ Para mostrar isso, utilizaremos algumas definições e resultados sobre ordinais
     Como $(\alpha, \beta)\in Z$, temos que $\beta \geq \beta_0$.
     Dessa forma, $(\alpha_0, \beta_0) \trianglelefteq (\alpha, \beta)$.
 \end{proof}
+
+Se $(\alpha, \beta)\in \ON\times \ON$, denotaremos, nesta seção, $(\alpha, \beta)_{\downarrow}=\{(\alpha', \beta')\in \ON\times \ON : (\alpha', \beta') \triangleleft (\alpha, \beta)\}$, que é um conjunto pois $(\alpha, \beta)_{\downarrow} \subseteq \xi\times \xi$, onde $\xi$ é qualquer ordinal com $\xi>\max\{\alpha, \beta\}$.
+
+Note que $(\alpha, 0)_{\downarrow} = \alpha\times \alpha$ para cada ordinal $\alpha$.
+
+\begin{theorem}\label{thm:quadradoDeCardinalInfinito}
+    Para cada cardinal infinito $\kappa$, $\tp(\kappa\times \kappa, \triangleleft) = \kappa$.
+\end{theorem}
+\begin{proof}
+    Procedemos por indução transfinita para mostrar que para todo ordinal $\alpha$, $\tp(\aleph_\alpha\times \aleph_\alpha, \triangleleft) = \aleph_\alpha$.
+
+    Como $\aleph_\alpha\preceq \aleph_\alpha\times \aleph_\alpha$ para cada ordinal $\alpha$, temos que $\tp(\aleph_\alpha\times \aleph_\alpha, \triangleleft) \geq |\aleph_\alpha\times \aleph_\alpha| \geq |\aleph_\alpha| = \aleph_\alpha$.
+    Assim, resta mostrar que, para cada ordinal $\alpha$, $\tp(\aleph_\alpha\times \aleph_\alpha, \triangleleft) \leq \aleph_\alpha$.
+
+    Para $\alpha=0$, temos que, se $(n, m)\in \omega\times \omega$, então $(n, m)_{\downarrow} \subseteq \max\{n, m\}\times \max\{n, m\}$, que é finito.
+    Assim, $(\omega\times \omega, \triangleleft)$ é uma boa ordem infinita tal que todo segmento inicial próprio é finito, de modo que $\tp(\omega\times \omega, \triangleleft) = \omega$.
+
+    Suponha agora que $\alpha>0$ e suponha por absurdo que $\tp(\aleph_\alpha\times \aleph_\alpha, \triangleleft) > \aleph_\alpha$.
+    Seja $\xi=\tp(\aleph_\alpha\times \aleph_\alpha, \triangleleft)$.
+    Considere $f:\aleph_\alpha\times \aleph_\alpha\to \xi$ isomorfismo.
+
+    Existem $\alpha_0, \beta_0 < \aleph_\alpha$ tais que $f(\alpha_0, \beta_0) = \aleph_\alpha$.
+    Assim, $|(\alpha_0, \beta_0)_{\downarrow}|=\aleph_\alpha$.
+    Se ambos $\alpha_0, \beta_0$ são finitos, temos que $|(\alpha_0, \beta_0)_{\downarrow}|\leq |\max\{\alpha_0+1, \beta_0+1\}\times \max\{\alpha_0+1, \beta_0+1\}|$ é infinito, um absurdo.
+
+    Assim, $\gamma=\max\{\alpha_0, \beta_0\}+1$, é infinito.
+    Temos que $|(\alpha_0, \beta_0)_{\downarrow}|\leq |\gamma\times \gamma|$.
+
+    Seja $\delta$ tal que $|\gamma|=\aleph_\delta$.
+    Então $|\gamma\times \gamma| \leq |\aleph_\delta\times \aleph_\delta|=\aleph_\delta$ por hipótese de indução.
+    Assim, temos um absurdo:
+
+    \[
+        \aleph_\alpha = |(\alpha_0, \beta_0)_{\downarrow}| \leq |\gamma\times \gamma| \leq \aleph_\delta < \aleph_\alpha.
+    \]
+\end{proof}
