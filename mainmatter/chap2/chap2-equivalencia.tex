@@ -98,7 +98,7 @@ Reciprocamente, temos a seguinte proposição.
 \end{proposition}
 
 \begin{proof}
-    Dado $x \in A$ e seja $X \in \mathcal{E}$ tal que $x \in X$.
+    Dado $x \in A$, seja $X \in \mathcal{E}$ tal que $x \in X$.
     Tal $X$ é único: se $x \in Y \in \mathcal{E}$, então $x \in X \cap Y$, e portanto $X=Y$.
 
     Para todo $x \in A$ existe $X \in \mathcal{E}$ tal que $x \in X$.
@@ -135,7 +135,7 @@ A recíproca é dada a seguir.
 \begin{proof}
     Dados $x, y \in A$, temos
     \[
-    x \sim_{\mathcal{E}} y \iff \exists X \in A/{\sim}\, (x \in X \wedge y \in X) \iff \exists z \in A\, (x, y \in [z]) \iff x \sim y,
+    x \sim_{\mathcal{E}} y \iff \exists X \in A/{\sim}\, (x \in X \wedge y \in X) \iff \exists z \in A\, (x \in [z]_{\sim} \wedge y \in [z]_{\sim}) \iff x \sim y,
     \]
 \end{proof}
 
@@ -164,5 +164,5 @@ Assim, partições e relações de equivalência são duas maneiras de descrever
 
 \begin{exercise}
     Seja $A$ um conjunto e seja $\sim$ uma relação de equivalência em $A$.
-    Mostre que existe uma função $f$ com $\dom f=A$ tal que, $\sim$ é $\sim_f$.
+    Mostre que existe uma função $f$ com $\dom f = A$ tal que $\sim = \sim_f$.
 \end{exercise}
