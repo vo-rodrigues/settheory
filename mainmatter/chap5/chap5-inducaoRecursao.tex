@@ -79,7 +79,7 @@ Ou seja, começa-se definindo $\beta+0=\beta$.
 Definido $\beta+\alpha$, define-se $\beta+S(\alpha)$ como o ordinal sucessor de $\beta+\alpha$.
 Finalmente, se $\alpha$ é um ordinal limite, define-se $\beta+\alpha$ como o supremo de $\{\beta+\xi : \xi <\alpha\}$.
 
-Para se executar essa definição, para se definir $\beta+\alpha$, é necessário ter o conhecimento prévio do valor de potencialmente todos os valores $\beta+\xi$ para $\xi <\alpha$.
+Para se definir $\beta+\alpha$, é necessário ter o conhecimento prévio do valor de potencialmente todos os valores $\beta+\xi$ para $\xi <\alpha$.
 
 Diferentemente do que acontece na recursão de números naturais, o objeto resultante não é uma função.
 Se fosse, no caso, a função $+$ teria domínio $\ON\times \ON$, que não é um conjunto.
@@ -253,7 +253,7 @@ Assim, temos o seguinte metateorema.
     Desta forma, $F_p(\alpha)=h(\alpha)=G(p, h|\alpha)=G(p, F_p|\alpha)$.
 \end{proof}
 O passo final consiste em mostrar que a solução recursiva obtida é única.
-Isto é, qualquer outra função que satisfaça a mesma equação recursiva deve coincidir com $F$ em todos os ordinais, independente de como ela seja definida.
+Isto é, qualquer outra função que satisfaça a mesma equação recursiva deve coincidir com $F$ em todos os ordinais, independentemente de como ela seja definida.
 
 Novamente, a ferramenta apropriada para isso é a indução transfinita.
 \begin{theorem}\label{thm:unicidadeDaIteracaoTransfinita}
@@ -267,3 +267,4 @@ Novamente, a ferramenta apropriada para isso é a indução transfinita.
     Se o resultado vale para todo $\beta <\alpha$, então $F'_p|\alpha=F_p|\alpha$.
     Assim, $F'_p(\alpha)=G(p, F'_p|\alpha)=G(p, F_p|\alpha)=F_p(\alpha)$.
 \end{proof}
+Com isso, fica demonstrado o Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita}.
