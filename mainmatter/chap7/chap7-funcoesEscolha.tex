@@ -1,0 +1,98 @@
+\section{Funções Escolha}\label{sec:funcoesEscolha}
+\index{função escolha}
+
+Frequentemente, em matemática, temos uma família indexada $(A_i: i\in I)$ de conjuntos não vazios e queremos ``fixar um elemento $a_i \in A_i$ para cada $i\in I$''.
+A Teoria dos Conjuntos, com os axiomas que temos até então, não é suficiente para garantir a existência de uma tal família $(a_i: i\in I)$ em qualquer tal situação.
+
+Nesta seção, vamos estudar tais famílias.
+
+\begin{definition}\label{def:funcaoEscolha}\index{função escolha}
+    Seja $\mathcal C$ uma coleção de conjuntos.
+    Uma \emph{função escolha} para $\mathcal C$ é uma função $c:\mathcal C$ de domínio $\mathcal C$ tal que, para cada $a\in \mathcal C$ não vazio, $c(a)\in a$.
+\end{definition}
+
+Note que, se $a\in \mathcal C$ é vazio, não há nenhuma restrição sobre o valor de $c(a)$.
+
+\begin{example}
+    Seja $\mathcal C=\{\{1, 2\}, \{3, 4\}, \emptyset\}$.
+
+    Temos que $c:\mathcal C\to \{1, 2, 3, 7\}$ dada por
+
+    \[
+        c(a) = \begin{cases}
+            1, & \text{se } a=\{1, 2\}\\
+            3, & \text{se } a=\{3, 4\}\\
+            7, & \text{se } a=\emptyset
+        \end{cases}
+    \]
+    é uma função escolha para $\mathcal C$.
+\end{example}
+
+\begin{definition}
+    Seja $(A_i: i\in I)$ uma família indexada de conjuntos.
+    Uma \emph{função escolha (indexada)} para $(A_i: i\in I)$ é uma função $c$ de domínio $I$ tal que, para cada $i\in I$ tal que $A_i$ não é vazio, $c(i)\in A_i$.
+\end{definition}
+Novamente, notemos que se $A_i$ é vazio, não há nenhuma restrição sobre o valor de $c(i)$.
+
+\begin{example}
+    Seja $I=\{1, 2, 3\}$ e $A_1=\{1, 2\}$, $A_2=\{3, 4\}$ e $A_3=\emptyset$.
+
+    Temos que $c:I\to \{1, 2, 3, 7\}$ dada por
+    \[
+        c(i) = \begin{cases}
+            1, & \text{se } i=1\\
+            3, & \text{se } i=2\\
+            7, & \text{se } i=3
+        \end{cases}
+    \]
+    é uma função escolha indexada para $(A_i: i\in I)$.
+\end{example}
+
+Suponha que exista uma função $f$ para $\mathcal P(A)$.
+Intuitivamente, podemos, via recursão transfinita, bem-ordenar $A$:
+vamos, um por vez, etiquetando os elementos de $A$ com ordinais $0, 1, 2, \dots \omega, \omega+1, \dots, \omega\cdot 2, \dots$, até exaurir os elementos de $A$.
+Automaticamente, tal recursão nos dá uma bijeção de $A$ com um ordinal, o que induz, em $A$, uma boa-ordem.
+
+A formalização deste raciocínio nos dá a seguinte proposição.
+
+\begin{proposition}
+    Seja $A$ um conjunto.
+    São equivalentes:
+    \begin{enumerate}[label=(\alph*)]
+        \item Existe uma função escolha para $\mathcal P(A)$.
+        \item $A$ é bem-ordenável.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Caso $A=\emptyset$, o resultado é trivial.
+    Vamos supor que $A\neq \emptyset$.
+    Fixe $u \in A$ qualquer.
+    (b) $\Rightarrow$ (a): caso $A$ seja bem-ordenável, seja $R$ uma boa-ordem em $A$.
+    Defina $c:\mathcal P(A)\to A$ dada por:
+    \[
+        c(X) = \begin{cases}
+            \min_R X, & \text{se } X\neq \emptyset\\
+            u, & \text{caso contrário}
+        \end{cases}
+    \]
+    É imediato que $c$ é uma função escolha para $\mathcal P(A)$.
+
+    Reciprocamente, suponha que exista uma função escolha $c$ para $\mathcal P(A)$.
+    Alterando-a se necessário, podemos supor que $c(\emptyset)\notin A$.
+    Seja $b=c(\emptyset)$.
+
+    Recursivamente, introduza um símbolo funcional $F:\ON \to A$ tal que, para cada ordinal $\alpha$,
+    \[
+        F(\alpha)=c\left(A\setminus \{F(\beta): \beta<\alpha\}\right).
+    \]
+
+    Existe um ordinal $\alpha$ tal que $F(\alpha)=b$.
+    Do contrário, para todo ordinal $\alpha$, $F(\alpha)\in A\setminus\{F(\beta): \beta<\alpha\}$, de modo que $F$ é injetora.
+    Em particular, $F|h(A): h(A)\to A$ é injetora, em que $h(A)$ é o número de Hartogs de $A$, um absurdo.
+
+    Seja $\delta$ o menor ordinal tal que $F(\delta)=b$.
+    Temos que $F| \delta: \delta \to A$ é uma função injetora pelo mesmo argumento acima, e $F(\delta)=b\notin A$, de modo que $A=\{F(\beta): \beta<\delta\}$.
+    Ou seja, $F|\delta$ é uma bijeção de $\delta$ em $A$.
+
+    Dessa forma, $A$ é bem-ordenável, pois a bijeção $F|\delta$ de $\delta$ em $A$ induz uma boa-ordem em $A$.
+    \end{proof}
