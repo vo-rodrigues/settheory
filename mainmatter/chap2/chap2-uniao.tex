@@ -17,7 +17,7 @@ Um dos axiomas que nos permitirão ultrapassar essa limitação é o Axioma da U
 Tal axioma consta na formulação de 1908 de Zermelo \cite{zermelo1908untersuchungen} como seu Axioma V (\emph{Axiom der Vereinigung}).
 
 \subsection{Uniões e o Axioma da União}\label{subsec:unioesEAxiomaDaUniao}
-\begin{axiom}[União]\label{ax:uniao}\index{axioma!da união}
+\begin{axiom}[Axioma da União]\label{ax:uniao}\index{axioma!da união}
     Para todo conjunto $x$, existe um conjunto $y$ que tem como elementos todos os elementos dos elementos de $x$.
 
     Em símbolos:
@@ -31,7 +31,7 @@ Esta formulação do Axioma da União garante a existência de um conjunto $y$ q
 Contudo, em presença do Esquema da Compreensão e do Axioma da Extensão, obtém-se a caracterização exata da união, como afirma o Lema~\ref{lem:existenciaDaUniao}.
 A demonstração é deixada como exercício (ver Exercício~\ref{exr:existenciaDaUniao}).
 
-\begin{lemma}\index{existência da união}\label{lem:existenciaDaUniao}
+\begin{lemma}[$Z^--P$]\index{existência da união}\label{lem:existenciaDaUniao}
     Para todo conjunto $x$, existe um único conjunto $y$ tal que, para todo $z$, $z \in y$ se e somente se existe um $w$ tal que $w \in x$ e $z \in w$.
 
     Em símbolos:
@@ -43,7 +43,7 @@ A demonstração é deixada como exercício (ver Exercício~\ref{exr:existenciaD
 
 Devido ao Lema~\ref{lem:existenciaDaUniao}, a Definição~\ref{def:uniao} se justifica.
 
-\begin{definition}\label{def:uniao}\index{união}
+\begin{definition}[$Z^--P$]\label{def:uniao}\index{união}
     Dado um conjunto $x$, a \emph{união de $x$} é o conjunto $\bigcup x$ definido como o único conjunto $y$ tal que, para todo $z$, $z \in y$ se e somente se existe um $w$ tal que $w \in x$ e $z \in w$.
     
     Formalmente, a união é regida pelo seguinte axioma definicional.
@@ -59,7 +59,7 @@ Apesar disso, a notação $\bigcup x$ é bastante conveniente e aparece frequent
 A partir do já exposto, é natural introduzir a união binária entre dois conjuntos, $x\cup y$.
 A legitimidade dessa introdução será justificada no lema subsequente.
 
-\begin{definition}\label{def:uniaoBinaria}\index{união!binária}
+\begin{definition}[$Z^--P$]\label{def:uniaoBinaria}\index{união!binária}
     Para quaisquer conjuntos $x$ e $y$, a \emph{união de $x$ e $y$}, denotada por $x\cup y$, é o único conjunto $z$ cujos elementos são exatamente os elementos de $x$ ou os elementos de $y$.
     Formalmente, a união de dois conjuntos é regida pelo seguinte axioma definicional.
 
@@ -68,7 +68,7 @@ A legitimidade dessa introdução será justificada no lema subsequente.
     \]
 \end{definition}
 
-\begin{lemma}\label{lem:existenciaDaUniaoBinaria}
+\begin{lemma}[$Z^--P$]\label{lem:existenciaDaUniaoBinaria}
     Para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ cujos elementos são exatamente os elementos de $x$ ou os elementos de $y$.
 
     Em símbolos:
@@ -95,7 +95,7 @@ A legitimidade dessa introdução será justificada no lema subsequente.
 Interessantemente, apesar de ser necessária a introdução de um novo axioma para garantir a existência de conjuntos com mais de dois elementos, o mesmo não ocorre para provar a existência da interseção de um conjunto não vazio.
 
 Para provar o Lema~\ref{lem:existenciaDaIntersecao}, basta o Axioma da Extensão e o Esquema da Compreensão.
-\begin{lemma}\label{lem:existenciaDaIntersecao}
+\begin{lemma}[$Z^--P$]\label{lem:existenciaDaIntersecao}
     Seja $x$ um conjunto não vazio.
     Então, existe um único conjunto $y$ tal que, para todo $z$, $z \in y$ se e somente se $z$ pertence a cada elemento de $x$.
 
@@ -118,7 +118,7 @@ Para provar o Lema~\ref{lem:existenciaDaIntersecao}, basta o Axioma da Extensão
     A unicidade é uma consequência imediata do Axioma da Extensão.
 \end{proof}
 
-\begin{definition}\index{interseção}\label{def:intersecaoDeConjuntos}
+\begin{definition}[$Z^--P$]\index{interseção}\label{def:intersecaoDeConjuntos}
     Seja $x$ um conjunto não vazio.
     A \emph{interseção de $x$} é o conjunto $\bigcap x$ definido como o único conjunto $y$ cujos elementos são exatamente os elementos comuns a todos os elementos de $x$.
 
@@ -151,7 +151,7 @@ Uma solução padrão para este tipo de problema é definir, de forma arbitrári
 
 Para tanto, introduziremos formalmente, abaixo, o símbolo funcional $\bigcap$, atribuindo um valor arbitrário para $\bigcap \emptyset$.
 
-\begin{definition}\index{interseção}\label{def:simboloIntersecao}
+\begin{definition}[$Z^--P$]\index{interseção}\label{def:simboloIntersecao}
     Inserimos o símbolo funcional unário $\bigcap$ por definição, a partir do seguinte axioma definicional.
 
     \[
@@ -174,7 +174,7 @@ Tal atribuição não terá impacto no desenvolvimento da teoria, uma vez que se
 \subsection{Convenção sobre inserção de símbolos funcionais}\label{subsec:convencaoSobreInsercaoDeSimbolosFuncionais}
 Aproveitando a discussão da Definição~\ref{def:simboloIntersecao} sobre a inserção do símbolo de interseção, adotaremos uma convenção geral para inserir símbolos funcionais que, intuitivamente, não estão bem definidos para todos os valores de seus argumentos.
 
-\begin{convention}\label{conv:insercaoDeSimboloFuncional}\index{símbolo!não lógico!introdução por definição de símbolo funcional}
+\begin{convention}[$Z^--P$]\label{conv:insercaoDeSimboloFuncional}\index{símbolo!não lógico!introdução por definição de símbolo funcional}
     Considere fórmulas $\phi(x_1, \dots, x_n, y)$ e $\psi(x_1, \dots, x_n)$ tais que
     \[
         \forall x_1\, \dots\, \forall x_n\,
@@ -207,7 +207,7 @@ temos
 \]
 
 Logo, sempre que as hipóteses naturais de definição estiverem satisfeitas, a introdução efetivamente utilizada do novo símbolo coincide com a Metadefinição~\ref{mdef:extensaoPorDefinicao}.
-\begin{example}
+\begin{example}[$Z^--P$]
     Temos que para todo $x \neq \emptyset$, existe um único $y$ tal que
     \[
         \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)).
@@ -218,7 +218,7 @@ Logo, sempre que as hipóteses naturais de definição estiverem satisfeitas, a 
     \]
 \end{example}
 
-\begin{example}
+\begin{example}[$Z^--P$]
     Como outro exemplo, antecipemos um caso futuro familiar ao leitor, envolvendo a noção de função.
     Naquela altura, será definida uma operação binária $f(a)$, a avaliação da função $f$ no argumento $a$.
     
@@ -244,6 +244,8 @@ A existência e a unicidade da diferença são consequências imediatas de uma i
     \]
 \end{definition}
 \subsection*{Exercícios}
+Os exercícios a seguir devem ser resolvidos utilizando apenas os axiomas da Extensão, da Compreensão, do Par e da União.
+
 \begin{exercise}\label{exr:existenciaDaUniao}
     Prove o Lema~\ref{lem:existenciaDaUniao}.
 \end{exercise}
