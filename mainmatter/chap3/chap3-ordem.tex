@@ -8,14 +8,14 @@ Das definições de $1$ até $9$, intuitivamente fica aparente que, para todo n�
 Tal igualdade de fato será verdadeira, como veremos nas próximas páginas.
 Por isso, parece natural definir que a ordem dos números naturais é dada pela relação de pertencimento.
 
-\begin{definition}\label{def:ordemDosNaturais}
+\begin{definition}[$Z^--P$]\label{def:ordemDosNaturais}
     Sejam $m, n \in \omega$.
     Dizemos que $m$ é menor que $n$, e escrevemos $m < n$, se, e somente se $m \in n$.
 
     Define-se que $m\leq n$ se, e somente se $m < n$ ou $m = n$.
 \end{definition}
 
-\begin{lemma}\label{lem:zeroMenorIgualATodoNatural}
+\begin{lemma}[$Z^--P$]\label{lem:zeroMenorIgualATodoNatural}
     Para todo $n \in \omega$, $0\leq n$.
 \end{lemma}
 \begin{proof}
@@ -30,7 +30,7 @@ Por isso, parece natural definir que a ordem dos números naturais é dada pela 
     De qualquer forma, $0\leq S(n)$.
 \end{proof}
 
-\begin{lemma}\label{lem:menorQueSucessorEquivMenorIgual}
+\begin{lemma}[$Z^--P$]\label{lem:menorQueSucessorEquivMenorIgual}
     Para quaisquer $m, n \in \omega$, $m < S(n)$ se e somente se $m \leq n$.
 \end{lemma}
 \begin{proof}
@@ -45,7 +45,7 @@ Por isso, parece natural definir que a ordem dos números naturais é dada pela 
 \end{proof}
 Veremos que a ordem dos números naturais é uma ordem total.
 Iniciaremos pela transitividade.
-\begin{lemma}\label{lem:transitividadeDaOrdemNosNaturais}
+\begin{lemma}[$Z^--P$]\label{lem:transitividadeDaOrdemNosNaturais}
     Para quaisquer $l, m, n \in \omega$, se $l < m$ e $m < n$, então $l < n$.
 \end{lemma}
 \begin{proof}
@@ -66,7 +66,7 @@ Iniciaremos pela transitividade.
 \end{proof}
 
 Agora provaremos a irreflexibilidade da ordem dos números naturais.
-\begin{lemma}\label{lem:irreflexividadeDaOrdemNosNaturais}
+\begin{lemma}[$Z^--P$]\label{lem:irreflexividadeDaOrdemNosNaturais}
     Para todo $n \in \omega$, $n \not< n$.
 \end{lemma}
 \begin{proof}
@@ -85,7 +85,7 @@ Agora provaremos a irreflexibilidade da ordem dos números naturais.
 Resta demonstrar a totalidade da ordem dos números naturais.
 Para tanto, precisaremos de um lema auxiliar dual ao Lema~\ref{lem:menorQueSucessorEquivMenorIgual}.
 
-\begin{lemma}\label{lem:sucessorMenorIgualEquivMenorQue}
+\begin{lemma}[$Z^--P$]\label{lem:sucessorMenorIgualEquivMenorQue}
     Para quaisquer $n, m \in \omega$, $S(n) \leq m$ se e somente se $n < m$.
 \end{lemma}
 \begin{proof}
@@ -104,7 +104,7 @@ Para tanto, precisaremos de um lema auxiliar dual ao Lema~\ref{lem:menorQueSuces
 \end{proof}
 
 Agora estamos prontos para provar a totalidade da ordem dos números naturais.
-\begin{proposition}\label{prop:ordemTotalEstritaNosNaturais}
+\begin{proposition}[$Z^-$]\label{prop:ordemTotalEstritaNosNaturais}
     $(\omega, <)$ é uma ordem total estrita.
 \end{proposition}
 \begin{proof}
@@ -127,7 +127,7 @@ Agora estamos prontos para provar a totalidade da ordem dos números naturais.
 Nosso próximo passo é provar que a ordem dos números naturais é uma boa ordem.
 Primeiro provaremos que o conjunto dos números naturais satisfaz o esquema da indução forte.
 
-\begin{proposition}\label{prop:inducaoForteNosNaturais}
+\begin{proposition}[$Z^--P$]\label{prop:inducaoForteNosNaturais}
     Seja $A\subseteq \omega$.
     Se $\forall n \in \omega\, ((\forall m < n\, (m \in A)) \rightarrow n \in A)$, então $A = \omega$.
 \end{proposition}
@@ -156,7 +156,7 @@ Primeiro provaremos que o conjunto dos números naturais satisfaz o esquema da i
 \end{proof}
 
 Disso, decorre o esquema da indução forte.
-\begin{proposition}\label{prop:esquemaDaInducaoForte}
+\begin{proposition}[$Z^--P$](Esquema da indução forte)\label{prop:esquemaDaInducaoForte}
     Considere uma fórmula $\phi(x, t_1, \dots, t_n)$.
 
     O seguinte é um teorema:
@@ -176,7 +176,7 @@ Disso, decorre o esquema da indução forte.
     Da Proposição~\ref{prop:inducaoForteNosNaturais} e da hipótese, segue imediatamente que $A=\omega$.
 \end{proof}
 
-\begin{corollary}\label{cor:boaOrdemDosNaturais}\index{ordem!boa!dos números naturais}
+\begin{corollary}[$Z^-$]\label{cor:boaOrdemDosNaturais}\index{ordem!boa!dos números naturais}
     $(\omega, <)$ é uma boa ordem.
 \end{corollary}
 \begin{proof}
@@ -198,7 +198,7 @@ Disso, decorre o esquema da indução forte.
 Conforme veremos até o fim deste capítulo, as seguintes propriedades caracterizam a ordem dos números naturais a menos de isomorfismo.
 Para provar tal fato, é necessário já termos em mãos o Teorema da Recursão, que será apresentado em breve.
 
-\begin{proposition}\label{prop:caracterizacaoBasicaDaOrdemNosNaturais}
+\begin{proposition}[$Z^-$]\label{prop:caracterizacaoBasicaDaOrdemNosNaturais}
     A ordem dos números naturais satisfaz as seguintes propriedades:
     \begin{enumerate}[label=(\roman*)]
         \item $\omega$ não possui elemento máximo;
@@ -226,6 +226,6 @@ Para provar tal fato, é necessário já termos em mãos o Teorema da Recursão,
 \end{proof}
 
 \subsection*{Exercícios}
-\begin{exercise}
+\begin{exercise}[$Z^--P$]\label{ex:sucessorCrescente}
     Mostre que a função $S:\omega \to \omega$ é crescente, ou seja, para quaisquer $m, n \in \omega$, se $m < n$, então $S(m) < S(n)$.
 \end{exercise}

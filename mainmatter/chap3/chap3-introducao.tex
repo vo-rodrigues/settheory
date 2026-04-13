@@ -12,7 +12,7 @@ Mesmo fora da matemática, é possível comparar quantidades sem recorrer previa
 Para registrar a quantidade de ovelhas em um pasto, pode-se levar um saco de pedras e, para cada ovelha contada, colocar uma pedra no saco.
 Mais tarde, ao comparar as ovelhas com as pedras, verifica-se se a correspondência é exata.
 
-\begin{definition}\label{def:equipotencia}\index{equipotência}
+\begin{definition}[$Z^--P$]\label{def:equipotencia}\index{equipotência}
     Sejam $A$, $B$ conjuntos.
     Dizemos que $A$ e $B$ possuem o mesmo número de elementos (ou que são equipotentes) se existe uma função bijetora de $A$ em $B$.
     Escrevemos $A \approx B$ para denotar que $A$ e $B$ são equipotentes.
@@ -21,7 +21,7 @@ Mais tarde, ao comparar as ovelhas com as pedras, verifica-se se a correspondên
 \end{definition}
 
 Seguem as propriedades mais elementares da equipotência.
-\begin{proposition}\label{prop:equipotenciaEquivalencia}
+\begin{proposition}[$Z^-$]\label{prop:equipotenciaEquivalencia}
     A equipotência é uma relação de equivalência no universo dos conjuntos.
     Mais formalmente:
     \begin{enumerate}[label=(\alph*)]
@@ -49,7 +49,7 @@ Uma primeira ideia para definir-se, digamos, o número $1$, seria adotar uma est
 Ou seja, o ``conjunto de todos os singletos''.
 De forma análoga, o número $2$ seria o ``conjunto de todos os pares não ordenados que não são singletos'', e ``assim por diante''.
 Não está imediatamente claro o que o ``e assim por diante'' significaria, mas não divagaremos sobre isso, uma vez que o Lema~\ref{lem:naoExisteConjuntoDeSingletos} nos mostra que essa estratégia é invariavelmente condenada ao fracasso.
-\begin{lemma}\label{lem:naoExisteConjuntoDeSingletos}
+\begin{lemma}[$Z^--P$]\label{lem:naoExisteConjuntoDeSingletos}
     Não existe um conjunto $A$ tal que, para todo conjunto $x$, $\{x\} \in A$.
 \end{lemma}
 
@@ -103,7 +103,7 @@ Porém, tal definição é informal, devido às reticências.
 
 Porém, parece que encontramos um mecanismo de ``escolher o próximo número'', que é formalizado pela definição a seguir.
 
-\begin{definition}\label{def:sucessor}\index{sucessor}
+\begin{definition}[$Z^--P$]\label{def:sucessor}\index{sucessor}
     Dado um conjunto $x$, o \emph{sucessor} de $x$ é o conjunto $S(x) = x \cup \{x\}$.
 \end{definition}
 
@@ -111,14 +111,14 @@ Com isso em mente, como definir o conjunto dos números naturais?
 Ora, tal conjunto deve ter o $0$, e, sempre que tem um conjunto $x$, deve ter seu sucessor $S(x)$.
 Um conjunto com essa propriedade é chamado de conjunto indutivo.
 
-\begin{definition}\label{def:conjuntoIndutivo}\index{conjunto indutivo}
+\begin{definition}[$Z^--P$]\label{def:conjuntoIndutivo}\index{conjunto indutivo}
     Dizemos que um conjunto $A$ é \textbf{indutivo} se $0 \in A$ e, para todo $x \in A$, $S(x) \in A$.
 \end{definition}
 
 Com os axiomas que temos até então não é possível garantir a existência de um conjunto indutivo.
 O Axioma do Infinito diz precisamente que um tal conjunto existe.
 
-\begin{axiom}\label{ax:infinito}\index{axioma!do infinito}
+\begin{axiom}[Axioma do Infinito]\label{ax:infinito}\index{axioma!do infinito}
     Existe um conjunto indutivo.
     Formalmente,
     \[
@@ -144,7 +144,7 @@ Porém, nada garante que ele não contenha outros elementos além destes.
 
 Buscaremos então definir o \emph{menor conjunto indutivo}, ou seja, um conjunto indutivo que está contido em todos os outros, mínimo com relação à inclusão $\subseteq$.
 
-\begin{definition}\label{def:numerosNaturais}\index{conjunto dos números naturais}
+\begin{definition}[$Z^--P$]\label{def:numerosNaturais}\index{conjunto dos números naturais}
     O conjunto dos números naturais, denotado por $\omega$, é o único conjunto $J$ tal que
     \[
         \forall x\, \bigl(x \in J \leftrightarrow \forall I\, (I \text{ é indutivo} \rightarrow x \in I)\bigr).
@@ -153,7 +153,7 @@ Buscaremos então definir o \emph{menor conjunto indutivo}, ou seja, um conjunto
 
 Vamos mostrar que tal conjunto existe e é único.
 
-\begin{lemma}\label{lem:existenciaEUnicidadeDeOmega}
+\begin{lemma}[$Z^--P$]\label{lem:existenciaEUnicidadeDeOmega}
     Existe um único conjunto $J$ como na Definição~\ref{def:numerosNaturais}.
 \end{lemma}
 \begin{proof}
@@ -182,7 +182,7 @@ Vamos mostrar que tal conjunto existe e é único.
 
 Vejamos algumas propriedades básicas de $\omega$.
 
-\begin{proposition}\label{prop:omegaEhIndutivo}
+\begin{proposition}[$Z^--P$]\label{prop:omegaIndutivo}
     $\omega$ é um conjunto indutivo.
 \end{proposition}
 \begin{proof}
@@ -195,7 +195,7 @@ Vejamos algumas propriedades básicas de $\omega$.
     Assim, $\forall I\, (I \text{ é indutivo} \rightarrow S(x) \in I)$, e, portanto, $S(x)\in\omega$.
 \end{proof}
 
-\begin{proposition}\label{prop:omegaEhUnicoSubconjuntoIndutivoDeSi}
+\begin{proposition}[$Z^--P$]\label{prop:omegaEhUnicoSubconjuntoIndutivoDeSi}
     O único subconjunto indutivo de $\omega$ é $\omega$.
 \end{proposition}
 
@@ -207,7 +207,7 @@ Vejamos algumas propriedades básicas de $\omega$.
 
 Agora é possível demonstrar que $\omega$ satisfaz o esquema da indução.
 
-\begin{proposition}\label{prop:esquemaDaInducaoNosNaturais}\index{indução}
+\begin{proposition}[$Z^--P$](Esquema da Indução)\label{prop:esquemaDaInducaoNosNaturais}\index{indução}
     Considere uma fórmula $\phi(x, t_1, \dots, t_n)$.
 
     O seguinte é um teorema:
@@ -241,7 +241,7 @@ Agora é possível demonstrar que $\omega$ satisfaz o esquema da indução.
 \end{proof}
 
 Podemos agora formalmente definir os $10$ primeiros números naturais:
-\begin{definition}\label{def:primeirosNaturais}
+\begin{definition}[$Z^--P$]\label{def:primeirosNaturais}
     \begin{align*}
         0 &= \emptyset,\\
         1 &= S(0) = \{0\},\\
@@ -256,9 +256,11 @@ Podemos agora formalmente definir os $10$ primeiros números naturais:
     \end{align*}
 \end{definition}
 
+Uma vez desenvolvida a aritmética básica dos números naturais, é possível formalizar o sistema decimal posicional usual a partir da concatenação destes símbolos.
+
 Finalizaremos esta subseção com um fato básico sobre os números naturais: todo número natural ou é $0$, ou é o sucessor de algum número natural.
 
-\begin{proposition}\label{prop:todoNaturalEhZeroOuSucessor}
+\begin{proposition}[$Z^--P$]\label{prop:todoNaturalEhZeroOuSucessor}
     Para todo $n \in \omega$, $n=0$ ou existe $m \in \omega$ tal que $n=S(m)$.
 \end{proposition}
 \begin{proof}

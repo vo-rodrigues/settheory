@@ -88,14 +88,14 @@ Tal raciocínio é formalizado na prova do Teorema da Recursão, enunciado abaix
 
 Antes, introduziremos uma notação.
 
-\begin{definition}\label{def:familiasDeFuncoesParametrizadas}
+\begin{definition}[$Z^-$]\label{def:familiasDeFuncoesParametrizadas}
     Sejam $A, B, C$ conjuntos.
     Dada $f: A\times B\to C$ e $a\in A$, definimos $f_a: B\to C$ por $f_a(b)=f(a, b)$.
 
     Reciprocamente, dada uma família de funções $f_a: B\to C$ indexada por $a\in A$, definimos $f: A\times B\to C$ por $f(a, b)=f_a(b)$.
 \end{definition}
 
-\begin{theorem}[Teorema da Recursão]\label{thm:teoremaDaRecursao}\index{teorema!da recursão}
+\begin{theorem}[$Z^-$](Teorema da Recursão)\label{thm:teoremaDaRecursao}\index{teorema!da recursão}
     Sejam $A, P$ conjuntos e $G: P\times A^{<\omega}\to A$ uma função.
     Então existe uma única função $f:P\times \omega\to A$ tal que, para todo $p \in P$ e $n\in \omega$, $f_p(n)=G(p, f_p\restriction n)$.
 \end{theorem}
@@ -159,6 +159,6 @@ Antes, introduziremos uma notação.
 \end{proof}
 
 \section*{Exercícios}
-\begin{exercise}[Teorema da recursão sem parâmetros]
+\begin{exercise}[$Z^-$](Teorema da recursão sem parâmetros)
     Prove que para todo conjunto $A$ e para todo $G: A^{<\omega}\to A$, existe uma única função $f:\omega\to A$ tal que, para todo $n\in \omega$, $f(n)=G(f\restriction n)$.
 \end{exercise}

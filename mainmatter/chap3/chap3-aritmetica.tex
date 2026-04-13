@@ -7,7 +7,7 @@
 De posse do Teorema da Recursão, podemos definir as operações básicas dos números naturais.
 Nesta seção, introduziremos a adição, a subtração, a multiplicação e a potenciação de números naturais.
 
-\begin{proposition}\label{prop:existenciaDaAdicao}
+\begin{proposition}[$Z^-$]\label{prop:existenciaDaAdicao}
     Existe uma única função $+: \omega^2\to \omega$ tal que:
     \begin{enumerate}[label=(\roman*)]
         \item $n+0=n$ para todo $n \in \omega$;
@@ -37,7 +37,7 @@ Nesta seção, introduziremos a adição, a subtração, a multiplicação e a p
     Assim, $f(m, S(n))=S(f(m, n))=S(h(m, n))=h(m, S(n))$, o que completa a indução.
 \end{proof}
 
-\begin{definition}\label{def:adicao}\index{adição}
+\begin{definition}[$Z^-$]\label{def:adicao}\index{adição}
     A \emph{adição} é a única função $+: \omega\times \omega\to \omega$ como na Proposição~\ref{prop:existenciaDaAdicao}.
 \end{definition}
 
@@ -49,7 +49,7 @@ Dessa forma, $(m+n)+1=m+(n+1)$ para todo $m, n \in \omega$.
 O nosso próximo objetivo é definir a subtração de números naturais.
 
 Para isso, utilizaremos a seguinte proposição.
-\begin{proposition}\label{prop:monotonicidadeEstritaDaAdicao}
+\begin{proposition}[$Z^-$]\label{prop:monotonicidadeEstritaDaAdicao}
     Para todos $m, k, k'$ números naturais, se $k<k'$ então $m+k<m+k'$.
 \end{proposition}
 \begin{proof}
@@ -62,7 +62,7 @@ Para isso, utilizaremos a seguinte proposição.
     Caso $k=k'$, vale $m+k=m+k'<S(m+k')=m+(k'+1)$, o que completa a indução.
 \end{proof}
 
-\begin{proposition}\label{prop:existenciaDaDiferencaNosNaturais}
+\begin{proposition}[$Z^-$]\label{prop:existenciaDaDiferencaNosNaturais}
     Para todos $n, m$ números naturais, se $m\leq n$, então existe um único $k \in \omega$ tal que $n=m+k$.
 \end{proposition}
 \begin{proof}
@@ -82,7 +82,7 @@ Para isso, utilizaremos a seguinte proposição.
     Assim, $n+1=(m+k)+1=m+(k+1)$, o que completa a indução.
 \end{proof}
 
-\begin{definition}\label{def:subtracaoNosNaturais}\index{subtração}
+\begin{definition}[$Z^-$]\label{def:subtracaoNosNaturais}\index{subtração}
     Sejam $m\leq n$ números naturais.
     Define-se a \emph{subtração} $n-m$ como o único número natural $k$ tal que $n=m+k$.
 \end{definition}
@@ -90,7 +90,7 @@ Para isso, utilizaremos a seguinte proposição.
 Abaixo, definiremos produto e potência de números naturais.
 Deixaremos a prova de todas as propriedades usuais dessas operações como exercício ao leitor.
 
-\begin{proposition}\label{prop:existenciaDaMultiplicacao}
+\begin{proposition}[$Z^-$]\label{prop:existenciaDaMultiplicacao}
     Existe uma única função $\cdot: \omega\times \omega\to \omega$ tal que:
     \begin{enumerate}[label=(\roman*)]
         \item $m\cdot 0=0$ para todo $m \in \omega$;
@@ -117,11 +117,11 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
     Assim, $f(m, n+1)=f(m, n)+m=h(m, n)+m=h(m, n+1)$, o que completa a indução.
 \end{proof}
 
-\begin{definition}\label{def:multiplicacao}\index{multiplicação}
+\begin{definition}[$Z^-$]\label{def:multiplicacao}\index{multiplicação}
     A \emph{multiplicação} é a única função $\cdot: \omega\times \omega\to \omega$ como na Proposição~\ref{prop:existenciaDaMultiplicacao}.
 \end{definition}
 
-\begin{proposition}\label{prop:existenciaDaPotenciacao}
+\begin{proposition}[$Z^-$]\label{prop:existenciaDaPotenciacao}
     Existe uma única função $\exp: \omega\times \omega\to \omega$ tal que:
     \begin{enumerate}[label=(\roman*)]
         \item $\exp(m, 0)=1$ para todo $m \in \omega$;
@@ -149,12 +149,13 @@ Deixaremos a prova de todas as propriedades usuais dessas operações como exerc
     Assim, $f(m, n+1)=f(m, n)\cdot m=h(m, n)\cdot m=h(m, n+1)$, o que completa a indução.
 \end{proof}
 
-\begin{definition}\label{def:potenciacao}\index{potenciação}
+\begin{definition}[$Z^-$]\label{def:potenciacao}\index{potenciação}
     A \emph{potenciação} é a única função $\exp: \omega\times \omega\to \omega$ como na Proposição~\ref{prop:existenciaDaPotenciacao}.
     Denotamos $\exp(m, n)$ por $m^n$.
 \end{definition}
 
 \section*{Exercícios}
+Os exercícios dessa seção devem ser resolvidos em $Z^-$.
 
 \begin{exercise}
     Prove que, para todo $m, n, p, k \in \omega$, valem as seguintes propriedades.
