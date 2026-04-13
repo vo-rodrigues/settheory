@@ -8,7 +8,7 @@ Ao se contar uma coleção finita, de, digamos, 35 elementos, o que se faz, corr
 
 Dessa forma, podemos definir a noção de conjunto finito.
 
-\begin{definition}\label{def:conjuntoFinito}\index{finitude}\index{infinitude}
+\begin{definition}[$Z^--P$]\label{def:conjuntoFinito}\index{finitude}\index{infinitude}
     Dizemos que um conjunto $A$ é \emph{finito} se existe um número natural $n$ tal que $A\approx n$.
     Nesse caso, dizemos que a cardinalidade de $A$ é $n$.
     Caso contrário, dizemos que $A$ é \emph{infinito}.
@@ -21,7 +21,7 @@ Veremos que, se um conjunto é finito, o natural $n$ com o qual ele é equipoten
 
 Primeiro provaremos o seguinte lema.
 
-\begin{lemma}\label{lem:subconjuntoProprioDeNaturalNaoEquipotente}
+\begin{lemma}[$Z^-$]\label{lem:subconjuntoProprioDeNaturalNaoEquipotente}
     Para todo $n \in \omega$ e para todo $X\subseteq n$, se $X\neq n$, então $X\not\approx n$.
 \end{lemma}
 \begin{proof}
@@ -62,7 +62,7 @@ Primeiro provaremos o seguinte lema.
 \end{proof}
 
 
-\begin{corollary}Sobre finitude, temos o seguinte.\label{cor:finitoCardinal}
+\begin{corollary}[$Z^-$]Sobre finitude, temos o seguinte.\label{cor:finitoCardinal}
     \begin{enumerate}[label=(\alph*)]
         \item Para todos $n, m\in \omega$, $n\preceq m$ se, e somente se $n\leq m$.
         \item Para todos $n, m\in \omega$, $n\approx m$ se, e somente se $n=m$.
@@ -93,7 +93,7 @@ Primeiro provaremos o seguinte lema.
     Porém, $n\subsetneq n+1\subseteq \omega$, e, assim, pelo Teorema de Cantor-Schröder-Bernstein, $n+1\approx \omega\approx n$, um absurdo por (c). 
 \end{proof}
 
-\begin{lemma}\label{prop:finitoBoaOrdem}
+\begin{lemma}[$Z^-$]\label{prop:finitoBoaOrdem}
     Seja $(A, <)$ uma ordem total estrita não vazia tal que $A$ é finito.
     Então $A$ possui um elemento mínimo e um elemento máximo.
     Em particular, toda ordem total estrita finita é uma boa ordem.
@@ -116,7 +116,7 @@ Primeiro provaremos o seguinte lema.
     Caso contrário, $M$ é o elemento máximo de $A$.
 \end{proof}
 
-\begin{proposition}\label{prop:boaOrdemFinitaIsomorfaANatural}
+\begin{proposition}[$Z^-$]\label{prop:boaOrdemFinitaIsomorfaANatural}
     Seja $(A, <)$ uma ordem total estrita tal que $A$ é finito.
     Então existe um único número natural $n$ tal que $(A, <)$ é isomorfo à $(n, <)$.
 \end{proposition}
@@ -144,6 +144,7 @@ Verifica-se facilmente que $f'$ é um isomorfismo de ordens de $(A, <)$ em $(n+1
 
 
 \subsection*{Exercícios}
+Todos os exercícios devem ser resolvidos em $Z^-$.
 \begin{exercise}
     Prove que para todo $n\in\omega$ e todo $X\subseteq n$, $X$ é finito.
 \end{exercise}

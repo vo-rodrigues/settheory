@@ -7,7 +7,7 @@ Vimos ainda que tal relação constitui uma relação de equivalência no univer
 
 Nesta seção, estudaremos com mais profundidade aquela noção.
 
-\begin{definition}\label{def:comparacaoDeCardinalidades}\index{cardinalidade!menor ou igual}\index{cardinalidade!estritamente menor}
+\begin{definition}[$Z^--P$]\label{def:comparacaoDeCardinalidades}\index{cardinalidade!menor ou igual}\index{cardinalidade!estritamente menor}
     Dizemos que a cardinalidade de um conjunto $A$ é menor ou igual à cardinalidade de um conjunto $B$ (escrevemos $A\preceq B$ --- teremos uma notação mais usual no futuro) se existe uma função injetora de $A$ em $B$.
 
     Dizemos que a cardinalidade de um conjunto $A$ é menor do que a cardinalidade de um conjunto $B$ (escrevemos $A\prec B$) se $A\preceq B$ e $A\not\approx B$.
@@ -15,7 +15,7 @@ Nesta seção, estudaremos com mais profundidade aquela noção.
 
 O Lema~\ref{lem:preOrdemDePreceq}, cuja demonstração é deixada como exercício ao leitor, diz que $\preceq$ é uma pré-ordem no universo dos conjuntos.
 
-\begin{lemma}\label{lem:preOrdemDePreceq}
+\begin{lemma}[$Z^-$]\label{lem:preOrdemDePreceq}
     Para quaisquer conjuntos $A$, $B$ e $C$, temos:
     \begin{enumerate}[label=(\roman*)]
         \item $A\preceq A$;
@@ -31,7 +31,7 @@ O Teorema de Cantor-Schröder-Bernstein diz que a relação de equivalência ind
 
 Para prová-lo com facilidade, utilizaremos o seguinte lema.
 
-\begin{lemma}\label{lem:schroderBernsteinAuxiliar}
+\begin{lemma}[$Z^-$]\label{lem:schroderBernsteinAuxiliar}
     Sejam $A, B, A'$ conjuntos tais que $A'\subseteq B\subseteq A$.
     Se $A\approx A'$, então $A\approx B$.    
 \end{lemma}
@@ -94,7 +94,7 @@ Para prová-lo com facilidade, utilizaremos o seguinte lema.
     Portanto, $g$ é uma função bijetora de $A$ em $B$, e, assim, $A\approx B$.
 \end{proof}
 
-\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantorSchroederBernstein}\index{teorema!de Cantor-Schröder-Bernstein}
+\begin{theorem}[$Z^-$](Cantor-Schröder-Bernstein)\label{thm:cantorSchroederBernstein}\index{teorema!de Cantor-Schröder-Bernstein}
     Para quaisquer conjuntos $A$ e $B$, se $A\preceq B$ e $B\preceq A$, então $A\approx B$.
 \end{theorem}
 \begin{proof}
@@ -110,7 +110,7 @@ Para prová-lo com facilidade, utilizaremos o seguinte lema.
 
 O axioma da potência nos garante que a pré-ordem $\preceq$ não possui elementos maximais.
 
-\begin{theorem}[Cantor]\label{thm:cantor}\index{teorema!de Cantor}
+\begin{theorem}[$Z^-$](Cantor)\label{thm:cantor}\index{teorema!de Cantor}
     Para todo conjunto $A$, $A\prec \mathcal P(A)$.
 \end{theorem}
 \begin{proof}
@@ -138,14 +138,14 @@ O axioma da potência nos garante que a pré-ordem $\preceq$ não possui element
     Prove o Lema~\ref{lem:preOrdemDePreceq}.
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}[$Z^-$]
 Seja $A$ um conjunto e $F:\mathcal P(A)\to \mathcal{P}(A)$ uma função tal que, para todos $X, Y\subseteq A$, se $X\subseteq Y$, então $F(X)\subseteq F(Y)$.
 Prove que existe um conjunto $X\subseteq A$ tal que $F(X)=X$.
 
 Sugestão: Considere $S=\{Y\subseteq A : F(Y)\subseteq Y\}$.
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}[$Z^--I$]
 Prove o Teorema de Cantor-Schröder-Bernstein sem utilizar Axioma do Infinito.
 
 Sugestão: prove primeiro o Lema~\ref{lem:schroderBernsteinAuxiliar} sem fazer uso do Axioma do Infinito.
@@ -158,26 +158,26 @@ Fixe $C$ tal que $F(C)=C$ e defina $g: A\to B$ bijetora análoga à da prova ori
 \begin{exercise}
     Sejam $A$, $A'$, $B$, $B'$ e $C$ conjuntos. Prove que:
     \begin{enumerate}[label=(\alph*)]
-        \item se $A\cap B=\emptyset$, $A'\cap B'=\emptyset$, $A\approx A'$ e $B\approx B'$, então $A\cup B \approx A'\cup B'$;
+        \item \,[$Z^--P$] se $A\cap B=\emptyset$, $A'\cap B'=\emptyset$, $A\approx A'$ e $B\approx B'$, então $A\cup B \approx A'\cup B'$;
 
-        \item se $A\approx A'$ e $B\approx B'$, então $A\times B \approx A'\times B'$;
+        \item \,[$Z^-$] se $A\approx A'$ e $B\approx B'$, então $A\times B \approx A'\times B'$;
         \item prove os itens acima com $\approx$ substituído por $\preceq$.
-        \item se $A\approx A'$ e $B\approx B'$, então $A^B \approx (A')^{B'}$;
+        \item \,[$Z^-$] se $A\approx A'$ e $B\approx B'$, então $A^B \approx (A')^{B'}$;
 
 
-        \item $A\times A \approx A^2$, onde $A^2$ denota o conjunto das funções de $2$ em $A$;
-        \item $A^1\approx A$, onde $A^1$ denota o conjunto das funções de $1$ em $A$;
-        \item $(A\times B)\times C \approx A\times (B\times C)$;
+        \item \,[$Z^-$] $A\times A \approx A^2$, onde $A^2$ denota o conjunto das funções de $2$ em $A$;
+        \item \,[$Z^-$] $A^1\approx A$, onde $A^1$ denota o conjunto das funções de $1$ em $A$;
+        \item \,[$Z^-$] $(A\times B)\times C \approx A\times (B\times C)$;
 
-        \item $A\times B \approx B\times A$;
+        \item \,[$Z^-$] $A\times B \approx B\times A$;
 
-        \item $A^{B\times C} \approx (A^B)^C$;
+        \item \,[$Z^-$] $A^{B\times C} \approx (A^B)^C$;
 
-        \item $(A\times B)^C \approx A^C \times B^C$;
+        \item \,[$Z^-$] $(A\times B)^C \approx A^C \times B^C$;
 
-        \item se $B\cap C=\emptyset$, então $A^{B\cup C} \approx A^B \times A^C$;
+        \item \,[$Z^-$] se $B\cap C=\emptyset$, então $A^{B\cup C} \approx A^B \times A^C$;
 
-        \item $2^A \approx \mathcal P(A)$.
-        \item $A\prec 2^A$.
+        \item \,[$Z^-$] $2^A \approx \mathcal P(A)$.
+        \item \,[$Z^-$] $A\prec 2^A$.
     \end{enumerate}
 \end{exercise}

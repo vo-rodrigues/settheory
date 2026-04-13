@@ -1,11 +1,15 @@
 \section{Conjuntos enumeráveis}\label{sec:conjuntosEnumeraveis}
 \index{conjunto enumerável}
 
-\begin{definition}\label{def:enumerabilidade}\index{enumerabilidade}
+O conceito de conjunto enumerável é uma generalização do conceito de conjunto finito.
+Alguns conjuntos infinitos são enumeráveis.
+Intuitivamente, eles são ``infinitos, mas não muito grandes'', uma vez que podemos contá-los utilizando números naturais.
+
+\begin{definition}[$Z^--P$]\label{def:enumerabilidade}\index{enumerabilidade}
     Um conjunto $A$ é \emph{enumerável} se é finito, ou se é equipotente a $\omega$.
 \end{definition}
 
-\begin{lemma}\label{lem:subconjuntoDeOmegaEhEnumeravel}
+\begin{lemma}[$Z^-$]\label{lem:subconjuntoDeOmegaEhEnumeravel}
     Todo subconjunto de $\omega$ é enumerável.
 \end{lemma}
 \begin{proof}
@@ -34,7 +38,7 @@
     Como $X\subseteq \omega$, segue do Teorema de Cantor-Schröder-Bernstein que $X\approx \omega$, e, portanto, $X$ é enumerável.
 \end{proof}
 
-\begin{proposition}\label{prop:caracterizacaoDaEnumerabilidade}
+\begin{proposition}[$Z^-$]\label{prop:caracterizacaoDaEnumerabilidade}
 Seja $A$ um conjunto.
 São equivalentes:
 \begin{enumerate}[label=(\alph*)]
@@ -50,7 +54,7 @@ São equivalentes:
     Em qualquer caso, como $A\approx X$, segue a tese.
 \end{proof}
 
-\begin{proposition}\label{prop:omegaQuadradoEhEnumeravel}
+\begin{proposition}[$Z^-$]\label{prop:omegaQuadradoEhEnumeravel}
     $\omega\times \omega$ é infinito enumerável.
 \end{proposition}
 \begin{proof}
@@ -84,6 +88,8 @@ São equivalentes:
     Logo, $f(m,n)=l$.
 \end{proof}
 \subsection*{Exercícios}
+
+Todos os exercícios devem ser resolvidos em $Z^-$.
 
 \begin{exercise}
     Mostre que a função $f$ construída na prova do Lema~\ref{lem:subconjuntoDeOmegaEhEnumeravel} no caso em que $X$ é infinito é uma função bijetora de $\omega$ em $X$.
