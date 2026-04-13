@@ -12,3 +12,5 @@ equipotência
 antissimetria
 equipotente
 transfinita
+Fraenkel
+Skolem
