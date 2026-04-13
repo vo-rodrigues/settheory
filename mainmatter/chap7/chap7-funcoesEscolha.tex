@@ -1,17 +1,23 @@
 \section{Funções Escolha}\label{sec:funcoesEscolha}
-\index{função escolha}
+\index{função escolha|see{função de escolha}}\index{função de escolha}
 
 Frequentemente, em matemática, temos uma família indexada $(A_i: i\in I)$ de conjuntos não vazios e queremos ``fixar um elemento $a_i \in A_i$ para cada $i\in I$''.
 A Teoria dos Conjuntos, com os axiomas que temos até então, não é suficiente para garantir a existência de uma tal família $(a_i: i\in I)$ em qualquer tal situação.
 
 Nesta seção, vamos estudar tais famílias.
 
-\begin{definition}\label{def:funcaoEscolha}\index{função escolha}
-    Seja $\mathcal C$ uma coleção de conjuntos.
-    Uma \emph{função escolha} para $\mathcal C$ é uma função $c:\mathcal C$ de domínio $\mathcal C$ tal que, para cada $a\in \mathcal C$ não vazio, $c(a)\in a$.
+\begin{definition}\label{def:funcaoEscolha}\index{função de escolha}
+    Seja $\mathcal C$ uma coleção de conjuntos não vazios.
+    Uma \emph{função escolha} para $\mathcal C$ é uma função $c:\mathcal C$ de domínio $\mathcal C$ tal que, para cada $a\in \mathcal C$, $c(a)\in a$.
 \end{definition}
 
-Note que, se $a\in \mathcal C$ é vazio, não há nenhuma restrição sobre o valor de $c(a)$.
+Na Seção~\ref{sec:relacoesDeEquivalencia}, foi definida a noção de partição.
+Lembremos que, nesse texto, uma partição de um conjunto $X$ é uma coleção $P$ de subconjuntos não vazios de $X$ dois-a-dois disjuntos e cuja união é $X$.
+
+\begin{definition}
+    Seja $X$ um conjunto e $P$ uma partição de $X$.
+    Uma \emph{função escolha} para $P$ é uma função $c:P\to X$ tal que, para cada $a\in P$, $c(a)\in a$.
+\end{definition}
 
 \begin{example}
     Seja $\mathcal C=\{\{1, 2\}, \{3, 4\}, \emptyset\}$.
