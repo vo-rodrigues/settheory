@@ -60,3 +60,18 @@ Assim, temos o seguinte corolário.
         \item Todo conjunto é bem-ordenável.
     \end{enumerate}
 \end{corollary}
+
+
+\begin{corollary}[$ZFC^-$]\label{cor:cardinalBemOrdenavel}
+    Para todo conjunto $A$, seu cardinal $|A|$ está bem definido.
+\end{corollary}
+
+\begin{corollary}
+    Sejam $A, B$ conjuntos.
+    Se existe $f: A\to B$ uma função sobrejetora, então $|B|\leq |A|$.
+\end{corollary}
+\begin{proof}
+    Seja $R$ uma boa ordem em $A$.
+    Para cada $b\in B$, seja $g(b)=\min_R f^{-1}[\{b\}]$.
+    Então $g:B\to A$ é uma função injetora, pois para todos $b, b'\in B$, se $g(b)=g(b')$ então $b=f(g(b))=f(g(b'))=b'$.
+\end{proof}
