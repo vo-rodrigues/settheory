@@ -6,49 +6,51 @@ A Teoria dos Conjuntos, com os axiomas que temos até então, não é suficiente
 
 Nesta seção, vamos estudar tais famílias.
 
-\begin{definition}\label{def:funcaoEscolha}\index{função de escolha}
+\begin{definition}[$Z^--P$]\label{def:funcaoEscolha}\index{função de escolha}
     Seja $\mathcal C$ uma coleção de conjuntos não vazios.
-    Uma \emph{função escolha} para $\mathcal C$ é uma função $c:\mathcal C$ de domínio $\mathcal C$ tal que, para cada $a\in \mathcal C$, $c(a)\in a$.
+    Uma \emph{função escolha} para $\mathcal C$ é uma função $c$ de domínio $\mathcal C$ tal que, para cada $a\in \mathcal C$, $c(a)\in a$.
 \end{definition}
+\begin{example}[$Z^--P$]
+    Seja $\mathcal C=\{\{1, 2\}, \{3, 4\}\}$.
 
-Na Seção~\ref{sec:relacoesDeEquivalencia}, foi definida a noção de partição.
-Lembremos que, nesse texto, uma partição de um conjunto $X$ é uma coleção $P$ de subconjuntos não vazios de $X$ dois-a-dois disjuntos e cuja união é $X$.
-
-\begin{definition}
-    Seja $X$ um conjunto e $P$ uma partição de $X$.
-    Uma \emph{função escolha} para $P$ é uma função $c:P\to X$ tal que, para cada $a\in P$, $c(a)\in a$.
-\end{definition}
-
-\begin{example}
-    Seja $\mathcal C=\{\{1, 2\}, \{3, 4\}, \emptyset\}$.
-
-    Temos que $c:\mathcal C\to \{1, 2, 3, 7\}$ dada por
+    Temos que $c:\mathcal C\to \{1, 2, 3, 4\}$ dada por
 
     \[
         c(a) = \begin{cases}
             1, & \text{se } a=\{1, 2\}\\
             3, & \text{se } a=\{3, 4\}\\
-            7, & \text{se } a=\emptyset
         \end{cases}
     \]
     é uma função escolha para $\mathcal C$.
 \end{example}
+Na Seção~\ref{sec:relacoesDeEquivalencia}, foi definida a noção de partição.
+Lembremos que, nesse texto, uma partição de um conjunto $X$ é uma coleção $P$ de subconjuntos não vazios de $X$ dois-a-dois disjuntos e cuja união é $X$.
 
-\begin{definition}
-    Seja $(A_i: i\in I)$ uma família indexada de conjuntos.
-    Uma \emph{função escolha (indexada)} para $(A_i: i\in I)$ é uma função $c$ de domínio $I$ tal que, para cada $i\in I$ tal que $A_i$ não é vazio, $c(i)\in A_i$.
+\begin{definition}[$Z^--P$]
+    Seja $X$ um conjunto e $P$ uma partição de $X$.
+    Um \emph{conjunto transversal} para $P$, ou \emph{conjunto de representantes} para $P$, é um subconjunto $T$ de $X$ tal que, para cada $a\in P$, $T\cap a$ é um conjunto unitário.
+\end{definition}
+
+\begin{example}[$Z^--P$]
+    Seja $X=\{1, 2, 3, 4\}$ e $P=\{\{1, 2\}, \{3, 4\}\}$.
+    Temos que $T=\{1, 3\}$ é um conjunto transversal para $P$, pois $T\cap \{1, 2\}=\{1\}$ e $T\cap \{3, 4\}=\{3\}$ são conjuntos unitários.
+\end{example}
+
+
+\begin{definition}[$Z^--P$]
+    Seja $(A_i: i\in I)$ uma família indexada de conjuntos não vazios.
+    Uma \emph{função escolha (indexada)} para $(A_i: i\in I)$ é uma função $c$ de domínio $I$ tal que, para cada $i\in I$, $c(i)\in A_i$.
 \end{definition}
 Novamente, notemos que se $A_i$ é vazio, não há nenhuma restrição sobre o valor de $c(i)$.
 
-\begin{example}
-    Seja $I=\{1, 2, 3\}$ e $A_1=\{1, 2\}$, $A_2=\{3, 4\}$ e $A_3=\emptyset$.
+\begin{example}[$Z^--P$]
+    Seja $I=\{1, 2\}$, $A_1=\{1, 2\}$ e $A_2=\{3, 4\}$.
 
-    Temos que $c:I\to \{1, 2, 3, 7\}$ dada por
+    Temos que $c:I\to \{1, 2, 3, 4\}$ dada por
     \[
         c(i) = \begin{cases}
-            1, & \text{se } i=1\\
+            2, & \text{se } i=1\\
             3, & \text{se } i=2\\
-            7, & \text{se } i=3
         \end{cases}
     \]
     é uma função escolha indexada para $(A_i: i\in I)$.
