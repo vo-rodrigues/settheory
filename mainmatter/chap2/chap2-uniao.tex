@@ -4,7 +4,7 @@
 \index{interseção}
 \index{diferença de conjuntos}
 Por enquanto, dispomos apenas dos axiomas não lógicos da Extensão, da Compreensão e do Par.
-Com esses axiomas, provamos a existência do conjunto vazio, conjuntos de um elemento e conjuntos de dois elementos.
+Com esses axiomas, provamos a existência do conjunto vazio, de conjuntos unitários e de conjuntos com dois elementos.
 
 Adiantamos, sem demonstração neste momento, o seguinte fato: apenas com esses axiomas, não é possível provar a existência de conjuntos com $3$ ou mais elementos.
 Embora a demonstração formal desse fato só seja dada mais adiante, sua plausibilidade já pode ser percebida intuitivamente:
@@ -28,7 +28,7 @@ Tal axioma consta na formulação de 1908 de Zermelo \cite{zermelo1908untersuchu
 \end{axiom}
 
 Esta formulação do Axioma da União garante a existência de um conjunto $y$ que tem como elementos todos os elementos dos elementos de $x$, mas não garante que $y$ tenha como elementos apenas os elementos dos elementos de $x$.
-Contudo, em presença do Esquema da Compreensão e do Axioma da Extensão, obtém-se a caracterização exata da união, como afirma o Lema~\ref{lem:existenciaDaUniao}.
+Contudo, na presença do Esquema da Compreensão e do Axioma da Extensão, obtém-se a caracterização exata da união, como afirma o Lema~\ref{lem:existenciaDaUniao}.
 A demonstração é deixada como exercício (ver Exercício~\ref{exr:existenciaDaUniao}).
 
 \begin{lemma}[$Z^--P$]\index{existência da união}\label{lem:existenciaDaUniao}
@@ -129,7 +129,7 @@ Para provar o Lema~\ref{lem:existenciaDaIntersecao}, basta o Axioma da Extensão
     \]
 \end{definition}
 
-Uma observação fundacional sem impactos práticos para o desenvolvimento da teoria, mas necessária, é a de que, de acordo com a Metadefinição~\ref{mdef:extensaoPorDefinicao}, para se introduzir por definição um símbolo funcional $n$-ário a uma teoria $T$, é necessário que $T\Vdash\forall x_1 \ldots \forall x_n \exists! y\, \varphi(x_1, \ldots, x_n, y)$, onde $\varphi$ é uma fórmula da linguagem de $T$.
+Uma observação fundacional sem impactos práticos para o desenvolvimento da teoria, mas necessária, é a de que, de acordo com a Metadefinição~\ref{mdef:extensaoPorDefinicao}, para se introduzir por definição um símbolo funcional $n$-ário em uma teoria $T$, é necessário que $T\vdash\forall x_1 \ldots \forall x_n \exists! y\, \varphi(x_1, \ldots, x_n, y)$, onde $\varphi$ é uma fórmula da linguagem de $T$.
 Feito isso, insere-se um símbolo funcional $n$-ário $f$ e o seguinte axioma definicional:
 \[
 \forall x_1 \ldots \forall x_n \forall y\, (y = f(x_1, \ldots, x_n) \leftrightarrow \varphi(x_1, \ldots, x_n, y)).
@@ -142,7 +142,7 @@ Em verdade, para $x=\emptyset$, tal afirmação é falsa (ver Exercício~\ref{ex
 
 Para que a introdução do símbolo funcional $\bigcap$ seja legítima dentro do nosso formalismo, é necessário atribuir algo arbitrário para $\bigcap \emptyset$, ainda que não valha que $\bigcap \emptyset$ seja o conjunto cujos elementos são exatamente os elementos comuns a todos os elementos de $\emptyset$.
 
-Essa ocorrência está longe de ser exclusiva deste caso em particular.
+Essa ocorrência está longe de ser exclusiva desse caso em particular.
 Por exemplo, mais adiante, definiremos a noção de número ordinal --- uma generalização da noção de número natural.
 Conforme veremos, será definida uma soma para ordinais a partir de uma introdução por definição de um símbolo funcional binário $+$.
 Apesar de só ser desejável definir $\alpha+\beta$ quando $\alpha$ e $\beta$ são ordinais, a introdução por definição de $+$ exigirá que se atribua algo arbitrário para $\alpha+\beta$ quando $\alpha$ ou $\beta$ não sejam ordinais.
