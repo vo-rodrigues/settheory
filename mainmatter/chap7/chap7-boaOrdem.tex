@@ -1,0 +1,69 @@
+\section{Conjuntos bem-ordenáveis}\label{sec:bemOrdenaveis}
+\index{função escolha|see{função de escolha}}\index{função de escolha}
+Suponha que exista uma função escolha $f$ para $\mathcal P(A)\setminus{\emptyset}$.
+Intuitivamente, podemos, via recursão transfinita, bem-ordenar $A$:
+vamos, um por vez, etiquetando os elementos de $A$ com ordinais $0, 1, 2, \dots \omega, \omega+1, \dots, \omega\cdot 2, \dots$, até exaurir os elementos de $A$.
+Automaticamente, tal recursão nos dá uma bijeção de $A$ com um ordinal, o que induz, em $A$, uma boa-ordem.
+
+Um argumento informal para defender a validade do Axioma da Escolha é o seguinte: dado uma coleção de conjuntos não vazios, como montar uma função que seleciona exatamente um elemento de cada?
+Ora, ``selecionando qualquer um''.
+O problema com esse argumento é que no nosso formalismo, não há em nossa linguagem uma ferramenta que nos permite ``selecionar qualquer um'' e rotular tais elementos para se obter tal função.
+Intuitivamente, podemos pensa em pegar ``o primeiro elemento que vier à mente'' de cada conjunto, mas, novamente, não há uma ferramenta formal que nos permita fazer isso.
+Porém, se temos uma boa ordem na reunião dos conjuntos em que estamos tentando selecionar tais elementos, tal raciocínio é formalizável: fixe uma tal boa ordem e tome, sim, o ``primeiro elemento de cada conjunto'' com respeito a tal boa ordem.
+
+A formalização destes raciocínio nos dá a seguinte proposição.
+
+\begin{proposition}[$ZF^-$]\label{prop:funcaoEscolhaImplicaBoaOrdem}
+    Seja $A$ um conjunto.
+    São equivalentes:
+    \begin{enumerate}[label=(\alph*)]
+        \item Existe uma função escolha para $\mathcal P(A)\setminus\{\emptyset\}$.
+        \item $A$ é bem-ordenável.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (b) $\Rightarrow$ (a): caso $A$ seja bem-ordenável, seja $R$ uma boa-ordem em $A$.
+    Defina $c:\mathcal P(A)\setminus\{\emptyset\}\to A$ dada por:
+    \[
+        c(X) = \min_R X
+    \]
+    É imediato que $c$ é uma função escolha para $\mathcal P(A)\setminus\{\emptyset\}$.
+
+    Reciprocamente, suponha que exista uma função escolha $c$ para $\mathcal P(A)$.
+    Fixe um elemento $b \notin A$.
+
+    Recursivamente, introduza um símbolo funcional $F:\ON \to A$ tal que, para cada ordinal $\alpha$,
+    \[
+        F(\alpha)=\begin{cases}
+        c\left(A\setminus \{F(\beta): \beta<\alpha\}\right), & \text{se } A\setminus \{F(\beta): \beta<\alpha\}\neq \emptyset\\
+        b, & \text{caso contrário}
+        \end{cases}
+    \]
+
+    Existe um ordinal $\alpha$ tal que $F(\alpha)=b$.
+    Do contrário, para todo ordinal $\alpha$, $F(\alpha)\in A\setminus\{F(\beta): \beta<\alpha\}$, de modo que $F$ é injetora.
+    Em particular, $F|h(A): h(A)\to A$ é injetora, em que $h(A)$ é o número de Hartogs de $A$, um absurdo.
+
+    Seja $\delta$ o menor ordinal tal que $F(\delta)=b$.
+    Temos que $F| \delta: \delta \to A$ é uma função injetora pelo mesmo argumento acima, e $F(\delta)=b\notin A$, de modo que $A=\{F(\beta): \beta<\delta\}$.
+    Ou seja, $F|\delta$ é uma bijeção de $\delta$ em $A$.
+
+    Dessa forma, $A$ é bem-ordenável, pois a bijeção $F|\delta$ de $\delta$ em $A$ induz uma boa-ordem em $A$.
+\end{proof}
+
+
+Assim, temos o seguinte corolário.
+\begin{corollary}[$ZF^-$]\label{cor:equivalenciaFuncaoEscolhaBoaOrdem}
+    São equivalentes.
+    \begin{enumerate}[label=(\alph*)]
+        \item O Axioma da Escolha.
+        \item Todo conjunto é bem-ordenável.
+    \end{enumerate}
+\end{corollary}
+
+A definição sobre boa ordenação, apesar de menos intuitiva, é mais simples: seu enunciado não depende do Axioma da Potência.
+Por isso, neste texto, oficialmente, adotaremos ela como o Axioma da Escolha.
+
+\begin{axiom}\label{ax:escolha}\index{axioma!da escolha}
+    Todo conjunto é bem-ordenável.
+\end{axiom}

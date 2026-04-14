@@ -56,107 +56,45 @@ Novamente, notemos que se $A_i$ é vazio, não há nenhuma restrição sobre o v
     é uma função escolha indexada para $(A_i: i\in I)$.
 \end{example}
 
-Suponha que exista uma função $f$ para $\mathcal P(A)$.
-Intuitivamente, podemos, via recursão transfinita, bem-ordenar $A$:
-vamos, um por vez, etiquetando os elementos de $A$ com ordinais $0, 1, 2, \dots \omega, \omega+1, \dots, \omega\cdot 2, \dots$, até exaurir os elementos de $A$.
-Automaticamente, tal recursão nos dá uma bijeção de $A$ com um ordinal, o que induz, em $A$, uma boa-ordem.
+Nesse contexto, temos:
 
-A formalização deste raciocínio nos dá a seguinte proposição.
-
-\begin{proposition}
-    Seja $A$ um conjunto.
-    São equivalentes:
+\begin{proposition}[$ZF^--P$]\label{prop:equivalenciaAxiomaEscolha}
+    São equivalentes.
     \begin{enumerate}[label=(\alph*)]
-        \item Existe uma função escolha para $\mathcal P(A)$.
-        \item $A$ é bem-ordenável.
+        \item Para todo conjunto $X$ e toda partição $P$ de $X$, existe um conjunto transversal para $P$.
+        \item Para toda família indexada $(A_i: i\in I)$ de conjuntos não vazios, existe uma função escolha indexada para $(A_i: i\in I)$.
+        \item Para toda coleção de conjuntos não vazios $\mathcal C$, existe uma função escolha para $\mathcal C$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    Caso $A=\emptyset$, o resultado é trivial.
-    Vamos supor que $A\neq \emptyset$.
-    Fixe $u \in A$ qualquer.
-    (b) $\Rightarrow$ (a): caso $A$ seja bem-ordenável, seja $R$ uma boa-ordem em $A$.
-    Defina $c:\mathcal P(A)\to A$ dada por:
-    \[
-        c(X) = \begin{cases}
-            \min_R X, & \text{se } X\neq \emptyset\\
-            u, & \text{caso contrário}
-        \end{cases}
-    \]
-    É imediato que $c$ é uma função escolha para $\mathcal P(A)$.
+    (a) $\Rightarrow$ (b): seja $(A_i: i\in I)$ uma família indexada de conjuntos não vazios.
+    Considere $X=\bigcup_{i\in I} \{i\}\times A_i$.
+    Seja $T\subseteq X$ tal que para cada $i\in I$, $T\cap (\{i\}\times A_i)$ é um conjunto unitário.
+    Então $T:I\rightarrow \bigcup_{i\in I} A_i$ é uma função escolha.
 
-    Reciprocamente, suponha que exista uma função escolha $c$ para $\mathcal P(A)$.
-    Alterando-a se necessário, podemos supor que $c(\emptyset)\notin A$.
-    Seja $b=c(\emptyset)$.
+    (b) $\Rightarrow$ (c): seja $\mathcal C$ uma coleção de conjuntos não vazios.
+    Seja $I=\mathcal C$ e considere a família $(A_a: a\in I)$ dada por $A_a=a$.
+    Seja $f:\mathcal C\to \bigcup_{a\in \mathcal C} a$ uma função escolha indexada para $(A_a: a\in I)$.
+    Segue que, para cada $a\in \mathcal C$, $f(a)\in A_a=a$, de modo que $f$ é uma função escolha para $\mathcal C$.
 
-    Recursivamente, introduza um símbolo funcional $F:\ON \to A$ tal que, para cada ordinal $\alpha$,
-    \[
-        F(\alpha)=c\left(A\setminus \{F(\beta): \beta<\alpha\}\right).
-    \]
-
-    Existe um ordinal $\alpha$ tal que $F(\alpha)=b$.
-    Do contrário, para todo ordinal $\alpha$, $F(\alpha)\in A\setminus\{F(\beta): \beta<\alpha\}$, de modo que $F$ é injetora.
-    Em particular, $F|h(A): h(A)\to A$ é injetora, em que $h(A)$ é o número de Hartogs de $A$, um absurdo.
-
-    Seja $\delta$ o menor ordinal tal que $F(\delta)=b$.
-    Temos que $F| \delta: \delta \to A$ é uma função injetora pelo mesmo argumento acima, e $F(\delta)=b\notin A$, de modo que $A=\{F(\beta): \beta<\delta\}$.
-    Ou seja, $F|\delta$ é uma bijeção de $\delta$ em $A$.
-
-    Dessa forma, $A$ é bem-ordenável, pois a bijeção $F|\delta$ de $\delta$ em $A$ induz uma boa-ordem em $A$.
+    (c) $\Rightarrow$ (a): seja $X$ um conjunto e $P$ uma partição de $X$.
+    Seja $f:P\to X$.
+    Então $T=f[P]$ é como desejado.
 \end{proof}
 
+Observação: com o axioma da potência, o produto cartesiano $\prod_{i\in I} A_i$ está bem definido.
+Com isso, na presença do Axioma da Potência, o item (b) da proposição anterior é equivalente a dizer que, para toda família indexada $(A_i: i\in I)$ de conjuntos não vazios, $\prod_{i\in I} A_i \neq \emptyset$.
 
-Dessa forma, temos a seguinte proposição.
-\begin{proposition}\label{prop:equivalenciaFuncaoEscolhaBoaOrdem}
-     Sejam $A$ um conjunto.
-     S
-    São equivalentes:
-    \begin{enumerate}[label=(\alph*)]
-        \item Para todo conjunto $A$, existe uma função escolha para $\mathcal P(A)$.
-        \item Todo conjunto é bem-ordenável.
-    \end{enumerate}
-\end{proposition}
+Neste texto, tomaremos, pela sua maior simplicidade estrutural, o primeiro item da proposição anterior como a definição do Axioma da Escolha.
+Para tornar seu enunciado ainda mais simples, omitiremos o conjunto $X$, que pode ser recuperado, se desejado, unindo-se os conjuntos da partição.
+\begin{axiom}[Axioma da Escolha]\label{ax:escolhaParticao}\index{axioma!da escolha}
+    Para toda partição $P$, existe um conjunto $T$ que intersecta cada elemento de $P$ em um conjunto unitário.
+    Em símbolos:
 
-A definição sobre boa ordenação, apesar de menos intuitiva, é mais simples: seu enunciado não depende do Axioma da Potência.
-Por isso, neste texto, oficialmente, adotaremos ela como o Axioma da Escolha.
-
-\begin{axiom}\label{ax:escolha}\index{axioma!da escolha}
-    Todo conjunto é bem-ordenável.
+    \[
+    \forall P\Bigl(\forall a, b \in P(a\neq b \Rightarrow \nexists x(x\in a \wedge x\in b)) \rightarrow \exists T\,\forall a\in P\,\exists! x(x\in T \wedge x\in a)\Bigr).
+    \]
 \end{axiom}
 
-Veremos agora algumas equivalências elementares do Axioma da Escolha.
-
-\begin{proposition}
-    Não assuma o Axioma da Escolha.
-    São equivalentes:
-    \begin{enumerate}[label=(\alph*)]
-        \item O Axioma da Escolha.
-        \item Para todo conjunto $A$, existe uma função escolha para $\mathcal P(A)$.
-        \item Para toda família indexada $(A_i: i\in I)$ de conjuntos,existe uma função escolha indexada para $(A_i: i\in I)$.
-        \item Seja $(A_i: i\in I)$ uma família indexada de conjuntos não vazios.
-        Então $\prod_{i \in I} A_i \neq \emptyset$.
-    \end{enumerate}
-\end{proposition}
-\begin{proof}
-    (a) $\Leftrightarrow$ (b): devido à Proposição~\ref{prop:equivalenciaFuncaoEscolhaBoaOrdem}.
-
-    (b) $\Rightarrow$ (c): Seja $I'=\{i\in I : A_i\neq \emptyset\}$.
-    Seja $R$ uma boa ordem em $B=\bigcup_{i\in I'} A_i$.
-    Seja $f':I'\rightarrow \bigcup_{i\in I'} A_i$ dada por $f'(i)=\min_R A_i$.
-    Tome $b$ qualquer conjunto, e defina $f=f'\cup\{(i, b): i\in I\setminus I'\}$.
-    Assim, $f:I\to \bigcup_{i\in I} A_i$ é uma função escolha indexada para $(A_i: i\in I)$.
-
-    (c) $\Rightarrow$ (d): trivial.
-    (d) $\Rightarrow$ (c): Seja $I=\mathcal P(A)\setminus \{\emptyset\}$ e $A_i=i$ para cada $i\in I$.
-    Assim, $A_i\neq \emptyset$ para cada $i\in I$, e $\prod_{i\in I} A_i \neq \emptyset$ implica que existe uma função escolha indexada para $(A_i: i\in I)$.
-    Temos que, para cada $i \in \mathcal P(A)\setminus \{\emptyset\}$, $f(i)\in A_i=i$.
-    Seja $b$ qualquer conjunto e defina $g=f\cup \{(\emptyset, b)\}$.
-    Então $g$ é uma função escolha para $\mathcal P(A)$.
-\end{proof}
-\subsection*{Exercícios}
-\begin{exercise}
-    Não assuma o Axioma da Escolha.
-    Prove que o Axioma da Escolha é equivalente à seguinte afirmação.
-    
-    Para todo conjunto não vazio $X$ e toda partição $P$ de $X$ por conjuntos não vazios, existe um conjunto $Y\subseteq X$ tal que $Y\cap a$ é unitário para cada $a\in P$.
-\end{exercise}
+É imediato que, na presença de $ZF^--P$, o Axioma da Escolha é equivalente às cláusulas da Proposição~\ref{prop:equivalenciaAxiomaEscolha}.
+O mesmo é válido em $Z^-$.
