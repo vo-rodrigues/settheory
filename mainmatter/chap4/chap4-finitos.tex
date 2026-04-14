@@ -4,7 +4,7 @@
 
 Pela Definição~\ref{def:ordemDosNaturais} e pela Proposição~\ref{prop:naturaisSaoSubconjuntosDeOmega}, se $n>0$ é um número natural, então $n=\{0,1,\ldots,n-1\}$, ou, mais formalmente, $n=\{m\in\omega : m<n\}$.
 
-Ao se contar uma coleção finita, de, digamos, 35 elementos, o que se faz, corriqueiramente, é estabelecer uma correspondência biunívoca entre os elementos da coleção e os números naturais $\{1, 2, \ldots, 35\}$, ou, equivalentemente, $\{0, 1, \ldots, 34\}$.
+Ao se contar uma coleção finita de, digamos, 35 elementos, o que se faz corriqueiramente é estabelecer uma correspondência biunívoca entre os elementos da coleção e os números naturais $\{1, 2, \ldots, 35\}$, ou, equivalentemente, $\{0, 1, \ldots, 34\}$.
 
 Dessa forma, podemos definir a noção de conjunto finito.
 
@@ -103,7 +103,7 @@ Primeiro provaremos o seguinte lema.
     Se $A\approx 0$, é trivial.
 
     Suponha que a afirmação seja verdadeira para toda ordem total estrita de cardinalidade $n$.
-    Seja $A$ uma ordem total estrita de cardinalidade $n+1$.
+    Seja $(A, <)$ uma ordem total estrita com cardinalidade $n+1$.
     Tome $a\in A$ qualquer e seja $A' = A\setminus\{a\}$ com a ordem restrita.
     $A'$ é uma ordem total estrita de cardinalidade $n$.
     Se $A'=\emptyset$, então $A=\{a\}$, e $a$ é o elemento mínimo e o elemento máximo de $A$.
@@ -131,7 +131,7 @@ Suponha que o resultado seja verdadeiro para todo conjunto finito de cardinalida
 Seja $A$ uma ordem total de $n+1$ elementos.
 Seja $a=\max A$.
 Seja $A' = A\setminus\{a\}$ com a ordem restrita.
-Por hipótese indutiva, existe $\phi': A'\to n$ um isomorfismo de ordens.
+Por hipótese indutiva, existe um isomorfismo de ordens $\phi': A'\to n$.
 Defina $f': A\to n+1$ dada por
 \[
     f'(x) = \begin{cases}
