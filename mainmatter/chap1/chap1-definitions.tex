@@ -28,8 +28,8 @@ Introduziremos este operador como uma abreviação, conforme explicitado na defi
     em que $y$ é uma variável que não ocorre em $\varphi$.
 \end{metadefinition}
 
-Na Metadefinição~\ref{mdef:quantificadorExistenciaUnica}, a variável $y$ é tida como uma variável auxiliar.
-Não seria razoável que a escolha de tal variável dependesse da variável $y$ escolhida.
+Na Metadefinição~\ref{mdef:quantificadorExistenciaUnica}, a variável $y$ é tomada como uma variável auxiliar.
+Não seria razoável que a escolha de tal variável dependesse da letra escolhida para representá-la.
 Isso é formalizado pelo resultado a seguir.
 
 
@@ -140,7 +140,7 @@ Esta noção pode causar estranhamento: estamos formalizando a introdução de d
 Isso é necessário no formalismo adotado, pois ele não captura diretamente a prática informal de introduzir definições como meras abreviações.
 
 A seguir, veremos que extensões por definição não aumentam nem o poder de prova sobre sentenças da linguagem original, nem o poder de expressão.
-Tudo que é expressável ou demonstrável na linguagem estendida, também é expressável ou demonstrável na linguagem original, respectivamente.
+Tudo o que é expressável ou demonstrável na linguagem estendida também é expressável ou demonstrável na linguagem original, respectivamente.
 Portanto, apesar de, formalmente, estarmos adicionando novos símbolos e axiomas, a extensão por definição captura as propriedades essenciais da prática de introduzir definições como abreviações.
 
 
@@ -164,7 +164,7 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
             \exists y_1\ldots \exists y_m\Bigl(
             \bigwedge_{i=1}^m \delta_{t_i}(x_1, \dots, x_n,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr),
         \]
-        em que $x_1, \dots, x_n$ são variáveis que ocorrem em $t$ (e estas incluem as de $t_1, \dots, t_m)$, $y_1, \dots, y_m$ são as variáveis auxiliares introduzidas para descrever os termos $t_1, \dots, t_m$ (alteradas para serem distintas de $x_1, \dots, x_n$ se necessário), e $y$ distinta de todas as outras.
+        em que $x_1, \dots, x_n$ são variáveis que ocorrem em $t$ (e elas incluem as de $t_1, \dots, t_m$), $y_1, \dots, y_m$ são as variáveis auxiliares introduzidas para descrever os termos $t_1, \dots, t_m$ (alteradas para serem distintas de $x_1, \dots, x_n$, se necessário), e $y$ é distinta de todas as outras.
     \end{enumerate}
 \end{metadefinition}
 
@@ -553,7 +553,7 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
 
         \item Se $\theta_i$ é um axioma lógico (no sentido do sistema fixado anteriormente),
         então $\theta_i^\ast$ é demonstrável na lógica pura na linguagem $\mathcal L$.
-        (A verificação é sistemática: usa-se que $\ast$ comuta com conectivos/quantificadores e que termos são eliminados pelo
+        A verificação é sistemática: usa-se que $\ast$ comuta com conectivos e quantificadores e que termos são eliminados pelo
         Metalema~\ref{mlem:eliminacaoDeTermos}.
         Assim, $T\vdash \theta_i^\ast$.
 
