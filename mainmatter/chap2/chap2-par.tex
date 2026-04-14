@@ -27,7 +27,7 @@ Na formulação de 1930, Zermelo isolou o Axioma do Par, que passou a ser o Axio
 
 Notemos que, nesta formulação, o Axioma do Par não garante a existência de um conjunto cujos \emph{únicos} elementos sejam $x$ e $y$, mas apenas de um conjunto que contenha $x$ e $y$ como elementos.
 Vários textos optam por essa formulação mais forte.
-Porém, em presença do Esquema da Compreensão, essa formulação mais forte não é necessária.
+Porém, na presença do Esquema da Compreensão, essa formulação mais forte não é necessária.
 
 \begin{lemma}[$Z^--P$]\label{lem:existenciaDoPar}\index{existência do par}
     Para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
@@ -73,7 +73,7 @@ Com isso, podemos definir os pares não ordenados.
 Também é possível definir os \emph{singletos}, ou \emph{conjuntos unitários}.
 
 \begin{definition}[$Z^--P$]\label{def:singleto}\index{singleto}\index{conjunto unitário|see{singleto}}
-    Dado um conjunto $x$, o \emph{singleto}, ou \emph{conjunto unitário} de $x$ é o conjunto $\{ x \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
+    Dado um conjunto $x$, o \emph{singleto}, ou \emph{conjunto unitário}, de $x$ é o conjunto $\{ x \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
 
     \[
         \forall x \forall z (z = \{ x \} \leftrightarrow \forall w (w \in z \leftrightarrow w = x)).
@@ -118,7 +118,7 @@ Por razões históricas, boa parte dos textos modernos de Teoria dos Conjuntos a
 \end{definition}
 
 A propriedade ``é um par ordenado'' é uma notação ``em texto'' para denotar um símbolo de predicado unário introduzido por definição.
-Poderíamos, alternativamente, ao invés de escrever ``$z$ é um par ordenado'', escrever ``$P(z)$'', onde $P$ é um símbolo de predicado unário definido por $\forall z\,P(z) \leftrightarrow \exists x \exists y (z = (x, y))$. 
+Poderíamos, alternativamente, em vez de escrever ``$z$ é um par ordenado'', escrever ``$P(z)$'', onde $P$ é um símbolo de predicado unário definido por $\forall z\,P(z) \leftrightarrow \exists x \exists y (z = (x, y))$. 
 
 A partir dessa codificação, será possível definir posteriormente produtos cartesianos, relações e funções inteiramente em termos de conjuntos.
 
