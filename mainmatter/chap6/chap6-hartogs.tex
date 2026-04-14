@@ -2,28 +2,28 @@
 \index{cardinal}
 \index{número de Hartogs}
 
-Conforme vimos no Corolário~\ref{cor:finitoCardinal}, para todo conjunto finito $A$, existe um único número natural $n$ tal que $A$ bijeta com $n$.
+Conforme vimos no Corolário~\ref{cor:finitoCardinal}, para todo conjunto finito $A$, existe um único número natural $n$ tal que $A$ está em bijeção com $n$.
 Assim, os números naturais podem ser vistos como representantes canônicos dos conjuntos finitos a menos de bijeção, no que diz respeito à quantidade.
 
-Nesta seção, daremos representantes canônicos, também, para os conjuntos infinitos bem ordenáveis.
-Intuitivamente, um conjunto ser bem ordenável significa que é possível ``contá-lo até o fim utilizando ordinais''.
+Nesta seção, daremos representantes canônicos também para os conjuntos infinitos bem ordenáveis.
+Intuitivamente, dizer que um conjunto é bem ordenável significa que é possível ``contá-lo até o fim utilizando ordinais''.
 Neste texto, tais conjuntos serão os únicos para os quais trabalharemos a noção de representação de cardinalidade.
 No próximo capítulo, introduziremos o Axioma da Escolha, que implica que todo conjunto é bem ordenável.
 
-Para motivar a nossa definição de cardinal, lembremos a qual o fizemos para conjuntos finitos.
-Associamos, a cada conjunto finito $A$, o número natural $n$ tal que $A$ bijeta com $n$.
+Para motivar a nossa definição de cardinal, lembremos como a fizemos para conjuntos finitos.
+Associamos, a cada conjunto finito $A$, o número natural $n$ tal que $A$ está em bijeção com $n$.
 
-Se $A$ é bem ordenável, este bijeta com um ordinal.
+Se $A$ é bem ordenável, então ele está em bijeção com algum ordinal.
 \begin{lemma}\label{lem:bemOrdenavelBijetaComOrdinal}
     Seja $A$ um conjunto bem ordenável.
-    Então existe um número ordinal $\alpha$ tal que $A$ bijeta com $\alpha$.
+    Então existe um número ordinal $\alpha$ tal que $A$ está em bijeção com $\alpha$.
 \end{lemma}
 \begin{proof}
     De fato, seja $<$ uma boa ordem sobre $A$.
-    Existe um ordinal $\alpha$ tal que $(A, <)$ é isomorfo a $(\alpha, <)$, pelo Teorema~\ref{thm:boaOrdemEhIsomorfaAOrdinal}, e, portanto, $A$ bijeta com $\alpha$.
+    Existe um ordinal $\alpha$ tal que $(A, <)$ é isomorfo a $(\alpha, <)$, pelo Teorema~\ref{thm:boaOrdemEhIsomorfaAOrdinal}, e, portanto, $A$ está em bijeção com $\alpha$.
 \end{proof}
 
-Porém, diferentemente do que acontece no caso de ordinais finitos, um conjunto infinito não bijeta com um único ordinal.
+Porém, diferentemente do que acontece no caso de ordinais finitos, um conjunto infinito não está em bijeção com um único ordinal.
 
 \begin{example}\label{exa:omegaMaisUmEhEnumeravel}
     $\omega+1$ é enumerável, pois é a união de dois conjuntos enumeráveis: $\omega$ e $\{\omega\}$.
@@ -32,12 +32,12 @@ Porém, diferentemente do que acontece no caso de ordinais finitos, um conjunto 
     $\omega+\omega$ é enumerável, pois é a união de dois conjuntos enumeráveis: $\omega$ e $\{\omega+n : n\in \omega\}$.
 \end{example}
 
-Pelos Exemplos~\ref{exa:omegaMaisUmEhEnumeravel} e \ref{exa:omegaMaisOmegaEhEnumeravel}, se $A$ é infinito e enumerável, então $A$ bijeta com $\omega$, com $\omega+1$ e com $\omega+\omega$, dentre muitos outros.
-Uma saída natural é associar a $A$ o menor ordinal $\alpha$ tal que $A$ bijeta com $\alpha$.
+Pelos Exemplos~\ref{exa:omegaMaisUmEhEnumeravel} e \ref{exa:omegaMaisOmegaEhEnumeravel}, se $A$ é infinito e enumerável, então $A$ está em bijeção com $\omega$, com $\omega+1$ e com $\omega+\omega$, dentre muitos outros.
+Uma saída natural é associar a $A$ o menor ordinal $\alpha$ tal que $A$ está em bijeção com $\alpha$.
 
 \begin{definition}\label{def:cardinalidadeDeConjuntoBemOrdenavel}\index{cardinalidade}
     Seja $A$ um conjunto bem ordenável.
-    A cardinalidade de $A$, ou número de elementos de $A$, é o menor ordinal $\alpha$ tal que $A$ bijeta com $\alpha$.
+    A cardinalidade de $A$, ou número de elementos de $A$, é o menor ordinal $\alpha$ tal que $A$ está em bijeção com $\alpha$.
     O cardinal de $A$ é denotado por $|A|$.
 \end{definition}
 
@@ -46,14 +46,14 @@ Primeiro, vamos identificar quem são tais ordinais.
 
 \begin{lemma}\label{lem:ordinaisQueSaoCardinalidades}
     Seja $\alpha$ um ordinal.
-    Então $\alpha$ é a cardinalidade de algum conjunto bem ordenável se, e somente se, não existe $\beta<\alpha$ tal que $\alpha$ bijeta com $\beta$.
+    Então $\alpha$ é a cardinalidade de algum conjunto bem ordenável se, e somente se, não existe $\beta<\alpha$ tal que $\alpha$ esteja em bijeção com $\beta$.
 \end{lemma}
 \begin{proof}
-    Suponha que não existe $\beta<\alpha$ tal que $\alpha$ bijeta com $\beta$.
-    Temos que $\alpha$ é bem ordenável, e $\alpha$ é o menor ordinal que bijeta com $\alpha$, ou seja, $|\alpha|=\alpha$.
+    Suponha que não existe $\beta<\alpha$ tal que $\alpha$ esteja em bijeção com $\beta$.
+    Temos que $\alpha$ é bem ordenável, e $\alpha$ é o menor ordinal que está em bijeção com $\alpha$, ou seja, $|\alpha|=\alpha$.
 
-    Por outro lado, se $\alpha$ é a cardinalidade de algum conjunto bem ordenável $A$, então $\alpha$ é o menor ordinal que bijeta com $A$.
-    Logo, não existe $\beta<\alpha$ tal que $\alpha$ bijeta com $\beta$, ou tal $\beta$ violaria a minimalidade de $\alpha$.
+    Por outro lado, se $\alpha$ é a cardinalidade de algum conjunto bem ordenável $A$, então $\alpha$ é o menor ordinal que está em bijeção com $A$.
+    Logo, não existe $\beta<\alpha$ tal que $\alpha$ esteja em bijeção com $\beta$, pois tal $\beta$ violaria a minimalidade de $\alpha$.
 \end{proof}
 
 Com isso, define-se:
@@ -62,7 +62,7 @@ Com isso, define-se:
     Um cardinal é um ordinal $\kappa$ que satisfaz alguma das seguintes condições equivalentes:
     \begin{enumerate}[label=(\roman*)]
     \item $\kappa$ é a cardinalidade de algum conjunto bem ordenável;
-    \item não existe $\beta<\kappa$ tal que $\kappa$ bijeta com $\beta$.
+    \item não existe $\beta<\kappa$ tal que $\kappa$ esteja em bijeção com $\beta$.
     \end{enumerate}
 \end{definition}
 
@@ -80,12 +80,12 @@ Um primeiro lema é o seguinte.
 
 \begin{lemma}\label{lem:cardinalEquivNaoBijetaComOrdinalMenor}
     Seja $\alpha$ um ordinal.
-    Então $\alpha$ é um cardinal se, e somente se, para todo $\beta<\alpha$, $\alpha$ não bijeta com $\beta$.
+    Então $\alpha$ é um cardinal se, e somente se, para todo $\beta<\alpha$, $\alpha$ não está em bijeção com $\beta$.
 \end{lemma}
 \begin{proof}
-    Dado $\beta<\alpha$, temos que $\beta\subseteq \alpha$, e, portanto, $\alpha\preceq \beta$.
-    Assim, pelo Teorema de Cantor-Schröder-Bernstein, $\alpha$ bijeta com $\beta$ se, e somente se, $\alpha\approx \beta$.
-    Deste modo, existe $\beta<\alpha$ tal que $\alpha$ bijeta com $\beta$ se, e somente se, existe $\beta<\alpha$ tal que $\alpha\approx \beta$.
+    Dado $\beta<\alpha$, temos que $\beta\subseteq \alpha$, e, portanto, $\beta\preceq \alpha$.
+    Assim, pelo Teorema de Cantor-Schröder-Bernstein, $\alpha$ está em bijeção com $\beta$ se, e somente se, $\alpha\approx \beta$.
+    Desse modo, existe $\beta<\alpha$ tal que $\alpha$ está em bijeção com $\beta$ se, e somente se, existe $\beta<\alpha$ tal que $\alpha\approx \beta$.
 \end{proof}
 
 Propriedades elementares dos cardinais são as seguintes.
@@ -114,7 +114,7 @@ Propriedades elementares dos cardinais são as seguintes.
 
     (c) Decorre de (a) e (b).
 
-    (d) Temos que $|A|$ é um cardinal, e, portanto, $|A|$ não bijeta com nenhum ordinal menor que ele, de modo que $||A||=|A|$.
+    (d) Temos que $|A|$ é um cardinal e, portanto, $|A|$ não está em bijeção com nenhum ordinal menor do que ele, de modo que $||A||=|A|$.
 \end{proof}
 
 Por enquanto, não provamos a existência de ordinais não enumeráveis, ou, equivalentemente, de boas ordens não enumeráveis.
@@ -123,7 +123,7 @@ Assim, todos os cardinais que conhecemos até agora são os naturais e $\omega$.
 Com o Axioma da Potência, tal feito se faz possível.
 
 \begin{proposition}\label{prop:teoremaDeHartogs}\index{teorema!de Hartogs}
-    Para todo conjunto $A$, existe um ordinal $\alpha$ tal que $A$ não bijeta com $\alpha$.
+    Para todo conjunto $A$, existe um ordinal $\alpha$ tal que $A$ não está em bijeção com $\alpha$.
 \end{proposition}
 \begin{proof}
     Seja $Z=\{(B, R) \in \mathcal P(A) \times \mathcal{P}(A\times A) : R \text{ é uma boa ordem sobre } B\}$.
@@ -154,7 +154,7 @@ Com o Axioma da Potência, tal feito se faz possível.
 \end{lemma}
 \begin{proof}
     Suponha que não.
-    Então existe $\beta<h(A)$ tal que $h(A)$ bijeta com $\beta$.
+    Então existe $\beta<h(A)$ tal que $h(A)$ está em bijeção com $\beta$.
     Pela definição de $h(A)$, $\beta \preceq A$, mas, então, $h(A)\preceq A$, o que é um absurdo.
 \end{proof}
 
@@ -163,8 +163,8 @@ Com o Axioma da Potência, tal feito se faz possível.
     Então $h(\alpha)$ é o menor cardinal $\kappa$ tal que $\alpha<\kappa$.
 \end{lemma}
 \begin{proof}
-    Temos que $h(\alpha)\not \preceq \alpha$, logo, $h(\alpha)\not\neq \alpha$.
-    Assim, $\alpha<h(\alpha)$.
+    Temos que $h(\alpha)\not\preceq \alpha$, logo, $h(\alpha)\neq \alpha$.
+    Como $\alpha$ e $h(\alpha)$ são ordinais comparáveis, segue que $\alpha<h(\alpha)$.
     Temos ainda que $h(\alpha)$ é um cardinal.
 
     Agora seja $\kappa$ um cardinal tal que $\alpha<\kappa$.
