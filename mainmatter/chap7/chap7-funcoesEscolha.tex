@@ -8,7 +8,7 @@ Nesta seção, vamos estudar tais famílias.
 
 \begin{definition}[$Z^--P$]\label{def:funcaoEscolha}\index{função de escolha}
     Seja $\mathcal C$ uma coleção de conjuntos não vazios.
-    Uma \emph{função escolha} para $\mathcal C$ é uma função $c$ de domínio $\mathcal C$ tal que, para cada $a\in \mathcal C$, $c(a)\in a$.
+    Uma \emph{função de escolha} para $\mathcal C$ é uma função $c$ de domínio $\mathcal C$ tal que, para cada $a\in \mathcal C$, $c(a)\in a$.
 \end{definition}
 \begin{example}[$Z^--P$]
     Seja $\mathcal C=\{\{1, 2\}, \{3, 4\}\}$.
@@ -21,7 +21,7 @@ Nesta seção, vamos estudar tais famílias.
             3, & \text{se } a=\{3, 4\}\\
         \end{cases}
     \]
-    é uma função escolha para $\mathcal C$.
+    é uma função de escolha para $\mathcal C$.
 \end{example}
 Na Seção~\ref{sec:relacoesDeEquivalencia}, foi definida a noção de partição.
 Lembremos que, nesse texto, uma partição de um conjunto $X$ é uma coleção $P$ de subconjuntos não vazios de $X$ dois-a-dois disjuntos e cuja união é $X$.
@@ -39,7 +39,7 @@ Lembremos que, nesse texto, uma partição de um conjunto $X$ é uma coleção $
 
 \begin{definition}[$Z^--P$]
     Seja $(A_i: i\in I)$ uma família indexada de conjuntos não vazios.
-    Uma \emph{função escolha (indexada)} para $(A_i: i\in I)$ é uma função $c$ de domínio $I$ tal que, para cada $i\in I$, $c(i)\in A_i$.
+    Uma \emph{função de escolha indexada} para $(A_i: i\in I)$ é uma função $c$ de domínio $I$ tal que, para cada $i\in I$, $c(i)\in A_i$.
 \end{definition}
 Novamente, notemos que se $A_i$ é vazio, não há nenhuma restrição sobre o valor de $c(i)$.
 
@@ -53,7 +53,7 @@ Novamente, notemos que se $A_i$ é vazio, não há nenhuma restrição sobre o v
             3, & \text{se } i=2\\
         \end{cases}
     \]
-    é uma função escolha indexada para $(A_i: i\in I)$.
+    é uma função de escolha indexada para $(A_i: i\in I)$.
 \end{example}
 
 Nesse contexto, temos:
@@ -62,23 +62,23 @@ Nesse contexto, temos:
     São equivalentes.
     \begin{enumerate}[label=(\alph*)]
         \item Para todo conjunto $X$ e toda partição $P$ de $X$, existe um conjunto transversal para $P$.
-        \item Para toda família indexada $(A_i: i\in I)$ de conjuntos não vazios, existe uma função escolha indexada para $(A_i: i\in I)$.
-        \item Para toda coleção de conjuntos não vazios $\mathcal C$, existe uma função escolha para $\mathcal C$.
+        \item Para toda família indexada $(A_i: i\in I)$ de conjuntos não vazios, existe uma função de escolha indexada para $(A_i: i\in I)$.
+        \item Para toda coleção de conjuntos não vazios $\mathcal C$, existe uma função de escolha para $\mathcal C$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
     (a) $\Rightarrow$ (b): seja $(A_i: i\in I)$ uma família indexada de conjuntos não vazios.
     Considere $X=\bigcup_{i\in I} \{i\}\times A_i$.
     Seja $T\subseteq X$ tal que para cada $i\in I$, $T\cap (\{i\}\times A_i)$ é um conjunto unitário.
-    Então $T:I\rightarrow \bigcup_{i\in I} A_i$ é uma função escolha.
+    Então $T:I\rightarrow \bigcup_{i\in I} A_i$ é uma função de escolha.
 
     (b) $\Rightarrow$ (c): seja $\mathcal C$ uma coleção de conjuntos não vazios.
     Seja $I=\mathcal C$ e considere a família $(A_a: a\in I)$ dada por $A_a=a$.
-    Seja $f:\mathcal C\to \bigcup_{a\in \mathcal C} a$ uma função escolha indexada para $(A_a: a\in I)$.
-    Segue que, para cada $a\in \mathcal C$, $f(a)\in A_a=a$, de modo que $f$ é uma função escolha para $\mathcal C$.
+    Seja $f:\mathcal C\to \bigcup_{a\in \mathcal C} a$ uma função de escolha indexada para $(A_a: a\in I)$.
+    Segue que, para cada $a\in \mathcal C$, $f(a)\in A_a=a$, de modo que $f$ é uma função de escolha para $\mathcal C$.
 
     (c) $\Rightarrow$ (a): seja $X$ um conjunto e $P$ uma partição de $X$.
-    Seja $f:P\to X$.
+    Seja $f:P\to X$ uma função de escolha para $P$.
     Então $T=f[P]$ é como desejado.
 \end{proof}
 
