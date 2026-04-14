@@ -75,7 +75,7 @@ Não fixaremos nenhuma metateoria específica, mas é oportuno esclarecer alguns
 Ao discutir teorias formais, nosso objeto de estudo são fórmulas e sequências de fórmulas (por exemplo, demonstrações formais).
 Em suma, uma metateoria deve ser capaz de lidar com uma quantidade infinita potencial de símbolos (sempre finitos de cada vez), reconhecer e comparar ordenações desses símbolos, e realizar raciocínios indutivos elementares, formalizando operações sobre sequências finitas (que podem ser codificadas por números naturais).
 
-A aritmética de Peano, por exemplo, podem ser tomados como metateoria.
+A aritmética de Peano, por exemplo, pode ser tomada como metateoria.
 Contudo, o esquema completo de indução presente na aritmética de Peano é mais forte do que o necessário para nossos propósitos, além de requerer o uso explícito de quantificadores.
 Uma teoria menos poderosa, que, de alguma forma, parece possuir o ``mínimo necessário'' para formalizar uma metateoria para a discussão sobre léxicos, lógica e provas de consistência, é a Aritmética Primitiva Recursiva (Primitive Recursive Arithmetic, PRA).
 Nós não a desenvolveremos nesse texto.
@@ -142,7 +142,7 @@ Examinemos, na notação usual, a seguinte expressão: $2/3*4$.
 O símbolo $3$ deve ser interpretado como o segundo operando de $/$ ou como o primeiro operando de $*$?
 A resposta é que a expressão é, a princípio, ambígua, e, portanto, requer o uso de parênteses, como em $(2/3)*4$ ou $2/(3*4)$, ou a adoção de uma convenção de precedência.
 
-As metaproposições restantes nessa subseção demonstrarão que, na notação polonesa, não existe tal ambiguidade.
+As metaproposições restantes nesta subseção demonstrarão que, na notação polonesa, não existe tal ambiguidade.
 Com elas, conclui-se que uma expressão na notação polonesa possui uma única forma de leitura.
 \begin{metadefinition}\label{mdef:subexpressaoESegmentoInicial}
 Dado um léxico $\mathcal L$, $n\geq 0$ e uma expressão bem formada $a_0\dots a_n$, uma subexpressão de $a_0\dots a_n$ é uma sequência $a_i\dots a_j$ com $0\leq i\leq j\leq n$ que também é uma expressão bem formada.
@@ -153,7 +153,7 @@ Um segmento inicial é dito \emph{próprio} se for diferente da sequência origi
 
 Notemos que toda expressão bem formada, por ser finita, possui um número finito de subexpressões distintas.
 
-Isso abre margem para argumentos indutivos: para provar que uma propriedade sobre expressões vale para toda expressão, basta provar que, caso valham para toda subexpressão própria de uma expressão dada, também vale para a expressão dada.
+Isso abre margem para argumentos indutivos: para provar que uma propriedade sobre expressões vale para toda expressão, basta provar que, caso ela valha para toda subexpressão própria de uma expressão dada, também valha para a expressão dada.
 
 Como só existe um número finito de subexpressões, essa verificação é finitária, podendo ser realizada de forma concreta, seja qual for a metateoria adotada.
 
