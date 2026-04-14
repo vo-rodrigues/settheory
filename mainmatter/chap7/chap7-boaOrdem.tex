@@ -1,23 +1,23 @@
 \section{Conjuntos bem-ordenáveis}\label{sec:bemOrdenaveis}
 \index{função escolha|see{função de escolha}}\index{função de escolha}
-Suponha que exista uma função escolha $f$ para $\mathcal P(A)\setminus{\emptyset}$.
+Suponha que exista uma função de escolha $f$ para $\mathcal P(A)\setminus{\emptyset}$.
 Intuitivamente, podemos, via recursão transfinita, bem-ordenar $A$:
 vamos, um por vez, etiquetando os elementos de $A$ com ordinais $0, 1, 2, \dots \omega, \omega+1, \dots, \omega\cdot 2, \dots$, até exaurir os elementos de $A$.
 Automaticamente, tal recursão nos dá uma bijeção de $A$ com um ordinal, o que induz, em $A$, uma boa-ordem.
 
-Um argumento informal para defender a validade do Axioma da Escolha é o seguinte: dado uma coleção de conjuntos não vazios, como montar uma função que seleciona exatamente um elemento de cada?
+Um argumento informal para defender a validade do Axioma da Escolha é o seguinte: dada uma coleção de conjuntos não vazios, como montar uma função que seleciona exatamente um elemento de cada um deles?
 Ora, ``selecionando qualquer um''.
-O problema com esse argumento é que no nosso formalismo, não há em nossa linguagem uma ferramenta que nos permite ``selecionar qualquer um'' e rotular tais elementos para se obter tal função.
-Intuitivamente, podemos pensa em pegar ``o primeiro elemento que vier à mente'' de cada conjunto, mas, novamente, não há uma ferramenta formal que nos permita fazer isso.
+O problema com esse argumento é que, em nosso formalismo, não há em nossa linguagem uma ferramenta que nos permita ``selecionar qualquer um'' e rotular tais elementos para se obter tal função.
+Intuitivamente, podemos pensar em pegar ``o primeiro elemento que vier à mente'' de cada conjunto, mas, novamente, não há uma ferramenta formal que nos permita fazer isso.
 Porém, se temos uma boa ordem na reunião dos conjuntos em que estamos tentando selecionar tais elementos, tal raciocínio é formalizável: fixe uma tal boa ordem e tome, sim, o ``primeiro elemento de cada conjunto'' com respeito a tal boa ordem.
 
-A formalização destes raciocínio nos dá a seguinte proposição.
+A formalização desses raciocínios nos dá a seguinte proposição.
 
 \begin{proposition}[$ZF^-$]\label{prop:funcaoEscolhaImplicaBoaOrdem}
     Seja $A$ um conjunto.
     São equivalentes:
     \begin{enumerate}[label=(\alph*)]
-        \item Existe uma função escolha para $\mathcal P(A)\setminus\{\emptyset\}$.
+        \item Existe uma função de escolha para $\mathcal P(A)\setminus\{\emptyset\}$.
         \item $A$ é bem-ordenável.
     \end{enumerate}
 \end{proposition}
@@ -27,9 +27,9 @@ A formalização destes raciocínio nos dá a seguinte proposição.
     \[
         c(X) = \min_R X
     \]
-    É imediato que $c$ é uma função escolha para $\mathcal P(A)\setminus\{\emptyset\}$.
+    É imediato que $c$ é uma função de escolha para $\mathcal P(A)\setminus\{\emptyset\}$.
 
-    Reciprocamente, suponha que exista uma função escolha $c$ para $\mathcal P(A)$.
+    Reciprocamente, suponha que exista uma função de escolha $c$ para $\mathcal P(A)\setminus\{\emptyset\}$.
     Fixe um elemento $b \notin A$.
 
     Recursivamente, introduza um símbolo funcional $F:\ON \to A$ tal que, para cada ordinal $\alpha$,
