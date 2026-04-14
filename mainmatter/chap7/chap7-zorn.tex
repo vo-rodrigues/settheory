@@ -1,1 +1,161 @@
 \section{O Lema de Zorn}\label{sec:lemaDeZorn}
+
+O Teorema abaixo é chamado de Lema de Zorn, que recebe o nome de Lema por razões históricas.
+   
+A fim de explicitar como o Axioma da Escolha é utilizado em demonstrações e recursões na matemática, apresentaremos três versões da mesma demonstração com redações diferentes.
+\begin{theorem}[$ZFC^-$]\label{def:lemaDeZorn}
+    Seja $(P, \leq^*)$ uma pré-ordem tal que toda cadeia é limitada superiormente.
+    Então $P$ possui um elemento maximal.
+\end{theorem}
+\begin{proof}
+    Denotemos por $<^*$ a relação em $P$ dada por $p<^* q$ se, e somente se, $p\leq^* q$ e $q\not\leq^* p$.
+    Notemos que $<^*$ é uma ordem estrita.
+    Seja $\kappa=|P|^+$.
+
+    Note que $\emptyset$ é uma cadeia em $P$.
+    Assim, por hipótese, $\emptyset$ possui uma cota superior.
+    Conclui-se que $P$ é não vazio.
+    Fixe $b \in P$ qualquer.
+
+    Suponha que a tese é falsa.
+    Seja $g:\mathcal P(P)\setminus\{\emptyset\}\to P$ uma função escolha.
+    
+
+    Recursivamente, define-se uma função $f: \kappa\to P$ tal que, para todo $\alpha<\kappa$:
+    \[
+        f(\alpha)=\begin{cases}
+        g(\{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}), & \text{se } \{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}\neq \emptyset\\
+        b, & \text{caso contrário}
+        \end{cases}
+    \]
+
+    Por indução, verifica-se que, para cada $\alpha<\kappa$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $f(\alpha)=g(\{p\in P: \forall \beta<\alpha, f(\beta)<^* p\})$;
+        \item $f(\xi)<^* f(\alpha)$ para todo $\xi<\alpha$.
+    \end{enumerate}
+
+    Para tanto, suponha que a tese é verdadeira para todo $\beta<\alpha$.
+    Então, para todos $\xi<\beta<\alpha$, $f(\xi)<^* f(\beta)$, de modo que $\{f(\beta): \beta<\alpha\}$ é uma cadeia em $P$.
+    Por hipótese, toda cadeia é limitada superiormente, de modo que existe $p'\in P$ tal que $f(\beta)\leq^* p'$ para todo $\beta<\alpha$.
+    Como $p'$ não é um elemento maximal, existe $p\in P$ tal que $p'<^* p$.
+    Assim, $\{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}\neq \emptyset$, e, portanto,
+    \[
+        f(\alpha)=g(\{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}).
+    \]
+
+    Segue que $f(\alpha)\in \{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}$, de modo que $f(\xi)<^* f(\alpha)$ para todo $\xi<\alpha$.
+    Isso completa a indução.
+
+    Ao final, temos que $f:\kappa\to P$ é uma função injetora, o que é impossível, pois $\kappa=|P|^+$.
+\end{proof}
+
+Uma segunda forma de redigir esta demonstração, mais contraída, menos formal, mas muito mais parecida com demonstrações recursivas da literatura, é a seguinte.
+
+\begin{proof}[Reescrita da demonstração]
+    Denotemos por $<^*$ a relação em $P$ dada por $p<^* q$ se, e somente se, $p\leq^* q$ e $q\not\leq^* p$.
+    Notemos que $<^*$ é uma ordem estrita.
+    Seja $\kappa=|P|^+$.
+
+    Suponha que a tese é falsa.
+    Seja $g:\mathcal P(P)\setminus\{\emptyset\}\to P$ uma função escolha.
+    
+    Recursivamente, define-se uma função $f: \kappa\to P$ tal que, para todo $\alpha<\kappa$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $f(\alpha)=g(\{p\in P: \forall \beta<\alpha, f(\beta)<^* p\})$;
+        \item $f(\xi)<^* f(\alpha)$ para todo $\xi<\alpha$.
+    \end{enumerate}
+
+    \textbf{Verificaremos que tal recursão é possível.
+    Para tanto, suponha que $f|\alpha$ já foi construído satisfazendo (a) e (b) para algum $\alpha<\kappa$.
+    Mostraremos como definir $f(\alpha)$ satisfazendo (a) e (b).}
+
+    Por hipótese indutiva, para todos $\xi<\beta<\alpha$, $f(\xi)<^* f(\beta)$, de modo que $\{f(\beta): \beta<\alpha\}$ é uma cadeia em $P$.
+    Por hipótese, toda cadeia é limitada superiormente, de modo que existe $p'\in P$ tal que $f(\beta)\leq^* p'$ para todo $\beta<\alpha$.
+    Como $p'$ não é um elemento maximal, existe $p\in P$ tal que $p'<^* p$.
+    Assim, $\{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}\neq \emptyset$, e, portanto,
+    \[
+        f(\alpha)=g(\{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}).
+    \]
+
+    Segue que $f(\alpha)\in \{p\in P: \forall \beta<\alpha, f(\beta)<^* p\}$, de modo que $f(\xi)<^* f(\alpha)$ para todo $\xi<\alpha$.
+    \textbf{Isso completa a construção.}
+
+    Ao final, temos que $f:\kappa\to P$ é uma função injetora, o que é impossível, pois $\kappa=|P|^+$.
+\end{proof}
+
+As palavras em negrito, informalmente, combinam uma indução e uma recursão.
+Formalmente, é necessário inserir a cláusula do ``caso contrário''.
+Porém, na redação, ao invés de apresentar a definição recursiva e após mostrarmos indutivamente que ela nunca ocorre, faz-se as duas coisas ao mesmo tempo.
+
+Uma terceira forma de redigir, ainda mais contraída, e extremamente comum, é a seguinte.
+
+\begin{proof}[Reescrita da demonstração II]
+    Denotemos por $<^*$ a relação em $P$ dada por $p<^* q$ se, e somente se, $p\leq^* q$ e $q\not\leq^* p$.
+    Notemos que $<^*$ é uma ordem estrita.
+    Seja $\kappa=|P|^+$.
+
+    Suponha que a tese é falsa.
+    
+    Recursivamente, define-se uma função $f: \kappa\to P$ tal que, para todo $\alpha<\kappa$:
+    \[
+        \forall \beta<\alpha, f(\beta)<^* f(\alpha).
+    \]
+
+    Verificaremos que tal recursão é possível.
+    Para tanto, suponha que $f|\alpha$ já foi construído satisfazendo (a) e (b) para algum $\alpha<\kappa$.
+    Mostraremos como definir $f(\alpha)$ satisfazendo (a) e (b).
+    
+
+    Por hipótese indutiva, para todos $\xi<\beta<\alpha$, $f(\xi)<^* f(\beta)$, de modo que $\{f(\beta): \beta<\alpha\}$ é uma cadeia em $P$.
+    Por hipótese, toda cadeia é limitada superiormente, de modo que existe $p'\in P$ tal que $f(\beta)\leq^* p'$ para todo $\beta<\alpha$.
+    Como $p'$ não é um elemento maximal, existe $p\in P$ tal que $p'<^* p$.
+    Note que $\forall \beta<\alpha, f(\beta)<^* p$.
+    \textbf{Escolha $f(\alpha)=p\in P$.}
+    \textbf{Isso completa a construção.}
+
+    Ao final, temos que $f:\kappa\to P$ é uma função injetora, o que é impossível, pois $\kappa=|P|^+$.
+\end{proof}
+
+Acima, a grafia ``Escolha $f(\alpha)=p\in P$'' é uma forma contraída de dizer que, antes de se iniciar a recursão, foi fixada uma função escolha $g:\mathcal P(P)\setminus\{\emptyset\}\to P$.
+Na ``construção/indução'', provou-se que um $p$ como necessário para não cairmos na situação de ``caso contrário'' existia, de modo que o conjunto dos tais $p$'s era não vazios.
+Utiliza-se, então, a $g$ pré-fixada para escolher um tal $p$.
+
+Ao lidar com demonstrações em que ocorre uma recursão, como na demonstração acima, alternaremos, conforme a necessidade, entre as três formas de redação.
+Na maior parte do tempo, escreveremos como a segunda forma ou terceira forma, por serem mais intuitivas e enxutas.
+Sempre que necessário, retornaremos à primeira forma.
+
+Na verdade, na presença dos demais axiomas, o Lema de Zorn é equivalente ao Axioma da Escolha.
+
+\begin{theorem}[$ZF^-$]
+    O Lema de Zorn é equivalente ao Axioma da Escolha.
+\end{theorem}
+\begin{proof}
+Já vimos que o Axioma da Escolha implica o Lema de Zorn.
+Reciprocamente, suponha que o Lema de Zorn é verdadeiro.
+Seja dada uma partição $P$ de um conjunto $X$.
+
+Seja
+\[
+    \mathbb P = \{T\subseteq X: \forall A\in P, A\cap T=\emptyset \text{ ou } A\subseteq T \text{ é unitário}\}.
+\]
+Temos que $(\mathbb P, \subseteq)$ é uma ordem parcial.
+
+Seja $\mathcal C$ uma cadeia em $\mathbb P$.
+Considere $T=\bigcup \mathcal C$.
+Temos que $T\subseteq X$.
+Dado $A\in P$, vejamos que $A\cap T$ é vazio ou unitário.
+Se não for, existem $u, v \in A\cap T$ tais que $u\neq v$.
+Como $u, v \in T$, existem $S, R \in \mathcal C$ tais que $u\in S$ e $v\in R$.
+Como $\mathcal C$ é uma cadeia, ou $S\subseteq R$ ou $R\subseteq S$.
+Sem perda de generalidade, suponha que $S\subseteq R$.
+Assim, $u\in R$ e $v\in R$, logo $u, v \in A\cap R$, o que é uma contradição, pois $R\in \mathbb P$.
+Assim, $T\in \mathbb P$ e é claramente uma cota superior para $\mathcal C$.
+
+Pelo Lema de Zorn, existe $T\in \mathbb P$ maximal.
+Afirmo que $T$ é um conjunto que contém exatamente um elemento de cada parte de $P$.
+Se não, existe $A\in P$ tal que $A\cap T$ é vazio.
+Fixe $a \in A$ qualquer e considere $T'=T\cup \{a\}$.
+Temos que $T\subsetneq T'$, $T'\cap A=\{a\}$ e, para todo $B\in P$ tal que $B\neq A$, $T'\cap B=T\cap B$, que é vazio ou unitário.
+Assim, $T'\in \mathbb P$ e $T\subsetneq T'$, o que é uma contradição, pois $T$ é maximal.
+\end{proof}
