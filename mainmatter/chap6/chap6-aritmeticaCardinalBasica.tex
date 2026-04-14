@@ -4,7 +4,7 @@
 \index{produto cardinal}
 
 É possível definir operações de aritmética cardinal para simplificar o cálculo de cardinalidades infinitas.
-Tais operações, por ora de soma e produto, não coincidem com a noção de aritmética ordinal.
+Tais operações, por ora apenas de soma e produto, não coincidem com a noção de aritmética ordinal.
 
 \begin{definition}\index{soma cardinal}\index{produto cardinal}
     Sejam $\kappa$ e $\lambda$ cardinais.
@@ -18,9 +18,9 @@ A definição acima faz sentido, uma vez que os conjuntos $\{0\}\times \kappa \c
     Considere $\kappa=\lambda=\omega$.
     
     A \textbf{soma ordinal} $\omega+\omega$ é o ordinal $\omega + \omega>\omega$, um ordinal enumerável.
-    O \textbf{produto ordinal} de $\omega\cdot\omega$ é o ordinal $\omega \cdot \omega>\omega+\omega>\omega$, um ordinal enumerável.
+    O \textbf{produto ordinal} $\omega\cdot\omega$ é o ordinal $\omega \cdot \omega>\omega+\omega>\omega$, um ordinal enumerável.
 
-    A \textbf{soma cardinal} de $\omega+\omega$ é $|\{0\}\times \omega \cup \{1\}\times \omega|=|\omega|=\omega$.
+    A \textbf{soma cardinal} de $\omega$ com $\omega$ é $|\{0\}\times \omega \cup \{1\}\times \omega|=|\omega|=\omega$.
     O \textbf{produto cardinal} de $\omega$ e $\omega$ é $|\omega \times \omega|=|\omega|=\omega$.
 \end{example}
 
@@ -37,7 +37,7 @@ Já ao utilizarmos letras como $\alpha$, $\beta$ e $\gamma$ e $\delta$, estamos,
 Antes de explanarmos como operar aritmética cardinal de forma prática, estudaremos lemas que a tornam extremamente útil.
 
 \begin{lemma}
-    Seja $A$ um conjunto e suponha que exista um conjunto bem ordenável $B$ e $f:B\to A$ uma função sobrejetora.
+    Seja $A$ um conjunto e suponha que exista um conjunto bem ordenável $B$ e uma função sobrejetora $f:B\to A$.
     Então $A$ é bem ordenável e $|A|\leq |B|$.
 \end{lemma}
 \begin{proof}
@@ -100,7 +100,7 @@ Então $A\cup B$ é bem ordenável e $|A\cup B|\leq |A|+|B|$.
 \end{lemma}
 \begin{proof}
     Seja $B'=B\setminus A$.
-    Temos que $A$ e $B'$ são bem ordenáveis e disjuntos, e, portanto, $A\cup B'=A\cup B$ é bem ordenável e disjunto.
+    Temos que $A$ e $B'$ são bem ordenáveis e disjuntos e, portanto, $A\cup B'=A\cup B$ é bem ordenável.
     Além disso, $|B'|\leq |B|$.
     Portanto:
     \[
@@ -115,7 +115,7 @@ Agora mostraremos as principais ferramentas para cálculos envolvendo aritmétic
     Então $\kappa + \lambda=\lambda+\kappa$ e $\kappa \cdot \lambda=\lambda \cdot \kappa$.
 \end{lemma}
 \begin{proof}
-    A prova é simples e deixada como exercício ao leitor.
+    A prova é simples e será deixada como exercício ao leitor.
 \end{proof}
 
 \begin{lemma}\label{lem:aritmeticaCardinalBasica}
