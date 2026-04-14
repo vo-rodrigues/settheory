@@ -1,6 +1,6 @@
 \section{O Lema de Zorn}\label{sec:lemaDeZorn}
 
-O Teorema abaixo é chamado de Lema de Zorn, que recebe o nome de Lema por razões históricas.
+O teorema abaixo é chamado de Lema de Zorn, embora receba o nome de lema por razões históricas.
    
 A fim de explicitar como o Axioma da Escolha é utilizado em demonstrações e recursões na matemática, apresentaremos três versões da mesma demonstração com redações diferentes.
 \begin{theorem}[$ZFC^-$]\label{def:lemaDeZorn}
@@ -18,7 +18,7 @@ A fim de explicitar como o Axioma da Escolha é utilizado em demonstrações e r
     Fixe $b \in P$ qualquer.
 
     Suponha que a tese é falsa.
-    Seja $g:\mathcal P(P)\setminus\{\emptyset\}\to P$ uma função escolha.
+    Seja $g:\mathcal P(P)\setminus\{\emptyset\}\to P$ uma função de escolha.
     
 
     Recursivamente, define-se uma função $f: \kappa\to P$ tal que, para todo $\alpha<\kappa$:
@@ -58,7 +58,7 @@ Uma segunda forma de redigir esta demonstração, mais contraída, menos formal,
     Seja $\kappa=|P|^+$.
 
     Suponha que a tese é falsa.
-    Seja $g:\mathcal P(P)\setminus\{\emptyset\}\to P$ uma função escolha.
+    Seja $g:\mathcal P(P)\setminus\{\emptyset\}\to P$ uma função de escolha.
     
     Recursivamente, define-se uma função $f: \kappa\to P$ tal que, para todo $\alpha<\kappa$:
     \begin{enumerate}[label=(\alph*)]
@@ -86,7 +86,7 @@ Uma segunda forma de redigir esta demonstração, mais contraída, menos formal,
 
 As palavras em negrito, informalmente, combinam uma indução e uma recursão.
 Formalmente, é necessário inserir a cláusula do ``caso contrário''.
-Porém, na redação, ao invés de apresentar a definição recursiva e após mostrarmos indutivamente que ela nunca ocorre, faz-se as duas coisas ao mesmo tempo.
+Porém, na redação, em vez de apresentar a definição recursiva e, depois, mostrar indutivamente que ela nunca ocorre, fazem-se as duas coisas ao mesmo tempo.
 
 Uma terceira forma de redigir, ainda mais contraída, e extremamente comum, é a seguinte.
 
@@ -103,8 +103,8 @@ Uma terceira forma de redigir, ainda mais contraída, e extremamente comum, é a
     \]
 
     Verificaremos que tal recursão é possível.
-    Para tanto, suponha que $f|\alpha$ já foi construído satisfazendo (a) e (b) para algum $\alpha<\kappa$.
-    Mostraremos como definir $f(\alpha)$ satisfazendo (a) e (b).
+    Para tanto, suponha que $f|\alpha$ já foi construído satisfazendo a condição acima para algum $\alpha<\kappa$.
+    Mostraremos como definir $f(\alpha)$ de modo a preservar essa condição.
     
 
     Por hipótese indutiva, para todos $\xi<\beta<\alpha$, $f(\xi)<^* f(\beta)$, de modo que $\{f(\beta): \beta<\alpha\}$ é uma cadeia em $P$.
@@ -117,12 +117,12 @@ Uma terceira forma de redigir, ainda mais contraída, e extremamente comum, é a
     Ao final, temos que $f:\kappa\to P$ é uma função injetora, o que é impossível, pois $\kappa=|P|^+$.
 \end{proof}
 
-Acima, a grafia ``Escolha $f(\alpha)=p\in P$'' é uma forma contraída de dizer que, antes de se iniciar a recursão, foi fixada uma função escolha $g:\mathcal P(P)\setminus\{\emptyset\}\to P$.
-Na ``construção/indução'', provou-se que um $p$ como necessário para não cairmos na situação de ``caso contrário'' existia, de modo que o conjunto dos tais $p$'s era não vazios.
+Acima, a redação ``Escolha $f(\alpha)=p\in P$'' é uma forma contraída de dizer que, antes de se iniciar a recursão, foi fixada uma função de escolha $g:\mathcal P(P)\setminus\{\emptyset\}\to P$.
+Na ``construção/indução'', provou-se que existia um $p$ como o necessário para não cairmos na situação de ``caso contrário'', de modo que o conjunto de tais $p$ era não vazio.
 Utiliza-se, então, a $g$ pré-fixada para escolher um tal $p$.
 
 Ao lidar com demonstrações em que ocorre uma recursão, como na demonstração acima, alternaremos, conforme a necessidade, entre as três formas de redação.
-Na maior parte do tempo, escreveremos como a segunda forma ou terceira forma, por serem mais intuitivas e enxutas.
+Na maior parte do tempo, escreveremos como na segunda ou na terceira forma, por serem mais intuitivas e enxutas.
 Sempre que necessário, retornaremos à primeira forma.
 
 Na verdade, na presença dos demais axiomas, o Lema de Zorn é equivalente ao Axioma da Escolha.
@@ -137,7 +137,7 @@ Seja dada uma partição $P$ de um conjunto $X$.
 
 Seja
 \[
-    \mathbb P = \{T\subseteq X: \forall A\in P, A\cap T=\emptyset \text{ ou } A\subseteq T \text{ é unitário}\}.
+    \mathbb P = \{T\subseteq X: \forall A\in P, A\cap T=\emptyset \text{ ou } A\cap T \text{ é unitário}\}.
 \]
 Temos que $(\mathbb P, \subseteq)$ é uma ordem parcial.
 
