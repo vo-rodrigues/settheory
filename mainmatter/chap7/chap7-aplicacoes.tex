@@ -1,0 +1,17 @@
+\section{Aplicações do Axioma da Escolha}\label{sec:aplicacoes}
+
+\subsection{Pontos de aderência em \texorpdfstring{$\mathbb R$}{R}}
+Seja $A\subseteq \mathbb R$ um conjunto de números reais.
+Na topologia usual de $\mathbb R$, $a \in \mathbb R$ é dito um ponto de aderência de $A$ se, e somente se, para todo $\varepsilon>0$, $A\cap ]a-\varepsilon, a+\varepsilon[\neq \emptyset$.
+
+\begin{proposition}[$ZFC^-$]\label{prop:existenciaDePontoDeAderencia}
+    Seja $A\subseteq \mathbb R$.
+    Se $a \in A$ é um ponto de aderência de $A$, então existe uma sequência $(a_n)_{n\in \omega}$ de elementos de $A$ tal que $(a_n: n \in \omega)\rightarrow a$, ou seja, tal que para todo $\varepsilon>0$, existe $n_0\in \omega$ tal que, para todo $n\in \omega\setminus n_0$, $a_n\in ]a-\varepsilon, a+\varepsilon[$.
+\end{proposition}
+\begin{proof}
+    Seja $g$ uma função de escolha para $\mathcal P(\mathbb R)\setminus\{\emptyset\}$.
+    Para cada $n\geq 0$, tome $a_n=g\left(A\cap ]a-\frac{1}{n+1}, a+\frac{1}{n+1}[\right)$.
+    
+    Assim, $(a_n: n \in \omega)$ é uma sequência de elementos de $A$ que satisfaz o necessário: dado $\varepsilon>0$, tome $n_0\in \omega$ tal que $\frac{1}{n_0+1}<\varepsilon$.
+    Para todo $n\in \omega\setminus n_0$, $a_n\in ]a-\frac{1}{n+1}, a+\frac{1}{n+1}[\subseteq ]a-\varepsilon, a+\varepsilon[$.
+\end{proof}
