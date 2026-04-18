@@ -41,14 +41,60 @@ Primeiro provaremos o seguinte lema.
     Caso 2: $n\in X$.
     Seja $k\in n+1$ tal que $f(k)=n$.
     Considere $g:n\to X\setminus \{n\}$ dada por
-    \[
-        g(m) = \begin{cases}
-            f(m), & \text{se } m\neq k\\
-            f(n), & \text{se } m=k.
-        \end{cases}
-    \]
+     \[
+         g(m) = \begin{cases}
+             f(m), & \text{se } m\neq k\\
+             f(n), & \text{se } m=k.
+         \end{cases}
+     \]
 
-    Da injetividade de $f$, decorre que $g$ é injetora.
+     A figura abaixo ilustra o processo de construção da função $g$ a partir da função $f$ quando $k\neq n$.
+
+     \begin{center}
+     \begin{tikzpicture}[
+         scale=1,
+         transform shape,
+         every path/.style={semithick},
+         ponto/.style={circle, draw, minimum size=7mm, inner sep=0pt},
+         texto/.style={font=\small, align=center}
+     ]
+         \begin{scope}[xshift=0cm]
+             \node[texto] at (1.8,2.2) {$f:n+1\to X$};
+
+             \node[ponto] (fm) at (0,1.2) {$m$};
+             \node[ponto, fill=gray!15] (fk) at (1.8,1.2) {$k$};
+             \node[ponto, fill=blue!10] (fn) at (3.6,1.2) {$n$};
+
+             \node[ponto] (fimgm) at (0,-0.2) {$f(m)$};
+             \node[ponto, fill=gray!15] (fimgk) at (1.8,-0.2) {$n$};
+             \node[ponto, fill=blue!10] (fimgn) at (3.6,-0.2) {$f(n)$};
+
+             \draw[->] (fm) -- (fimgm);
+             \draw[->] (fk) -- (fimgk);
+             \draw[->] (fn) -- (fimgn);
+         \end{scope}
+
+         \draw[->, thick] (4.9,0.5) -- (6.1,0.5);
+
+         \begin{scope}[xshift=7cm]
+             \node[texto] at (1.3,2.2) {$g:n\to X\setminus\{n\}$};
+
+             \node[ponto] (gm) at (0,1.2) {$m$};
+             \node[ponto, fill=gray!15] (gk) at (2.6,1.2) {$k$};
+
+             \node[ponto] (gimgm) at (0,-0.2) {$f(m)$};
+             \node[ponto, fill=blue!10] (gimgk) at (2.6,-0.2) {$f(n)$};
+
+             \draw[->] (gm) -- (gimgm);
+             \draw[->] (gk) -- (gimgk);
+         \end{scope}
+     \end{tikzpicture}
+     \captionsetup{hypcap=false}
+     \captionof{figure}{Subcaso $k\neq n$ do Caso 2: a seta $k\mapsto n$ é substituída por $k\mapsto f(n)$; para $m<n$ com $m\neq k$, continua valendo $g(m)=f(m)$.}
+     \label{fig:lemaSubconjuntoProprioNaturalFuncaoG}
+     \end{center}
+
+     Da injetividade de $f$, decorre que $g$ é injetora.
 
     Além disso, $g$ é sobrejetora sobre $X\setminus\{n\}$.
     De fato, seja $y\in X\setminus\{n\}$.
