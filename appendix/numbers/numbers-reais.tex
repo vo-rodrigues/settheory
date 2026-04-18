@@ -1,0 +1,457 @@
+\section{Os números reais}
+
+Nesta seção, daremos segmento à construção dos números reais.
+Fixaremos um domínio de integridade bem ordenado $\mathbb Z$ e um corpo $\mathbb Q$ baseado em $\mathbb Z$ como na seção anterior.
+
+Na seção anterior, existe um isomorfismo de estruturas natural entre $\mathbb Z$ e a subestrutura de $\mathbb Q$ formada pelos elementos da forma $\frac{a}{1}$, com $a\in\mathbb Z$.
+Por isso, nessa seção, vamos escolher $\mathbb Z$ como com essa subestrutura de $\mathbb Q$, e, assim, escrever que $\mathbb Z\subseteq \mathbb Q$.
+Dessa forma, é imediato que para todo $q \in \mathbb Q$, existe $n\in \mathbb Z$ tal que $q<n$.
+Por isso, dados $a, b, c \in \mathbb Q$ com $c>0$, existe $n\in \mathbb Z$ tal que $a+nc>b$ (basta tomar $n>(b-a)c^{-1}$).
+
+\begin{lemma}
+    $(\mathbb Q, \leq)$ é uma ordem total densa em si mesma, sem máximo nem mínimo, não vazia, e enumerável.
+\end{lemma}
+\begin{proof}
+    $\mathbb Q$ é enumerável pois é uma ordem sobrejetada por $\mathbb Z\times\mathbb Z\setminus\{0\}$, que por sua vez é enumerável pois $\mathbb Z$ é sobrejetado por $\omega\times \omega$, como nas seções anteriores.
+
+    $\mathbb Q$ não tem máximo nem mínimo, pois para todo $q\in\mathbb Q$, temos $q-1<q<q+1$.
+
+    Por fim, $\mathbb Q$ é densa em si mesma, pois, dados $p,q\in\mathbb Q$ com $p<q$, temos $\frac{p+q}{2}\in\mathbb Q$ e $p<\frac{p+q}{2}<q$.
+\end{proof}
+
+\begin{definition}
+    Um corte de Dedekind em $\mathbb Q$ é um subconjunto $A\subseteq \mathbb Q$ tal que:
+    \begin{itemize}
+        \item $A$ é um segmento inicial próprio e não vazio de $\mathbb Q$.
+        \item $A$ não tem máximo.
+    \end{itemize}
+    O conjunto dos cortes de Dedekind em $\mathbb Q$ é denotado por $\mathbb R$.
+\end{definition}
+
+\begin{proposition}
+    $\mathbb R$, com a relação $\subseteq$, é um conjunto linearmente ordenado com a propriedade do supremo: todo conjunto não vazio limitado superiormente tem supremo.
+\end{proposition}
+\begin{proof}
+    $\subseteq$ é sempre uma ordem parcial.
+    Devemos ver que essa ordem é total.
+
+    Sejam $r, s \in \mathbb R$ distintos.
+    Sem perda de generalidade, existe $q\in r\setminus s$.
+    
+    Pela tricotomia em $\mathbb Q$, temos que para todo $p \in s$, $p<q$, do contrário, teríamos $q<p$, e $q\in s$, o que implica $q \in s$.
+
+    Assim, $s\subseteq r$.
+
+    Agora provaremos a propriedade do supremo.
+    Seja $A\subseteq \mathbb R$ um conjunto não vazio limitado superiormente.
+    Seja $s = \bigcup A$.
+
+    Temos que $s$ é um segmento inicial de $\mathbb Q$ não vazio.
+    Como $A$ é limitado superiormente, existe $r\in\mathbb R$ tal que $a\subseteq r$ para todo $a\in A$.
+    Assim, $s\subseteq r\neq \mathbb Q$.
+
+    Resta ver que $s$ não tem máximo.
+    Se $s$ tivesse máximo $M$, existe $r\in A$ tal que $M\in r$, pois $s$ é a união de $A$.
+    Como $M \in r\subseteq s$ e $M$ é cota superior de $s$, então $M$ é o máximo de $r$, o que é uma contradição, pois $r\in\mathbb R$.
+\end{proof}
+
+Vamos agora injetar, como ordem, $\mathbb Q$ em $\mathbb R$.
+\begin{definition}
+        Dado $q \in \mathbb Q$, o corte de Dedekind correspondente a $q$ é o conjunto $i(q) = \{p\in\mathbb Q : p<q\}$.
+\end{definition}
+\begin{proposition}
+    A função $i:\mathbb Q\to \mathbb R$ é um homomorfismo de ordens injetor, e $i(\mathbb Q)$ é denso em $\mathbb R$ no sentido de que, dados $r, s \in \mathbb R$ com $r\subsetneq s$, existe $q\in\mathbb Q$ tal que $r<i(q)<s$.
+\end{proposition}
+\begin{proof}
+    Vejamos primeiro que $i(q)$ é um corte de Dedekind para todo $q\in\mathbb Q$.
+
+    Como $\mathbb Q$ não tem mínimo nem máximo, para todo $q\in\mathbb Q$, $i(q)$ é um segmento inicial próprio e não vazio de $\mathbb Q$.
+
+    Como $\mathbb Q$ é densa em si mesma, para todo $p\in i(q)$, existe $r\in\mathbb Q$ tal que $p<r<q$, e $r\in i(q)$, de modo que $i(q)$ não tem máximo.
+
+    Se $p, q \in \mathbb Q$ e  $p<q$, então $p \in i(q)\setminus i(p)$, logo, $i(p)\subsetneq i(q)$.
+    Desta forma, $i(p)\subsetneq i(q)$, e $i$ é um homomorfismo de ordens injetor.
+
+    Para ver que $i[\mathbb Q]$ é denso em $\mathbb R$, sejam $r, s \in \mathbb R$ com $r\subsetneq s$.
+    Seja $p\in s\setminus r$.
+    Segue que $r\subseteq i(p)\subsetneq s$.
+    Como $p$ não é o máximo de $s$, existe $q\in s$ tal que $p<q$, de modo que $r\subsetneq i(q)\subsetneq s$.
+
+    Novamente, como $p$ não é o máximo de $s$, existe $p'\in s$ tal que $q<p'$, de modo que $r\subsetneq i(q)\subsetneq i(p')\subsetneq s$.
+    Assim, $r\leq i(p)<i(q)<i(p')\leq s$.
+\end{proof}
+
+Agora vamos definir a soma em $\mathbb R$.
+
+\begin{definition}
+    Dados $r, s \in \mathbb R$, definimos $r+s = \{p+q : p\in r, q\in s\}$.
+\end{definition}
+\begin{proposition}
+    A operação $+$ é bem definida, e $(\mathbb R, +)$ é um grupo abeliano com elemento neutro $0 = i(0)$.
+\end{proposition}
+\begin{proof}
+    Vejamos que $r+s$ é um corte de Dedekind para todo $r, s \in \mathbb R$.
+    
+    É imediato que $r+s\neq\emptyset$.
+    $r+s$ é um segmento inicial de $\mathbb Q$.
+    De fato, suponha que $a \in r+s$ e que $b\in\mathbb Q$ com $b<a$.
+    Então existem $p\in r$ e $q\in s$ tais que $a=p+q$.
+    Temos que $b-p=a-p=q\in s$, de modo que $b=p+(b-p)\in r+s$.
+    Por fim, vejamos que $r+s$ não tem máximo.
+    Com efeito, tome $a \in r+s$.
+    Então existem $p\in r$ e $q\in s$ tais que $a=p+q$.
+    Como $r$ não tem máximo, existe $p'\in r$ tal que $p<p'$, de modo que $a<p'+q\in r+s$.
+    Assim, $r+s$ é um corte de Dedekind.
+
+    $+$ é associativa.
+    De fato, sejam $r, s, t \in \mathbb R$.
+    Se $a \in (r+s)+t$, então existem $u \in r+s$ e $v \in t$ tais que $a=u+v$.
+    Como $u \in r+s$, existem $p\in r$ e $q\in s$ tais que $u=p+q$.
+    Segue que $a=u+v=p+(q+v)\in r+(s+t)$.
+    O outro lado da igualdade é análogo.
+
+    $+$ é comutativa, pois claramente $\{p+q : p\in r, q\in s\} = \{q+p : q\in s, p\in r\}$.
+
+    Vejamos que $i(0)$ é o elemento neutro de $+$.
+    $i(0)+r\subseteq r$, pois, dados $p\in i(0)$ e $q\in r$, temos $p<0$, de modo que $p+q<q$, e $p+q\in r$.
+    Por outro lado, $r\subseteq i(0)+r$, pois, dado $q\in r$, como $r$ não tem máximo, existe $p\in r$ tal que $q<p$.
+    Dessa forma, $q=(q-p)+p\in i(0)+r$.
+    Assim, $i(0)+r=r$.
+
+    Agora, dado $r \in \mathbb R$, seja $s=\{-p: \exists q<p\, r\subseteq i(q)\}$.
+    Vejamos que $s$ é um corte de Dedekind.
+    É imediato que $s$ é um segmento inicial de $\mathbb Q$.
+    $s\neq \emptyset$ pois, se $q\notin r$, então $(-q+1)\in s$.
+    Ademais, $s\neq \mathbb Q$, pois, se $q\in r$, então $-q\notin s$.
+
+    $s$ não tem máximo, pois se $x \in s$, existem $p, q \in \mathbb Q$ tais que $x=-p$, $r\subseteq i(q)$ e $p<q$.
+    Mas então, sendo $t \in \mathbb Q$ tal que $p<t<q$, temos $x<-t\in s$.
+
+    Agora veremos que $r+s=i(0)$.
+
+    Se $a \in r+s$, então existem $p\in r$ e $x\in s$ tais que $a=p+x$.
+    Como $x\in s$, existe $q\in \mathbb Q$ tal que $x=-q$ e $r\subseteq i(q)$.
+    Segue que $p<q$, de modo que $p-q<0$.
+
+    Reciprocamente, tome $a \in i(0)$.
+    Seja $\delta=-\frac{a}{2}$.
+
+    Buscaremos $q \in r$ e $p\in s$ tais que $a<p+q$.
+    Para tanto, comecemos com $q'\in r$ qualquer.
+    
+    Existe $k$ inteiro positivo tal que $q'-ka\notin r$, de modo que $q'+(k+1)\delta\in s$.
+    Seja $n$ o menor inteiro não negativo tal que $q'-na\in s$.
+    Temos que $n\geq 1$.
+    Dessa forma, $x=q'+(n-1)\delta\notin s$.
+    Por isso, para todo $u<x$, temos $i(u)\leq r$, de modo que $i(x)\leq r$ (pois $i(x)=\bigcup_{u<x} i(u)$).
+
+    Seja $q=x-\delta$.
+    Então $q \in r$.
+    Tome $p=q'+n\delta$.
+    Então $-p \in s$.
+    Segue que $q-p=x-\delta-q'-n\delta=q'+n\delta-\delta-\delta-q'-n\delta=-2\delta=a\in r+s$.
+    Dessa forma, $r+s=i(0)$.
+\end{proof}
+
+A soma é compatível com a ordem.
+
+\begin{proposition}
+    Dados $r, s, t \in \mathbb R$, se $r\subseteq s$, então $r+t\subseteq s+t$.
+\end{proposition}
+\begin{proof}
+    Se $a \in r+t$, então existem $p\in r$ e $q\in t$ tais que $a=p+q$.
+    Como $p\in r\subseteq s$, segue que $a=p+q\in s+t$.
+\end{proof}
+
+Agora vamos definir o produto de números reais.
+
+\begin{definition}
+    Dados $r, s \in \mathbb R$ com $r, s>i(0)$, definimos
+    \[
+        r\cdot s = \{x \in \mathbb Q: x\leq 0\}\cup\{pq : p\in r, q\in s, p>0, q>0\}.
+    \]
+\end{definition}
+\begin{lemma}
+    Sejam $r, s \in \mathbb R$ com $r, s>i(0)$.
+    Então $r\cdot s$ é um corte de Dedekind.
+\end{lemma}
+\begin{proof}
+    Vejamos que $r\cdot s$ é um segmento inicial de $\mathbb Q$.
+    Se $x \in r\cdot s$ e $y\in\mathbb Q$ com $y<x$.
+
+    Se $y\leq 0$, então $y \in r\cdot s$.
+    Se $y>0$, tome $p\in r$ e $q\in s$ positivos tais que $pq=x$.
+    Como $y<pq$, temos que $0<yp^{-1}<q$, de modo que $y=p(yp^{-1})\in r\cdot s$.
+
+    É imediato que $r\cdot s\neq \emptyset$.
+    Temos que $r\cdot s\neq \mathbb Q$: fixe $u\in \mathbb Q\setminus r$ e $v\in \mathbb Q\setminus s$.
+    Temos que $u>0$ e $v>0$.
+    Como $uv>0$, basta ver que se $p\in r$ e $q\in s$ são positivos, então $pq<uv$.
+    Ora, de fato, temos $p<u$ e $q<v$, de modo que $pq<pv<uv$.
+
+    Por fim, vejamos que $r\cdot s$ não tem máximo.
+    Se $x \in r\cdot s$ e $x\leq 0$, então $x$ não é máximo de $r\cdot s$, pois este tem elementos positivos.
+    Já se $x>0$, então existem $p\in r$ e $q\in s$ positivos tais que $pq=x$.
+    Como $r$ não possui máximo, existe $p'\in r$ tal que $p<p'$, de modo que $x=pq<p'q\in r\cdot s$, completando a prova.
+\end{proof}
+
+\begin{proposition}
+    Se $r, s, t \in \mathbb R$ são positivos, então:
+    \begin{itemize}
+        \item $(r\cdot s)\cdot t = r\cdot(s\cdot t)$.
+        \item $r\cdot s = s\cdot r$.
+        \item $r\cdot i(1) = r$.
+        \item $(r+s)\cdot t = r\cdot t + s\cdot t$.
+    \end{itemize}
+\end{proposition}
+\begin{proof}
+    A associatividade segue diretamente da definição.
+    De fato, se $x\in (r\cdot s)\cdot t$ e $x>0$, então existem $u\in r\cdot s$ e $v\in t$ positivos tais que $x=uv$.
+    Como $u\in r\cdot s$, existem $p\in r$ e $q\in s$ positivos tais que $u=pq$.
+    Logo
+    \[
+        x=uv=(pq)v=p(qv)\in r\cdot(s\cdot t).
+    \]
+    Se $x\leq 0$, então $x$ pertence aos dois lados.
+    A outra inclusão é análoga.
+
+    A comutatividade também é imediata: os racionais não positivos pertencem aos dois lados e, para $x>0$,
+    \[
+        x=pq \text{ com } p\in r,\ q\in s \iff x=qp \text{ com } q\in s,\ p\in r.
+    \]
+
+    Vejamos agora que $i(1)$ é o neutro multiplicativo no caso positivo.
+    Se $x\in r\cdot i(1)$ e $x>0$, então existem $p\in r$ e $q\in i(1)$ positivos tais que $x=pq$.
+    Como $q<1$, segue que $x<p$, e portanto $x\in r$.
+    Se $x\leq 0$, então $x\in r$, pois $r>0$.
+    Logo $r\cdot i(1)\subseteq r$.
+
+    Reciprocamente, seja $x\in r$.
+    Se $x\leq 0$, então $x\in r\cdot i(1)$.
+    Se $x>0$, como $r$ não tem máximo, existe $p\in r$ tal que $x<p$.
+    Tomando $q=xp^{-1}$, temos $0<q<1$, logo $q\in i(1)$, e
+    \[
+        x=pq\in r\cdot i(1).
+    \]
+    Assim, $r\cdot i(1)=r$.
+
+    Resta provar a distributividade no caso positivo.
+    Se $x\in (r+s)\cdot t$ e $x>0$, então existem $u\in r+s$ e $v\in t$ positivos tais que $x=uv$.
+    Escrevendo $u=p+q$ com $p\in r$ e $q\in s$, obtemos
+    \[
+        x=(p+q)v=pv+qv\in r\cdot t+s\cdot t.
+    \]
+    Se $x\leq 0$, então $x$ pertence aos dois lados.
+    Logo $(r+s)\cdot t\subseteq r\cdot t+s\cdot t$.
+
+    Agora, seja $x\in r\cdot t+s\cdot t$.
+    Se $x\leq 0$, então $x\in (r+s)\cdot t$.
+    Suponha $x>0$.
+    Então existem $u\in r\cdot t$ e $v\in s\cdot t$ tais que $x=u+v$.
+
+    Se $u\leq 0$, então $v>x>0$.
+    Logo existem $p\in s$ e $q\in t$ positivos com $v=pq$.
+    Escolha $p'\in r$ positivo.
+    Então
+    \[
+        x<v<(p'+p)q\in (r+s)\cdot t,
+    \]
+    e, como $(r+s)\cdot t$ é segmento inicial, segue que $x\in (r+s)\cdot t$.
+
+    O caso $v\leq 0$ é análogo.
+    Se $u,v>0$, escreva $u=pq$ e $v=p'q'$ com $p\in r$, $p'\in s$, $q,q'\in t$ positivos.
+    Como $t$ não tem máximo, existe $w\in t$ tal que $q<w$ e $q'<w$.
+    Então
+    \[
+        x=pq+p'q' < pw+p'w = (p+p')w\in (r+s)\cdot t,
+    \]
+    de modo que $x\in (r+s)\cdot t$.
+
+    Assim, $r\cdot t+s\cdot t\subseteq (r+s)\cdot t$, concluindo a prova.
+\end{proof}
+
+\begin{definition}
+    Denotaremos por $1$ o corte $i(1)$ e, para cada $r\in \mathbb R$, por $-r$ o inverso aditivo de $r$ em $(\mathbb R,+)$.
+\end{definition}
+
+\begin{lemma}
+    Para todo $r\in\mathbb R$:
+    \begin{itemize}
+        \item se $r<0$, então $-r>0$;
+        \item se $r>0$, então $-r<0$.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    Se $r<0$, somando $-r$ aos dois lados obtemos $0<-r$.
+    Se $r>0$, somando $-r$ aos dois lados obtemos $-r<0$.
+\end{proof}
+
+\begin{definition}
+    Estendemos a multiplicação a todos os reais por casos:
+    \begin{itemize}
+        \item se $r=0$ ou $s=0$, então $r\cdot s=0$;
+        \item se $r>0$ e $s>0$, então $r\cdot s$ é o corte definido acima;
+        \item se $r<0$ e $s>0$, então $r\cdot s=-((-r)\cdot s)$;
+        \item se $r>0$ e $s<0$, então $r\cdot s=-(r\cdot (-s))$;
+        \item se $r<0$ e $s<0$, então $r\cdot s=(-r)\cdot (-s)$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Se $r\in\mathbb R$ é positivo, definimos
+    \[
+        r^{-1}=\{x \in \mathbb Q: x\leq 0\}\cup\{x \in \mathbb Q: x>0 \text{ e existe } y>0 \text{ com } y\notin r \text{ e } x<y^{-1}\}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    Se $r>0$, então $r^{-1}$ é um corte de Dedekind positivo e $r\cdot r^{-1}=1$.
+\end{lemma}
+\begin{proof}
+    É imediato que $r^{-1}$ é um segmento inicial de $\mathbb Q$.
+    Como contém todos os racionais não positivos, ele é não vazio.
+
+    Para ver que é próprio, tome $p\in r$ com $p>0$.
+    Afirmamos que $p^{-1}\notin r^{-1}$.
+    De fato, se $p^{-1}\in r^{-1}$, existiria $y>0$ com $y\notin r$ e $p^{-1}<y^{-1}$.
+    Então $y<p$, e, como $p\in r$ e $r$ é segmento inicial, teríamos $y\in r$, o que é absurdo.
+    Logo $r^{-1}\neq \mathbb Q$.
+
+    Vejamos que $r^{-1}$ não tem máximo.
+    Se $x\in r^{-1}$ e $x\leq 0$, então $x<0\in r^{-1}$.
+    Se $x>0$, existe $y>0$ com $y\notin r$ e $x<y^{-1}$.
+    Pela densidade de $\mathbb Q$, existe $t\in\mathbb Q$ tal que $x<t<y^{-1}$.
+    Então $t\in r^{-1}$.
+    Assim, $r^{-1}\in\mathbb R$.
+
+    Além disso, $r^{-1}>0$, pois $0\in r^{-1}$.
+    Se $y>0$ e $y\notin r$, pela densidade de $\mathbb Q$ existe $x>0$ com $x<y^{-1}$, e então $x\in r^{-1}$.
+    Logo $i(0)\subsetneq r^{-1}$.
+
+    Provemos agora que $r\cdot r^{-1}=1$.
+    Se $a\in r\cdot r^{-1}$ e $a>0$, existem $p\in r$ e $q\in r^{-1}$ positivos tais que $a=pq$.
+    Escolha $y>0$ com $y\notin r$ e $q<y^{-1}$.
+    Como $p<y$, segue que $a=pq<py^{-1}<1$, e portanto $a\in 1$.
+    Se $a\leq 0$, então $a\in 1$.
+    Logo $r\cdot r^{-1}\subseteq 1$.
+
+    Reciprocamente, seja $a\in 1$.
+    Se $a\leq 0$, então $a\in r\cdot r^{-1}$.
+    Suponha $0<a<1$.
+    Escolha $b\in r$ com $b>0$.
+    Tome $n$ inteiro positivo tal que $\frac{1}{n}<1-a$.
+    Então $a<\frac{n-1}{n}$.
+
+    Seja $x=\frac{b}{n}$.
+    Temos $0<x<b$, e como $b\in r$ e $r$ é segmento inicial, segue que $x\in r$.
+
+    Tal como acima, fixe $z>0$ com $z\notin r$.
+    Pela observação inicial sobre $\mathbb Q$, existe um inteiro positivo $k$ tal que $kx>z$.
+    Portanto, $kx\notin r$.
+    Seja $m$ o menor inteiro positivo tal que $mx\notin r$.
+    Como $nx=b\in r$, temos $m>n$.
+    Defina $y=mx$.
+    Então $y>0$, $y\notin r$ e $(m-1)x\in r$.
+
+    Como $a<\frac{n-1}{n}<\frac{m-1}{m}$, segue que
+    \[
+        ay<\frac{m-1}{m}y=(m-1)x.
+    \]
+    Pela densidade de $\mathbb Q$, existe $q\in\mathbb Q$ tal que
+    \[
+        \frac{a}{(m-1)x}<q<y^{-1}.
+    \]
+    O segundo termo implica $q\in r^{-1}$, e o primeiro implica
+    \[
+        a<(m-1)xq.
+    \]
+    Como $(m-1)x\in r$ e $r\cdot r^{-1}$ é segmento inicial, concluímos que $a\in r\cdot r^{-1}$.
+    Assim, $1\subseteq r\cdot r^{-1}$, e portanto $r\cdot r^{-1}=1$.
+\end{proof}
+
+\begin{proposition}
+    A operação $\cdot$ está bem definida em $\mathbb R$ e $(\mathbb R,+,\cdot,-,0,1)$ é um corpo.
+\end{proposition}
+\begin{proof}
+    Pela tricotomia e pelo lema anterior, a definição por casos faz sentido para todo par $r, s\in\mathbb R$.
+    Logo $\cdot$ está bem definida.
+
+    Já sabemos que $(\mathbb R,+)$ é um grupo abeliano.
+    A comutatividade de $\cdot$ é imediata da definição e da comutatividade no caso positivo.
+
+    Se um dos fatores é $0$, a associatividade é trivial.
+    Se $r, s, t$ são não nulos, cada um deles é positivo ou o oposto de um positivo.
+    Pela definição da multiplicação, trocar o sinal de exatamente um fator troca o sinal do produto, e trocar o sinal de dois fatores preserva o produto.
+    Assim, a associatividade geral reduz-se à associatividade no caso positivo, já provada.
+
+    O elemento $1=i(1)$ é neutro multiplicativo.
+    Se $r>0$, isso foi provado acima.
+    Se $r<0$, então
+    \[
+        r\cdot 1=-((-r)\cdot 1)=-(-r)=r,
+    \]
+    e o caso $r=0$ é imediato.
+
+    Basta provar a distributividade à direita:
+    \[
+        (r+s)\cdot t=r\cdot t+s\cdot t.
+    \]
+    Se $t=0$, não há nada a provar.
+    Suponha primeiro $t>0$.
+
+    Se $r,s>0$, a igualdade já foi estabelecida.
+
+    Se $r,s<0$, então $-r,-s>0$ e
+    \[
+        (-(r+s))\cdot t=(-r)\cdot t+(-s)\cdot t.
+    \]
+    Tomando opostos aditivos e usando a regra dos sinais, obtemos
+    \[
+        (r+s)\cdot t=r\cdot t+s\cdot t.
+    \]
+
+    Suponha agora $r>0>s$.
+    Se $r+s=0$, a igualdade é imediata.
+    Se $r+s>0$, então $r=(r+s)+(-s)$ com ambos os termos positivos.
+    Logo
+    \[
+        r\cdot t=(r+s)\cdot t+(-s)\cdot t.
+    \]
+    Somando $s\cdot t=-((-s)\cdot t)$ aos dois lados, concluímos que
+    \[
+        (r+s)\cdot t=r\cdot t+s\cdot t.
+    \]
+    Se $r+s<0$, então $-s=(-(r+s))+r$ com ambos os termos positivos.
+    Portanto
+    \[
+        (-s)\cdot t=(-(r+s))\cdot t+r\cdot t.
+    \]
+    Tomando opostos e rearranjando, obtemos novamente
+    \[
+        (r+s)\cdot t=r\cdot t+s\cdot t.
+    \]
+
+    O caso $s>0>r$ é análogo.
+
+    Se $t<0$, escreva $t=-u$ com $u>0$.
+    Pelo caso anterior,
+    \[
+        (r+s)\cdot u=r\cdot u+s\cdot u.
+    \]
+    Tomando opostos e usando outra vez a regra dos sinais, segue que
+    \[
+        (r+s)\cdot t=r\cdot t+s\cdot t.
+    \]
+
+    Falta ver que todo real não nulo é invertível.
+    Se $r>0$, o lema anterior fornece $r^{-1}>0$ com $r\cdot r^{-1}=1$.
+    Se $r<0$, escreva $r=-a$ com $a>0$.
+    Então
+    \[
+        r\cdot(-a^{-1})=(-a)\cdot(-a^{-1})=a\cdot a^{-1}=1.
+    \]
+
+    Por fim, $0\neq 1$, pois $0\in 1$ mas $0\notin 0$, isto é, $0<1$.
+\end{proof}
+
+
