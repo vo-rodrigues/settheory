@@ -1,0 +1,234 @@
+\section{Os números racionais}
+
+Nesta seção, construiremos $\mathbb Q$ e os caracterizaremos como o único corpo ordenado inicial.
+
+Ao longo desta seção, fixaremos um domínio de integridade bem-ordenado $(\mathbb Z, +, \cdot, -, 0, 1, \leq)$.
+\begin{definition}[Números racionais]\label{def:conjuntoNumerosRacionais}
+Defina, em $\mathbb Z\times\mathbb (\mathbb Z\setminus\{0\})$, a relação de equivalência $\sim_{\mathbb Q}$ por
+\[
+    (a, b)\sim_{\mathbb Q} (c, d) \text{ se, e somente se, } ad=bc.
+\]
+O conjunto dos \textbf{números racionais} é o conjunto quociente
+\[
+    \mathbb Q = (\mathbb Z\times\mathbb (\mathbb Z\setminus\{0\}))/{\sim_{\mathbb Q}}.
+\]
+
+A classe de equivalência de um par $(a, b)$ é denotada por $\frac{a}{b}$, e os elementos de $\mathbb Q$ são chamados de \textbf{números racionais}.
+\end{definition}
+
+\begin{proposition}
+    A relação $\sim_{\mathbb Q}$ é de equivalência.
+\end{proposition}
+\begin{proof}
+    Para todo $a, b\in\mathbb Z$ com $b\neq 0$, temos $ab=ba$, de modo que $(a, b)\sim_{\mathbb Q} (a, b)$ e $\sim_{\mathbb Q}$ é reflexiva.
+
+    Se $(a, b)\sim_{\mathbb Q} (c, d)$, então $ad=bc$, de modo que $cb=da$, e $(c, d)\sim_{\mathbb Q} (a, b)$ e $\sim_{\mathbb Q}$ é simétrica.
+
+    Se $(a, b)\sim_{\mathbb Q} (c, d)$ e $(c, d)\sim_{\mathbb Q} (e, f)$, então $ad=bc$ e $cf=de$.
+    
+    Segue que $adf=bcf=bde$.
+    Cancelando $d$ (que é diferente de zero), temos $af=be$, e $(a, b)\sim_{\mathbb Q} (e, f)$ e $\sim_{\mathbb Q}$ é transitiva.
+\end{proof}
+
+\begin{lemma}
+    Seja, $a, b, c \in \mathbb Z$ com $b, c\neq 0$.
+    Então $\frac{ac}{bc}=\frac{a}{b}$.
+\end{lemma}
+\begin{proof}
+    Basta notar que $ac\cdot b = a\cdot bc$.
+\end{proof}
+
+\begin{definition}[Operações em $\mathbb Q$]\label{def:operacoesNumerosRacionais}
+A operação de soma $+:\mathbb Q\times\mathbb Q\to\mathbb Q$ é dada por
+\[
+    \frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd}.
+\]
+A operação de produto $\cdot:\mathbb Q\times\mathbb Q\to\mathbb Q$ é dada por
+\[
+    \frac{a}{b}\cdot\frac{c}{d} = \frac{ac}{bd}.
+\]
+$0$ é definido como $\frac{0}{1}$ e $1$ é definido como $\frac{1}{1}$.
+\end{definition}
+As operações acima estão bem definidas:
+\begin{lemma}
+    Se $\frac{a}{b}=\frac{a'}{b'}$ e $\frac{c}{d}=\frac{c'}{d'}$, então
+    \[
+        \frac{ad+bc}{bd} = \frac{a'd'+b'c'}{b'd'} \text{ e } \frac{ac}{bd} = \frac{a'c'}{b'd'}.
+    \]
+\end{lemma}
+\begin{proof}
+    Suponha que $\frac{a}{b}=\frac{a'}{b'}$ e $\frac{c}{d}=\frac{c'}{d'}$.
+    Então $ab'=a'b$ e $cd'=c'd$.
+    Segue que
+    \[
+        (ad+bc)b'd' = adb'd' + bcb'd' = a'bdb'd' + b'cdb'd' = (a'd'+b'c')bd'.
+    \]
+    Assim, $\frac{ad+bc}{bd} = \frac{a'd'+b'c'}{b'd'}$.
+
+    De maneira similar, temos
+    \[
+        acb'd' = a'cbd'
+    \]
+    de modo que $\frac{ac}{bd} = \frac{a'c'}{b'd'}$.
+\end{proof}
+
+\begin{proposition}
+    $(\mathbb Q, +, \cdot, -, 0, 1)$ é um corpo, ou seja, um anel comutativo com $1$ em que todo elemento diferente de $0$ é invertível.
+
+    O oposto aditivo de $\frac{a}{b}$ é $\frac{-a}{b}$, e o inverso multiplicativo de $\frac{a}{b}$ (para $\frac{a}{b}\neq 0$) é $\frac{b}{a}$.
+\end{proposition}
+\begin{proof}
+    Vejamos que $(\mathbb Q, +, -, 0)$ é um grupo abeliano.
+    
+    Para todo $\frac{a}{b}, \frac{c}{d}, \frac{e}{f}\in\mathbb Q$, temos
+    \begin{align*}
+        \left(\frac{a}{b}+\frac{c}{d}\right)+\frac{e}{f} &= \frac{ad+bc}{bd}+\frac{e}{f} = \frac{adf+bcf+ebd}{bdf}\\
+        &= \frac{af+eb}{bf}+\frac{cd}{bd} = \frac{a}{b}+\left(\frac{c}{d}+\frac{e}{f}\right).
+    \end{align*}
+    Assim, a soma é associativa.
+    Para ver que é comutativa, note que
+    \[
+        \frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd} = \frac{cb+da}{db} = \frac{c}{d}+\frac{a}{b}.
+    \]
+    $0$ é o elemento neutro aditivo, pois
+    \[
+        \frac{a}{b}+0 = \frac{a}{b}+\frac{0}{1} = \frac{a\cdot 1 + b\cdot 0}{b\cdot 1} = \frac{a}{b}.
+    \]
+    Finalmente, o oposto aditivo de $\frac{a}{b}$ é $\frac{-a}{b}$, pois
+    \[
+        \frac{a}{b}+\frac{-a}{b} = \frac{ab+(-a)b}{bb} = \frac{0}{bb} = 0.
+    \]
+
+    Agora vamos mostrar que a multiplicação é associativa e comutativa.
+    De fato:
+    \[
+        \left(\frac{a}{b}\cdot\frac{c}{d}\right)\cdot\frac{e}{f} = \frac{ac}{bd}\cdot\frac{e}{f} = \frac{ace}{bdf} = \frac{a}{b}\cdot\frac{ce}{df} = \frac{a}{b}\cdot\left(\frac{c}{d}\cdot\frac{e}{f}\right).
+    \]
+    E
+    \[
+        \frac{a}{b}\cdot\frac{c}{d} = \frac{ac}{bd} = \frac{ca}{db} = \frac{c}{d}\cdot\frac{a}{b}.
+    \]
+    $1$ é o elemento neutro multiplicativo, pois
+    \[
+        \frac{a}{b}\cdot 1 = \frac{a}{b}\cdot\frac{1}{1} = \frac{a\cdot 1}{b\cdot 1} = \frac{a}{b}.
+    \]
+    Suponha que $\frac{a}{b}\neq 0$.
+    Então $a\neq 0$ (ou teríamos que $\frac{a}{b}=\frac{0}{1}$, o que é falso).
+    O inverso multiplicativo de $\frac{a}{b}$ é $\frac{b}{a}$, pois
+    \[
+        \frac{a}{b}\cdot\frac{b}{a} = \frac{ab}{ba} = \frac{1}{1} = 1.
+    \]
+
+    Por fim, $0\neq 1$, pois se $\frac{0}{1}=\frac{1}{1}$, então $0\cdot 1 = 1\cdot 1$, o que é falso.
+\end{proof}
+
+Agora vamos estabelecer uma ordem em $\mathbb Q$ que torne $(\mathbb Q, +, \cdot, -, 0, 1, \leq)$ um corpo ordenado.
+
+\begin{definition}[Ordem em $\mathbb Q$]\label{def:ordemNumerosRacionais}
+A relação de ordem $\leq$ em $\mathbb Q$ é dada por
+\[
+    \frac{a}{b}\leq\frac{c}{d} \text{ se, e somente se, } ad\leq bc.
+\]
+em que $b, d>0$.
+\end{definition}
+A relação de ordem acima está bem definida:
+\begin{lemma}
+    Se $\frac{a}{b}=\frac{a'}{b'}$ e $\frac{c}{d}=\frac{c'}{d'}$ com $b, b', d, d'>0$, então $ad\leq bc$ se, e somente se, $a'd'\leq b'c'$.
+\end{lemma}
+\begin{proof}
+    Suponha que $\frac{a}{b}=\frac{a'}{b'}$ e $\frac{c}{d}=\frac{c'}{d'}$ com $b, b', d, d'>0$.
+    Suponha que $ad\leq bc$.
+    Veremos que $a'd'\leq b'c'$.
+
+    De fato, como $ad\leq bc$ e $b'>0$, temos que $adb'\leq bcb'$.
+    Assim, $a'db'\leq b'cb$.
+    Cancelando $b>0$, temos $a'd\leq b'c$.
+    Agora, como $d'>0$, temos $a'dd'\leq b'cd'=bc'd'$.
+    Cancelando $d'>0$, temos $a'd\leq b'c$.
+\end{proof}
+
+Vejamos que a ordem definida acima é compatível com as operações de soma e produto.
+\begin{proposition}
+    $(\mathbb Q, +, \cdot, -, 0, 1, \leq)$ é um corpo ordenado.
+\end{proposition}
+\begin{proof}
+    Para todo $\frac{a}{b}, \frac{c}{d}, \frac{e}{f}\in\mathbb Q$ com $b, d, f>0$, temos
+    \[
+        \frac{a}{b}\leq\frac{c}{d} \text{ se, e somente se, } ad\leq bc.
+    \]
+    Assim,
+    \[
+        (ad+eb)d' = add' + ebd' \leq bcd' + ebd' = (bc+eb)d',
+    \]
+    de modo que $\frac{a}{b}+\frac{e}{f}\leq\frac{c}{d}+\frac{e}{f}$.
+
+    De maneira similar, temos
+    \[
+        acf = acf' \leq bcf' = bcd',
+    \]
+    de modo que $\frac{a}{b}\cdot\frac{e}{f}\leq\frac{c}{d}\cdot\frac{e}{f}$.
+\end{proof}
+
+A seguir, mostraremos que $\mathbb Q$ é o único corpo ordenado inicial.
+\begin{theorem}
+    Se $(K, +, \cdot, -, 0, 1, \leq)$ é um corpo.
+    Então existe um único homomorfismo injetor de aneis com $1$, $f:\mathbb Q\to K$.
+
+    Além disso, esta propriedade caracteriza $\mathbb Q$ a menos de isomorfismo de anéis com $1$, e tal homomorfismo é crescente,
+\end{theorem}
+\begin{proof}
+    Sabemos que existe um homomorfismo de anéis $f:\mathbb Z\to K$.
+    
+    Provaremos que, para todo $n, m \in \mathbb Z$ com $n, m>0$, temos que se $m<n$ então $f(m)<f(n)$.
+    Suponha que não.
+    Seja $n$ o menor inteiro positivo com $f(n)\leq f(m)$ para algum inteiro positivo $m$.
+    Temos que, por vacuidade, $1<n$, de modo que $0<n-1$.
+    Temos que, em $K$, $0< 1$< logo, $f(n-1)< f(n-1)+1=f(n-1)+f(1)=f(n)$.
+    
+    Agora, se $m$ é um inteiro positivo com $m<n$, então $m\leq n-1$.
+    Assim, $f(m)\leq f(n-1)< f(n)$, o que é uma contradição com a escolha de $n$.
+    Em particular, para todo $n\in\mathbb Z$ com $n>0$, temos $f(n)\geq f(1)=1>0$.
+
+     Se $n$ é um inteiro negativo, então $-n$ é um inteiro positivo, de modo que $f(-n)>0$.
+
+    Logo, para todos $m, n$ inteiros positivos, se $f(m)<f(n)$, então $m<n$.
+    Se $m$ é negativo e $n$ não negativo, temos que $0<-m$< logo, $f(0)<f(-m)$, e, portanto, $f(m)<f(0)=0<f(n)$.
+    Finalmente, se $m$ e $n$ são inteiros negativos e $m<n$, então $-n<-m$< logo, $f(-n)<f(-m)$, e, portanto, $f(m)<f(n)$.
+    Assim, $f$ preserva a ordem estrita, e, portanto, é injetora.
+
+    Defina $g:\mathbb Q\to K$ por $g\left(\frac{a}{b}\right) = f(a)\cdot f(b)^{-1}$.
+    
+    $g$ está bem definida, pois se $\frac{a}{b}=\frac{a'}{b'}$, então $ab'=a'b$, de modo que $f(a)f(b')=f(a')f(b)$, e $f(a)\cdot f(b)^{-1} = f(a')\cdot f(b')^{-1}$.
+
+    $g$ é um homomorfismo de anéis com $1$, pois, dados $\frac{a}{b}, \frac{c}{d}\in\mathbb Q$, temos
+    \begin{align*}
+         g\left(\frac{a}{b}+\frac{c}{d}\right) &= g\left(\frac{ad+bc}{bd}\right) = f(ad+bc)\cdot f(bd)^{-1} = (f(a)f(d)+f(b)f(c))\cdot (f(b)f(d))^{-1}\\
+         &= f(a)f(b)^{-1}+f(c)f(d)^{-1} = g\left(\frac{a}{b}\right)+g\left(\frac{c}{d}\right),
+    \end{align*}
+    \begin{align*}
+         g\left(\frac{a}{b}+\frac{c}{d}\right) &= g\left(\frac{ad+bc}{bd}\right) = f(ad+bc)\cdot f(bd)^{-1} = (f(a)f(d)+f(b)f(c))\cdot (f(b)f(d))^{-1}\\
+         &= f(a)f(b)^{-1}+f(c)f(d)^{-1} = g\left(\frac{a}{b}\right)+g\left(\frac{c}{d}\right).
+    \end{align*}
+
+    Além disso, $g(1)=f(1)\cdot f(1)^{-1}=1$.
+
+    $g$ é o único tal homomorfismo, pois, se $h:\mathbb Q\to K$ é um homomorfismo de anéis com $1$, então, para todo $\frac{a}{b}\in\mathbb Q$, temos, para $a \in \mathbb Z$, que:
+
+    $h\left(\frac{a}{1}\right) = h(a\cdot 1^{-1}) = h(a)\cdot h(1)^{-1} = f(a)\cdot 1^{-1} = f(a)$
+
+    Assim, o mapa $a\mapsto h\left(\frac{a}{1}\right)$ é um homomorfismo de anéis com $1$ de $\mathbb Z$ em $K$, e, portanto, é igual a $f$, uma vez que tal homomorfismo é único.
+
+    Agora, para todo $\frac{a}{b}\in\mathbb Q$, temos
+    \[
+        h\left(\frac{a}{b}\right) = h(a\cdot b^{-1}) = h(a)\cdot h(b)^{-1} = f(a)\cdot f(b)^{-1} = g\left(\frac{a}{b}\right).
+    \]
+
+    Assim, $f=g$.
+
+    Agora seja $(L, +, \cdot, -, 0, 1, \leq)$ um corpo ordenado com a propriedade do enunciado.
+    Existe $f:\mathbb Q\to L$ um homomorfismo de anéis e $g:L\rightarrow \mathbb Q$ um homomorfismo de anéis.
+
+    Temos que $g\circ f:\mathbb Q\to \mathbb Q$ é um homomorfismo de anéis com $1$, e, portanto, $g\circ f = id_{\mathbb Q}$.
+    Da mesma forma, $f\circ g:L\to L$ é um homomorfismo de anéis com $1$, e, portanto, $f\circ g = id_L$.
+    Assim, $f$ é um isomorfismo de anéis com $1$ de $\mathbb Q$ em $L$.
+\end{proof}
