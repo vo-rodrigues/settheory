@@ -25,7 +25,7 @@ Em 1888, Dedekind também já havia registrado a ideia de que um conjunto é det
 
 No contexto desse axioma, é conveniente introduzir a noção de subconjunto, com a qual esperamos que o leitor já tenha alguma familiaridade.
 
-\begin{definition}[$Z^--P$](Subconjunto)\label{def:subconjunto}\index{subconjunto}
+\begin{definition}[$\BST$](Subconjunto)\label{def:subconjunto}\index{subconjunto}
 Sejam $x$ e $y$ conjuntos.
 Dizemos que $x$ é um \emph{subconjunto} de $y$, e escrevemos $x \subseteq y$, se todo elemento de $x$ é também elemento de $y$; isto é,
 \[
@@ -35,7 +35,7 @@ x \subseteq y \quad \text{se, e somente se,} \quad \forall z\,(z \in x \rightarr
 
 Com essa notação, obtemos imediatamente a seguinte caracterização da igualdade.
 
-\begin{proposition} [$Z^--P$]\label{prop:igualdadePorInclusao}
+\begin{proposition} [$\BST$]\label{prop:igualdadePorInclusao}
 Para quaisquer conjuntos $x$ e $y$, tem-se
 \[
 x=y \quad \text{se, e somente se,} \quad x \subseteq y \ \text{e} \ y \subseteq x.
@@ -76,7 +76,7 @@ Em outras palavras, designamos, metateoricamente, uma lista de axiomas que, embo
 Historicamente, um predecessor de tal esquema é o Princípio da Compreensão Irrestrita\index{princípio da compreensão irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
 No entanto, esse princípio leva a contradições, como o famoso Paradoxo de Russell.
 
-\begin{proposition}[$Z^--P$](Paradoxo de Russell)\label{prop:paradoxoDeRussell}\index{paradoxo de Russell}
+\begin{proposition}[$\BST$](Paradoxo de Russell)\label{prop:paradoxoDeRussell}\index{paradoxo de Russell}
     Considere a fórmula $P(x)$ dada por $x\notin x$.
     Então
     
@@ -113,7 +113,7 @@ A presença dos parâmetros $t_1,\ldots,t_n$ é essencial: ela nos permite defin
 
 O Axioma da Extensão nos garante que tal conjunto deve ser único.
 
-\begin{proposition}[$Z^--P$](Esquema da unicidade para compreensão)\label{prop:unicidadeNaCompreensao}
+\begin{proposition}[$\BST$](Esquema da unicidade para compreensão)\label{prop:unicidadeNaCompreensao}
     Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$.
     A seguinte sentença é teorema:
     \begin{equation}
@@ -130,7 +130,7 @@ O Axioma da Extensão nos garante que tal conjunto deve ser único.
 
 A Proposição~\ref{prop:unicidadeNaCompreensao} nos permite utilizar a seguinte notação, muito usual em toda a Matemática.
 
-\begin{definition}[$Z^--P$](Esquema da notação por compreensão)\label{def:notacaoPorCompreensao}\index{notação!por compreensão}
+\begin{definition}[$\BST$](Esquema da notação por compreensão)\label{def:notacaoPorCompreensao}\index{notação!por compreensão}
     Seja $\phi(x, A, t_1, \ldots, t_n)$ uma fórmula.
     Para todo conjunto $A$ e parâmetros $t_1, \ldots, t_n$, denotamos por $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ o único conjunto $y$ tal que $\forall x (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$.
 
@@ -142,7 +142,7 @@ A Proposição~\ref{prop:unicidadeNaCompreensao} nos permite utilizar a seguinte
 
 Neste ponto, convém dar um exemplo que envolva objetos ainda não definidos formalmente, mas com os quais o leitor provavelmente já está familiarizado, para ilustrar o uso de parâmetros no esquema da compreensão.
 
-\begin{example}[$Z^--P$]
+\begin{example}[$\BST$]
     Mais adiante, quando tivermos introduzido formalmente os números naturais, para cada $n \in \mathbb{N}$ poderemos considerar o conjunto
     \[
         [0, n[=\{k \in \mathbb{N} : k < n\}.
@@ -164,7 +164,7 @@ Neste ponto, notemos que, em nossa teoria, por enquanto, não provamos a existê
 O próximo resultado fornece um primeiro exemplo de tal conjunto: o conjunto vazio.
 A ideia da prova é simples: partimos de um conjunto qualquer já existente e selecionamos, dele, os elementos que satisfazem uma condição impossível.
 
-\begin{proposition}[$Z^--P$]\label{prop:existenciaConjuntoVazio}\index{conjunto vazio}
+\begin{proposition}[$\BST$]\label{prop:existenciaConjuntoVazio}\index{conjunto vazio}
     Existe um único conjunto que não possui nenhum elemento.
     Formalmente:
     \begin{equation}
@@ -188,7 +188,7 @@ A ideia da prova é simples: partimos de um conjunto qualquer já existente e se
     Pelo Axioma da Extensão, segue que $y=y'$.
 \end{proof}
 
-\begin{definition}[$Z^--P$]\label{def:conjuntoVazio}\index{conjunto vazio}
+\begin{definition}[$\BST$]\label{def:conjuntoVazio}\index{conjunto vazio}
     O conjunto vazio, denotado por $\emptyset$, é o único conjunto que não possui nenhum elemento.
     Formalmente, insere-se na teoria, por definição, um símbolo de constante $\emptyset$ e o seguinte axioma definicional.
     \begin{equation*}

@@ -21,75 +21,94 @@ Em particular, o Axioma do Infinito será estudado apenas no Capítulo~\ref{chap
 
 \subsection{Enunciado dos axiomas}
 
-Enunciaremos os axiomas na forma em que eles serão usados no texto.
-Em alguns casos, como nos axiomas do Par, da União e da Potência, adotamos uma formulação levemente mais fraca do que a formulação ``exata'' usual; na presença do Esquema da Compreensão, as versões usuais seguem imediatamente.
+A seguir, enunciaremos os axiomas de ZFC na forma em que eles serão usados no texto.
+Nos enunciados abaixo, usaremos as abreviações lógicas e notacionais já introduzidas anteriormente,
+como quantificadores restritos, $\neq$ e $\exists!$.
+Se $s, t$ são termos da linguagem, $s \notin t$ é uma abreviação de $\neg (s \in t)$.
+
+Existem, na literatura, diversas reformulações equivalentes desta lista de axiomas.
+Optamos por esta lista em particular pela simplicidade de sua apresentação e por sua adequação ao desenvolvimento que faremos ao longo do texto.
 
 \begin{displayaxiom}{Axioma da Extensão}\index{axioma!da extensão}
     \[
-        \forall x \forall y \Bigl(\bigl(\forall z\,(z \in x \leftrightarrow z \in y)\bigr) \rightarrow x=y\Bigr).
+        \forall x \forall y\, \Bigl(\bigl(\forall z\, (z \in x \leftrightarrow z \in y)\bigr) \rightarrow x = y\Bigr).
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Esquema de Axiomas da Compreensão}\index{axioma!esquema da compreensão}\index{axioma!esquema da separação|see{esquema da compreensão}}
-    Para cada fórmula $\phi(x, A, t_1, \ldots, t_n)$, a seguinte sentença é um axioma:
+    Para cada fórmula $\phi(x, A, t_1, \ldots, t_n)$ sem $y$ livre, a seguinte sentença é um axioma:
     \[
-        \forall A \forall t_1 \ldots \forall t_n \exists y \forall x \Bigl(x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
+        \forall t_1 \ldots \forall t_n \forall A \exists y \forall x\, \Bigl(x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Axioma do Par}\index{axioma!do par}
     \[
-        \forall x \forall y \exists z (x \in z \land y \in z).
+        \forall x \forall y \exists z\, (x \in z \land y \in z).
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Axioma da União}\index{axioma!da união}
     \[
-        \forall x \exists y \forall z\, (\exists w\, (w \in x \land z \in w)\rightarrow z \in y).
+        \forall x \exists y \forall z\, \bigl(\exists w\, (w \in x \land z \in w) \rightarrow z \in y\bigr).
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Axioma da Potência}\index{axioma!da potência}
     \[
-        \forall x\, \exists y\, \forall z\, \Bigl((\forall w\,(w \in z \rightarrow w \in x)) \rightarrow z \in y\Bigr).
+        \forall x \exists y \forall z\, \Bigl((\forall w\, (w \in z \rightarrow w \in x)) \rightarrow z \in y\Bigr).
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Axioma do Infinito}\index{axioma!do infinito}
     \[
-        \exists I\,\Bigl(
-            \exists z\,(\forall w\,(w\notin z) \land z\in I)
-            \land
-            \forall x\,(x\in I \rightarrow \exists y\,(y\in I \land \forall z\,(z\in y \leftrightarrow (z\in x \lor z=x))))
-        \Bigr).
+        \begin{aligned}
+            \exists I\, \Bigl(
+                &\exists z\, \bigl(\forall w\, (w \notin z) \land z \in I\bigr) \\
+                &\land \forall x\, \bigl(
+                    x \in I
+                    \rightarrow
+                    \exists y\, \bigl(
+                        y \in I
+                        \land
+                        \forall t\, (t \in y \leftrightarrow (t \in x \lor t = x))
+                    \bigr)
+                \bigr)
+            \Bigr).
+        \end{aligned}
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Esquema de Axiomas da Substituição}
     \index{axioma!esquema da substituição}
-    Para cada fórmula $\phi(x, y, A, t_1, \dots, t_n)$, a seguinte sentença é um axioma:
+    Para cada fórmula $\phi(x, y, A, t_1, \ldots, t_n)$ sem $B$ livre, a seguinte sentença é um axioma:
     \[
-        \forall t_1, \dots, t_n \forall A \left( \forall x\in A \exists! y \phi(x, y, A, t_1, \dots, t_n) \rightarrow \exists B \forall y (\exists x\in A \phi(x, y, A, t_1, \dots, t_n)\rightarrow y \in B)\right).
+        \begin{aligned}
+            \forall t_1 \ldots \forall t_n \forall A\, \Bigl(
+                &\forall x \in A\, \exists! y\, \phi(x, y, A, t_1, \ldots, t_n) \\
+                &\rightarrow \exists B\, \forall y\, \bigl(\exists x \in A\, \phi(x, y, A, t_1, \ldots, t_n) \rightarrow y \in B\bigr)
+            \Bigr).
+        \end{aligned}
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Axioma da Regularidade (ou da Fundação)}\index{axioma!da regularidade}\index{axioma!da fundação|see{da regularidade}}
     \[
-        \forall x\,\Bigl((\exists y\,(y\in x)) \rightarrow \exists y\,\bigl(y\in x \land \neg \exists z\,(z\in x \land z\in y)\bigr)\Bigr).
+        \forall x\, \Bigl((\exists y\, (y \in x)) \rightarrow \exists y\, \bigl(y \in x \land \neg \exists z\, (z \in x \land z \in y)\bigr)\Bigr).
     \]
 \end{displayaxiom}
 
 \begin{displayaxiom}{Axioma da Escolha}\index{axioma!da escolha}
     \[
-        \forall A\,\Bigl(
-            \Bigl(
-                \forall x\in A\, \exists y\,(y\in x)
-                \land
-                \forall x\in A \forall y\in A \bigl(x\neq y \rightarrow \neg \exists z\,(z\in x \land z\in y)\bigr)
-            \Bigr)
-            \rightarrow
-            \exists C\, \forall x\in A\, \exists! y\,(y\in x \land y\in C)
-        \Bigr)
+        \begin{aligned}
+            \forall A\, \Bigl(
+                &\Bigl(
+                    \forall x \in A\, \exists y\, (y \in x) \\
+                    &\land \forall x \in A\, \forall y \in A\, \bigl(x \neq y \rightarrow \neg \exists z\, (z \in x \land z \in y)\bigr)
+                \Bigr) \\
+                &\rightarrow \exists C\, \forall x \in A\, \exists! y\, (y \in x \land y \in C)
+            \Bigr).
+        \end{aligned}
     \]
 \end{displayaxiom}
 
@@ -109,5 +128,26 @@ No Capítulo~\ref{chap:axiomaDaEscolha}, estudaremos esse axioma e algumas de su
         \item $ZFC$ é a teoria $ZF$ acrescida do Axioma da Escolha.
         \item Se $T$ é uma das teorias acima, $T^-$ é a teoria obtida ao se remover de $T$ o Axioma da regularidade.
         \item Se $T$ é uma das teorias acima, $T-P$ é a teoria obtida ao se remover de $T$ o Axioma da Potência.
+        \item $BST$, ou \emph{Basic Set Theory}, é a teoria formada pelos seguintes axiomas e esquemas: Extensão, Compreensão, União, Par, e Potência fraca.
     \end{itemize}
+
+    O Axioma da Potência Fraca não é um axioma padrão da literatura.
+    Neste texto, ele será utilizado para fins didáticos e organizacionais.
+    Na presença dos demais axiomas considerados nesta seção, ele é uma versão muito mais fraca do
+    Axioma da Potência e também decorre do Esquema da Substituição.
 \end{metadefinition}
+
+\begin{displayaxiom}{Axioma da Potência Fraca}\index{axioma!da potência fraca}
+        \[
+            \begin{aligned}
+                \forall x\, \exists y\, \forall a\, \forall b\, \Bigl(
+                    &(a \in x \land b \in x) \\
+                    &\rightarrow \exists z\, \bigl(
+                        z \in y
+                        \land
+                        \forall w\, (w \in z \leftrightarrow (w = a \lor w = b))
+                    \bigr)
+                \Bigr).
+            \end{aligned}
+        \]
+    \end{displayaxiom}
