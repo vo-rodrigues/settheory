@@ -392,13 +392,21 @@ Os teoremas abaixo garantem que as propriedades algébricas provadas determinam 
     Temos que $f$ está bem definida: se $(n, m)\sim_Z (n', m')$, então $n+m'=n'+m$, de modo que $u(n)+u(m')=u(n')+u(m)$, e, portanto, $u(n)-u(m)=u(n')-u(m')$.
 
     $f$ preserva a soma: dados $x=[(n, m)]_{\sim_Z}$ e $y=[(n', m')]_{\sim_Z}$, temos que:
-    \[
-        f(x+y)=f([(n+n', m+m')]_{\sim_Z})=u(n+n')-u(m+m')=(u(n)+u(n'))-(u(m)+u(m'))=(u(n)-u(m))+(u(n')-u(m'))=f(x)+f(y).
-    \]
+    \begin{align*}
+        f(x+y) & = f([(n+n', m+m')]_{\sim_Z}) \\
+        & = u(n+n')-u(m+m') \\
+        & = (u(n)+u(n'))-(u(m)+u(m')) \\
+        & = (u(n)-u(m))+(u(n')-u(m')) \\
+        & = f(x)+f(y).
+    \end{align*}
     $f$ preserva o produto: dados $x=[(n, m)]_{\sim_Z}$ e $y=[(n', m')]_{\sim_Z}$, temos que:
-    \[
-        f(x\cdot y)=f([(n\cdot n'+m\cdot m', n\cdot m'+m\cdot n')]_{\sim_Z})=u(n\cdot n'+m\cdot m')-u(n\cdot m'+m\cdot n')=(u(n)u(n')+u(m)u(m'))-(u(n)u(m')+u(m)u(n'))=(u(n)-u(m))(u(n')-u(m'))=f(x)f(y).
-    \]
+    \begin{align*}
+        f(x\cdot y) & = f([(nk+ml, nl+mk)]_{\sim_Z}) \\
+        & = u(nk+ml)-u(nl+mk) \\
+        & = (u(n)u(k)+u(m)u(l))-(u(n)u(l)+u(m)u(k)) \\
+        & = (u(n)-u(m))(u(k)-u(l)) \\
+        & = f(x)f(y).
+    \end{align*}
 
     $f$ preserva $1$: temos que $f(1_Z)=f([(1, 0)]_{\sim_Z})=u(1)-u(0)=1-0=1$.
 
