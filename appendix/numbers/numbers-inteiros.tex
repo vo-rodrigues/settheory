@@ -431,3 +431,40 @@ Os teoremas abaixo garantem que as propriedades algébricas provadas determinam 
 
     Logo, $f$ é como queríamos.
 \end{proof}
+
+Uma outra caracterização de $\mathbb Z$ é a seguinte.
+
+\begin{theorem}
+   A estrutura $(\mathbb Z, +, \cdot, -, 0, 1)$ é o (único, a menos de isomorfismo) anel com $1$ inicial na categoria dos anéis com $1$, ou seja, para todo anel com $1$ $(R, +, \cdot, -, 0_R, 1_R)$, existe um único homomorfismo de anéis com $1$ de $\mathbb Z$ em $R$.
+\end{theorem}
+
+\begin{proof}
+    Dado um anel com $1$ $(R, +, \cdot, -, 0_R, 1_R)$, defina, como no teorema anterior, $u: \omega\to R$ por $u(0)=0_R$ e $u(n+1)=u(n)+1_R$, e, então, defina $f:\mathbb Z\to R$ por $f([(n, m)]_{\sim_Z})=u(n)-u(m)$.
+
+    Como no teorema anterior, $f$ é um homomorfismo de anéis com $1$.
+
+    Vejamos que $f$ é o único tal homomorfismo.
+    Considere um homomorfismo de anéis com $1$ $g:\mathbb Z\to R$.
+
+    Por indução, vejamos que $g([(n, 0)]_{\sim_Z})=u(n)$ para todo $n\in \omega$.
+    Para $n=0$, temos que $g([(0, 0)]_{\sim_Z})=g(0_Z)=0_R=u(0)$.
+    Suponha que $g([(n, 0)]_{\sim_Z})=u(n)$.
+    Assim, $g([(n+1, 0)]_{\sim_Z})=g([(n, 0)]_{\sim_Z}+[(1, 0)]_{\sim_Z})=g([(n, 0)]_{\sim_Z})+g([(1, 0)]_{\sim_Z})=u(n)+1_R=u(n+1)$.
+
+    Segue, agora, que para todo $m \in \omega$, $g([(0, m)]_{\sim_Z})=g(-[(m, 0)]_{\sim_Z})=-g([(m, 0)]_{\sim_Z})=-u(m)$.
+
+    Assim, para todo $n, m \in \omega$, $g([(n, m)]_{\sim_Z})=g([(n, 0)]_{\sim_Z}+(-[(m, 0)]_{\sim_Z}))=g([(n, 0)]_{\sim_Z})+g(-[(m, 0)]_{\sim_Z})=u(n)-u(m)=f([(n, m)]_{\sim_Z})$.
+    Logo, $g=f$.
+
+    Finalmente, vejamos que tal propriedade caracteriza $\mathbb Z$ a menos de isomorfismo.
+
+    Seja $Z$ um anel com $1$ inicial na categoria dos anéis com $1$.
+
+    Então existe um homomorfismo de anéis com $1$, $f:\mathbb Z\to Z$, e um homomorfismo de anéis com $1$, $g:Z\to \mathbb Z$.
+
+    Segue que $g\circ f:\mathbb Z\to \mathbb Z$ é um homomorfismo de anéis com $1$, bem como $\id_{\mathbb Z}:\mathbb Z\to \mathbb Z$.
+    Assim, $g\circ f=\id_{\mathbb Z}$.
+    Analogamente, $f\circ g=\id_Z$.
+
+    Assim, $f$ é um isomorfismo de anéis com $1$ entre $\mathbb Z$ e $Z$.
+\end{proof}
