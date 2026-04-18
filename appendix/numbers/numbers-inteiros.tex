@@ -1,0 +1,425 @@
+\section{Números inteiros}\label{sec:numerosInteiros}
+Nesta seção, construiremos o conjunto dos números inteiros $\mathbb Z$ a partir do conjunto dos números naturais $\omega$ e os caracterizaremos algebricamente.
+
+Primeiro, introduzimos uma relação de equivalência entre $(n, m)$ e $(n', m')$ para $n, m, n', m' \in \omega$.
+Intuitivamente, ela quer dizer que $n-m=n'-m'$, mas ela faz sentido mesmo que $n<m$ e $n'<m'$.
+
+\begin{definition}[$Z^-$]\label{def:inteiros}
+    Diremos que dois pares de inteiros $(n, m)$ e $(n', m')$ são equivalentes, e escreveremos $(n, m)\sim_Z (n', m')$, se, e somente se, $n+m'=n'+m$.
+\end{definition}
+
+\begin{proposition}[$Z^-$]\label{prop:relacaoDeEquivalenciaDosInteiros}
+    A relação $\sim_Z$ é uma relação de equivalência.
+\end{proposition}
+\begin{proof}
+    $\sim_Z$ é reflexiva: dados $n, m \in \omega$, $n+m=n+m$, de modo que $(n, m)\sim_Z (n, m)$.
+
+    $\sim_Z$ é simétrica: dados $n, m, n', m' \in \omega$, se $(n, m)\sim_Z (n', m')$, então $n+m'=n'+m$, de modo que $n'+m=n+m'$, e, portanto, $(n', m')\sim_Z (n, m)$.
+
+    $\sim_Z$ é transitiva: dados $n, m, n', m', n'', m'' \in \omega$, se $(n, m)\sim_Z (n', m')$ e $(n', m')\sim_Z (n'', m'')$, então:
+
+    \[
+    \begin{array}{rcl}
+        n+m' & = & n'+m \\
+        n'+m'' & = & n''+m'
+    \end{array}
+    \]
+
+    Somando as duas igualdades, temos:
+
+    \[
+        n+m'+n'+m'' =  n'+m+n''+m' = n'+m
+    \]
+    Cancelando $n'+m'$, temos $n+m''=n''+m$, de modo que $(n, m)\sim_Z (n'', m'')$.
+\end{proof}
+
+\begin{definition}[$Z^-$]\label{def:conjuntoDosInteiros}
+    O conjunto dos números inteiros é o conjunto $\mathbb Z = \omega\times \omega/\sim_Z$.
+
+    A inclusão canônica de $\omega$ em $\mathbb Z$ é dada por $i:\omega\to \mathbb Z$ tal que $i(n)=[(n, 0)]_{\sim_Z}$.
+\end{definition}
+
+Vamos definir a soma de inteiros.
+A ideia é somar as partes negativas e positivas separadamente, e depois juntar os resultados.
+\begin{definition}
+    Seja $+:\mathbb Z\times \mathbb Z\to \mathbb Z$ dada por $[(n, m)]_{\sim_Z}+[(n', m')]_{\sim_Z}=[(n+n', m+m')]_{\sim_Z}$.
+
+    Definimos $0_Z=[(0, 0)]_{\sim_Z}=\{(n, n): n \in \omega\}$.
+\end{definition}
+Precisamos ver que tal operação está bem definida, o que é feito pelo lema abaixo.
+
+\begin{lemma}[$Z^-$]\label{lem:operacaoSomaNosInteirosBemDefinida}
+    Se $n, m, n', m', k, l, k', l' \in \omega$ são tais que $(n, m)\sim_Z (k, l)$ e $(n', m')\sim_Z (k', l')$, então $(n+n', m+m')\sim_Z (k+k', l+l')$.
+\end{lemma}
+\begin{proof}
+    Suponha que $(n, m)\sim_Z (k, l)$ e $(n', m')\sim_Z (k', l')$.
+    Assim, $n+m=k+l$ e $n'+m'=k'+l'$
+
+    Somando as duas igualdades, temos:
+    \[
+        n+l+n'+l' = k+m+k'+m'
+    \]
+    Rearranjando os termos:
+    \[
+        (n+n')+(l+l') = (k+k')+(m+m')
+    \]
+    Portanto, $(n+n', m+m')\sim_Z (k+k', l+l')$.
+\end{proof}
+
+Definimos também a operação de oposto em $\mathbb Z$.
+\begin{definition}
+    Seja $-:\mathbb Z\to \mathbb Z$ dada por $-[(n, m)]_{\sim_Z}=[(m, n)]_{\sim_Z}$.
+\end{definition}
+Precisa-se mostrar que ela está bem definida, o que é feito pelo lema abaixo.
+\begin{lemma}[$Z^-$]\label{lem:operacaoOpostoNosInteirosBemDefinida}
+    Se $n, m, k, l \in \omega$ são tais que $(n, m)\sim_Z (k, l)$, então $(m, n)\sim_Z (l, k)$.
+\end{lemma}
+\begin{proof}
+    Suponha que $(n, m)\sim_Z (k, l)$.
+    Assim, $n+m=k+l$.
+
+    Rearranjando os termos, temos:
+    \[
+        m+n=l+k.
+    \]
+    Portanto, $(m, n)\sim_Z (l, k)$.
+\end{proof}
+\begin{proposition}
+    O conjunto $(\mathbb Z, +, -, 0_Z)$ é um grupo Abeliano, ou seja, para todo $x, y, z \in \mathbb Z$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $x+y=y+x$;
+        \item $x+(y+z)=(x+y)+z$;
+        \item $x+0_Z=x$;
+        \item $x+(-x)=0_Z$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}\hfill
+    \par (a) Dados $x=[(n, m)]_{\sim_Z}$ e $y=[(n', m')]_{\sim_Z}$, temos que:
+    \[
+        x+y=[(n+n', m+m')]_{\sim_Z}=[(n'+n, m'+m)]_{\sim_Z}=y+x.
+    \]
+
+    (b) Dados $x=[(n, m)]_{\sim_Z}$, $y=[(n', m')]_{\sim_Z}$ e $z=[(n'', m'')]_{\sim_Z}$, temos que:
+    \[
+        x+(y+z)=[(n+(n'+n''), m+(m'+m''))]_{\sim_Z}=[((n+n')+n'', (m+m')+m'')]_{\sim_Z}=(x+y)+z.
+    \]
+
+    (c) Dado $x=[(n, m)]_{\sim_Z}$, temos que:
+    \[
+        x+0_Z=[(n+0, m+0)]_{\sim_Z}=[(n, m)]_{\sim_Z}=x.
+    \]
+
+    (d) Dado $x=[(n, m)]_{\sim_Z}$, temos que:
+    \[
+        x+(-x)=[(n+m, m+n)]_{\sim_Z}=[(0, 0)]_{\sim_Z}=0_Z.
+    \]
+\end{proof}
+
+Agora prosseguimos para definir o produto de números inteiros.
+A ideia é dar sentido à seguinte equação:
+\[
+    (n-m)(k-l)=nk+ml-(nl+mk).
+\]
+\begin{definition}
+    Seja $\cdot:\mathbb Z\times \mathbb Z\to \mathbb Z$ dada por $[(n, m)]_{\sim_Z}\cdot [(k, l)]_{\sim_Z}=[(nk+ml, nl+mk)]_{\sim_Z}$.
+    Definimos $1_Z=[(1, 0)]_{\sim_Z}$.
+\end{definition}
+Precisamos mostrar que tal operação está bem definida, o que é feito pelo lema abaixo.
+\begin{lemma}[$Z^-$]\label{lem:operacaoProdutoNosInteirosBemDefinida}
+    Se $n, m, n', m', k, l, k', l' \in \omega$ são tais que $(n, m)\sim_Z (n', m')$ e $(k, l)\sim_Z (k', l')$, então:
+    \[
+        (nk+ml, nl+mk)\sim_Z (n'k'+m'l', n'l'+m'k').
+    \]
+\end{lemma}
+\begin{proof}
+    Suponha que $(n, m)\sim_Z (n', m')$ e $(k, l)\sim_Z (k', l')$.
+    Então,
+    \[
+        n+m'=n'+m
+        \qquad\text{e}\qquad
+        k+l'=k'+l.
+    \]
+    Precisamos mostrar que
+    \[
+        (nk+ml)+(n'l'+m'k')=(nl+mk)+(n'k'+m'l').
+    \]
+
+    Da igualdade $n+m'=n'+m$, multiplicando por $k$, obtemos
+    \[
+        nk+m'k=n'k+mk.
+    \]
+    Da mesma igualdade, multiplicando por $l$, obtemos
+    \[
+        nl+m'l=n'l+ml.
+    \]
+    Da igualdade $k+l'=k'+l$, multiplicando por $m'$, obtemos
+    \[
+        m'k+m'l'=m'k'+m'l.
+    \]
+    Da mesma igualdade, multiplicando por $n'$, obtemos
+    \[
+        n'k+n'l'=n'k'+n'l.
+    \]
+
+    Somando essas quatro igualdades, obtemos
+    \[
+        nk+m'k+nl+m'l+m'k+m'l'+n'k+n'l'
+        =
+        n'k+mk+n'l+ml+m'k'+m'l+n'k'+n'l.
+    \]
+
+    Reorganizando os termos, segue que
+    \[
+        (nk+ml+n'l'+m'k')+(m'k+n'k+nl+m'l)
+        =
+        (nl+mk+n'k'+m'l')+(m'k+n'k+n'l+m'l).
+    \]
+    Cancelando os termos comuns em ambos os lados, concluímos que
+    \[
+        (nk+ml)+(n'l'+m'k')=(nl+mk)+(n'k'+m'l').
+    \]
+    Portanto,
+    \[
+        (nk+ml, nl+mk)\sim_Z (n'k'+m'l', n'l'+m'k').
+    \]
+\end{proof}
+
+Agora vamos demonstrar algumas das principais propriedades algébricas dos números inteiros.
+\begin{proposition}
+    O conjunto $(\mathbb Z, +, \cdot, -, 0_Z, 1_Z)$ é um domínio de integridade, ou seja, além de ser um grupo Abeliano em relação à soma, para todo $x, y, z \in \mathbb Z$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $x\cdot y=y\cdot x$;
+        \item $x\cdot (y\cdot z)=(x\cdot y)\cdot z$;
+        \item $x\cdot 1_Z=x$;
+        \item $x\cdot (y+z)=x\cdot y+x\cdot z$;
+        \item $1_Z\neq 0_Z$.]
+        \item se $x\cdot y=0_Z$, então $x=0_Z$ ou $y=0_Z$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}Sejam dados $x=[(n, m)]_{\sim_Z}$, $y=[(k, l)]_{\sim_Z}$ e $z=[(r, s)]_{\sim_Z}$.
+
+    (a) Note que:
+    \[
+        x\cdot y=[(nk+ml, nl+mk)]_{\sim_Z}=[(kn+lm, ln+km)]_{\sim_Z}=y\cdot x.
+    \]
+
+    (b) Note que:
+    \begin{align*}
+        x\cdot (y\cdot z) & = [(n, m)]_{\sim_Z}\cdot [(kr+ls, lr+ks)]_{\sim_Z} \\
+        & = [(n(kr+ls)+m(lr+ks), n(lr+ks)+m(kr+ls))]_{\sim_Z} \\
+        & = [((nk+ml)r+(nl+mk)s, (nl+mk)r+(nk+ml)s)]_{\sim_Z} \\
+        & = [(nk+ml, nl+mk)]_{\sim_Z}\cdot [(r, s)]_{\sim_Z} \\
+        & = (x\cdot y)\cdot z.
+    \end{align*}
+
+    (c) Temos que:
+    \[
+        x\cdot 1_Z=[(n\cdot 1+m\cdot 0, n\cdot 0+m\cdot 1)]_{\sim_Z}=[(n, m)]_{\sim_Z}=x.
+    \]
+
+    (d) Temos que:
+    \begin{align*}
+        x\cdot (y+z) & = [(n, m)]_{\sim_Z}\cdot [(k+r, l+s)]_{\sim_Z} \\
+        & = [(n(k+r)+m(l+s), n(l+s)+m(k+r))]_{\sim_Z} \\
+        & = [((nk+ml)+(nr+ms), (nl+mk)+(ns+mr))]_{\sim_Z} \\
+        & = [(nk+ml, nl+mk)]_{\sim_Z}+[(nr+ms, ns+mr)]_{\sim_Z} \\
+        & = x\cdot y+x\cdot z.
+    \end{align*}
+
+    (e) Note que $1_Z=[(1, 0)]_{\sim_Z}$ e $0_Z=[(0, 0)]_{\sim_Z}$.
+    Se $1_Z=0_Z$, então $1+0=0+0$, o que é uma contradição.
+
+    (f) Se $x\cdot y=0_Z$, então $nk+ml=nl+mk$.
+    
+    Temos dois casos: $n\leq m$ e $m\leq n$.
+    Suponha primeiro que $n\leq m$.
+    Então existe $p \in \omega$ tal que $m=n+p$.
+    Assim, $nk+ml=nl+mk$ implica que $nk+(n+p)l=nl+(n+p)k$, de modo que $nk+nl+pl=nl+nk+pk$, e, portanto, $pl=pk$.
+    Se $p=0$, então $m=n$, de modo que $x=[(n, n)]_{\sim_Z}=0_Z$.
+    Caso contrário, cancelando $p$ em ambos os lados, temos que $l=k$, de modo que $y=[(k, k)]_{\sim_Z}=0_Z$.
+
+    O segundo caso, em que $m\leq n$, é análogo.
+\end{proof}
+
+O próximo passo é definir a ordem dos inteiros.
+\begin{definition}
+    Sejam $x=[(n, m)]_{\sim_Z}$ e $y=[(k, l)]_{\sim_Z}$.
+    Dizemos que $x\leq y$ se, e somente se, $n+l\leq k+m$.
+\end{definition}
+Novamente, devemos mostrar que tal definição é bem dada, o que é feito pelo lema abaixo.
+\begin{lemma}\label{lem:relacaoDeOrdemNosInteirosBemDefinida}
+    Se $n, m, n', m', k, l, k', l' \in \omega$ são tais que $(n, m)\sim_Z (n', m')$ e $(k, l)\sim_Z (k', l')$, então $n+l\leq k+m$ se, e somente se, $n'+l'\leq k'+m'$.
+\end{lemma}
+\begin{proof}
+    Suponha que $(n, m)\sim_Z (n', m')$ e $(k, l)\sim_Z (k', l')$.
+    Assim, $n+m'=n'+m$ e $k+l'=k'+l$.
+
+    Se $n+l\leq k+m$, então, somando $m'$ em ambos os lados, temos que $n+m'+l\leq k+m+m'$, de modo que $n'+m+l\leq k+m+m'$.
+    Agora, somando $l'$ em ambos os lados, temos que $n'+m+l+l'\leq k+m+m'+l'$, de modo que $n'+m+l+l'\leq k'+m+m'+l$.
+    Cancelando $m+l$, temos que $n'+l'\leq k'+m'$.
+    O raciocínio inverso é análogo.
+\end{proof}
+
+Agora veremos que a relação de ordem definida acima é uma relação de ordem total.
+\begin{proposition}
+    A relação $\leq$ é uma relação de ordem total, ou seja, para todo $x, y, z \in \mathbb Z$:
+    \begin{enumerate}[label=(\alph*)]
+        \item $x\leq x$;
+        \item se $x\leq y$ e $y\leq x$, então $x=y$;
+        \item se $x\leq y$ e $y\leq z$, então $x\leq z$;
+        \item $x\leq y$ ou $y\leq x$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}\hfill
+    \par (a) Dado $x=[(n, m)]_{\sim_Z}$, temos que $n+m\leq n+m$, de modo que $x\leq x$.
+
+    (b) Se $x\leq y$ e $y\leq x$, então $n+l\leq k+m$ e $k+m\leq n+l$, de modo que $n+l=k+m$.
+    Assim, $n+m'=n'+m$ e $k+l'=k'+l$, de modo que $n'+l'=k'+m'$, e, portanto, $x=y$.
+
+    (c) Se $x\leq y$ e $y\leq z$, então $n+l\leq k+m$ e $k+r\leq t+l$, de modo que $n+l+r\leq k+m+r\leq t+l+r$, e, portanto, $x\leq z$.
+
+    (d) Ou $n+l\leq k+m$, ou $k+m\leq n+l$, de modo que ou $x\leq y$, ou $y\leq x$.
+\end{proof}
+
+O próximo passo é mostrar que a ordem definida acima é compatível com as operações de soma e produto.
+\begin{proposition}
+    Para todo $x, y, z \in \mathbb Z$:
+    \begin{enumerate}[label=(\alph*)]
+        \item se $x\leq y$, então $x+z\leq y+z$;
+        \item se $0_Z\leq x$ e $0_Z\leq y$, então $0_Z\leq x\cdot y$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}Sejam $x=[(n, m)]_{\sim_Z}$, $y=[(k, l)]_{\sim_Z}$ e $z=[(u, v)]_{\sim_Z}$.
+
+    (a) Se $x\leq y$, então $n+l\leq k+m$.
+    Assim, $n+u+l+v\leq k+u+m+v$, de modo que $x+z\leq y+z$.
+
+    (b) Se $0_Z\leq x$ e $0_Z\leq y$, então $m\leq n$ e $l\leq k$.
+    Sejam $u\in \omega$ tal que $n=m+u$.
+    Como $l\leq k$, segue que $ul\leq uk$, de modo que:
+    \[
+        ul+ml+mk\leq uk+ml+mk.
+    \]
+    Assim:
+    \[
+        (u+m)l+mk\leq (u+m)k+ml,
+    \]
+    Logo:
+    \[
+        nl+mk\leq nk+ml,
+    \]
+    O que equivale a dizer que $0_Z\leq x\cdot y$.
+\end{proof}
+
+\begin{lemma}
+    Seja $x\in \mathbb Z$ tal que $0_Z\leq x$.
+    Então, existe um único $n\in \omega$ tal que $x=[(n, 0)]_{\sim_Z}$.
+\end{lemma}
+\begin{proof}
+    Para a existência, tome $(k, l)\in \omega\times \omega$ tal que $x=[(k, l)]_{\sim_Z}$.
+    Como $0_Z\leq x$, temos que $l\leq k$.
+    Assim, existe $n\in \omega$ tal que $k=n+l$.
+    Afirmo que $(n, 0)\sim_Z (k, l)$.
+    De fato, $n+l=k+0$, de modo que $(n, 0)\sim_Z (k, l)$.
+
+    Para a unicidade, assuma que $(n, 0)\sim_Z (n', 0)$.
+    Segue que $n+0=n'+0$, de modo que $n=n'$.
+\end{proof}
+
+Finalmente, provaremos que a seguinte propriedade é válida.
+
+\begin{proposition}
+    Seja $A\subseteq \mathbb Z$ tal que $\forall x \in A, x\leq 0_Z$.
+    Então, $A$ possui elemento mínimo.
+\end{proposition}
+\begin{proof}
+    Para cada $x\in A$, existe um único $n_x\in \omega$ tal que $x=[(0, n_x)]_{\sim_Z}$.
+    Seja $m=\min\{n_x: x\in A\}$.
+    Afirmo que $[(0, m)]_{\sim_Z}$ é o elemento mínimo de $A$.
+    De fato, dado $x\in A$, temos que $n_x\geq m$, de modo que $0+n_x\geq 0+m$, e, portanto, $x=[(0, n_x)]_{\sim_Z}\geq [(0, m)]_{\sim_Z}$.
+\end{proof}
+
+Os teoremas abaixo garantem que as propriedades algébricas provadas determinam completamente a estrutura dos números inteiros.
+
+\begin{definition}
+    Um domínio de integridade bem ordenado é uma estrutura $(Z, +, \cdot, -, 0, 1, \leq)$ tal que $(Z, +, \cdot, -, 0, 1)$ é um domínio de integridade e $\leq$ é uma relação de ordem total que satisfaz:
+    \begin{enumerate}[label=(\alph*)]
+        \item se $x\leq y$, então $x+z\leq y+z$;
+        \item se $0\leq x$ e $0\leq y$, então $0\leq x\cdot y$;
+        \item se $A\subseteq Z$ é tal que $\forall x \in A, x\leq 0$, então $A$ possui elemento mínimo.
+    \end{enumerate}
+\end{definition}
+\begin{lemma}
+    Seja $(Z, +, \cdot, -, 0, 1, \leq)$ um domínio de integridade bem-ordenado.
+    Então, para todo $n \in Z$, não existe $k$ tal que $n<k<n+1$.
+\end{lemma}
+\begin{proof}
+    Vejamos primeiro que não existe $k$ tal que $0<k<1$.
+    Suponha que exista.
+
+    Seja $x=\min\{k\in Z: 0<k<1\}$.
+    Temos que $0<x<1$.
+    Multiplicando a desigualdade $0<x$ por $x$, obtemos $0<x\cdot x<x<1$, de modo que $x\cdot x<x$ e $x\cdot x\in \{k\in Z: 0<k<1\}$, o que é uma contradição.
+
+    Agora, para concluir o resultado, fixe $n\in Z$ e suponha que exista $k$ tal que $n<k<n+1$.
+    Segue que $0<k-n<(n+1)-n=1$, o que é uma contradição.
+\end{proof}
+
+\begin{theorem}
+    Seja $Z$ um domínio de integridade bem ordenado.
+    Então existe um isomorfismo de domínios de anéis entre $Z$ e $\mathbb Z$ que preserva a ordem.
+\end{theorem}
+\begin{proof}
+    Defina recursivamente $u: \omega\to Z$ por $u(0)=0$ e $u(n+1)=u(n)+1$.
+
+    Afirmamos que para todos $n, m \in \omega$, $u(n+m)=u(n)+u(m)$.
+    Para tanto, fixe $n\in \omega$ e proceda por indução em $m$.
+    Para $m=0$, temos que $u(n+0)=u(n)=u(n)+u(0)$.
+    Suponha que $u(n+m)=u(n)+u(m)$.
+    Assim, $u(n+(m+1))=u((n+m)+1)=u(n+m)+1=(u(n)+u(m))+1=u(n)+(u(m)+1)=u(n)+u(m+1)$.
+
+    Além disso, afirmo que para todos $n, m \in \omega$, $u(n)u(m)=u(nm)$.
+    Para tanto, fixe $n\in \omega$ e proceda por indução em $m$.
+    Para $m=0$, temos que $u(n)u(0)=u(n)\cdot 0=0=u(n\cdot 0)$.
+    Suponha que $u(n)u(m)=u(nm)$.
+    Assim, $u(n)u(m+1)=u(n)u(m)+u(n)=u(nm)+u(n)=u(nm+n)=u(n(m+1))$.
+
+    Seja $f:\mathbb Z\to Z$ dada por
+    \[
+        f([(n, m)]_{\sim_Z})=u(n)-u(m).
+    \]
+
+    Temos que $f$ está bem definida: se $(n, m)\sim_Z (n', m')$, então $n+m'=n'+m$, de modo que $u(n)+u(m')=u(n')+u(m)$, e, portanto, $u(n)-u(m)=u(n')-u(m')$.
+
+    $f$ preserva a soma: dados $x=[(n, m)]_{\sim_Z}$ e $y=[(n', m')]_{\sim_Z}$, temos que:
+    \[
+        f(x+y)=f([(n+n', m+m')]_{\sim_Z})=u(n+n')-u(m+m')=(u(n)+u(n'))-(u(m)+u(m'))=(u(n)-u(m))+(u(n')-u(m'))=f(x)+f(y).
+    \]
+    $f$ preserva o produto: dados $x=[(n, m)]_{\sim_Z}$ e $y=[(n', m')]_{\sim_Z}$, temos que:
+    \[
+        f(x\cdot y)=f([(n\cdot n'+m\cdot m', n\cdot m'+m\cdot n')]_{\sim_Z})=u(n\cdot n'+m\cdot m')-u(n\cdot m'+m\cdot n')=(u(n)u(n')+u(m)u(m'))-(u(n)u(m')+u(m)u(n'))=(u(n)-u(m))(u(n')-u(m'))=f(x)f(y).
+    \]
+
+    $f$ preserva $1$: temos que $f(1_Z)=f([(1, 0)]_{\sim_Z})=u(1)-u(0)=1-0=1$.
+
+    $f$ preserva a ordem estrita: dados $x=[(n, m)]_{\sim_Z}$ e $y=[(n', m')]_{\sim_Z}$, suponha que $x<y$, ou seja, $n+l\leq k+m$ e $n+l\neq k+m$.
+    Assim, $u(n)+u(l)\leq u(k)+u(m)$ e $u(n)+u(l)\neq u(k)+u(m)$, de modo que $u(n)-u(m)<u(k)-u(l)$, ou seja, $f(x)<f(y)$.
+
+    Como $f$ preserva a ordem estrita, $f$ é injetora.
+
+    Resta ver que $f$ é sobrejetora.
+    Vejamos que todo $z>0$ em $Z$ é atingido por $f$.
+    Suponha por absurdo que existe $z>0$ em $Z$ tal que $z\neq f(x)$ para todo $x\in \mathbb Z$.
+    Seja $z$ o menor destes.
+
+    Se $z-1=0$, então $z=1$, de modo que $z=f([(1, 0)]_{\sim_Z})$, uma contradição.
+
+    Se $z-1>0$, então $z-1$ é atingido por $f$, ou seja, existe $x\in \mathbb Z$ tal que $f(x)=z-1$.
+    Assim, $f(x+[(1, 0)]_{\sim_Z})=f(x)+f([(1, 0)]_{\sim_Z})=z-1+1=z$, uma contradição.
+
+    Assim, $z-1<0$.
+    Logo, $0<z<1$.
+    Porém, do lema anterior, não existe $k$ tal que $0<k<1$, o que é uma contradição.
+
+    Logo, $f$ é como queríamos.
+\end{proof}
