@@ -29,7 +29,7 @@ Notemos que, nesta formulação, o Axioma do Par não garante a existência de u
 Vários textos optam por essa formulação mais forte.
 Porém, na presença do Esquema da Compreensão, essa formulação mais forte não é necessária.
 
-\begin{lemma}[$Z^--P$]\label{lem:existenciaDoPar}\index{existência do par}
+\begin{lemma}[$\BST$]\label{lem:existenciaDoPar}\index{existência do par}
     Para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
 
     Em símbolos:
@@ -58,7 +58,7 @@ Porém, na presença do Esquema da Compreensão, essa formulação mais forte n�
 
 Com isso, podemos definir os pares não ordenados.
 
-\begin{definition}[$Z^--P$]\label{def:parNaoOrdenado}\index{par!não ordenado}
+\begin{definition}[$\BST$]\label{def:parNaoOrdenado}\index{par!não ordenado}
     Dado $x$ e $y$, o \emph{par não ordenado} de $x$ e $y$ é o conjunto $\{ x, y \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
     
     Formalmente, conforme discutido no capítulo 1, introduzimos na linguagem um símbolo de função binário $\{ \cdot, \cdot \}$, por meio do seguinte axioma definicional.
@@ -72,7 +72,7 @@ Com isso, podemos definir os pares não ordenados.
 
 Também é possível definir os \emph{singletos}, ou \emph{conjuntos unitários}.
 
-\begin{definition}[$Z^--P$]\label{def:singleto}\index{singleto}\index{conjunto unitário|see{singleto}}
+\begin{definition}[$\BST$]\label{def:singleto}\index{singleto}\index{conjunto unitário|see{singleto}}
     Dado um conjunto $x$, o \emph{singleto}, ou \emph{conjunto unitário}, de $x$ é o conjunto $\{ x \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
 
     \[
@@ -82,7 +82,7 @@ Também é possível definir os \emph{singletos}, ou \emph{conjuntos unitários}
 
 Como ocorreu com os pares não ordenados, a introdução formal dessa notação deve ser justificada.
 No lema seguinte, demonstramos a existência de tal conjunto e deixamos a verificação da unicidade como exercício ao leitor.
-\begin{lemma}[$Z^--P$]\index{existência de singletos}\label{lem:existenciaDeSingletos}
+\begin{lemma}[$\BST$]\index{existência de singletos}\label{lem:existenciaDeSingletos}
     Para todo conjunto $x$, existe um único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
 
     Em símbolos:
@@ -102,7 +102,7 @@ No lema seguinte, demonstramos a existência de tal conjunto e deixamos a verifi
 Também é possível definir o par ordenado.
 Neste texto, adotaremos a definição de Kuratowski \cite{kuratowski1921notion}.
 Por razões históricas, boa parte dos textos modernos de Teoria dos Conjuntos adota essa definição, embora existam outras opções igualmente válidas.
-\begin{definition}[$Z^--P$]\label{def:parOrdenadoKuratowski}\index{par!ordenado}\index{definição!de Kuratowski}
+\begin{definition}[$\BST$]\label{def:parOrdenadoKuratowski}\index{par!ordenado}\index{definição!de Kuratowski}
     Dado $x$ e $y$, o \emph{par ordenado} de $x$ e $y$ é o conjunto $(x, y)$ definido como $\{ \{ x \}, \{ x, y \} \}$.
 
     Formalmente, introduzimos na linguagem um símbolo de função binário $(\cdot, \cdot)$, por meio do seguinte axioma definicional.
@@ -124,7 +124,7 @@ A partir dessa codificação, será possível definir posteriormente produtos ca
 
 Insistimos no fato de que a definição de par ordenado não consiste em uma afirmação ontológica sobre a natureza do que deveria ser a noção de par ordenado, mas sim em uma definição formal por meio da qual se constroem objetos que satisfazem propriedades específicas.
 No caso presente, a propriedade fundamental é a da proposição seguinte.
-\begin{proposition}[$Z^--P$]\label{prop:propriedadeDoParOrdenado}\index{par!ordenado!propriedade}
+\begin{proposition}[$\BST$]\label{prop:propriedadeDoParOrdenado}\index{par!ordenado!propriedade}
     Para quaisquer conjuntos $x$, $y$, $u$ e $v$, $(x, y) = (u, v)$ se e somente se $x = u$ e $y = v$.
 
     Em símbolos:
