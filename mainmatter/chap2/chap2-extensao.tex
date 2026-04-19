@@ -73,11 +73,11 @@ Para garantir a existência de conjuntos particulares, precisamos de outros axio
 O próximo princípio a ser introduzido não é, estritamente falando, um único axioma, mas sim um esquema de axiomas, o \emph{Esquema de Axiomas da Compreensão}\index{axioma!esquema da compreensão}.
 Em outras palavras, designamos, metateoricamente, uma lista de axiomas que, embora potencialmente infinita, é gerada por uma única prescrição.
 
-Historicamente, um predecessor de tal esquema é o Princípio da Compreensão Irrestrita\index{princípio da compreensão irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
+Historicamente, o princípio cuja rejeição motiva o Esquema da Compreensão é o Princípio da Compreensão Irrestrita\index{princípio da compreensão irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
 A tensão entre uma noção intuitiva de coleção e a formulação axiomática precisa da teoria dos conjuntos aparece já nas origens da área.
 Em sua exposição clássica de 1895, Cantor descreve um conjunto como uma reunião, em um todo, de objetos determinados e distintos de nossa intuição ou pensamento \cite{cantor1895beitraege}.
 Essa caracterização é extremamente influente, mas não é um axioma formal de existência.
-O Princípio da Compreensão Irrestrita pode ser visto como uma formalização excessivamente liberal da ideia de que toda condição bem determinada deveria corresponder a uma coleção.
+O Princípio da Compreensão Irrestrita pode ser visto como uma formalização excessivamente liberal da ideia de que toda condição bem determinada deveria corresponder a um conjunto.
 No entanto, esse princípio leva a contradições, como o famoso Paradoxo de Russell.
 
 \begin{proposition}[$\BST$](Paradoxo de Russell)\label{prop:paradoxoDeRussell}\index{paradoxo de Russell}
@@ -91,9 +91,13 @@ No entanto, esse princípio leva a contradições, como o famoso Paradoxo de Rus
 \begin{proof}
     Suponha que tal $y$ exista.
     Então $\forall x\, (x \in y \leftrightarrow x \notin x)$.
-    Pondo $x = y$, segue que $y \in y \leftrightarrow y \notin y$.
-    Assim, se $y \in y$, temos $y \notin y$, e se $y \notin y$, temos $y \in y$.
-    Como deve valer $y \in y$ ou $y \notin y$, temos um absurdo.
+    Tomando $x=y$, obtemos
+    \[
+    y\in y \leftrightarrow y\notin y.
+    \]
+    Da direção $y\in y\to y\notin y$, segue $\neg(y\in y)$.
+    Da direção $y\notin y\to y\in y$, segue então $y\in y$.
+    Logo obtemos simultaneamente $y\in y$ e $\neg(y\in y)$, contradição.
 \end{proof}
 
 A lição do paradoxo é que podem aparecer problemas ao se tentar formar, sem qualquer restrição prévia, ``o conjunto de todos os objetos'' que satisfazem uma certa condição.
@@ -201,13 +205,13 @@ A ideia da prova é simples: partimos de um conjunto qualquer já existente e se
 \begin{definition}[$\BST$]\label{def:conjuntoVazio}\index{conjunto vazio}
     O conjunto vazio, denotado por $\emptyset$, é o único conjunto que não possui nenhum elemento.
     Formalmente, insere-se na teoria, por definição, um símbolo de constante $\emptyset$ e o seguinte axioma definicional.
-    \begin{equation*}
-        \forall y\, \Bigl(y = \emptyset \leftrightarrow \forall x\, (x \notin y)\Bigr).
-    \end{equation*}
+    \[
+    \forall y\,\bigl(\emptyset=y \leftrightarrow \forall x\,(x\notin y)\bigr).
+    \]
 \end{definition}
 
-Historicamente, Zermelo não precisava obter o conjunto vazio por esse argumento.
-Em sua axiomatização de 1908, a existência do conjunto vazio fazia parte do Axioma dos Conjuntos Elementares, juntamente com a existência de singletos e pares não ordenados.
+Na axiomatização de Zermelo de 1908, a existência do conjunto vazio não era obtida por esse argumento.
+A existência do conjunto vazio fazia parte do Axioma dos Conjuntos Elementares, juntamente com a existência de singletos e pares não ordenados.
 No desenvolvimento adotado aqui, preferimos mostrar que o conjunto vazio já decorre do Esquema da Compreensão, desde que a lógica subjacente garanta a existência de ao menos um objeto no universo de discurso.
 
 \section*{Exercícios}
@@ -216,14 +220,17 @@ Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da compree
 \begin{exercise}
     Prove o seguinte esquema de teoremas.
 
-    Suponha que $\phi(x, t_1, \ldots, t_n)$ é uma fórmula para a qual
+    Suponha que $\varphi(x,t_1,\ldots,t_n)$ é uma fórmula tal que o fecho universal
     \[
-        \exists y\, \forall x\, \bigl(x \in y \leftrightarrow \phi(x, t_1, \ldots, t_n)\bigr)
+    \forall t_1\cdots\forall t_n
+    \exists y\forall x
+    \bigl(x\in y\leftrightarrow \varphi(x,t_1,\ldots,t_n)\bigr)
     \]
-    é um teorema.
-    Prove que
+    é um teorema. Prove que
     \[
-        \exists! y\, \forall x\, \bigl(x \in y \leftrightarrow \phi(x, t_1, \ldots, t_n)\bigr)
+    \forall t_1\cdots\forall t_n
+    \exists!y\forall x
+    \bigl(x\in y\leftrightarrow \varphi(x,t_1,\ldots,t_n)\bigr)
     \]
     também é um teorema.
     Em outras palavras, prove que, para quaisquer $t_1, \ldots, t_n$, o seguinte conjunto está bem-definido:
@@ -254,4 +261,14 @@ Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da compree
     Seja $A$ um conjunto e seja $R_A = \{x \in A : x \notin x\}$.
     Prove que $R_A \notin A$.
     Conclua que não existe um conjunto universal, isto é, não existe $V$ tal que $\forall x\, (x \in V)$.
+\end{exercise}
+
+\begin{exercise}
+    Formalmente, para que a definição de $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ seja bem-definida a partir de uma aplicação direta do axioma da compreensão, é necessário que $\phi$ seja uma fórmula na linguagem cujo único símbolo não lógico seja o símbolo de pertinência $\in$.
+    Desta forma, por exemplo, $\{x \in A: x\subseteq t\}$ requer algum argumento adicional para ter sua existência garantida.
+
+    Mostre que se $\phi$ é uma fórmula cujos símbolos não lógicos foram adicionados por definição a partir dos axiomas de uma teoria $T$ que inclui o Esquema de Axiomas da Compreensão e o Axioma da Extensão, então nesta extensão por definição de $T$ a existência de $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ é garantida, ou seja, que a seguinte sentença é um teorema:
+    \[
+    \forall A \forall t_1 \ldots \forall t_n \exists y \forall x\, \Bigl(x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
+    \]
 \end{exercise}
