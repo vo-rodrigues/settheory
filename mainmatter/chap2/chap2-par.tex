@@ -12,9 +12,12 @@ Para introduzir novos conjuntos, precisamos de novos axiomas.
 
 O primeiro deles é o Axioma do Par.
 
-Em sua axiomatização de 1908, geralmente considerada a primeira axiomatização publicada da teoria dos conjuntos, Zermelo introduziu o que hoje reconhecemos como este axioma.
-Nesta formulação, o Axioma do Par não aparece isoladamente, mas dentro de seu Axioma II, juntamente com a existência do vazio e dos singletos \cite{zermelo1908untersuchungen}.
-Na formulação de 1930, Zermelo isolou o Axioma do Par, que passou a ser o Axioma P (\emph{Axiom der Paarung}) de sua axiomatização \cite{zermelo1930grenzzahlen}.
+Na axiomatização de 1908, geralmente considerada a primeira axiomatização publicada da teoria dos conjuntos, Zermelo incluiu a existência do vazio, dos singletos e dos pares não ordenados em seu Axioma II, o \emph{Axiom der Elementarmengen} \cite{zermelo1908untersuchungen}.
+Nessa formulação, os pares não ordenados aparecem na forma exata: para quaisquer objetos $a$ e $b$, existe o conjunto cujos únicos elementos são $a$ e $b$.
+
+Na reformulação de 1930, Zermelo isolou o princípio de pareamento como o Axioma P, o \emph{Axiom der Paarung} \cite{zermelo1930grenzzahlen}.
+A formulação que adotaremos abaixo é a forma fraca desse princípio: ela garante apenas a existência de um conjunto que contém $x$ e $y$ como elementos.
+Como veremos imediatamente, na presença do Esquema da Compreensão, essa forma fraca implica a existência do par não ordenado exato $\{x,y\}$.
 
 \begin{axiom}[Axioma do Par]\label{ax:par}\index{axioma!do par}
     Para quaisquer conjuntos $x$ e $y$, existe um conjunto $z$ que os tem como elementos.
@@ -100,8 +103,12 @@ No lema seguinte, demonstramos a existência de tal conjunto e deixamos a verifi
 \end{proof}
 
 Também é possível definir o par ordenado.
-Neste texto, adotaremos a definição de Kuratowski \cite{kuratowski1921notion}.
-Por razões históricas, boa parte dos textos modernos de Teoria dos Conjuntos adota essa definição, embora existam outras opções igualmente válidas.
+Uma das primeiras definições puramente conjuntistas de par ordenado foi dada por Wiener em 1914, no contexto da redução da teoria das relações à teoria das classes \cite{wiener1914simplification}.
+Neste texto, adotaremos a definição posterior de Kuratowski, introduzida em 1921 \cite{kuratowski1921notion}.
+Sua vantagem, para os nossos propósitos, é ser simples e satisfazer diretamente a propriedade característica esperada dos pares ordenados:
+\[
+    (x,y)=(u,v) \quad\text{se e somente se}\quad x=u \text{ e } y=v.
+\]
 \begin{definition}[$\BST$]\label{def:parOrdenadoKuratowski}\index{par!ordenado}\index{definição!de Kuratowski}
     Dado $x$ e $y$, o \emph{par ordenado} de $x$ e $y$ é o conjunto $(x, y)$ definido como $\{\{x\}, \{x, y\}\}$.
 
@@ -190,7 +197,8 @@ Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da extens�
 \begin{exercise}
     Defina, para todo $x, y$, o conjunto $P(x, y) = \{\{\{x\}, \emptyset\}, \{\{y\}\}\}$. Prove que $P(x, y) = P(u, v)$ se e somente se $x = u$ e $y = v$.
 
-    Tal definição é uma alternativa à definição de par ordenado de Kuratowski, e é conhecida como definição de Wiener \cite{wiener1914simplification}.
+    Esta é, essencialmente, a definição historicamente anterior de Wiener para pares ordenados \cite{wiener1914simplification}.
+    Ela ilustra que a definição de Kuratowski não é a única possível.
 \end{exercise}
 \begin{exercise}
     Defina outra definição alternativa para pares ordenados que satisfaça a propriedade de que $(x, y) = (u, v)$ se e somente se $x = u$ e $y = v$.
