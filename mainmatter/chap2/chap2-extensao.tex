@@ -19,8 +19,8 @@ no universo dos conjuntos, não há distinção entre objetos que tenham exatame
 A implicação recíproca, isto é, que $x = y$ implica $\forall z\, (z \in x \leftrightarrow z \in y)$, não faz parte especificamente do Axioma da Extensão, mas decorre dos princípios lógicos básicos discutidos no Capítulo~\ref{chap:teoriasPrimeiraOrdem}.
 Assim, o axioma fornece precisamente a direção não trivial do critério de identidade para conjuntos.
 
-O Axioma da Extensão aparece como primeiro Axioma na formalização de Zermelo da Teoria dos Conjuntos de 1908 \cite{zermelo1908untersuchungen} (Axiom der Bestimmtheit).
-Em 1888, Dedekind também já havia registrado a ideia de que um conjunto é determinado por seus elementos \cite{dedekind1888was}.
+O Axioma da Extensão aparece como primeiro axioma na axiomatização de Zermelo da Teoria dos Conjuntos de 1908 \cite{zermelo1908untersuchungen} (Axiom der Bestimmtheit).
+Em 1888, Dedekind já havia formulado, para seu conceito de \emph{sistemas}, o critério extensional segundo o qual dois sistemas são o mesmo quando possuem os mesmos elementos \cite[\S~2]{dedekind1888was}.
 
 
 No contexto desse axioma, é conveniente introduzir a noção de subconjunto, com a qual esperamos que o leitor já tenha alguma familiaridade.
@@ -73,7 +73,7 @@ Para garantir a existência de conjuntos particulares, precisamos de outros axio
 O próximo princípio a ser introduzido não é, estritamente falando, um único axioma, mas sim um esquema de axiomas, o \emph{Esquema de Axiomas da Compreensão}\index{axioma!esquema da compreensão}.
 Em outras palavras, designamos, metateoricamente, uma lista de axiomas que, embora potencialmente infinita, é gerada por uma única prescrição.
 
-Historicamente, o princípio cuja rejeição motiva o Esquema da Compreensão é o Princípio da Compreensão Irrestrita\index{princípio da compreensão irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
+Em sua exposição clássica de 1895, Cantor descreve um conjunto como uma reunião, em um todo, de objetos determinados e distintos de nossa intuição ou pensamento \cite[p.~481]{cantor1895beitraege}\index{princípio da compreensão irrestrita}, que afirma que para qualquer propriedade $P(x)$, existe um conjunto $y$ tal que $x \in y$ se e somente se $P(x)$ é verdadeira.
 A tensão entre uma noção intuitiva de coleção e a formulação axiomática precisa da teoria dos conjuntos aparece já nas origens da área.
 Em sua exposição clássica de 1895, Cantor descreve um conjunto como uma reunião, em um todo, de objetos determinados e distintos de nossa intuição ou pensamento \cite{cantor1895beitraege}.
 Essa caracterização é extremamente influente, mas não é um axioma formal de existência.
@@ -103,11 +103,15 @@ No entanto, esse princípio leva a contradições, como o famoso Paradoxo de Rus
 A lição do paradoxo é que podem aparecer problemas ao se tentar formar, sem qualquer restrição prévia, ``o conjunto de todos os objetos'' que satisfazem uma certa condição.
 No lugar do Princípio da Compreensão Irrestrita, adotamos, portanto, o Esquema de Axiomas da Compreensão, um enfraquecimento do princípio original que permite apenas tomar subcoleções de conjuntos já existentes, exigindo sempre que a seleção seja feita \emph{dentro de um conjunto já dado}.
 
-Uma das comunicações historicamente decisivas do paradoxo é a carta de Bertrand Russell a Gottlob Frege, datada de 16 de junho de 1902 \cite{russell1902letter}.
-Seu impacto foi particular porque a contradição atingia diretamente o sistema desenvolvido por Frege nos \emph{Grundgesetze der Arithmetik} \cite{frege1893grundgesetze}.
+Uma das comunicações historicamente decisivas do paradoxo é a carta de Bertrand Russell a Gottlob Frege, datada de 16 de junho de 1902 \cite[p.~124--125]{russell1902letter}.
+Seu impacto foi particular porque a contradição atingia diretamente o sistema desenvolvido por Frege nos \emph{Grundgesetze der Arithmetik}; de fato, a carta chegou quando o segundo volume da obra estava no prelo \cite{frege1903grundgesetze}.
 Há também evidências de que Zermelo havia notado independentemente uma contradição semelhante \cite{rangThomas1981zermeloRussell}.
 
-O que hoje se conhece como Esquema de Axiomas da Compreensão, ou Esquema de Axiomas da Separação, aparece na axiomatização de Zermelo da Teoria dos Conjuntos de 1908 como o Axioma da Separação (Axiom der Aussonderung).
+O que hoje se conhece como Esquema de Axiomas da Compreensão, ou Esquema de Axiomas da Separação, aparece na axiomatização de Zermelo da Teoria dos Conjuntos de 1908 como o Axioma da Separação (\emph{Axiom der Aussonderung}) \cite[p.~263]{zermelo1908untersuchungen}.
+Na formulação histórica de Zermelo, as propriedades admissíveis eram chamadas de propriedades ``definidas''.
+Na formulação moderna usual, essas propriedades admissíveis são tomadas como aquelas expressas por fórmulas de uma linguagem de primeira ordem.
+Essa leitura é uma clarificação posterior, associada sobretudo aos trabalhos de Weyl e Skolem \cite{weyl1910definitionen,skolem1923bemerkungen,kanamori2004zermelo}.
+Como a linguagem de primeira ordem da teoria dos conjuntos já foi fixada no Capítulo~\ref{chap:teoriasPrimeiraOrdem}, adotaremos desde o início a formulação moderna: uma instância do esquema para cada fórmula da linguagem.
 
 Na literatura, é comum reservar o nome \emph{Separação} para enfatizar que o axioma não cria um conjunto a partir de uma propriedade isolada, mas apenas separa, de um conjunto previamente dado, os elementos que satisfazem essa propriedade.
 Neste texto, usaremos também o nome \emph{Compreensão}, sempre nesse sentido restrito.
@@ -130,7 +134,7 @@ O Axioma da Extensão nos garante que tal conjunto deve ser único.
     Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$ na qual $y$ não aparece livre.
     A seguinte sentença é teorema:
     \begin{equation}
-        \forall A \forall t_1 \ldots \forall t_n \exists! y \forall x\,
+         \forall t_1 \ldots \forall t_n \forall A\exists! y \forall x\,
         \Bigl(x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
     \end{equation}
 \end{proposition}
@@ -142,20 +146,57 @@ O Axioma da Extensão nos garante que tal conjunto deve ser único.
     Pelo Axioma da Extensão, segue que $y = y'$.
 \end{proof}
 
+A restrição no esquema de $y$ não aparecer livre em $\phi$ é necessária para evitar paradoxos semelhantes ao Paradoxo de Russell (ver Exercício~\ref{exr:compreensaoAutorreferente}).
+
 A Proposição~\ref{prop:unicidadeNaCompreensao} nos permite utilizar a seguinte notação, muito usual em toda a Matemática.
 
 \begin{definition}[$\BST$](Esquema da notação por compreensão)\label{def:notacaoPorCompreensao}\index{notação!por compreensão}
-    Seja $\phi(x, A, t_1, \ldots, t_n)$ uma fórmula.
-    Para todo conjunto $A$ e parâmetros $t_1, \ldots, t_n$, denotamos por $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ o único conjunto $y$ tal que $\forall x\, (x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n)))$.
+Seja $\phi(u,A,t_1,\ldots,t_n)$ uma fórmula cujas variáveis livres estão entre
+$u,A,t_1,\ldots,t_n$.
 
-    Formalmente, inserimos o símbolo de função $n+1$-ário $\{x \in \cdot : \phi(x, \cdot, \cdot, \ldots, \cdot)\}$ e o seguinte axioma definicional.
-    \begin{equation*}
-        \forall A \forall t_1 \ldots \forall t_n \forall x\,
-        \Bigl(x \in \{x \in A : \phi(x, A, t_1, \ldots, t_n)\} \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
-    \end{equation*}    
+Para cada tal fórmula, introduzimos um símbolo funcional $C_\phi$ de aridade $n+1$
+por meio do seguinte axioma definicional:
+\[
+\forall t_1\cdots\forall t_n\forall A\forall y
+\Bigl(
+C_\phi(A,t_1,\ldots,t_n)=y
+\leftrightarrow
+\forall u\bigl(u\in y\leftrightarrow
+(u\in A\land \phi(u,A,t_1,\ldots,t_n))\bigr)
+\Bigr).
+\]
+Denotamos $C_\phi(A,t_1,\ldots,t_n)$ por
+\[
+\{u\in A:\phi(u,A,t_1,\ldots,t_n)\}.
+\]
+
+Assim, fixados $t_1, \dots, t_n$ e $A$, para todo $v$,
+\[
+v\in \{u\in A:\phi(u,A,t_1,\ldots,t_n)\}
+\leftrightarrow
+\bigl(v\in A\land \phi(v,A,t_1,\ldots,t_n)\bigr).
+\]
 \end{definition}
 
+Na notação $\{x\in A:\phi(x)\}$, a variável $x$ é uma variável muda:
+ela apenas indica qual elemento do conjunto ambiente está sendo testado pela fórmula.
+Em geral, vale que:
+
+\[
+\{x\in A:\phi(x)\}=\{u\in A:\phi(u)\}.
+\]
+
 Neste ponto, convém dar um exemplo que envolva objetos ainda não definidos formalmente, mas com os quais o leitor provavelmente já está familiarizado, para ilustrar o uso de parâmetros no esquema da compreensão.
+
+\begin{example}[$\BST$]
+    Dados conjuntos $A$ e $B$, o Esquema da Compreensão permite formar
+    \[
+    A\cap B=\{x\in A:x\in B\}.
+    \]
+    Esse conjunto contém exatamente os elementos de $A$ que também pertencem a $B$.
+    Neste exemplo, $x$ é a variável selecionada, $A$ é o conjunto ambiente e $B$ é um
+    parâmetro.
+\end{example}
 
 \begin{example}[$\BST$]
     Mais adiante, quando tivermos introduzido formalmente os números naturais, para cada $n \in \mathbb{N}$ poderemos considerar o conjunto
@@ -175,9 +216,11 @@ Neste ponto, convém dar um exemplo que envolva objetos ainda não definidos for
     A variável $k$ permanece ligada pelo quantificador universal e percorre os elementos do conjunto ambiente.
 \end{example}
 
-Neste ponto, notemos que, em nossa teoria, por enquanto, não provamos a existência de nenhum conjunto ``concretamente'' conhecido.
+Até aqui, a lógica subjacente garante que o universo de discurso não é vazio,
+mas ainda não exibimos nenhum conjunto caracterizado por uma propriedade matemática
+específica.
 
-O próximo resultado fornece um primeiro exemplo de tal conjunto: o conjunto vazio.
+O próximo resultado fornece nosso primeiro exemplo desse tipo: o conjunto vazio.
 A ideia da prova é simples: partimos de um conjunto qualquer já existente e selecionamos, dele, os elementos que satisfazem uma condição impossível.
 
 \begin{proposition}[$\BST$]\label{prop:existenciaConjuntoVazio}\index{conjunto vazio}
@@ -213,26 +256,26 @@ A ideia da prova é simples: partimos de um conjunto qualquer já existente e se
 \end{definition}
 
 Na axiomatização de Zermelo de 1908, a existência do conjunto vazio não era obtida por esse argumento.
-A existência do conjunto vazio fazia parte do Axioma dos Conjuntos Elementares, juntamente com a existência de singletos e pares não ordenados.
+Ela fazia parte do Axioma dos Conjuntos Elementares (\emph{Axiom der Elementarmengen}), juntamente com a existência de singletos e pares não ordenados \cite[p.~263]{zermelo1908untersuchungen}.
 No desenvolvimento adotado aqui, preferimos mostrar que o conjunto vazio já decorre do Esquema da Compreensão, desde que a lógica subjacente garanta a existência de ao menos um objeto no universo de discurso.
 
 \section*{Exercícios}
 
-Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da compreensão e da extensão, e os princípios lógicos básicos discutidos no Capítulo~\ref{chap:teoriasPrimeiraOrdem}.
+Com exceção do Exercício~\ref{exr:compreensaoDefinicao} exercícios a seguir devem ser resolvidos usando apenas os axiomas da compreensão e da extensão, e os princípios lógicos básicos discutidos no Capítulo~\ref{chap:teoriasPrimeiraOrdem}.
 \begin{exercise}
     Prove o seguinte esquema de teoremas.
 
-    Suponha que $\varphi(x,t_1,\ldots,t_n)$ é uma fórmula tal que o fecho universal
+    Suponha que $\phi(x,t_1,\ldots,t_n)$ é uma fórmula tal que o fecho universal
     \[
     \forall t_1\cdots\forall t_n
     \exists y\forall x
-    \bigl(x\in y\leftrightarrow \varphi(x,t_1,\ldots,t_n)\bigr)
+    \bigl(x\in y\leftrightarrow \phi(x,t_1,\ldots,t_n)\bigr)
     \]
     é um teorema. Prove que
     \[
     \forall t_1\cdots\forall t_n
     \exists!y\forall x
-    \bigl(x\in y\leftrightarrow \varphi(x,t_1,\ldots,t_n)\bigr)
+    \bigl(x\in y\leftrightarrow \phi(x,t_1,\ldots,t_n)\bigr)
     \]
     também é um teorema.
     Em outras palavras, prove que, para quaisquer $t_1, \ldots, t_n$, o seguinte conjunto está bem-definido:
@@ -260,17 +303,66 @@ Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da compree
 \end{exercise}
 
 \begin{exercise}
+Prove que:
+\begin{enumerate}[label=(\alph*)]
+    \item $\forall A\,(\emptyset\subseteq A)$;
+    \item $\forall A\,(A\subseteq \emptyset \rightarrow A=\emptyset)$;
+    \item $\forall A\,(A\neq\emptyset \leftrightarrow \exists x(x\in A))$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Se $A\subseteq B$, prove que
+\[
+\{x\in A:\phi(x)\}
+=
+\{x\in B:x\in A\land \phi(x)\}.
+\]
+\end{exercise}
+
+\begin{exercise}
+Sejam $A$ e $a$ conjuntos tais que $a\in A$. Prove que existe um único conjunto $S$
+tal que
+\[
+\forall x(x\in S\leftrightarrow x=a).
+\]
+\end{exercise}
+
+\begin{exercise}
+Sejam $A$ um conjunto e $\phi(x, A, t_1, \ldots, t_n),\psi(x, A, t_1, \ldots, t_n)$ fórmulas.
+Prove que, se para alguns $A, t_1, \ldots, t_n$ vale
+\[
+\forall x\in A\,(\phi(x, A, t_1, \ldots, t_n)\leftrightarrow \psi(x, A, t_1, \ldots, t_n)),
+\]
+então, para esses mesmos $A, t_1, \ldots, t_n$, tem-se
+\[
+\{x\in A:\phi(x, A, t_1, \ldots, t_n)\}=\{x\in A:\psi(x, A, t_1, \ldots, t_n)\}.
+\]
+\end{exercise}
+
+\begin{exercise}
     Seja $A$ um conjunto e seja $R_A = \{x \in A : x \notin x\}$.
     Prove que $R_A \notin A$.
     Conclua que não existe um conjunto universal, isto é, não existe $V$ tal que $\forall x\, (x \in V)$.
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}\label{exr:compreensaoDefinicao}
     Formalmente, para que a definição de $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ seja bem-definida a partir de uma aplicação direta do axioma da compreensão, é necessário que $\phi$ seja uma fórmula na linguagem cujo único símbolo não lógico seja o símbolo de pertinência $\in$.
     Desta forma, por exemplo, $\{x \in A: x\subseteq t\}$ requer algum argumento adicional para ter sua existência garantida.
 
-    Mostre que se $\phi$ é uma fórmula cujos símbolos não lógicos foram adicionados por definição a partir dos axiomas de uma teoria $T$ que inclui o Esquema de Axiomas da Compreensão e o Axioma da Extensão, então nesta extensão por definição de $T$ a existência de $\{x \in A : \phi(x, A, t_1, \ldots, t_n)\}$ é garantida, ou seja, que a seguinte sentença é um teorema:
+    Seja $T$ uma teoria na linguagem básica da teoria dos conjuntos, cujo único símbolo
+    não lógico é $\in$, e suponha que $T$ contém o Axioma da Extensão e o Esquema da
+    Compreensão. Seja $T'$ uma extensão por definição de $T$.
+
+    Mostre que, se $\phi(x,A,t_1,\ldots,t_n)$ é uma fórmula da linguagem de $T'$,
+    então $T'$ prova
     \[
-    \forall A \forall t_1 \ldots \forall t_n \exists y \forall x\, \Bigl(x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
+    \forall A\forall t_1\cdots\forall t_n\exists y\forall x\,
+    \Bigl(x\in y\leftrightarrow
+    (x\in A\land \phi(x,A,t_1,\ldots,t_n))\Bigr).
     \]
+
+    Em outras palavras, fórmulas que usam apenas símbolos introduzidos por definição
+    também podem ser usadas na notação por compreensão, desde que sejam entendidas
+    como abreviações de fórmulas da linguagem básica.
 \end{exercise}
