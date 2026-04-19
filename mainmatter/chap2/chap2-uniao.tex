@@ -9,7 +9,7 @@ Com esses axiomas, provamos a existência do conjunto vazio, de conjuntos unitá
 Adiantamos, sem demonstração neste momento, o seguinte fato: apenas com esses axiomas, não é possível provar a existência de conjuntos com $3$ ou mais elementos.
 Embora a demonstração formal desse fato só seja dada mais adiante, sua plausibilidade já pode ser percebida intuitivamente:
 Com o Axioma do Par, garantimos a existência de conjuntos que contêm dois objetos previamente dados como elementos.
-Com o Esquema da Compreensão, é possível formar, a partir de um conjunto já existente, um subconjunto definido por uma propriedade; ao menos aparentemente, isso não permite obter conjuntos com mais de dois elementos a partir apenas de conjuntos de até dois elementos.
+Com o Esquema da Compreensão, é possível formar, a partir de um conjunto já existente, um subconjunto definido por uma propriedade; isso não fornece, por si só, um mecanismo para obter conjuntos com mais elementos do que aqueles já disponíveis.
 Finalmente, o Axioma da Extensão não nos dá nenhuma ferramenta para construir novos conjuntos a partir de antigos.
 
 Para provar a existência de conjuntos com mais de dois elementos, precisaremos de novos axiomas.
@@ -58,7 +58,7 @@ Devido ao Lema~\ref{lem:existenciaDaUniao}, a Definição~\ref{def:uniao} se jus
     \]
 \end{definition}
 
-É possível que o leitor não esteja familiarizado com a notação de união de um conjunto, sendo esperado que o símbolo $\bigcup$ possua índices superiores ou inferiores.
+É possível que o leitor não esteja familiarizado com a notação de união de um conjunto, pois é comum encontrar o símbolo $\bigcup$ acompanhado de subscritos e/ou sobrescritos.
 Pode ser útil para o entendimento do leitor adiantar que a notação $\bigcup x$ corresponderá, após definirmos formalmente a união de uma família, ao conjunto $\bigcup_{w \in x} w$.
 Apesar disso, a notação $\bigcup x$ é bastante conveniente e aparece frequentemente em conjunto com a notação de famílias; por isso, incentivamos o leitor a se familiarizar com ela.
 
@@ -99,6 +99,22 @@ A legitimidade dessa introdução será justificada no lema subsequente.
 
 Como fizemos neste caso, em alguns momentos, introduziremos primeiro a notação para uma operação ou definição natural e, em seguida, verificaremos sua legitimidade formal.
 Nesses casos, a definição deve ser lida como uma antecipação da notação: o resultado subsequente prova que há um único conjunto satisfazendo a caracterização apresentada e, portanto, que a introdução do símbolo por definição é legítima no sentido da Metadefinição~\ref{mdef:extensaoPorDefinicao}.
+
+\subimport{}{chap2-uniao-figura}
+
+\begin{example}[$\BST$]\label{ex:conjuntoComTresElementos}
+    O Axioma da União permite formar conjuntos com mais elementos do que aqueles obtidos diretamente pelos axiomas anteriormente apresentados.
+    Dados conjuntos $x$, $y$ e $z$, considere
+    \[
+        T=\bigcup\{\{x,y\},\{z\}\}.
+    \]
+    Então, para todo $w$,
+    \[
+        w\in T \leftrightarrow (w=x \lor w=y \lor w=z).
+    \]
+    Assim, se $x$, $y$ e $z$ são dois a dois distintos, então $T$ é um conjunto com exatamente três elementos.
+    Concretamente, considere $x=\emptyset$, $y=\{\emptyset\}$ e $z=\{\{\emptyset\}\}$.
+\end{example}
 
 \subsection{Interseções}\label{subsec:intersecoes}
 Interessantemente, apesar de ser necessária a introdução de um novo axioma para garantir a existência de conjuntos com mais de dois elementos, o mesmo não ocorre para provar a existência da interseção de um conjunto não vazio.
@@ -182,7 +198,7 @@ Para tanto, introduziremos formalmente, abaixo, o símbolo funcional $\bigcap$, 
 \end{definition}
 
 No caso, atribuímos o valor arbitrário de $\emptyset$ para $\bigcap \emptyset$.
-Tal atribuição não terá impacto no desenvolvimento da teoria, uma vez que sempre evitaremos intersectar o conjunto vazio (o que faríamos de qualquer modo caso ele estivesse ``indefinido'').
+Tal atribuição não terá impacto no desenvolvimento da teoria, uma vez que sempre evitaremos tomar a interseção de uma família vazia (o que faríamos de qualquer modo caso ele estivesse ``indefinido'').
 É importante ressaltar que $\bigcap x$ apenas é o conjunto cujos elementos são exatamente os elementos comuns a todos os elementos de $x$ quando $x$ é um conjunto não vazio.
 
 Como ocorre com o caso da união, é natural introduzir a interseção binária entre dois conjuntos, $x\cap y$.
@@ -307,6 +323,8 @@ Os exercícios a seguir devem ser resolvidos utilizando apenas os axiomas da Ext
         \item $\bigcup \emptyset = \emptyset$.
         \item Se $A\subseteq B$, então $\bigcup A \subseteq \bigcup B$.
         \item Se $A\subseteq B$, e $A\neq \emptyset$, então $\bigcap B \subseteq \bigcap A$.
+        \item $A\cup B = \bigcup \{A, B\}$.
+        \item $A\cap B = \bigcap \{A, B\}$.
     \end{enumerate}
 \end{exercise}
 
@@ -316,8 +334,7 @@ Os exercícios a seguir devem ser resolvidos utilizando apenas os axiomas da Ext
     Ou seja, prove os itens abaixo.
     \begin{enumerate}
         \item Para todo $x \in X$, $x \subseteq \bigcup X$.
-        \item Seja $Y$ um conjunto.
-        Se $Y$ é um conjunto tal que, para todo $x \in X$, $x \subseteq Y$, então $\bigcup X \subseteq Y$.
+        \item Se $Y$ é um conjunto tal que, para todo $x \in X$, $x \subseteq Y$, então $\bigcup X \subseteq Y$.
         \item Conclua que, se $W$ também satisfaz os itens anteriores com $\bigcup X$ substituído por $W$, então $W=\bigcup X$.
     \end{enumerate}
 \end{exercise}
