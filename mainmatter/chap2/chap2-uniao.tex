@@ -182,6 +182,36 @@ No caso, atribuímos o valor arbitrário de $\emptyset$ para $\bigcap \emptyset$
 Tal atribuição não terá impacto no desenvolvimento da teoria, uma vez que sempre evitaremos intersectar o conjunto vazio (o que faríamos de qualquer modo caso ele estivesse ``indefinido'').
 É importante ressaltar que $\bigcap x$ apenas é o conjunto cujos elementos são exatamente os elementos comuns a todos os elementos de $x$ quando $x$ é um conjunto não vazio.
 
+Como ocorre com o caso da união, é natural introduzir a interseção binária entre dois conjuntos, $x\cap y$.
+A legitimidade dessa introdução será justificada no lema subsequente.
+
+\begin{lemma}[$\BST$]\label{lem:existenciaDaIntersecaoBinaria}
+    Para quaisquer conjuntos $x$ e $y$, existe um único conjunto $z$ tal que, para todo $w$,
+    \[
+        w\in z \leftrightarrow (w\in x \land w\in y).
+    \]
+\end{lemma}
+\begin{proof}
+    Para a existência, tome $z=\{w\in x : w\in y\}$.
+    Então, por Compreensão, para todo $w$,
+    \[
+        w\in z \leftrightarrow (w\in x\land w\in y).
+    \]
+    A unicidade segue do Axioma da Extensão.
+\end{proof}
+
+\begin{definition}[$\BST$]\label{def:intersecaoBinaria}\index{interseção!binária}
+    Para quaisquer conjuntos $x$ e $y$, a \emph{interseção de $x$ e $y$}, denotada por $x\cap y$, é o único conjunto $z$ tal que
+    \[
+        \forall w\, (w\in z \leftrightarrow (w\in x\land w\in y)).
+    \]
+    Formalmente,
+    \[
+        \forall x\forall y\forall z\,
+        \Bigl(z=x\cap y \leftrightarrow
+        \forall w\, (w\in z \leftrightarrow (w\in x\land w\in y))\Bigr).
+    \]
+\end{definition}
 \subsection{Convenção sobre inserção de símbolos funcionais}\label{subsec:convencaoSobreInsercaoDeSimbolosFuncionais}
 Aproveitando a discussão da Definição~\ref{def:simboloIntersecao} sobre a inserção do símbolo de interseção, adotaremos uma convenção geral para inserir símbolos funcionais que, intuitivamente, não estão bem definidos para todos os valores de seus argumentos.
 
