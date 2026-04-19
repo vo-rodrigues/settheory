@@ -4,7 +4,7 @@
 
 Nesta seção, introduziremos as noções básicas de relação de equivalência, classe de equivalência, conjunto quociente e partição, bem como alguns resultados estruturais associados.
 
-\begin{definition}[$Z^{-}-P$](Relação de equivalência)\label{def:relacaoDeEquivalencia}\index{relação!de equivalência}
+\begin{definition}[$\BST$](Relação de equivalência)\label{def:relacaoDeEquivalencia}\index{relação!de equivalência}
     Uma \emph{relação de equivalência} é um par $(A, \sim)$ onde $A$ é um conjunto e $\sim$ é uma relação binária em $A$ tal que para todo $x, y, z \in A$, valem:
     \begin{itemize}
         \item $x \sim x$ (reflexividade)
@@ -15,7 +15,7 @@ Nesta seção, introduziremos as noções básicas de relação de equivalência
 
 Todo conjunto admite uma relação de equivalência trivial, a saber, a relação de igualdade.
 
-\begin{example}[$Z^{-}$]\label{exa:relacaoDeIgualdade}
+\begin{example}[$\BST$]\label{exa:relacaoDeIgualdade}
     Seja $A$ um conjunto.
     A \emph{relação de igualdade em $A$} é a relação binária $=_A=\{(x, y) \in A \times A : x=y\}$.
     Então $(A, =_A)$ é uma relação de equivalência.
@@ -25,13 +25,13 @@ Todo conjunto admite uma relação de equivalência trivial, a saber, a relaçã
 A relação de equivalência acima é mínima: se $R$ é uma relação de equivalência em $A$, então $=_A \subseteq R$.
 Por outro lado, há a relação de equivalência máxima, a saber, a relação universal.
 
-\begin{example}[$Z^{-}$]\label{exa:relacaoUniversal}
+\begin{example}[$\BST$]\label{exa:relacaoUniversal}
     Seja $A$ um conjunto.
     Então $(A, A \times A)$ é uma relação de equivalência denominada \emph{relação universal em $A$}.
 \end{example}
 
 Toda função induz naturalmente uma relação de equivalência.
-\begin{example}[$Z^{-}$]\label{exa:relacaoDeEquivalenciaInduzidaPorFuncao}
+\begin{example}[$\BST$]\label{exa:relacaoDeEquivalenciaInduzidaPorFuncao}
     Sejam $A$ e $B$ conjuntos e seja $f : A \to B$ uma função.
     Defina a relação binária $\sim_f$ em $A$ por
     \[
@@ -42,7 +42,7 @@ Toda função induz naturalmente uma relação de equivalência.
 
 Dada uma relação de equivalência, é natural agrupar os elementos equivalentes entre si.
 
-\begin{definition}[$Z^{-}-P$](Classe de equivalência)\label{def:classeDeEquivalencia}\index{classe de equivalência}\index{conjunto quociente}
+\begin{definition}[$\BST$](Classe de equivalência)\label{def:classeDeEquivalencia}\index{classe de equivalência}\index{conjunto quociente}
     Seja $(A, \sim)$ uma relação de equivalência e seja $x \in A$.
     A \emph{classe de equivalência} de $x$ é o conjunto
     \[
@@ -54,7 +54,7 @@ Dada uma relação de equivalência, é natural agrupar os elementos equivalente
 
 Deixamos os seguintes fatos básicos para verificação do leitor (Exercício~\ref{exr:propriedadesBasicasDasClassesDeEquivalencia}).
 
-\begin{proposition}[$Z^{-}-P$]\label{prop:propriedadesBasicasDasClassesDeEquivalencia}
+\begin{proposition}[$\BST$]\label{prop:propriedadesBasicasDasClassesDeEquivalencia}
     Seja $(A, \sim)$ uma relação de equivalência e sejam $x, y \in A$. Então:
     \begin{enumerate}[label=(\alph*)]
         \item $x \in [x]_{\sim}$;
@@ -70,7 +70,7 @@ A Proposição~\ref{prop:propriedadesBasicasDasClassesDeEquivalencia} mostra que
 Assim, podemos imaginar que uma relação de equivalência \emph{particiona} o conjunto $A$ em blocos disjuntos.
 Convém definir o conceito de partição para tornar essa noção mais precisa.
 
-\begin{definition}[$Z^{-}-P$](Partição)\label{def:particao}\index{partição}
+\begin{definition}[$\BST$](Partição)\label{def:particao}\index{partição}
     Seja $A$ um conjunto.
     Uma \emph{partição} de $A$ é um conjunto $\mathcal{E}$ tal que:
     \begin{enumerate}[label=(\roman*)]
@@ -146,13 +146,13 @@ Assim, partições e relações de equivalência são duas maneiras de descrever
     Prove a Proposição~\ref{prop:propriedadesBasicasDasClassesDeEquivalencia} (nas teorias indicadas).
 \end{exercise}
 
-\begin{exercise}[$Z^-$]
+\begin{exercise}[$\BST$]
     Seja $A$ um conjunto.
     Prove que $(A, =)$ e $(A, A \times A)$ são relações de equivalência.
-    Determine, em cada caso, as classes de equivalência e o quociente correspondente.
+    Determine, em cada caso, as classes de equivalência correspondentes.
 \end{exercise}
 
-\begin{exercise}[$Z^-$]
+\begin{exercise}[$\BST$]
     Seja $(A, \sim)$ uma relação de equivalência e seja $B \subseteq A$.
     Defina
     \[
