@@ -7,8 +7,11 @@
 
 A teoria dos conjuntos moderna é usualmente desenvolvida em uma linguagem cujo único símbolo não lógico primitivo é $\in$.
 Os princípios não lógicos que regem essa linguagem são os axiomas.
-O sistema hoje chamado $ZFC$ tem sua origem na axiomatização de Zermelo de 1908, concebida para evitar os paradoxos da compreensão irrestrita \cite{zermelo1908untersuchungen}.
-Em 1922, Fraenkel e, independentemente, Skolem observaram que a teoria de Zermelo era insuficiente para justificar certas construções recursivas elementares e propuseram o princípio que deu origem ao atual Esquema da Substituição \cite{fraenkel1922grundlagen,skolem1923bemerkungen}.
+O sistema hoje chamado $ZFC$ tem sua origem na axiomatização de Zermelo de 1908, motivada tanto pela necessidade de evitar os paradoxos da compreensão irrestrita quanto pela necessidade de explicitar os princípios conjuntistas usados na prova do Teorema da Boa-Ordenação, que diz que todo conjunto pode ser bem-ordenado \cite{zermelo1908untersuchungen}.
+Em 1922, Fraenkel e, independentemente, Skolem observaram que a teoria de Zermelo era insuficiente para justificar certas construções recursivas elementares e o desenvolvimento adequado da teoria de ordinais e cardinais infinitos.
+Com isso, propuseram o princípio que deu origem ao atual Esquema da Substituição \cite{fraenkel1922grundlagen,skolem1923bemerkungen}.
+Um ponto essencial na passagem da teoria original de Zermelo para as formulações modernas é a substituição da noção informal de ``propriedade definida'' por fórmulas da linguagem de primeira ordem da teoria dos conjuntos.
+
 Pouco depois, von Neumann introduziu o Axioma da Regularidade, também chamado de Axioma da Fundação \cite{vonneumann1925axiomatisierung}.
 A reformulação de Zermelo de 1930 consolidou uma apresentação já bastante próxima das axiomatizações contemporâneas \cite{zermelo1930grenzzahlen}.
 
@@ -112,12 +115,15 @@ Optamos por esta lista em particular pela simplicidade de sua apresentação e p
     \]
 \end{displayaxiom}
 
-No Capítulo~\ref{chap:axiomaDaEscolha}, estudaremos esse axioma e algumas de suas formulações equivalentes.
+A formulação acima é a versão por conjuntos de escolha, ou transversais, bastante próxima da forma usada por Zermelo em 1908. No Capítulo~\ref{chap:axiomaDaEscolha}, veremos também formulações em termos de funções escolha.
 
 \subsection{Nomenclatura}
     As letras $Z$ e $F$ em $ZF$ e $ZFC$ remetem a Zermelo e Fraenkel.
     Já $C$ remete ao Axioma da Escolha.
     Abaixo, $P$ remete ao Axioma da Potência.
+
+    A nomenclatura abaixo é a convenção adotada neste texto.
+    Em particular, o símbolo $Z$ não deve ser lido como uma reprodução literal da lista histórica de axiomas de Zermelo de 1908: ela já incluía, por exemplo, o Axioma da Escolha.
 \begin{metadefinition}[Nomes das teorias]
     Ao longo do livro, adotaremos as seguintes nomenclaturas.
     \label{mdef:nomesDasTeorias}
@@ -128,26 +134,33 @@ No Capítulo~\ref{chap:axiomaDaEscolha}, estudaremos esse axioma e algumas de su
         \item $ZFC$ é a teoria $ZF$ acrescida do Axioma da Escolha.
         \item Se $T$ é uma das teorias acima, $T^-$ é a teoria obtida ao se remover de $T$ o Axioma da regularidade.
         \item Se $T$ é uma das teorias acima, $T-P$ é a teoria obtida ao se remover de $T$ o Axioma da Potência.
-        \item $BST$, ou \emph{Basic Set Theory}, é a teoria formada pelos seguintes axiomas e esquemas: Extensão, Compreensão, União, Par, e Potência fraca.
+        \item $\BST$, ou \emph{Basic Set Theory}, é a teoria formada pelos seguintes axiomas e esquemas: Extensão, Compreensão, União, Par, e o Axioma dos Pares Internos (ver abaixo).\index{BST}
+        \item $BSTI$ é a teoria $BST$ acrescida do Axioma do Infinito.\index{BSTI}
     \end{itemize}
 
-    O Axioma da Potência Fraca não é um axioma padrão da literatura.
-    Neste texto, ele será utilizado para fins didáticos e organizacionais.
-    Na presença dos demais axiomas considerados nesta seção, ele é uma versão muito mais fraca do
-    Axioma da Potência e também decorre do Esquema da Substituição.
+    O Axioma dos Pares Internos, nessa formulação e sob esse nome, não é um axioma padrão da literatura.
+    Ele será utilizado neste texto para fins didáticos e organizacionais.
+
+    Este princípio isola apenas o estritamente necessário para construir produtos cartesianos e manipular relações elementares.
+    Sobre Extensão, Compreensão, Par e União, o Axioma dos Pares Internos é consequência do Axioma da Potência.
+    Conforme será discutido, ele também é demonstrável a partir do Esquema da Substituição, sem usar o Axioma da Potência.
+    
+
+    É importante ressaltar que a sigla $\BST$ possui variações na literatura e está longe de ser universal.
+    Estamos agrupando estes axiomas sob a sigla $\BST$ para fins didáticos e organizacionais compatíveis com a estrutura do resto deste texto.
 \end{metadefinition}
 
-\begin{displayaxiom}{Axioma da Potência Fraca}\index{axioma!da potência fraca}
-        \[
-            \begin{aligned}
-                \forall x\, \exists y\, \forall a\, \forall b\, \Bigl(
-                    &(a \in x \land b \in x) \\
-                    &\rightarrow \exists z\, \bigl(
-                        z \in y
-                        \land
-                        \forall w\, (w \in z \leftrightarrow (w = a \lor w = b))
-                    \bigr)
-                \Bigr).
-            \end{aligned}
-        \]
-    \end{displayaxiom}
+\begin{displayaxiom}{Axioma dos Pares Internos}\index{axioma!dos pares internos}
+    \[
+        \begin{aligned}
+            \forall x\, \exists y\, \forall a\, \forall b\, \Bigl(
+                &(a \in x \land b \in x) \\
+                &\rightarrow \exists z\, \bigl(
+                    z \in y
+                    \land
+                    \forall w\, (w \in z \leftrightarrow (w = a \lor w = b))
+                \bigr)
+            \Bigr).
+        \end{aligned}
+    \]
+\end{displayaxiom}
