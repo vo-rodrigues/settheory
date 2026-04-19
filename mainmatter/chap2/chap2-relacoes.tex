@@ -22,24 +22,24 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
     O domínio de $R$, denotado por $\dom R$, é o conjunto $z$ cujos elementos são as primeiras coordenadas dos pares ordenados de $R$.
     Formalmente,
     \[
-        \forall z\,\bigl(z = \dom R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\, (t,u) \in R)\bigr).
+        \forall z\, \Bigl(z = \dom R \leftrightarrow \forall t\, (t \in z \leftrightarrow \exists u\, ((t, u) \in R))\Bigr).
     \]
 
     A imagem de $R$, denotada por $\ran R$, é o conjunto $z$ cujos elementos são as segundas coordenadas dos pares ordenados de $R$.
     Formalmente,
     \[
-        \forall z\,\bigl(z = \ran R \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists u\,(u,t) \in R)\bigr).
+        \forall z\, \Bigl(z = \ran R \leftrightarrow \forall t\, (t \in z \leftrightarrow \exists u\, ((u, t) \in R))\Bigr).
     \]
 \end{definition}
 \begin{lemma}[$\BST$]\label{lem:existenciaDoDominioEImagem}
     Na notação acima, os conjuntos $\dom R$ e $\ran R$ estão bem definidos.
     Ou seja,
     \[
-        \forall R\,\bigl(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(t,u) \in R)\bigr).
+        \forall R\, \Bigl(\exists! z\, \forall t\, (t \in z \leftrightarrow \exists u\, ((t, u) \in R))\Bigr).
     \]
 
     \[
-        \forall R\,\bigl(\exists! z\, \forall t\,(t \in z \leftrightarrow \exists u\,(u,t) \in R)\bigr).
+        \forall R\, \Bigl(\exists! z\, \forall t\, (t \in z \leftrightarrow \exists u\, ((u, t) \in R))\Bigr).
     \]
 \end{lemma}
 \begin{proof}
@@ -49,13 +49,13 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
         \{a, b\} \in u \in R \implies \{a, b\} \in \bigcup R \implies \bigl(a \in \bigcup\bigcup R\bigr) \land \bigl(b \in \bigcup\bigcup R\bigr).
     \]
 
-    Seja $z=\{a \in \bigcup\bigcup R : \exists u\,(a, u) \in R\}$.
-    Vamos verificar que $z$ é tal que $\forall t\,(t \in z \leftrightarrow \exists u\,(t, u) \in R)$.
+    Seja $z=\{a \in \bigcup\bigcup R : \exists u\, ((a, u) \in R)\}$.
+    Vamos verificar que $z$ é tal que $\forall t\, (t \in z \leftrightarrow \exists u\, ((t, u) \in R))$.
 
-    Ora, dado $t \in z$, temos que $t \in \bigcup\bigcup R$ e $\exists u\,(t, u) \in R$ pela definição de $z$.
-    Reciprocamente, se $\exists u\,(t, u) \in R$, então, pelo exposto acima, $t \in \bigcup\bigcup R$, e, portanto, $t \in z$.
+    Ora, dado $t \in z$, temos que $t \in \bigcup\bigcup R$ e $\exists u\, ((t, u) \in R)$ pela definição de $z$.
+    Reciprocamente, se $\exists u\, ((t, u) \in R)$, então, pelo exposto acima, $t \in \bigcup\bigcup R$, e, portanto, $t \in z$.
 
-    Da mesma forma, sendo $z'=\{b \in \bigcup\bigcup R : \exists u\,(u, b) \in R\}$, temos que $\forall t\,(t \in z' \leftrightarrow \exists u\,(u, t) \in R)$.
+    Da mesma forma, sendo $z'=\{b \in \bigcup\bigcup R : \exists u\, ((u, b) \in R)\}$, temos que $\forall t\, (t \in z' \leftrightarrow \exists u\, ((u, t) \in R))$.
 
     Note que a existência de $z$ e $z'$ decorre do Esquema da Compreensão aplicado ao conjunto $\bigcup\bigcup R$.
     A unicidade decorre do Axioma da Extensão.
@@ -94,16 +94,16 @@ Utilizando o conjunto das partes, podemos garantir a existência do produto cart
     Dados conjuntos $A$ e $B$, existe um único conjunto $C$ que tem como elementos exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
     Formalmente,
     \[
-        \forall A\, \forall B\, \exists! C\, \forall z\,\bigl(z \in C \leftrightarrow \exists a\in A\, \exists b\in B\,(z = (a, b))\bigr).
+        \forall A\, \forall B\, \exists! C\, \forall z\, \Bigl(z \in C \leftrightarrow \exists a \in A\, \exists b \in B\, (z = (a, b))\Bigr).
     \]
 \end{lemma}
 \begin{proof}
     Dados $a \in A$ e $b \in B$, temos que $\{a\}, \{a, b\} \in \mathcal P(A\cup B)$, e, portanto, $(a, b) = \{\{a\}, \{a, b\}\} \in \mathcal P(\mathcal P(A\cup B))$.
-    Seja $C = \{z \in \mathcal P(\mathcal P(A\cup B)) : \exists a\in A\, \exists b\in B\,(z = (a, b))\}$.
+    Seja $C = \{z \in \mathcal P(\mathcal P(A\cup B)) : \exists a \in A\, \exists b \in B\, (z = (a, b))\}$.
 
-    Verifiquemos que $C$ é tal que $\forall z\,\bigl(z \in C \leftrightarrow \exists a\in A\, \exists b\in B\,(z = (a, b))\bigr)$.
-    Dado $z \in C$, temos que $z \in \mathcal P(\mathcal P(A\cup B))$ e $\exists a\in A\, \exists b\in B\,(z = (a, b))$ pela definição de $C$.
-    Reciprocamente, se $\exists a\in A\, \exists b\in B\,(z = (a, b))$, então, pelo exposto acima, $z \in \mathcal P(\mathcal P(A\cup B))$, e, portanto, $z \in C$.
+    Verifiquemos que $C$ é tal que $\forall z\, \Bigl(z \in C \leftrightarrow \exists a \in A\, \exists b \in B\, (z = (a, b))\Bigr)$.
+    Dado $z \in C$, temos que $z \in \mathcal P(\mathcal P(A\cup B))$ e $\exists a \in A\, \exists b \in B\, (z = (a, b))$ pela definição de $C$.
+    Reciprocamente, se $\exists a \in A\, \exists b \in B\, (z = (a, b))$, então, pelo exposto acima, $z \in \mathcal P(\mathcal P(A\cup B))$, e, portanto, $z \in C$.
 
     A existência de $C$ decorre do Esquema da Compreensão aplicado ao conjunto $\mathcal P(\mathcal P(A\cup B))$.
     A unicidade decorre do Axioma da Extensão.
@@ -168,7 +168,7 @@ Com isso, em $\BST$, o produto cartesiano de quaisquer conjuntos $A$ e $B$ está
     Dados quaisquer conjuntos $A$ e $B$, o produto cartesiano de $A$ e $B$, denotado por $A \times B$, é o conjunto cujos elementos são exatamente os pares ordenados $(a, b)$ tais que $a \in A$ e $b \in B$.
     Formalmente,
     \[
-        \forall C\,\bigl(C = A \times B \leftrightarrow \forall z\,(z \in C \leftrightarrow \exists a\in A\, \exists b\in B\,(z = (a, b)))\bigr).
+        \forall C\, \Bigl(C = A \times B \leftrightarrow \forall z\, (z \in C \leftrightarrow \exists a \in A\, \exists b \in B\, (z = (a, b)))\Bigr).
     \]
 \end{definition}
 
@@ -187,7 +187,7 @@ Porém, raramente tal notação será utilizada no caso de $R$ não ser uma rela
     Definimos $R^{-1}$ como o conjunto dos pares ordenados $(b,a)$ tais que $(a,b) \in R$.
     Formalmente,
     \[
-        \forall z\,\bigl(z = R^{-1} \leftrightarrow \forall t\,(t \in z \leftrightarrow \exists a\,\exists b\,((a,b)\in R \land t=(b,a)))\bigr).
+        \forall z\, \Bigl(z = R^{-1} \leftrightarrow \forall t\, (t \in z \leftrightarrow \exists a\, \exists b\, ((a, b) \in R \land t = (b, a)))\Bigr).
     \]
 \end{definition}
 
@@ -215,7 +215,7 @@ Vamos aproveitar a oportunidade para introduzi-la.
     Na notação acima, o conjunto $R^{-1}$ está bem definido.
     Ou seja,
     \[
-        \forall R\,\exists! z\,\forall t\,(t \in z \leftrightarrow \exists a\,\exists b\,((a,b)\in R \land t=(b,a))).
+        \forall R\, \exists! z\, \forall t\, (t \in z \leftrightarrow \exists a\, \exists b\, ((a, b) \in R \land t = (b, a))).
     \]
 \end{lemma}
 \begin{proof}
@@ -227,31 +227,31 @@ Vamos aproveitar a oportunidade para introduzi-la.
 
     Vamos verificar que
     \[
-        \forall t\,(t \in z \leftrightarrow \exists a\,\exists b\,((a,b)\in R \land t=(b,a))).
+        \forall t\, (t \in z \leftrightarrow \exists a\, \exists b\, ((a, b) \in R \land t = (b, a))).
     \]
 
     Suponha que $t \in z$.
     Pela definição da notação introduzida acima, existem $u$ e $v$ tais que
     \[
-        t=(u,v) \land (v,u)\in R.
+        t = (u, v) \land (v, u) \in R.
     \]
     Tomando $a=v$ e $b=u$, obtemos
     \[
-        (a,b)\in R \quad\text{e}\quad t=(b,a).
+        (a, b) \in R \quad \text{e} \quad t = (b, a).
     \]
 
     Reciprocamente, suponha que existam $a$ e $b$ tais que
     \[
-        (a,b)\in R \quad\text{e}\quad t=(b,a).
+        (a, b) \in R \quad \text{e} \quad t = (b, a).
     \]
     Então $a \in \dom R$ e $b \in \ran R$.
     Logo,
     \[
-        (b,a)\in \ran R\times \dom R.
+        (b, a) \in \ran R \times \dom R.
     \]
     Além disso, como $(a,b)\in R$, segue que
     \[
-        t=(b,a)\in \{(u,v)\in \ran R\times \dom R : (v,u)\in R\}=z.
+        t = (b, a) \in \{(u, v)\in \ran R \times \dom R : (v, u)\in R\} = z.
     \]
 
     A unicidade decorre do Axioma da Extensão.
@@ -276,7 +276,7 @@ Conforme usualmente definido, uma função é um tipo especial de relação.
     Uma \textbf{função} é uma relação $f$ tal que, para cada $a \in \dom f$, existe um único $b \in \ran f$ tal que $(a, b) \in f$.
     Formalmente,
     \[
-        \forall f\,\bigl(f \text{ é uma função} \leftrightarrow f \text{ é uma relação} \land \forall a\in\dom f\,\exists! b\in\ran f\,((a,b)\in f)\bigr).
+        \forall f\, \Bigl(f \text{ é uma função} \leftrightarrow f \text{ é uma relação} \land \forall a \in \dom f\, \exists! b \in \ran f\, ((a, b) \in f)\Bigr).
     \]
 \end{definition}
 
@@ -288,7 +288,7 @@ Conforme usualmente feito, definiremos a notação $f(a)$ para denotar o único 
 
     Em símbolos,
     \[
-        \forall b\,\bigl(f(a) = b \leftrightarrow (a, b) \in f\bigr).
+        \forall b\, \bigl(f(a) = b \leftrightarrow (a, b) \in f\bigr).
     \]
 \end{definition}
 
@@ -398,7 +398,7 @@ Abaixo, justificaremos a existência de $B^A$.
     Dados conjuntos $A$ e $B$, existe um único conjunto $C$ que tem como elementos exatamente as funções de $A$ em $B$.
     Formalmente,
     \[
-        \forall A\,\forall B\,\exists! C\,\forall z\,\bigl(z \in C \leftrightarrow z \text{ é uma função de } A \text{ em } B\bigr).
+        \forall A\, \forall B\, \exists! C\, \forall z\, \bigl(z \in C \leftrightarrow z \text{ é uma função de } A \text{ em } B\bigr).
     \]
 \end{lemma}
 \begin{proof}
@@ -507,7 +507,7 @@ A noção adequada para isso é a de compatibilidade entre funções.
     Justifique a existência de $\mathcal P(x)$.
     Ou seja, mostre que
     \[
-        \forall x\, \exists! y\, \forall z\,(z \in y \leftrightarrow z \subseteq x).
+        \forall x\, \exists! y\, \forall z\, (z \in y \leftrightarrow z \subseteq x).
     \]
 \end{exercise}
 \begin{exercise}[$\BST$]

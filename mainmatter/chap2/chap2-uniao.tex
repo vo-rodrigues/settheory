@@ -23,7 +23,7 @@ Tal axioma consta na formulação de 1908 de Zermelo \cite{zermelo1908untersuchu
     Em símbolos:
 
     \[
-    \forall x \exists y \forall z\, (\exists w\, (w \in x \land z \in w)\rightarrow z \in y)
+    \forall x \exists y \forall z\, \bigl(\exists w\, (w \in x \land z \in w) \rightarrow z \in y\bigr)
     \]
 \end{axiom}
 
@@ -37,7 +37,7 @@ A demonstração é deixada como exercício (ver Exercício~\ref{exr:existenciaD
     Em símbolos:
 
     \[
-    \forall x \exists! y \forall z\, (z \in y \leftrightarrow \exists w\, (w \in x \land z \in w)).
+    \forall x \exists! y\, \forall z\, (z \in y \leftrightarrow \exists w\, (w \in x \land z \in w)).
     \]
 \end{lemma}
 
@@ -64,7 +64,7 @@ A legitimidade dessa introdução será justificada no lema subsequente.
     Formalmente, a união de dois conjuntos é regida pelo seguinte axioma definicional.
 
     \[
-        \forall x \forall y \forall z\, \bigl(z = x \cup y \leftrightarrow \forall w\, (w \in z \leftrightarrow (w \in x \lor w \in y))\bigr).
+        \forall x \forall y \forall z\, \Bigl(z = x \cup y \leftrightarrow \forall w\, (w \in z \leftrightarrow (w \in x \lor w \in y))\Bigr).
     \]
 \end{definition}
 
@@ -102,7 +102,7 @@ Para provar o Lema~\ref{lem:existenciaDaIntersecao}, basta o Axioma da Extensão
     Em símbolos:
 
     \[
-        \forall x\, (x \neq \emptyset \rightarrow \exists! y\, \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w))).
+        \forall x\, \Bigl(x \neq \emptyset \rightarrow \exists! y\, \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w))\Bigr).
     \]
 \end{lemma}
 \begin{proof}
@@ -125,7 +125,12 @@ Para provar o Lema~\ref{lem:existenciaDaIntersecao}, basta o Axioma da Extensão
     A seguinte sentença rege a interseção de conjuntos não vazios.
 
     \[
-        \forall x\, (x \neq \emptyset \rightarrow \forall y\, (y = \bigcap x \leftrightarrow \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)))).
+        \begin{aligned}
+            \forall x\, \Bigl(
+                &x \neq \emptyset \\
+                &\rightarrow \forall y\, (y = \bigcap x \leftrightarrow \forall z\, (z \in y \leftrightarrow \forall w\, (w \in x \rightarrow z \in w)))
+            \Bigr).
+        \end{aligned}
     \]
 \end{definition}
 
@@ -189,10 +194,14 @@ Aproveitando a discussão da Definição~\ref{def:simboloIntersecao} sobre a ins
     \]
     para indicar que o símbolo $f$ está sendo introduzido por definição a partir do seguinte axioma definicional.
     \[
-        \forall x_1\, \dots\, \forall x_n\, \forall y\,
-        \bigl(f(x_1,\dots,x_n)=y \leftrightarrow
-        ((\psi(x_1,\dots,x_n)\land \phi(x_1,\dots,x_n,y))
-        \vee (\neg\psi(x_1,\dots,x_n)\land y=\emptyset))\bigr).
+        \begin{aligned}
+            \forall x_1\, \dots\, \forall x_n\, \forall y\,
+            \Bigl(
+                &f(x_1,\dots,x_n)=y \leftrightarrow \\
+                &\bigl((\psi(x_1,\dots,x_n)\land \phi(x_1,\dots,x_n,y))
+                \vee (\neg\psi(x_1,\dots,x_n)\land y=\emptyset)\bigr)
+            \Bigr).
+        \end{aligned}
     \]
 \end{convention}
 
@@ -240,7 +249,7 @@ A existência e a unicidade da diferença são consequências imediatas de uma i
     Formalmente, a diferença é regida pelo seguinte axioma definicional.
 
     \[
-        \forall x \forall y \forall z\, (z = x \setminus y \leftrightarrow \forall w\, (w \in z \leftrightarrow (w \in x \land w \notin y))).
+        \forall x \forall y \forall z\, \Bigl(z = x \setminus y \leftrightarrow \forall w\, (w \in z \leftrightarrow (w \in x \land w \notin y))\Bigr).
     \]
 \end{definition}
 \subsection*{Exercícios}

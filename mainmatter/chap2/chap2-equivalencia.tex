@@ -35,7 +35,7 @@ Toda função induz naturalmente uma relação de equivalência.
     Sejam $A$ e $B$ conjuntos e seja $f : A \to B$ uma função.
     Defina a relação binária $\sim_f$ em $A$ por
     \[
-    x \sim_f y \iff f(x)=f(y).
+    x \sim_f y \iff f(x) = f(y).
     \]
     Então $(A, \sim_f)$ é uma relação de equivalência.
 \end{example}
@@ -46,7 +46,7 @@ Dada uma relação de equivalência, é natural agrupar os elementos equivalente
     Seja $(A, \sim)$ uma relação de equivalência e seja $x \in A$.
     A \emph{classe de equivalência} de $x$ é o conjunto
     \[
-    [x]_{\sim}=\{y \in A : y \sim x\}.
+    [x]_{\sim} = \{y \in A : y \sim x\}.
     \]
 
     ($Z^{-}$) O conjunto de todas as classes de equivalência de elementos de $A$ é denotado por $A/{\sim}$.
@@ -93,7 +93,7 @@ Reciprocamente, temos a seguinte proposição.
     Além disso, para todo $x \in A$, a classe de equivalência de $x$ é exatamente o único elemento de $\mathcal{E}$ que contém $x$.
     Em particular,
     \[
-    A/{\sim_{\mathcal{E}}}=\mathcal{E}.
+    A/{\sim_{\mathcal{E}}} = \mathcal{E}.
     \]
 \end{proposition}
 
@@ -130,12 +130,17 @@ A recíproca é dada a seguir.
 
 \begin{proposition}[$Z^{-}$]\label{prop:relacaoDeEquivalenciaInduzidaPelaParticao}
     Seja $(A, \sim)$ uma relação de equivalência e seja $\mathcal{E}=A/{\sim}$ a partição de $A$ induzida por $\sim$.
-    Então $\sim=\sim_{\mathcal{E}}$.
+    Então $\sim = \sim_{\mathcal{E}}$.
 \end{proposition}
 \begin{proof}
     Dados $x, y \in A$, temos
     \[
-    x \sim_{\mathcal{E}} y \iff \exists X \in A/{\sim}\, (x \in X \wedge y \in X) \iff \exists z \in A\, (x \in [z]_{\sim} \wedge y \in [z]_{\sim}) \iff x \sim y,
+    \begin{aligned}
+        x \sim_{\mathcal{E}} y
+        &\iff \exists X \in A/{\sim}\, (x \in X \wedge y \in X) \\
+        &\iff \exists z \in A\, (x \in [z]_{\sim} \wedge y \in [z]_{\sim}) \\
+        &\iff x \sim y.
+    \end{aligned}
     \]
 \end{proof}
 
