@@ -33,7 +33,7 @@ x \subseteq y \quad \text{se, e somente se,} \quad \forall z\, (z \in x \rightar
 \]
 \end{definition}
 
-Com essa notação, obtemos imediatamente a seguinte caracterização da igualdade.
+Com esta notação, obtemos imediatamente a seguinte caracterização da igualdade.
 
 \begin{proposition} [$\BST$]\label{prop:igualdadePorInclusao}
 Para quaisquer conjuntos $x$ e $y$, tem-se
@@ -109,11 +109,11 @@ Há também evidências de que Zermelo havia notado independentemente uma contra
 
 O que hoje se conhece como Esquema de Axiomas da Compreensão, ou Esquema de Axiomas da Separação, aparece na axiomatização de Zermelo da Teoria dos Conjuntos de 1908 como o Axioma da Separação (\emph{Axiom der Aussonderung}) \cite[p.~263]{zermelo1908untersuchungen}.
 Na formulação histórica de Zermelo, as propriedades admissíveis eram chamadas de propriedades ``definidas''.
-Na formulação moderna usual, essas propriedades admissíveis são tomadas como aquelas expressas por fórmulas de uma linguagem de primeira ordem.
-Essa leitura é uma clarificação posterior, associada sobretudo aos trabalhos de Weyl e Skolem \cite{weyl1910definitionen,skolem1923bemerkungen,kanamori2004zermelo}.
+Na formulação moderna usual, estas propriedades admissíveis são tomadas como aquelas expressas por fórmulas de uma linguagem de primeira ordem.
+Esta leitura é uma clarificação posterior, associada sobretudo aos trabalhos de Weyl e Skolem \cite{weyl1910definitionen,skolem1923bemerkungen,kanamori2004zermelo}.
 Como a linguagem de primeira ordem da teoria dos conjuntos já foi fixada no Capítulo~\ref{chap:teoriasPrimeiraOrdem}, adotaremos desde o início a formulação moderna: uma instância do esquema para cada fórmula da linguagem.
 
-Na literatura, é comum reservar o nome \emph{Separação} para enfatizar que o axioma não cria um conjunto a partir de uma propriedade isolada, mas apenas separa, de um conjunto previamente dado, os elementos que satisfazem essa propriedade.
+Na literatura, é comum reservar o nome \emph{Separação} para enfatizar que o axioma não cria um conjunto a partir de uma propriedade isolada, mas apenas separa, de um conjunto previamente dado, os elementos que satisfazem esta propriedade.
 Neste texto, usaremos também o nome \emph{Compreensão}, sempre nesse sentido restrito.
 
 \begin{axiom}{Esquema de Axiomas da Compreensão}\index{axioma!esquema da compreensão}\index{axioma!esquema da separação|see{esquema da compreensão}}
@@ -178,10 +178,13 @@ v\in \{u\in A:\phi(u,A,t_1,\ldots,t_n)\}
 \]
 \end{definition}
 
+Do ponto de vista formal, há um novo símbolo funcional $C_\phi$ para cada fórmula
+$\phi$ admissível.
+
 Na notação $\{x\in A:\phi(x)\}$, a variável $x$ é uma variável muda:
 ela apenas indica qual elemento do conjunto ambiente está sendo testado pela fórmula.
-Em geral, vale que:
-
+Assim, se $u$ é uma variável nova, e $\phi(u)$ denota a fórmula obtida de $\phi(x)$
+pela renomeação livre de $x$ por $u$, então
 \[
 \{x\in A:\phi(x)\}=\{u\in A:\phi(u)\}.
 \]
@@ -278,10 +281,11 @@ Com exceção do Exercício~\ref{exr:compreensaoDefinicao} exercícios a seguir 
     \bigl(x\in y\leftrightarrow \phi(x,t_1,\ldots,t_n)\bigr)
     \]
     também é um teorema.
-    Em outras palavras, prove que, para quaisquer $t_1, \ldots, t_n$, o seguinte conjunto está bem-definido:
+    Em outras palavras, prove que, sob esta hipótese de existência, a notação
     \[
-        \{x : \phi(x, t_1, \ldots, t_n)\}.
+    \{x:\phi(x,t_1,\ldots,t_n)\}
     \]
+    pode ser introduzida por definição.
 \end{exercise}
 
 \begin{exercise}
@@ -354,7 +358,7 @@ então, para esses mesmos $A, t_1, \ldots, t_n$, tem-se
     não lógico é $\in$, e suponha que $T$ contém o Axioma da Extensão e o Esquema da
     Compreensão. Seja $T'$ uma extensão por definição de $T$.
 
-    Mostre que, se $\phi(x,A,t_1,\ldots,t_n)$ é uma fórmula da linguagem de $T'$,
+    Mostre que, se $\phi(x,A,t_1,\ldots,t_n)$ é uma fórmula da linguagem de $T'$ e na qual $y$ não ocorre livre,
     então $T'$ prova
     \[
     \forall A\forall t_1\cdots\forall t_n\exists y\forall x\,
