@@ -21,7 +21,7 @@ Na formulação de 1930, Zermelo isolou o Axioma do Par, que passou a ser o Axio
     Em símbolos:
 
     \[
-    \forall x \forall y \exists z (x \in z \land y \in z)
+    \forall x \forall y \exists z\, (x \in z \land y \in z)
     \]
 \end{axiom}
 
@@ -35,36 +35,36 @@ Porém, na presença do Esquema da Compreensão, essa formulação mais forte n�
     Em símbolos:
 
     \[
-    \forall x \forall y \exists! z \,\forall w (w \in z \leftrightarrow (w = x \lor w = y))
+    \forall x \forall y \exists! z\, \forall w\, (w \in z \leftrightarrow (w = x \lor w = y))
     \]
 \end{lemma}
 
 \begin{proof}
     Dado $x$ e $y$, pelo Axioma do Par, existe um conjunto $z'$ tal que $x \in z'$ e $y \in z'$.
-    Agora, tomemos o conjunto $z = \{ w \in z' : w = x \lor w = y \}$ (que está bem definido, conforme a discussão da Seção~\ref{sec:axiomaDaExtensaoECompreensao}).
+    Agora, tomemos o conjunto $z = \{w \in z' : w = x \lor w = y\}$ (que está bem definido, conforme a discussão da Seção~\ref{sec:axiomaDaExtensaoECompreensao}).
     
     Mostremos que $z$ satisfaz a condição desejada.
     Se $w \in z$, então $w \in z'$, então $w = x$ ou $w = y$ pela definição de $z$.
-    Por outro lado, se $w=x$ ou $w=y$, então, como $x\in z'$ e $y\in z'$, segue por substituição de iguais que $w\in z'$.
-    Logo, pela definição de $z$, temos $w\in z$.
+    Por outro lado, se $w = x$ ou $w = y$, então, como $x \in z'$ e $y \in z'$, segue por substituição de iguais que $w \in z'$.
+    Logo, pela definição de $z$, temos $w \in z$.
 
     A unicidade segue do Axioma da Extensão: se $z_1$ e $z_2$ satisfazem a condição, então, para todo $w$:
     \[
     w \in z_1 \leftrightarrow (w = x \lor w = y) \leftrightarrow w \in z_2
     \]
 
-    Assim, $\forall w\,(w\in z_1 \leftrightarrow w \in z_2)$, e então $z_1 = z_2$.
+    Assim, $\forall w\, (w \in z_1 \leftrightarrow w \in z_2)$, e então $z_1 = z_2$.
 \end{proof}
 
 Com isso, podemos definir os pares não ordenados.
 
 \begin{definition}[$\BST$]\label{def:parNaoOrdenado}\index{par!não ordenado}
-    Dado $x$ e $y$, o \emph{par não ordenado} de $x$ e $y$ é o conjunto $\{ x, y \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
+    Dado $x$ e $y$, o \emph{par não ordenado} de $x$ e $y$ é o conjunto $\{x, y\}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = y$.
     
-    Formalmente, conforme discutido no capítulo 1, introduzimos na linguagem um símbolo de função binário $\{ \cdot, \cdot \}$, por meio do seguinte axioma definicional.
+    Formalmente, conforme discutido no capítulo 1, introduzimos na linguagem um símbolo de função binário $\{\cdot, \cdot\}$, por meio do seguinte axioma definicional.
 
     \[
-        \forall x \forall y \forall z (z = \{ x, y \} \leftrightarrow \forall w (w \in z \leftrightarrow (w = x \lor w = y))).
+        \forall x \forall y \forall z\, \Bigl(z = \{x, y\} \leftrightarrow \forall w\, (w \in z \leftrightarrow (w = x \lor w = y))\Bigr).
     \]
 
     Tal introdução é legitimada pelo Lema~\ref{lem:existenciaDoPar}, que garante a existência e unicidade do conjunto $z$ para quaisquer $x$ e $y$.
@@ -73,10 +73,10 @@ Com isso, podemos definir os pares não ordenados.
 Também é possível definir os \emph{singletos}, ou \emph{conjuntos unitários}.
 
 \begin{definition}[$\BST$]\label{def:singleto}\index{singleto}\index{conjunto unitário|see{singleto}}
-    Dado um conjunto $x$, o \emph{singleto}, ou \emph{conjunto unitário}, de $x$ é o conjunto $\{ x \}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
+    Dado um conjunto $x$, o \emph{singleto}, ou \emph{conjunto unitário}, de $x$ é o conjunto $\{x\}$ definido como o único conjunto $z$ tal que, para todo $w$, $w \in z$ se e somente se $w = x$.
 
     \[
-        \forall x \forall z (z = \{ x \} \leftrightarrow \forall w (w \in z \leftrightarrow w = x)).
+        \forall x \forall z\, \Bigl(z = \{x\} \leftrightarrow \forall w\, (w \in z \leftrightarrow w = x)\Bigr).
     \]
 \end{definition}
 
@@ -88,11 +88,11 @@ No lema seguinte, demonstramos a existência de tal conjunto e deixamos a verifi
     Em símbolos:
 
     \[
-        \forall x \exists! z \forall w\, (w \in z \leftrightarrow w = x)
+        \forall x \exists! z\, \forall w\, (w \in z \leftrightarrow w = x)
     \]
 \end{lemma}
 \begin{proof}
-    Dado $x$, considere $z=\{x, x\}$.
+    Dado $x$, considere $z = \{x, x\}$.
     Então, para todo $w$, $w \in z$ se e somente se $w = x$ ou $w = x$, o que é equivalente a $w = x$.
     Assim, $z$ satisfaz a condição.
 
@@ -103,22 +103,22 @@ Também é possível definir o par ordenado.
 Neste texto, adotaremos a definição de Kuratowski \cite{kuratowski1921notion}.
 Por razões históricas, boa parte dos textos modernos de Teoria dos Conjuntos adota essa definição, embora existam outras opções igualmente válidas.
 \begin{definition}[$\BST$]\label{def:parOrdenadoKuratowski}\index{par!ordenado}\index{definição!de Kuratowski}
-    Dado $x$ e $y$, o \emph{par ordenado} de $x$ e $y$ é o conjunto $(x, y)$ definido como $\{ \{ x \}, \{ x, y \} \}$.
+    Dado $x$ e $y$, o \emph{par ordenado} de $x$ e $y$ é o conjunto $(x, y)$ definido como $\{\{x\}, \{x, y\}\}$.
 
     Formalmente, introduzimos na linguagem um símbolo de função binário $(\cdot, \cdot)$, por meio do seguinte axioma definicional.
     \[
-        \forall x \forall y\, \bigl((x, y) = \{ \{ x \}, \{ x, y \} \}\bigr)
+        \forall x \forall y\, ((x, y) = \{\{x\}, \{x, y\}\})
     \]
 
     Dizemos que um conjunto $z$ é um par ordenado se existem $x$ e $y$ tais que $z = (x, y)$.
     Em símbolos:
     \[
-        \forall z\, (z \text{ é um par ordenado} \leftrightarrow \exists x \exists y (z = (x, y)))
+        \forall z\, (z \text{ é um par ordenado} \leftrightarrow \exists x\, \exists y\, (z = (x, y)))
     \]
 \end{definition}
 
 A propriedade ``é um par ordenado'' é uma notação ``em texto'' para denotar um símbolo de predicado unário introduzido por definição.
-Poderíamos, alternativamente, em vez de escrever ``$z$ é um par ordenado'', escrever ``$P(z)$'', onde $P$ é um símbolo de predicado unário definido por $\forall z\,P(z) \leftrightarrow \exists x \exists y (z = (x, y))$. 
+Poderíamos, alternativamente, em vez de escrever ``$z$ é um par ordenado'', escrever ``$P(z)$'', onde $P$ é um símbolo de predicado unário definido por $\forall z\, P(z) \leftrightarrow \exists x\, \exists y\, (z = (x, y))$. 
 
 A partir dessa codificação, será possível definir posteriormente produtos cartesianos, relações e funções inteiramente em termos de conjuntos.
 
@@ -140,27 +140,27 @@ No caso presente, a propriedade fundamental é a da proposição seguinte.
     Pela definição de par ordenado, temos
 
     \[
-    \{ \{ x \}, \{ x, y \} \} = \{ \{ u \}, \{ u, v \} \}
+    \{\{x\}, \{x, y\}\} = \{\{u\}, \{u, v\}\}
     \]
-    Chamemos $A=\{\{ x \}, \{ x, y \} \}$ e $B=\{ \{ u \}, \{ u, v \} \}$.
+    Chamemos $A = \{\{x\}, \{x, y\}\}$ e $B = \{\{u\}, \{u, v\}\}$.
 
-    Como $\{x, y\}\in B$, então $\{x, y\} = \{u\}$ ou $\{x, y\} = \{u, v\}$.
+    Como $\{x, y\} \in B$, então $\{x, y\} = \{u\}$ ou $\{x, y\} = \{u, v\}$.
 
     \textbf{Caso 1:} $\{x, y\} = \{u\}$.
 
     Neste caso, $x \in \{u\}$ e $y \in \{u\}$, então $x = u$ e $y = u$, e, portanto, $x = u$.
     Além disso, $\{u, v\} \in A$, então $\{u, v\} = \{x\}$ ou $\{u, v\} = \{x, y\}$.
-    Em qualquer caso, $v=u=x=y$, e, portanto, segue a tese.
+    Em qualquer caso, $v = u = x = y$, e, portanto, segue a tese.
 
 
     \textbf{Caso 2:} $\{x, y\} \neq \{u\}$.
 
-    Neste caso, como $\{u\} \in A$ e $\{u\}\neq \{x, y\}$, então $\{u\} = \{x\}$, e, portanto, $u = x$.
+    Neste caso, como $\{u\} \in A$ e $\{u\} \neq \{x, y\}$, então $\{u\} = \{x\}$, e, portanto, $u = x$.
     
     Como $\{x, y\} \in B$ e $\{x, y\} \neq \{u\}$, temos $\{x, y\} = \{u, v\}$.
-    Assim, $y=u$ ou $y=v$.
-    Se $y=u$, então $\{x, y\} = \{u\}$, o que é falso.
-    Logo, $y=v$ e segue a tese.
+    Assim, $y = u$ ou $y = v$.
+    Se $y = u$, então $\{x, y\} = \{u\}$, o que é falso.
+    Logo, $y = v$ e segue a tese.
 \end{proof}
 
 
@@ -169,20 +169,20 @@ Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da extens�
 \begin{exercise}
     Prove que, para quaisquer conjuntos $x, y, u, v$:
     \begin{enumerate}[label=(\alph*)]
-        \item $\{ x, y \} = \{ y, x \}$.
-        \item $\{ x, x \} = \{ x \}$.
-        \item $\{ x \} = \{ y \}$ se e somente se $x = y$.
-        \item $\{x, y\}=\{u\}$ se e somente se $x=y=u$.
-        \item $\{ x, y \} = \{ u, v \}$ se e somente se ($x = u$ e $y = v$) ou ($x = v$ e $y = u$).
-        \item Com a definição de Kuratowski, $(x, x)=\{\{x\}\}$.
+        \item $\{x, y\} = \{y, x\}$.
+        \item $\{x, x\} = \{x\}$.
+        \item $\{x\} = \{y\}$ se e somente se $x = y$.
+        \item $\{x, y\} = \{u\}$ se e somente se $x = y = u$.
+        \item $\{x, y\} = \{u, v\}$ se e somente se ($x = u$ e $y = v$) ou ($x = v$ e $y = u$).
+        \item Com a definição de Kuratowski, $(x, x) = \{\{x\}\}$.
     \end{enumerate}
 \end{exercise}
 \begin{exercise}
     Prove que, para quaisquer conjuntos $x$ e $y$,
     \[
-        (x,y)=(y,x)
+        (x, y) = (y, x)
     \]
-    se e somente se $x=y$.
+    se e somente se $x = y$.
 \end{exercise}
 \begin{exercise}\label{exr:unicidadeDosSingletos}
     Justifique mais detalhadamente a unicidade dos singletos (Lema~\ref{lem:existenciaDeSingletos}).
@@ -196,14 +196,14 @@ Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da extens�
     Defina outra definição alternativa para pares ordenados que satisfaça a propriedade de que $(x, y) = (u, v)$ se e somente se $x = u$ e $y = v$.
 \end{exercise}
 \begin{exercise}
-    Prove que, se $z$ é um par ordenado, então existem únicos conjuntos $x$ e $y$ tais que $z=(x,y)$.
+    Prove que, se $z$ é um par ordenado, então existem únicos conjuntos $x$ e $y$ tais que $z = (x, y)$.
 
     Formalmente, prove que
     \[
-        \forall z\, (z \text{ é um par ordenado} \rightarrow \exists! x \exists y (z = (x, y))),
+        \forall z\, (z \text{ é um par ordenado} \rightarrow \exists! x\, \exists y\, (z = (x, y))),
     \]
     \[
-        \forall z\, (z \text{ é um par ordenado} \rightarrow \exists! y \exists x (z = (x, y))).
+        \forall z\, (z \text{ é um par ordenado} \rightarrow \exists! y\, \exists x\, (z = (x, y))).
     \]
 \end{exercise}
 
@@ -214,8 +214,8 @@ Os exercícios a seguir devem ser resolvidos usando apenas os axiomas da extens�
 
     Mostre que o seguinte é falso:
     \[
-    \forall A \exists y \forall x (x \in y \leftrightarrow (x \in A \land x \notin y)).
+    \forall A\, \exists y\, \forall x\, (x \in y \leftrightarrow (x \in A \land x \notin y)).
     \]
 
-    Este exercício nos mostra que tentativas de construções autorreferentes, como $\{x \in y: \phi(x, y)\}$ podem ser problemáticas em Teoria dos Conjuntos.
+    Este exercício nos mostra que tentativas de construções autorreferentes, como $\{x \in y : \phi(x, y)\}$, podem ser problemáticas em Teoria dos Conjuntos.
 \end{exercise}
