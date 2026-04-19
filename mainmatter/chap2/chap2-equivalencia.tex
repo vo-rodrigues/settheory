@@ -4,8 +4,11 @@
 
 Nesta seção, introduziremos as noções básicas de relação de equivalência, classe de equivalência, conjunto quociente e partição, bem como alguns resultados estruturais associados.
 
+Historicamente, a noção abstrata de relação de equivalência é posterior a muitos de seus exemplos.
+Um exemplo de grande influência é a congruência módulo $m$, já sistematizada por Gauss nas \emph{Disquisitiones Arithmeticae}: em linguagem atual, ela identifica números que têm o mesmo resto módulo $m$ e os organiza em classes de resíduos \cite{gauss1801disquisitiones}.
+
 \begin{definition}[$\BST$](Relação de equivalência)\label{def:relacaoDeEquivalencia}\index{relação!de equivalência}
-    Uma \emph{relação de equivalência} é um par $(A, \sim)$ onde $A$ é um conjunto e $\sim$ é uma relação binária em $A$ tal que para todo $x, y, z \in A$, valem:
+    Uma \emph{relação de equivalência} é um par $(A, \sim)$ em que $A$ é um conjunto e $\sim$ é uma relação binária em $A$ tal que para todo $x, y, z \in A$, valem:
     \begin{itemize}
         \item $x \sim x$ (reflexividade)
         \item Se $x \sim y$, então $y \sim x$ (simetria)
@@ -62,7 +65,7 @@ Deixamos os seguintes fatos básicos para verificação do leitor (Exercício~\r
         \item $x \sim y$ se, e somente se, $[x]_{\sim}=[y]_{\sim}$;
         \item se $[x]_{\sim} \cap [y]_{\sim} \neq \emptyset$, então $[x]_{\sim}=[y]_{\sim}$;
         \item ou $[x]_{\sim}=[y]_{\sim}$, ou $[x]_{\sim} \cap [y]_{\sim}=\emptyset$.
-        \item ($Z^{-}$) $\displaystyle A=\bigcup A/{\sim}$.
+        \item ($Z^{-}$) $\displaystyle A=\bigcup \Big(A/{\sim}\Big)$.
     \end{enumerate}
 \end{proposition}
 

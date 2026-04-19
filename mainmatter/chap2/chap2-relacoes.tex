@@ -64,6 +64,22 @@ Enunciaremos suas definições formais, e, a seguir, mostraremos que a existênc
 \begin{definition}[$\BST$]\label{def:relacaoEmUmConjunto}\index{relação!em um conjunto}
     Dado um conjunto $A$, dizemos que uma relação $R$ é uma \emph{relação em $A$} se $\dom R \subseteq A$ e $\ran R \subseteq A$.
 \end{definition}
+
+É importante distinguir dois usos da palavra ``relação''.
+Na linguagem de primeira ordem da teoria dos conjuntos, o símbolo
+$\in$ é um símbolo de predicado binário: sintaticamente, ele compõe fórmulas atômicas do tipo $x\in y$.
+Um símbolo de
+predicado, porém, não é um conjunto; em particular, não possui
+elementos, domínio, imagem, etc.
+
+Nesta seção, por outro lado, introduzimos a noção de relação como uma noção interna da Teoria dos Conjuntos: uma relação é um conjunto cujos elementos são pares ordenados.
+Enquanto fórmula $a\in b$ usa diretamente o símbolo primitivo de
+pertencimento da linguagem, a expressão $aRb$ (em que $R$ é uma relação) é introduzida como uma abreviação de $(a, b) \in R$.
+
+Por fim, ressaltamos que o cálculo de relações tem uma história anterior à formalização conjuntista moderna por conjuntos de pares ordenados.
+Para uma visão histórica, veja
+\cite{maddux1991}.
+
 \subsection{O Axioma da Potência e o produto cartesiano}\label{subsec:axiomaDaPotenciaEProdutoCartesiano}
 Dados conjuntos $A$ e $B$, é natural considerar o conjunto de todos os pares ordenados $(a,b)$ tais que $a \in A$ e $b \in B$.
 Quando existe, esse conjunto é usualmente chamado de produto cartesiano de $A$ e $B$.
@@ -118,13 +134,11 @@ Conforme será discutido posteriormente, o Axioma da Potência garante a existê
 Já a mera existência de produtos cartesianos, não.
 Porém, os produtos cartesianos são suficientes para desenvolver boa parte da teoria básica dos conjuntos, como para, por exemplo, garantir a existência de relações inversas, composições de relações, composições de funções, identidades de conjuntos, etc.
 
-Ao se estudar modelos de Teoria dos Conjuntos, é possível obter modelos teoricamente importantes em que todos os axiomas de ZFC-P são satisfeitos.
-O mesmo ocorre para ZC.
 Tanto o Axioma da Potência quanto o Esquema da Substituição implicam a existência de produtos cartesianos.
-Como a existência de produtos cartesianos é tão fundamental para as construções mais elementares de Teoria dos Conjuntos, propomos, neste texto, inicialmente trabalhar com um princípio mais fraco do que o Axioma da Potência, não muito usual na literatura, que isola apenas o estritamente necessário para garantir a existência de produtos cartesianos.
+Como a existência de produtos cartesianos é tão fundamental para as construções mais elementares de Teoria dos Conjuntos, propomos, neste texto, inicialmente trabalhar com um princípio mais fraco do que o Axioma da Potência, não usual como axioma independente na literatura, que isola apenas o estritamente necessário para garantir a existência de produtos cartesianos.
 Este é o último axioma a ser introduzido de BST.
 
-\begin{axiom}{Axioma dos Pares Internos}\index{axioma!dos pares internos}
+\begin{axiom}[Axioma dos Pares Internos]\label{ax:paresInternos}\index{axioma!dos pares internos}
     \[
         \begin{aligned}
             \forall x\, \exists y\, \forall a\, \forall b\, \Bigl(
@@ -307,16 +321,27 @@ Convém formalizar a notação usual $f:A\to B$.
         \item $f$ é uma função parcial de $A$ se $\dom f \subseteq A$;
         \item $f$ é uma função em $B$ se $\ran f \subseteq B$;
         \item $f$ é uma função sobre $B$ se $\ran f = B$;
-        \item $B$ é um contradomínio para $f$ se $\ran f \subseteq B$.
+        \item $B$ é um contradomínio para $f$ se $\ran f \subseteq B$.\label{item:contradominio}
     \end{enumerate}
 \end{definition}
+
+Nesta convenção, uma função é identificada com seu gráfico.
+Em particular,
+um contradomínio para $f$ não é parte constitutiva de $f$ como objeto.
+Daí o artigo indefinido ``um'' no item~\ref{item:contradominio} da definição anterior.
+Qualquer conjunto que contenha a imagem de $f$ pode ser considerado um contradomínio para $f$.
+
+Historicamente, a noção abstrata de aplicação entre sistemas já aparece de
+forma clara em Dedekind \cite[\S 21]{dedekind1888was} sob o nome de \emph{Abbildung}.
+A identificação de funções com gráficos de pares
+ordenados é a forma conjuntista moderna de tornar essa noção extensional.
 
 As notações de imagem direta, imagem inversa e restrição também são as usuais.
 
 \begin{definition}[$\BST$]\label{def:imagemDiretaImagemInversaRestricao}\index{imagem!direta}\index{imagem!inversa}\index{restrição}
     Sejam $f$ uma função, $A$ um conjunto e $B$ um conjunto.
     \begin{enumerate}[label=(\alph*)]
-        \item A imagem direta de $A$ por $f$, denotada por $f[A]$, é o conjunto $\{b \in \ran f : \exists a \in A\, (f(a) = b)\}$.
+        \item A imagem direta de $A$ por $f$, denotada por $f[A]$, é o conjunto $\{b \in \ran f : \exists a \in A\cap \dom f\, (f(a) = b)\}$.
         \item A imagem inversa de $B$ por $f$, denotada por $f^{-1}[B]$, é o conjunto $\{a \in \dom f : f(a) \in B\}$.
         \item A restrição de $f$ a $A$, denotada por $f\restriction A$, é a função cujos elementos são exatamente os pares $(a,b)\in f$ tais que $a\in A$.
     \end{enumerate}
@@ -455,7 +480,7 @@ Tal coleção é usualmente chamada de produto cartesiano de $(A_i: i \in I)$.
 \begin{proof}
     Para a existência, considere
     \[
-        C=\left\{a \in (\bigcup_{i\in I} A_i)^I : \forall i \in I\, (a(i) \in A_i)\right\}.
+        C=\left\{a \in \Big(\bigcup_{i\in I} A_i\Big)^I : \forall i \in I\, (a(i) \in A_i)\right\}.
     \]
     Como os elementos de $(\bigcup_{i\in I} A_i)^I$ são exatamente as funções com domínio $I$ e valores em $\bigcup_{i\in I} A_i$, segue que os elementos de $C$ são precisamente as famílias $a$ indexadas por $I$ tais que $a_i \in A_i$ para todo $i \in I$.
 
@@ -501,6 +526,7 @@ A noção adequada para isso é a de compatibilidade entre funções.
     Então $\bigcup \mathcal F$ é uma função.
 \end{proposition}
 \begin{proof}
+    É imediato que $\bigcup \mathcal F$ é uma relação.
     Para verificar que $\bigcup \mathcal F$ é uma função, tome $a, b, b'$ tais que $(a, b) \in \bigcup \mathcal F$ e $(a, b') \in \bigcup \mathcal F$.
     Então existem $f, g \in \mathcal F$ tais que $(a, b) \in f$ e $(a, b') \in g$.
     Como $f$ e $g$ são compatíveis, segue que $b=f(a)=g(a)=b'$.
