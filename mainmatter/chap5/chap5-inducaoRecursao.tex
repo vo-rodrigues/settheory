@@ -4,7 +4,7 @@
 Vimos que $\in$ é uma boa ordem sobre a classe dos ordinais.
 Em particular, vimos que se $X$ é um conjunto de ordinais, então $X$ possui um elemento mínimo.
 
-\begin{proposition}[Esquema de boa ordenação]\label{prop:esquemaDaBoaOrdenacao}\index{esquema de boa ordenação}
+\begin{proposition}[$\ZFmPI$](Esquema de boa ordenação)\label{prop:esquemaDaBoaOrdenacao}\index{esquema de boa ordenação}
     Seja $\phi(\alpha, t_1, \dots, t_n)$ uma fórmula.
     Suponha que, para alguns $t_1, \dots, t_n$ fixados, exista um ordinal $\alpha$ tal que $\phi(\alpha, t_1, \dots, t_n)$.
 
@@ -37,7 +37,7 @@ A indução transfinita nada mais é do que a aplicação sistemática do princ�
 
 Assim como na indução usual sobre $\omega$, o que se faz é excluir a possibilidade de um primeiro contraexemplo. A diferença é que agora o domínio de indução não é apenas $\omega$, mas toda a classe dos ordinais.
 
-\begin{proposition}[Esquema da indução transfinita]\label{prop:esquemaDaInducaoTransfinita}
+\begin{proposition}[$\ZFmPI$](Esquema da indução transfinita)\label{prop:esquemaDaInducaoTransfinita}
     Seja $\phi(\alpha, t_1, \dots, t_n)$ uma fórmula.
     
     Suponha que, para alguns $t_1, \dots, t_n$ fixados e para todo ordinal $\alpha$, se $\forall \beta <\alpha \phi(\beta, t_1, \dots, t_n)$, então $\phi(\alpha, t_1, \dots, t_n)$.
@@ -57,7 +57,7 @@ Assim como na indução usual sobre $\omega$, o que se faz é excluir a possibil
     Mas então $\phi(\alpha, t_1, \dots, t_n)$, o que é uma contradição.
 \end{proof}
 
-\begin{definition}\label{def:sequenciaTransfinita}\index{sequência transfinita}
+\begin{definition}[$\ZFmPI$]\label{def:sequenciaTransfinita}\index{sequência transfinita}
     Uma sequência transfinita é uma função cujo domínio é um ordinal.
     Se $s$ é uma sequência transfinita, escrevemos $s \in V^{<\ON}$.
 \end{definition}
@@ -85,7 +85,7 @@ Diferentemente do que acontece na recursão de números naturais, o objeto resul
 Se fosse, no caso, a função $+$ teria domínio $\ON\times \ON$, que não é um conjunto.
 O objeto resultante é um símbolo de função $+$ introduzido por definição ou, analogamente, uma regra de definição para introduzir tal símbolo.
 
-\begin{metatheorem}[Esquema da recursão transfinita]\label{mthm:esquemaDaRecursaoTransfinita}\index{recursão transfinita}
+\begin{metatheorem}[$\ZFmPI$](Esquema da recursão transfinita)\label{mthm:esquemaDaRecursaoTransfinita}\index{recursão transfinita}
     Suponha que um símbolo de função binário $G(p, s)$ seja introduzido por definição de modo que
     \[
         \forall s \in V^{<\ON}\forall p\forall y
@@ -111,7 +111,7 @@ Chamamos o resultado dado pelo Metateorema~\ref{mthm:esquemaDaRecursaoTransfinit
 Ou seja, o conteúdo do resultado é que o processo de definição recursiva transfinita pode ser formalizado dentro da teoria. A partir disso, os resultados concretos sobre a função assim definida passam a ser teoremas internos da teoria.
 
 Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de aplicação do mesmo.
-\begin{example}\label{exa:somaOrdinal}
+\begin{example}[$\ZFmPI$]\label{exa:somaOrdinal}
     Considere o operador binário $G$ definido por:
     \[
         G(p, s)=\begin{cases}
@@ -140,7 +140,7 @@ Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de apl
 
 Dedicaremos o resto da seção para a prova do Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita}.
 Iniciaremos pelo seguinte esquema de definições.
-\begin{definition}\label{def:computacaoParcialTransfinita}
+\begin{definition}[$\ZFmPI$]\label{def:computacaoParcialTransfinita}
     Seja $G(p, s)$ um símbolo de função binário introduzido por definição de modo que
     \[
         \forall s \in V^{<\ON}\forall p\forall y
@@ -164,7 +164,7 @@ Ela contém, para cada $\beta<\alpha$, exatamente o valor que a regra recursiva 
 
 
 Agora provaremos o seguinte esquema de lemas.
-\begin{lemma}\label{lem:compatibilidadeDeComputacoesParciais}
+\begin{lemma}[$\ZFmPI$]\label{lem:compatibilidadeDeComputacoesParciais}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todos $p, \alpha, \alpha', h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha', p)$, então $h$ e $h'$ são compatíveis.
 \end{lemma}
@@ -181,7 +181,7 @@ Agora provaremos o seguinte esquema de lemas.
     o que é uma contradição.
 \end{proof}
 
-\begin{corollary}\label{cor:unicidadeDeComputacaoParcial}
+\begin{corollary}[$\ZFmPI$]\label{cor:unicidadeDeComputacaoParcial}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todos $p, \alpha, h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha, p)$, então $h=h'$.
 \end{corollary}
@@ -193,7 +193,7 @@ Resta agora mostrar que tais computações parciais de fato existem para todo co
 Uma vez estabelecida essa existência, poderemos definir o valor da iteração no estágio $\alpha$ escolhendo qualquer computação parcial suficientemente longa e lendo nela o valor na posição $\alpha$.
 
 A compatibilidade provada no Lema~\ref{lem:compatibilidadeDeComputacoesParciais} garantirá que essa escolha independe da computação parcial utilizada.
-\begin{lemma}\label{lem:existenciaDeComputacoesParciais}
+\begin{lemma}[$\ZFmPI$]\label{lem:existenciaDeComputacoesParciais}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todo $p$ e todo ordinal $\alpha$, existe uma computação parcial de comprimento $\alpha$ e parâmetro $p$ baseada em $G$.
 \end{lemma}
@@ -222,7 +222,7 @@ A compatibilidade provada no Lema~\ref{lem:compatibilidadeDeComputacoesParciais}
     Assim, $\Ap_G(h, \alpha, p)$.
 \end{proof}
 
-\begin{definition}\label{def:iteracaoTransfinita}
+\begin{definition}[$\ZFmPI$]\label{def:iteracaoTransfinita}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     A $\alpha$-ésima iteração de $G$ com parâmetro $p$, denotada por $F^G(p, \alpha)$ (ou simplesmente $F(p, \alpha)$ se $G$ for claro do contexto), é $h(\alpha)$, em que $h$ é alguma computação parcial de comprimento $\beta>\alpha$ e parâmetro $p$ baseada em $G$.
     Em símbolos:
@@ -234,7 +234,7 @@ A compatibilidade provada no Lema~\ref{lem:compatibilidadeDeComputacoesParciais}
 \end{definition}
 Pelos Lemas~\ref{lem:compatibilidadeDeComputacoesParciais} e \ref{lem:existenciaDeComputacoesParciais}, $F^G(p, \alpha)$ é bem definido, pois tal $y$ existe e é único.
 Assim, temos o seguinte metateorema.
-\begin{theorem}\label{thm:equacaoDaIteracaoTransfinita}
+\begin{theorem}[$\ZFmPI$]\label{thm:equacaoDaIteracaoTransfinita}
     Seja $G(p, s)$ um símbolo de função binário introduzido por definição.
 
     Denote por $F_p(\alpha)=F(p, \alpha)$ a $\alpha$-ésima iteração de $G$.
@@ -256,7 +256,7 @@ O passo final consiste em mostrar que a solução recursiva obtida é única.
 Isto é, qualquer outra função que satisfaça a mesma equação recursiva deve coincidir com $F$ em todos os ordinais, independentemente de como ela seja definida.
 
 Novamente, a ferramenta apropriada para isso é a indução transfinita.
-\begin{theorem}\label{thm:unicidadeDaIteracaoTransfinita}
+\begin{theorem}[$\ZFmPI$]\label{thm:unicidadeDaIteracaoTransfinita}
     Seja $G(p, s)$ e $F'(p, \alpha)$ dois símbolos de função binários introduzidos por definição e $F$ a $\alpha$-ésima iteração de $G$.
     Seja $p$ tal que $\forall \alpha \in \ON \Bigl( F'_p(\alpha)=G(p, F'_p  |\alpha)\Bigr)$.
 
