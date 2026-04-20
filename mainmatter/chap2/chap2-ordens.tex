@@ -4,7 +4,7 @@
 \index{isomorfismo de ordens}
 Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial e ordem total, bem como suas versões estritas e conceitos associados.
 
-\begin{definition}[$Z^{-}-P$](Pré-ordem)\label{def:preOrdem}\index{ordem!pré}
+\begin{definition}[$\BST$](Pré-ordem)\label{def:preOrdem}\index{ordem!pré}
     Uma \emph{pré-ordem} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma relação binária em $P$ tal que para todo $x, y, z \in P$:
     \begin{itemize}
         \item $x \leq x$ (reflexividade)
@@ -12,7 +12,7 @@ Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial 
     \end{itemize}
 \end{definition}
 
-\begin{definition}[$Z^{-}-P$](Ordem parcial)\label{def:ordemParcial}\index{ordem!parcial}
+\begin{definition}[$\BST$](Ordem parcial)\label{def:ordemParcial}\index{ordem!parcial}
     Uma \emph{ordem parcial} é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma pré-ordem e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Se $x \leq y$ e $y \leq x$, então $x = y$ (antissimetria).
@@ -20,13 +20,13 @@ Nesta seção, introduziremos as noções básicas de pré-ordem, ordem parcial 
 \end{definition}
 
 Nem toda pré-ordem é uma ordem parcial.
-\begin{example}[$Z^{-}$]\label{exa:preOrdemUniversal}
+\begin{example}[$\BST$]\label{exa:preOrdemUniversal}
     Seja $A$ um conjunto.
     Então $(A, A\times A)$ é uma pré-ordem.
     Se $A$ tem ao menos dois elementos distintos, então $(A, A\times A)$ não é uma ordem parcial.
 \end{example}
 
-\begin{definition}[$Z^{-}-P$](Ordem total)\label{def:ordemTotal}\index{ordem!total}\index{ordem!linear|see{total}}
+\begin{definition}[$\BST$](Ordem total)\label{def:ordemTotal}\index{ordem!total}\index{ordem!linear|see{total}}
     Uma \emph{ordem total}, ou \emph{ordem linear}, é um par $(P, \leq)$ onde $P$ é um conjunto e $\leq$ é uma ordem parcial e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Para todo $x, y \in P$, ou $x \leq y$ ou $y \leq x$ (totalidade).
@@ -35,7 +35,7 @@ Nem toda pré-ordem é uma ordem parcial.
 
 Há também versões estritas.
 
-\begin{definition}[$Z^{-}-P$](Ordem parcial estrita)\label{def:ordemParcialEstrita}\index{ordem!parcial estrita}
+\begin{definition}[$\BST$](Ordem parcial estrita)\label{def:ordemParcialEstrita}\index{ordem!parcial estrita}
     Uma \emph{ordem parcial estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma relação binária em $P$ tal que para todo $x, y, z \in P$, valem as seguintes condições.
     \begin{itemize}
         \item Não existe $x$ tal que $x < x$ (irreflexividade).
@@ -43,7 +43,7 @@ Há também versões estritas.
     \end{itemize}
 \end{definition}
 
-\begin{definition}[Ordem total estrita]\label{def:ordemTotalEstrita}\index{ordem!total estrita}
+\begin{definition}[$\BST$](Ordem total estrita)\label{def:ordemTotalEstrita}\index{ordem!total estrita}
     Uma \emph{ordem total estrita} é um par $(P, <)$ onde $P$ é um conjunto e $<$ é uma ordem parcial estrita e, além disso, satisfaz a seguinte condição.
     \begin{itemize}
         \item Para todo $x, y \in P$, ou $x < y$ ou $y < x$ ou $x = y$ (totalidade).
@@ -52,19 +52,19 @@ Há também versões estritas.
 
 As versões estritas e não estritas estão em correspondência natural.
 
-\begin{definition}[$Z^{-}-P$](Ordem parcial estrita induzida)\label{def:ordemParcialEstritaInduzida}
+\begin{definition}[$\BST$](Ordem parcial estrita induzida)\label{def:ordemParcialEstritaInduzida}
     Seja $(P, \leq)$ uma ordem parcial.
     A ordem parcial estrita associada a $(P, \leq)$ é o par $(P, <)$ em que $<$ é a relação binária em $P$ definida por $x < y$ se e somente se $x \leq y$ e $x \neq y$.
 \end{definition}
 
-\begin{definition}[$Z^{-}$](Ordem parcial não estrita induzida)\label{def:ordemParcialInduzida}
+\begin{definition}[$\BST$](Ordem parcial não estrita induzida)\label{def:ordemParcialInduzida}
     Seja $(P, <)$ uma ordem parcial estrita.
     A ordem parcial associada a $(P, <)$ é o par $(P, \leq)$ em que $\leq$ é a relação binária em $P$ definida por $x \leq y$ se e somente se $x < y$ ou $x = y$.
 \end{definition}
 
 As seguintes duas proposições são deixadas como exercício ao leitor (Exercício~\ref{exr:ordensEstritasENaoEstritas}).
 
-\begin{proposition}[$Z^{-}$]\label{prop:ordensEstritasInduzidas}
+\begin{proposition}[$\BST$]\label{prop:ordensEstritasInduzidas}
     Seja $(P, \leq)$ uma ordem parcial.
     \begin{enumerate}[label=(\alph*)]
         \item A ordem parcial estrita induzida por $(P, \leq)$ é de fato uma ordem parcial estrita.
@@ -76,7 +76,7 @@ As seguintes duas proposições são deixadas como exercício ao leitor (Exercí
 
 Dualmente, temos a seguinte proposição.
 
-\begin{proposition}[$Z^{-}$]\label{prop:ordensNaoEstritasInduzidas}
+\begin{proposition}[$\BST$]\label{prop:ordensNaoEstritasInduzidas}
     Seja $(P, <)$ uma ordem parcial estrita.
     \begin{enumerate}[label=(\alph*)]
         \item A ordem parcial induzida por $(P, <)$ é de fato uma ordem parcial.
@@ -90,7 +90,7 @@ Por isso, ao se estudar ordens parciais, não há perda em se restringir ao estu
 Além disso, ao longo deste livro, ao estabelecer que $\leq$ é uma ordem parcial, iremos, sem aviso, utilizar a ordem estrita $<$ associada a $\leq$ e vice-versa.
 Outros símbolos que poderão ser usados para denotar ordens parciais fazendo jus a esta convenção são $\preceq$ e $\prec$, $\sqsubseteq$ e $\sqsubset$, dentre outros.
 
-\begin{example}[$Z^{-}$]\label{exa:ordemParcialDasPartes}
+\begin{example}[$\BST$]\label{exa:ordemParcialDasPartes}
     Seja $A$ qualquer conjunto.
     Define-se $\subseteq_A=\{(X, Y) \in \mathcal{P}(A) \times \mathcal{P}(A) : X \subseteq Y\}$.
     Então $(\mathcal{P}(A), \subseteq_A)$ é uma ordem parcial.
@@ -102,7 +102,7 @@ Outros símbolos que poderão ser usados para denotar ordens parciais fazendo ju
 Abaixo, definiremos os conceitos de cota superior, cota inferior, máximo, mínimo, elemento maximal, elemento minimal, supremo e ínfimo de um conjunto em uma pré-ordem.
 Para ordens parciais estritas, tais conceitos são definidos a partir da ordem parcial não estrita associada.
 
-\begin{definition}[$Z^{-}-P$]\label{def:cotasMaximosSupremos}\index{cota superior}\index{cota inferior}\index{máximo}\index{mínimo}\index{elemento maximal}\index{elemento minimal}\index{supremo}\index{ínfimo}
+\begin{definition}[$\BST$]\label{def:cotasMaximosSupremos}\index{cota superior}\index{cota inferior}\index{máximo}\index{mínimo}\index{elemento maximal}\index{elemento minimal}\index{supremo}\index{ínfimo}
     Seja $(P, \leq)$ uma pré-ordem e $A \subseteq P$. Dizemos que:
     \begin{enumerate}[label=(\roman*)]
         \item $x$ é uma \emph{cota superior} de $A$ se para todo $a \in A$, $a \leq x$;
@@ -162,7 +162,7 @@ No entanto, em ordens parciais, pode haver elementos maximais sem que haja um el
 
 Deixamos também os seguintes fatos básicos para verificação do leitor (Exercício~\ref{exr:propriedadesBasicasDeOrdens}).
 
-\begin{proposition}[$Z^{-}-P$]\label{prop:propriedadesBasicasDeOrdens}
+\begin{proposition}[$\BST$]\label{prop:propriedadesBasicasDeOrdens}
     Seja $(P, \leq)$ uma ordem parcial e $A \subseteq P$.
     \begin{itemize}
         \item Se existe um máximo de $A$, então ele é o único máximo, e o denotamos por $\max A$.
@@ -175,11 +175,11 @@ Deixamos também os seguintes fatos básicos para verificação do leitor (Exerc
 \end{proposition}
 Chamaremos de boa ordem uma ordem total estrita em que todo subconjunto não vazio admite um primeiro elemento.
 Essa noção desempenhará papel central mais adiante, e será a base para a definição de número ordinal, um dos temas centrais de Teoria dos Conjuntos.
-\begin{definition}[$Z^{-}-P$](Boa ordem)\label{def:boaOrdem}\index{ordem!boa}
+\begin{definition}[$\BST$](Boa ordem)\label{def:boaOrdem}\index{ordem!boa}
     Uma \emph{boa ordem} é uma ordem total estrita $(P, <)$ tal que todo subconjunto não vazio de $P$ possui um elemento mínimo.
 \end{definition}
 Finalmente, introduzimos a noção de isomorfismo.
-\begin{definition}[$Z^{-}-P$](Isomorfismo entre relações binárias)\label{def:isomorfismoDeRelacoesBinarias}\index{isomorfismo de ordens}\index{homomorfismo de ordens}\index{função!monótona}\index{função!crescente}
+\begin{definition}[$\BST$](Isomorfismo entre relações binárias)\label{def:isomorfismoDeRelacoesBinarias}\index{isomorfismo de ordens}\index{homomorfismo de ordens}\index{função!monótona}\index{função!crescente}
     Sejam $P$ e $Q$ conjuntos e $R$ e $S$ relações binárias em $P$ e $Q$, respectivamente.
     Um \emph{isomorfismo} entre $(P, R)$ e $(Q, S)$ é uma bijeção $f : P \to Q$ tal que para todo $x, y \in P$, $x R y$ se e somente se $f(x) S f(y)$.
 
@@ -192,7 +192,7 @@ Finalmente, introduzimos a noção de isomorfismo.
 
 Para ordens totais, basta a verificação de um dos lados da implicação, como mostra a seguinte proposição.
 
-\begin{proposition}[$Z^{-}-P$]\label{prop:isomorfismoMonotonoEmOrdensTotais}
+\begin{proposition}[$\BST$]\label{prop:isomorfismoMonotonoEmOrdensTotais}
     Sejam $P$ e $Q$ conjuntos e $\leq$, $\preceq$ ordens totais em $P$ e $Q$, respectivamente.
     Uma bijeção $f : P \to Q$ é um isomorfismo entre $(P, \leq)$ e $(Q, \preceq)$ se e somente se for não-decrescente.
 \end{proposition}
@@ -217,34 +217,34 @@ Para ordens totais, basta a verificação de um dos lados da implicação, como 
 \begin{exercise}\label{exr:propriedadesBasicasDeOrdens}
     Prove a Proposição~\ref{prop:propriedadesBasicasDeOrdens}.
 \end{exercise}
-\begin{exercise}[$Z^{-}-P$]
+\begin{exercise}[$\BST$]
     Seja $(P, \leq)$ uma ordem total, $A\subseteq P$ e $x \in P$.
     Prove que $x$ é elemento maximal de $A$ se e somente se $x$ é o máximo de $A$.
     Enuncie e prove um resultado análogo para elementos minimais e mínimos.
 \end{exercise}
 
-\begin{exercise}[$Z^{-}-P$]
+\begin{exercise}[$\BST$]
     Seja $(P, \leq)$ uma ordem total.
     Mostre que para todo $x, y \in P$, não vale simultaneamente $x<y$ e $y\leq x$.
 \end{exercise}
 
-\begin{exercise}[$Z^{-}-P$]
+\begin{exercise}[$\BST$]
     Seja $(P, <)$ uma ordem parcial estrita tal que qualquer par não ordenado de elementos de $P$ possui um elemento mínimo.
     Prove que $(P, <)$ é uma ordem total estrita.
 \end{exercise}
 
-\begin{exercise}[$Z^{-}$]
+\begin{exercise}[$\ZmI$]
     Mostre que se $A$ tem dois elementos distintos, então $(\mathcal{P}(A), \subseteq)$ não é uma ordem total.
 \end{exercise}
 
-\begin{exercise}[$Z^{-}$]
+\begin{exercise}[$\ZmI$]
     Seja $A$ um conjunto e considere a ordem parcial $(\mathcal{P}(A), \subseteq)$.
     Prove que para todo $X \subseteq \mathcal{P}(A)$, $\sup X = \bigcup X$ e $\inf X = \bigcap X$.
 
     Para resolver esse exercício, interprete $\bigcap \emptyset$ como $A$ (intuitivamente, por que isso faz sentido?).
 \end{exercise}
 
-\begin{exercise}[$Z^{-}$]
+\begin{exercise}[$\BST$]
     Seja $P$ um conjunto e $Q \subseteq P$.
     Seja $R$ uma relação binária em $P$.
     Prove as seguintes afirmações.
@@ -258,12 +258,12 @@ Para ordens totais, basta a verificação de um dos lados da implicação, como 
     \end{itemize}
 \end{exercise}
 
-\begin{exercise}[$Z^{-}-P$]
+\begin{exercise}[$\BST$]
     Sejam $(P, \leq)$ e $(Q, \preceq)$ ordens parciais e $(P, <)$ e $(Q, \prec)$ as ordens estritas associadas a elas, respectivamente.
     Prove que $f : P \to Q$ é um isomorfismo entre $(P, \leq)$ e $(Q, \preceq)$ se e somente se $f$ é um isomorfismo entre $(P, <)$ e $(Q, \prec)$.
 \end{exercise}
 
-\begin{exercise}[$Z^{-}$]\label{exr:preOrdemQuocienteIsomorfismo}
+\begin{exercise}[$\BST$]\label{exr:preOrdemQuocienteIsomorfismo}
     Seja $(P, \leq^*)$ uma pré-ordem.
     Defina uma relação binária $\sim$ em $P$ por
     \[
@@ -281,7 +281,7 @@ Para ordens totais, basta a verificação de um dos lados da implicação, como 
     \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[$Z^{-}-P$]
+\begin{exercise}[$\BST$]
     Sejam $(P,<)$ e $(Q,\prec)$ ordens totais estritas.
     Suponha que $f:P\to Q$ seja um isomorfismo.
     Prove que $(P,<)$ é uma boa ordem se e somente se $(Q,\prec)$ é uma boa ordem.
