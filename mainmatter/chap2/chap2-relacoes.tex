@@ -603,3 +603,44 @@ A noção adequada para isso é a de compatibilidade entre funções.
         \item se $f$ e $g$ são bijeções entre $A, B$ e $B, C$, então $g\circ f$ é uma bijeção entre $A$ e $C$.
     \end{enumerate}
 \end{exercise}
+
+\begin{exercise}[$\BST$]
+    Seja $(A_i: i \in I)$ uma família de conjuntos e $f$ uma função.
+    Prove que
+    \begin{enumerate}[label=(\alph*)]
+        \item $f[\bigcup_{i\in I} A_i] = \bigcup_{i\in I} f[A_i]$;
+        \item $f^{-1}[\bigcup_{i\in I} A_i] = \bigcup_{i\in I} f^{-1}[A_i]$;
+        \item $f^{-1}[\bigcap_{i\in I} A_i] = \bigcap_{i\in I} f^{-1}[A_i]$.
+        \item $f[\bigcap_{i\in I} A_i] \subseteq \bigcap_{i\in I} f[A_i]$.
+        \item Dê um exemplo de $f$ e $(A_i: i \in I)$ tais que $f[\bigcap_{i\in I} A_i] \neq \bigcap_{i\in I} f[A_i]$.
+        \item Mostre que se $f$ é injetora, então $f[\bigcap_{i\in I} A_i] = \bigcap_{i\in I} f[A_i]$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[$\BST$]
+    Seja $f:A\to B$ uma função e $C$ um conjunto.
+    Mostre que $f[A\setminus C] \subseteq f[A]\setminus f[C]$.
+    Dê um exemplo de $f$, $A$ e $C$ tais que $f[A\setminus C] \neq f[A]\setminus f[C]$.
+    Mostre que, se $f$ é injetora, então $f[A\setminus C] = f[A]\setminus f[C]$.
+\end{exercise}
+
+\begin{exercise}[$\BST$]
+    Sejam $R, S, T$ relações.
+    Prove que $R\circ (S\circ T) = (R\circ S)\circ T$.
+\end{exercise}
+
+\begin{exercise}[$Z^-$]
+    Seja $I$ um conjunto e $A$ um conjunto.
+    Considere a família constante $(A_i:i\in I)$ dada por $A_i=A$ para todo $i\in I$.
+    Prove que
+    \[
+        \prod_{i\in I} A_i = A^I.
+    \]
+\end{exercise}
+
+\begin{exercise}[$Z^-$]
+    Prove que o produto cartesiano da família vazia é
+    \[
+        \prod_{i\in \emptyset} A_i=\{\emptyset\}.
+    \]
+\end{exercise}
