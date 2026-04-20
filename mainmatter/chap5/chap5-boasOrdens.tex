@@ -3,13 +3,13 @@
 \index{segmento inicial}
 Nesta seção, nos aprofundaremos um pouco mais na noção de boa ordem.
 
-\begin{definition}[$Z^--P$]\label{def:segmentoInicial}\index{segmento inicial}
+\begin{definition}[$\BST$]\label{def:segmentoInicial}\index{segmento inicial}
 Seja $(A, <)$ uma boa ordem.
 Dizemos que $S\subseteq A$ é um \emph{segmento inicial} de $A$ se, para todo $x\in S$ e todo $y\in A$, se $y<x$, então $y\in S$.
 Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
 \end{definition}
 
-\begin{lemma}[$Z^-$]\label{lem:funcaoCrescenteAcimaDaIdentidade}
+\begin{lemma}[$\BST$]\label{lem:funcaoCrescenteAcimaDaIdentidade}
     Seja $A$ uma boa ordem e $\phi: A\to A$ uma função crescente.
     Então, para todo $a\in A$, $a\leq \phi(a)$.
 \end{lemma}
@@ -24,7 +24,7 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
     Contradição.
 \end{proof}
 
-\begin{lemma}[$Z^-$]\label{lem:isomorfismoParaSegmentoInicialEhIdentidade}
+\begin{lemma}[$\BST$]\label{lem:isomorfismoParaSegmentoInicialEhIdentidade}
     Seja $S$ um segmento inicial de uma boa ordem $A$ e $f:A\to S$ um isomorfismo.
     Então $S=A$ e $f$ é a função identidade de $A$.
 \end{lemma}
@@ -38,7 +38,7 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
     Assim, $a=f(a)$ para todo $a\in A$.
 \end{proof}
 
-\begin{corollary}[$Z^-$]\label{cor:unicidadeDoIsomorfismoDeBoasOrdens}
+\begin{corollary}[$\BST$]\label{cor:unicidadeDoIsomorfismoDeBoasOrdens}
     Sejam $A$ e $B$ boas ordens.
     Se $A$ é isomorfo à $B$, então existe um único isomorfismo de $A$ em $B$.
 \end{corollary}
@@ -48,11 +48,11 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
     Pelo Lema~\ref{lem:isomorfismoParaSegmentoInicialEhIdentidade}, $g^{-1}\circ f$ é a função identidade de $A$, e, assim, $f=g$.
 \end{proof}
 
-\begin{definition}[$Z^--P$]\label{def:segmentoInicialDeterminadoPorElemento}
+\begin{definition}[$\BST$]\label{def:segmentoInicialDeterminadoPorElemento}
     Seja $A$ uma boa ordem e $a\in A$.
     Definimos $A[a] = \{x\in A : x<a\}$.
 \end{definition}
-\begin{lemma}[$Z^--P$]\label{lem:segmentosIniciaisPropriosSaoDeterminadosPorElementos}
+\begin{lemma}[$\BST$]\label{lem:segmentosIniciaisPropriosSaoDeterminadosPorElementos}
     Seja $A$ uma boa ordem e $a\in A$.
     Então $A[a]$ é um segmento inicial próprio de $A$.
     Reciprocamente, se $S$ é um segmento inicial próprio de $A$, então existe um único $a\in A$ tal que $S=A[a]$.
@@ -68,7 +68,7 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
     Além disso, $S\subseteq A[a]$, pois, se $x\in S$ e $x\notin A[a]$, então $a<x$, o que implica que $a\in S$, um absurdo.
 \end{proof}
 
-\begin{lemma}[$Z^--P$]\label{lem:isomorfismoPreservaSegmentosIniciais}
+\begin{lemma}[$\BST$]\label{lem:isomorfismoPreservaSegmentosIniciais}
     Sejam $A$ e $B$ boas ordens e $f:A\to B$ um isomorfismo.
     Então, para todo $a\in A$, $f|A[a]: A[a]\to B[f(a)]$ é um isomorfismo.
 \end{lemma}
@@ -83,7 +83,7 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
     Assim, $f|A[a]: A[a]\to B[f(a)]$ é uma função bijetora, e, portanto, um isomorfismo.
 \end{proof}
 
-\begin{lemma}[$Z^--P$]\label{lem:segmentosIniciaisDeSegmentosIniciais}
+\begin{lemma}[$\BST$]\label{lem:segmentosIniciaisDeSegmentosIniciais}
     Seja $A$ uma boa ordem e $b<a$ elementos de $A$.
     Então $(A[a])[b]=A[b]$.
 \end{lemma}
@@ -91,7 +91,7 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
     Exercício.
 \end{proof}
 
-\begin{theorem}[$Z^-$]\label{thm:comparacaoDeBoasOrdens}\index{teorema!de comparação de boas ordens}
+\begin{theorem}[$\BST$]\label{thm:comparacaoDeBoasOrdens}\index{teorema!de comparação de boas ordens}
     Sejam $A$ e $B$ boas ordens.
     Então uma, e somente uma das seguintes alternativas é verdadeira:
 
@@ -142,7 +142,7 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
 \begin{exercise}
     Prove o Lema~\ref{lem:segmentosIniciaisDeSegmentosIniciais}.
 \end{exercise}
-\begin{exercise}[$Z^-$]
+\begin{exercise}[$\BST$]
     Prove que se $(A, <_A)$ e $(B, <_B)$ são boas ordens, então $A\times B$ é uma boa ordem com a ordem lexicográfica, ou seja, com a ordem dada por $(a, b)<(a', b')$ se $a<_A a'$, ou ($a=a'$ e $b<_B b'$).
 \end{exercise}
 \begin{exercise}[$Z^-$]
@@ -152,7 +152,7 @@ Dizemos que um segmento inicial $S$ de $A$ é \emph{próprio} se $S\neq A$.
     (i,a)<(j,b)\iff i<_I j \text{ ou } (i=j \text{ e } a<_{A_i} b).
     \]
 \end{exercise}
-\begin{exercise}[$Z^-$]\label{exr:uniaoDeBoasOrdens}
+\begin{exercise}[$\BST$]\label{exr:uniaoDeBoasOrdens}
 Em particular, mostre que se $(A_0, <_{A_0})$ e $(A_1, <_{A_1})$ são boas ordens, então $\{0\}\times A_0\cup \{1\}\times A_1$ é uma boa ordem com a ordem lexicográfica, ou seja, com a ordem dada por $(i, a)<(j, b)$ se $i<j$, ou ($i=j$ e $a<_{A_i} b$).
 
 Mostre ainda que se $A_0$ e $A_1$ são conjuntos disjuntos, e $B=A_0\cup A_1$, e $<_B$ é a ordem dada por $a<_B b$ se $a, b\in A_i$ e $a<_{A_i} b$, ou $a\in A_0$ e $b\in A_1$, então $(B, <_B)$ é uma boa ordem isomorfa a $\{0\}\times A_0\cup \{1\}\times A_1$.

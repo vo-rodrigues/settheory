@@ -52,13 +52,13 @@ Ou seja:
 
 Conforme veremos, com a presença do Axioma da Substituição, que será introduzido na Seção~\ref{sec:axiomasDaSubstituicao}, conjuntos bem ordenados por $\in$ que satisfazem essa condição são exatamente os representantes de todas as boas ordens.
 
-\begin{definition}[$Z^--P$]\label{def:conjuntoTransitivo}\index{conjunto transitivo}
+\begin{definition}[$\BST$]\label{def:conjuntoTransitivo}\index{conjunto transitivo}
     Um conjunto $A$ é dito \emph{transitivo} se, para todo $a\in A$, $a\subseteq A$.
 \end{definition}
 
 Agora podemos definir um ordinal.
 
-\begin{definition}[$Z^--P$]\label{def:ordinal}\index{ordinal}
+\begin{definition}[$\BST$]\label{def:ordinal}\index{ordinal}
     Um \emph{ordinal} é um conjunto $A$ tal que:
     \begin{enumerate}[label=(\alph*)]
         \item $A$ é bem-ordenado por $\in$ (ou seja, $(A, \in_A)$ é uma boa ordem);
@@ -67,13 +67,13 @@ Agora podemos definir um ordinal.
 \end{definition}
 No contexto de ordinais, escrevemos sempre que for conveniente, $a<b$ para $a\in b$.
 
-\begin{example}[$Z^--P$]\label{exa:omegaEhOrdinal}
+\begin{example}[$\BSTI$]\label{exa:omegaEhOrdinal}
     $\omega$ é um ordinal: pelo Corolário~\ref{cor:boaOrdemDosNaturais}, $\omega$ é um conjunto bem-ordenado por $\in$, e, para todo $a\in \omega$, $a$ é um número natural, e, portanto, $a\subseteq \omega$.
 \end{example}
 
 Além disso, todos os números naturais são ordinais pelo Exemplo~\ref{exa:omegaEhOrdinal} e pelo Lema~\ref{lem:elementosDeOrdinalSaoOrdinais}.
 
-\begin{lemma}[$Z^--P$]\label{lem:elementosDeOrdinalSaoOrdinais}
+\begin{lemma}[$\BST$]\label{lem:elementosDeOrdinalSaoOrdinais}
     Seja $\alpha$ um ordinal.
     Então todo elemento de $\alpha$ é um ordinal.
 \end{lemma}
@@ -94,7 +94,7 @@ A relação $\in$ é, em verdade, uma boa ordem na classe dos ordinais.
 
 Precisaremos de alguns lemas.
 
-\begin{lemma}[$Z^--P$]\label{lem:intersecaoNaoVaziaDeOrdinaisEhOrdinal}
+\begin{lemma}[$\BST$]\label{lem:intersecaoNaoVaziaDeOrdinaisEhOrdinal}
     Seja $A$ um conjunto não vazio de ordinais.
     Então $\bigcap A$ é um ordinal.
 \end{lemma}
@@ -111,7 +111,7 @@ Precisaremos de alguns lemas.
 Dados $\alpha, \beta$ ordinais, pela nossa convenção de escrita, temos que $\alpha<\beta$ se, e somente se $\alpha\in \beta$.
 
 O seguinte lema nos dá uma equivalência para $\leq$.
-\begin{lemma}[$Z^--P$]\label{lem:inclusaoDeOrdinaisEquivPertencimentoOuIgualdade}
+\begin{lemma}[$\BST$]\label{lem:inclusaoDeOrdinaisEquivPertencimentoOuIgualdade}
     Sejam $\alpha, \beta$ ordinais.
     Então $\alpha\subseteq \beta$ se, e somente se $(\alpha=\beta \lor \alpha\in \beta)$.
 \end{lemma}
@@ -139,7 +139,7 @@ O seguinte lema nos dá uma equivalência para $\leq$.
 
     Assim, $\alpha\subseteq \delta$, e, portanto, $\alpha=\delta$.
 \end{proof}
-\begin{proposition}[$Z^--P$]\label{prop:estruturaBasicaDosOrdinais}
+\begin{proposition}[$\BST$]\label{prop:estruturaBasicaDosOrdinais}
     Sejam $\alpha, \beta, \gamma$ ordinais.
     Então:
 
@@ -173,11 +173,11 @@ O seguinte lema nos dá uma equivalência para $\leq$.
     Se $\alpha\notin X$, então $\alpha\in \delta$ para todo $\delta \in X$, logo, $\alpha\in \bigcap X=\alpha$, o que é absurdo.
 \end{proof}
 
-\begin{corollary}[$Z^--P$]\label{cor:conjuntoTransitivoDeOrdinaisEhOrdinal}
+\begin{corollary}[$\BST$]\label{cor:conjuntoTransitivoDeOrdinaisEhOrdinal}
 Todo conjunto de ordinais é bem-ordenado por $\in$.
 Assim, um conjunto de ordinais transitivo é um ordinal.
 \end{corollary}
-\begin{corollary}[$Z^--P$]\label{cor:naoExisteConjuntoDeTodosOrdinais}
+\begin{corollary}[$\BST$]\label{cor:naoExisteConjuntoDeTodosOrdinais}
 Não existe $X$ tal que $\forall \alpha(\alpha \text{ é ordinal} \rightarrow \alpha\in X)$.
 \end{corollary}
 \begin{proof}
@@ -187,7 +187,7 @@ Não existe $X$ tal que $\forall \alpha(\alpha \text{ é ordinal} \rightarrow \a
     Assim, $O\in O$, o que é absurdo.
 \end{proof}
 
-\begin{proposition}[$Z^--P$]\label{prop:sucessorDeOrdinalEhOrdinal}
+\begin{proposition}[$\BST$]\label{prop:sucessorDeOrdinalEhOrdinal}
     Seja $\alpha$ um ordinal.
     Então $S(\alpha)$ é um ordinal.
     Mais especificamente, $S(\alpha)$ é o menor ordinal $\beta$ tal que $\alpha<\beta$.
@@ -209,7 +209,7 @@ $\ON$ é um símbolo de predicado unário, e escrevemos $\alpha \in \ON$ como um
 Dessa forma, expressões como $\mathcal P(\ON)$ não são termos bem formados.
 
 
-\begin{lemma}[$Z^--P$]\label{lem:uniaoDeOrdinaisEhSupremo}\index{supremo!de ordinais}
+\begin{lemma}[$\BST$]\label{lem:uniaoDeOrdinaisEhSupremo}\index{supremo!de ordinais}
     Seja $X$ um conjunto de ordinais.
     Então $\bigcup X$ é um ordinal.
     Além disso, $\bigcup X$ é o supremo de $X$ em $\ON$, ou seja, o menor ordinal $\alpha$ tal que $\beta\leq \alpha$ para todo $\beta\in X$.
@@ -229,13 +229,13 @@ Pelo Lema~\ref{lem:uniaoDeOrdinaisEhSupremo}, quando $X$ é um conjunto de ordin
 Nem todo ordinal é o sucessor de outro ordinal.
 Por exemplo, $\omega$ não é o sucessor de nenhum ordinal.
 
-\begin{definition}\label{def:ordinaisSucessoresELimites}\index{ordinal!sucessor}\index{ordinal!limite}
+\begin{definition}[$\BST$]\label{def:ordinaisSucessoresELimites}\index{ordinal!sucessor}\index{ordinal!limite}
     Um ordinal $\beta$ é dito \emph{sucessor} se é da forma $\beta=S(\alpha)$ para algum ordinal $\alpha$.
 
     Um \emph{ordinal limite} é um ordinal que não é $0$ nem sucessor.
 \end{definition}
 
-\begin{proposition}[$Z^--P$]\label{prop:omegaEhOrdinalLimite}
+\begin{proposition}[$\BSTI$]\label{prop:omegaEhOrdinalLimite}
     $\omega$ é um ordinal limite.
 \end{proposition}
 \begin{proof}
@@ -247,7 +247,7 @@ Além disso, $\omega\neq 0$ pois $0 \in \omega$ e $0\notin 0$.
 
 Dois ordinais distintos não podem ser isomorfos.
 
-\begin{proposition}[$Z^-$]\label{prop:ordinaisNaoSaoIsomorfos}
+\begin{proposition}[$\BST$]\label{prop:ordinaisNaoSaoIsomorfos}
     Sejam $\alpha$ e $\beta$ ordinais.
     Se $\alpha$ é isomorfo à $\beta$, então $\alpha=\beta$.
 \end{proposition}
@@ -261,37 +261,37 @@ Dois ordinais distintos não podem ser isomorfos.
     Pelo Lema~\ref{lem:isomorfismoParaSegmentoInicialEhIdentidade}, $\alpha$ não é isomorfo à $\beta$.
 \end{proof}
 \subsection*{Exercícios}
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Prove que a interseção de uma coleção não vazia de conjuntos transitivos é um conjunto transitivo.
 \end{exercise}
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Prove que a união de uma coleção de conjuntos transitivos é um conjunto transitivo.
 \end{exercise}
 
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Mostre que para todo ordinal limite $\gamma$, $\bigcup \gamma=\gamma$.
 \end{exercise}
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Mostre que para todo ordinal $\beta$, $\bigcup S(\beta)=\beta$.
 \end{exercise}
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Prove que, para todos os ordinais $\alpha, \beta$, $\alpha\cup \beta=\max\{\alpha, \beta\}$ e $\alpha\cap \beta=\min\{\alpha, \beta\}$.
 \end{exercise}
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Sejam $\alpha$ e $\beta$ ordinais.
     Mostre que
     \[
     \alpha\subsetneq \beta \iff \alpha\in \beta.
     \]
 \end{exercise}
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Sejam $\alpha,\beta$ ordinais.
     Mostre que
     \[
     \alpha<\beta \iff S(\alpha)\leq \beta.
     \]
 \end{exercise}
-\begin{exercise}[$Z^--P$]\label{exr:segmentoInicialDeOrdinal}
+\begin{exercise}[$\BST$]\label{exr:segmentoInicialDeOrdinal}
     Sejam $\alpha$ um ordinal e $\beta\in \alpha$.
     Mostre que o segmento inicial de $\alpha$ determinado por $\beta$ é exatamente $\beta$, isto é,
     \[
@@ -299,7 +299,7 @@ Dois ordinais distintos não podem ser isomorfos.
     \]
 \end{exercise}
 
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Seja $\alpha$ um ordinal.
     Mostre que os segmentos iniciais próprios de $\alpha$ são exatamente os elementos de $\alpha$.
     Mais precisamente, prove que, para todo $S\subseteq \alpha$,
@@ -308,7 +308,7 @@ Dois ordinais distintos não podem ser isomorfos.
     \]
 \end{exercise}
 
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Seja $\gamma$ um ordinal.
     Prove que são equivalentes:
     \begin{enumerate}[label=(\alph*)]
@@ -317,10 +317,10 @@ Dois ordinais distintos não podem ser isomorfos.
     \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Prove que $\omega$ é o menor ordinal limite, ou seja, que $\omega$ é um ordinal limite e, para todo ordinal limite $\alpha$, $\omega\leq \alpha$.
 \end{exercise}
-\begin{exercise}[$Z^--P$]
+\begin{exercise}[$\BST$]
     Seja $X$ um conjunto de ordinais não vazio sem máximo.
     Prove que $\bigcup X$ é um ordinal limite.
 \end{exercise}
