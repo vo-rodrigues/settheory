@@ -140,7 +140,7 @@ Antes de apresentar uma demonstração do metateorema, vejamos um exemplo de apl
 
 Dedicaremos o resto da seção para a prova do Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita}.
 Iniciaremos pelo seguinte esquema de definições.
-\begin{definition}[$\ZFmPI$]\label{def:computacaoParcialTransfinita}
+\begin{definition}[$\BST$]\label{def:computacaoParcialTransfinita}
     Seja $G(p, s)$ um símbolo de função binário introduzido por definição de modo que
     \[
         \forall s \in V^{<\ON}\forall p\forall y
@@ -164,7 +164,7 @@ Ela contém, para cada $\beta<\alpha$, exatamente o valor que a regra recursiva 
 
 
 Agora provaremos o seguinte esquema de lemas.
-\begin{lemma}[$\ZFmPI$]\label{lem:compatibilidadeDeComputacoesParciais}
+\begin{lemma}[$\BST$]\label{lem:compatibilidadeDeComputacoesParciais}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todos $p, \alpha, \alpha', h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha', p)$, então $h$ e $h'$ são compatíveis.
 \end{lemma}
@@ -181,7 +181,7 @@ Agora provaremos o seguinte esquema de lemas.
     o que é uma contradição.
 \end{proof}
 
-\begin{corollary}[$\ZFmPI$]\label{cor:unicidadeDeComputacaoParcial}
+\begin{corollary}[$\BST$]\label{cor:unicidadeDeComputacaoParcial}
     Seja $G(p, s)$ um símbolo de função introduzido por definição.
     Para todos $p, \alpha, h, h'$, se $\Ap_G(h, \alpha, p)$ e $\Ap_G(h', \alpha, p)$, então $h=h'$.
 \end{corollary}
@@ -272,4 +272,42 @@ Com isso, fica demonstrado o Metateorema~\ref{mthm:esquemaDaRecursaoTransfinita}
 
 \subsection*{Exercícios}
 
-Seja
+\begin{exercise}[$\BST$]
+    Prove a seguinte versão finitária do Lema~\ref{lem:existenciaDeComputacoesParciais} em $\BST$, ou seja, sem utilizar o Axioma da Substituição.
+
+    Seja $G(p, s)$ um símbolo de função introduzido por definição.
+    Para todo $p$ e todo ordinal $n$ tal que $\nat(n)$, existe uma computação parcial de comprimento $n$ e parâmetro $p$ baseada em $G$.
+    
+    Observação: para a definição de $\nat(\alpha)$, veja o Exercício~\ref{exr:caracterizacaoDeNaturaisComoOrdinais}.
+\end{exercise}
+
+\begin{exercise}[$\BST$]
+    Em continuação ao exercício anterior, conclua que vale em $\BST$ o seguinte esquema de recursão finitária.
+    Denotemos por $V^{<\omega}$ o conjunto de todas as sequências cujo domínio é um ordinal $n$ tal que $\nat(n)$.
+
+    Suponha que um símbolo de função binário $G(p, s)$ seja introduzido por definição.
+    Então é possível introduzir um símbolo de função binário $F(p, n)$ de modo que
+    \[
+        \forall n \in \ON \forall p \Big( \nat(n)\rightarrow F_{p}(n)=G(p, F_p|n)\Big).
+    \]
+\end{exercise}
+
+\begin{exercise}[$\BST$]
+    Utilize o exercício anterior para mostrar que é possível definir soma, produto e exponenciação de números naturais mesmo sem o Axioma do Infinito.
+    Conclua ainda que, em $\BST$, são válidas todas as propriedades usuais dessas operações (Exercício~\ref{exr:propriedadesDasOperacoesAritmeticas}).
+\end{exercise}
+
+\begin{exercise}[$\BST$]
+    Utilize o lema anterior para mostrar que podemos definir, para $n$ ordinal tal que $\nat(n)$, e $f$ uma função, a $n$-ésima iteração de $f$, denotada por $f^n$, que satisfaça
+
+    \begin{itemize}
+        \item $f^0=\id_{\dom f}$;
+        \item $f^{S(n)}=f\circ f^n$ para todo $n$ tal que $\nat(n)$;
+    \end{itemize}
+
+    Verifique que se $\ran f \subseteq \dom f$, então $\dom(f^n)=\dom f$ para todo $n$ tal que $\nat(n)$.
+
+    Utilize isso para fornecer uma demonstração do Teorema de Cantor-Schröder-Bernstein em $\BST$ análoga à apresentada nesse texto.
+
+    Conclua que são válidos em $\BST$ todos os resultados, definições e exercícios da Seção~\ref{sec:conjuntosFinitos} com excessão do item~\ref{item:omegaInfinito} do Corolário~\ref{cor:finitoCardinal}.
+\end{exercise}
