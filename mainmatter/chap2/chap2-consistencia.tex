@@ -57,14 +57,15 @@ Uma importante forma de produzir provas de consistência em Teoria dos Conjuntos
 
 \begin{metadefinition}
     Assuma que $T$ é uma teoria de primeira ordem.
-    Uma \emph{interpretação} de $T$ consiste em:
+    Uma \emph{interpretação} de $T$ consiste em uma extensão por definição $T^A$ de $T$ com os seguintes novos símbolos.
     \begin{itemize}
         \item Um novo símbolo de relação unário $A$, introduzido na linguagem de $T$ via definição.
         \item Para cada símbolo de predicado $R$ de $T$ de aridade $n$, um símbolo de predicado $R^A$ de aridade $n$ introduzido na linguagem de $T$ via definição.
-        \item Para cada símbolo de função $f$ de $T$ de aridade $n$, um símbolo de função $f^A$ de aridade $n$ introduzido na linguagem de $T$ via definição.
+        \item Para cada símbolo de função $f$ de $T$ de aridade $n$, um símbolo de função $f^A$ de aridade $n$ introduzido na linguagem de $T$ via definição de modo que
+        \[
+            T^A\vdash \forall x_1 \ldots \forall x_n\, (A(x_1)\wedge \cdots \wedge A(x_n)\to A(f^A(x_1, \dots, x_n))).
+        \]
     \end{itemize}
-
-    A teoria $T^A$ é a teoria obtida pela extensão por definição de $T$ para incluir os símbolos $A$, $R^A$ e $f^A$.
 
     Para cada termo $t$ da linguagem de $T$, criamos o termo $t^A$ da linguagem de $T^A$ por recursão na metateoria, de modo que:
     \begin{itemize}
@@ -98,10 +99,278 @@ Como $T^A$ é uma extensão por definição de $T$, $T^A$ é uma extensão conse
 
 \begin{metalemma}\label{mlem:axiomasLogicosInterpretacao}
     Seja $T$ uma teoria de primeira ordem e $T^A$ uma interpretação de $T$.
-    $\phi$ é um axioma da lógica na linguagem de $T$, então
+    Se $\phi$ é um axioma da lógica na linguagem de $T$, então
     $\phi^A$ é um teorema de $T^A$.
 \end{metalemma}
 
 \begin{proof}
-    Devemos quebrar a prova em onze casos uma vez que pela Metadefinição~\ref{mdef:axiomasLogicos}, temos onze grupos de axiomas lógicos.
+    Pela Metadefinição~\ref{mdef:axiomasLogicos}, $\phi$ é o fecho universal de uma instância $\theta$ de um dos onze esquemas lógicos lá explicitado.
+    Se $y_1, \dots, y_n$ é a lista de variáveis livres de $\theta$, escreveremos
+    \[
+        \forall \vec y \in A\, \theta
+    \]
+    para abreviar
+    \[
+        \forall y_1\in A \cdots \forall y_n \in A\, \theta.
+    \]
+    Assim, $\phi$ é da forma $\forall \bar y\, \theta$, e $\phi^A$ é da forma $\forall \bar y\in A\, \theta^A$.
+
+    Usaremos algumas observações simples.
+
+    \begin{claim}
+        Se $t$ é um termo da linguagem de $T$, então as variáveis de $t$ são as mesmas que as variáveis de $t^A$.
+    \end{claim}
+    \begin{proof}
+        A demonstração é uma indução na complexidade de $t$ simples.
+        Se $t$ é uma variável, então $t^A$ é a própria variável $t$.
+
+        Se $t$ é um símbolo de constante, então $t^A$ é a própria constante $c^A$, e, portanto, não tem variáveis.
+
+        Se $t$ é da forma $f(t_1, \dots, t_n)$, então $t^A$ é da forma $f^A(t_1^A, \dots, t_n^A)$.
+        Assim, as variáveis de $t$ são as que ocorrem em algum $t_i$, e as variáveis de $t^A$ são as que ocorrem em algum $t_i^A$.
+        Pelo passo indutivo, as variáveis de $t_i$ são as mesmas que as variáveis de $t_i^A$, e, portanto, as variáveis de $t$, e, assim, segue a tese.
+    \end{proof}
+
+    \begin{claim}
+        Se $\psi[x/t]$ é uma substituição válida, então $\psi[x/t^A]$ é uma substituição válida.
+    \end{claim}
+    \begin{proof}
+        Imediato pela afirmação anterior.
+    \end{proof}
+
+    \smallskip
+    \textbf{(b)} Se todas as variáveis livres de um termo $t$ pertencem a $A$, então, sob essas hipóteses,
+    $T^A$ demonstra $A(t^A)$.
+    Isto se prova por indução sobre a complexidade de $t$, usando as definições escolhidas para os símbolos traduzidos.
+
+    \smallskip
+    \textbf{(c)} Se $T^A\vdash \forall z\,\beta$, então $T^A\vdash \forall z\in A\,\beta$.
+    De fato, $\beta\rightarrow (A(z)\rightarrow \beta)$ é uma tautologia, logo
+    \[
+        T^A\vdash \forall z\,(\beta\rightarrow (A(z)\rightarrow \beta)).
+    \]
+    Pelo esquema lógico (3), segue
+    \[
+        T^A\vdash \forall z\,\beta \rightarrow \forall z\,(A(z)\rightarrow \beta).
+    \]
+
+    \smallskip
+    Agora dividimos a prova em onze casos.
+
+    \smallskip
+    \textbf{Caso 1.} $\sigma$ é uma instância de tautologia.
+    Como a tradução $(\cdot)^A$ comuta com $\neg$, $\wedge$, $\vee$ e $\rightarrow$, a fórmula $\sigma^A$ tem exatamente o mesmo esqueleto proposicional de $\sigma$.
+    Logo, $\sigma^A$ também é uma instância de tautologia.
+    Portanto, $\forall \bar y\,\sigma^A$ é um axioma lógico de $T^A$.
+    Aplicando a observação \textbf{(c)} sucessivamente a cada quantificador externo, obtemos
+    \[
+        T^A\vdash \forall \bar y\in A\,\sigma^A.
+    \]
+    Isto é, $T^A\vdash \phi^A$.
+
+    \smallskip
+    \textbf{Caso 2.} $\sigma$ é $\forall x\,\psi\rightarrow \psi[x/t]$, com substituição válida.
+    Fixemos os parâmetros livres de $\psi$ e de $t$ em $A$.
+    Sob a hipótese temporária $\forall x\,(A(x)\rightarrow \psi^A)$, o esquema lógico (2) em $T^A$, aplicado à fórmula $A(x)\rightarrow \psi^A$ e ao termo $t^A$, fornece
+    \[
+        \forall x\,(A(x)\rightarrow \psi^A)\rightarrow (A(t^A)\rightarrow \psi^A[x/t^A]).
+    \]
+    Pela observação \textbf{(b)}, temos $A(t^A)$.
+    Pela observação \textbf{(a)}, $\psi^A[x/t^A] = (\psi[x/t])^A$.
+    Logo, sob a hipótese $\forall x\,(A(x)\rightarrow \psi^A)$, concluímos $(\psi[x/t])^A$.
+    Pelo Teorema da Dedução,
+    \[
+        T^A\vdash (\forall x\,\psi)^A \rightarrow (\psi[x/t])^A,
+    \]
+    isto é, $T^A\vdash \sigma^A$.
+    Como os parâmetros livres foram arbitrários em $A$, segue que $T^A\vdash \phi^A$.
+
+    \smallskip
+    \textbf{Caso 3.} $\sigma$ é
+    \[
+        \forall x\,(\psi\rightarrow \theta)\rightarrow (\forall x\,\psi\rightarrow \forall x\,\theta).
+    \]
+    Fixemos os parâmetros livres em $A$.
+    Suponha temporariamente
+    \[
+        \forall x\,(A(x)\rightarrow (\psi^A\rightarrow \theta^A))
+        \qquad\text{e}\qquad
+        \forall x\,(A(x)\rightarrow \psi^A).
+    \]
+    A tautologia proposicional
+    \[
+        (P\rightarrow (Q\rightarrow R))\rightarrow ((P\rightarrow Q)\rightarrow (P\rightarrow R))
+    \]
+    fornece, após substituição e fecho universal em $x$,
+    \[
+        \forall x\,\Bigl((A(x)\rightarrow (\psi^A\rightarrow \theta^A))\rightarrow ((A(x)\rightarrow \psi^A)\rightarrow (A(x)\rightarrow \theta^A))\Bigr).
+    \]
+    Pelo esquema lógico (3), concluímos
+    \[
+        T^A\vdash \forall x\,(A(x)\rightarrow (\psi^A\rightarrow \theta^A))
+        \rightarrow
+        \forall x\,((A(x)\rightarrow \psi^A)\rightarrow (A(x)\rightarrow \theta^A)).
+    \]
+    Sob a primeira hipótese temporária, segue
+    \[
+        \forall x\,((A(x)\rightarrow \psi^A)\rightarrow (A(x)\rightarrow \theta^A)).
+    \]
+    Aplicando novamente o esquema lógico (3), agora às fórmulas $A(x)\rightarrow \psi^A$ e $A(x)\rightarrow \theta^A$, segue
+    \[
+        T^A\vdash \forall x\,(A(x)\rightarrow \psi^A)\rightarrow \forall x\,(A(x)\rightarrow \theta^A).
+    \]
+    Portanto, sob as duas hipóteses temporárias, obtemos $\forall x\,(A(x)\rightarrow \theta^A)$.
+    Aplicando o Teorema da Dedução duas vezes, segue que $T^A\vdash \sigma^A$.
+    Fechando universalmente relativamente a $A$ os parâmetros livres remanescentes, obtemos $T^A\vdash \phi^A$.
+
+    \smallskip
+    \textbf{Caso 4.} $\sigma$ é $\psi\rightarrow \forall x\,\psi$, com $x$ não ocorrendo livre em $\psi$.
+    Então $x$ também não ocorre livre em $\psi^A$.
+    Fixemos os parâmetros livres de $\psi$ em $A$ e suponhamos temporariamente $\psi^A$.
+    Pelo esquema lógico (4), a sentença
+    \[
+        \psi^A\rightarrow \forall x\,\psi^A
+    \]
+    é um teorema de $T^A$.
+    Portanto, sob a hipótese temporária $\psi^A$, obtemos
+    \[
+        \forall x\,\psi^A.
+    \]
+    Além disso, a sentença
+    \[
+        \forall x\,(\psi^A\rightarrow (A(x)\rightarrow \psi^A))
+    \]
+    é um teorema de $T^A$, pois vem da tautologia $\psi^A\rightarrow (A(x)\rightarrow \psi^A)$ por fecho universal em $x$.
+    Pelo esquema lógico (3), segue
+    \[
+        T^A\vdash \forall x\,\psi^A \rightarrow \forall x\,(A(x)\rightarrow \psi^A).
+    \]
+    Portanto, sob a hipótese temporária $\psi^A$, concluímos $\forall x\,(A(x)\rightarrow \psi^A)$, isto é, $(\forall x\,\psi)^A$.
+    Pelo Teorema da Dedução, $T^A\vdash \sigma^A$.
+    Fechando universalmente relativamente a $A$ os parâmetros livres remanescentes, obtemos $T^A\vdash \phi^A$.
+
+    \smallskip
+    \textbf{Caso 5.} $\sigma$ é $\psi[x/t]\rightarrow \exists x\,\psi$, com substituição válida.
+    Fixemos os parâmetros livres de $\psi$ e de $t$ em $A$ e suponhamos temporariamente $(\psi[x/t])^A$.
+    Pela observação \textbf{(a)}, temos $\psi^A[x/t^A]$.
+    Pela observação \textbf{(b)}, temos também $A(t^A)$.
+    Usando a tautologia $P\rightarrow (Q\rightarrow (Q\wedge P))$, obtemos, sob essa hipótese temporária,
+    \[
+        A(t^A)\wedge \psi^A[x/t^A].
+    \]
+    Aplicando o esquema lógico (5) à fórmula $A(x)\wedge \psi^A$ e ao termo $t^A$, a sentença
+    \[
+        (A(t^A)\wedge \psi^A[x/t^A])\rightarrow \exists x\,(A(x)\wedge \psi^A)
+    \]
+    é um teorema de $T^A$.
+    Logo, sob a hipótese temporária $(\psi[x/t])^A$, concluímos
+    \[
+        \exists x\,(A(x)\wedge \psi^A).
+    \]
+    Isto é, concluímos $(\exists x\,\psi)^A$.
+    Pelo Teorema da Dedução, $T^A\vdash \sigma^A$.
+    Fechando universalmente relativamente a $A$ os parâmetros livres remanescentes, obtemos $T^A\vdash \phi^A$.
+
+    \smallskip
+    \textbf{Caso 6.} $\sigma$ é $\forall x\,\neg\psi \leftrightarrow \neg \exists x\,\psi$.
+    Fixemos os parâmetros livres de $\psi$ em $A$ e ponhamos
+    \[
+        \chi(x):= A(x)\wedge \psi^A.
+    \]
+    Pelo esquema lógico (6), aplicado a $\chi$, temos
+    \[
+        T^A\vdash \forall x\,\neg\chi \leftrightarrow \neg\exists x\,\chi.
+    \]
+    Por outro lado, as tautologias
+    \[
+        \neg(P\wedge Q)\rightarrow (P\rightarrow \neg Q)
+        \qquad\text{e}\qquad
+        (P\rightarrow \neg Q)\rightarrow \neg(P\wedge Q)
+    \]
+    fornecem, após substituição e fecho universal em $x$,
+    \[
+        T^A\vdash \forall x\,(\neg\chi\rightarrow (A(x)\rightarrow \neg\psi^A))
+    \]
+    e
+    \[
+        T^A\vdash \forall x\,((A(x)\rightarrow \neg\psi^A)\rightarrow \neg\chi).
+    \]
+    Aplicando o esquema lógico (3) a cada uma dessas sentenças, obtemos
+    \[
+        T^A\vdash \forall x\,\neg\chi \rightarrow \forall x\,(A(x)\rightarrow \neg\psi^A)
+    \]
+    e
+    \[
+        T^A\vdash \forall x\,(A(x)\rightarrow \neg\psi^A)\rightarrow \forall x\,\neg\chi.
+    \]
+    Logo,
+    \[
+        T^A\vdash \forall x\,(A(x)\rightarrow \neg\psi^A)\leftrightarrow \forall x\,\neg\chi.
+    \]
+    Combinando essa equivalência com
+    \[
+        T^A\vdash \forall x\,\neg\chi \leftrightarrow \neg\exists x\,\chi
+    \]
+    e usando tautologias proposicionais, concluímos
+    \[
+        T^A\vdash \forall x\,(A(x)\rightarrow \neg\psi^A)\leftrightarrow \neg\exists x\,(A(x)\wedge \psi^A),
+    \]
+    que é precisamente $\sigma^A$.
+    Fechando universalmente relativamente a $A$ os parâmetros livres remanescentes, obtemos $T^A\vdash \phi^A$.
+
+    \smallskip
+    \textbf{Caso 7.} $\sigma$ é $x=x$.
+    Então $\forall x\,(x=x)$ é um axioma lógico de $T^A$.
+    Pela observação \textbf{(c)},
+    \[
+        T^A\vdash \forall x\,(A(x)\rightarrow x=x).
+    \]
+    Isto é, $T^A\vdash \phi^A$.
+
+    \smallskip
+    \textbf{Caso 8.} $\sigma$ é $x=y\rightarrow y=x$.
+    A sentença
+    \[
+        \forall x\,\forall y\,(x=y\rightarrow y=x)
+    \]
+    é um axioma lógico de $T^A$.
+    Aplicando a observação \textbf{(c)} duas vezes, obtemos $\phi^A$.
+
+    \smallskip
+    \textbf{Caso 9.} $\sigma$ é $x=y\wedge y=z\rightarrow x=z$.
+    A sentença
+    \[
+        \forall x\,\forall y\,\forall z\,(x=y\wedge y=z\rightarrow x=z)
+    \]
+    é um axioma lógico de $T^A$.
+    Aplicando a observação \textbf{(c)} três vezes, obtemos $\phi^A$.
+
+    \smallskip
+    \textbf{Caso 10.} $\sigma$ é
+    \[
+        x_1=y_1\wedge \cdots \wedge x_n=y_n \rightarrow f(x_1,\dots,x_n)=f(y_1,\dots,y_n),
+    \]
+    com $f$ de aridade $n>0$.
+    Sua tradução é
+    \[
+        x_1=y_1\wedge \cdots \wedge x_n=y_n \rightarrow f^A(x_1,\dots,x_n)=f^A(y_1,\dots,y_n),
+    \]
+    que é uma instância do mesmo esquema lógico na linguagem de $T^A$.
+    Portanto, o fecho universal ordinário dessa fórmula é um axioma lógico de $T^A$, e, pela observação \textbf{(c)} aplicada repetidamente, obtemos $\phi^A$.
+
+    \smallskip
+    \textbf{Caso 11.} $\sigma$ é
+    \[
+        x_1=y_1\wedge \cdots \wedge x_n=y_n \rightarrow \bigl(R(x_1,\dots,x_n)\leftrightarrow R(y_1,\dots,y_n)\bigr),
+    \]
+    com $R$ de aridade $n>0$.
+    Sua tradução é
+    \[
+        x_1=y_1\wedge \cdots \wedge x_n=y_n \rightarrow \bigl(R^A(x_1,\dots,x_n)\leftrightarrow R^A(y_1,\dots,y_n)\bigr),
+    \]
+    que é uma instância do mesmo esquema lógico na linguagem de $T^A$.
+    Assim, o fecho universal ordinário dessa fórmula é um axioma lógico de $T^A$, e, pela observação \textbf{(c)} aplicada repetidamente, segue $\phi^A$.
+
+    \smallskip
+    Em todos os casos concluímos que $T^A\vdash \phi^A$.
 \end{proof}
