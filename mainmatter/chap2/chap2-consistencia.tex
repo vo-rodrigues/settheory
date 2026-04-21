@@ -1,0 +1,107 @@
+\section{Provas de consistência}\label{sec:provasDeConsistencia}
+Uma prova de consistência é uma prova metateórica de que se certa teoria não apresenta contradições, então outra teoria também não apresenta contradições.
+
+\begin{metadefinition}
+    Seja $T$ uma teoria de primeira ordem em uma linguagem $\mathcal L$.
+
+    Dizemos que $T$ é inconsistente se existe uma sentença $\phi$ tal que $T\vdash \phi$ e $T\vdash \neg \phi$.
+
+    Se $T$ não é inconsistente, dizemos que $T$ é consistente, e escrevemos $\Con(T)$.
+\end{metadefinition}
+
+Conforme vimos, o Princípio da Explosão implica que uma teoria inconsistente prova qualquer sentença (ver Metaproposição~\ref{mprop:principioDaExplosao}).
+Tal fato remove quase que completamente o interesse matemático por teorias de primeira ordem inconsistentes.
+
+Assim, seria útil termos um método para provar que certas teorias de primeira ordem são consistentes, ao menos com relação a outras teorias de primeira ordem.
+
+Iniciaremos com uma proposição simples.
+
+\begin{metaproposition}\label{mprop:consistenciaDeTeoriasMaisFracas}
+    Seja, $T, T'$ teorias de primeira ordem com léxicos $\mathcal L$ e $\mathcal L'$, respectivamente, tais que todo símbolo de $\mathcal L$ é um símbolo de $\mathcal L'$.
+    Suponha que toda sentença de $\Sigma$ é um teorema de $T'$.
+    
+    Se $\Con(T')$, então $\Con(T)$.
+\end{metaproposition}
+
+\begin{proof}
+    Procedemos pela contrapositiva.
+
+    Suponha que $\Con(T)$ é falso.
+    Então $T$ é inconsistente, e existe uma sentença $\phi$ tal que $T\vdash \phi$ e $T\vdash \neg \phi$.
+    Pela metaproposição~\ref{mprop:extensaoDeTeoria}, $T'$ prova todos os teoremas de $T$, e, portanto, $T'\vdash \phi$ e $T'\vdash \neg \phi$.
+    Assim, $T'$ é inconsistente.
+\end{proof}
+
+Teorias conservativas preservam consistência.
+Em particular, teorias obtidas por extensão por definição de uma teoria $T$ são conservativas sobre $T$.
+
+\begin{proposition}
+    Sejam $T$ e $T'$ teorias de primeira ordem tais que $T'$ é uma extensão conservativa de $T$.
+
+    Então $T$ é inconsistente se, e somente se, $T'$ é inconsistente.
+
+    Dessa forma, $\Con(T)$ se, e somente se, $\Con(T')$.
+\end{proposition}
+\begin{proof}
+    Suponha que $T$ é inconsistente.
+    Pela Metaproposição~\ref{mprop:consistenciaDeTeoriasMaisFracas}, $T'$ é inconsistente.
+
+    Agora suponha que $T'$ é inconsistente.
+    Temos, pelo Princípio da Explosão, que $T'\vdash \neg \forall x\, (x=x)$.
+    Pela conservatividade, $T\vdash \neg \forall x\, (x=x)$.
+    Por outro lado, $T\vdash \forall x\, (x=x)$, pois é um teorema de qualquer teoria de primeira ordem.
+    Assim, $T$ é inconsistente.
+\end{proof}
+
+Uma importante forma de produzir provas de consistência em Teoria dos Conjuntos é por meio de examinar o universo dos conjuntos restrito à alguma classe de conjuntos.
+
+\begin{metadefinition}
+    Assuma que $T$ é uma teoria de primeira ordem.
+    Uma \emph{interpretação} de $T$ consiste em:
+    \begin{itemize}
+        \item Um novo símbolo de relação unário $A$, introduzido na linguagem de $T$ via definição.
+        \item Para cada símbolo de predicado $R$ de $T$ de aridade $n$, um símbolo de predicado $R^A$ de aridade $n$ introduzido na linguagem de $T$ via definição.
+        \item Para cada símbolo de função $f$ de $T$ de aridade $n$, um símbolo de função $f^A$ de aridade $n$ introduzido na linguagem de $T$ via definição.
+    \end{itemize}
+
+    A teoria $T^A$ é a teoria obtida pela extensão por definição de $T$ para incluir os símbolos $A$, $R^A$ e $f^A$.
+
+    Para cada termo $t$ da linguagem de $T$, criamos o termo $t^A$ da linguagem de $T^A$ por recursão na metateoria, de modo que:
+    \begin{itemize}
+        \item Se $t$ é uma variável, digamos, $x$ então $x^A$ é a própria variável $x$.
+        \item Se $t$ é um símbolo de constante, então $t^A$ é a própria constante $c^A$.
+        \item Se $t$ é da forma $f(t_1, \dots, t_n)$, então $t^A$ é o termo $f^A(t_1^A, \dots, t_n^A)$.
+    \end{itemize}
+
+    Para cada fórmula $\phi$ da linguagem de $T$, criamos a fórmula $\phi^A$ da linguagem de $T^A$ por recursão na metateoria, de modo que:
+    \begin{itemize}
+        \item Se $\phi$ é da forma $R(t_1, \dots, t_n)$, então $\phi^A$ é a fórmula $R^A(t_1^A, \dots, t_n^A)$.
+        \item Se $\phi$ é da forma $t_1=t_2$, então $\phi^A$ é a fórmula $t_1^A=t_2^A$.
+        \item Se $\phi$ é da forma $\neg \psi$, então $\phi^A$ é a fórmula $\neg \psi^A$.
+        \item Se $\phi$ é da forma $\psi\wedge \theta$, então $\phi^A$ é a fórmula $\psi^A\wedge \theta^A$.
+        \item Se $\phi$ é da forma $\psi\vee \theta$, então $\phi^A$ é a fórmula $\psi^A\vee \theta^A$.
+        \item Se $\phi$ é da forma $\psi\to \theta$, então $\phi^A$ é a fórmula $\psi^A\to \theta^A$.
+        \item Se $\phi$ é da forma $\forall x\,\psi$, então $\phi^A$ é a fórmula $\forall x (A(x)\to \psi^A)$.
+        \item Se $\phi$ é da forma $\exists x\,\psi$, então $\phi^A$ é a fórmula $\exists x (A(x)\wedge \psi^A)$.
+    \end{itemize}
+
+    Algumas convenções notacionais: muitas vezes, para abreviar fórmulas de modo mais intuitivo, adotamos as seguintes convenções.
+
+    \begin{itemize}
+        \item Escrevemos $x\in A$ em vez de $A(x)$.
+        \item Escrevemos $\exists x\in A\,\psi$ em vez de $\exists x (A(x)\wedge \psi)$.
+        \item Escrevemos $\forall x\in A\,\psi$ em vez de $\forall x (A(x)\to \psi)$.
+    \end{itemize}
+\end{metadefinition}
+
+Como $T^A$ é uma extensão por definição de $T$, $T^A$ é uma extensão conservativa de $T$, e, portanto, $\Con(T)$ se, e somente se, $\Con(T^A)$.
+
+\begin{metalemma}\label{mlem:axiomasLogicosInterpretacao}
+    Seja $T$ uma teoria de primeira ordem e $T^A$ uma interpretação de $T$.
+    $\phi$ é um axioma da lógica na linguagem de $T$, então
+    $\phi^A$ é um teorema de $T^A$.
+\end{metalemma}
+
+\begin{proof}
+    Devemos quebrar a prova em onze casos uma vez que pela Metadefinição~\ref{mdef:axiomasLogicos}, temos onze grupos de axiomas lógicos.
+\end{proof}
