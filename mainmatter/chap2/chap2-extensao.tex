@@ -131,9 +131,8 @@ Sem parâmetros, não conseguiríamos, por exemplo, definir a partir de $A$ subc
 
 O Axioma da Extensão nos garante que tal conjunto deve ser único.
 
-\begin{proposition}[$\BST$](Esquema da unicidade para compreensão)\label{prop:unicidadeNaCompreensao}
-    Considere uma fórmula $\phi(x, A, t_1, \ldots, t_n)$ na qual $y$ não aparece livre.
-    A seguinte sentença é teorema:
+\begin{proposition}[$\BST$](Unicidade para compreensão)\label{prop:unicidadeNaCompreensao}
+    Para cada fórmula $\phi(x, A, t_1, \ldots, t_n)$ na qual $y$ não ocorre livre, a seguinte sentença é teorema:
     \begin{equation}
          \forall t_1 \ldots \forall t_n \forall A\exists! y \forall x\,
         \Bigl(x \in y \leftrightarrow (x \in A \land \phi(x, A, t_1, \ldots, t_n))\Bigr).
