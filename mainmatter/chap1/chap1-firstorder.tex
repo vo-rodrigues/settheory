@@ -48,15 +48,15 @@ De fato, conforme veremos, nem toda expressão na notação polonesa é uma fór
 Iniciaremos trabalhando a primeira dúvida.
 
 \begin{metadefinition}\label{mdef:lexicoPrimeiraOrdem}\index{léxico!de primeira ordem}\index{símbolo!não lógico}\index{símbolo!não lógico!de predicado}\index{símbolo!não lógico!funcional}
-    Um léxico $\mathcal L$ para uma teoria de primeira ordem consiste no seguinte.
+    Um léxico $\mathcal L$ para uma teoria de primeira ordem consiste em um par $(\mathcal P, \mathcal F)$, em que:
 
     \begin{itemize}
-        \item Em uma coleção $\mathcal P$ de símbolos de predicado (ou relacionais), cada um com uma aridade associada.
-        \item Em uma coleção $\mathcal F$ de símbolos funcionais, cada um com uma aridade associada.
+        \item $\mathcal P$ é uma coleção de símbolos, chamados de \emph{símbolos de predicado (ou relacionais)}, cada um com uma aridade associada.
+        \item $\mathcal F$ é uma coleção de símbolos funcionais, cada um com uma aridade associada.
     \end{itemize}
     As duas coleções acima não podem possuir símbolos em comum, nem possuir símbolos lógicos.
     Os símbolos de $\mathcal P$ e $\mathcal F$ são chamados de símbolos não lógicos de $\mathcal L$.
-    Juntamente com os símbolos lógicos da Metadefinição~\ref{mdef:simbolosLogicos}, eles constituem o léxico total da linguagem.
+    Juntamente com os símbolos lógicos da Metadefinição~\ref{mdef:simbolosLogicos}, eles constituem o \emph{léxico} da linguagem de primeira ordem $\mathcal L$.
 \end{metadefinition}
 
 Exemplos de símbolos de predicado não lógicos incluem $\in$ (pertencimento, comum em teoria dos conjuntos), $<$ (ordem, comum no estudo dos números reais), $\triangle$ (não colinearidade entre três pontos, comum em geometria plana).
