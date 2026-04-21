@@ -88,10 +88,11 @@ O primeiro resultado pode ser interpretado como a asserção de que resultados j
 O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de $T$, então $T'$ prova todos os teoremas de $T$.
 
 \begin{metaproposition}\label{mprop:extensaoDeTeoria}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem e $\Sigma$, $\Sigma'$ coleções de sentenças de $\mathcal L$ tais que toda sentença de $\Sigma$ é um teorema de $\Sigma'$.
-    Sejam $T$ e $T'$ as teorias de primeira ordem com léxico $\mathcal L$ e axiomas $\Sigma$ e $\Sigma'$, respectivamente.
+    Seja, $T, T'$ teorias de primeira ordem com léxicos $\mathcal L$ e $\mathcal L'$, respectivamente, tais que todo símbolo de $\mathcal L$ é um símbolo de $\mathcal L'$.
+    Suponha que toda sentença de $\Sigma$ é um teorema de $T'$.
+    
     Então todo teorema de $T$ é um teorema de $T'$.
-    Em símbolos, para cada $\mathcal L$-sentença $\phi$,
+    Ou seja, para cada $\mathcal L$-sentença $\phi$,
 
     \begin{equation*}
         \Sigma \vdash_\mathcal L \phi \implies \Sigma' \vdash_\mathcal L \phi.
@@ -121,25 +122,6 @@ O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de 
 Façamos uma pausa para observar algo importante acontecendo na metateoria (isto é, no nosso raciocínio sobre demonstrações).
 Ambos os resultados acima concluem que ``existem demonstrações''.
 É importante observar que tais provas existenciais são construtivas: elas de fato fornecem um algoritmo para, dados os objetos declarados nas hipóteses, efetivamente redigir uma demonstração.
-
-O próximo lema diz que aumentar a linguagem sem tocar nos axiomas não aumenta o poder de prova de uma teoria com respeito às sentenças da linguagem original.
-A prova é simples, e deixada como exercício.
-
-\begin{metalemma}\label{mlem:extensaoDeLinguagem}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $\Sigma$ uma coleção de sentenças de $\mathcal L$, e $\mathcal L'$ um léxico para uma linguagem de primeira ordem que possui todo símbolo de $\mathcal L$.
-
-    Sejam $T$ e $T'$ as teorias de primeira ordem com léxico $\mathcal L$ e $\mathcal L'$ e axiomas $\Sigma$ e $\Sigma$, respectivamente.
-
-    Então, para cada $\mathcal L$-sentença $\phi$, $\Sigma \vdash_\mathcal L \phi$ se e somente se $\Sigma \vdash_{\mathcal L'} \phi$.
-    Em símbolos:
-
-    \begin{equation*}
-        \Sigma \vdash_\mathcal L \phi \iff \Sigma \vdash_{\mathcal L'} \phi.
-    \end{equation*}
-\end{metalemma}
-\begin{proof}
-    Ver Exercício~\ref{exr:extensaoDeLinguagem}.
-\end{proof}
 
 O próximo resultado nos mostra o motivo de contradições serem tão indesejáveis em Matemática: na Lógica Clássica, ao admitir uma, não estamos apenas sendo incoerentes, estamos abrindo margem para provar qualquer coisa: um verdadeiro desastre.
 
@@ -183,7 +165,3 @@ Abaixo, provaremos, como exemplo, um teorema da lógica pura que intuitivamente 
     7.\ & \exists x (x=x) & \text{(modus ponens de 5. e 6.)}
     \end{align*}
 \end{proof}
-\section*{Exercícios}
-\begin{exercise}\label{exr:extensaoDeLinguagem}
-    Prove o Metalema~\ref{mlem:extensaoDeLinguagem}.
-\end{exercise}
