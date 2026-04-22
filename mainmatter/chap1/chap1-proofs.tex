@@ -4,6 +4,35 @@
 Nesta seção, veremos resultados adicionais sobre demonstrações formais.
 Tais resultados formalizam parte dos raciocínios matemáticos usualmente utilizados.
 
+\subsection{Regras de inferência derivadas adicionais}
+
+Iniciaremos provando ``regras de inferência derivadas''.
+
+\begin{metaproposition}
+    Suponha que $T$ é uma teoria de primeira ordem e $\varphi, \psi$ são fórmulas da linguagem de $T$.
+    Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $T\vdash \varphi \land \psi$, então $T\vdash \varphi$.
+        \item Se $T\vdash \varphi \land \psi$, então $T\vdash \psi$.
+        \item Se $T\vdash \varphi$ e $T\vdash \varphi\rightarrow \psi$, então $T\vdash \psi$.
+    \end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    Para o item (a), suponha que $T\vdash \varphi \land \psi$.
+    Pelo Axioma~\ref{ax:conjuncao2}, $T\vdash (\varphi \land \psi) \rightarrow \varphi$.
+    Segue de modus ponens que $T\vdash \varphi$.
+
+    Para o item (b), suponha que $T\vdash \varphi \land \psi$.
+    Pelo Axioma~\ref{ax:conjuncao3}, $T\vdash (\varphi \land \psi) \rightarrow \psi$.
+    Segue de modus ponens que $T\vdash \psi$.
+
+    Para o item (c), suponha que $T\vdash \varphi$ e $T\vdash \varphi\rightarrow \psi$.
+    Pelo Axioma~\ref{ax:conjuncao1}, $T\vdash \varphi \rightarrow (\psi \rightarrow (\varphi \land \psi))$.
+    Segue de modus ponens que $T\vdash \psi \rightarrow (\varphi \land \psi)$.
+    Novamente, de modus ponens, que $T\vdash \varphi \land \psi$.
+\end{proof}
+
 Iniciaremos pelo Teorema da Dedução.
 Este teorema formaliza a ideia de que para provar uma implicação, podemos tomar o antecedente como hipótese para demonstrar o consequente.
 
