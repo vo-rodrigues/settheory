@@ -76,6 +76,11 @@ Sigamos para alguns exemplos.
     \end{itemize}
 \end{example}
 
+A seguir, definiremos a substituição de termos em fórmulas.
+Conforme será discutido, é necessário cautela ao se substituir variáveis por termos que contém variáveis.
+Por exemplo, a fórmula $\exists y \, (x \neq y)$ é verdadeira em diversas teorias, conforme será exemplificado, mas, ao substituir $x$ por $y$, obtemos $\exists y \, (y \neq y)$, falsa em qualquer teoria, conforme será discutido na próxima seção.
+
+Optaremos por definir a substituição formal em fórmulas sem se preocupar com este problema, e, a seguir, definir a noção de \emph{substituição válida}.
 \begin{metadefinition}[Substituição em fórmulas]\label{mdef:substituicaoEmFormulas}\index{substituição!em fórmulas}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
