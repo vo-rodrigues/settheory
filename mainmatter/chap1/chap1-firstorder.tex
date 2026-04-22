@@ -25,13 +25,9 @@ Enfatizamos, desde já, que consideraremos a igualdade como um símbolo lógico,
             \item $\exists$ (quantificador existencial, binário).
         \end{itemize}
         \item $=$, o símbolo de igualdade (binário).
-        \item Uma infinidade (enumerável) de símbolos de variáveis, que denotaremos por $x$, $y$, $z$, $x_1$, $y_1$, $z_1$, $x_2$, $y_2$, $z_2$, $\dots$ (variáveis, $0$-árias).
+        \item Uma infinidade (enumerável) de símbolos de variáveis, que denotaremos por $v_0, v_1, v_2, \dots$ (aridade 0).
         \end{itemize}
 \end{metadefinition}
-
-Neste texto, seremos extremamente permissivos com a notação utilizada para os símbolos de variáveis.
-Além das letras utilizadas, poderemos utilizar outros símbolos, como $a$, $\beta_3$, $\alpha_5$, etc., ou até mesmo $f$ (comum em análise real: $\forall f\,(f \text{ é função } \rightarrow\dots)$).
-A identificação de um símbolo como variável se dará pelo contexto.
 
 Observamos desde já que, neste formalismo, os quantificadores, $\forall$ e $\exists$, são símbolos binários.
 De fato, requerem dois objetos para serem utilizados: um símbolo de variável e uma fórmula.
@@ -42,7 +38,7 @@ Por exemplo, a Teoria dos Conjuntos necessita do símbolo de pertencimento, $\in
 Tais símbolos são chamados de \emph{símbolos não lógicos} e, conforme veremos, compõem o léxico de uma teoria de primeira ordem.
 
 A segunda dúvida diz respeito ao fato de que nem toda expressão na notação polonesa é o que consideramos ser uma fórmula matemática válida.
-Por exemplo, considere a expressão na notação polonesa $\wedge x_1 = x_2 \neg x_3$ -- o que, na notação usual, se traduziria como $x_1 \wedge (x_2 = \neg x_3)$ -- não costuma ser aceito como fórmula válida.
+Por exemplo, considere a expressão na notação polonesa $\wedge v_1 = v_2 \neg v_3$ -- o que, na notação usual, se traduziria como $v_1 \wedge (v_2 = \neg v_3)$ -- não costuma ser aceito como fórmula válida.
 De fato, conforme veremos, nem toda expressão na notação polonesa é uma fórmula bem formada de primeira ordem.
 
 Iniciaremos trabalhando a primeira dúvida.
@@ -93,23 +89,27 @@ Iniciaremos pelos termos.
 \begin{metadefinition}\label{mdef:termosPrimeiraOrdem}\index{termo}\index{constante}
     Dado um léxico $\mathcal L$ para uma teoria de primeira ordem, os termos de $\mathcal L$ são definidos recursivamente da seguinte forma.
 \begin{enumerate}[label=(\roman*)]
-    \item Toda variável é um termo.
-    \item Todo símbolo de constante é um termo.
+    \item Toda variável $x$ é um termo (ou, mais formalmente, a sequência unitária que contém $x$ é um termo).
+    \item Todo símbolo de constante $c$ é um termo (ou, mais formalmente, a sequência unitária que contém $c$ é um termo).
     \item Se $f$ é um símbolo funcional de aridade $n>0$ e $t_1,\dots,t_n$ são termos, então $ft_1\dots t_n$ é um termo.
     \item Todos os termos são obtidos a partir de um número finito de aplicações das regras anteriores.
 \end{enumerate}
-
 \end{metadefinition}
+Notemos que escrevemos que ``toda variável $x$ é um termo'', e não que ``toda variável $v_i$ é um termo''.
+A letra $x$ faz papel de metavariável, ou seja, é uma variável da metateoria que, neste caso, está assumindo valores nos símbolos de variável $v_i$.
+Neste texto, seremos extremamente permissivos com a notação utilizada para tais variáveis metateóricas.
+Além de letras como $x$, $y$ e $z$, poderemos utilizar outros símbolos, como $a$, $\beta_3$, $\alpha_5$, etc., ou até mesmo $f$ (comum em análise real: $\forall f\,(f \text{ é função } \rightarrow\dots)$).
+A identificação de uma metavariável que assume valores de variáveis se dará pelo contexto.
 
 Vamos dar alguns exemplos.
 
 \begin{example}\label{exa:termosPrimeiraOrdem}Utilizando a notação do Exemplo~\ref{exa:exemplosLexicos}, temos os seguintes termos.
     \begin{itemize}
-        \item Na teoria dos grupos, $\cdot x_1 e$ é um termo (na notação usual, $x_1 \cdot e$).
-        \item Na teoria dos anéis, $+ x_1 \cdot -x_20$ é um termo (na notação usual, $x_1 + (-x_2 \cdot 0)$).
+        \item Na teoria dos grupos, $\cdot v_1 e$ é um termo (na notação usual, $v_1 \cdot e$).
+        \item Na teoria dos anéis, $+ v_1 \cdot -v_20$ é um termo (na notação usual, $v_1 + (-v_2 \cdot 0)$).
         \item Considere o léxico básico da teoria de conjuntos.
         Os únicos termos são as variáveis (adiante, veremos que mais termos podem ser introduzidos por definição).
-        \item Na teoria de grupos, $\wedge x_1 e$ não é um termo, pois $\wedge$ é um símbolo de conectivo lógico, e não um símbolo funcional.
+        \item Na teoria de grupos, $\wedge v_1 e$ não é um termo, pois $\wedge$ é um símbolo de conectivo lógico, e não um símbolo funcional.
     \end{itemize}
 \end{example}
 
@@ -139,15 +139,15 @@ Vamos dar alguns exemplos.
 
 \begin{example}\label{exa:formulasPrimeiraOrdem}Utilizando a notação do Exemplo~\ref{exa:exemplosLexicos}, temos as seguintes fórmulas.
     \begin{itemize}
-        \item Na teoria dos grupos, $\cdot x_1 e$ não é uma fórmula, pois $\cdot$ é um símbolo funcional, e não um símbolo de predicado.
-        Por outro lado, é um termo (usualmente denotado por $x_1 \cdot e$).
-        \item Na teoria dos grupos, $= \cdot x_1 e x_2$ é uma fórmula equacional (na notação usual, $x_1 \cdot e = x_2$).
-        \item Na teoria de conjuntos, $\in x_1 x_2$ é uma fórmula atômica (na notação usual, $x_1 \in x_2$).
-        \item Em qualquer léxico para uma teoria de primeira ordem ${=}x_1 x_2$ é uma fórmula equacional (na notação usual, $x_1 = x_2$).
-        \item Na teoria dos conjuntos, ${\wedge} {\in} x_1 x_2 {=} x_2 x_3$ é uma fórmula (na notação usual, $(x_1 \in x_2) \wedge (x_2 = x_3)$).
-        \item Na teoria dos conjuntos, ${\in}{\wedge} x_1 x_2 {=} x_2 x_3$ não é uma fórmula, pois a única chance de uma expressão começada por $\in$ ser fórmula é pela regra (i), mas, nesse caso, deveria haver um termo contendo $\wedge$, o que não é possível.
-        Na notação usual, a expressão acima se traduziria como $(x_1 \wedge x_2) \in (x_2 = x_3)$.
-        \item No léxico da teoria de conjuntos, $\forall x_1 {\in} x_1 x_2$ é uma fórmula (na notação usual, $\forall x_1 (x_1 \in x_2)$).
+        \item Na teoria dos grupos, $\cdot v_1 e$ não é uma fórmula, pois $\cdot$ é um símbolo funcional, e não um símbolo de predicado.
+        Por outro lado, é um termo (usualmente denotado por $v_1 \cdot e$).
+        \item Na teoria dos grupos, $= \cdot v_1 e v_2$ é uma fórmula equacional (na notação usual, $v_1 \cdot e = v_2$).
+        \item Na teoria de conjuntos, $\in v_1 v_2$ é uma fórmula atômica (na notação usual, $v_1 \in v_2$).
+        \item Em qualquer léxico para uma teoria de primeira ordem ${=}v_1 v_2$ é uma fórmula equacional (na notação usual, $v_1 = v_2$).
+        \item Na teoria dos conjuntos, ${\wedge} {\in} v_1 v_2 {=} v_2 v_3$ é uma fórmula (na notação usual, $(v_1 \in v_2) \wedge (v_2 = v_3)$).
+        \item Na teoria dos conjuntos, ${\in}{\wedge} v_1 v_2 {=} v_2 v_3$ não é uma fórmula, pois a única chance de uma expressão começada por $\in$ ser fórmula é pela regra (i), mas, nesse caso, deveria haver um termo contendo $\wedge$, o que não é possível.
+        Na notação usual, a expressão acima se traduziria como $(v_1 \wedge v_2) \in (v_2 = v_3)$.
+        \item No léxico da teoria de conjuntos, $\forall v_1 {\in} v_1 v_2$ é uma fórmula (na notação usual, $\forall v_1 (v_1 \in v_2)$).
         \item No léxico da teoria dos grupos, $\exists e {=} e\cdot e$ não é uma fórmula, pois $e$ é um símbolo de constante, e não uma variável, e a única forma de uma fórmula iniciada por $\exists$ ser uma fórmula é pela regra (vi).
         Na notação usual, a expressão acima se traduziria como $\exists e (e = e \cdot e)$.
     \end{itemize}
@@ -179,12 +179,12 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
     Escreva as expressões abaixo, que estão escritas na notação polonesa, na notação usual, e diga quais delas são termos, quais são fórmulas, e quais não são nem termos, nem fórmulas.
 
     \begin{enumerate}[label=(\roman*)]
-        \item $\cdot x_1 e$;
-        \item $= \cdot x_1 e x_2$;
-        \item ${\wedge} {\cdot} x_1 e {=} x_2 x_3$;
+        \item $\cdot v_0 e$;
+        \item $= \cdot v_1 e v_2$;
+        \item ${\wedge} {\cdot} v_1 e {=} v_2 v_3$;
         \item $\exists e {=} e{\cdot} e e$;
-        \item $\cdot \cdot x_1 e x_2$;
-        \item $=\wedge \cdot x_1 e x_2$.
+        \item $\cdot \cdot v_1 e v_2$;
+        \item $=\wedge \cdot v_1 e v_2$.
     \end{enumerate}
 \end{exercise}
 
@@ -193,13 +193,13 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
     Escreva as expressões abaixo, que estão escritas na notação usual, na notação polonesa.
     Decida quais delas são termos e quais são fórmulas.
     \begin{enumerate}[label=(\roman*)]
-        \item $x_1 + (-x_2 \cdot 0)$;
-        \item $\exists x_1 (x_1 + x_1 = 0)$;
-        \item $x_1 + x_2 = x_3$;
-        \item $(x_1+x_2)\cdot x_3$;
-        \item $\forall x_1 \exists x_2 (x_1 + x_2 = 0)$;
-        \item $\forall x_1 (x_1 = x_1) \wedge \exists x_1 (x_1 = x_1)$;
-        \item $\forall x_1 (x_1 = x_1 \wedge \exists x_1 (x_1 = x_1))$.
+        \item $v_1 + (-v_2 \cdot 0)$;
+        \item $\exists v_1 (v_1 + v_1 = 0)$;
+        \item $v_1 + v_2 = v_3$;
+        \item $(v_1+v_2)\cdot v_3$;
+        \item $\forall v_1 \exists v_2 (v_1 + v_2 = 0)$;
+        \item $\forall v_1 (v_1 = v_1) \wedge \exists v_1 (v_1 = v_1)$;
+        \item $\forall v_1 (v_1 = v_1 \wedge \exists v_1 (v_1 = v_1))$.
     \end{enumerate}
 \end{exercise}
 
