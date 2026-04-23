@@ -22,17 +22,17 @@ Estamos adotando esse sistema por brevidade e simplicidade, uma vez que é um si
     Os axiomas lógicos adotados neste texto são fórmulas de uma das seguintes formas.
     Abaixo, $A$, $B$ e $C$ são fórmulas, e $x, y$ são variáveis.
     \begin{enumerate}
-        \item $A\rightarrow (B \rightarrow A)$.
-        \item $(A \rightarrow (B \rightarrow C)) \rightarrow ((A \rightarrow B) \rightarrow (A \rightarrow C))$.
+        \item $A\rightarrow (B \rightarrow A)$.\label{ax:implicacao1}
+        \item $(A \rightarrow (B \rightarrow C)) \rightarrow ((A \rightarrow B) \rightarrow (A \rightarrow C))$.\label{ax:implicacao2}
         \item $A \rightarrow (B \rightarrow (A \wedge B))$.\label{ax:conjuncao1}
         \item $(A \wedge B) \rightarrow A$.\label{ax:conjuncao2}
         \item $(A \wedge B) \rightarrow B$.\label{ax:conjuncao3}
-        \item $A \rightarrow (A \vee B)$.
-        \item $B \rightarrow (A \vee B)$.
-        \item $(A \rightarrow C) \rightarrow ((B \rightarrow C) \rightarrow ((A \vee B) \rightarrow C))$.
-        \item $\neg \neg A \rightarrow A$.
-        \item $(A\leftarrow B) \rightarrow (A\rightarrow B)$.
-        \item $(A\rightarrow B) \rightarrow (A\leftarrow B)$.
+        \item $A \rightarrow (A \vee B)$. \label{ax:disjuncao1}
+        \item $B \rightarrow (A \vee B)$. \label{ax:disjuncao2}
+        \item $(A \rightarrow C) \rightarrow ((B \rightarrow C) \rightarrow ((A \vee B) \rightarrow C))$. \label{ax:disjuncao3}
+        \item $(\neg A\rightarrow B) \rightarrow ((\neg A \rightarrow \neg B) \rightarrow A)$.\label{ax:negacao}
+        \item $(A\leftrightarrow B) \rightarrow (A\rightarrow B)$.
+        \item $(A\leftrightarrow B) \rightarrow (B\rightarrow A)$.
         \item $(A\rightarrow B) \rightarrow ((B\rightarrow A) \rightarrow (A \leftrightarrow B))$.
     \end{enumerate}
 \end{metadefinition}
@@ -122,30 +122,6 @@ O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de 
 Façamos uma pausa para observar algo importante acontecendo na metateoria (isto é, no nosso raciocínio sobre demonstrações).
 Ambos os resultados acima concluem que ``existem demonstrações''.
 É importante observar que tais provas existenciais são construtivas: elas de fato fornecem um algoritmo para, dados os objetos declarados nas hipóteses, efetivamente redigir uma demonstração.
-
-O próximo resultado nos mostra o motivo de contradições serem tão indesejáveis em Matemática: na Lógica Clássica, ao admitir uma, não estamos apenas sendo incoerentes, estamos abrindo margem para provar qualquer coisa: um verdadeiro desastre.
-
-\begin{metadefinition}\label{mdef:inconsistencia}\index{inconsistência}
-    Seja $T$ uma teoria de primeira ordem.
-    Dizemos que $T$ é \emph{inconsistente} se existe uma fórmula $\phi$ tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
-\end{metadefinition}
-
-\begin{metaproposition}[Princípio da explosão]\label{mprop:principioDaExplosao}\index{princípio da explosão}
-    Seja $T$ uma teoria de primeira ordem.
-    Se $T$ é inconsistente, então para cada fórmula $\psi$, $T \vdash \psi$.
-\end{metaproposition}
-\begin{proof}
-    Tome $\psi$ uma fórmula arbitrária.
-    Seja $\phi$ uma fórmula tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
-
-    Note que $A\rightarrow (\neg A\rightarrow B)$ é uma tautologia.
-    Assim, $\phi \rightarrow (\neg \phi \rightarrow \psi)$ é uma instância de tautologia, e uma fórmula, e, portanto, um axioma lógico.
-    Desta forma, $T \vdash \phi \rightarrow (\neg \phi \rightarrow \psi)$.
-
-    Como $T \vdash \phi$, do Metalema~\ref{mlem:modusPonens} temos que $T \vdash \neg \phi \rightarrow \psi$.
-
-    Como $T \vdash \neg \phi$, novamente do Metalema~\ref{mlem:modusPonens}, segue que $T \vdash \psi$.
-\end{proof}
 
 Abaixo, provaremos, como exemplo, um teorema da lógica pura que intuitivamente diz que o universo de discurso é não vazio.
 

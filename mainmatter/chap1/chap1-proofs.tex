@@ -4,9 +4,66 @@
 Nesta seção, veremos resultados adicionais sobre demonstrações formais.
 Tais resultados formalizam parte dos raciocínios matemáticos usualmente utilizados.
 
-\subsection{Regras de inferência derivadas adicionais}
-
 Iniciaremos provando ``regras de inferência derivadas''.
+
+
+\subsection{Regras de inferência sobre implicação e negação}
+
+Começaremos com os itens que tratam apenas da implicação.
+
+\begin{metaproposition}\label{mprop:regraDeImplicacao}
+    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ e $\theta$ fórmulas da linguagem de $T$.
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $T\vdash \varphi \rightarrow \psi$ e $T\vdash \varphi$, então $T\vdash \psi$.
+        \item Se $T\vdash \psi$, então $T\vdash \varphi \rightarrow \psi$.
+        \item $T\vdash \varphi \rightarrow \varphi$.
+        \item Se $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\theta$, então $T\vdash \varphi\rightarrow\theta$.
+
+    \end{enumerate}
+\end{metaproposition}
+\begin{proof}
+    \textbf{(i)}: este item corresponde ao Metalema~\ref{mlem:modusPonens}.
+    \smallskip
+
+    \textbf{(ii)}: suponha que $T\vdash \psi$.
+    Pelo Axioma~\ref{ax:implicacao1}, temos que $T\vdash \psi \rightarrow (\varphi \rightarrow \psi)$.
+    Assim, por modus ponens, $T\vdash \varphi \rightarrow \psi$.
+    \smallskip
+    
+    \textbf{(iii)}: pelo Axioma~\ref{ax:implicacao1}, segue que $T\vdash \varphi \rightarrow ((\varphi \rightarrow \varphi) \rightarrow \varphi)$.
+
+    Pelo Axioma~\ref{ax:implicacao2}, segue que $T\vdash (\varphi \rightarrow ((\varphi \rightarrow \varphi) \rightarrow \varphi)) \rightarrow ((\varphi \rightarrow (\varphi \rightarrow \varphi)) \rightarrow (\varphi \rightarrow \varphi))$.
+
+    Assim, por modus ponens, $T\vdash (\varphi \rightarrow (\varphi \rightarrow \varphi)) \rightarrow (\varphi \rightarrow \varphi)$.
+
+    Agora, novamente pelo Axioma~\ref{ax:implicacao1}, segue que $T\vdash \varphi \rightarrow (\varphi \rightarrow \varphi)$.
+
+    Portanto, novamente por modus ponens, segue que $T\vdash \varphi \rightarrow \varphi$.
+    \smallskip
+
+    \textbf{(iv)}: pelo Axioma~\ref{ax:implicacao2}, $T\vdash (\varphi \rightarrow (\psi \rightarrow \theta)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \theta))$.
+    
+    Pelo item (ii) e da hipótese, $T\vdash \varphi \rightarrow (\psi \rightarrow \theta)$.
+    Daí, por modus ponens, $T\vdash (\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \theta)$.
+    Novamente, por modus ponens, $T\vdash \varphi \rightarrow \theta$.
+\end{proof}
+
+Agora trataremos dos itens que envolvem a  negação.
+
+\begin{metaproposition}\label{mprop:contraposicao}
+    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ fórmulas da linguagem de $T$.
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $T\vdash \neg\neg \varphi$, então $T\vdash \varphi$.
+    \end{enumerate}
+\end{metaproposition}
+\begin{proof}
+    \textbf{(i)}: do Axioma~\ref{ax:negacao}, segue que $T\vdash (\neg \varphi \rightarrow \neg \varphi) \rightarrow ((\neg \varphi \rightarrow \varphi) \rightarrow \varphi)$.
+    
+    Dos itens (ii) e (iii) do Proposição~\ref{mprop:regraDeImplicacao}, segue que $T\vdash \neg \varphi \rightarrow \neg \varphi$ e $T\vdash \neg \varphi \rightarrow \varphi$.
+    Assim, pelo Axioma~\ref{ax:negacao} e modus ponens, $T\vdash \varphi$.
+\end{proof}
+
+
 
 \begin{metaproposition}
     Suponha que $T$ é uma teoria de primeira ordem e $\varphi, \psi$ são fórmulas da linguagem de $T$.
@@ -14,7 +71,8 @@ Iniciaremos provando ``regras de inferência derivadas''.
     \begin{enumerate}[label=(\roman*)]
         \item Se $T\vdash \varphi \land \psi$, então $T\vdash \varphi$.
         \item Se $T\vdash \varphi \land \psi$, então $T\vdash \psi$.
-        \item Se $T\vdash \varphi$ e $T\vdash \varphi\rightarrow \psi$, então $T\vdash \psi$.
+        \item Se $T\vdash \varphi$ e $T\vdash \psi$, então $T\vdash \varphi \land \psi$.
+        \item $T\vdash \varphi \rightarrow \varphi$.
     \end{enumerate}
 \end{metaproposition}
 
@@ -27,62 +85,111 @@ Iniciaremos provando ``regras de inferência derivadas''.
     Pelo Axioma~\ref{ax:conjuncao3}, $T\vdash (\varphi \land \psi) \rightarrow \psi$.
     Segue de modus ponens que $T\vdash \psi$.
 
-    Para o item (c), suponha que $T\vdash \varphi$ e $T\vdash \varphi\rightarrow \psi$.
+    Para o item (c), suponha que $T\vdash \varphi$ e $T\vdash \psi$.
     Pelo Axioma~\ref{ax:conjuncao1}, $T\vdash \varphi \rightarrow (\psi \rightarrow (\varphi \land \psi))$.
     Segue de modus ponens que $T\vdash \psi \rightarrow (\varphi \land \psi)$.
     Novamente, de modus ponens, que $T\vdash \varphi \land \psi$.
+
+    Para o item (d), suponha que $T\vdash \varphi \land \psi$.
+    Pelos itens (a) e (b), $T\vdash \varphi$ e $T\vdash \psi$.
+    Daí, pelo item (c), $T\vdash \psi \land \varphi$.
+\end{proof}
+\begin{metaproposition}
+    Suponha que $T$ é uma teoria de primeira ordem e $\varphi, \psi$ são fórmulas da linguagem de $T$.
+    Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $T\vdash \varphi$, então $T\vdash \varphi \vee \psi$.
+        \item Se $T\vdash \psi$, então $T\vdash \varphi \vee \psi$.
+        \item Se $T\vdash \varphi\vee \varphi$, então $T\vdash \varphi$.
+    \end{enumerate}
+\end{metaproposition}
+\begin{proof}
+    Para o item (a), suponha que $T\vdash \varphi$.
+    Pelo Axioma~\ref{ax:disjuncao1}, $T\vdash \varphi \rightarrow (\varphi \vee \psi)$.
+    Segue de modus ponens que $T\vdash \varphi \vee \psi$.
+
+    Para o item (b), suponha que $T\vdash \psi$.
+    Pelo Axioma~\ref{ax:disjuncao2}, $T\vdash \psi \rightarrow (\varphi \vee \psi)$.
+    Segue de modus ponens que $T\vdash \varphi \vee \psi$.
+
+    Para o item (c), suponha que $T\vdash \varphi\vee \varphi$.
+    Como já visto, $T\vdash \varphi \rightarrow \varphi$.
+    Pelo Axioma~\ref{ax:disjuncao3}, $T\vdash (\varphi \rightarrow \varphi) \rightarrow ((\varphi \rightarrow \varphi) \rightarrow (\varphi \vee \varphi)\rightarrow \varphi)$.
+    Segue de modus ponens aplicado duas vezes que $T\vdash (\varphi \vee \varphi) \rightarrow \varphi$.
+    Novamente, por modus ponens, $T\vdash \varphi$.
 \end{proof}
 
-Iniciaremos pelo Teorema da Dedução.
-Este teorema formaliza a ideia de que para provar uma implicação, podemos tomar o antecedente como hipótese para demonstrar o consequente.
 
-\begin{metatheorem}[Teorema da Dedução]\label{mthm:teoremaDaDeducao}\index{teorema!da dedução}
-    Seja $T$ uma teoria de primeira ordem e $\phi, \psi$ sentenças da linguagem de $T$.
-    São equivalentes:
-    \begin{enumerate}[label=(\roman*)]
-        \item $T \vdash \phi \rightarrow \psi$;
-        \item $T, \phi \vdash \psi$.
-    \end{enumerate}
+O próximo resultado nos mostra o motivo de contradições serem tão indesejáveis em Matemática: na Lógica Clássica, ao admitir uma, não estamos apenas sendo incoerentes, estamos abrindo margem para provar qualquer coisa: um verdadeiro desastre.
 
-    Em que $T,\phi$ denota a teoria obtida de $T$ acrescentando a sentença $\phi$ como axioma.
+\begin{metadefinition}\label{mdef:inconsistencia}\index{inconsistência}
+    Seja $T$ uma teoria de primeira ordem.
+    Dizemos que $T$ é \emph{inconsistente} se existe uma fórmula $\phi$ tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
+\end{metadefinition}
+
+\begin{metaproposition}[Princípio da explosão]\label{mprop:principioDaExplosao}\index{princípio da explosão}
+    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ fórmulas da linguagem de $T$.
+    Se $T\vdash \varphi$ e $T\vdash \neg \varphi$, então $T\vdash \psi$.
+\end{metaproposition}
+\begin{proof}
+    Suponha que $T\vdash \varphi$ e $T\vdash \neg \varphi$.
+
+    Pelo Axioma~\ref{ax:negacao},
+
+    \begin{equation}
+        \label{eq:principioDaExplosao1}
+        T\vdash (\neg \psi \rightarrow \varphi) \rightarrow ((\neg \psi \rightarrow \neg \varphi) \rightarrow \psi).
+    \end{equation}
+
+    Pelo Axioma~\ref{ax:implicacao1}, temos que $T\vdash \varphi \rightarrow (\neg \psi \rightarrow \varphi)$ e que $T\vdash \neg \varphi \rightarrow (\neg \psi \rightarrow \neg \varphi)$.
+
+    Como $T\vdash \varphi$ e $T\vdash \neg \varphi$, segue de modus ponens e do parágrafo anterior que $T\vdash \neg \psi \rightarrow \varphi$ e $T\vdash \neg \psi \rightarrow \neg \varphi$.
+
+    Finalmente, por modus ponens aplicado à Equação~\ref{eq:principioDaExplosao1}, $T\vdash \psi$.
+\end{proof}
+
+\subsection{O Teorema da Dedução}
+O Teorema da Dedução justifica o uso de ``hipóteses temporárias'' nas usuais em matemática.
+
+\begin{metatheorem}
+    Seja $(\Sigma, \mathcal L)$ uma teoria de primeira ordem e $\varphi, \psi$ $\mathcal L$-fórmulas.
+    Então $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$ se, e somente se, $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
 \end{metatheorem}
 
 \begin{proof}
-    $(i) \Rightarrow (ii)$: se $T \vdash \phi \rightarrow \psi$, então, pela Metaproposição~\ref{mprop:extensaoDeTeoria}, $T, \phi \vdash \phi \rightarrow \psi$.
-    Como $T, \phi\vdash \phi$, segue de modus ponens que $T, \phi \vdash \psi$.
+    Suponha primeiramente que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$.
+    Vejamos que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
 
-    $(ii) \Rightarrow (i)$: suponha que $T, \phi \vdash \psi$.
-    Existe uma demonstração $\theta_0, \dots, \theta_n$ de $\psi$ a partir de $T, \phi$.
-    Veremos, por indução em $i\leq n$, que $T \vdash \phi \rightarrow \theta_i$.
+    Ora, como $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$, segue da Metaproposição~\ref{mprop:extensaoDeTeoria} que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \varphi \rightarrow \psi$.
+    Como $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \varphi$, segue de modus ponens que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
 
-    Suponha que a tese vale para todo $j<i$.
-    
-    \textbf{Caso 1:} $\theta_i$ é um axioma de $T$, ou um axioma lógico.
-    Nesse caso, $\theta_i\rightarrow (\phi\rightarrow \theta_i)$ é uma instância de tautologia, e, portanto, $T\vdash \theta_i\rightarrow (\phi\rightarrow \theta_i)$.
-    Como $T\vdash \theta_i$, segue de modus ponens que $T\vdash \phi\rightarrow \theta_i$.
+    Para a recíproca, suponha que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
 
-    \textbf{Caso 2:} $\theta_i$ é a fórmula $\phi$.
-    Nesse caso, $\phi\rightarrow \phi$ é uma instância de tautologia, e, portanto, $T\vdash \phi\rightarrow \phi$.
+    Então existe uma dedução para $\psi$, digamos, $\psi_0, \dots, \psi_n$.
+    Por indução finitária, veremos que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$ para cada $i\leq n$.
 
-    \textbf{Caso 3:} $\theta_i$ é obtida por modus ponens a partir de $\theta_j$ e $\theta_k$, com $j,k<i$, em que $\theta_k$ é a fórmula $\theta_j\rightarrow \theta_i$.
-    Nesse caso, pela hipótese de indução:
-    
-    \begin{equation*}
-        T\vdash \phi\rightarrow \theta_j \text{ e } T\vdash \phi\rightarrow (\theta_j\rightarrow \theta_i).
-    \end{equation*}
-    Note que $(\phi\rightarrow \theta_j)\rightarrow ((\phi\rightarrow (\theta_j\rightarrow \theta_i))\rightarrow (\phi\rightarrow \theta_i))$ é uma instância de tautologia.
-    Segue que:
+    Suponha que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_j$ para cada $j<i$, em que $i\leq n$.
+    Veremos que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
 
-    \begin{equation*}
-        T\vdash (\phi\rightarrow \theta_j)\rightarrow ((\phi\rightarrow (\theta_j\rightarrow \theta_i))\rightarrow (\phi\rightarrow \theta_i)).
-    \end{equation*}
+    Caso 1: $\psi_i$ é um axioma lógico ou um elemento de $\Sigma$.
+    Nesse caso, $\Sigma\vdash_{\mathcal L} \psi_i$.
+    Além disso, $\Sigma\vdash_{\mathcal L} \psi_i \rightarrow (\varphi \rightarrow \psi_i)$, pelo Axioma~\ref{ax:implicacao1}.
+    Segue de modus ponens que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
 
-    Por duas aplicações sucessivas de modus ponens, segue que $T\vdash \phi\rightarrow \theta_i$.
+    Caso 2: $\psi_i$ é $\varphi$.
+    Nesse caso, $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \varphi$.
 
-    Em particular, para $i=n$, obtemos $T\vdash \phi\rightarrow \theta_n$, isto é, $T\vdash \phi\rightarrow \psi$.
+    Caso 3: $\psi_i$ é obtida por modus ponens a partir de $\psi_j$ e $\psi_k$, $\psi_k$ sendo $\psi_j \rightarrow \psi_i$.
+
+    Por hipótese de indução, $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_j$ e $\Sigma\vdash_{\mathcal L} \varphi \rightarrow (\psi_k \rightarrow \psi_i)$.
+    Pelo Axioma~\ref{ax:implicacao2} com $A$ sendo $\varphi$, $B$ sendo $\psi_j$ e $C$ sendo $\psi_i$, segue que
+    \[
+        \Sigma\vdash_{\mathcal L} (\varphi \rightarrow (\psi_k \rightarrow \psi_i)) \rightarrow ((\varphi \rightarrow \psi_j) \rightarrow (\varphi \rightarrow \psi_i)).
+    \]
+    Aplicando modus ponens duas vezes consecutivamente, obtemos $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
+
+    Caso 4: $\psi_i$ é da forma $(\forall x A)\rightarrow B$, e
 \end{proof}
-
-O Teorema da Dedução justifica o uso de hipóteses temporárias nas provas usuais.
 
 A seguir, veremos teoremas que justificam o uso de constantes temporárias.
 Por exemplo: em um contexto de análise real, para provar que uma função é contínua, costumamos ``fixar'' um $\epsilon>0$.
