@@ -43,8 +43,8 @@ Adicionalmente, convencionamos que $\rightarrow$ e $\leftrightarrow$ têm preced
 \end{convention}
 
 Não adotaremos, neste ponto, nenhuma convenção associativa para conectivos binários repetidos.
-Assim, expressões como deverão ser parentesadas sempre que forem utilizadas.
-Após provarmos que a validade lógica de tais fórmulas repeita as leis associativas, poderemos omitir tais parenteses.
+Assim, expressões como $P_0\wedge P_1\wedge P_2$ deverão receber parênteses sempre que forem utilizadas.
+Após demonstrarmos as equivalências associativas pertinentes, poderemos omitir tais parênteses quando isso não gerar ambiguidade.
 
 No exemplo \ref{ex:formulasProposicionais}, as fórmulas proposicionais seriam escritas, respectivamente, como:
 \begin{itemize}
@@ -67,6 +67,10 @@ Não trataremos, neste texto, de outros sistemas de lógica proposicional, como 
 
 \begin{metadefinition}[Axiomas da lógica proposicional]\label{mdef:axiomasLogicaProposicional}\index{axioma!lógica proposicional}
     Os axiomas da Lógica Proposicional Clássica são as fórmulas que podem ser escritas de alguma das seguintes formas, em que $\phi$, $\psi$ e $\chi$ são outras fórmulas proposicionais.
+
+    Mais precisamente, cada item abaixo é um \emph{esquema de axiomas}.
+    Sempre que substituímos $\phi$, $\psi$ e $\chi$ por fórmulas proposicionais quaisquer, obtemos um axioma da lógica proposicional.
+
     \begin{enumerate}[label=(PC\arabic*)]
         \item $\phi \rightarrow (\psi \rightarrow \phi)$;
         \item $(\phi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\phi \rightarrow \psi) \rightarrow (\phi \rightarrow \chi))$;
@@ -84,8 +88,6 @@ Não trataremos, neste texto, de outros sistemas de lógica proposicional, como 
     \end{enumerate}
 \end{metadefinition}
 
-Mais precisamente, cada item abaixo é um \emph{esquema de axiomas}.
-Sempre que substituímos $\phi$, $\psi$ e $\chi$ por fórmulas proposicionais quaisquer, obtemos um axioma da lógica proposicional.
 
 Agora estamos prontos para definir o que é uma dedução formal na lógica proposicional.
 
@@ -373,7 +375,7 @@ Para tanto, utilizaremos as seguintes tabelas.
     \end{itemize}
 \end{metadefinition}
 
-\begin{metadefinition}\label{mlem:valoracao}Seja $v$ uma valoração de variáveis proposicionais.
+\begin{metadefinition}\label{mdef:valorVerdadeFormulaProposicional}Seja $v$ uma valoração de variáveis proposicionais.
     Além dos símbolos $T$ e $F$ fixados acima, fixe também um símbolo $I$ (que abrevia \emph{indefinido}).
 
     Recursivamente na complexidade de $\phi$, definimos o valor de verdade de $\phi$ sob $v$, denotado por $v(\phi)$, a partir do seguinte algoritmo.
@@ -992,7 +994,7 @@ Para concluirmos nosso objetivo, precisamos do seguinte princípio auxiliar, que
         \vdash_P \phi.
     \]
 \end{metatheorem}
-A estratégia da prova é começar com atribuições completas de valores de verdade, caso em que o Metalema~\ref{mlem:fundamentalValoracoes} se aplica diretamente, e então remover as hipóteses uma a partir de quebras de casos.
+A estratégia da prova é começar com atribuições completas de valores de verdade, caso em que o Metalema~\ref{mlem:fundamentalValoracoes} se aplica diretamente, e então remover as hipóteses uma a uma por meio da quebra de casos.
 \begin{proof}
     Suponha que $\phi$ é uma tautologia.
     Seja $Q_0,\dots,Q_n$
