@@ -2,7 +2,7 @@
 Antes de adentrarmos na lógica de primeira ordem, vamos discutir a lógica proposicional.
 
 \begin{metadefinition}[Fórmulas proposicionais]\label{mdef:formulasProposicionais}\index{fórmula!proposicional}
-    O léxico para lógica proposicional é o léxico para a notação polonesa cujos símbolos básicos:
+    O léxico da lógica proposicional é o léxico para a notação polonesa cujos símbolos básicos são:
     \begin{itemize}
         \item $\neg$ (negação, unário);
         \item $\wedge$ (conjunção, binário);
@@ -10,7 +10,8 @@ Antes de adentrarmos na lógica de primeira ordem, vamos discutir a lógica prop
         \item $\rightarrow$ (condicional, binário);
         \item $\leftrightarrow$ (bicondicional, binário).
         \item Uma infinidade (enumerável) de símbolos de \emph{variáveis proposicionais} $P_0, P_1, \dots$ (símbolos $0$-ários).
-        \end{itemize}
+    \end{itemize}
+    As \emph{fórmulas proposicionais} são as expressões bem formadas nesse léxico.
 \end{metadefinition}
 
 As variáveis proposicionais são símbolos que podem ser interpretados como proposições, ou seja, como afirmações que podem ser verdadeiras ou falsas.
@@ -19,8 +20,8 @@ As variáveis proposicionais são símbolos que podem ser interpretados como pro
     \begin{itemize}
         \item $\neg P_0$ é uma fórmula proposicional.
         \item $\wedge P_1 P_2$ é uma fórmula proposicional.
-        \item $\rightarrow \neg P_3 \vee P_4$ é uma fórmula proposicional.
-        \item $\leftrightarrow \neg \wedge P_5 P_6 P_7$ é uma fórmula proposicional.
+        \item $\rightarrow \neg P_3 P_4$ é uma fórmula proposicional.
+        \item $\leftrightarrow \neg \wedge P_5 P_6 \neg P_7$ é uma fórmula proposicional.
         \item $\rightarrow \vee P_0 P_7 \wedge P_2 P_1$ é uma fórmula proposicional.
     \end{itemize}
 \end{example}
@@ -88,7 +89,7 @@ Agora estamos prontos para definir o que é uma dedução formal na lógica prop
     \begin{itemize}
         \item $\phi_i$ é uma fórmula de $\Gamma$, ou
         \item $\phi_i$ é um axioma da lógica proposicional, ou
-        \item existem $j, k < i$ tais que $\phi_j$ é da forma $\psi_k \rightarrow \phi_i$.
+        \item existem $j, k < i$ tais que $\phi_j$ é da forma $\phi_k \rightarrow \phi_i$.
     \end{itemize}
     
     Dizemos que uma fórmula \emph{$\psi$ é deduzida a partir de $\Gamma$}, ou que \emph{$\psi$ é uma consequência lógica de $\Gamma$}, ou que \emph{$\psi$ é um teorema de $\Gamma$}, e escrevemos $\Gamma \vdash_P \psi$, se existe uma dedução formal $\phi_0, \dots, \phi_n$ a partir de $\Gamma$ tal que $\phi_n$ é $\psi$.
@@ -106,9 +107,9 @@ Vamos começar com dois exemplos simples.
 
 Também daremos a seguinte observação simples.
 
-\begin{proposition}\label{prop:PCmonotonicidade}Sejam $\Gamma$ e $\Gamma'$ coleções de fórmulas proposicionais tais que $\Gamma \subseteq \Gamma'$ (ou seja, tais que toda fórmula de $\Gamma$ é uma fórmula de $\Gamma'$).
+\begin{metaproposition}\label{metaprop:PCmonotonicidade}Sejam $\Gamma$ e $\Gamma'$ coleções de fórmulas proposicionais tais que $\Gamma \subseteq \Gamma'$ (ou seja, tais que toda fórmula de $\Gamma$ é uma fórmula de $\Gamma'$).
 Se $\Gamma \vdash_P \phi$, então $\Gamma' \vdash_P \phi$.
-\end{proposition}
+\end{metaproposition}
 \begin{proof}Se $\Gamma \vdash_P \phi$, então existe uma dedução formal $\phi_0, \dots, \phi_n$ a partir de $\Gamma$ tal que $\phi_n$ é $\phi$.
 É imediato da definição de dedução formal que $\phi_0, \dots, \phi_n$ é uma dedução formal a partir de $\Gamma'$, assim, $\Gamma' \vdash_P \phi$.
 \end{proof}
@@ -117,8 +118,8 @@ Logo, parece ser relevante saber quais as fórmulas proposicionais $\phi$ tais q
 
 Iniciaremos com o seguinte.
 
-\begin{proposition}\label{prop:PCreflexividade}Se $\phi$ é qualquer fórmula proposicional, então $\vdash_P \phi \rightarrow \phi$.
-\end{proposition}
+\begin{metaproposition}\label{metaprop:PCreflexividade}Se $\phi$ é qualquer fórmula proposicional, então $\vdash_P \phi \rightarrow \phi$.
+\end{metaproposition}
 \begin{proof}Vamos construir uma dedução formal de $\phi \rightarrow \phi$.
     Considere:
 
@@ -134,9 +135,9 @@ Apesar de curta, a dedução formal da proposição anterior é um pouco difíci
 Seria muito útil ter métodos mais simples para encontrar demonstrar que fórmula proposicional é um teorema da lógica proposicional.
 
 O primeiro método, simples, é uma abstração do modus ponens.
-\begin{proposition}\label{prop:PCmodusPonens}Considere fórmulas proposicionais $\phi$ e $\psi$, e uma coleção de fórmulas proposicionais $\Gamma$.
+\begin{metaproposition}\label{metaprop:PCmodusPonens}Considere fórmulas proposicionais $\phi$ e $\psi$, e uma coleção de fórmulas proposicionais $\Gamma$.
 Se $\Gamma \vdash_P \phi$ e $\Gamma \vdash_P \phi \rightarrow \psi$, então $\Gamma \vdash_P \psi$.
-\end{proposition}
+\end{metaproposition}
 \begin{proof}Como $\Gamma \vdash_P \phi$, então existe uma dedução formal $\phi_0, \dots, \phi_n$ a partir de $\Gamma$ tal que $\phi_n$ é $\phi$.
 Como $\Gamma \vdash_P \phi \rightarrow \psi$, então existe uma dedução formal $\psi_0, \dots, \psi_m$ a partir de $\Gamma$ tal que $\psi_m$ é $\phi \rightarrow \psi$.
 Concatenando as deduções formais $\phi_0, \dots, \phi_n$ e $\psi_0, \dots, \psi_m$, e adicionando $\psi$ ao final da sequência, obtemos uma dedução formal a partir de $\Gamma$ tal que $\psi$ é a última fórmula da dedução formal, ou seja, $\Gamma \vdash_P \psi$.
@@ -150,13 +151,13 @@ Primeiro, uma convenção.
 Então $\Gamma\cup \{\phi_1, \dots, \phi_n\}$ denota a coleção de fórmulas proposicionais que contém todas as fórmulas de $\Gamma$ e as fórmulas $\phi_1, \dots, \phi_n$.
 \end{convention}
 
-\begin{theorem}[Teorema da Dedução]\label{thm:teoremaDeducao}\index{teorema!da dedução}
+\begin{metatheorem}[Teorema da Dedução]\label{thm:teoremaDeducao}\index{teorema!da dedução}
     Considere uma coleção de fórmulas proposicionais $\Gamma$ e fórmulas proposicionais $\phi$ e $\psi$.
     Então $\Gamma \cup \{\phi\} \vdash_P \psi$ se, e somente se, $\Gamma \vdash_P \phi \rightarrow \psi$.
-\end{theorem}
+\end{metatheorem}
 \begin{proof}
     Suponha primeiramente que $\Gamma \vdash_P \phi \rightarrow \psi$.
-    Então, pela Proposição~\ref{prop:PCmonotonicidade}, $\Gamma \cup \{\phi\} \vdash_P \phi \rightarrow \psi$.
+    Então, pela Proposição~\ref{metaprop:PCmonotonicidade}, $\Gamma \cup \{\phi\} \vdash_P \phi \rightarrow \psi$.
     Como $\phi$ está em $\Gamma \cup \{\phi\}$, então $\Gamma \cup \{\phi\} \vdash_P \phi$.
     Assim, por modus ponens, $\Gamma \cup \{\phi\} \vdash_P \psi$.
 
@@ -172,7 +173,7 @@ Então $\Gamma\cup \{\phi_1, \dots, \phi_n\}$ denota a coleção de fórmulas pr
     Assim, por modus ponens, $\Gamma \vdash_P \phi \rightarrow \psi_i$.
 
     \textbf{Caso 2:} $\psi_i$ é $\phi$.
-    Então $\Gamma \vdash_P \phi \rightarrow \phi$ pela Proposição~\ref{prop:PCreflexividade}.
+    Então $\Gamma \vdash_P \phi \rightarrow \phi$ pela Proposição~\ref{metaprop:PCreflexividade}.
 
     \textbf{Caso 3:} existem $j, k < i$ tais que $\psi_j$ é da forma $\psi_k \rightarrow \psi_i$.
     Então, pela hipótese indutiva, $\Gamma \vdash_P \phi \rightarrow \psi_j$ e $\Gamma \vdash_P \phi \rightarrow \psi_k$.
@@ -183,9 +184,9 @@ Então $\Gamma\cup \{\phi_1, \dots, \phi_n\}$ denota a coleção de fórmulas pr
 
 Como aplicação, provaremos a recíproca de PC13.
 
-\begin{proposition}\label{prop:PC13reciproca}Seja $\phi$ uma fórmula proposicional.
+\begin{metaproposition}\label{metaprop:PC13reciproca}Seja $\phi$ uma fórmula proposicional.
     Então $\vdash_P \phi \rightarrow \neg\neg \phi$.
-\end{proposition}
+\end{metaproposition}
 \begin{proof}
     É suficiente ver que $\{\phi\} \vdash_P \neg\neg \phi$.
 
@@ -212,9 +213,9 @@ Como aplicação, provaremos a recíproca de PC13.
 Outro teorema relevante cuja demonstração é facilitada pelo Teorema da Dedução é o Princípio da explosão.
 Em suma, ele diz que se for derivada uma contradição, então qualquer fórmula proposicional pode ser derivada.
 
-\begin{proposition}[Princípio da explosão]\label{prop:principioExplosaoProposicional}Sejam $\phi$ e $\psi$ fórmulas proposicionais.
+\begin{metaproposition}[Princípio da explosão]\label{metaprop:principioExplosaoProposicional}Sejam $\phi$ e $\psi$ fórmulas proposicionais.
     Então $\vdash_p \phi\rightarrow(\neg \phi \rightarrow \psi)$.
-\end{proposition}
+\end{metaproposition}
 \begin{proof}
     É suficiente, por duas aplicações do Teorema da Dedução, ver que $\{\phi, \neg \phi\} \vdash_P \psi$.
 
@@ -231,7 +232,7 @@ Em suma, ele diz que se for derivada uma contradição, então qualquer fórmula
 \end{proof}
 
 Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
-\begin{metaproposition}[Modus tollens]\label{prop:modusTollensProposicional}
+\begin{metaproposition}[Modus tollens]\label{metaprop:modusTollensProposicional}
     Sejam $\phi$ e $\psi$ fórmulas proposicionais e $\Gamma$ uma coleção de fórmulas proposicionais.
     \begin{enumerate}[label=(\alph*)]
         \item $\vdash_P (\phi \rightarrow \psi) \rightarrow ((\neg \psi) \rightarrow (\neg \phi))$.
@@ -242,7 +243,12 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
 \begin{proof}
     (a) É suficiente ver que $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \neg \phi$.
 
-    Temos que $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P (\phi \rightarrow \psi) \rightarrow ((\phi \rightarrow \psi) \rightarrow \neg \phi)$, pelo axioma PC3.
+    Temos que
+    \[
+        \{\phi \rightarrow \psi, \neg \psi\} \vdash_P
+        (\phi \rightarrow \psi) \rightarrow ((\phi \rightarrow \neg \psi) \rightarrow \neg \phi),
+    \]
+    pelo axioma PC3.
 
     Temos que $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P\phi \rightarrow \psi$, assim, por modus ponens, $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P (\phi \rightarrow \neg \psi)\rightarrow \neg \phi$.
 
@@ -251,9 +257,28 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
     Logo, novamente por modus ponens, $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \neg \phi$.
 
     (b) Pelo Teorema da Dedução, é suficiente ver que $\{\neg \psi \rightarrow \neg \phi, \phi\} \vdash_P \psi$.
-    Pelo item (a), $\{\neg \psi \rightarrow \neg \phi, \phi\} \vdash_P (\neg \psi \rightarrow \neg \phi) \rightarrow (\neg \neg \phi \rightarrow \neg \psi)$.
-    Por modus ponens, $\{\neg \psi \rightarrow \neg \phi, \phi\} \vdash_P \neg \neg \phi \rightarrow \neg \neg \psi$.
-    Pela recíproca de PC13 e modus ponens, $\{\neg \psi \rightarrow \neg \phi, \phi\} \vdash_P \neg \neg \phi$.
+    Pelo item (a),
+    \[
+        \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P
+        (\neg \psi \rightarrow \neg \phi) \rightarrow (\neg\neg \phi \rightarrow \neg\neg \psi).
+    \]
+    Por modus ponens,
+    \[
+        \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P
+        \neg\neg \phi \rightarrow \neg\neg \psi.
+    \]
+    Pela Proposição~\ref{prop:PC13reciproca} e modus ponens,
+    \[
+        \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P \neg\neg\phi.
+    \]
+    Logo,
+    \[
+        \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P \neg\neg\psi.
+    \]
+    Por PC13 e modus ponens,
+    \[
+        \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P \psi.
+    \]
     Novamente pela recíproca de PC13 e modus ponens, $\{\neg \psi \rightarrow \neg \phi, \phi\} \vdash_P \psi$, como queríamos.
 
     (c) A implicação da esquerda para a direita é imediata do item (a) e modus ponens.
@@ -277,7 +302,7 @@ A seguir, expandiremos o valor de verdade de uma fórmula proposicional $\phi$ s
 
 Para tanto, utilizaremos as seguintes tabelas.
 
-\begin{definition}
+\begin{metadefinition}
     Definimos as seguintes operações lógicas que agem nos símbolos $T$ e $F$.
     Nas tabelas abaixo, $A$ e $B$ denotam valores de verdade, ou seja, $T$ ou $F$.
     Cada linha corresponde a um caso possível de atribuição de valores de verdade a $A$ e $B$, e a última coluna corresponde ao valor de verdade da operação lógica aplicada a $A$ e $B$.
@@ -336,10 +361,10 @@ Para tanto, utilizaremos as seguintes tabelas.
             \end{tabular}
         \end{center}
     \end{itemize}
-\end{definition}
+\end{metadefinition}
 
 \begin{metadefinition}\label{mlem:valoracao}Seja $v$ uma valoração de variáveis proposicionais.
-    Além dos símbolos $V$ e $F$ fixados acima, fixe também um símbolo $I$ (que abrevia \emph{indefinido}).
+    Além dos símbolos $T$ e $F$ fixados acima, fixe também um símbolo $I$ (que abrevia \emph{indefinido}).
 
     Recursivamente na complexidade de $\phi$, definimos o valor de verdade de $\phi$ sob $v$, denotado por $v(\phi)$, a partir do seguinte algoritmo.
     Se $v$ não é uma valoração para $\phi$, então $v(\phi)$ é $I$.
@@ -352,8 +377,8 @@ Para tanto, utilizaremos as seguintes tabelas.
     Dizemos que $\phi$ é uma \emph{tautologia} se $v(\phi)$ é $T$ para toda valoração $v$ de $\phi$.
 \end{metadefinition}
 
-Uma primeira observação é que suas valorações para $\phi$ que coincidem em todas as variáveis proposicionais que ocorrem em $\phi$ atribuem o mesmo valor de verdade a $\phi$.
-Deste modo, a arbitrariedade na definição de valoração para $v(P)$ como $F$ quando $P$ é uma variável proposicional que não ocorre em $\phi$ não afeta o valor de verdade de $\phi$ sob $v$.
+Uma primeira observação é que valorações para $\phi$ que coincidem em todas as variáveis proposicionais que ocorrem em $\phi$ atribuem o mesmo valor de verdade a $\phi$.
+Deste modo, valores eventualmente atribuídos a variáveis proposicionais que não ocorrem em $\phi$ não afetam o valor de verdade de $\phi$.
 
 \begin{metalemma}
     Sejam $v$ e $v'$ valorações de variáveis proposicionais tais que, para cada variável proposicional $P$ que ocorre em $\phi$, $v(P)$ é igual a $v'(P)$.
@@ -430,21 +455,30 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 \end{proof}
 
 \begin{metacorollary}
-    Se $\mathcal F$ é uma coleção finita de fórmulas proposicionais, $\theta$ é uma tautologia e $\rho$ é uma atribuição de $\theta$ tal que, para cada variável proposicional $P$ para a qual $\rho(P)$ é definida, $\rho(P)$ é uma fórmula proposicional de $\mathcal F$, então $\subst(\theta, \rho)$ é uma tautologia.
+    Se $\theta$ é uma tautologia e $\rho$ é uma atribuição para $\theta$, então $\subst(\theta,\rho)$ é uma tautologia.
 \end{metacorollary}
 \begin{proof}
-    Seja $v$ uma valoração de cada fórmula proposicional de $\mathcal F$.
-    Seja $\hat v$ a valoração de variáveis proposicionais definida de modo que para cada variável proposicional $P$ para a qual $\rho(P)$ é definida, $\hat v(P)$ é $v(\rho(P))$.
+    Seja $v$ uma valoração de $\subst(\theta,\rho)$.
+    Seja $\mathcal F=\{\rho(P): P \text{ ocorre em } \theta\}$.
+    Então $v$ é uma valoração de cada fórmula proposicional de $\mathcal F$.
 
-    Como $\theta$ é uma tautologia, então $\hat v(\theta)$ é $T$.
-    Assim, $v(\subst(\theta, \rho))$ é $T$.
+    Seja $\hat v$ a valoração de variáveis proposicionais definida de modo que, para cada variável proposicional $P$ que ocorre em $\theta$,
+    \[
+        \hat v(P)=v(\rho(P)).
+    \]
+    Como $\theta$ é uma tautologia, temos $\hat v(\theta)=T$.
+    Pelo lema anterior,
+    \[
+        v(\subst(\theta,\rho))=\hat v(\theta).
+    \]
+    Logo, $v(\subst(\theta,\rho))=T$.
 \end{proof}
 
-\begin{theorem}\label{thm:PCteoremasSaoTautologias}Se $\phi$ é um teorema da lógica proposicional, então $\phi$ é uma tautologia.
-\end{theorem}
+\begin{metatheorem}\label{thm:PCteoremasSaoTautologias}Se $\phi$ é um teorema da lógica proposicional, então $\phi$ é uma tautologia.
+\end{metatheorem}
 \begin{proof}
     Primeiramente, vamos mostrar que cada axioma da lógica proposicional é uma tautologia.
-    Pelo corolário anterior, é suficiente mostrar que cada axioma da lógica da Metadefinition~\ref{mdef:axiomasLogicaProposicional} é uma tautologia quando $\psi$, $\phi$ e $\chi$ são variáveis proposicionais distintas, digamos, $P$, $Q$ e $R$.
+    Pelo corolário anterior, é suficiente mostrar que cada axioma da lógica da Metadefinição~\ref{mdef:axiomasLogicaProposicional} é uma tautologia quando $\psi$, $\phi$ e $\chi$ são variáveis proposicionais distintas, digamos, $P$, $Q$ e $R$.
 
     Verificaremos isso diagramaticamente, através de tabelas-verdade.
     Na tabela, cada coluna à esquerda da última coluna corresponde a uma subfórmula do axioma, e a última coluna corresponde ao valor de verdade do axioma.
@@ -469,7 +503,7 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
                 $T$ & $T$ & $T$ & $T$ & $T$ & $T$ \\
                 $T$ & $T$ & $F$ & $F$ & $F$ & $T$ \\
                 $T$ & $F$ & $T$ & $T$ & $T$ & $T$ \\
-                $T$ & $F$ & $F$ & $F$ & $F$ & $T$ \\
+                $T$ & $F$ & $F$ & $T$ & $T$ & $T$ \\
                 $F$ & $T$ & $T$ & $T$ & $T$ & $T$ \\
                 $F$ & $T$ & $F$ & $T$ & $T$ & $T$ \\
                 $F$ & $F$ & $T$ & $T$ & $T$ & $T$ \\
@@ -479,10 +513,10 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
         \item Para o Axioma PC3, temos:
         \begin{center}
             \begin{tabular}{c|c|c|c|c|c}
-                $P$ & $Q$ & $P \rightarrow Q$ & $P \rightarrow (P \rightarrow Q)$ & $P \rightarrow \neg Q$ & (PC3) \\
+                $P$ & $Q$ & $P \rightarrow Q$ & $P \rightarrow \neg Q$ & $\neg P$ & (PC3) \\
                 \hline
-                $T$ & $T$ & $T$ & $T$ & $F$ & $T$ \\
-                $T$ & $F$ & $F$ & $F$ & $T$ & $T$ \\
+                $T$ & $T$ & $T$ & $F$ & $F$ & $T$ \\
+                $T$ & $F$ & $F$ & $T$ & $F$ & $T$ \\
                 $F$ & $T$ & $T$ & $T$ & $T$ & $T$ \\
                 $F$ & $F$ & $T$ & $T$ & $T$ & $T$
             \end{tabular}
@@ -544,17 +578,17 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
         \end{center}
         \item Para o Axioma PC9, temos:
         \begin{center}
-            \begin{tabular}{c|c|c|c|c}
-                $P$ & $Q$ & $R$ & $(P \rightarrow R)$ & $((P \lor Q) \rightarrow R)$ \\
+            \begin{tabular}{c|c|c|c|c|c|c}
+                $P$ & $Q$ & $R$ & $P\lor Q$ & $P \rightarrow R$ & $Q \rightarrow R$ & (PC9) \\
                 \hline
-                $T$ & $T$ & $T$ & $T$ & $T$ \\
-                $T$ & $T$ & $F$ & $F$ & $F$ \\
-                $T$ & $F$ & $T$ & $T$ & $T$ \\
-                $T$ & $F$ & $F$ & $F$ & $F$ \\
-                $F$ & $T$ & $T$ & $T$ & $T$ \\
-                $F$ & $T$ & $F$ & $T$ & $F$ \\
-                $F$ & $F$ & $T$ & $T$ & $T$ \\
-                $F$ & $F$ & $F$ & $T$ & $F$
+                $T$ & $T$ & $T$ & $T$ & $T$ & $T$ & $T$ \\
+                $T$ & $T$ & $F$ & $T$ & $F$ & $F$ & $T$ \\
+                $T$ & $F$ & $T$ & $T$ & $T$ & $T$ & $T$ \\
+                $T$ & $F$ & $F$ & $T$ & $F$ & $T$ & $T$ \\
+                $F$ & $T$ & $T$ & $T$ & $T$ & $T$ & $T$ \\
+                $F$ & $T$ & $F$ & $T$ & $T$ & $F$ & $T$ \\
+                $F$ & $F$ & $T$ & $F$ & $T$ & $T$ & $T$ \\
+                $F$ & $F$ & $F$ & $F$ & $T$ & $T$ & $T$
             \end{tabular}
         \end{center}
         \item Para o Axioma PC10, temos:
@@ -592,11 +626,11 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
         \end{center}
         \item Para o Axioma PC13, temos:
         \begin{center}
-            \begin{tabular}{c|c|c}
-                $P$ & $\neg P$ & $P \rightarrow \neg \neg P$ \\
+            \begin{tabular}{c|c|c|c}
+                $P$ & $\neg P$ & $\neg\neg P$ & $\neg\neg P \rightarrow P$ \\
                 \hline
-                $T$ & $F$ & $T$ \\
-                $F$ & $T$ & $T$
+                $T$ & $F$ & $T$ & $T$ \\
+                $F$ & $T$ & $F$ & $T$
             \end{tabular}
         \end{center}
     \end{itemize}
@@ -696,7 +730,7 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
     Como $v(\psi)=T$, temos $\psi^v=\psi$.
     Pela hipótese indutiva,
     $\Gamma_v\vdash_P \psi$.
-    Pela Proposição~\ref{prop:PC13reciproca} e modus ponens, segue que, $\Gamma_v\vdash_P \neg\neg\psi$.
+    Pela Proposição~\ref{metaprop:PC13reciproca} e modus ponens, segue que, $\Gamma_v\vdash_P \neg\neg\psi$.
     Desse modo, $\Gamma_v\vdash_P \theta^v$.
 
     \textbf{Caso 3:} $\theta$ é $\psi\land\eta$.
@@ -710,17 +744,27 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
     Agora suponha que $v(\psi)=F$.
     Então $v(\psi\land\eta)=F$, de modo que $\theta^v=\neg(\psi\land\eta)$.
     Pela hipótese indutiva, $\Gamma_v\vdash_P \neg\psi$.
-    Por outro lado, por PC4, temos 
+
+    Por PC4,
     \[
-        \Gamma_v\cup\{\psi\}\land\eta\rightarrow \vdash_P \psi.
+        \Gamma_v\vdash_P (\psi\land\eta)\rightarrow \psi.
     \]
-    Pela monotonicidade, $\Gamma_v\cup\{\psi\land\eta\}\vdash_P \neg\psi$.
+    Pela monotonicidade,
     \[
-        \Gamma_v\vdash_P \psi\land\eta\rightarrow \neg\psi
+        \Gamma_v\cup\{\psi\land\eta\}\vdash_P \neg\psi.
+    \]
+    Além disso,
+    \[
+        \Gamma_v\cup\{\psi\land\eta\}\vdash_P \psi,
+    \]
+    por PC4 e modus ponens.
+    Pelo Teorema da Dedução,
+    \[
+        \Gamma_v\vdash_P (\psi\land\eta)\rightarrow \neg\psi.
     \]
     Finalmente, por PC3,
     \[
-        \Gamma_v\vdash_P (\psi\land \eta\rightarrow \psi)\rightarrow ((\psi\land \eta\rightarrow \neg\psi)\rightarrow \neg(\psi\land\eta)).
+        \Gamma_v\vdash_P ((\psi\land \eta)\rightarrow \psi)\rightarrow (((\psi\land \eta)\rightarrow \neg\psi)\rightarrow \neg(\psi\land\eta)).
     \]
     Aplicando modus ponens duas vezes, concluímos que $\Gamma_v\vdash_P \neg(\psi\land\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
 
@@ -787,14 +831,13 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
 
     Temos que $\Gamma_v\vdash_P (\psi\rightarrow\eta)\rightarrow \eta$ por uma aplicação do Teorema da Dedução e modus ponens, já que $\Gamma_v\cup\{\psi\rightarrow \eta\}\vdash_P \psi$.
     Por outro lado, por PC1 e modus ponens, $\Gamma_v\vdash_P (\psi\rightarrow\eta)\rightarrow \neg\eta$.
-    Assim, por PC4 e duas aplicações de modus ponens, $\Gamma_v\vdash_P \neg(\psi\rightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
+    Assim, por PC3 e duas aplicações de modus ponens, $\Gamma_v\vdash_P \neg(\psi\rightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
      
     \textbf{Caso 6:} $\theta$ é $\psi\leftrightarrow\eta$.
     Pela hipótese indutiva, $\Gamma_v\vdash_P \psi^v$ e $\Gamma_v\vdash_P \eta^v$.
 
     Suponha primeiramente que $v(\psi)=v(\eta)$.
     Então $v(\psi\leftrightarrow\eta)=T$, de modo que $\theta^v=\psi\leftrightarrow\eta$.
-    Devido ao axioma PC10 e modus ponens, temos, $\Gamma_v\vdash_P \psi\rightarrow\eta$ e $\Gamma_v\vdash_P \eta\rightarrow\psi$.
 
     Se $v(\psi)=v(\eta)=T$, então, pela hipótese indutiva, $\Gamma_v\vdash_P \psi$ e $\Gamma_v\vdash_P \eta$.
 
@@ -824,40 +867,117 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
     
     O caso em que $v(\psi)=F$ e $v(\eta)=T$ é análogo, utilizando PC11 ao invés de PC10.
 
+    Em ambos os subcasos, temos
+    \[
+        \Gamma_v\vdash_P \psi\rightarrow\eta
+        \qquad\text{e}\qquad
+        \Gamma_v\vdash_P \eta\rightarrow\psi.
+    \]
+    Por PC12,
+    \[
+        \Gamma_v\vdash_P
+        (\psi\rightarrow\eta)\rightarrow((\eta\rightarrow\psi)\leftrightarrow(\psi\leftrightarrow\eta)).
+    \]
+    Por modus ponens,
+    \[
+        \Gamma_v\vdash_P
+        (\eta\rightarrow\psi)\leftrightarrow(\psi\leftrightarrow\eta).
+    \]
+    Por PC10,
+    \[
+        \Gamma_v\vdash_P
+        ((\eta\rightarrow\psi)\leftrightarrow(\psi\leftrightarrow\eta))
+        \rightarrow
+        ((\eta\rightarrow\psi)\rightarrow(\psi\leftrightarrow\eta)).
+    \]
+    Aplicando modus ponens duas vezes, obtemos
+    \[
+        \Gamma_v\vdash_P \psi\leftrightarrow\eta.
+    \]
+    Portanto, $\Gamma_v\vdash_P \theta^v$.
+
     Isso encerra todos os casos possíveis para $\theta$.
     Portanto, por indução na complexidade de $\theta$, se $\theta$ é uma subfórmula de $\phi$, então $\Gamma_v^\phi\vdash_P \theta^v$.
 \end{proof}
 
 Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de casos''.
 
-\begin{metalemma}Seja $\phi$ uma fórmula proposicional.
+\begin{metalemma}\label{mlem:terceiroExcluidoProposicional}
+    Seja $\phi$ uma fórmula proposicional.
     Então $\vdash_P \phi\vee \neg \phi$.
 \end{metalemma}
 \begin{proof}
-    Temos que $\vdash_P \phi\rightarrow (\neg \phi\rightarrow \phi)$ e $\vdash_P \neg \phi\rightarrow (\phi\rightarrow \neg \phi)$ por PC8 e PC9.
-    Assim, por Modus Tollens, $\vdash_P \neg(\phi\rightarrow \neg \phi)\rightarrow \neg \phi$ e $\vdash_P \neg(\neg \phi\rightarrow \phi)\rightarrow \neg \neg \phi$.
-    
-    Portanto, por PC3 e duas aplicações de modus ponens, $\vdash_P \neg \neg(\phi\rightarrow \neg \phi)$.
-    
-    Por PC13 e modus ponens, $\vdash_P \phi\rightarrow \neg \neg \phi$.
+    Escreva $A$ para $\phi\vee\neg\phi$.
+
+    Por PC7, temos $\vdash_P \phi\rightarrow A$.
+    Pelo item (a) da Metaproposição~\ref{prop:modusTollensProposicional} e modus ponens,
+    \[
+        \vdash_P \neg A\rightarrow \neg\phi.
+    \]
+
+    Por PC8, temos $\vdash_P \neg\phi\rightarrow A$.
+    Novamente pelo item (a) da Metaproposição~\ref{prop:modusTollensProposicional} e modus ponens,
+    \[
+        \vdash_P \neg A\rightarrow \neg\neg\phi.
+    \]
+
+    Como $\vdash_P \neg\neg\phi\rightarrow\phi$ por PC13, segue, pelo Teorema da Dedução e por modus ponens, que
+    \[
+        \vdash_P \neg A\rightarrow \phi.
+    \]
+
+    Por PC3,
+    \[
+        \vdash_P (\neg A\rightarrow \phi)\rightarrow((\neg A\rightarrow \neg\phi)\rightarrow\neg\neg A).
+    \]
+    Aplicando modus ponens duas vezes, obtemos
+    \[
+        \vdash_P \neg\neg A.
+    \]
+    Por PC13 e modus ponens,
+    \[
+        \vdash_P A.
+    \]
+    Como $A$ é $\phi\vee\neg\phi$, segue que $\vdash_P \phi\vee\neg\phi$.
 \end{proof}
 
-\begin{metalemma}[Quebra de Casos]
+\begin{metalemma}[Quebra de casos]
     Seja $\Gamma$ uma coleção de fórmulas proposicionais, e sejam $\phi$ e $\psi$ fórmulas proposicionais.
     Se $\Gamma\cup\{\phi\}\vdash_P \psi$ e $\Gamma\cup\{\neg \phi\}\vdash_P \psi$, então $\Gamma\vdash_P \psi$.
 \end{metalemma}
 \begin{proof}
-    Basta ver que se $\Gamma\vdash_P \phi\rightarrow \psi$ e $\Gamma\vdash_P \neg \phi\rightarrow \psi$, então $\Gamma\vdash_P \psi$.
+    Pelo Teorema da Dedução, basta ver que se
+    \[
+        \Gamma\vdash_P \phi\rightarrow\psi
+        \qquad\text{e}\qquad
+        \Gamma\vdash_P \neg\phi\rightarrow\psi,
+    \]
+    então $\Gamma\vdash_P \psi$.
 
-    Do Axioma PC8 e modus ponens, $\Gamma\vdash_P (\phi\rightarrow \neg \phi)\rightarrow \psi$.
-    Assim, como $\Gamma\vdash_P \phi\lor \neg \phi$, por modus ponens segue que $\Gamma\vdash_P \psi$.
+    Por PC9,
+    \[
+        \Gamma\vdash_P
+        (\phi\rightarrow\psi)\rightarrow((\neg\phi\rightarrow\psi)\rightarrow((\phi\vee\neg\phi)\rightarrow\psi)).
+    \]
+    Aplicando modus ponens duas vezes,
+    \[
+        \Gamma\vdash_P (\phi\vee\neg\phi)\rightarrow\psi.
+    \]
+    Pelo lema anterior,
+    \[
+        \Gamma\vdash_P \phi\vee\neg\phi.
+    \]
+    Logo, por modus ponens,
+    \[
+        \Gamma\vdash_P \psi.
+    \]
 \end{proof}
-\begin{theorem}[Teorema das tautologias]\label{thm:tautologiasSaoTeoremas}
+\begin{metatheorem}[Teorema das tautologias]\label{thm:tautologiasSaoTeoremas}
     Se $\phi$ é uma tautologia, então
     \[
         \vdash_P \phi.
     \]
-\end{theorem}
+\end{metatheorem}
 
 \begin{proof}
     Suponha que $\phi$ é uma tautologia.
@@ -948,12 +1068,12 @@ Uma consequência é a seguinte.
 \end{metacorollary}
 
 \begin{proof}
-    Procedemos por indução número de fórmulas de $\Gamma$.
+    Procedemos por indução no número de fórmulas de $\Gamma$.
 
     Para o caso em que $\Gamma$ é vazia, este resultado nos diz que $\psi$ é um teorema da lógica proposicional se, e somente se, $\psi$ é uma tautologia, o que já foi mostrado.
 
-    Suponha que o teorema é verdadeiro para um conjunto $\Gamma'$ de $n$ fórmulas.
-    Seja $\Gamma$ um conjunto de $n+1$ fórmulas, e seja $\phi$ uma fórmula de $\Gamma$.
+    Suponha que o teorema é verdadeiro para uma coleção $\Gamma'$ de $n$ fórmulas.
+    Seja $\Gamma$ uma coleção de $n+1$ fórmulas, e seja $\phi$ uma fórmula de $\Gamma$.
     Escreva $\Gamma$ como $\Gamma'\cup\{\phi\}$, de modo que $\Gamma'$ tem $n$ fórmulas.
 
     Suponha primeiro que $\Gamma\vdash_P \psi$.
@@ -972,7 +1092,7 @@ Uma consequência é a seguinte.
     Seja $v$ uma valoração de $\phi\rightarrow \psi$ e de cada fórmula de $\Gamma'$ tal que $v(\chi)=T$ para cada $\chi\in \Gamma'$.
 
     Se $v(\phi)=F$, então $v(\phi\rightarrow \psi)=T$ e termina a demonstração.
-    
+
     Se $v(\phi)=T$, então $v(\chi)=T$ para cada $\chi\in \Gamma$, de modo que $v(\psi)=T$, por hipótese.
     logo, $v(\phi\rightarrow \psi)=T$, e termina a prova.
 \end{proof}
