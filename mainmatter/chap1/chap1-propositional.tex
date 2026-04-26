@@ -607,7 +607,7 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 
     \textbf{Caso 1:} $\phi_i$ é um axioma da lógica proposicional.
     Então $\phi_i$ é uma tautologia, como mostrado acima.
-    
+
     \textbf{Caso 2:} existem $j, k < i$ tais que $\phi_j$ é da forma $\phi_k \rightarrow \phi_i$.
     Então, pela hipótese indutiva, $\phi_k\rightarrow \phi_i$ é uma tautologia, e $\phi_k$ é uma tautologia.
     
@@ -933,3 +933,46 @@ Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de
     Logo, $\vdash_P \phi$.
 \end{proof}
 Isso conclui que as tautologias são exatamente os teoremas da lógica proposicional.
+
+Uma consequência é a seguinte.
+
+\begin{metadefinition}
+    Seja $\Gamma$ uma coleção finita de fórmulas proposicionais, e $\psi$ uma fórmula proposicional.
+    Dizemos que $\psi$ é uma consequência tautológica de $\Gamma$, e escrevemos $\Gamma\models \psi$, se, e somente se, para toda valoração $v$ de $\psi$ e de cada fórmula $\phi\in \Gamma$, se $v(\phi)=T$ para cada $\phi\in \Gamma$, então $v(\psi)=T$.
+\end{metadefinition}
+
+\begin{metacorollary}
+    Seja $\Gamma$ uma coleção finita de fórmulas proposicionais, e seja $\psi$ uma fórmula proposicional.
+    
+    Então $\Gamma\vdash_P \psi$ se, e somente se, $\Gamma\models \psi$.
+\end{metacorollary}
+
+\begin{proof}
+    Procedemos por indução número de fórmulas de $\Gamma$.
+
+    Para o caso em que $\Gamma$ é vazia, este resultado nos diz que $\psi$ é um teorema da lógica proposicional se, e somente se, $\psi$ é uma tautologia, o que já foi mostrado.
+
+    Suponha que o teorema é verdadeiro para um conjunto $\Gamma'$ de $n$ fórmulas.
+    Seja $\Gamma$ um conjunto de $n+1$ fórmulas, e seja $\phi$ uma fórmula de $\Gamma$.
+    Escreva $\Gamma$ como $\Gamma'\cup\{\phi\}$, de modo que $\Gamma'$ tem $n$ fórmulas.
+
+    Suponha primeiro que $\Gamma\vdash_P \psi$.
+    Seja $v$ uma valoração de $\psi$ e de $\Gamma$ tal que $v(\phi)=T$ para cada $\phi\in \Gamma$.
+    Devemos ver que $v(\psi)=T$.
+
+    Temos que $\Gamma'\cup\{\phi\}\vdash_P \psi$.
+    Pelo Teorema da Dedução, $\Gamma'\vdash_P \phi\rightarrow \psi$.
+    Pela hipótese indutiva, $\Gamma'\models \phi\rightarrow \psi$, de modo que $v(\phi\rightarrow \psi)=T$.
+    Como $v(\phi)=T$ (pois $\phi\in \Gamma$), segue que $v(\psi)=T$.
+
+    Agora suponha que $\Gamma\models \psi$.
+    Devemos ver que $\Gamma\vdash_P \psi$.
+    Equivalentemente, veremos que $\Gamma'\vdash_P \phi\rightarrow \psi$.
+    Por hipótese indutiva, basta ver que $\Gamma'\models \phi\rightarrow \psi$.
+    Seja $v$ uma valoração de $\phi\rightarrow \psi$ e de cada fórmula de $\Gamma'$ tal que $v(\chi)=T$ para cada $\chi\in \Gamma'$.
+
+    Se $v(\phi)=F$, então $v(\phi\rightarrow \psi)=T$ e termina a demonstração.
+    
+    Se $v(\phi)=T$, então $v(\chi)=T$ para cada $\chi\in \Gamma$, de modo que $v(\psi)=T$, por hipótese.
+    logo, $v(\phi\rightarrow \psi)=T$, e termina a prova.
+\end{proof}
