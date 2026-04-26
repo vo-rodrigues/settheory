@@ -1,5 +1,5 @@
 \section{Lógica proposicional}\label{sec:logicaProposicional}\index{lógica!proposicional}
-Antes de adentrarmos na lógica de primeira ordem, vamos discutir a lógica proposicional.
+Nosso objetivo nesta seção é fixar três ideias básicas: a definição de fórmula proposicional, a introdução da noção de dedução formal, e, por fim, como essa noção sintática de dedução se relaciona com a noção semântica de tautologia, que também será introduzida nesta seção.
 
 \begin{metadefinition}[Fórmulas proposicionais]\label{mdef:formulasProposicionais}\index{fórmula!proposicional}
     O léxico da lógica proposicional é o léxico para a notação polonesa cujos símbolos básicos são:
@@ -42,6 +42,10 @@ Convencionaremos, a fim de eliminar boa parte do uso de parenteses, que a preced
 Adicionalmente, convencionamos que $\rightarrow$ e $\leftrightarrow$ têm precedência menor do que $\wedge$ e $\vee$, de modo que, por exemplo, $P_0 \wedge P_1 \rightarrow P_2$ seja interpretado como $(P_0 \wedge P_1) \rightarrow P_2$.
 \end{convention}
 
+Não adotaremos, neste ponto, nenhuma convenção associativa para conectivos binários repetidos.
+Assim, expressões como deverão ser parentesadas sempre que forem utilizadas.
+Após provarmos que a validade lógica de tais fórmulas repeita as leis associativas, poderemos omitir tais parenteses.
+
 No exemplo \ref{ex:formulasProposicionais}, as fórmulas proposicionais seriam escritas, respectivamente, como:
 \begin{itemize}
     \item $\neg P_0$;
@@ -79,6 +83,9 @@ Não trataremos, neste texto, de outros sistemas de lógica proposicional, como 
         \item $\neg \neg \phi \rightarrow \phi$.
     \end{enumerate}
 \end{metadefinition}
+
+Mais precisamente, cada item abaixo é um \emph{esquema de axiomas}.
+Sempre que substituímos $\phi$, $\psi$ e $\chi$ por fórmulas proposicionais quaisquer, obtemos um axioma da lógica proposicional.
 
 Agora estamos prontos para definir o que é uma dedução formal na lógica proposicional.
 
@@ -142,8 +149,7 @@ Como $\Gamma \vdash_P \phi \rightarrow \psi$, então existe uma dedução formal
 Concatenando as deduções formais $\phi_0, \dots, \phi_n$ e $\psi_0, \dots, \psi_m$, e adicionando $\psi$ ao final da sequência, obtemos uma dedução formal a partir de $\Gamma$ tal que $\psi$ é a última fórmula da dedução formal, ou seja, $\Gamma \vdash_P \psi$.
 \end{proof}
 
-
-O primeiro método que apresentaremos é o chamado Teorema da Dedução.
+Um método central para trabalhar com deduções lógicas é o chamado Teorema da Dedução.
 
 Primeiro, uma convenção.
 \begin{convention}Considere uma coleção de fórmulas proposicionais $\Gamma$ e fórmulas proposicionais $\phi_1, \dots, \phi_n$ e $\psi$.
@@ -286,6 +292,9 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
     A implicação da direita para a esquerda segue do item (b), da monotonicidade e de modus ponens.
 \end{proof}
 \subsection{Tautologias}\label{sec:tautologias}
+Até aqui, tratamos apenas de uma noção sintática: uma fórmula é dedutível quando aparece ao final de uma sequência construída segundo regras formais.
+Agora introduziremos uma noção semântica, baseada em valores de verdade.
+O objetivo será mostrar que, na lógica proposicional clássica, essas duas perspectivas coincidem.
 
 \begin{metadefinition}[Valoração]\label{mdef:valoracao}\index{valoração}\index{tabela-verdade}
     Considere uma coleção finita de variáveis proposicionais, $\mathcal P$.
@@ -688,6 +697,8 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
     Quando a fórmula $\phi$ estiver clara pelo contexto, escreveremos apenas $\Gamma_v$.
 \end{convention}
 
+O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se assumirmos como hipóteses as variáveis proposicionais que são verdadeiras segundo $v$ e as negações das variáveis que são falsas segundo $v$, então conseguimos deduzir, para cada subfórmula, a própria subfórmula ou sua negação, conforme o valor que ela recebe sob $v$.
+
 \begin{metalemma}\label{mlem:fundamentalValoracoes}
     Seja $\phi$ uma fórmula proposicional e seja $v$ uma valoração de $\phi$.
     Se $\theta$ é uma subfórmula de $\phi$, então
@@ -981,7 +992,7 @@ Para concluirmos nosso objetivo, precisamos do seguinte princípio auxiliar, que
         \vdash_P \phi.
     \]
 \end{metatheorem}
-
+A estratégia da prova é começar com atribuições completas de valores de verdade, caso em que o Metalema~\ref{mlem:fundamentalValoracoes} se aplica diretamente, e então remover as hipóteses uma a partir de quebras de casos.
 \begin{proof}
     Suponha que $\phi$ é uma tautologia.
     Seja $Q_0,\dots,Q_n$
