@@ -37,11 +37,19 @@ A seguinte convenção é muito útil nas mais diversas situações.
     Porém, nenhuma outra variável ocorre livre em $\varphi$.
 \end{convention}
 
-Conforme veremos, optaremos, por simplicidade, explicitar a teoria da prova para lógica de primeira ordem clássica apenas para sentenças.
+Na próxima seção, os axiomas lógicos serão enunciados por meio de esquemas envolvendo fórmulas que podem ter variáveis livres.
+Quando for necessário tratar tais fórmulas como sentenças, usaremos fechos universais.
 Por isso, o conceito de fecho universal será essencial.
 
 \begin{metadefinition}[Fecho universal]\label{mdef:fechoUniversal}\index{fecho universal}
-    Dada uma fórmula $\varphi$, um fecho universal de $\varphi$ é uma fórmula do tipo $\forall x_1 \dots \forall x_n \varphi$ sem variáveis livres, em que $x_1, \dots, x_n$ são variáveis.
+    Dada uma fórmula $\varphi$, um \emph{fecho universal} de $\varphi$ é uma fórmula do tipo
+    \[
+        \forall x_1 \dots \forall x_n \varphi,
+    \]
+    sem variáveis livres, em que $n\geq 0$ e $x_1,\dots,x_n$ são variáveis.
+
+    Em particular, se $\varphi$ já é uma sentença, então $\varphi$ é um fecho universal de si mesma, tomando $n=0$.
+    Também permitiremos quantificadores sobre variáveis que não ocorrem livres na fórmula e quantificadores repetidos.
 \end{metadefinition}
 
 \begin{example}\label{exa:fechoUniversal}
@@ -78,13 +86,15 @@ Sigamos para alguns exemplos.
 
 A seguir, definiremos a substituição de termos em fórmulas.
 Conforme será discutido, é necessário cautela ao se substituir variáveis por termos que contém variáveis.
-Por exemplo, a fórmula $\exists y \, (x \neq y)$ é verdadeira em diversas teorias, conforme será exemplificado, mas, ao substituir $x$ por $y$, obtemos $\exists y \, (y \neq y)$, falsa em qualquer teoria, conforme será discutido na próxima seção.
+Por exemplo, a fórmula $\exists y \, \neg(x = y)$ pode, intuitivamente, ter comportamento diferente conforme o valor atribuído a $x$.
+Mas, ao substituir $x$ por $y$, obtemos $\exists y \, \neg(y = y)$, uma fórmula de comportamento lógico completamente diferente.
 
 Optaremos por definir a substituição formal em fórmulas sem se preocupar com este problema, e, a seguir, definir a noção de \emph{substituição válida}.
 \begin{metadefinition}[Substituição em fórmulas]\label{mdef:substituicaoEmFormulas}\index{substituição!em fórmulas}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
 
-    Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida a partir de $\varphi$ substituindo-se todas as ocorrências \underline{livres} de $x$ por $t$.
+    Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida por uma substituição literal: substituem-se todas as ocorrências livres de $x$ por $t$, mesmo que variáveis que ocorrem em $t$ passem a ficar no escopo de quantificadores já presentes em $\varphi$.
+    
     Formalmente, define-se $\varphi[x/t]$ por indução sobre a estrutura de $\varphi$ através do algoritmo a seguir.
     \begin{itemize}
         \item Se $\varphi$ é $P e_1 \dots e_n$, em que $P$ é um símbolo de predicado $n$-ário ($n>0$) e $e_1, \dots, e_n$ são termos, então $\varphi[x/t]$ é $P e_1[x/t] \dots e_n[x/t]$.
@@ -102,22 +112,22 @@ Novamente, por uma indução simples, prova-se que se $\varphi$ é uma fórmula,
 Por fim, apresentamos uma definição.
 
 \begin{metadefinition}\label{mdef:substituibilidade}\index{substituição!válida}\index{substituível}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um $\mathcal L$-termo.
     Dizemos que $x$ é substituível por $t$ em uma fórmula $\varphi$ (ou que a substituição $\varphi[x/t]$ é válida) se nenhuma ocorrência livre de $x$ em $\varphi$ estiver no escopo de um quantificador que age em alguma variável que ocorre em $t$.
 \end{metadefinition}
 
 Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando o conhecimento prévio do leitor, podemos justificar a Metadefinição~\ref{mdef:substituibilidade} com exemplos.
 
 \begin{example}\label{exa:substituicaoInvalida}
-    Considere a fórmula $\exists y \, (x \neq y)$, que, intuitivamente, pode ser verdadeira para alguns valores de $x$.
+    Considere a fórmula $\exists y \, \neg(x = y)$.
 
-    A variável $x$ não é substituível pelo termo $y$ nesta fórmula, pois $x$ está no escopo de um quantificador de uma variável que ocorre em $y$ (o próprio $y$).
+    A variável $x$ não é substituível pelo termo $y$ nesta fórmula, pois a ocorrência livre de $x$ está no escopo de um quantificador de uma variável que ocorre em $y$ (o próprio $y$).
 
-    Notemos que, ao substituir $x$ por $y$ nessa fórmula, obtemos $\exists y \, (y \neq y)$, que é intuitivamente falso.
+    Notemos que, ao substituir $x$ por $y$ nessa fórmula, obtemos $\exists y \, \neg(y = y)$.
 \end{example}
 
 \begin{example}\label{exa:substituicaoSemVariaveisLivres}
-    Considere a fórmula $\varphi$ dada por $\forall x \exists y \, (x \neq y)$.
+    Considere a fórmula $\varphi$ dada por $\forall x \exists y \, \neg(x = y)$.
 
     A substituição de $x$ e $y$ por qualquer termo $t$ é válida, pois a fórmula não possui variáveis livres.
     Notemos que para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, (x \neq y)$ e $\varphi[y/t]$ é $\forall x \exists y \, (x \neq y)$, ou seja, a fórmula é invariante por tais substituições.
@@ -149,7 +159,7 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
     Determine dois fechos universais distintos para cada uma das fórmulas abaixo.
     \begin{enumerate}[label=(\alph*)]
         \item $x = y$;
-        \item $\exists z\,(x \neq z)$;
+        \item $\exists z\,\neg(x = z)$;
         \item $(x = y) \wedge (z = x)$.
     \end{enumerate}
 \end{exercise}
