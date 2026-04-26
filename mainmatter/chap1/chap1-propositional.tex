@@ -283,8 +283,8 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
         \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P \psi.
     \]
 
-    (c) A implicação da esquerda para a direita é imediata do item (a) e modus ponens.
-    A implicação da direita para a esquerda é imediata do item (b) e modus ponens.
+    (c) A implicação da esquerda para a direita segue do item (a), da monotonicidade e de modus ponens.
+    A implicação da direita para a esquerda segue do item (b), da monotonicidade e de modus ponens.
 \end{proof}
 \subsection{Tautologias}\label{sec:tautologias}
 
@@ -430,7 +430,7 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 \begin{metalemma}
     Seja $\mathcal F$ uma coleção finita de fórmulas proposicionais e $v$ uma valoração de cada fórmula proposicional de $\mathcal F$.
 
-    Seja $\theta$ uma fórmula proposicional e $\rho$ uma atribuição de $\theta$ tal que, para cada variável proposicional $P$ para a qual $\rho(P)$ é definida, $\rho(P)$ é uma fórmula proposicional de $\mathcal F$.
+    Seja $\theta$ uma fórmula proposicional e $\rho$ uma atribuição de $\theta$ tal que, para cada variável proposicional $P$ que ocorre em $\theta$, $\rho(P)$ é uma fórmula proposicional de $\mathcal F$.
 
     Seja $\hat v$ a valoração de variáveis proposicionais definida de modo que para cada variável proposicional $P$ que ocorre em $\theta$, $\hat v(P)$ é $v(\rho(P))$.
 
@@ -654,7 +654,9 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 
     Como $u(\phi_k)$ é $T$ e $u(\phi_k\rightarrow \phi_i)$ é $T$, então $u(\phi_i)$ é $T$ (caso contrário $u(\phi_k\rightarrow \phi_i)$ seria $F$).
 
-    Isso mostra que $v(\phi_i)$ é $T$, e, portanto, $\phi_i$ é uma tautologia.
+    Como $u$ estende $v$, as duas valorações coincidem nas variáveis proposicionais que ocorrem em $\phi_i$.
+    Logo, pelo lema anterior, $v(\phi_i)=u(\phi_i)=T$.
+    Portanto, $\phi_i$ é uma tautologia.
 \end{proof}
 
 O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da lógica proposicional.
@@ -732,7 +734,7 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
     Como $v(\psi)=T$, temos $\psi^v=\psi$.
     Pela hipótese indutiva,
     $\Gamma_v\vdash_P \psi$.
-    Pela Proposição~\ref{metaprop:PC13reciproca} e modus ponens, segue que, $\Gamma_v\vdash_P \neg\neg\psi$.
+    Pela Metaproposição~\ref{metaprop:PC13reciproca} e modus ponens, segue que, $\Gamma_v\vdash_P \neg\neg\psi$.
     Desse modo, $\Gamma_v\vdash_P \theta^v$.
 
     \textbf{Caso 3:} $\theta$ é $\psi\land\eta$.
@@ -1060,7 +1062,7 @@ Uma consequência é a seguinte.
 
 \begin{metadefinition}
     Seja $\Gamma$ uma coleção finita de fórmulas proposicionais, e $\psi$ uma fórmula proposicional.
-    Dizemos que $\psi$ é uma consequência tautológica de $\Gamma$, e escrevemos $\Gamma\models \psi$, se, e somente se, para toda valoração $v$ de $\psi$ e de cada fórmula $\phi\in \Gamma$, se $v(\phi)=T$ para cada $\phi\in \Gamma$, então $v(\psi)=T$.
+    Dizemos que $\psi$ é uma consequência tautológica de $\Gamma$, e escrevemos $\Gamma\models \psi$, se, e somente se, para toda valoração $v$ de $\psi$ e de cada fórmula $\xi\in \Gamma$, se $v(\xi)=T$ para cada $\xi\in \Gamma$, então $v(\psi)=T$.
 \end{metadefinition}
 
 \begin{metacorollary}
@@ -1080,7 +1082,7 @@ Uma consequência é a seguinte.
     Assim, $\Gamma=\Gamma'\cup\{\phi\}$, e $\Gamma'$ tem $n$ fórmulas.
 
     Suponha primeiro que $\Gamma\vdash_P \psi$.
-    Seja $v$ uma valoração de $\psi$ e de $\Gamma$ tal que $v(\phi)=T$ para cada $\phi\in \Gamma$.
+    Seja $v$ uma valoração de $\psi$ e de $\Gamma$ tal que $v(\xi)=T$ para cada $\xi\in \Gamma$.
     Devemos ver que $v(\psi)=T$.
 
     Temos que $\Gamma'\cup\{\phi\}\vdash_P \psi$.
