@@ -16,3 +16,4 @@ Fraenkel
 Skolem
 Metateorema
 metateorema
+subfórmula
