@@ -912,13 +912,13 @@ Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de
     Escreva $A$ para $\phi\vee\neg\phi$.
 
     Por PC7, temos $\vdash_P \phi\rightarrow A$.
-    Pelo item (a) da Metaproposição~\ref{prop:modusTollensProposicional} e modus ponens,
+    Pelo item (a) da Metaproposição~\ref{metaprop:modusTollensProposicional} e modus ponens,
     \[
         \vdash_P \neg A\rightarrow \neg\phi.
     \]
 
     Por PC8, temos $\vdash_P \neg\phi\rightarrow A$.
-    Novamente pelo item (a) da Metaproposição~\ref{prop:modusTollensProposicional} e modus ponens,
+    Novamente pelo item (a) da Metaproposição~\ref{metaprop:modusTollensProposicional} e modus ponens,
     \[
         \vdash_P \neg A\rightarrow \neg\neg\phi.
     \]
@@ -1070,13 +1070,14 @@ Uma consequência é a seguinte.
 \end{metacorollary}
 
 \begin{proof}
-    Procedemos por indução no número de fórmulas de $\Gamma$.
+    Procedemos por indução na quantidade de fórmulas da coleção finita $\Gamma$.
 
     Para o caso em que $\Gamma$ é vazia, este resultado nos diz que $\psi$ é um teorema da lógica proposicional se, e somente se, $\psi$ é uma tautologia, o que já foi mostrado.
 
-    Suponha que o teorema é verdadeiro para uma coleção $\Gamma'$ de $n$ fórmulas.
-    Seja $\Gamma$ uma coleção de $n+1$ fórmulas, e seja $\phi$ uma fórmula de $\Gamma$.
-    Escreva $\Gamma$ como $\Gamma'\cup\{\phi\}$, de modo que $\Gamma'$ tem $n$ fórmulas.
+    Suponha que o resultado é verdadeiro para toda coleção finita de $n$ fórmulas proposicionais.
+    Seja $\Gamma$ uma coleção finita de $n+1$ fórmulas proposicionais, e seja $\phi$ uma fórmula de $\Gamma$.
+    Seja $\Gamma'$ a coleção obtida removendo $\phi$ de $\Gamma$.
+    Assim, $\Gamma=\Gamma'\cup\{\phi\}$, e $\Gamma'$ tem $n$ fórmulas.
 
     Suponha primeiro que $\Gamma\vdash_P \psi$.
     Seja $v$ uma valoração de $\psi$ e de $\Gamma$ tal que $v(\phi)=T$ para cada $\phi\in \Gamma$.
