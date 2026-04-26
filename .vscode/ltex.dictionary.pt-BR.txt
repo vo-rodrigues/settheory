@@ -19,3 +19,5 @@ metateorema
 subfórmula
 Metadefinição
 contrapositiva
+metavariável
+subexpressão
