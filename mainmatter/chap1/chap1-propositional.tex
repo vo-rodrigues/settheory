@@ -1119,3 +1119,110 @@ Uma consequência é a seguinte.
     Se $v(\phi)=T$, então $v(\chi)=T$ para cada $\chi\in \Gamma$, de modo que $v(\psi)=T$, por hipótese.
     logo, $v(\phi\rightarrow \psi)=T$, e termina a prova.
 \end{proof}
+
+\subsection*{Exercícios}
+
+\begin{exercise}
+    Decida quais das seguintes sequências de símbolos são fórmulas proposicionais na notação polonesa.
+    Quando forem, escreva-as na notação usual.
+    Quando não forem, explique em que ponto a formação da fórmula falha.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\rightarrow P_0 \wedge P_1 P_2$.
+        \item $\wedge \rightarrow P_0 P_1 \neg P_2$.
+        \item $\leftrightarrow \vee P_0 P_1 \wedge P_2 P_3$.
+        \item $\neg \rightarrow P_0 \vee P_1 P_2$.
+        \item $\rightarrow \neg P_0$.
+        \item $\wedge P_0 \vee P_1$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Segundo as convenções de escrita adotadas nesta seção, diga quais das seguintes expressões possuem leitura unívoca e quais precisam de parênteses adicionais.
+    Nos casos em que a leitura for unívoca, escreva a fórmula completamente parentizada.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\neg P_0\vee P_1\rightarrow P_2$.
+        \item $\neg(P_0\vee P_1)\leftrightarrow P_2$.
+        \item $P_0\rightarrow P_1\rightarrow P_2$.
+        \item $P_0\wedge P_1\vee P_2$.
+        \item $(P_0\wedge P_1)\rightarrow P_2$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Seja $\Gamma$ uma coleção de fórmulas proposicionais.
+    Mostre que, se $\Gamma\vdash_P \phi$ e $\Gamma\vdash_P \psi$, então
+    \[
+        \Gamma\vdash_P \phi\land\psi.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Use o Teorema da Dedução para mostrar que
+    \[
+        \vdash_P (\phi\land\psi)\rightarrow(\psi\land\phi).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Mostre que
+    \[
+        \vdash_P ((\phi\rightarrow\psi)\land(\psi\rightarrow\chi))\rightarrow(\phi\rightarrow\chi).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Mostre que as seguintes fórmulas são tautologias.
+    Depois, usando o Teorema das Tautologias, conclua que são teoremas da lógica proposicional.
+    \begin{enumerate}[label=(\alph*)]
+        \item $(\phi\land\psi)\leftrightarrow(\psi\land\phi)$.
+        \item $(\phi\lor\psi)\leftrightarrow(\psi\lor\phi)$.
+        \item $((\phi\land\psi)\land\chi)\leftrightarrow(\phi\land(\psi\land\chi))$.
+        \item $((\phi\lor\psi)\lor\chi)\leftrightarrow(\phi\lor(\psi\lor\chi))$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Encontre uma valoração que mostre que cada uma das seguintes fórmulas não é uma tautologia.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\phi\rightarrow\psi$.
+        \item $(\phi\rightarrow\psi)\rightarrow(\psi\rightarrow\phi)$.
+        \item $(\phi\lor\psi)\rightarrow\phi$.
+        \item $\phi\leftrightarrow\neg\phi$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Considere a fórmula proposicional
+    \[
+        \theta=(P_0\rightarrow P_1)\rightarrow(\neg P_1\rightarrow\neg P_0).
+    \]
+    Defina uma atribuição $\rho$ por
+    \[
+        \rho(P_0)=\phi\land\psi
+        \qquad\text{e}\qquad
+        \rho(P_1)=\chi.
+    \]
+    Calcule $\subst(\theta,\rho)$.
+    Sabendo que $\theta$ é uma tautologia, conclua que $\subst(\theta,\rho)$ também é uma tautologia.
+\end{exercise}
+
+\begin{exercise}
+    Seja $\Gamma=\{\phi\rightarrow\psi,\phi\}$, em que $\phi$ e $\psi$ são fórmulas proposicionais.
+    Mostre diretamente, pela definição de consequência tautológica, que
+    \[
+        \Gamma\models \psi.
+    \]
+    Conclua que
+    \[
+        \Gamma\vdash_P \psi.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Mostre que as seguintes fórmulas são tautologias e, portanto, teoremas da lógica proposicional:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\neg(\phi\land\psi)\leftrightarrow(\neg\phi\lor\neg\psi)$.
+        \item $\neg(\phi\lor\psi)\leftrightarrow(\neg\phi\land\neg\psi)$.
+        \item $(\phi\rightarrow\psi)\leftrightarrow(\neg\phi\lor\psi)$.
+    \end{enumerate}
+\end{exercise}
