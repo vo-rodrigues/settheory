@@ -1,6 +1,10 @@
 \section{Lógica proposicional}\label{sec:logicaProposicional}\index{lógica!proposicional}
 Nosso objetivo nesta seção é fixar três ideias básicas: a definição de fórmula proposicional, a introdução da noção de dedução formal, e, por fim, como essa noção sintática de dedução se relaciona com a noção semântica de tautologia, que também será introduzida nesta seção.
 
+\subsection{Fórmulas proposicionais e convenções de escrita}\label{subsec:formulasProposicionaisConvencoes}
+
+Iniciaremos definindo a linguagem da lógica proposicional, e suas fórmulas.
+
 \begin{metadefinition}[Fórmulas proposicionais]\label{mdef:formulasProposicionais}\index{fórmula!proposicional}
     O léxico da lógica proposicional é o léxico para a notação polonesa cujos símbolos básicos são:
     \begin{itemize}
@@ -54,6 +58,8 @@ No exemplo \ref{ex:formulasProposicionais}, as fórmulas proposicionais seriam e
     \item $\neg(P_5 \wedge P_6) \leftrightarrow \neg P_7$;
     \item $(P_0 \vee P_7) \rightarrow (P_2 \wedge P_1)$.
 \end{itemize}
+
+\subsection{Deduções formais}\label{subsec:deducoesFormaisProposicionais}
 
 Intuitivamente, se temos que $P_0$ é verdade e $P_0\rightarrow P_1$ é verdade, então $P_1$ é verdade.
 Tal inferência é chamada de \emph{modus ponens}.
@@ -293,7 +299,7 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
     (c) A implicação da esquerda para a direita segue do item (a), da monotonicidade e de modus ponens.
     A implicação da direita para a esquerda segue do item (b), da monotonicidade e de modus ponens.
 \end{proof}
-\subsection{Tautologias}\label{sec:tautologias}
+\subsection{Tautologias}\label{subsec:tautologias}
 Até aqui, tratamos apenas de uma noção sintática: uma fórmula é dedutível quando aparece ao final de uma sequência construída segundo regras formais.
 Agora introduziremos uma noção semântica, baseada em valores de verdade.
 O objetivo será mostrar que, na lógica proposicional clássica, essas duas perspectivas coincidem.
