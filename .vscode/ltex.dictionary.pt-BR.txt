@@ -17,3 +17,4 @@ Skolem
 Metateorema
 metateorema
 subfórmula
+Metadefinição

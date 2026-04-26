@@ -1,74 +1,130 @@
 \section{Teorias de primeira ordem}\label{sec:teoriasPrimeiraOrdem}
 \index{teoria da prova}
 \index{sistema de Hilbert}
-Até aqui, discutimos o que é uma linguagem de primeira ordem e aprendemos a identificar termos, sentenças e fórmulas, bem como tautologias.
-O próximo passo é entender teorias, teoremas e demonstrações, ou seja, teoria da prova básica.
+Até aqui, discutimos o que é uma linguagem de primeira ordem e aprendemos a identificar termos, sentenças e fórmulas.
+O próximo passo é entender teorias, teoremas e demonstrações, de teorias de primeira ordem.
 
-Para se provar teoremas, é necessário estabelecer axiomas (fórmulas que serão consideradas verdadeiras) e regras de inferência (maneiras de obter novas fórmulas a partir de fórmulas já estabelecidas como verdadeiras).
-
-Os axiomas lógicos adotados variam muito de texto para texto.
+A apresentação exata dos axiomas lógicos adotados variam muito de texto para texto.
 Há quem diga que há tantas formas de axiomatizar a lógica quanto há textos de lógica.
-Acreditamos que, em algum sentido, este texto somará 1 a essa contagem.
-De qualquer modo, a grande maioria das formas é, em algum sentido, equivalente no caso da lógica de primeira ordem.
-Não comentaremos outras formas de fazê-lo com profundidade.
-
+Acreditamos que, em algum sentido, este texto somará 1 a essa contagem, mesmo sem apresentar nenhuma inovação.
+Não comentaremos outras formas de fazer com profundidade.
 
 Agora estamos prontos para enunciar os axiomas lógicos adotados neste texto.
-Adotaremos um sistema de axiomas estilo Hilbert.
+Como fizemos com a lógica proposicional, adotamos um sistema de axiomas estilo Hilbert.
 Ressaltamos novamente que esse não é o único modo de formalizar a dedução lógica.
-Estamos adotando esse sistema por brevidade e simplicidade, uma vez que é um sistema de apresentação mais rápida e concisa.
 
-\begin{metadefinition}[Axiomas Lógicos]\label{mdef:axiomasLogicos}\index{axioma!lógico}
-    Os axiomas lógicos adotados neste texto são fórmulas de uma das seguintes formas.
-    Abaixo, $A$, $B$ e $C$ são fórmulas, e $x, y$ são variáveis.
-    \begin{enumerate}
-        \item $A\rightarrow (B \rightarrow A)$.\label{ax:implicacao1}
-        \item $(A \rightarrow (B \rightarrow C)) \rightarrow ((A \rightarrow B) \rightarrow (A \rightarrow C))$.\label{ax:implicacao2}
-        \item $A \rightarrow (B \rightarrow (A \wedge B))$.\label{ax:conjuncao1}
-        \item $(A \wedge B) \rightarrow A$.\label{ax:conjuncao2}
-        \item $(A \wedge B) \rightarrow B$.\label{ax:conjuncao3}
-        \item $A \rightarrow (A \vee B)$. \label{ax:disjuncao1}
-        \item $B \rightarrow (A \vee B)$. \label{ax:disjuncao2}
-        \item $(A \rightarrow C) \rightarrow ((B \rightarrow C) \rightarrow ((A \vee B) \rightarrow C))$. \label{ax:disjuncao3}
-        \item $(\neg A\rightarrow B) \rightarrow ((\neg A \rightarrow \neg B) \rightarrow A)$.\label{ax:negacao}
-        \item $(A\leftrightarrow B) \rightarrow (A\rightarrow B)$.
-        \item $(A\leftrightarrow B) \rightarrow (B\rightarrow A)$.
-        \item $(A\rightarrow B) \rightarrow ((B\rightarrow A) \rightarrow (A \leftrightarrow B))$.
-    \end{enumerate}
+\begin{metadefinition}[Axiomas da lógica de primeira ordem]\label{mdef:axiomasLogicaPrimeiraOrdem}\index{axioma!lógica de primeira ordem}
+    Os axiomas da Lógica de Primeira Ordem são as fórmulas que podem ser escritas de alguma das seguintes formas, em que $\phi$, $\psi$ e $\chi$ são outras fórmulas quaisquer, $x_1, \dots, x_n$, x, $y_1, \dots, y_n$ são variáveis, , $t$ é um termo, e $P$ e $f$ são símbolos de predicado e função de aridade $n$, respectivamente.
+    \begin{enumerate}[label=(FO\arabic*)]
+        \item $\phi \rightarrow (\psi \rightarrow \phi)$;
+        \item $(\phi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\phi \rightarrow \psi) \rightarrow (\phi \rightarrow \chi))$;
+        \item $(\phi \rightarrow \psi) \rightarrow ((\phi \rightarrow \neg \psi) \rightarrow \neg \phi)$;
+        \item $(\phi \land \psi) \rightarrow \phi$;
+        \item $(\phi \land \psi) \rightarrow \psi$;
+        \item $\phi \rightarrow (\psi \rightarrow (\phi \land \psi))$;
+        \item $\phi \rightarrow (\phi \lor \psi)$;
+        \item $\psi \rightarrow (\phi \lor \psi)$;
+        \item $(\phi \rightarrow \chi) \rightarrow ((\psi \rightarrow \chi) \rightarrow ((\phi \lor \psi) \rightarrow \chi))$;
+        \item $(\psi \leftrightarrow \phi) \rightarrow (\psi \rightarrow \phi)$;
+        \item $(\psi \leftrightarrow \phi) \rightarrow (\phi \rightarrow \psi)$.
+        \item $(\psi \rightarrow \phi) \rightarrow ((\phi \rightarrow \psi) \leftrightarrow (\psi \leftrightarrow \phi))$.
+        \item $\neg \neg \phi \rightarrow \phi$.
+        \item $\forall x \phi \rightarrow \phi[x/t]$, se a substituição de $t$ por $x$ em $\phi$ é livre.
+        \item $\phi[x/t] \rightarrow \exists x \phi$, se a substituição de $t$ por $x$ em $\phi$ é livre.
+        \item $x=x$.
+        \item $\bigwedge_{i=1}^n x_i=y_i \rightarrow (f(x_1, \dots, x_n)=f(y_1, \dots, y_n))$.
+        \item $\bigwedge_{i=1}^n x_i=y_i \rightarrow (P(x_1, \dots, x_n) \leftrightarrow P(y_1, \dots, y_n))$.
+        \end{enumerate}
 \end{metadefinition}
-
-Ressalta-se que a Metadefinição~\ref{mdef:axiomasLogicos} nos dá um esquema de axiomas.
-Esse esquema não consiste em um número finito de axiomas, e sim um número finito de esquemas.
 
 A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
 
 \begin{metadefinition}[Teoria]\label{mdef:teoriaPrimeiraOrdem}\index{teoria}\index{axioma!não lógico}
-    Uma \emph{teoria de primeira ordem} consiste em um léxico $\mathcal L$ para uma linguagem de primeira ordem munido de uma coleção de fórmulas $\Sigma$ de $\mathcal L$, chamadas de \emph{axiomas}.
-    Tais axiomas também podem ser chamados de \emph{axiomas não lógicos}, para distingui-los dos axiomas lógicos enunciados na Metadefinição~\ref{mdef:axiomasLogicos}.
+    Uma \emph{teoria de primeira ordem} consiste em um par $T = (\mathcal L, \Sigma)$, em que $\mathcal L$ é um léxico de primeira ordem e $\Sigma$ é um conjunto de $\mathcal L$-fórmulas, chamadas de \emph{axiomas não lógicos} de $T$, ou simplesmente de \emph{axiomas} de $T$.
 \end{metadefinition}
 
 \begin{metadefinition}[Demonstração]\label{mdef:demonstracaoFormal}\index{demonstração formal}\index{teorema}\index{modus ponens}
     Seja $T$ uma teoria de primeira ordem e $\phi$ uma $\mathcal L$-fórmulas, em que $\mathcal L$ é o léxico de $T$.
     Uma \emph{demonstração} de $\phi$ a partir de $T$ é uma sequência finita de $\mathcal L$-fórmulas $\psi_0, \dots, \psi_n$ tal que para cada $i$:
-    \begin{itemize}
+    \begin{enumerate}[label=(\roman*)]
         \item $\psi_i$ é um axioma lógico, ou
         \item $\psi_i$ é um axioma de $T$, ou
         \item $\psi_i$ é obtida por \emph{modus ponens} a partir de duas fórmulas anteriores.
         Ou seja, existem $j, k<i$ tais que $\psi_j$ é  $\psi_k \rightarrow \psi_i$.
-    \end{itemize}
+        \item Existe $j<i$ tal que $\psi_j$ é $\phi\rightarrow \psi$ e $\psi_i$ é $\psi\rightarrow \forall x \psi$, em que $x$ é uma variável que não ocorre livre em $\phi$.
+        Essa regra é chamada de introdução de quantificador universal.
+        \item Existe $j<i$ tal que $\psi_j$ é $\phi\rightarrow \psi$ e $\psi_i$ é $\exists x \phi\rightarrow \psi$, em que $x$ é uma variável que não ocorre livre em $\psi$.
+        Essa regra é chamada de introdução de quantificador existencial.
+    \end{enumerate}
 
     Caso exista uma demonstração de $\phi$ a partir de $T$, dizemos que $\phi$ é um \emph{teorema} de $T$, e escrevemos $T \vdash \phi$.
-    Caso os axiomas de $T$ sejam $\Sigma$ e o léxico de $T$ seja $\mathcal L$, também podemos escrever $\Sigma \vdash_{\mathcal L} \phi$ (e $\Sigma \nvdash_{\mathcal L} \phi$).
-    Por fim, caso $\mathcal L$ esteja claro pelo contexto, podemos simplesmente escrever $\Sigma \vdash \phi$ (e $\Sigma \nvdash \phi$).
-\end{metadefinition}
+    Sendo $T=(\mathcal L, \Sigma)$, também podemos escrever $\Sigma \vdash_\mathcal L \phi$.
 
-Uma \emph{regra de inferência} é uma regra formal que permite inferir como teorema novas fórmulas a partir de fórmulas já demonstradas.
-No formalismo apresentado, a única regra de inferência é o \emph{modus ponens}, que permite inferir $\psi$ a partir de $\phi$ e $\phi \rightarrow \psi$.
+    Se tal demonstração só usa os 13 primeiros axiomas lógicos e a regra de \emph{modus ponens}, dizemos que $\phi$ é uma \emph{consequência proposicional}, e escrevemos $T \vdash_P \phi$.
+\end{metadefinition}
 
 Na prática, raramente escrevemos, em matemática, uma demonstração tão formal quanto a Metadefinição~\ref{mdef:demonstracaoFormal} exige.
 Para reforçar a ideia de que as demonstrações usuais em matemática poderiam, em tese, ser reescritas de forma tão formal, apresentaremos alguns resultados relevantes.
 
-Começaremos com alguns enunciados simples.
+Começaremos ``importando'' teoremas da lógica proposicional para a lógica de primeira ordem.
+
+A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef:substituicaoProposicional} para a lógica proposicional, mas agora é aplicada a fórmulas de primeira ordem.
+
+\begin{metadefinition}
+   Seja $\mathcal L$ um léxico de primeira ordem.
+   Considere uma coleção finita de variáveis proposicionais $\mathcal P$.
+   Uma atribuição de $\mathcal P$ à $\mathcal L$-fórmulas é um mapeamento de modo que para cada variável proposicional $P$ em $\mathcal P$, $\rho(P)$ é uma $\mathcal L$-fórmula.
+
+   Se $\theta$ é uma fórmula proposicional, dizemos que $\rho$ é uma atribuição para $\theta$ se toda variável proposicional que ocorre em $\theta$ está em $\mathcal P$.
+\end{metadefinition}
+
+\begin{metadefinition}[Substituição proposicional]\label{mdef:substituicaoProposicionalFO}\index{substituição!proposicional}
+   Seja $\mathcal L$ um léxico de primeira ordem.
+   Considere uma coleção finita de variáveis proposicionais $\mathcal P$ e $\rho$ uma atribuição de $\mathcal P$ à $\mathcal L$-fórmulas.
+
+   Recursivamente na complexidade de uma fórmula propositional $\theta$, definimos a substituição de $\theta$ via $\rho$, denotada por $\subst(\theta, \rho)$, a partir do seguinte algoritmo.
+   Se $\rho$ não é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é um símbolo $I$ que não faz parte da linguagem (que denota, intuitivamente, que $\subst(\theta, \rho)$ é indefinido).
+   Caso contrário, procedemos como nos itens abaixo.
+    \begin{itemize}
+        \item Se $\theta$ é uma variável proposicional $P$, então $\subst(\theta, \rho)$ é $\rho(P)$.
+        \item Se $\theta$ é $\neg \psi$, então $\subst(\theta, \rho)$ é $\neg \subst(\psi, \rho)$.
+        \item Se $\theta$ é $ \psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\subst(\theta, \rho)$ é $\subst(\psi, \rho) \square \subst(\eta, \rho)$.
+    \end{itemize}
+
+    Se $\theta$ é uma tautologia, então $\subst(\theta, \rho)$ é dita ser uma \emph{instância} de tautologia.
+\end{metadefinition}
+
+\begin{metatheorem}
+    Seja $\mathcal L$ um léxico de primeira ordem e $\phi$ uma $\mathcal L$-fórmula.
+    Se $\phi$ é uma instância de tautologia, então $\phi$ é uma consequência proposicional.
+    Em particular, se $T$ é qualquer teoria de primeira ordem de léxico $\mathcal L$, então $T \vdash_P \phi$.
+\end{metatheorem}
+
+\begin{proof}
+    Seja $\theta$ uma tautologia e $\rho$ uma atribuição de $\mathcal P$ à $\mathcal L$-fórmulas tal que $\subst(\theta, \rho)$ é $\phi$.
+
+    Como $\theta$ é uma tautologia, $\theta$ é um teorema da lógica proposicional, ou seja, $\vdash_P \theta$.
+
+    Assim, existe uma demonstração proposicional de $\theta$ a partir do conjunto vazio, digamos $\theta_0, \dots, \theta_n$, em que $\theta_n$ é $\theta$.
+
+    Seja $\rho'$ uma atribuição de $\mathcal P$ à $\mathcal L$-fórmulas qualquer estendendo $\rho$ que seja uma atribuição para cada $\theta_i$.
+
+    Para cada $i\leq n$, seja $\psi_i$ a fórmula $\subst(\theta_i, \rho')$.
+    Note que $\psi_n$ é $\subst(\theta_n, \rho')$, que é $\subst(\theta, \rho)$, que é $\phi$.
+
+    Veremos que $\psi_0, \dots, \psi_n$ é uma demonstração de $\phi$ a partir do conjunto vazio, o que implica que $\vdash_P \phi$.
+
+    Com efeito, para cada $i\leq n$, $\theta_i$ é um axioma lógico ou é obtida por \emph{modus ponens} de duas fórmulas anteriores.
+    Se $\theta_i$ é um axioma lógico do tipo (PC1)-(PC13), então $\psi_i$ é um axioma lógico do tipo (FO1)-(FO13) (mesma numeração).
+
+    Se $\theta_i$ é obtida por \emph{modus ponens} de $\theta_j$ e $\theta_k$, com $j, k<i$ e $\theta_j$ é $\theta_k \rightarrow \theta_i$, então $\psi_j$ é $\psi_k \rightarrow \psi_i$, e, portanto, $\psi_i$ é obtida por \emph{modus ponens} de $\psi_j$ e $\psi_k$.
+
+    Assim, segue a tese.
+\end{proof}
+
+Temos ainda a seguinte versão do Teorema da Dedução
+
+
 O primeiro resultado pode ser interpretado como a asserção de que resultados já provados podem ser usados para provar novos resultados.
 \begin{metalemma}(Modus ponens)\label{mlem:modusPonens}
     Seja $T$ uma teoria de primeira ordem e $\phi, \psi$ $\mathcal L$-fórmulas, em que $\mathcal L$ é o léxico de $T$.
