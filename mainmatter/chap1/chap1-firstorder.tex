@@ -52,7 +52,7 @@ Iniciaremos trabalhando a primeira dúvida.
     \end{itemize}
     As duas coleções acima não podem possuir símbolos em comum, nem possuir símbolos lógicos.
     Os símbolos de $\mathcal P$ e $\mathcal F$ são chamados de símbolos não lógicos de $\mathcal L$.
-    Juntamente com os símbolos lógicos da Metadefinição~\ref{mdef:simbolosLogicos}, eles constituem o \emph{léxico} da linguagem de primeira ordem $\mathcal L$.
+    A linguagem de primeira ordem determinada por $\mathcal L$ é obtida acrescentando aos símbolos não lógicos de $\mathcal L$ os símbolos lógicos da Metadefinição~\ref{mdef:simbolosLogicos}.
 \end{metadefinition}
 
 Exemplos de símbolos de predicado não lógicos incluem $\in$ (pertencimento, comum em teoria dos conjuntos), $<$ (ordem, comum no estudo dos números reais), $\triangle$ (não colinearidade entre três pontos, comum em geometria plana).
@@ -78,8 +78,10 @@ Os símbolos funcionais não lógicos de aridade $0$ são chamados de \emph{sím
 Ressaltamos que, apesar de variáveis e constantes serem símbolos de aridade $0$, e apesar de estarmos sendo permissivos com a notação utilizada para variáveis, esses objetos são distintos (por exemplo, apenas variáveis podem ser quantificadas!).
 A distinção entre as notações de variáveis e constantes é feita pelo contexto, e, em caso de ambiguidade, deve ser indicada sempre que relevante.
 
-Já os símbolos de predicado não lógicos de aridade $0$ são chamados de \emph{letras proposicionais}, e são interpretados como ``sentenças atômicas''.
-Tais símbolos podem ser utilizados para formalizar abreviações, como $\AC$ (Axioma da Escolha, comum em teoria dos conjuntos. Do inglês, \emph{Axiom of Choice}) e $\CH$ (Hipótese do Contínuo, comum em teoria dos conjuntos. Do inglês, \emph{Continuum Hypothesis}).
+Já os símbolos de predicado não lógicos de aridade $0$ são chamados de \emph{letras proposicionais}.
+Eles formam fórmulas atômicas que não contêm variáveis.
+Em uma linguagem expandida, tais símbolos podem ser usados para abreviar fórmulas fechadas específicas, desde que essa abreviação seja explicitamente fixada.
+Por exemplo, poderíamos introduzir símbolos como $\AC$ ou $\CH$ para abreviar, respectivamente, formulações fixadas do Axioma da Escolha ou da Hipótese do Contínuo.
 
 Agora devemos trabalhar a segunda dúvida.
 Para isso, devemos definir, precisamente, o que são termos e fórmulas.
@@ -148,8 +150,8 @@ Vamos dar alguns exemplos.
         \item Na teoria dos conjuntos, ${\in}{\wedge} v_1 v_2 {=} v_2 v_3$ não é uma fórmula, pois a única chance de uma expressão começada por $\in$ ser fórmula é pela regra (i), mas, nesse caso, deveria haver um termo contendo $\wedge$, o que não é possível.
         Na notação usual, a expressão acima se traduziria como $(v_1 \wedge v_2) \in (v_2 = v_3)$.
         \item No léxico da teoria de conjuntos, $\forall v_1 {\in} v_1 v_2$ é uma fórmula (na notação usual, $\forall v_1 (v_1 \in v_2)$).
-        \item No léxico da teoria dos grupos, $\exists e {=} e\cdot e$ não é uma fórmula, pois $e$ é um símbolo de constante, e não uma variável, e a única forma de uma fórmula iniciada por $\exists$ ser uma fórmula é pela regra (vi).
-        Na notação usual, a expressão acima se traduziria como $\exists e (e = e \cdot e)$.
+        \item No léxico da teoria dos grupos, $\exists e {=} e {\cdot} e e$ não é uma fórmula, pois $e$ é um símbolo de constante, e não uma variável, e a única forma de uma fórmula iniciada por $\exists$ ser uma fórmula é pela regra (vi).
+        Na notação usual, a expressão acima sugeriria algo como $\exists e (e = e \cdot e)$.
     \end{itemize}
 \end{example}
 
@@ -212,5 +214,5 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
 \end{exercise}
 \begin{exercise}\label{exr:subexpressoesDeFormula}
     Seja $\varphi$ uma fórmula.
-    Mostre que uma subexpressão de $\varphi$ é uma fórmula se, e somente se, ela é o escopo de um conectivo lógico, de um quantificador, de um símbolo de igualdade, ou de um símbolo de predicado.
+    Mostre que uma subexpressão de $\varphi$ é uma fórmula se, e somente se, ela é o escopo de uma ocorrência de um conectivo lógico, de um quantificador, do símbolo de igualdade, ou de um símbolo de predicado, incluindo o caso de predicados de aridade $0$.
 \end{exercise}
