@@ -18,3 +18,4 @@ Metateorema
 metateorema
 subfórmula
 Metadefinição
+contrapositiva

@@ -226,27 +226,6 @@ Como aplicação, provaremos a recíproca de PC13.
     Pelo Teorema da Dedução, $\vdash_P \phi \rightarrow \neg\neg \phi$.
 \end{proof}
 
-Outro teorema relevante cuja demonstração é facilitada pelo Teorema da Dedução é o Princípio da explosão.
-Em suma, ele diz que se for derivada uma contradição, então qualquer fórmula proposicional pode ser derivada.
-
-\begin{metaproposition}[Princípio da explosão]\label{metaprop:principioExplosaoProposicional}Sejam $\phi$ e $\psi$ fórmulas proposicionais.
-    Então $\vdash_P \phi\rightarrow(\neg \phi \rightarrow \psi)$.
-\end{metaproposition}
-\begin{proof}
-    É suficiente, por duas aplicações do Teorema da Dedução, ver que $\{\phi, \neg \phi\} \vdash_P \psi$.
-
-    Por PC1, segue que $\{\phi, \neg \phi\} \vdash_P \phi\rightarrow(\psi\rightarrow \phi)$ e que $\{\phi, \neg \phi\} \vdash_P \neg \phi \rightarrow (\psi \rightarrow \neg \phi)$.
-    Por modus ponens, $\{\phi, \neg \phi\} \vdash_P \psi \rightarrow \phi$ e $\{\phi, \neg \phi\} \vdash_P \psi \rightarrow \neg \phi$.
-    Por PC3, temos:
-
-    \[
-        \{\phi, \neg \phi\} \vdash_P (\psi \rightarrow \phi) \rightarrow ((\psi \rightarrow \neg \phi) \rightarrow \neg \psi).
-    \]
-    Aplicando modus ponens duas vezes, segue que $\{\phi, \neg \phi\} \vdash_P \neg \psi$.
-    Repetindo o argumento, segue que $\{\phi, \neg \phi\} \vdash_P \neg \neg \psi$.
-    Por PC13 e modus ponens, $\{\phi, \neg \phi\} \vdash_P \psi$.
-\end{proof}
-
 Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
 \begin{metaproposition}[Modus tollens]\label{metaprop:modusTollensProposicional}
     Sejam $\phi$ e $\psi$ fórmulas proposicionais e $\Gamma$ uma coleção de fórmulas proposicionais.
@@ -299,6 +278,28 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
     (c) A implicação da esquerda para a direita segue do item (a), da monotonicidade e de modus ponens.
     A implicação da direita para a esquerda segue do item (b), da monotonicidade e de modus ponens.
 \end{proof}
+
+Como aplicação, obtemos uma prova curta do Princípio da explosão.
+Em suma, ele diz que se for derivada uma contradição, então qualquer fórmula proposicional pode ser derivada.
+
+\begin{metaproposition}[Princípio da explosão]\label{metaprop:principioExplosaoProposicional}Sejam $\phi$ e $\psi$ fórmulas proposicionais.
+    Então $\vdash_P \phi\rightarrow(\neg \phi \rightarrow \psi)$.
+\end{metaproposition}
+\begin{proof}
+    É suficiente, por duas aplicações do Teorema da Dedução, ver que $\{\phi, \neg \phi\} \vdash_P \psi$.
+
+    Por PC1 e modus ponens a partir de $\phi$,
+    \[
+        \{\phi, \neg \phi\}\vdash_P \neg\psi\rightarrow\phi.
+    \]
+    Aplicando o item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional} à implicação $\neg\psi\rightarrow\phi$, obtemos
+    \[
+        \{\phi, \neg \phi\}\vdash_P \neg\phi\rightarrow\neg\neg\psi.
+    \]
+    Como $\{\phi, \neg \phi\}\vdash_P \neg\phi$, segue por modus ponens que $\{\phi, \neg \phi\}\vdash_P \neg\neg\psi$.
+    Por PC13 e modus ponens, $\{\phi, \neg \phi\}\vdash_P \psi$.
+\end{proof}
+
 \subsection{Tautologias}\label{subsec:tautologias}
 Até aqui, tratamos apenas de uma noção sintática: uma fórmula é dedutível quando aparece ao final de uma sequência construída segundo regras formais.
 Agora introduziremos uma noção semântica, baseada em valores de verdade.
@@ -771,26 +772,13 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     \[
         \Gamma_v\vdash_P (\psi\land\eta)\rightarrow \psi.
     \]
-    Pela monotonicidade,
+    Pelo item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional},
     \[
-        \Gamma_v\cup\{\psi\land\eta\}\vdash_P \neg\psi.
+        \Gamma_v\vdash_P \neg\psi\rightarrow \neg(\psi\land\eta).
     \]
-    Além disso,
-    \[
-        \Gamma_v\cup\{\psi\land\eta\}\vdash_P \psi,
-    \]
-    por PC4 e modus ponens.
-    Pelo Teorema da Dedução,
-    \[
-        \Gamma_v\vdash_P (\psi\land\eta)\rightarrow \neg\psi.
-    \]
-    Finalmente, por PC3,
-    \[
-        \Gamma_v\vdash_P ((\psi\land \eta)\rightarrow \psi)\rightarrow (((\psi\land \eta)\rightarrow \neg\psi)\rightarrow \neg(\psi\land\eta)).
-    \]
-    Aplicando modus ponens duas vezes, concluímos que $\Gamma_v\vdash_P \neg(\psi\land\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
+    Assim, por modus ponens, $\Gamma_v\vdash_P \neg(\psi\land\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
 
-    O caso em que $v(\eta)=F$ é análogo utilizando PC5 ao invés de PC4.
+    O caso em que $v(\eta)=F$ é análogo, utilizando PC5 no lugar de PC4.
 
     \textbf{Caso 4:} $\theta$ é $\psi\lor\eta$.
     Pela hipótese indutiva, $\Gamma_v\vdash_P \psi^v$ e $\Gamma_v\vdash_P \eta^v$.
@@ -810,20 +798,23 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     \]
     Pela hipótese indutiva,
         $\Gamma_v\vdash_P \neg\psi$ e $\Gamma_v\vdash_P \neg\eta$.
-    Mostremos que
+    Por PC1 e modus ponens, a partir de $\Gamma_v\vdash_P \neg\psi$ obtemos
     \[
-        \Gamma_v\cup\{\psi\lor\eta\}\vdash_P \eta.
+        \Gamma_v\vdash_P \neg\eta\rightarrow\neg\psi.
     \]
-    Para tanto, por PC9, é suficiente ver que $\Gamma_v\cup\{\psi\lor\eta\}\vdash_P \psi\rightarrow \eta$ e que $\Gamma_v\cup\{\psi\lor\eta\}\vdash_P \eta\rightarrow \eta$.
-    A segunda afirmação já sabemos ser verdadeira.
-    Para a primeira, é suficiente ver que $\Gamma_v\cup\{\psi\lor\eta, \psi\}\vdash_P \eta$.
-    Ora, pela monotonicidade, $\Gamma_v\cup\{\psi\lor\eta, \psi\}\vdash_P \neg \psi$.
-    Como $\Gamma_v\cup\{\psi\lor\eta, \psi\}\vdash_P \psi$, segue do Princípio da Explosão que $\Gamma_v\cup\{\psi\lor\eta, \psi\}\vdash_P \eta$.
-
-    Assim, $\Gamma_v\cup\{\psi\lor\eta\}\vdash_P \eta$.
-    Desta forma, $\Gamma_v\vdash_P (\psi\lor\eta)\rightarrow \eta$.
-    Por outro lado, por PC1 e modus ponens, $\Gamma_v\vdash_P (\psi\lor\eta)\rightarrow \neg \eta$.
-    Finalmente, por duas aplicações de modus ponens e PC3, $\Gamma_v\vdash_P \neg(\psi\lor\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
+    Aplicando o item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional} à implicação $\psi\rightarrow\eta$, obtemos
+    \[
+        \Gamma_v\vdash_P \psi\rightarrow\eta.
+    \]
+    Como $\Gamma_v\vdash_P \eta\rightarrow\eta$ pela Metaproposição~\ref{metaprop:PCreflexividade} e pela monotonicidade, segue de PC9 e duas aplicações de modus ponens que
+    \[
+        \Gamma_v\vdash_P (\psi\lor\eta)\rightarrow\eta.
+    \]
+    Aplicando novamente o item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional}, obtemos
+    \[
+        \Gamma_v\vdash_P \neg\eta\rightarrow\neg(\psi\lor\eta).
+    \]
+    Como $\Gamma_v\vdash_P \neg\eta$, segue por modus ponens que $\Gamma_v\vdash_P \neg(\psi\lor\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
 
     \textbf{Caso 5:} $\theta$ é $\psi\rightarrow\eta$.
 
@@ -836,9 +827,8 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     \]
     Pela hipótese indutiva, $\Gamma_v\vdash_P \neg\psi$.
     Devemos ver que $\Gamma_v\vdash_P \psi\rightarrow\eta$.
-    É suficiente ver que $\Gamma_v\cup\{\psi\}\vdash_P \eta$.
-    Ora, por monotonicidade, $\Gamma_v\cup\{\psi\}\vdash_P \neg\psi$, e segue que $\Gamma_v\cup\{\psi\}\vdash_P \psi$.
-    Pelo Princípio da Explosão, $\Gamma_v\cup\{\psi\}\vdash_P \eta$.
+    Por PC1 e modus ponens, $\Gamma_v\vdash_P \neg\eta\rightarrow\neg\psi$.
+    Logo, pelo item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional}, aplicado à contrapositiva de $\psi\rightarrow\eta$, temos $\Gamma_v\vdash_P \psi\rightarrow\eta$.
 
     Agora suponha que $v(\eta)=T$.
     Então novamente $v(\psi\rightarrow\eta)=T$, de modo que $\theta^v=\psi\rightarrow\eta$.
@@ -851,9 +841,17 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     Pela hipótese indutiva, $\Gamma_v\vdash_P \psi$
     e $\Gamma_v\vdash_P \neg\eta$.
 
-    Temos que $\Gamma_v\vdash_P (\psi\rightarrow\eta)\rightarrow \eta$ por uma aplicação do Teorema da Dedução e modus ponens, já que $\Gamma_v\cup\{\psi\rightarrow \eta\}\vdash_P \psi$.
-    Por outro lado, por PC1 e modus ponens, $\Gamma_v\vdash_P (\psi\rightarrow\eta)\rightarrow \neg\eta$.
-    Assim, por PC3 e duas aplicações de modus ponens, $\Gamma_v\vdash_P \neg(\psi\rightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
+    Em $\Gamma_v\cup\{\psi\rightarrow \eta\}$, temos $\psi$ por monotonicidade e $\psi\rightarrow\eta$ por hipótese.
+    Logo, por modus ponens, $\Gamma_v\cup\{\psi\rightarrow \eta\}\vdash_P \eta$.
+    Pelo Teorema da Dedução,
+    \[
+        \Gamma_v\vdash_P (\psi\rightarrow\eta)\rightarrow\eta.
+    \]
+    Pelo item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional},
+    \[
+        \Gamma_v\vdash_P \neg\eta\rightarrow\neg(\psi\rightarrow\eta).
+    \]
+    Como $\Gamma_v\vdash_P \neg\eta$, segue por modus ponens que $\Gamma_v\vdash_P \neg(\psi\rightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
      
     \textbf{Caso 6:} $\theta$ é $\psi\leftrightarrow\eta$.
     Pela hipótese indutiva, $\Gamma_v\vdash_P \psi^v$ e $\Gamma_v\vdash_P \eta^v$.
@@ -867,10 +865,18 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     Assim, por modus ponens, $\Gamma_v\vdash_P \eta\rightarrow \psi$ e $\Gamma_v\vdash_P \psi\rightarrow \eta$.
     
     Se $v(\psi)=v(\eta)=F$, então, pela hipótese indutiva, $\Gamma_v\vdash_P \neg\psi$ e $\Gamma_v\vdash_P \neg\eta$.
-    Vejamos que $\Gamma_v\vdash_P \psi\rightarrow\eta$.
-    Basta ver que $\Gamma_v\cup\{\psi\}\vdash_P \eta$.
-    Mas isso decorre do princípio da explosão, já que $\Gamma_v\cup\{\psi\}\vdash_P \neg\psi$ e $\Gamma_v\cup\{\psi\}\vdash_P \psi$.
-    Analogamente, $\Gamma_v\vdash_P \eta\rightarrow\psi$.
+    Por PC1 e modus ponens, obtemos
+    \[
+        \Gamma_v\vdash_P \neg\eta\rightarrow\neg\psi
+        \qquad\text{e}\qquad
+        \Gamma_v\vdash_P \neg\psi\rightarrow\neg\eta.
+    \]
+    Pelo item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional},
+    \[
+        \Gamma_v\vdash_P \psi\rightarrow\eta
+        \qquad\text{e}\qquad
+        \Gamma_v\vdash_P \eta\rightarrow\psi.
+    \]
 
         Em ambos os subcasos, temos
     \[
@@ -913,10 +919,17 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     A partir de $\Gamma_v\cup\{\psi\leftrightarrow\eta\}$, por PC10 e modus ponens, obtemos $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \psi\rightarrow\eta$.
     Por monotonicidade, $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \psi$.
     Logo, por modus ponens, $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \eta$.
-    Assim, $\Gamma_v\vdash_P (\psi\leftrightarrow\eta)\rightarrow \eta$ e $\Gamma_v\vdash_P (\psi\leftrightarrow\eta)\rightarrow \neg\eta$.
-    Por PC3 e duas aplicações de modus ponens, $\Gamma_v\vdash_P \neg(\psi\leftrightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
+    Assim, pelo Teorema da Dedução,
+    \[
+        \Gamma_v\vdash_P (\psi\leftrightarrow\eta)\rightarrow\eta.
+    \]
+    Pelo item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional},
+    \[
+        \Gamma_v\vdash_P \neg\eta\rightarrow\neg(\psi\leftrightarrow\eta).
+    \]
+    Como $\Gamma_v\vdash_P \neg\eta$, segue por modus ponens que $\Gamma_v\vdash_P \neg(\psi\leftrightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
     
-    O caso em que $v(\psi)=F$ e $v(\eta)=T$ é análogo, utilizando PC11 ao invés de PC10.
+    O caso em que $v(\psi)=F$ e $v(\eta)=T$ é análogo, utilizando PC11 no lugar de PC10.
 
     Isso encerra todos os casos possíveis para $\theta$.
     Portanto, por indução na complexidade de $\theta$, se $\theta$ é uma subfórmula de $\phi$, então $\Gamma_v^\phi\vdash_P \theta^v$.
@@ -985,7 +998,7 @@ Para concluirmos nosso objetivo, precisamos do seguinte princípio auxiliar, que
     \[
         \Gamma\vdash_P (\phi\vee\neg\phi)\rightarrow\psi.
     \]
-    Pelo lema anterior e pela monotonicidade,
+    Pelo Metalema~\label{mlem:terceiroExcluidoProposicional} e pela monotonicidade,
     \[
         \Gamma\vdash_P \phi\vee\neg\phi.
     \]
