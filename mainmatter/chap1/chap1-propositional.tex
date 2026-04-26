@@ -157,7 +157,7 @@ Então $\Gamma\cup \{\phi_1, \dots, \phi_n\}$ denota a coleção de fórmulas pr
 \end{metatheorem}
 \begin{proof}
     Suponha primeiramente que $\Gamma \vdash_P \phi \rightarrow \psi$.
-    Então, pela Proposição~\ref{metaprop:PCmonotonicidade}, $\Gamma \cup \{\phi\} \vdash_P \phi \rightarrow \psi$.
+    Então, pela Metaproposição~\ref{metaprop:PCmonotonicidade}, $\Gamma \cup \{\phi\} \vdash_P \phi \rightarrow \psi$.
     Como $\phi$ está em $\Gamma \cup \{\phi\}$, então $\Gamma \cup \{\phi\} \vdash_P \phi$.
     Assim, por modus ponens, $\Gamma \cup \{\phi\} \vdash_P \psi$.
 
@@ -173,13 +173,16 @@ Então $\Gamma\cup \{\phi_1, \dots, \phi_n\}$ denota a coleção de fórmulas pr
     Assim, por modus ponens, $\Gamma \vdash_P \phi \rightarrow \psi_i$.
 
     \textbf{Caso 2:} $\psi_i$ é $\phi$.
-    Então $\Gamma \vdash_P \phi \rightarrow \phi$ pela Proposição~\ref{metaprop:PCreflexividade}.
+    Então $\Gamma \vdash_P \phi \rightarrow \phi$ pela Metaproposição~\ref{metaprop:PCreflexividade}.
 
     \textbf{Caso 3:} existem $j, k < i$ tais que $\psi_j$ é da forma $\psi_k \rightarrow \psi_i$.
     Então, pela hipótese indutiva, $\Gamma \vdash_P \phi \rightarrow \psi_j$ e $\Gamma \vdash_P \phi \rightarrow \psi_k$.
     Temos que $\Gamma \vdash_P (\phi \rightarrow \psi_j) \rightarrow ((\phi \rightarrow \psi_k) \rightarrow (\phi \rightarrow \psi_i))$, pois esta fórmula é um axioma da lógica proposicional (PC2).
     Assim, por modus ponens, $\Gamma \vdash_P (\phi \rightarrow \psi_k) \rightarrow (\phi \rightarrow \psi_i)$.
     Aplicando modus ponens novamente, $\Gamma \vdash_P \phi \rightarrow \psi_i$.
+
+    Portanto, por indução, $\Gamma\vdash_P \phi\rightarrow \psi_i$ para todo $i\leq n$.
+    Em particular, como $\psi_n$ é $\psi$, temos $\Gamma\vdash_P \phi\rightarrow\psi$.
 \end{proof}
 
 Como aplicação, provaremos a recíproca de PC13.
@@ -214,7 +217,7 @@ Outro teorema relevante cuja demonstração é facilitada pelo Teorema da Deduç
 Em suma, ele diz que se for derivada uma contradição, então qualquer fórmula proposicional pode ser derivada.
 
 \begin{metaproposition}[Princípio da explosão]\label{metaprop:principioExplosaoProposicional}Sejam $\phi$ e $\psi$ fórmulas proposicionais.
-    Então $\vdash_p \phi\rightarrow(\neg \phi \rightarrow \psi)$.
+    Então $\vdash_P \phi\rightarrow(\neg \phi \rightarrow \psi)$.
 \end{metaproposition}
 \begin{proof}
     É suficiente, por duas aplicações do Teorema da Dedução, ver que $\{\phi, \neg \phi\} \vdash_P \psi$.
@@ -267,7 +270,7 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
         \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P
         \neg\neg \phi \rightarrow \neg\neg \psi.
     \]
-    Pela Proposição~\ref{prop:PC13reciproca} e modus ponens,
+    Pela Metaproposição~\ref{metaprop:PC13reciproca} e modus ponens,
     \[
         \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P \neg\neg\phi.
     \]
@@ -279,7 +282,6 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
     \[
         \{\neg \psi \rightarrow \neg \phi, \phi\}\vdash_P \psi.
     \]
-    Novamente pela recíproca de PC13 e modus ponens, $\{\neg \psi \rightarrow \neg \phi, \phi\} \vdash_P \psi$, como queríamos.
 
     (c) A implicação da esquerda para a direita é imediata do item (a) e modus ponens.
     A implicação da direita para a esquerda é imediata do item (b) e modus ponens.
@@ -850,24 +852,7 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
     Mas isso decorre do princípio da explosão, já que $\Gamma_v\cup\{\psi\}\vdash_P \neg\psi$ e $\Gamma_v\cup\{\psi\}\vdash_P \psi$.
     Analogamente, $\Gamma_v\vdash_P \eta\rightarrow\psi$.
 
-    Agora suponha que $v(\psi)\neq v(\eta)$.
-    Então $v(\psi\leftrightarrow\eta)=F$, de modo que $\theta^v=\neg(\psi\leftrightarrow\eta)$.
-
-    Suponha primeiro que $v(\psi)=T$ e $v(\eta)=F$.
-    Pela hipótese indutiva,
-    $\Gamma_v\vdash_P \psi$
-    e
-    $\Gamma_v\vdash_P \neg\eta$.
-
-    A partir de $\Gamma_v\cup\{\psi\leftrightarrow\eta\}$, por PC10 e modus ponens, obtemos $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \psi\rightarrow\eta$.
-    Por monotonicidade, $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \psi$.
-    Logo, por modus ponens, $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \eta$.
-    Assim, $\Gamma_v\vdash_P (\psi\leftrightarrow\eta)\rightarrow \eta$ e $\Gamma_v\vdash_P (\psi\leftrightarrow\eta)\rightarrow \neg\eta$.
-    Por PC3 e duas aplicações de modus ponens, $\Gamma_v\vdash_P \neg(\psi\leftrightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
-    
-    O caso em que $v(\psi)=F$ e $v(\eta)=T$ é análogo, utilizando PC11 ao invés de PC10.
-
-    Em ambos os subcasos, temos
+        Em ambos os subcasos, temos
     \[
         \Gamma_v\vdash_P \psi\rightarrow\eta
         \qquad\text{e}\qquad
@@ -895,6 +880,23 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
         \Gamma_v\vdash_P \psi\leftrightarrow\eta.
     \]
     Portanto, $\Gamma_v\vdash_P \theta^v$.
+
+    Agora suponha que $v(\psi)\neq v(\eta)$.
+    Então $v(\psi\leftrightarrow\eta)=F$, de modo que $\theta^v=\neg(\psi\leftrightarrow\eta)$.
+
+    Suponha primeiro que $v(\psi)=T$ e $v(\eta)=F$.
+    Pela hipótese indutiva,
+    $\Gamma_v\vdash_P \psi$
+    e
+    $\Gamma_v\vdash_P \neg\eta$.
+
+    A partir de $\Gamma_v\cup\{\psi\leftrightarrow\eta\}$, por PC10 e modus ponens, obtemos $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \psi\rightarrow\eta$.
+    Por monotonicidade, $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \psi$.
+    Logo, por modus ponens, $\Gamma_v\cup\{\psi\leftrightarrow\eta\}\vdash_P \eta$.
+    Assim, $\Gamma_v\vdash_P (\psi\leftrightarrow\eta)\rightarrow \eta$ e $\Gamma_v\vdash_P (\psi\leftrightarrow\eta)\rightarrow \neg\eta$.
+    Por PC3 e duas aplicações de modus ponens, $\Gamma_v\vdash_P \neg(\psi\leftrightarrow\eta)$, e, portanto, $\Gamma_v\vdash_P \theta^v$.
+    
+    O caso em que $v(\psi)=F$ e $v(\eta)=T$ é análogo, utilizando PC11 ao invés de PC10.
 
     Isso encerra todos os casos possíveis para $\theta$.
     Portanto, por indução na complexidade de $\theta$, se $\theta$ é uma subfórmula de $\phi$, então $\Gamma_v^\phi\vdash_P \theta^v$.
@@ -963,7 +965,7 @@ Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de
     \[
         \Gamma\vdash_P (\phi\vee\neg\phi)\rightarrow\psi.
     \]
-    Pelo lema anterior,
+    Pelo lema anterior e pela monotonicidade,
     \[
         \Gamma\vdash_P \phi\vee\neg\phi.
     \]
