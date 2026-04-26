@@ -131,9 +131,8 @@ Iniciaremos com o seguinte.
         \item $\phi \rightarrow \phi$ (MP 3 e 4).
     \end{enumerate}
 \end{proof}
-Apesar de curta, a dedução formal da proposição anterior é um pouco difícil de ser encontrada.
-Seria muito útil ter métodos mais simples para encontrar demonstrar que fórmula proposicional é um teorema da lógica proposicional.
-
+Apesar de curta, a dedução formal da metaproposição anterior é um pouco difícil de ser encontrada.
+Seria muito útil ter métodos mais simples para demonstrar que uma fórmula proposicional é um teorema da lógica proposicional.
 O primeiro método, simples, é uma abstração do modus ponens.
 \begin{metaproposition}\label{metaprop:PCmodusPonens}Considere fórmulas proposicionais $\phi$ e $\psi$, e uma coleção de fórmulas proposicionais $\Gamma$.
 Se $\Gamma \vdash_P \phi$ e $\Gamma \vdash_P \phi \rightarrow \psi$, então $\Gamma \vdash_P \psi$.
@@ -288,7 +287,7 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
 \end{proof}
 \subsection{Tautologias}\label{sec:tautologias}
 
-\begin{metadefinition}[Valoração]\label{mdef:valoracao}\index{contradição}\index{tabela-verdade}
+\begin{metadefinition}[Valoração]\label{mdef:valoracao}\index{valoração}\index{tabela-verdade}
     Considere uma coleção finita de variáveis proposicionais, $\mathcal P$.
     Uma \emph{valoração} de variáveis proposicionais é um mapeamento $v$ que atribui a cada variável proposicional de $\mathcal P$ um valor de verdade, ou seja, $T$ (verdadeiro) ou $F$ (falso).
 
@@ -1017,7 +1016,7 @@ Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de
         s(\phi)=T.
     \]
     Logo, pela definição de $\phi^s$, temos $\phi^s$ é $\phi$.
-    Pelo Lema~\ref{mlem:fundamentalValoracoes}, segue que $\Gamma_s\vdash_P \phi$.
+    Pelo Metalema~\ref{mlem:fundamentalValoracoes}, segue que $\Gamma_s\vdash_P \phi$.
     
     Agora suponha que $k\leq n$ e que $(\ast_{k+1})$ já foi provada.
     Mostraremos que $(\ast_k)$ é verdadeira.
