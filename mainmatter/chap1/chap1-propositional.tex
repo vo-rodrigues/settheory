@@ -903,7 +903,7 @@ O próximo passo, mais complexo, é mostrar que toda tautologia é um teorema da
     Portanto, por indução na complexidade de $\theta$, se $\theta$ é uma subfórmula de $\phi$, então $\Gamma_v^\phi\vdash_P \theta^v$.
 \end{proof}
 
-Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de casos''.
+Para concluirmos nosso objetivo, precisamos do seguinte princípio auxiliar, que será usado para provar a quebra de casos.
 
 \begin{metalemma}\label{mlem:terceiroExcluidoProposicional}
     Seja $\phi$ uma fórmula proposicional.
@@ -944,7 +944,7 @@ Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de
     Como $A$ é $\phi\vee\neg\phi$, segue que $\vdash_P \phi\vee\neg\phi$.
 \end{proof}
 
-\begin{metalemma}[Quebra de casos]
+\begin{metalemma}[Quebra de casos]\label{mlem:quebraDeCasosProposicional}
     Seja $\Gamma$ uma coleção de fórmulas proposicionais, e sejam $\phi$ e $\psi$ fórmulas proposicionais.
     Se $\Gamma\cup\{\phi\}\vdash_P \psi$ e $\Gamma\cup\{\neg \phi\}\vdash_P \psi$, então $\Gamma\vdash_P \psi$.
 \end{metalemma}
@@ -1045,7 +1045,7 @@ Para concluirmos nosso objetivo, precisamos de um último lema: o da ``quebra de
         \Gamma_s\cup\{\neg Q_k\}\vdash_P \phi.
     \]
 
-    Pelo lema anterior, decorre que
+    Do Metalema~\ref{mlem:quebraDeCasosProposicional}, decorre que
     \[
         \Gamma_s\vdash_P \phi.
     \]
