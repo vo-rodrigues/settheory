@@ -811,11 +811,11 @@ Formalmente, isso será feito acrescentando à linguagem um símbolo de constant
     Seja $c$ um símbolo de constante que não pertence a $\mathcal L$.
     Seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$, e seja $T(c)=(\mathcal L(c),\Sigma)$.
 
-    Suponha que $\theta$ é uma $\mathcal L)$-fórmula com única variável possivelmente livre $x$, e que $T(c)\vdash \theta$.
+    Suponha que $\theta$ é uma $\mathcal L$-fórmula com única variável possivelmente livre $x$, e que $T(c)\vdash \theta[x/c]$.
     Então $T\vdash \forall x\theta$.
 
     \[
-        \frac{T(c)\vdash \theta}
+        \frac{T(c)\vdash \theta[x/c]}
              {T\vdash \forall x\theta}.
     \]
 \end{metalemma}
@@ -841,7 +841,7 @@ A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a let
 \begin{proof}
     Seja $\theta_0,\dots,\theta_n$ uma demonstração de $\theta[x/c]$ em $T(c)$, com $\theta_n=\theta[x/c]$.
 
-    Como a demonstração é finita, escolha uma variável $y$ que não ocorre em $\theta$ nem em nenhuma das fórmulas $\theta_0,\dots,\theta_n$.
+    Como a demonstração é finita, escolha uma variável $y$ distinta de $x$ que não ocorre em $\theta$ nem em nenhuma das fórmulas $\theta_0,\dots,\theta_n$.
     Em particular, $y$ não ocorre em nenhum termo que aparece na demonstração.
 
     Para cada $i\leq n$, denote por $\theta_i^\dagger$ a fórmula obtida de $\theta_i$ substituindo todas as ocorrências do símbolo de constante $c$ pela variável $y$.
@@ -943,7 +943,7 @@ A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a let
     \end{proof}
 
     \begin{claim}\label{claim:substituicaoValidaDagger}
-        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$, e seja $z$ uma variável.
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$, e seja $z$ uma variável distinta de $y$.
         Se $z$ é substituível por $t$ em $\varphi$, então $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$.
     \end{claim}
     \begin{proof}
@@ -962,7 +962,7 @@ A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a let
     \end{proof}
 
     \begin{claim}\label{claim:daggerComutaSubstituicao}
-        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $z$ uma variável e seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$.
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $z$ uma variável distinta de $y$ e seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$.
         Então
         \[
             (\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger].
@@ -1028,7 +1028,7 @@ A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a let
     \end{proof}
 
     \begin{claim}\label{claim:substituirConstantePorVariavel}
-        Seja $\varphi$ uma $L$-fórmula tal que $y$ não ocorre em $\varphi$, e seja $z$ uma variável.
+        Seja $\varphi$ uma $L$-fórmula tal que $y$ não ocorre em $\varphi$, e seja $z$ uma variável distinta de $y$.
         Então $(\varphi[z/c])^\dagger=\varphi[z/y]$.
     \end{claim}
     \begin{proof}
