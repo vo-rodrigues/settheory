@@ -40,6 +40,12 @@ Ressaltamos novamente que esse não é o único modo de formalizar a dedução l
         Recursivamente para $n>1$, $\bigwedge_{i=1}^n\phi_i$ é a fórmula $\Big(\bigwedge_{i=1}^{n-1}\phi_i\Big)\land\phi_n$.
 \end{metadefinition}
 
+Os axiomas (FO1)--(FO13) possuem a mesma forma dos axiomas proposicionais (PC1)--(PC13), agora permitindo que $\phi$, $\psi$ e $\chi$ sejam fórmulas de primeira ordem.
+
+Os axiomas (FO14) e (FO15) governam o comportamento dos quantificadores em relação à substituição de termos por variáveis.
+
+Por fim, (FO16)--(FO18) são os axiomas que governam a igualdade e sua compatibilidade com símbolos funcionais e relacionais.
+
 A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
 
 \begin{metadefinition}[Teoria]\label{mdef:teoriaPrimeiraOrdem}\index{teoria}\index{axioma!não lógico}
@@ -130,7 +136,7 @@ A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef
     Assim, para toda teoria $T$ de léxico $\mathcal L$, temos $T\vdash_P \phi$.
 \end{proof}
 
-O primeiro resultado pode ser interpretado como a asserção de que resultados já provados podem ser usados para provar novos resultados.
+O resultado a seguir pode ser interpretado como a asserção de que resultados já provados podem ser usados para provar novos resultados.
 \begin{metalemma}(Modus ponens)\label{mlem:modusPonens}
     Seja $T$ uma teoria de primeira ordem e $\phi, \psi$ $\mathcal L$-fórmulas, em que $\mathcal L$ é o léxico de $T$.
     Se $T \vdash \phi$ e $T \vdash \phi \rightarrow \psi$, então $T \vdash \psi$.
@@ -198,3 +204,9 @@ Abaixo, provaremos, como exemplo, um teorema da lógica pura que intuitivamente 
         & \text{(modus ponens de 1. e 2.)}
     \end{align*}
 \end{proof}
+
+\subsection*{Exercícios}
+
+\begin{exercise}
+    Explique por que toda instância de (FO1)--(FO13) é uma instância de tautologia.
+\end{exercise}

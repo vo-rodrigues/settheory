@@ -21,3 +21,4 @@ Metadefinição
 contrapositiva
 metavariável
 subexpressão
+Metacorolário
