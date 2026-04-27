@@ -664,42 +664,42 @@ Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
     \begin{enumerate}[label=(\roman*)]
         \item 
         \[
-        \frac{\phi\rightarrow\psi}
-             {\forall x\phi\rightarrow\forall x\psi}
+        \frac{\varphi\rightarrow\psi}
+             {\forall x\varphi\rightarrow\forall x\psi}
         \]
-        ``Como para qualquer que seja $x$, $\phi$ implica $\psi$, então, se $\phi$ vale para todo $x$, então $\psi$ vale para todo $x$.''
+        ``Como para qualquer que seja $x$, $\varphi$ implica $\psi$, então, se $\varphi$ vale para todo $x$, então $\psi$ vale para todo $x$.''
         \item
         \[
-        \frac{\phi\rightarrow\psi}
-             {\exists x\phi\rightarrow\exists x\psi}
+        \frac{\varphi\rightarrow\psi}
+             {\exists x\varphi\rightarrow\exists x\psi}
         \]
-        ``Como para qualquer que seja $x$, $\phi$ implica $\psi$, então, se existe um $x$ tal que $\phi$, então existe um $x$ tal que $\psi$.''
+        ``Como para qualquer que seja $x$, $\varphi$ implica $\psi$, então, se existe um $x$ tal que $\varphi$, então existe um $x$ tal que $\psi$.''
         \item \[
-        \frac{\phi\leftrightarrow\psi}
-             {\forall x\phi\leftrightarrow\forall x\psi}
+        \frac{\varphi\leftrightarrow\psi}
+             {\forall x\varphi\leftrightarrow\forall x\psi}
         \]
-        ``Como para qualquer que seja $x$, $\phi$ e $\psi$ são equivalentes, então, $\phi$ vale para qualquer que seja $x$ se, e somente se, $\psi$ vale para qualquer que seja $x$.''
+        ``Como para qualquer que seja $x$, $\varphi$ e $\psi$ são equivalentes, então, $\varphi$ vale para qualquer que seja $x$ se, e somente se, $\psi$ vale para qualquer que seja $x$.''
         \item \[
-        \frac{\phi\leftrightarrow\psi}
-             {\exists x\phi\leftrightarrow\exists x\psi}
+        \frac{\varphi\leftrightarrow\psi}
+             {\exists x\varphi\leftrightarrow\exists x\psi}
         \]
-        ``Como para qualquer que seja $x$, $\phi$ e $\psi$ são equivalentes, então, existe um $x$ tal que $\phi$ se, e somente se, existe um $x$ tal que $\psi$.''
+        ``Como para qualquer que seja $x$, $\varphi$ e $\psi$ são equivalentes, então, existe um $x$ tal que $\varphi$ se, e somente se, existe um $x$ tal que $\psi$.''
     \end{enumerate}
 \end{metaproposition}
 \begin{proof}
     (i) Por FO14, aplicado à fórmula $\psi$ e ao termo $x$, temos $T\vdash \psi\rightarrow\forall x\psi$.
-    Como $x$ não ocorre livre em $\psi\rightarrow\forall x\psi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\phi\rightarrow\forall x\psi$.
+    Como $x$ não ocorre livre em $\psi\rightarrow\forall x\psi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\varphi\rightarrow\forall x\psi$.
 
-    (ii) Por FO15, aplicado à fórmula $\phi$ e ao termo $x$, temos $T\vdash \exists x\phi\rightarrow\phi$.
-    Como $x$ não ocorre livre em $\exists x\phi\rightarrow\phi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\phi\rightarrow\exists x\psi$.
+    (ii) Por FO15, aplicado à fórmula $\varphi$ e ao termo $x$, temos $T\vdash \exists x\varphi\rightarrow\varphi$.
+    Como $x$ não ocorre livre em $\exists x\varphi\rightarrow\varphi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow\exists x\psi$.
 
-    (iii) Se $T\vdash \phi\leftrightarrow\psi$, então $T\vdash \phi\rightarrow\psi$ e $T\vdash \psi\rightarrow\phi$.
-    Por (i), $T\vdash \forall x\phi\rightarrow\forall x\psi$ e $T\vdash \forall x\psi\rightarrow\forall x\phi$.
-    Assim, $T\vdash \forall x\phi\leftrightarrow\forall x\psi$.
+    (iii) Se $T\vdash \varphi\leftrightarrow\psi$, então $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\varphi$.
+    Por (i), $T\vdash \forall x\varphi\rightarrow\forall x\psi$ e $T\vdash \forall x\psi\rightarrow\forall x\varphi$.
+    Assim, $T\vdash \forall x\varphi\leftrightarrow\forall x\psi$.
 
-    (iv) Se $T\vdash \phi\leftrightarrow\psi$, então $T\vdash \phi\rightarrow\psi$ e $T\vdash \psi\rightarrow\phi$.
-    Por (ii), $T\vdash \exists x\phi\rightarrow\exists x\psi$ e $T\vdash \exists x\psi\rightarrow\exists x\phi$.
-    Assim, $T\vdash \exists x\phi\leftrightarrow\exists x\psi$.
+    (iv) Se $T\vdash \varphi\leftrightarrow\psi$, então $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\varphi$.
+    Por (ii), $T\vdash \exists x\varphi\rightarrow\exists x\psi$ e $T\vdash \exists x\psi\rightarrow\exists x\varphi$.
+    Assim, $T\vdash \exists x\varphi\leftrightarrow\exists x\psi$.
 \end{proof}
 
 \begin{metacorollary}[Negação de quantificadores II]\label{mprop:negacaoQuantificadores}
