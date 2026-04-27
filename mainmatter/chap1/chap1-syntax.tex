@@ -59,9 +59,9 @@ Por isso, o conceito de fecho universal será essencial.
 Para trabalharmos com quantificadores, precisaremos da noção de substituição de símbolos em fórmulas, feita como se segue:
 
 \begin{metadefinition}[Substituição em termos]\label{mdef:substituicaoEmTermos}\index{substituição!em termos}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um $\mathcal L$-termo.
 
-    Dado um termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências de $x$ por $t$.
+    Dado um $\mathcal L$-termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências de $x$ por $t$.
     Formalmente, define-se $s[x/t]$ por indução sobre a estrutura de $s$, como se segue.
     \begin{itemize}
         \item Se $s$ é $x$, então $s[x/t]$ é $t$.
@@ -91,7 +91,7 @@ Mas, ao substituir $x$ por $y$, obtemos $\exists y \, \neg(y = y)$, uma fórmula
 
 Optaremos por definir a substituição formal em fórmulas sem se preocupar com este problema, e, a seguir, definir a noção de \emph{substituição válida}.
 \begin{metadefinition}[Substituição em fórmulas]\label{mdef:substituicaoEmFormulas}\index{substituição!em fórmulas}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um termo.
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um $\mathcal L$-termo.
 
     Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida por uma substituição literal: substituem-se todas as ocorrências livres de $x$ por $t$, mesmo que variáveis que ocorrem em $t$ passem a ficar no escopo de quantificadores já presentes em $\varphi$.
     
@@ -130,7 +130,7 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
     Considere a fórmula $\varphi$ dada por $\forall x \exists y \, \neg(x = y)$.
 
     A substituição de $x$ e $y$ por qualquer termo $t$ é válida, pois a fórmula não possui variáveis livres.
-    Notemos que para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, (x \neq y)$ e $\varphi[y/t]$ é $\forall x \exists y \, (x \neq y)$, ou seja, a fórmula é invariante por tais substituições.
+    Notemos que para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, \neg(x = y)$ e $\varphi[y/t]$ é $\forall x \exists y \, \neg(x = y)$, ou seja, a fórmula é invariante por tais substituições.
 \end{example}
 
 \subsection*{Exercícios}
