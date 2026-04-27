@@ -33,7 +33,7 @@ Ressaltamos novamente que esse não é o único modo de formalizar a dedução l
         \item $\phi[x/t] \rightarrow \exists x \phi$, se $x$ é substituível por $t$ em $\phi$.
         \item $x=x$.
         \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (f(x_1, \dots, x_n)=f(y_1, \dots, y_n))$, para cada símbolo funcional $f$ de aridade $n>0$.
-        \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (P(x_1, \dots, x_n) \leftrightarrow P(y_1, \dots, y_n))$, em que $\mathcal P$ é um símbolo de predicado de aridade $n>0$, ou a igualdade $=$, que é um símbolo de predicado de aridade 2.
+        \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (P(x_1, \dots, x_n) \leftrightarrow P(y_1, \dots, y_n))$, em que $P$ é um símbolo de predicado não lógico de aridade $n>0$, ou o símbolo lógico de igualdade $=$ (que possui aridade 2).
         \end{enumerate}
 
         Observação: quando $n=1$, $\bigwedge_{i=1}^n\phi_i$ é $\phi_1$.
@@ -43,7 +43,7 @@ Ressaltamos novamente que esse não é o único modo de formalizar a dedução l
 A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
 
 \begin{metadefinition}[Teoria]\label{mdef:teoriaPrimeiraOrdem}\index{teoria}\index{axioma!não lógico}
-    Uma \emph{teoria de primeira ordem} consiste em um par $T = (\mathcal L, \Sigma)$, em que $\mathcal L$ é um léxico de primeira ordem e $\Sigma$ é um conjunto de $\mathcal L$-sentenças, chamadas de \emph{axiomas não lógicos} de $T$, ou simplesmente de \emph{axiomas} de $T$.
+    Uma \emph{teoria de primeira ordem} consiste em um par $T = (\mathcal L, \Sigma)$, em que $\mathcal L$ é um léxico de primeira ordem e $\Sigma$ é uma coleção de $\mathcal L$-sentenças, chamadas de \emph{axiomas não lógicos} de $T$, ou simplesmente de \emph{axiomas} de $T$.
 \end{metadefinition}
 
 \begin{metadefinition}[Demonstração]\label{mdef:demonstracaoFormal}\index{demonstração formal}\index{teorema}\index{modus ponens}
@@ -76,14 +76,14 @@ A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef
 \begin{metadefinition}
    Seja $\mathcal L$ um léxico de primeira ordem.
    Considere uma coleção finita de variáveis proposicionais $\mathcal P$.
-   Uma atribuição de $\mathcal P$ à $\mathcal L$-fórmulas é um mapeamento de modo que para cada variável proposicional $P$ em $\mathcal P$, $\rho(P)$ é uma $\mathcal L$-fórmula.
+   Uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas é um mapeamento de modo que para cada variável proposicional $P$ em $\mathcal P$, $\rho(P)$ é uma $\mathcal L$-fórmula.
 
    Se $\theta$ é uma fórmula proposicional, dizemos que $\rho$ é uma atribuição para $\theta$ se toda variável proposicional que ocorre em $\theta$ está em $\mathcal P$.
 \end{metadefinition}
 
 \begin{metadefinition}[Substituição proposicional]\label{mdef:substituicaoProposicionalFO}\index{substituição!proposicional}
    Seja $\mathcal L$ um léxico de primeira ordem.
-   Considere uma coleção finita de variáveis proposicionais $\mathcal P$ e $\rho$ uma atribuição de $\mathcal P$ à $\mathcal L$-fórmulas.
+   Considere uma coleção finita de variáveis proposicionais $\mathcal P$ e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas.
 
    Recursivamente na complexidade de uma fórmula proposicional $\theta$, definimos a substituição de $\theta$ via $\rho$, denotada por $\subst(\theta, \rho)$, a partir do seguinte algoritmo.
    Se $\rho$ não é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é um símbolo $I$ que não faz parte da linguagem (que denota, intuitivamente, que $\subst(\theta, \rho)$ é indefinido).
@@ -99,16 +99,18 @@ A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef
 
 \begin{metatheorem}
     Seja $\mathcal L$ um léxico de primeira ordem e $\phi$ uma $\mathcal L$-fórmula.
-    Se $\phi$ é uma instância de tautologia, então $\phi$ é uma consequência proposicional.
-    Em particular, se $T$ é qualquer teoria de primeira ordem de léxico $\mathcal L$, então $T \vdash_P \phi$.
+    Se $\phi$ é uma instância de tautologia, então, para toda teoria de primeira ordem $T$ de léxico $\mathcal L$,
+    \[
+        T\vdash_P \phi.
+    \]
 \end{metatheorem}
 
 \begin{proof}
-    Seja $\theta$ uma tautologia e $\rho$ uma atribuição de $\mathcal P$ à $\mathcal L$-fórmulas tal que $\subst(\theta, \rho)$ é $\phi$.
+    Seja $\theta$ uma tautologia e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas tal que $\subst(\theta, \rho)$ é $\phi$.
 
     Como $\theta$ é uma tautologia, $\theta$ é um teorema da lógica proposicional, ou seja, $\vdash_P \theta$.
 
-    Assim, existe uma demonstração proposicional de $\theta$ a partir do conjunto vazio, digamos $\theta_0, \dots, \theta_n$, em que $\theta_n$ é $\theta$.
+    Assim, existe uma demonstração proposicional de $\theta$ a partir da coleção vazia de axiomas, digamos $\theta_0, \dots, \theta_n$, em que $\theta_n$ é $\theta$.
 
     Seja $\mathcal P'$ uma coleção finita de variáveis proposicionais que contém $\mathcal P$ e todas as variáveis proposicionais que ocorrem em alguma das fórmulas $\theta_0,\dots,\theta_n$.
 
@@ -177,126 +179,7 @@ O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de 
     Como $\phi_n$ é $\phi$, segue que $T'\vdash \phi$.
 \end{proof}
 
-
-\subsection{O Teorema da Dedução}
-O Teorema da Dedução justifica o uso de ``hipóteses temporárias'' ao se provar condicionais em matemática.
-
-\begin{metatheorem}[Teorema da Dedução]\label{mteo:teoremaDaDeducaoFO}
-    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem e sejam $\varphi$ e $\psi$ $\mathcal L$-fórmulas, com $\varphi$ sentença.
-    Então
-    \[
-        \Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi
-    \]
-    se, e somente se,
-    \[
-        \Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi.
-    \]
-\end{metatheorem}
-
-\begin{proof}
-    Suponha primeiramente que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$.
-    Vejamos que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
-
-    Ora, como $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$, segue da Metaproposição~\ref{mprop:extensaoDeTeoria} que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \varphi \rightarrow \psi$.
-    Como $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \varphi$, segue de modus ponens que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
-
-    Para a recíproca, suponha que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
-
-    Então existe uma dedução para $\psi$, digamos, $\psi_0, \dots, \psi_n$.
-    Por indução finitária, veremos que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$ para cada $i\leq n$.
-
-    Suponha que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_j$ para cada $j<i$, em que $i\leq n$.
-    Veremos que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
-
-    Caso 1: $\psi_i$ é um axioma lógico ou um elemento de $\Sigma$.
-    Nesse caso, $\Sigma\vdash_{\mathcal L} \psi_i$.
-    Além disso, $\Sigma\vdash_{\mathcal L} \psi_i \rightarrow (\varphi \rightarrow \psi_i)$, pelo Axioma FO1.
-    Segue de modus ponens que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
-
-    Caso 2: $\psi_i$ é $\varphi$.
-    Nesse caso, $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \varphi$, pois tal fórmula é uma instância de tautologia.
-
-    Caso 3: $\psi_i$ é obtida por modus ponens a partir de $\psi_j$ e $\psi_k$, $\psi_j$ sendo $\psi_k \rightarrow \psi_i$.
-
-    Por hipótese de indução, $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_k$ e $\Sigma\vdash_{\mathcal L} \varphi \rightarrow (\psi_k \rightarrow \psi_i)$.
-    Pelo Axioma FO2, segue que
-    \[
-        \Sigma\vdash_{\mathcal L} (\varphi \rightarrow (\psi_k \rightarrow \psi_i)) \rightarrow ((\varphi \rightarrow \psi_k) \rightarrow (\varphi \rightarrow \psi_i)).
-    \]
-    Aplicando modus ponens duas vezes consecutivamente, obtemos $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
-
-    Caso 4: $\psi_i$ é obtida pela regra de introdução do quantificador universal.
-    Então existem uma fórmula $\chi$, uma fórmula $\eta$, uma variável $x$ e $j<i$ tais que $\psi_j$ é $\chi\rightarrow \eta$, $\psi_i$ é $\chi\rightarrow \forall x\eta$, e $x$ não ocorre livre em $\chi$.
-
-    Pela hipótese de indução,
-    \[
-        \Sigma\vdash_{\mathcal L} \varphi\rightarrow(\chi\rightarrow \eta).
-    \]
-    Como
-    \[
-        (\varphi\rightarrow(\chi\rightarrow \eta))\rightarrow ((\varphi\land\chi)\rightarrow \eta)
-    \]
-    é uma instância de tautologia, obtemos
-    \[
-        \Sigma\vdash_{\mathcal L}(\varphi\land\chi)\rightarrow \eta.
-    \]
-    Como $\varphi$ é uma sentença e $x$ não ocorre livre em $\chi$, a variável $x$ não ocorre livre em $\varphi\land\chi$.
-    Pela regra de introdução do quantificador universal,
-    \[
-        \Sigma\vdash_{\mathcal L}(\varphi\land\chi)\rightarrow \forall x\eta.
-    \]
-    Usando novamente uma instância de tautologia, concluímos
-    \[
-        \Sigma\vdash_{\mathcal L}\varphi\rightarrow(\chi\rightarrow \forall x\eta),
-    \]
-    isto é,
-    \[
-        \Sigma\vdash_{\mathcal L}\varphi\rightarrow\psi_i.
-    \]
-
-    Caso 5: $\psi_i$ é obtida pela regra de introdução do quantificador existencial.
-    Então existem uma fórmula $\chi$, uma fórmula $\eta$, uma variável $x$ e $j<i$ tais que $\psi_j$ é $\chi\rightarrow \eta$, $\psi_i$ é $\exists x\chi\rightarrow \eta$, e $x$ não ocorre livre em $\eta$.
-
-    Pela hipótese de indução,
-    \[
-        \Sigma\vdash_{\mathcal L} \varphi\rightarrow(\chi\rightarrow \eta).
-    \]
-    Pela instância de tautologia
-    \[
-        (\varphi\rightarrow(\chi\rightarrow \eta))\rightarrow(\chi\rightarrow(\varphi\rightarrow\eta)),
-    \]
-    obtemos
-    \[
-        \Sigma\vdash_{\mathcal L}\chi\rightarrow(\varphi\rightarrow\eta).
-    \]
-    Como $\varphi$ é uma sentença e $x$ não ocorre livre em $\eta$, a variável $x$ não ocorre livre em $\varphi\rightarrow\eta$.
-    Pela regra de introdução do quantificador existencial,
-    \[
-        \Sigma\vdash_{\mathcal L}\exists x\chi\rightarrow(\varphi\rightarrow\eta).
-    \]
-    Usando a instância de tautologia
-    \[
-        (\exists x\chi\rightarrow(\varphi\rightarrow\eta))\rightarrow
-        (\varphi\rightarrow(\exists x\chi\rightarrow\eta)),
-    \]
-    concluímos
-    \[
-        \Sigma\vdash_{\mathcal L}\varphi\rightarrow(\exists x\chi\rightarrow\eta),
-    \]
-    isto é,
-    \[
-        \Sigma\vdash_{\mathcal L}\varphi\rightarrow\psi_i.
-    \]
-
-    Portanto, por indução, $\Sigma\vdash_{\mathcal L}\varphi\rightarrow\psi_i$ para todo $i\leq n$.
-    Como $\psi_n$ é $\psi$, segue que
-    \[
-        \Sigma\vdash_{\mathcal L}\varphi\rightarrow\psi.
-    \]
-\end{proof}
-
-Façamos uma pausa para observar algo importante acontecendo na metateoria (isto é, no nosso raciocínio sobre demonstrações).
-Ambos os resultados acima concluem que ``existem demonstrações''.
+Os resultados acima concluem que ``existem demonstrações''.
 É importante observar que tais provas existenciais são construtivas: elas de fato fornecem um algoritmo para, dados os objetos declarados nas hipóteses, efetivamente redigir uma demonstração.
 
 Abaixo, provaremos, como exemplo, um teorema da lógica pura que intuitivamente diz que o universo de discurso é não vazio.
