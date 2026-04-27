@@ -795,8 +795,9 @@ Também usaremos a seguinte renomeação de variável ligada.
     \[
         T\vdash \forall y\,\varphi[x/y].
     \]
-    Como $y$ não ocorre em $\varphi$, temos que $x$ não ocorre no escopo de nenhum quantificador de $\varphi$ que age em $y$, pois tais quantificadores não ocorrem em $\varphi$.
-    Assim, a substituição $\varphi[x/y]$ é válida.
+    Como $y$ não ocorre em $\varphi$, as ocorrências livres de $y$ em $\varphi[x/y]$ são exatamente aquelas que surgiram a partir das ocorrências livres de $x$ em $\varphi$.
+    Em particular, nenhuma dessas ocorrências está no escopo de um quantificador que age em $x$.
+    Logo, em $\varphi[x/y]$, a variável $y$ é substituível por $x$.
 
     Pelo já provado, $T\vdash \forall x\,\varphi[x/y][y/x]$.
     Como $\varphi[x/y][y/x]$ é a própria $\varphi$, segue a tese.
