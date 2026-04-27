@@ -609,7 +609,7 @@ Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
     Como $T\vdash \varphi[x/t]$, segue por \emph{modus ponens} que $T\vdash \exists x\varphi$.
 \end{proof}
 
-\begin{metaproposition}[Negação de quantificadores]\label{mprop:negacaoQuantificadores}
+\begin{metaproposition}[Negação de quantificadores]\label{mprop:negacaoQuantificadores2}
     Seja $T$ uma teoria de primeira ordem, seja $\varphi$ uma fórmula da linguagem de $T$ e seja $x$ uma variável.
     Então
     \[
@@ -664,34 +664,34 @@ Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
     \begin{enumerate}[label=(\roman*)]
         \item 
         \[
-        \frac{\varphi\rightarrow\psi}
-             {\forall x\varphi\rightarrow\forall x\psi}
+        \frac{T\vdash \varphi\rightarrow\psi}
+             {T\vdash \forall x\varphi\rightarrow\forall x\psi}
         \]
         ``Como para qualquer que seja $x$, $\varphi$ implica $\psi$, então, se $\varphi$ vale para todo $x$, então $\psi$ vale para todo $x$.''
         \item
         \[
-        \frac{\varphi\rightarrow\psi}
-             {\exists x\varphi\rightarrow\exists x\psi}
+        \frac{T\vdash \varphi\rightarrow\psi}
+             {T\vdash \exists x\varphi\rightarrow\exists x\psi}
         \]
         ``Como para qualquer que seja $x$, $\varphi$ implica $\psi$, então, se existe um $x$ tal que $\varphi$, então existe um $x$ tal que $\psi$.''
         \item \[
-        \frac{\varphi\leftrightarrow\psi}
-             {\forall x\varphi\leftrightarrow\forall x\psi}
+        \frac{T\vdash \varphi\leftrightarrow\psi}
+             {T\vdash \forall x\varphi\leftrightarrow\forall x\psi}
         \]
         ``Como para qualquer que seja $x$, $\varphi$ e $\psi$ são equivalentes, então, $\varphi$ vale para qualquer que seja $x$ se, e somente se, $\psi$ vale para qualquer que seja $x$.''
         \item \[
-        \frac{\varphi\leftrightarrow\psi}
-             {\exists x\varphi\leftrightarrow\exists x\psi}
+        \frac{T\vdash \varphi\leftrightarrow\psi}
+             {T\vdash \exists x\varphi\leftrightarrow\exists x\psi}
         \]
         ``Como para qualquer que seja $x$, $\varphi$ e $\psi$ são equivalentes, então, existe um $x$ tal que $\varphi$ se, e somente se, existe um $x$ tal que $\psi$.''
     \end{enumerate}
 \end{metaproposition}
 \begin{proof}
-    (i) Por FO14, aplicado à fórmula $\psi$ e ao termo $x$, temos $T\vdash \psi\rightarrow\forall x\psi$.
-    Como $x$ não ocorre livre em $\psi\rightarrow\forall x\psi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\varphi\rightarrow\forall x\psi$.
+    (i) Por FO14, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \forall x\varphi\rightarrow\psi$.
+    Como $x$ não ocorre livre em $\forall x\psi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\varphi\rightarrow\forall x\psi$.
 
-    (ii) Por FO15, aplicado à fórmula $\varphi$ e ao termo $x$, temos $T\vdash \exists x\varphi\rightarrow\varphi$.
-    Como $x$ não ocorre livre em $\exists x\varphi\rightarrow\varphi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow\exists x\psi$.
+    (ii) Por FO15, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \varphi\rightarrow\exists x\psi$.
+    Como $x$ não ocorre livre em $\exists x\varphi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow\exists x\psi$.
 
     (iii) Se $T\vdash \varphi\leftrightarrow\psi$, então $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\varphi$.
     Por (i), $T\vdash \forall x\varphi\rightarrow\forall x\psi$ e $T\vdash \forall x\psi\rightarrow\forall x\varphi$.
