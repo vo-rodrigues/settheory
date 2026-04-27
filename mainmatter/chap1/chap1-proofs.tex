@@ -1,499 +1,1146 @@
-\section{Mais sobre demonstrações formais}\label{sec:maisSobreDemonstracoesFormais}
+\section{Regras de inferência derivadas}\label{sec:maisSobreDemonstracoesFormais}
 \index{teoria da prova}
+\index{regra de inferência}
 \index{teorema!da dedução}
-Nesta seção, veremos resultados adicionais sobre demonstrações formais.
-Tais resultados formalizam parte dos raciocínios matemáticos usualmente utilizados.
 
-Iniciaremos provando ``regras de inferência derivadas''.
+Na seção anterior, definimos demonstrações formais em teorias de primeira ordem.
+A definição de demonstração formal é bastante rígida: é uma sequência de fórmulas, cada uma das quais é um axioma lógico, um axioma da teoria, ou é obtida a partir de fórmulas anteriores por uma das regras de inferência explicitamente permitidas.
 
+Na prática, demonstrações matemáticas são escritas de forma muito mais flexível.
+Escreve-se, a todo momento, expressões como ``suponha que $\varphi$'', ``fixe $x$ arbitrário'', ``tome $x$ tal que $\varphi(x)$'', ``dividimos em casos'' ou ``basta provar que $\psi$'', dentre muitas outras formas de raciocínio que não estão explicitamente previstas na definição de demonstração formal.
+O objetivo desta seção é justificar, a partir desta noção formal, várias das principais formas de raciocínio usadas na prática.
 
-\subsection{Regras de inferência sobre implicação e negação}
+As regras que aparecerão nesta seção não são novas regras primitivas acrescentadas ao sistema.
+São regras derivadas: cada uma delas é um metateorema que, dadas demonstrações formais das premissas indicadas, fornece um procedimento finitário para construir uma demonstração formal da conclusão.
 
-Começaremos com os itens que tratam apenas da implicação.
+\subsection{Notação para regras de inferência}
 
-\begin{metaproposition}\label{mprop:regraDeImplicacao}
-    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ e $\theta$ fórmulas da linguagem de $T$.
-    \begin{enumerate}[label=(\roman*)]
-        \item Se $T\vdash \varphi \rightarrow \psi$ e $T\vdash \varphi$, então $T\vdash \psi$.
-        \item Se $T\vdash \psi$, então $T\vdash \varphi \rightarrow \psi$.
-        \item $T\vdash \varphi \rightarrow \varphi$.
-        \item Se $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\theta$, então $T\vdash \varphi\rightarrow\theta$.
+Uma regra de inferência será descrita pela notação a seguir.
+\[
+    \frac{\text{Premissas}}{\text{Conclusão}}
+\]
+Essa notação significa que, sempre que dispomos dos dados indicados nas premissas, há um procedimento finito que constrói a demonstração formal indicada na conclusão.
 
-    \end{enumerate}
-\end{metaproposition}
-\begin{proof}
-    \textbf{(i)}: este item corresponde ao Metalema~\ref{mlem:modusPonens}.
-    \smallskip
+Por exemplo, o Metalema~\ref{mlem:modusPonens} (Modus Ponens) pode ser escrito como a regra
+\[
+    \frac{T\vdash \varphi \quad T\vdash \varphi\rightarrow\psi}
+         {T\vdash \psi}.
+\]
+Tal notação nos diz que a partir de demonstrações formais de $\varphi$ e de $\varphi\rightarrow\psi$ em $T$, é possível construir uma demonstração formal de $\psi$ em $T$.
 
-    \textbf{(ii)}: suponha que $T\vdash \psi$.
-    Pelo Axioma~\ref{ax:implicacao1}, temos que $T\vdash \psi \rightarrow (\varphi \rightarrow \psi)$.
-    Assim, por modus ponens, $T\vdash \varphi \rightarrow \psi$.
-    \smallskip
-    
-    \textbf{(iii)}: pelo Axioma~\ref{ax:implicacao1}, segue que $T\vdash \varphi \rightarrow ((\varphi \rightarrow \varphi) \rightarrow \varphi)$.
-
-    Pelo Axioma~\ref{ax:implicacao2}, segue que $T\vdash (\varphi \rightarrow ((\varphi \rightarrow \varphi) \rightarrow \varphi)) \rightarrow ((\varphi \rightarrow (\varphi \rightarrow \varphi)) \rightarrow (\varphi \rightarrow \varphi))$.
-
-    Assim, por modus ponens, $T\vdash (\varphi \rightarrow (\varphi \rightarrow \varphi)) \rightarrow (\varphi \rightarrow \varphi)$.
-
-    Agora, novamente pelo Axioma~\ref{ax:implicacao1}, segue que $T\vdash \varphi \rightarrow (\varphi \rightarrow \varphi)$.
-
-    Portanto, novamente por modus ponens, segue que $T\vdash \varphi \rightarrow \varphi$.
-    \smallskip
-
-    \textbf{(iv)}: pelo Axioma~\ref{ax:implicacao2}, $T\vdash (\varphi \rightarrow (\psi \rightarrow \theta)) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \theta))$.
-    
-    Pelo item (ii) e da hipótese, $T\vdash \varphi \rightarrow (\psi \rightarrow \theta)$.
-    Daí, por modus ponens, $T\vdash (\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \theta)$.
-    Novamente, por modus ponens, $T\vdash \varphi \rightarrow \theta$.
-\end{proof}
-
-Agora trataremos dos itens que envolvem a  negação.
-
-\begin{metaproposition}\label{mprop:contraposicao}
-    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ fórmulas da linguagem de $T$.
-    \begin{enumerate}[label=(\roman*)]
-        \item Se $T\vdash \neg\neg \varphi$, então $T\vdash \varphi$.
-    \end{enumerate}
-\end{metaproposition}
-\begin{proof}
-    \textbf{(i)}: do Axioma~\ref{ax:negacao}, segue que $T\vdash (\neg \varphi \rightarrow \neg \varphi) \rightarrow ((\neg \varphi \rightarrow \varphi) \rightarrow \varphi)$.
-    
-    Dos itens (ii) e (iii) do Proposição~\ref{mprop:regraDeImplicacao}, segue que $T\vdash \neg \varphi \rightarrow \neg \varphi$ e $T\vdash \neg \varphi \rightarrow \varphi$.
-    Assim, pelo Axioma~\ref{ax:negacao} e modus ponens, $T\vdash \varphi$.
-\end{proof}
-
-
-
-\begin{metaproposition}
-    Suponha que $T$ é uma teoria de primeira ordem e $\varphi, \psi$ são fórmulas da linguagem de $T$.
-    Então:
-    \begin{enumerate}[label=(\roman*)]
-        \item Se $T\vdash \varphi \land \psi$, então $T\vdash \varphi$.
-        \item Se $T\vdash \varphi \land \psi$, então $T\vdash \psi$.
-        \item Se $T\vdash \varphi$ e $T\vdash \psi$, então $T\vdash \varphi \land \psi$.
-        \item $T\vdash \varphi \rightarrow \varphi$.
-    \end{enumerate}
-\end{metaproposition}
-
-\begin{proof}
-    Para o item (a), suponha que $T\vdash \varphi \land \psi$.
-    Pelo Axioma~\ref{ax:conjuncao2}, $T\vdash (\varphi \land \psi) \rightarrow \varphi$.
-    Segue de modus ponens que $T\vdash \varphi$.
-
-    Para o item (b), suponha que $T\vdash \varphi \land \psi$.
-    Pelo Axioma~\ref{ax:conjuncao3}, $T\vdash (\varphi \land \psi) \rightarrow \psi$.
-    Segue de modus ponens que $T\vdash \psi$.
-
-    Para o item (c), suponha que $T\vdash \varphi$ e $T\vdash \psi$.
-    Pelo Axioma~\ref{ax:conjuncao1}, $T\vdash \varphi \rightarrow (\psi \rightarrow (\varphi \land \psi))$.
-    Segue de modus ponens que $T\vdash \psi \rightarrow (\varphi \land \psi)$.
-    Novamente, de modus ponens, que $T\vdash \varphi \land \psi$.
-
-    Para o item (d), suponha que $T\vdash \varphi \land \psi$.
-    Pelos itens (a) e (b), $T\vdash \varphi$ e $T\vdash \psi$.
-    Daí, pelo item (c), $T\vdash \psi \land \varphi$.
-\end{proof}
-\begin{metaproposition}
-    Suponha que $T$ é uma teoria de primeira ordem e $\varphi, \psi$ são fórmulas da linguagem de $T$.
-    Então:
-    \begin{enumerate}[label=(\roman*)]
-        \item Se $T\vdash \varphi$, então $T\vdash \varphi \vee \psi$.
-        \item Se $T\vdash \psi$, então $T\vdash \varphi \vee \psi$.
-        \item Se $T\vdash \varphi\vee \varphi$, então $T\vdash \varphi$.
-    \end{enumerate}
-\end{metaproposition}
-\begin{proof}
-    Para o item (a), suponha que $T\vdash \varphi$.
-    Pelo Axioma~\ref{ax:disjuncao1}, $T\vdash \varphi \rightarrow (\varphi \vee \psi)$.
-    Segue de modus ponens que $T\vdash \varphi \vee \psi$.
-
-    Para o item (b), suponha que $T\vdash \psi$.
-    Pelo Axioma~\ref{ax:disjuncao2}, $T\vdash \psi \rightarrow (\varphi \vee \psi)$.
-    Segue de modus ponens que $T\vdash \varphi \vee \psi$.
-
-    Para o item (c), suponha que $T\vdash \varphi\vee \varphi$.
-    Como já visto, $T\vdash \varphi \rightarrow \varphi$.
-    Pelo Axioma~\ref{ax:disjuncao3}, $T\vdash (\varphi \rightarrow \varphi) \rightarrow ((\varphi \rightarrow \varphi) \rightarrow (\varphi \vee \varphi)\rightarrow \varphi)$.
-    Segue de modus ponens aplicado duas vezes que $T\vdash (\varphi \vee \varphi) \rightarrow \varphi$.
-    Novamente, por modus ponens, $T\vdash \varphi$.
-\end{proof}
-
-
-O próximo resultado nos mostra o motivo de contradições serem tão indesejáveis em Matemática: na Lógica Clássica, ao admitir uma, não estamos apenas sendo incoerentes, estamos abrindo margem para provar qualquer coisa: um verdadeiro desastre.
-
-\begin{metadefinition}\label{mdef:inconsistencia}\index{inconsistência}
-    Seja $T$ uma teoria de primeira ordem.
-    Dizemos que $T$ é \emph{inconsistente} se existe uma fórmula $\phi$ tal que $T \vdash \phi$ e $T \vdash \neg \phi$.
-\end{metadefinition}
-
-\begin{metaproposition}[Princípio da explosão]\label{mprop:principioDaExplosao}\index{princípio da explosão}
-    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ fórmulas da linguagem de $T$.
-    Se $T\vdash \varphi$ e $T\vdash \neg \varphi$, então $T\vdash \psi$.
-\end{metaproposition}
-\begin{proof}
-    Suponha que $T\vdash \varphi$ e $T\vdash \neg \varphi$.
-
-    Pelo Axioma~\ref{ax:negacao},
-
-    \begin{equation}
-        \label{eq:principioDaExplosao1}
-        T\vdash (\neg \psi \rightarrow \varphi) \rightarrow ((\neg \psi \rightarrow \neg \varphi) \rightarrow \psi).
-    \end{equation}
-
-    Pelo Axioma~\ref{ax:implicacao1}, temos que $T\vdash \varphi \rightarrow (\neg \psi \rightarrow \varphi)$ e que $T\vdash \neg \varphi \rightarrow (\neg \psi \rightarrow \neg \varphi)$.
-
-    Como $T\vdash \varphi$ e $T\vdash \neg \varphi$, segue de modus ponens e do parágrafo anterior que $T\vdash \neg \psi \rightarrow \varphi$ e $T\vdash \neg \psi \rightarrow \neg \varphi$.
-
-    Finalmente, por modus ponens aplicado à Equação~\ref{eq:principioDaExplosao1}, $T\vdash \psi$.
-\end{proof}
+Utilizaremos a convenção de que, se $T=(L,\Sigma)$ é uma teoria de primeira ordem e $\varphi$ é uma $L$-sentença, então $T\cup \{\varphi\}$ é a teoria $(L,\Sigma\cup\{\varphi\})$.
 
 \subsection{O Teorema da Dedução}
-O Teorema da Dedução justifica o uso de ``hipóteses temporárias'' nas usuais em matemática.
 
-\begin{metatheorem}
-    Seja $(\Sigma, \mathcal L)$ uma teoria de primeira ordem e $\varphi, \psi$ $\mathcal L$-fórmulas.
-    Então $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$ se, e somente se, $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
+O Teorema da Dedução formaliza o uso de hipóteses temporárias.
+Ele justifica o procedimento usual de, para provar uma implicação $\varphi\rightarrow\psi$ em que $\varphi$ é uma $L$-sentença, assumir temporariamente $\varphi$ e, sob essa hipótese, provar $\psi$.
+
+\begin{metatheorem}[Teorema da Dedução]\label{mteo:teoremaDaDeducaoFO}\label{mthm:teoremaDaDeducao}
+    Seja $T=(L,\Sigma)$ uma teoria de primeira ordem, $\varphi$ uma $L$-sentença e seja $\psi$ uma $L$-fórmula.
+
+    Então $T\cup\{\varphi\}\vdash \psi$ se, e somente se, $T\vdash \varphi\rightarrow\psi$.
+    Ou seja:
+    \[
+        \frac{T\cup\{\varphi\}\vdash \psi}
+             {T\vdash \varphi\rightarrow\psi} \quad \text{e}\quad \frac{T\vdash \varphi\rightarrow\psi}
+             {T\cup\{\varphi\}\vdash \psi}.
+    \]
 \end{metatheorem}
 
 \begin{proof}
-    Suponha primeiramente que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$.
-    Vejamos que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
-
-    Ora, como $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi$, segue da Metaproposição~\ref{mprop:extensaoDeTeoria} que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \varphi \rightarrow \psi$.
-    Como $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \varphi$, segue de modus ponens que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
-
-    Para a recíproca, suponha que $\Sigma\cup \{\varphi\}\vdash_{\mathcal L} \psi$.
-
-    Então existe uma dedução para $\psi$, digamos, $\psi_0, \dots, \psi_n$.
-    Por indução finitária, veremos que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$ para cada $i\leq n$.
-
-    Suponha que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_j$ para cada $j<i$, em que $i\leq n$.
-    Veremos que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
-
-    Caso 1: $\psi_i$ é um axioma lógico ou um elemento de $\Sigma$.
-    Nesse caso, $\Sigma\vdash_{\mathcal L} \psi_i$.
-    Além disso, $\Sigma\vdash_{\mathcal L} \psi_i \rightarrow (\varphi \rightarrow \psi_i)$, pelo Axioma~\ref{ax:implicacao1}.
-    Segue de modus ponens que $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
-
-    Caso 2: $\psi_i$ é $\varphi$.
-    Nesse caso, $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \varphi$.
-
-    Caso 3: $\psi_i$ é obtida por modus ponens a partir de $\psi_j$ e $\psi_k$, $\psi_k$ sendo $\psi_j \rightarrow \psi_i$.
-
-    Por hipótese de indução, $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_j$ e $\Sigma\vdash_{\mathcal L} \varphi \rightarrow (\psi_k \rightarrow \psi_i)$.
-    Pelo Axioma~\ref{ax:implicacao2} com $A$ sendo $\varphi$, $B$ sendo $\psi_j$ e $C$ sendo $\psi_i$, segue que
+    Suponha primeiramente que $T\vdash \varphi\rightarrow\psi$.
+    Da monotonicidade da dedução, segue que $T\cup\{\varphi\}\vdash \varphi\rightarrow\psi$.
+    Note que $T\cup\{\varphi\}\vdash \varphi$.
+    Dessa forma, $T\cup\{\varphi\}\vdash \psi$ por modus ponens.
+    
+    Reciprocamente, suponha que $T\cup\{\varphi\}\vdash \psi$.
+    Fixe uma demonstração formal de $\psi$ a partir de $T\cup\{\varphi\}$, digamos $\psi_0,\dots,\psi_n$, em que $\psi_n$ é $\psi$.
+    Provaremos, por indução em $i\leq n$, que
     \[
-        \Sigma\vdash_{\mathcal L} (\varphi \rightarrow (\psi_k \rightarrow \psi_i)) \rightarrow ((\varphi \rightarrow \psi_j) \rightarrow (\varphi \rightarrow \psi_i)).
+        T\vdash \varphi\rightarrow\psi_i.
     \]
-    Aplicando modus ponens duas vezes consecutivamente, obtemos $\Sigma\vdash_{\mathcal L} \varphi \rightarrow \psi_i$.
 
-    Caso 4: $\psi_i$ é da forma $(\forall x A)\rightarrow B$, e
+    Suponha que a tese já tenha sido provada para todo $j<i$.
+    Veremos que $T\vdash \varphi\rightarrow\psi_i$.
+
+    \textbf{Caso 1}: $\psi_i$ é um axioma lógico ou um axioma de $T$.
+    Nesse caso, $T\vdash \psi_i$.
+    Ademais, $\psi_i\rightarrow(\varphi\rightarrow\psi_i)$ é uma tautologia (ou uma instância de FO1), de modo que $T\vdash \psi_i\rightarrow(\varphi\rightarrow\psi_i)$.
+    Por modus ponens, segue que $T\vdash \varphi\rightarrow\psi_i$.
+    
+    \textbf{Caso 2}: $\psi_i$ é a fórmula $\varphi$.
+    Nesse caso, note que $T\vdash \varphi\rightarrow\varphi$, pois esta fórmula é uma instância de tautologia.
+
+    \textbf{Caso 3}: $\psi_i$ foi obtida por modus ponens a partir de fórmulas anteriores.
+    Então existem $j,k<i$ tais que $\psi_j$ é $\psi_k\rightarrow\psi_i$.
+    Pela hipótese de indução,
+    \[
+        T\vdash \varphi\rightarrow\psi_k \quad \text{e}\quad T\vdash \varphi\rightarrow(\psi_k\rightarrow\psi_i).
+    \]
+    Por FO2 (ou porque tal fórmula é uma instância de tautologia), temos
+    \[
+        T\vdash (\varphi\rightarrow(\psi_k\rightarrow\psi_i))
+        \rightarrow
+        ((\varphi\rightarrow\psi_k)\rightarrow(\varphi\rightarrow\psi_i)).
+    \]
+    Duas aplicações de modus ponens concluem que $T\vdash \varphi\rightarrow\psi_i$.
+
+    \textbf{Caso 4}: suponha que $\psi_i$ foi obtida pela regra de introdução do quantificador universal.
+    Então existem fórmulas $\chi$ e $\eta$, uma variável $x$ e $j<i$ tais que $\psi_j$ é $\chi\rightarrow\eta$, $\psi_i$ é $\chi\rightarrow\forall x\,\eta$, e $x$ não ocorre livre em $\chi$.
+
+    Pela hipótese de indução, $T\vdash \varphi\rightarrow(\chi\rightarrow\eta)$.
+    Temos que $T\vdash (\varphi\rightarrow(\chi\rightarrow\eta))\rightarrow((\varphi\land\chi)\rightarrow\eta)$, pois tal fórmula é uma instância de tautologia.
+    Assim, por modus ponens, segue que
+    \[
+        T\vdash (\varphi\land\chi)\rightarrow\eta.
+    \]
+    Como $\varphi$ é uma sentença e $x$ não ocorre livre em $\chi$, a variável $x$ não ocorre livre em $\varphi\land\chi$.
+    Pela regra de introdução do quantificador universal,
+    \[
+        T\vdash (\varphi\land\chi)\rightarrow\forall x\,\eta.
+    \]
+    Usando a instância de tautologia $((\varphi\land\chi)\rightarrow\forall x\,\eta)
+        \rightarrow
+        (\varphi\rightarrow(\chi\rightarrow\forall x\,\eta))$ e modus ponens, obtemos
+    \[
+        T\vdash \varphi\rightarrow(\chi\rightarrow\forall x\,\eta),
+    \]
+    isto é, $T\vdash \varphi\rightarrow\psi_i$.
+
+    \textbf{Caso 5}: $\psi_i$ foi obtida pela regra de introdução do quantificador existencial.
+    Então existem fórmulas $\chi$ e $\eta$, uma variável $x$ e $j<i$ tais que $\psi_j$ é $\chi\rightarrow\eta$, $\psi_i$ é $\exists x\chi\rightarrow\eta$, e $x$ não ocorre livre em $\eta$.
+
+    Pela hipótese de indução, $T\vdash \varphi\rightarrow(\chi\rightarrow\eta)$.
+    Pela instância de tautologia $(\varphi\rightarrow(\chi\rightarrow\eta))\rightarrow(\chi\rightarrow(\varphi\rightarrow\eta))$ e modus ponens, obtemos
+    \[
+        T\vdash \chi\rightarrow(\varphi\rightarrow\eta).
+    \]
+    Como $\varphi$ é uma sentença e $x$ não ocorre livre em $\eta$, a variável $x$ não ocorre livre em $\varphi\rightarrow\eta$.
+    Pela regra de introdução do quantificador existencial,
+    \[
+        T\vdash \exists x\chi\rightarrow(\varphi\rightarrow\eta).
+    \]
+    Usando a instância de tautologia $(\exists x\chi\rightarrow(\varphi\rightarrow\eta))
+        \rightarrow
+        (\varphi\rightarrow(\exists x\chi\rightarrow\eta))$ e modus ponens, concluímos
+    \[
+        T\vdash \varphi\rightarrow(\exists x\chi\rightarrow\eta),
+    \]
+    isto é, $T\vdash \varphi\rightarrow\psi_i$.
+
+    Portanto, $T\vdash \varphi\rightarrow\psi_i$ para todo $i\leq n$.
+    Como $\psi_n$ é $\psi$, segue que $T\vdash \varphi\rightarrow\psi$.
 \end{proof}
 
-A seguir, veremos teoremas que justificam o uso de constantes temporárias.
-Por exemplo: em um contexto de análise real, para provar que uma função é contínua, costumamos ``fixar'' um $\epsilon>0$.
-Antes disso, o $\epsilon$ era uma variável quantificada por um quantificador universal.
-Após ser fixado, é tratado como um objeto específico, constante.
+Em linguagem mais informal, o Teorema da Dedução autoriza o seguinte raciocínio corriqueiro em matemática, quando $\varphi$ é uma sentença:
 
-Imaginemos, agora, o contexto de aplicação de um teorema sobre existência de pontos fixos.
-Um exemplo é o Teorema do Ponto Fixo de Banach, que diz que toda contração forte possui um ponto fixo.
-Tais teoremas são existenciais.
-Para utilizá-los, ``fixamos'' um ponto fixo e o tratamos como uma constante específica.
-Feito isso, prosseguimos para provar algum novo resultado desejado.
+``Queremos mostrar que $\varphi\rightarrow \psi$.
+Suponha $\varphi$.
+Veremos que $\psi$.''
 
-Notemos que se $t$ é um termo sem variáveis, então qualquer substituição $\phi[x/t]$ é válida, pois $t$ não possui variáveis que possam ser capturadas por quantificadores.
+\subsection{Regras proposicionais derivadas}
 
-Precisaremos do seguinte lema:
+Começaremos com regras que dependem apenas dos conectivos proposicionais.
+Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instâncias de tautologias são demonstráveis e de \emph{modus ponens}.
 
-\begin{metalemma}[Renomeação de variável universal]\label{mlem:renomeacaoVariavelUniversal}\index{renomeação de variável!universal}
-    Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
-    Seja $y$ uma variável que não ocorre em $\phi$.
+\begin{metaproposition}[Regras proposicionais para implicação]\label{mprop:regrasProposicionaisImplicacao}
+    Seja $T$ uma teoria de primeira ordem e sejam $\varphi,\psi,\theta$ fórmulas da linguagem de $T$.
 
-    Então, se $T\vdash \forall y\,\phi[x/y]$, segue que $T\vdash \forall x\,\phi$.
+    Então valem as seguintes regras de inferência.
+    Abaixo do enunciado de cada uma delas, escreveremos uma forma informal corriqueira de expressar o raciocínio que a regra justifica.
 
-    Reciprocamente, se $T\vdash \forall x\,\phi$, segue que $T\vdash \forall y\,\phi[x/y]$.
-\end{metalemma}
+    \begin{enumerate}[label=(\roman*)]
+        \item Modus ponens.
+        \[
+            \frac{T\vdash \varphi \quad T\vdash \varphi\rightarrow\psi}
+                 {T\vdash \psi}.
+        \]
+        
+        ``Como vale $\varphi$, e $\varphi$ implica $\psi$, temos $\psi$.''
+
+        \item Modus tollens.
+        \[
+            \frac{T\vdash \varphi\rightarrow\psi \quad T\vdash \neg\psi}
+                 {T\vdash \neg\varphi}.
+        \]
+
+        ``Como vale $\neg\psi$, e $\varphi$ implica $\psi$, temos $\neg\varphi$.''
+
+        \item Contrapositiva.
+        
+        \[
+            \frac{T\vdash \varphi\rightarrow\psi}
+                 {T\vdash \neg\psi\rightarrow\neg\varphi} \qquad \frac{T\vdash \neg\psi\rightarrow\neg\varphi}
+                 {T\vdash \varphi\rightarrow\psi}
+        \]
+
+        ``Queremos mostrar que $\varphi$ implica $\psi$.
+        Procedemos pela contrapositiva mostrando que $\neg\psi$ implica $\neg\varphi$.''
+
+        \item Introdução de $\rightarrow$.
+        \[
+            \frac{T\vdash \psi}
+                 {T\vdash \varphi\rightarrow\psi} \qquad \frac{T\vdash \neg\varphi}
+                 {T\vdash \varphi\rightarrow\psi}
+        \]
+
+        ``Como $\psi$ é verdadeiro, $\varphi$ implica $\psi$ independentemente de $\varphi$.''
+
+        ``Como o antecedente $\varphi$ é falso, $\varphi$ implica $\psi$ trivialmente.''
+
+
+        \item Reflexividade de $\rightarrow$.
+        \[
+            T\vdash \varphi\rightarrow\varphi.
+        \]
+
+        ``Trivialmente, $\varphi$ implica $\varphi$.''
+
+        \item Transitividade de $\rightarrow$.
+        \[
+            \frac{T\vdash \varphi\rightarrow\psi \quad T\vdash \psi\rightarrow\theta}
+                 {T\vdash \varphi\rightarrow\theta}.
+        \]
+
+        ``Como $\varphi$ implica $\psi$ e $\psi$ implica $\theta$, temos que $\varphi$ implica $\theta$.''
+    \end{enumerate}
+\end{metaproposition}
 
 \begin{proof}
-    Suponha $T\vdash \forall y\,\phi[x/y]$.
+    (i) é exatamente o Metalema~\ref{mlem:modusPonens}.
+    Para os demais itens, utilizamos modus ponens com as seguintes instâncias de tautologia.
 
-    \smallskip
-    \textbf{Passo 1:} $\forall x(\forall y\,\phi[x/y]\rightarrow \phi)$ é um axioma lógico.
+    (ii) $(\varphi\rightarrow\psi)\rightarrow(\neg\psi\rightarrow\neg\varphi)$
 
-    De fato, aplique o esquema (2) à fórmula $\psi:=\phi[x/y]$, tomando o quantificador $\forall y$
-    e o termo $x$.
-    Obtemos a instância
-    \[
-        \forall y\,\phi[x/y]\rightarrow (\phi[x/y])[y/x].
-    \]
-    Como $y$ não ocorre em $\phi$, temos $(\phi[x/y])[y/x]$ é $\phi$ (veja o Exercício~\ref{exr:substituicaoSimples}).
-    Além disso, a substituição $(\phi[x/y])[y/x]$ é válida, pois as ocorrências livres de $y$ em $\phi[x/y]$
-    correspondem às ocorrências livres de $x$ em $\phi$, logo, por definição de ocorrência livre, nenhuma delas está no escopo de quantificador que age em $x$.
-    Tomando fecho universal em $x$, concluímos que
-    \[
-        \forall x(\forall y\,\phi[x/y]\rightarrow \phi)
-    \]
-    é um axioma lógico, logo $T\vdash \forall x(\forall y\,\phi[x/y]\rightarrow \phi)$.
+    (iii) $(\neg\psi\rightarrow\neg\varphi)\rightarrow(\varphi\rightarrow\psi)$ e $(\varphi\rightarrow\psi)\rightarrow(\neg\psi\rightarrow\neg\varphi)$
 
-    \smallskip
-    \textbf{Passo 2:} $T\vdash \forall x\forall y\,\phi[x/y]\rightarrow \forall x\,\phi$.
+    (iv) $\psi\rightarrow(\varphi\rightarrow\psi)$ e $\neg\varphi\rightarrow(\varphi\rightarrow\psi)$
 
-    Pelo esquema (3), a sentença
-    \[
-        \forall x(\forall y\,\phi[x/y]\rightarrow \phi)\rightarrow
-        (\forall x\forall y\,\phi[x/y]\rightarrow \forall x\,\phi)
-    \]
-    é um axioma lógico. Por \emph{modus ponens} com o Passo 1, obtemos
-    \[
-        T\vdash \forall x\forall y\,\phi[x/y]\rightarrow \forall x\,\phi.
-    \]
+    (v) $\varphi\rightarrow\varphi$
 
-    \smallskip
-    \textbf{Passo 3:} $T\vdash \forall x\forall y\,\phi[x/y]$.
-
-    Como $\forall y\,\phi[x/y]$ é uma sentença, $x$ não ocorre livre nela.
-    Pelo esquema (4), temos como axioma lógico
-    \[
-        \forall y\,\phi[x/y]\rightarrow \forall x\forall y\,\phi[x/y].
-    \]
-    Por \emph{modus ponens} com a hipótese $T\vdash \forall y\,\phi[x/y]$, concluímos
-    \[
-        T\vdash \forall x\forall y\,\phi[x/y].
-    \]
-
-    \smallskip
-    \textbf{Conclusão.}
-    Aplicando \emph{modus ponens} entre o Passo 3 e o Passo 2, obtemos $T\vdash \forall x\,\phi$.
-
-    Para a recíproca, suponha $T\vdash \forall x\,\phi$.
-
-    Pelo esquema (2), tomando o termo $y$, a sentença
-    \[
-        \forall x\,\phi \rightarrow \phi[x/y]
-    \]
-    é um axioma lógico (a substituição é válida porque $y$ não ocorre em $\phi$).
-    Tomando fecho universal em $y$, obtemos que
-    \[
-        \forall y(\forall x\,\phi \rightarrow \phi[x/y])
-    \]
-    é um axioma lógico.
-
-    Pelo esquema (3), também é um axioma lógico que
-    \[
-        \forall y(\forall x\,\phi \rightarrow \phi[x/y])\rightarrow
-        (\forall y\forall x\,\phi \rightarrow \forall y\,\phi[x/y]).
-    \]
-    Por \emph{modus ponens}, concluímos
-    \[
-        T\vdash \forall y\forall x\,\phi \rightarrow \forall y\,\phi[x/y].
-    \]
-
-    Como $\forall x\,\phi$ é uma sentença, $y$ não ocorre livre nela; pelo esquema (4),
-    \[
-        \forall x\,\phi \rightarrow \forall y\forall x\,\phi
-    \]
-    é um axioma lógico. Por \emph{modus ponens} com a hipótese $T\vdash \forall x\,\phi$, obtemos
-    $T\vdash \forall y\forall x\,\phi$. Aplicando \emph{modus ponens} novamente, segue que
-    $T\vdash \forall y\,\phi[x/y]$.
+    (vi) $(\varphi\rightarrow\psi)\rightarrow((\psi\rightarrow\theta)\rightarrow(\varphi\rightarrow\theta))$
 \end{proof}
 
-\begin{metacorollary}[Renomeação de variável existencial]\label{mcor:renomeacaoVariavelExistencial}\index{renomeação de variável!existencial}
-    Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
-    Seja $y$ uma variável que não ocorre em $\phi$.
+\begin{metaproposition}[Regras proposicionais para negação]\label{mprop:regrasProposicionaisNegacao}
+    Seja $T$ uma teoria de primeira ordem e sejam $\varphi$, $\psi$ fórmulas da linguagem de $T$.
 
-    Então, se $T\vdash \exists y\,\phi[x/y]$, segue que $T\vdash \exists x\,\phi$.
+    Então valem as seguintes regras de inferência.
+    Abaixo do enunciado de cada uma delas, escreveremos uma forma informal corriqueira de expressar o raciocínio que a regra justifica.
 
-    Reciprocamente, se $T\vdash \exists x\,\phi$, segue que $T\vdash \exists y\,\phi[x/y]$.
+    \begin{enumerate}[label=(\roman*)]
+        \item Eliminação da dupla negação.
+        \[
+            \frac{T\vdash \neg\neg\varphi}
+                 {T\vdash \varphi}.
+        \]
+        
+        ``Como não vale $\neg \varphi$, temos $\varphi$.''
+
+        \item Redução ao absurdo (Reductio ad absurdum). Se $\varphi$ é uma sentença, então
+        \[
+            \frac{T\cup\{\varphi\}\vdash \psi \quad T\cup\{\varphi\}\vdash \neg\psi}
+                 {T\vdash \neg\varphi}.
+        \]
+
+        ``Suponha por absurdo que vale $\varphi$ (...) como $\psi$ e $\neg\psi$, temos um absurdo.
+        Logo, $\neg\varphi$.''
+    \end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    Para (i) basta observar que $\neg\neg\varphi\rightarrow\varphi$ é um axioma lógico (ou uma instância de tautologia) e utilizar modus ponens.
+
+    Para (ii), pelo Teorema da Dedução, $T\vdash \varphi\rightarrow\psi$ e $T\vdash \varphi\rightarrow\neg\psi$.
+    Por FO3,
+    \[
+        T\vdash
+        (\varphi\rightarrow\psi)
+        \rightarrow
+        ((\varphi\rightarrow\neg\psi)\rightarrow\neg\varphi).
+    \]
+    Aplicando modus ponens duas vezes, obtemos $T\vdash \neg\varphi$.
+\end{proof}
+
+\begin{metaproposition}[Regras proposicionais para conjunção]\label{mprop:regrasProposicionaisConjuncao}
+    Seja $T$ uma teoria de primeira ordem e sejam $\varphi$, $\psi$ e $\theta$ fórmulas da linguagem de $T$.
+
+    Então valem as seguintes regras de inferência.
+    Abaixo do enunciado de cada uma delas, escreveremos uma forma informal corriqueira de expressar o raciocínio que a regra justifica.
+    \begin{enumerate}[label=(\roman*)]
+
+        \item Introdução de $\land$.
+        \[
+            \frac{T\vdash \varphi \quad T\vdash \psi}
+                 {T\vdash \varphi\land\psi}.
+        \]
+
+        ``Como temos $\varphi$ e $\psi$, temos $\varphi\land\psi$.''
+
+        \item Eliminação de $\land$.
+        \[
+            \frac{T\vdash \varphi\land\psi}
+                 {T\vdash \varphi}
+            \qquad
+            \frac{T\vdash \varphi\land\psi}
+                 {T\vdash \psi}.
+        \]
+
+        ``Temos $\varphi\land\psi$, logo, $\varphi$ e $\psi$.''
+
+        \item Princípio da não contradição.
+        \[
+            T\vdash \neg(\varphi\land\neg\varphi).
+        \]
+
+        ``$\varphi$ e $\neg\varphi$ não podem ambos ser verdadeiros.''
+
+        \item Princípio da explosão.
+        \[
+            T\vdash (\varphi\land\neg\varphi)\rightarrow\psi.
+        \]
+
+        ``Como temos $\varphi$ e $\neg\varphi$, temos uma contradição.
+        De uma contradição, qualquer fórmula $\psi$ pode ser provada.
+        Logo, segue $\psi$.''
+
+        \item Comutatividade de $\land$.
+        \[
+            \frac{T\vdash \varphi\land\psi}
+                 {T\vdash \psi\land\varphi}.
+        \]
+        ``Temos $\varphi\land\psi$, equivalentemente, $\psi\land\varphi$.''
+
+        \item Associatividade de $\land$.
+        \[
+            \frac{T\vdash (\varphi\land\psi)\land\theta}
+                 {T\vdash \varphi\land(\psi\land\theta)}
+            \qquad
+            \frac{T\vdash \varphi\land(\psi\land\theta)}
+                 {T\vdash (\varphi\land\psi)\land\theta}.
+        \]
+
+        ``Temos $(\varphi\land\psi)\land\theta$, equivalentemente, $\varphi\land(\psi\land\theta)$.
+        Omitindo os parênteses, vamos escrever $\varphi\land\psi\land\theta$.''
+    \end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    Tais regras de inferência decorrem de modus ponens e das tautologias $(\varphi\land \psi)\rightarrow\varphi$, $(\varphi\land \psi)\rightarrow\psi$, $\varphi\rightarrow(\psi\rightarrow(\varphi\land\psi))$, $\neg(\varphi\land\neg\varphi)$, $(\varphi\land\neg\varphi)\rightarrow\psi$, $(\varphi\land\psi)\rightarrow(\psi\land\varphi)$, $((\varphi\land\psi)\land\theta)\rightarrow(\varphi\land(\psi\land\theta))$ e $(\varphi\land(\psi\land\theta))\rightarrow((\varphi\land\psi)\land\theta)$.
+\end{proof}
+
+\begin{metaproposition}[Regras proposicionais para disjunção]\label{mprop:regrasProposicionaisDisjuncao}
+    Seja $T$ uma teoria de primeira ordem e sejam $\varphi$, $\psi$ e $\theta$ fórmulas da linguagem de $T$.
+
+    Então valem as seguintes regras de inferência.
+    Abaixo do enunciado de cada uma delas, escreveremos uma forma informal corriqueira de expressar o raciocínio que a regra justifica.
+    \begin{enumerate}[label=(\roman*)]
+
+        \item Introdução de $\lor$.
+        \[
+            \frac{T\vdash \varphi}
+                 {T\vdash \varphi\lor\psi}
+            \qquad
+            \frac{T\vdash \psi}
+                 {T\vdash \varphi\lor\psi}.
+        \]
+
+        ``De $\varphi$, segue que $\varphi\lor\psi$.''
+
+        ``Como temos $\psi$, temos $\varphi\lor\psi$.''
+
+        \item Introdução de casos. Se $\varphi$ e $\psi$ são sentenças, então
+        \[
+            \frac{T\vdash \varphi\lor\psi \quad T\cup\{\varphi\}\vdash \theta \quad T\cup\{\psi\}\vdash \theta}
+                 {T\vdash \theta}.
+        \]
+
+        ``Temos $\varphi\lor\psi$. Suponha que $\varphi$ seja verdadeira. Então, $\theta$ é verdadeira. Suponha que $\psi$ seja verdadeira. Então, $\theta$ é verdadeira. Logo, $\theta$ é verdadeira.''
+
+        \item Princípio do terceiro excluído.
+        \[
+            T\vdash \varphi\lor\neg\varphi.
+        \]
+
+        ``Pelo princípio do terceiro excluído, ou $\varphi$ é verdadeira, ou $\neg\varphi$ é verdadeira.''
+
+        \item Disjunção de casos. Se $\varphi$ é uma sentença, então
+        \[
+            \frac{T\cup\{\varphi\}\vdash \psi \quad T\cup\{\neg\varphi\}\vdash \psi}
+                 {T\vdash \psi}.
+        \]
+
+        ``Queremos mostrar $\psi$.
+        Dividimos em casos: suponha que $\varphi$ seja verdadeira (...) então $\psi$ é verdadeira; suponha que $\varphi$ seja falsa (...) então $\psi$ é verdadeira. Logo, $\psi$ é verdadeira.''
+
+        \item Prova de disjunção. Se $\varphi$ é uma sentença, então
+        \[
+            \frac{T\cup\{\neg\varphi\}\vdash \psi}
+                 {T\vdash \varphi\lor\psi}.
+        \]
+
+        ``Queremos mostrar $\varphi\lor\psi$.
+        É suficiente assumir $\neg\varphi$ e mostrar que, nesse caso, $\psi$ é verdadeira.''
+
+        \item Comutatividade de $\lor$.
+        \[
+            \frac{T\vdash \varphi\lor\psi}
+                 {T\vdash \psi\lor\varphi}.
+        \]
+
+        ``Temos $\varphi\lor\psi$, equivalentemente, $\psi\lor\varphi$.''
+
+        \item Associatividade de $\lor$.
+        
+        \[
+            \frac{T\vdash (\varphi\lor\psi)\lor\theta}
+                 {T\vdash \varphi\lor(\psi\lor\theta)}
+            \qquad
+            \frac{T\vdash \varphi\lor(\psi\lor\theta)}
+                 {T\vdash (\varphi\lor\psi)\lor\theta}.
+        \]
+
+        ``Temos $(\varphi\lor\psi)\lor\theta$, equivalentemente, $\varphi\lor(\psi\lor\theta)$. Omitindo os parênteses, vamos escrever $\varphi\lor\psi\lor\theta$.''
+
+        \item Distributividade de $\land$ sobre $\lor$.
+        
+        \[
+            \frac{T\vdash \varphi\land(\psi\lor\theta)}
+                 {T\vdash (\varphi\land\psi)\lor(\varphi\land\theta)}
+            \qquad
+            \frac{T\vdash (\varphi\land\psi)\lor(\varphi\land\theta)}
+                 {T\vdash \varphi\land(\psi\lor\theta)}.
+        \]
+
+        ``Temos $\varphi\land(\psi\lor\theta)$, equivalentemente, $(\varphi\land\psi)\lor(\varphi\land\theta)$.''
+
+        \item Distributividade de $\lor$ sobre $\land$.
+        
+        \[
+            \frac{T\vdash \varphi\lor(\psi\land\theta)}
+                 {T\vdash (\varphi\lor\psi)\land(\varphi\lor\theta)}
+            \qquad
+            \frac{T\vdash (\varphi\lor\psi)\land(\varphi\lor\theta)}
+                 {T\vdash \varphi\lor(\psi\land\theta)}.
+        \]
+
+        ``Temos $\varphi\lor(\psi\land\theta)$, equivalentemente, $(\varphi\lor\psi)\land(\varphi\lor\theta)$.''
+
+        \item Leis de De Morgan para $\land$.
+        
+        \[
+            \frac{T\vdash \neg(\varphi\land\psi)}
+                 {T\vdash \neg\varphi\lor\neg\psi}
+            \qquad
+            \frac{T\vdash \neg\varphi\lor\neg\psi}
+                 {T\vdash \neg(\varphi\land\psi)}
+        \]
+
+        ``Temos $\neg(\varphi\land\psi)$.
+        Por De Morgan, $\neg\varphi\lor\neg\psi$.''
+
+        ``Temos $\neg\varphi\lor\neg\psi$.
+        Equivalentemente, $\neg(\varphi\land\psi)$.''
+
+        \item Leis de De Morgan para $\lor$.
+        
+        \[
+            \frac{T\vdash \neg(\varphi\lor\psi)}
+                 {T\vdash \neg\varphi\land\neg\psi}
+            \qquad
+            \frac{T\vdash \neg\varphi\land\neg\psi}
+                 {T\vdash \neg(\varphi\lor\psi)}
+        \]
+
+        ``Temos $\neg(\varphi\lor\psi)$.
+        Por De Morgan, $\neg\varphi\land\neg\psi$.''
+        
+        ``Temos $\neg\varphi\land\neg\psi$.
+        Equivalentemente, $\neg(\varphi\lor\psi)$.''
+
+        \item Idempotência de $\lor$.
+        
+        \[
+            \frac{T\vdash \varphi\lor \varphi}{
+                 T\vdash \varphi}
+        \]
+
+        ``Temos $\varphi\lor\varphi$.
+        Em qualquer caso, $\varphi$.''
+    \end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    Tais regras de inferência decorrem de modus ponens, do Teorema da Dedução e das seguintes instâncias de tautologia.
+
+    (i) $\varphi\rightarrow(\varphi\lor\psi)$ e $\psi\rightarrow(\varphi\lor\psi)$.
+
+    (ii) $(\varphi\lor\psi)\rightarrow((\varphi\rightarrow\theta)\rightarrow((\psi\rightarrow\theta)\rightarrow\theta))$.
+
+    (iii) $\varphi\lor\neg\varphi$.
+
+    (iv) $(\varphi\rightarrow\psi)\rightarrow((\neg\varphi\rightarrow\psi)\rightarrow((\varphi\lor\neg\varphi)\rightarrow\psi))$.
+
+    (v) $(\neg\varphi\rightarrow\psi)\rightarrow(\varphi\lor\psi)$.
+
+    (vi) $(\varphi\lor\psi)\rightarrow(\psi\lor\varphi)$.
+
+    (vii) $((\varphi\lor\psi)\lor\theta)\rightarrow(\varphi\lor(\psi\lor\theta))$ e $(\varphi\lor(\psi\lor\theta))\rightarrow((\varphi\lor\psi)\lor\theta)$.
+
+    (viii) $\varphi\land(\psi\lor\theta)\rightarrow((\varphi\land\psi)\lor(\varphi\land\theta))$ e $((\varphi\land\psi)\lor(\varphi\land\theta))\rightarrow(\varphi\land(\psi\lor\theta))$.
+
+    (ix) $\varphi\lor(\psi\land\theta)\rightarrow((\varphi\lor\psi)\land(\varphi\lor\theta))$ e $((\varphi\lor\psi)\land(\varphi\lor\theta))\rightarrow(\varphi\lor(\psi\land\theta))$.
+
+    (x) $\neg(\varphi\land\psi)\rightarrow(\neg\varphi\lor\neg\psi)$ e $(\neg\varphi\lor\neg\psi)\rightarrow\neg(\varphi\land\psi)$.
+
+    (xi) $\neg(\varphi\lor\psi)\rightarrow(\neg\varphi\land\neg\psi)$ e $(\neg\varphi\land\neg\psi)\rightarrow\neg(\varphi\lor\psi)$.
+
+    (xii) $(\varphi\lor\varphi)\rightarrow\varphi$.
+\end{proof}
+
+\begin{metaproposition}[Regras proposicionais para bicondicional]\label{mprop:regrasProposicionaisBicondicional}
+    Seja $T$ uma teoria de primeira ordem e sejam $\varphi$ e $\psi$ fórmulas da linguagem de $T$.
+
+    Então valem as seguintes regras de inferência.
+    Abaixo do enunciado de cada uma delas, escreveremos uma forma informal corriqueira de expressar o raciocínio que a regra justifica.
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Introdução de $\leftrightarrow$.
+        \[
+            \frac{T\vdash \varphi\rightarrow\psi \quad T\vdash \psi\rightarrow\varphi}
+                 {T\vdash \varphi\leftrightarrow\psi}.
+        \]
+
+        ``Como $\varphi$ implica $\psi$ e $\psi$ implica $\varphi$, temos que $\varphi$ é equivalente a $\psi$.''
+
+        \item Eliminação de $\leftrightarrow$.
+        \[
+            \frac{T\vdash \varphi\leftrightarrow\psi}
+                 {T\vdash \varphi\rightarrow\psi}
+            \qquad
+            \frac{T\vdash \varphi\leftrightarrow\psi}
+                 {T\vdash \psi\rightarrow\varphi}.
+        \]
+
+        ``Temos que $\varphi$ é equivalente a $\psi$, logo, $\varphi$ implica $\psi$ e $\psi$ implica $\varphi$.''
+
+        \item Comutatividade de $\leftrightarrow$.
+        \[
+            \frac{T\vdash \varphi\leftrightarrow\psi}
+                 {T\vdash \psi\leftrightarrow\varphi}.
+        \]
+
+        ``Temos que $\varphi$ é equivalente a $\psi$, equivalentemente, $\psi$ é equivalente a $\varphi$.''
+
+        \item Associatividade de $\leftrightarrow$.
+        \[
+            \frac{T\vdash (\varphi\leftrightarrow\psi)\leftrightarrow\theta}
+                 {T\vdash \varphi\leftrightarrow(\psi\leftrightarrow\theta)}
+            \qquad
+            \frac{T\vdash \varphi\leftrightarrow(\psi\leftrightarrow\theta)}
+                 {T\vdash (\varphi\leftrightarrow\psi)\leftrightarrow\theta}.
+        \]
+
+        ``Temos $(\varphi\leftrightarrow\psi)\leftrightarrow\theta$, equivalentemente, $\varphi\leftrightarrow(\psi\leftrightarrow\theta)$.''
+        
+    \end{enumerate}
+\end{metaproposition}
+\begin{proof}
+    Tais regras de inferência decorrem de modus ponens e das seguintes instâncias de tautologia.
+
+    (i) $(\varphi\rightarrow\psi)\rightarrow((\psi\rightarrow\varphi)\rightarrow(\varphi\leftrightarrow\psi))$.
+
+    (ii) $(\varphi\leftrightarrow\psi)\rightarrow(\varphi\rightarrow\psi)$ e $(\varphi\leftrightarrow\psi)\rightarrow(\psi\rightarrow\varphi)$.
+
+    (iii) $(\varphi\leftrightarrow\psi)\rightarrow(\psi\leftrightarrow\varphi)$.
+
+    (iv) $((\varphi\leftrightarrow\psi)\leftrightarrow\theta)\rightarrow(\varphi\leftrightarrow(\psi\leftrightarrow\theta))$ e $(\varphi\leftrightarrow(\psi\leftrightarrow\theta)) \rightarrow ((\varphi\leftrightarrow \psi)\leftrightarrow \theta)$.
+\end{proof}
+
+\subsection{Regras para quantificadores}
+
+Passaremos agora às regras envolvendo quantificadores.
+Aqui aparecem as condições mais delicadas da seção, pois é preciso controlar cuidadosamente variáveis livres e substituições válidas.
+
+Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
+
+\begin{metaproposition}[Instanciação universal e generalização existencial]\label{mprop:instanciacaoUniversalGeneralizacaoExistencial}
+    Seja $T$ uma teoria de primeira ordem de léxico $L$.
+    Seja $\varphi$ uma $L$-fórmula, seja $x$ uma variável e seja $t$ um $L$-termo tal que $x$ é substituível por $t$ em $\varphi$.
+
+    Então:
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Instanciação universal.
+        
+        \[
+        \frac{T\vdash \forall x\varphi}
+             {T\vdash \varphi[x/t]}
+        \]
+        ``Como $\varphi$ vale para todo $x$, então vale para este termo $t$.''
+        \item Generalização existencial.
+        \[
+            \frac{T\vdash \varphi[x/t]}
+             {T\vdash \exists x\varphi}
+        \]
+        ``Como $\varphi$ vale para o termo $t$, então existe um $x$ tal que $\varphi$.''
+    \end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    Para (i), usamos FO14:
+    \[
+        \forall x\varphi\rightarrow\varphi[x/t].
+    \]
+    Como $T\vdash \forall x\varphi$, segue por \emph{modus ponens} que $T\vdash \varphi[x/t]$.
+
+    Para (ii), usamos FO15:
+    \[
+        \varphi[x/t]\rightarrow\exists x\varphi.
+    \]
+    Como $T\vdash \varphi[x/t]$, segue por \emph{modus ponens} que $T\vdash \exists x\varphi$.
+\end{proof}
+
+\begin{metaproposition}[Negação de quantificadores]\label{mprop:negacaoQuantificadores}
+    Seja $T$ uma teoria de primeira ordem, seja $\varphi$ uma fórmula da linguagem de $T$ e seja $x$ uma variável.
+    Então
+    \[
+        T\vdash \neg\exists x\varphi \leftrightarrow \forall x\neg\varphi.
+    \]
+\end{metaproposition}
+
+\begin{proof}
+    Primeiro, provemos que $T\vdash \neg\exists x\varphi \rightarrow \forall x\neg\varphi$.
+
+    Por FO15, aplicado ao termo $x$, temos $T\vdash \varphi\rightarrow\exists x\varphi$.
+    Pela contrapositiva,
+    \[
+        T\vdash \neg\exists x\varphi\rightarrow\neg\varphi.
+    \]
+    Como $x$ não ocorre livre em $\neg\exists x\varphi$, pela regra de introdução do quantificador universal,
+    \[
+        T\vdash \neg\exists x\varphi\rightarrow\forall x\neg\varphi.
+    \]
+
+    Reciprocamente, provemos que $T\vdash \forall x\neg\varphi\rightarrow\neg\exists x\varphi$.
+
+    Por FO14, aplicado à fórmula $\neg\varphi$ e ao termo $x$, temos
+    \[
+        T\vdash \forall x\neg\varphi\rightarrow\neg\varphi.
+    \]
+    Pela contrapositiva e pela equivalência entre $\neg\neg \varphi$ e $\varphi$, temos que $T\vdash \neg \neg\varphi\rightarrow\neg\forall x\neg\varphi$ e $T\vdash \varphi\rightarrow\neg\neg\varphi$.
+    Assim, pela transitividade de $\rightarrow$,
+    \[
+        T\vdash \varphi\rightarrow\neg\forall x\neg\varphi.
+    \]
+    Como $x$ não ocorre livre em $\neg\forall x\neg\varphi$, pela regra de introdução do quantificador existencial,
+    \[
+        T\vdash \exists x\varphi\rightarrow\neg\forall x\neg\varphi.
+    \]
+    Aplicando novamente a contrapositiva, $T\vdash \neg \neg \forall x\neg\varphi\rightarrow\neg\exists x\varphi$.
+    Como $T\vdash \forall x\neg\varphi\rightarrow\neg\neg\forall x\neg\varphi$, pela transitividade de $\rightarrow$,
+    \[
+        T\vdash \forall x\neg\varphi\rightarrow\neg\exists x\varphi.
+    \]
+
+    Pelas duas implicações, concluímos
+    \[
+        T\vdash \neg\exists x\varphi \leftrightarrow \forall x\neg\varphi.
+    \]
+\end{proof}
+
+\begin{metaproposition}[Quantificadores e implicações]\label{mprop:quantificadoresImplicacao}
+    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ fórmulas da linguagem de $T$.
+    Seja $x$ uma variável.
+    Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item 
+        \[
+        \frac{\phi\rightarrow\psi}
+             {\forall x\phi\rightarrow\forall x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\phi$ implica $\psi$, então, se $\phi$ vale para todo $x$, então $\psi$ vale para todo $x$.''
+        \item
+        \[
+        \frac{\phi\rightarrow\psi}
+             {\exists x\phi\rightarrow\exists x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\phi$ implica $\psi$, então, se existe um $x$ tal que $\phi$, então existe um $x$ tal que $\psi$.''
+        \item \[
+        \frac{\phi\leftrightarrow\psi}
+             {\forall x\phi\leftrightarrow\forall x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\phi$ e $\psi$ são equivalentes, então, $\phi$ vale para qualquer que seja $x$ se, e somente se, $\psi$ vale para qualquer que seja $x$.''
+        \item \[
+        \frac{\phi\leftrightarrow\psi}
+             {\exists x\phi\leftrightarrow\exists x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\phi$ e $\psi$ são equivalentes, então, existe um $x$ tal que $\phi$ se, e somente se, existe um $x$ tal que $\psi$.''
+    \end{enumerate}
+\end{metaproposition}
+\begin{proof}
+    (i) Por FO14, aplicado à fórmula $\psi$ e ao termo $x$, temos $T\vdash \psi\rightarrow\forall x\psi$.
+    Como $x$ não ocorre livre em $\psi\rightarrow\forall x\psi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\phi\rightarrow\forall x\psi$.
+
+    (ii) Por FO15, aplicado à fórmula $\phi$ e ao termo $x$, temos $T\vdash \exists x\phi\rightarrow\phi$.
+    Como $x$ não ocorre livre em $\exists x\phi\rightarrow\phi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\phi\rightarrow\exists x\psi$.
+
+    (iii) Se $T\vdash \phi\leftrightarrow\psi$, então $T\vdash \phi\rightarrow\psi$ e $T\vdash \psi\rightarrow\phi$.
+    Por (i), $T\vdash \forall x\phi\rightarrow\forall x\psi$ e $T\vdash \forall x\psi\rightarrow\forall x\phi$.
+    Assim, $T\vdash \forall x\phi\leftrightarrow\forall x\psi$.
+
+    (iv) Se $T\vdash \phi\leftrightarrow\psi$, então $T\vdash \phi\rightarrow\psi$ e $T\vdash \psi\rightarrow\phi$.
+    Por (ii), $T\vdash \exists x\phi\rightarrow\exists x\psi$ e $T\vdash \exists x\psi\rightarrow\exists x\phi$.
+    Assim, $T\vdash \exists x\phi\leftrightarrow\exists x\psi$.
+\end{proof}
+
+\begin{metacorollary}[Negação de quantificadores II]\label{mprop:negacaoQuantificadores}
+    Seja $T$ uma teoria de primeira ordem, seja $\varphi$ uma fórmula da linguagem de $T$ e seja $x$ uma variável.
+    Então
+    \[
+        T\vdash \neg \forall x\varphi\leftrightarrow\exists x\neg \varphi.
+    \]
 \end{metacorollary}
 
 \begin{proof}
-    Provaremos a direção $T\vdash \exists y\,\phi[x/y]\Rightarrow T\vdash \exists x\,\phi$;
-    a recíproca é análoga.
+    Sabemos que $T\vdash \neg\exists x\neg \varphi \leftrightarrow \forall x\neg\neg\varphi$.
+    
+    Como $T\vdash \neg\neg\varphi\leftrightarrow\varphi$, pela transitividade de $\leftrightarrow$, segue que $T\vdash \forall x\neg\neg\varphi\leftrightarrow\forall x\varphi$.
 
-    Suponha $T\vdash \exists y\,\phi[x/y]$.
-    Pelo axioma (6) (com a fórmula $\phi[x/y]$), temos o seguinte axioma.
-    \[
-        \forall y\,\neg\phi[x/y]\leftrightarrow \neg\exists y\,\phi[x/y].
-    \]
-    Pela tautologia proposicional $(A\leftrightarrow \neg B)\rightarrow(\neg A\leftrightarrow B)$,
-    obtemos
-    \[
-        \neg\forall y\,\neg\phi[x/y]\leftrightarrow \exists y\,\phi[x/y].
-    \]
-    Logo, por \emph{modus ponens}, $T\vdash \neg\forall y\,\neg\phi[x/y]$.
-
-    Aplicando o Metalema~\ref{mlem:renomeacaoVariavelUniversal} à fórmula $\neg\phi$
-    (e usando tautologias proposicionais para passar ao negado), obtemos
-    $T\vdash \neg\forall x\,\neg\phi$.
-    Finalmente, pelo axioma (6) e uma instância de tautologia, segue que $T\vdash \exists x\,\phi$.
-
-    Para a recíproca e demais detalhes, veja o Exercício~\ref{exr:renomeacaoVariavelExistencial}.
+    Pela transitividade de $\leftrightarrow$, $T\vdash \neg\exists x\neg \varphi \leftrightarrow \forall x\varphi$.
+    Novamente pela contrapositiva, $T\vdash \neg\forall x\varphi \leftrightarrow \exists x\neg \varphi$.
 \end{proof}
 
-\begin{metatheorem}[Inferências sobre quantificação]\label{mthm:inferenciasSobreQuantificacao}\index{instanciação universal}\index{generalização existencial}\index{instanciação existencial}\index{generalização universal}
-    Seja $T$ uma teoria de primeira ordem com axiomas $\Sigma$ e léxico $\mathcal L$.
-    Considere\footnote{Lembre-se da Convenção~\ref{conv:variaveisLivres}.} uma $\mathcal L$-fórmula $\phi(x)$ e uma $\mathcal L$-sentença $\psi$, em que $x$ é uma variável, e um símbolo de constante $c$ que não faz parte de $\mathcal L$.
-    Sejam $\mathcal L'$ o léxico $\mathcal L$ acrescido de $c$, e $T'$ a teoria de primeira ordem com léxico $\mathcal L'$ e axiomas $\Sigma$.
 
-    \begin{enumerate}[label=(\Roman*)]
-        \item (Instanciação Universal) Se $T \vdash \forall x \phi$, então $T \vdash \phi[x/t]$, para cada termo $t$ sem variáveis.
-        \item (Generalização Existencial) Se $T \vdash \phi[x/t]$, para algum termo $t$ sem variáveis, então $T \vdash \exists x \phi$.
-        \item (Instanciação Existencial) Se $T'\vdash \phi[x/c]\rightarrow \psi$, então $T \vdash (\exists x \phi) \rightarrow \psi$.
-        \item (Generalização Universal) Se $T'\vdash \phi[x/c]$, então $T \vdash \forall x \phi$.
-    \end{enumerate}
-\end{metatheorem}
+A seguir, precisaremos de uma forma simples de generalização universal.
+
+\begin{metalemma}[Generalização de teoremas]\label{mlem:generalizacaoDeTeoremas}
+    Seja $T$ uma teoria de primeira ordem, $\varphi$ uma fórmula da linguagem de $T$ e $x$ uma variável.
+    Se $T\vdash \varphi$, então $T\vdash \forall x\varphi$.
+
+    \[
+        \frac{T\vdash \varphi}
+             {T\vdash \forall x\varphi}.
+    \]
+
+    ``Temos que $\varphi$.
+    Como $x$ é arbitrário, $\varphi$ vale para todo $x$.''
+\end{metalemma}
 
 \begin{proof}
-\textbf{(I) Instanciação Universal.}
-Suponha $T\vdash \forall x\,\phi$ e seja $t$ um termo sem variáveis.
-Pelo esquema de axiomas lógicos (2), temos como axioma lógico a sentença
-\[
-\forall x\,\phi \rightarrow \phi[x/t].
-\]
-Aplicando \emph{modus ponens} com $T\vdash \forall x\,\phi$, obtemos $T\vdash \phi[x/t]$.
+    Escolha uma variável $z$ distinta de $x$.
 
-\medskip
-\textbf{(II) Generalização Existencial.}
-Suponha $T\vdash \phi[x/t]$ para algum termo $t$ sem variáveis.
-Pelo esquema de axiomas lógicos (5), temos como axioma lógico a sentença
-\[
-\phi[x/t]\rightarrow \exists x\,\phi.
-\]
-Aplicando \emph{modus ponens} com $T\vdash \phi[x/t]$, obtemos $T\vdash \exists x\,\phi$.
+    Por FO16, $T\vdash z=z$.
+    Pela introdução de $\rightarrow$, $T\vdash z=z\rightarrow\varphi$.
 
-\medskip
-\textbf{(IV) Generalização Universal.}
-Suponha $T'\vdash \phi[x/c]$.
-Fixe uma demonstração (formal) em $T'$ da sentença $\phi[x/c]$,
-digamos $\psi_0,\dots,\psi_n$, com $\psi_n=\phi[x/c]$.
-Como a demonstração é finita, apenas finitas variáveis aparecem nos $\psi_i$.
-Escolha uma variável $y$ que \emph{não ocorra em nenhum} $\psi_i$ (isso é possível pois há infinitas variáveis).
-
-Para cada $i\le n$, seja $\psi_i^\dagger$ a fórmula obtida de $\psi_i$ substituindo-se
-\emph{todas} as ocorrências do símbolo de constante $c$ pela variável $y$.
-Note que $\psi_i^\dagger$ é agora uma fórmula (possivelmente com $y$ livre) na linguagem original $\mathcal L$.
-Defina ainda a sentença
-\[
-\widehat{\psi_i}\ :=\ \forall y\,\psi_i^\dagger.
-\]
-Afirmamos que, para todo $i\le n$, vale $T\vdash \widehat{\psi_i}$.
-Provaremos por indução em $i$.
-
-\smallskip
-\emph{Caso 1:} $\psi_i$ é um axioma de $T'$ (isto é, $\psi_i\in\Sigma$).
-Então $\psi_i$ não envolve $c$, logo $\psi_i^\dagger=\psi_i$ e $\widehat{\psi_i}=\forall y\,\psi_i$.
-Como $\psi_i$ é axioma de $T$, temos $T\vdash \psi_i$.
-Como $y$ não ocorre livre em $\psi_i$ (pois $\psi_i$ é sentença), pelo esquema lógico (4) obtemos
-$T\vdash \psi_i\rightarrow \forall y\,\psi_i$, e por \emph{modus ponens} segue $T\vdash \forall y\,\psi_i=\widehat{\psi_i}$.
-
-\smallskip
-\emph{Caso 2:} $\psi_i$ é um axioma lógico.
-Então $\psi_i$ é um fecho universal de alguma instância de um dos esquemas (1)--(11),
-envolvendo possivelmente o símbolo novo $c$ como parte de algum termo.
-Ao substituir $c$ por $y$ obtemos novamente uma instância do \emph{mesmo} esquema,
-agora na linguagem $\mathcal L$ (pois $y$ é um termo, e $y$ foi escolhido de modo a não introduzir conflitos de variáveis).
-    Para mais informações, veja o Exercício~\ref{exr:axiomaSubstituicaoDeConstante}.
-Logo, $\widehat{\psi_i}=\forall y\,\psi_i^\dagger$ é (também) um axioma lógico de $T$.
-Assim, $T\vdash \widehat{\psi_i}$.
-
-\smallskip
-\emph{Caso 3:} $\psi_i$ é obtida por \emph{modus ponens} de duas sentenças anteriores.
-Então existem $j,k<i$ tais que $\psi_k$ é $\psi_j\rightarrow \psi_i$.
-Após substituir $c$ por $y$, temos $\psi_k^\dagger=\psi_j^\dagger\rightarrow \psi_i^\dagger$.
-Pela hipótese de indução, $T\vdash \forall y\,\psi_j^\dagger$ e $T\vdash \forall y\,(\psi_j^\dagger\rightarrow \psi_i^\dagger)$.
-Pelo esquema lógico (3) (com a variável $y$),
-\[
-\forall y\,(\psi_j^\dagger\rightarrow \psi_i^\dagger)\rightarrow
-(\forall y\,\psi_j^\dagger\rightarrow \forall y\,\psi_i^\dagger)
-\]
-é um axioma lógico; por duas aplicações de \emph{modus ponens}, obtemos $T\vdash \forall y\,\psi_i^\dagger$,
-isto é, $T\vdash \widehat{\psi_i}$.
-
-\smallskip
-Isso conclui a indução. Em particular, para $i=n$ obtemos
-\[
-T\vdash \widehat{\psi_n}=\forall y\,\bigl(\phi[x/c]\bigr)^\dagger=\forall y\,\phi[x/y].
-\]
-    Portanto, do Metalema~\ref{mlem:renomeacaoVariavelUniversal} segue que $T\vdash \forall x\,\phi$, como queríamos.
-
-\medskip
-\textbf{(III) Instanciação Existencial.}
-Suponha $T'\vdash \phi[x/c]\rightarrow \psi$.
-Aplique (IV) à fórmula $\chi(x):=(\phi\rightarrow \psi)$.
-Como $\psi$ é sentença, $\chi$ tem como únicas variáveis livres as de $\phi(x)$, isto é, apenas $x$.
-Além disso, $\chi[x/c]$ é exatamente $\phi[x/c]\rightarrow \psi$.
-Logo, por (IV),
-\[
-T\vdash \forall x\,(\phi\rightarrow \psi).
-\]
-Mostraremos agora, em $T$, que de $\forall x(\phi\rightarrow\psi)$ segue $(\exists x\,\phi)\rightarrow \psi$.
-
-Considere a tautologia proposicional
-\[
-(P\rightarrow Q)\rightarrow(\neg Q\rightarrow \neg P).
-\]
-Substituindo $P$ por $\phi$ e $Q$ por $\psi$, e tomando fecho universal em $x$, obtemos como axioma lógico
-\[
-\forall x\,\bigl((\phi\rightarrow \psi)\rightarrow(\neg \psi\rightarrow \neg \phi)\bigr).
-\]
-Pelo esquema lógico (3), temos:
-\[
-\forall x\,\bigl((\phi\rightarrow \psi)\rightarrow(\neg \psi\rightarrow \neg \phi)\bigr)\rightarrow
-\bigl(\forall x(\phi\rightarrow \psi)\rightarrow \forall x(\neg \psi\rightarrow \neg \phi)\bigr).
-\]
-Como $T\vdash \forall x(\phi\rightarrow\psi)$ e
-$T\vdash \forall x((\phi\rightarrow \psi)\rightarrow(\neg \psi\rightarrow \neg \phi))$,
-por duas aplicações de \emph{modus ponens} concluímos
-\[
-T\vdash \forall x(\neg\psi\rightarrow \neg\phi).
-\]
-Pelo esquema (3) novamente,
-\[
-T\vdash \forall x(\neg \psi\rightarrow \neg \phi)\ \rightarrow\ (\forall x\,\neg\psi\rightarrow \forall x\,\neg\phi),
-\]
-logo $T\vdash (\forall x\,\neg\psi\rightarrow \forall x\,\neg\phi)$.
-
-Agora trabalhamos sob a hipótese $\neg\psi$.
-Como $x$ não ocorre livre em $\neg\psi$ (pois $\psi$ é sentença), pelo esquema (4) temos
-$\neg\psi\rightarrow \forall x\,\neg\psi$; portanto, de $\neg\psi$ segue $\forall x\,\neg\psi$,
-e então segue $\forall x\,\neg\phi$.
-  Pelo Metateorema~\ref{mthm:teoremaDaDeducao}, concluímos
-\[
-T\vdash \neg\psi\rightarrow \forall x\,\neg\phi.
-\]
-Pelo esquema (6), $\forall x\,\neg\phi \leftrightarrow \neg\exists x\,\phi$ é um axioma lógico.
-Usando a tautologia proposicional $(A\leftrightarrow B)\rightarrow(A\rightarrow B)$,
-obtemos $T\vdash \forall x\,\neg\phi \rightarrow \neg\exists x\,\phi$,
-e portanto
-\[
-T\vdash \neg\psi\rightarrow \neg\exists x\,\phi.
-\]
-Por fim, pela tautologia proposicional $(\neg Q\rightarrow \neg P)\rightarrow(P\rightarrow Q)$,
-substituindo $P$ por $\exists x\,\phi$ e $Q$ por $\psi$, concluímos
-\[
-T\vdash (\exists x\,\phi)\rightarrow \psi.
-\]
-Isso prova (III).
+    Como $x$ não ocorre livre em $z=z$, podemos aplicar a regra de introdução do quantificador universal e obter
+    \[
+        T\vdash (z=z)\rightarrow\forall x\varphi.
+    \]
+    Por \emph{modus ponens} com $T\vdash z=z$, concluímos
+    \[
+        T\vdash \forall x\varphi.
+    \]
 \end{proof}
 
-\section*{Exercícios}
+Também usaremos a seguinte renomeação de variável ligada.
 
-\begin{exercise}\label{exr:substituicaoSimples}
-    Seja $T$ uma teoria de primeira ordem, e $\phi$ uma fórmula com no máximo uma variável livre $x$.
-    Seja $y$ uma variável que não ocorre em $\phi$.
+\begin{metalemma}[Renomeação de variável universal]\label{mlem:renomeacaoVariavelUniversal}\index{renomeação de variável!universal}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $\varphi$ uma fórmula e sejam $x$ e $y$ variáveis.
+    Suponha que $y$ não ocorre em $\varphi$.
 
-    Então $\phi[x/y][y/x]$ é $\phi$.
-\end{exercise}
+    Então $T\vdash \forall x\varphi$ se, e somente se, $T\vdash \forall y\,\varphi[x/y]$.
+    
+    Ademais, para a implicação direta, basta que $x$ seja substituível por $y$ em $\varphi$.
 
-\begin{exercise}\label{exr:renomeacaoVariavelExistencial}
-    Complete a prova do Metacorolário~\ref{mcor:renomeacaoVariavelExistencial} utilizando o Metalema~\ref{mlem:renomeacaoVariavelUniversal}.
-\end{exercise}
+    \[
+        \frac{T\vdash \forall x\varphi}
+             {T\vdash \forall y\,\varphi[x/y]}
+        \qquad
+        \frac{T\vdash \forall y\,\varphi[x/y]}
+             {T\vdash \forall x\varphi}.
+    \]
 
-\begin{exercise}\label{exr:axiomaSubstituicaoDeConstante}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem contendo um símbolo de constante $c$, e $\phi$ uma fórmula de $\mathcal L$ que é instância de um dos esquemas (1)--(11) da metadefinição dos axiomas lógicos.
+    ``Temos $\forall x\varphi$.
+    Renomeando $x$ para uma variável nova $y$, obtemos $\forall y\,\varphi[x/y]$.''
+\end{metalemma}
 
-    Para cada subfórmula $\psi$ de $\phi$, seja $\psi^\dagger$ a fórmula obtida de $\psi$ substituindo-se cada símbolo de constante $c$ por uma variável $y$ que não ocorre em $\psi$.
+\begin{proof}
+    Suponha primeiro que $T\vdash \forall x\varphi$.
 
-    Mostre que $\forall y \psi^\dagger$ é uma instância do mesmo esquema (1)--(11) da metadefinição dos axiomas lógicos.
-\end{exercise}
+    Como $y$ não ocorre em $\varphi$, a substituição $\varphi[x/y]$ é válida.
+    Por instanciação universal,
+    \[
+        T\vdash \varphi[x/y].
+    \]
+    Pelo Metalema~\ref{mlem:generalizacaoDeTeoremas}, $T\vdash \forall y\,\varphi[x/y]$.
+    Note que só foi necessário que $x$ seja substituível por $y$ em $\varphi$.
+
+    Reciprocamente, suponha que
+    \[
+        T\vdash \forall y\,\varphi[x/y].
+    \]
+    Como $y$ não ocorre em $\varphi$, temos que $x$ não ocorre no escopo de nenhum quantificador de $\varphi$ que age em $y$, pois tais quantificadores não ocorrem em $\varphi$.
+    Assim, a substituição $\varphi[x/y]$ é válida.
+
+    Pelo já provado, $T\vdash \forall x\,\varphi[x/y][y/x]$.
+    Como $\varphi[x/y][y/x]$ é a própria $\varphi$, segue a tese.
+\end{proof}
+
+Agora trataremos da prática de introduzir um nome temporário.
+Formalmente, isso será feito acrescentando à linguagem um símbolo de constante novo.
+
+\begin{metalemma}[Generalização Universal]\label{mlem:generalizacaoUniversal}
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem.
+    Seja $c$ um símbolo de constante que não pertence a $\mathcal L$.
+    Seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$, e seja $T(c)=(\mathcal L(c),\Sigma)$.
+
+    Suponha que $\theta$ é uma $\mathcal L)$-fórmula com única variável possivelmente livre $x$, e que $T(c)\vdash \theta$.
+    Então $T\vdash \forall x\theta$.
+
+    \[
+        \frac{T(c)\vdash \theta}
+             {T\vdash \forall x\theta}.
+    \]
+\end{metalemma}
+
+Antes de demonstrarmos esse resultado, convém discutir sua importância.
+A aplicação deste argumento é extremamente corriqueira em matemática.
+Ele justifica a prática de introduzir um nome temporário para um elemento arbitrário no formato a seguir.
+
+``Queremos mostrar que $\forall x \theta$.
+Fixe um tal $x$, digamos, $c$.
+Veremos que $\theta[x/c]$.''
+
+No cotidiano matemático, muitas vezes tal argumento acaba sendo escrito apenas como a seguir.
+
+``Queremos mostrar que $\forall x \theta$.
+Fixe $x$.
+Veremos que $\theta(x)$.''
+
+Ou seja, na prática, a letra $x$ muitas vezes é inalterada.
+Porém, a palavra ``fixe'' dá a entender que a partir daquele ponto do texto, $x$ será temporariamente tratada como um objeto particular, um nome para algum objeto fixado $x$ particular.
+A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a letra $x$.
+
+\begin{proof}
+    Seja $\theta_0,\dots,\theta_n$ uma demonstração de $\theta[x/c]$ em $T(c)$, com $\theta_n=\theta[x/c]$.
+
+    Como a demonstração é finita, escolha uma variável $y$ que não ocorre em $\theta$ nem em nenhuma das fórmulas $\theta_0,\dots,\theta_n$.
+    Em particular, $y$ não ocorre em nenhum termo que aparece na demonstração.
+
+    Para cada $i\leq n$, denote por $\theta_i^\dagger$ a fórmula obtida de $\theta_i$ substituindo todas as ocorrências do símbolo de constante $c$ pela variável $y$.
+
+    Formalmente, define-se, por recursão na complexidade de cada $L(c)$-termo $t$ no qual $y$ não ocorre, um termo $t^\dagger$ da seguinte forma:
+    \begin{itemize}
+        \item Se $t$ é uma variável, então $t^\dagger$ é o próprio $t$.
+        \item Se $t$ é um símbolo de constante diferente de $c$, então $t^\dagger$ é o próprio $t$.
+        \item Se $t$ é o símbolo de constante $c$, então $t^\dagger$ é a variável $y$.
+        \item Se $t$ é $f(t_1,\dots,t_k)$, então $t^\dagger$ é $f(t_1^\dagger,\dots,t_k^\dagger)$, onde $f$ é um símbolo de função de aridade $k\geq 1$.
+    \end{itemize}
+
+    Então, define-se, para cada $L(c)$-fórmula $\psi$ na qual $y$ não ocorre, a fórmula $\psi^\dagger$ da seguinte forma:
+    \begin{itemize}
+        \item Se $\psi$ é $t_1=t_2$, então $\psi^\dagger$ é $t_1^\dagger=t_2^\dagger$.
+        \item Se $\psi$ é $R(t_1,\dots,t_k)$, então $\psi^\dagger$ é $R(t_1^\dagger,\dots,t_k^\dagger)$, onde $R$ é um símbolo de predicado de aridade $k\geq 1$.
+        \item Se $\psi$ é $R$, então $\psi^\dagger$ é o próprio $R$, onde $R$ é um símbolo de predicado de aridade $0$.
+        \item Se $\psi$ é $\neg\chi$, então $\psi^\dagger$ é $\neg\chi^\dagger$.
+        \item Se $\psi$ é $\chi\square\eta$, então $\psi^\dagger$ é $\chi^\dagger\square\eta^\dagger$, onde $\square$ é um conectivo lógico binário.
+        \item Se $\psi$ é $Qz\chi$, então $\psi^\dagger$ é $Qz\chi^\dagger$, onde $Q$ é um quantificador e $z$ é uma variável.
+    \end{itemize}
+
+    Precisaremos das seguintes afirmações.
+
+    \begin{claim}\label{claim:termosInalterados}
+        Se $t$ é um $L$-termo, então $t^\dagger$ é o próprio $t$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $t$.
+
+        Se $t$ é uma variável, então $t^\dagger$ é o próprio $t$.
+        Se $t$ é um símbolo de constante, então tal constante não é $c$, pois $c$ não pertence a $L$.
+        Logo, também nesse caso, $t^\dagger$ é o próprio $t$.
+
+        Se $t$ é $f(t_1,\dots,t_k)$, então $t^\dagger=f(t_1^\dagger,\dots,t_k^\dagger)$.
+        Pela hipótese de indução, $t_i^\dagger$ é $t_i$ para cada $i\leq k$.
+        Assim, $t^\dagger=f(t_1,\dots,t_k)$, isto é, $t^\dagger$ é o próprio $t$.
+    \end{proof}
+
+    \begin{claim}\label{claim:formulasInalteradas}
+        Se $\psi$ é uma $L$-fórmula tal que $y$ não ocorre em $\psi$, então $\psi^\dagger$ é a própria $\psi$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $\psi$.
+
+        Se $\psi$ é $t_1=t_2$, $R(t_1,\dots,t_k)$ ou $R$, então $\psi^\dagger$ é a própria $\psi$, pois os termos envolvidos são $L$-termos e, portanto, são inalterados pela Afirmação~\ref{claim:termosInalterados}.
+
+        Se $\psi$ é $\neg\chi$, então $\psi^\dagger$ é $\neg\chi^\dagger$, que, por hipótese de indução, é $\neg\chi$, ou seja, a própria $\psi$.
+
+        Se $\psi$ é $\chi\square\eta$, então $\psi^\dagger$ é $\chi^\dagger\square\eta^\dagger$, que, por hipótese de indução, é $\chi\square\eta$, ou seja, a própria $\psi$.
+
+        Se $\psi$ é $Qz\chi$, então $\psi^\dagger$ é $Qz\chi^\dagger$, que, por hipótese de indução, é $Qz\chi$, ou seja, a própria $\psi$.
+    \end{proof}
+
+    \begin{claim}\label{claim:termosComY}
+        Seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$.
+        Então toda variável de $t^\dagger$ é ou uma variável de $t$ ou a variável $y$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $t$.
+
+        Se $t$ é uma variável, digamos, $z$, então $t^\dagger$ é o próprio $z$.
+        Assim, a única variável de $t^\dagger$ é uma variável de $t$.
+
+        Se $t$ é um símbolo de constante diferente de $c$, então $t^\dagger$ é o próprio $t$, que não possui variáveis.
+
+        Se $t$ é o símbolo de constante $c$, então $t^\dagger$ é a variável $y$.
+
+        Se $t$ é $f(t_1,\dots,t_k)$, então $t^\dagger=f(t_1^\dagger,\dots,t_k^\dagger)$.
+        As variáveis de $t^\dagger$ são as variáveis dos termos $t_1^\dagger,\dots,t_k^\dagger$.
+        Pela hipótese de indução, cada uma delas é uma variável de algum $t_i$ ou é a variável $y$.
+        Logo, cada variável de $t^\dagger$ é uma variável de $t$ ou é a variável $y$.
+    \end{proof}
+
+    \begin{claim}\label{claim:variaveisLivresComY}
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$.
+        Toda variável livre de $\varphi^\dagger$ é ou uma variável livre de $\varphi$ ou a variável $y$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $\varphi$.
+
+        Se $\varphi$ é $t_1=t_2$, $R(t_1,\dots,t_k)$ ou $R$, então o resultado segue diretamente da Afirmação~\ref{claim:termosComY}.
+
+        Se $\varphi$ é $\neg\chi$, então $\varphi^\dagger$ é $\neg\chi^\dagger$.
+        As variáveis livres de $\varphi^\dagger$ são as variáveis livres de $\chi^\dagger$.
+        Pela hipótese de indução, estas são variáveis livres de $\chi$ ou a variável $y$.
+        Portanto, são variáveis livres de $\varphi$ ou a variável $y$.
+
+        Se $\varphi$ é $\chi\square\eta$, então $\varphi^\dagger$ é $\chi^\dagger\square\eta^\dagger$.
+        As variáveis livres de $\varphi^\dagger$ são as variáveis livres de $\chi^\dagger$ ou de $\eta^\dagger$.
+        Pela hipótese de indução, estas são variáveis livres de $\chi$ ou de $\eta$, ou a variável $y$.
+        Portanto, são variáveis livres de $\varphi$ ou a variável $y$.
+
+        Se $\varphi$ é $Qz\chi$, então $\varphi^\dagger$ é $Qz\chi^\dagger$.
+        As variáveis livres de $\varphi^\dagger$ são as variáveis livres de $\chi^\dagger$ diferentes de $z$.
+        Pela hipótese de indução, estas são variáveis livres de $\chi$ ou a variável $y$.
+        Como $y$ não ocorre em $\varphi$, em particular $z$ não é $y$.
+        Logo, as variáveis livres de $\varphi^\dagger$ são variáveis livres de $\varphi$ ou a variável $y$.
+    \end{proof}
+
+    \begin{claim}\label{claim:substituicaoValidaDagger}
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$, e seja $z$ uma variável.
+        Se $z$ é substituível por $t$ em $\varphi$, então $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$.
+    \end{claim}
+    \begin{proof}
+        Considere uma ocorrência livre de $z$ em $\varphi^\dagger$.
+        Como a operação $(\cdot)^\dagger$ apenas substitui o símbolo de constante $c$ pela variável $y$, essa ocorrência de $z$ já correspondia a uma ocorrência livre de $z$ em $\varphi$.
+
+        Suponha que essa ocorrência esteja no escopo de um quantificador que age em uma variável $w$ que ocorre em $t^\dagger$.
+        Como $y$ não ocorre em $\varphi$, a fórmula $\varphi^\dagger$ não possui quantificadores agindo em $y$.
+        Portanto, $w$ não é $y$.
+
+        Pela Afirmação~\ref{claim:termosComY}, como $w$ ocorre em $t^\dagger$ e $w\neq y$, então $w$ ocorre em $t$.
+        Assim, em $\varphi$, a ocorrência livre correspondente de $z$ estava no escopo de um quantificador que age em uma variável que ocorre em $t$, contrariando a hipótese de que $z$ é substituível por $t$ em $\varphi$.
+
+        Logo, nenhuma ocorrência livre de $z$ em $\varphi^\dagger$ está no escopo de um quantificador que age em uma variável que ocorre em $t^\dagger$.
+        Portanto, $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$.
+    \end{proof}
+
+    \begin{claim}\label{claim:daggerComutaSubstituicao}
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $z$ uma variável e seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$.
+        Então
+        \[
+            (\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger].
+        \]
+    \end{claim}
+    \begin{proof}
+        Primeiro, provamos por indução na complexidade dos termos $s$ que
+        \[
+            (s[z/t])^\dagger=s^\dagger[z/t^\dagger].
+        \]
+
+        Se $s$ é a variável $z$, então $s[z/t]$ é $t$, logo $(s[z/t])^\dagger=t^\dagger$.
+        Por outro lado, $s^\dagger$ é $z$, e $z[z/t^\dagger]$ é $t^\dagger$.
+
+        Se $s$ é uma variável diferente de $z$, então $s[z/t]$ é $s$, e ambos os lados são iguais a $s$.
+
+        Se $s$ é um símbolo de constante, então $s[z/t]$ é $s$, e ambos os lados são iguais a $s^\dagger$.
+
+        Se $s$ é $f(s_1,\dots,s_k)$, então, pela hipótese de indução aplicada aos $s_i$,
+        \[
+            (s[z/t])^\dagger
+            =
+            f((s_1[z/t])^\dagger,\dots,(s_k[z/t])^\dagger)
+            =
+            f(s_1^\dagger[z/t^\dagger],\dots,s_k^\dagger[z/t^\dagger])
+            =
+            s^\dagger[z/t^\dagger].
+        \]
+
+        Agora procedemos por indução na complexidade de $\varphi$.
+
+        Se $\varphi$ é $s_1=s_2$, $R(s_1,\dots,s_k)$ ou $R$, a conclusão segue do resultado já provado para termos.
+
+        Se $\varphi$ é $\neg\chi$, então
+        \[
+            (\varphi[z/t])^\dagger
+            =
+            \neg(\chi[z/t])^\dagger
+            =
+            \neg(\chi^\dagger[z/t^\dagger])
+            =
+            \varphi^\dagger[z/t^\dagger],
+        \]
+        pela hipótese de indução.
+
+        Se $\varphi$ é $\chi\square\eta$, então a conclusão segue imediatamente da hipótese de indução aplicada a $\chi$ e a $\eta$.
+
+        Se $\varphi$ é $Qw\chi$, com $w$ diferente de $z$, então
+        \[
+            (\varphi[z/t])^\dagger
+            =
+            Qw(\chi[z/t])^\dagger
+            =
+            Qw(\chi^\dagger[z/t^\dagger])
+            =
+            \varphi^\dagger[z/t^\dagger].
+        \]
+
+        Se $\varphi$ é $Qz\chi$, então $\varphi[z/t]$ é $\varphi$.
+        Logo, $(\varphi[z/t])^\dagger=\varphi^\dagger$.
+        Por outro lado, como a substituição por $z$ não atravessa um quantificador que age em $z$, temos $\varphi^\dagger[z/t^\dagger]=\varphi^\dagger$.
+        Portanto, $(\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger]$.
+    \end{proof}
+
+    \begin{claim}\label{claim:substituirConstantePorVariavel}
+        Seja $\varphi$ uma $L$-fórmula tal que $y$ não ocorre em $\varphi$, e seja $z$ uma variável.
+        Então $(\varphi[z/c])^\dagger=\varphi[z/y]$.
+    \end{claim}
+    \begin{proof}
+        Pela Afirmação~\ref{claim:daggerComutaSubstituicao}, aplicada ao termo $c$, $(\varphi[z/c])^\dagger=\varphi^\dagger[z/c^\dagger]$.
+
+        Pela Afirmação~\ref{claim:formulasInalteradas}, como $\varphi$ é uma $L$-fórmula e $y$ não ocorre em $\varphi$, temos $\varphi^\dagger=\varphi$.
+        Além disso, $c^\dagger$ é $y$.
+        Logo, $(\varphi[z/c])^\dagger=\varphi[z/y]$.
+    \end{proof}
+
+    Provaremos, por indução em $i\leq n$, que $T\vdash \theta_i^\dagger$.
+    Suponha que a tese já tenha sido provada para todo $j<i$.
+    Veremos que $T\vdash \theta_i^\dagger$.
+
+    Se $\theta_i$ é um axioma de $T(c)$, então $\theta_i\in\Sigma$.
+    Como os axiomas de $\Sigma$ são $L$-sentenças, $\theta_i$ é uma $L$-fórmula.
+    Como $y$ não ocorre em $\theta_i$, pela Afirmação~\ref{claim:formulasInalteradas}, $\theta_i^\dagger$ é a própria $\theta_i$.
+    Assim, $T\vdash \theta_i^\dagger$.
+
+    Se $\theta_i$ é um axioma lógico de $L(c)$, então $\theta_i^\dagger$ é um axioma lógico de $L$.
+    De fato, como a operação $(\cdot)^\dagger$ comuta com os conectivos lógicos, cada instância de um dos esquemas FO1--FO13 é levada a uma instância do mesmo esquema.
+    O axioma FO16 é preservado imediatamente.
+
+    Quanto a FO17 e FO18, note que o novo símbolo $c$ é apenas um símbolo de constante.
+    Portanto, ele não é um símbolo funcional de aridade positiva nem um símbolo de predicado, e não introduz novos casos nesses esquemas.
+    Assim, instâncias de FO17 e FO18 em $L(c)$ são levadas a instâncias dos mesmos esquemas em $L$.
+
+    Resta verificar FO14 e FO15.
+    Se $\theta_i$ é uma instância de FO14, então $\theta_i$ é da forma $\forall z\varphi\rightarrow\varphi[z/t]$ em que $z$ é substituível por $t$ em $\varphi$.
+    Como $y$ não ocorre em $\theta_i$, temos que $y$ não ocorre em $\varphi$.
+    Podemos assumir que $y$ não ocorre em $t$, pois, caso contrário, como a substituição $\varphi[z/t]$ é válida, teríamos que $z$ não ocorre livre em $\varphi$ e, portanto, tal axioma é o mesmo que $\varphi\rightarrow\varphi[z/z]$.
+
+    Pelas Afirmações~\ref{claim:substituicaoValidaDagger} e~\ref{claim:daggerComutaSubstituicao}, temos que $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$ e $(\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger]$.
+    Portanto, $\theta_i^\dagger$ é $\forall z\varphi^\dagger\rightarrow\varphi^\dagger[z/t^\dagger]$, que é uma instância de FO14 em $L$.
+
+    O caso de FO15 é tratado de forma análoga.
+
+    Suponha agora que $\theta_i$ foi obtida por \emph{modus ponens}.
+    Então existem $j,k<i$ tais que $\theta_j$ é $\theta_k\rightarrow\theta_i$.
+    Pela hipótese de indução,
+    \[
+        T\vdash \theta_j^\dagger
+        \qquad\text{e}\qquad
+        T\vdash \theta_k^\dagger.
+    \]
+    Como $\theta_j^\dagger$ é $\theta_k^\dagger\rightarrow\theta_i^\dagger$, segue por \emph{modus ponens} que $T\vdash \theta_i^\dagger$.
+
+    Suponha que $\theta_i$ foi obtida pela regra de introdução do quantificador universal.
+    Então existem fórmulas $\chi$ e $\eta$, uma variável $z$ e $j<i$ tais que $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\chi\rightarrow\forall z\eta$, e $z$ não ocorre livre em $\chi$.
+
+    Pela hipótese de indução, $T\vdash \chi^\dagger\rightarrow\eta^\dagger$.
+    Como $y$ não ocorre em $\theta_i$, temos $z\neq y$.
+    Pela Afirmação~\ref{claim:variaveisLivresComY}, toda variável livre de $\chi^\dagger$ é uma variável livre de $\chi$ ou é $y$.
+    Como $z$ não ocorre livre em $\chi$ e $z\neq y$, segue que $z$ não ocorre livre em $\chi^\dagger$.
+
+    Pela regra de introdução do quantificador universal,
+    \[
+        T\vdash \chi^\dagger\rightarrow\forall z\eta^\dagger.
+    \]
+    Essa fórmula é exatamente $\theta_i^\dagger$.
+
+    Por fim, suponha que $\theta_i$ foi obtida pela regra de introdução do quantificador existencial.
+    Então existem fórmulas $\chi$ e $\eta$, uma variável $z$ e $j<i$ tais que $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\exists z\chi\rightarrow\eta$, e $z$ não ocorre livre em $\eta$.
+
+    Pela hipótese de indução, $T\vdash \chi^\dagger\rightarrow\eta^\dagger$.
+    Como $y$ não ocorre em $\theta_i$, temos $z\neq y$.
+    Pela Afirmação~\ref{claim:variaveisLivresComY}, toda variável livre de $\eta^\dagger$ é uma variável livre de $\eta$ ou é $y$.
+    Como $z$ não ocorre livre em $\eta$ e $z\neq y$, segue que $z$ não ocorre livre em $\eta^\dagger$.
+
+    Pela regra de introdução do quantificador existencial,
+    \[
+        T\vdash \exists z\chi^\dagger\rightarrow\eta^\dagger.
+    \]
+    Essa fórmula é exatamente $\theta_i^\dagger$.
+
+    Isso encerra a indução.
+    Em particular, para $i=n$, obtemos $T\vdash (\theta[x/c])^\dagger$.
+    Pela Afirmação~\ref{claim:substituirConstantePorVariavel}, segue que
+    \[
+        T\vdash \theta[x/y].
+    \]
+
+    Pelo Metalema~\ref{mlem:generalizacaoDeTeoremas},
+    \[
+        T\vdash \forall y\,\theta[x/y].
+    \]
+    Como $y$ não ocorre em $\theta$, pelo Metalema~\ref{mlem:renomeacaoVariavelUniversal}, concluímos que
+    \[
+        T\vdash \forall x\,\theta.
+    \]
+\end{proof}
+
+Temos uma equivalênca
+
+\begin{metatheorem}[Instanciação existencial]\label{mthm:instanciacaoExistencial}
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, $x$ uma variável, e $\varphi$ uma fórmula da linguagem de $T$ tal que $x$ é a única variável possivelmente livre.
+    Seja $\psi$ uma fórmula de $\mathcal L$ sem $x$ livre.
+
+
+    Seja $c$ um símbolo de constante que não pertence a $\mathcal L$, e seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$.
+    Seja $T(c)=(\mathcal L(c),\Sigma)$.
+    
+    Se $T(c)\vdash \varphi[x/c]\rightarrow\psi$, então $T\vdash \exists x\varphi\rightarrow\psi$.
+
+    \[
+       \frac{T(c)\vdash \varphi[x/c]\rightarrow\psi}
+             {T\vdash \exists x\varphi\rightarrow\psi}.
+    \]
+\end{metatheorem}
+
+Novamente, antes de demonstrar esse resultado, convém discutir sua importância.
+É corriqueiro em matemática a necessidade de se demonstrar que se existe um objeto $x$ que satisfaz determinada propriedade $\varphi$, então alguma outra propriedade $\psi$ é satisfeita.
+Nessas hipóteses, o argumento a ser seguido é o seguinte.
+
+``Queremos mostrar que se existe um $x$ tal que $\varphi$, então $\psi$.
+Fixe um tal $x$, digamos, $c$ (...) assim, $\psi$.
+Logo, se existe um $x$ tal que $\varphi$, então $\psi$.''
+
+Note que, na prática, o nome temporário $c$ é muitas vezes escrito como $x$, e a letra $x$ é mantida.
+Porém, como já discutido na discussão sobre a generalização universal, a palavra ``fixe'' dá a entender que a partir daquele ponto do texto, $x$ será temporariamente tratada como constante.
+
+\begin{proof}
+    Suponha que $T(c)\vdash \varphi[x/c]\rightarrow\psi$.
+    Como $\psi$ não possui $x$ livre, então $(\varphi\rightarrow \psi)[x/c]$ é $\varphi[x/c]\rightarrow\psi$.
+    Assim, $T(c)\vdash (\varphi\rightarrow \psi)[x/c]$.
+    Pelo Metalema~\ref{mlem:generalizacaoUniversal}, $T\vdash \forall x(\varphi\rightarrow \psi)$.
+    
+    Como a substituição de $x$ por $x$ é válida, segue da instanciação universal que $T\vdash \varphi\rightarrow \psi$.
+    Pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow \psi$.
+\end{proof}
+
