@@ -14,7 +14,7 @@ Como fizemos com a lógica proposicional, adotamos um sistema de axiomas estilo 
 Ressaltamos novamente que esse não é o único modo de formalizar a dedução lógica.
 
 \begin{metadefinition}[Axiomas da lógica de primeira ordem]\label{mdef:axiomasLogicaPrimeiraOrdem}\index{axioma!lógica de primeira ordem}
-    Os axiomas da Lógica de Primeira Ordem são as fórmulas que podem ser escritas de alguma das seguintes formas, em que $\phi$, $\psi$ e $\chi$ são $\mathcal L$-fórmulas quaisquer, $x$, $x_1,\dots,x_n$, $y_1,\dots,y_n$ são variáveis, $t$ é um $\mathcal L$-termo, e $P$ e $f$ são símbolos de predicado e de função, respectivamente.
+    Fixado um léxico $\mathcal L$ para uma linguagem de primeira ordem, os axiomas da Lógica de Primeira Ordem em $\mathcal L$ são as fórmulas que podem ser escritas de alguma das seguintes formas, em que $\phi$, $\psi$ e $\chi$ são $\mathcal L$-fórmulas quaisquer, $x$, $x_1,\dots,x_n$, $y_1,\dots,y_n$ são variáveis, $t$ é um $\mathcal L$-termo, e $P$ e $f$ são símbolos de predicado e de função, respectivamente.
     \begin{enumerate}[label=(FO\arabic*)]
         \item $\phi \rightarrow (\psi \rightarrow \phi)$;
         \item $(\phi \rightarrow (\psi \rightarrow \chi)) \rightarrow ((\phi \rightarrow \psi) \rightarrow (\phi \rightarrow \chi))$;
@@ -33,10 +33,11 @@ Ressaltamos novamente que esse não é o único modo de formalizar a dedução l
         \item $\phi[x/t] \rightarrow \exists x \phi$, se $x$ é substituível por $t$ em $\phi$.
         \item $x=x$.
         \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (f(x_1, \dots, x_n)=f(y_1, \dots, y_n))$, para cada símbolo funcional $f$ de aridade $n>0$.
-        \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (P(x_1, \dots, x_n) \leftrightarrow P(y_1, \dots, y_n))$, para cada símbolo de predicado $P$ de aridade $n>0$.
+        \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (P(x_1, \dots, x_n) \leftrightarrow P(y_1, \dots, y_n))$, em que $\mathcal P$ é um símbolo de predicado de aridade $n>0$, ou a igualdade $=$, que é um símbolo de predicado de aridade 2.
         \end{enumerate}
 
-        Observação: $\bigwedge_{i=1}^n\phi_i$ é a fórmula $\phi_1\land(\phi_2\land(\dots\land \phi_n))$.
+        Observação: quando $n=1$, $\bigwedge_{i=1}^n\phi_i$ é $\phi_1$.
+        Recursivamente para $n>1$, $\bigwedge_{i=1}^n\phi_i$ é a fórmula $\Big(\bigwedge_{i=1}^{n-1}\phi_i\Big)\land\phi_n$.
 \end{metadefinition}
 
 A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
@@ -53,9 +54,9 @@ A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
         \item $\psi_i$ é um axioma de $T$, ou
         \item $\psi_i$ é obtida por \emph{modus ponens} a partir de duas fórmulas anteriores.
         Ou seja, existem $j, k<i$ tais que $\psi_j$ é  $\psi_k \rightarrow \psi_i$.
-        \item Existe $j<i$ tal que $\psi_j$ é $\theta\rightarrow \eta$ e $\psi_i$ é $\theta\rightarrow \forall x \eta$, em que $x$ é uma variável que não ocorre livre em $\phi$.
+        \item Existe uma variável $x$, fórmulas $\theta$ e $\eta$, e $j<i$, tais que $\psi_j$ é $\theta\rightarrow \eta$ e $\psi_i$ é $\theta\rightarrow \forall x \eta$, em que $x$ não ocorre livre em $\theta$.
         Essa regra é chamada de introdução de quantificador universal.
-        \item Existe $j<i$ tal que $\psi_j$ é $\theta\rightarrow \eta$ e $\psi_i$ é $\exists x \theta\rightarrow \eta$, em que $x$ é uma variável que não ocorre livre em $\psi$.
+        \item Existe uma variável $x$, fórmulas $\theta$ e $\eta$, e $j<i$, tais que $\psi_j$ é $\theta\rightarrow \eta$ e $\psi_i$ é $\exists x \theta\rightarrow \eta$, em que $x$ não ocorre livre em $\eta$.
         Essa regra é chamada de introdução de quantificador existencial.
     \end{enumerate}
 
