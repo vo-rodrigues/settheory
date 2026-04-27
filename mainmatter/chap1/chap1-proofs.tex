@@ -498,7 +498,7 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
 \end{proof}
 
 \begin{metaproposition}[Regras proposicionais para bicondicional]\label{mprop:regrasProposicionaisBicondicional}
-    Seja $T$ uma teoria de primeira ordem e sejam $\varphi$ e $\psi$ fórmulas da linguagem de $T$.
+    Seja $T$ uma teoria de primeira ordem e sejam $\varphi$, $\psi$ e $\theta$ fórmulas da linguagem de $T$.
 
     Então valem as seguintes regras de inferência.
     Abaixo do enunciado de cada uma delas, escreveremos uma forma informal corriqueira de expressar o raciocínio que a regra justifica.
@@ -542,6 +542,13 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
 
         ``Temos $(\varphi\leftrightarrow\psi)\leftrightarrow\theta$, equivalentemente, $\varphi\leftrightarrow(\psi\leftrightarrow\theta)$.''
         
+        \item Transitividade de $\leftrightarrow$.
+        \[
+            \frac{T\vdash \varphi\leftrightarrow\psi \quad T\vdash \psi\leftrightarrow\theta}
+                 {T\vdash \varphi\leftrightarrow\theta}.
+        \]
+
+        ``Como $\varphi$ é equivalente a $\psi$ e $\psi$ é equivalente a $\theta$, temos que $\varphi$ é equivalente a $\theta$.''
     \end{enumerate}
 \end{metaproposition}
 \begin{proof}
@@ -554,6 +561,8 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
     (iii) $(\varphi\leftrightarrow\psi)\rightarrow(\psi\leftrightarrow\varphi)$.
 
     (iv) $((\varphi\leftrightarrow\psi)\leftrightarrow\theta)\rightarrow(\varphi\leftrightarrow(\psi\leftrightarrow\theta))$ e $(\varphi\leftrightarrow(\psi\leftrightarrow\theta)) \rightarrow ((\varphi\leftrightarrow \psi)\leftrightarrow \theta)$.
+
+    (v) $(\varphi\leftrightarrow\psi)\rightarrow((\psi\leftrightarrow\theta)\rightarrow(\varphi\leftrightarrow\theta))$.
 \end{proof}
 
 \subsection{Regras para quantificadores}
