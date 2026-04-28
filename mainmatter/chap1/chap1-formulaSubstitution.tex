@@ -6,124 +6,248 @@ Nessa seção, formalizaremos esse raciocínio.
 
 Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão da lógica proposicional para a lógica de primeira ordem $T_P$, e a substituição de letras proposicionais por fórmulas de uma linguagem de primeira ordem.
 
-\begin{metalemma}\label{mlem:substituicaoInversaEmFormulas}
-    Sejam $A_1, \dots, A_n$ e $B_1, \dots, A_n$ letras proposicionais de $\mathcal L_P$.
-
-    Seja $\rho$ a atribuição de $\{A_1, \dots, A_n\}$ tal que $\rho(A_i)=B_i$ para cada $i\in\{1, \dots, n\}$.
-        
-    Então, para toda $\mathcal L_P$-fórmula $\theta$ sem ocorrências de igualdade e cujas únicas letras proposicionais estão dentre $A_1, \dots, A_n$, temos
-
-    \[
-        T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\theta \leftrightarrow \subst(\theta, \rho)).
-    \]
-\end{metalemma}
-\begin{proof}
-    Procedemos por indução na complexidade de $\theta$.
-    Denotemos $\subst(\theta, \rho)$ por $\theta^\dagger$.
-
-     Se $\theta$ é uma letra proposicional $A_i$, então $T_P \vdash A_i \leftrightarrow B_i$, e a fórmula desejada é $T_P \vdash (A_i \leftrightarrow B_i) \rightarrow (A_i \leftrightarrow B_i)$, que é uma tautologia.
-
-     Se $\theta$ é $\neg\psi$, então, por hipótese de indução, $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\psi \leftrightarrow \psi^\dagger)$.
-     Pelo Teorema da Dedução, $T_P \cup \{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\vdash \psi \leftrightarrow \psi^\dagger\}$.
-     Assim, pela preservação da negação por equivalências, $T_P \cup \{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\vdash \neg\psi \leftrightarrow \neg\psi^\dagger\}$.
-    Como $\neg\psi^\dagger$ é $\theta^\dagger$, segue novamente do Teorema da Dedução que
-    \[
-    T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\theta \leftrightarrow \theta^\dagger).
-    \]
-
-    Se $\theta$ é $\psi\square\chi$, onde $\square$ é um conectivo binário, então, por hipótese de indução, $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\psi \leftrightarrow \psi^\dagger)$ e $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\chi \leftrightarrow \chi^\dagger)$.
-    Pelo Teorema da Dedução, basta concluir que
-    \[
-        T_P \cup \left\{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\right\}\vdash \psi\square\chi \leftrightarrow \psi^\dagger\square\chi^\dagger.
-    \]
-
-    Pelo Teorema da Dedução, basta observar que sendo $X, Y, X', Y'$ variáveis proposicionais, as seguintes fórmulas são tautologias:
-    \begin{itemize}
-        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\wedge Y \leftrightarrow X'\wedge Y'))$,
-        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\vee Y \leftrightarrow X'\vee Y'))$,
-        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\rightarrow Y \leftrightarrow X'\rightarrow Y'))$.
-        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\leftrightarrow Y \leftrightarrow X'\leftrightarrow Y'))$.
-    \end{itemize}
-
-    Se $\theta$ é $Qx\psi$, em que $Q$ é um quantificador e $x$ é uma variável, então, por hipótese de indução, $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\psi \leftrightarrow \psi^\dagger)$.
-    Assim, pelo Teorema da Dedução, $T_P \cup \{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\vdash \psi \leftrightarrow \psi^\dagger\}$.
-
-    Novamente pelo Teorema da Dedução, é suficiente concluir que
-    \[
-        T_P \cup \left\{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\right\}\vdash Qx\psi \leftrightarrow Qx\psi^\dagger.
-    \]
-
-    Mas isso segue, pois já vimos que a inserção de quantificadores é preservada por equivalências.
-\end{proof}
-
-Para concluir o resultado principal desta seção, precisaremos ver que a substituição de letras proposicionais respeita composição.
-
-\begin{metalemma}
-    Sejam $A_1, \dots, A_n$ e $B_1, \dots, A_n$ letras proposicionais de $\mathcal L_P$.
-
-    Seja $\rho$ a atribuição de $\{A_1, \dots, A_n\}$ tal que $\rho(A_i)=B_i$ para cada $i\in\{1, \dots, n\}$.
-        
-    Seja $\mathcal L$ um léxico de primeira ordem.
-    Seja $\rho_A$ uma atribuição de $\{A_1, \dots, A_n\}$ à $\mathcal L$-fórmulas e seja $\rho_B$ uma atribuição de $\{B_1, \dots, B_n\}$ à $\mathcal L$-fórmulas tal que $\rho_B(B_i)=\rho_A(A_i)$ para cada $i\in\{1, \dots, n\}$, ou seja, tal que $\rho_B\circ \rho=\rho_A$.
-
-    Então para toda $\mathcal L_P$-fórmula $\theta$ sem ocorrências de igualdade e cujas únicas letras proposicionais estão dentre $A_1, \dots, A_n$, temos
-    \[
-        \subst(\theta, \rho_B)=\subst(\subst(\theta, \rho), \rho_A).
-    \]
-\end{metalemma}
-\begin{proof}
-    Procedemos por indução na complexidade de $\theta$.
-
-    Se $\theta$ é uma letra proposicional $A_i$, então $\subst(\theta, \rho_B)=\rho_B(A_i)=\rho_A(A_i)=\subst(\subst(\theta, \rho), \rho_A)$.
-
-    Se $\theta$ é $\neg\psi$, então, por hipótese de indução, $\subst(\psi, \rho_B)=\subst(\subst(\psi, \rho), \rho_A)$.
-     Assim, $\subst(\theta, \rho_B)=\neg\subst(\psi, \rho_B)=\neg\subst(\subst(\psi, \rho), \rho_A)=\subst(\subst(\theta, \rho), \rho_A)$.
-
-    Se $\theta$ é $\psi\square\chi$, onde $\square$ é um conectivo binário, então, por hipótese de indução, $\subst(\psi, \rho_B)=\subst(\subst(\psi, \rho), \rho_A)$ e $\subst(\chi, \rho_B)=\subst(\subst(\chi, \rho), \rho_A)$.
-
-    Assim,
-    \begin{align*}
-         \subst(\theta, \rho_B) & =\subst(\psi\square\chi, \rho_B)\\
-         & =\subst(\psi, \rho_B)\square\subst(\chi, \rho_B)\\
-         & =\subst(\subst(\psi, \rho), \rho_A)\square\subst(\subst(\chi, \rho), \rho_A)\\
-         & =\subst(\subst(\theta, \rho), \rho_A).
-    \end{align*}
-    Se $\theta$ é $Qx\psi$, em que $Q$ é um quantificador e $x$ é uma variável, então, por hipótese de indução, $\subst(\psi, \rho_B)=\subst(\subst(\psi, \rho), \rho_A)$.
-
-    Isso conclui a indução.
-\end{proof}
-
-\begin{metacorollary}
+\begin{metatheorem}\label{mthm:substituicaoFormulasEquivalentes}
     Seja $T$ uma teoria de primeira ordem.
-    Sejam $\varphi_1, \dots, \varphi_n$ e $\psi_1, \dots, \psi_n$ fórmulas da linguagem de $T$ tais que $T\vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i)$.
+    Sejam $\varphi_1,\dots,\varphi_n$ e $\psi_1,\dots,\psi_n$ fórmulas da linguagem de $T$, com $n\geq 1$, tais que, para cada $i\in\{1,\dots,n\}$
+    \[
+        T\vdash \varphi_i\leftrightarrow\psi_i.
+    \]
 
-    Então se $\theta$ é uma fórmula formada por meio de $\varphi_1, \dots, \varphi_n$, a substituição de cada $\varphi_i$ por $\psi_i$ em $\theta$ é uma fórmula $\theta'$ tal que $T\vdash \theta \leftrightarrow \theta'$.
+    Considere, na linguagem $\mathcal L_P$, letras proposicionais distintas $A_1,\dots,A_n$ e uma $\mathcal L_P$-fórmula $\theta$ sem igualdade cujas únicas letras proposicionais estão dentre $A_1,\dots,A_n$.
 
-    Formalmente, considere, na linguagem $\mathcal L_P$, letras proposicionais distintas $A_1, \dots, A_n$, $B_1, \dots, B_n$ e uma fórmula $\theta$ cujas únicas letras proposicionais estão dentre $A_1, \dots, A_n$.
+    Sejam $\rho_\varphi$ e $\rho_\psi$ as atribuições dadas por
+    \[
+        \rho_\varphi(A_i)=\varphi_i
+        \qquad\text{e}\qquad
+        \rho_\psi(A_i)=\psi_i
+    \]
+    para cada $i\in\{1,\dots,n\}$.
 
-    Seja $\rho$ a atribuição de $\{A_1, \dots, A_n\}$ tal que $\rho(A_i)=B_i$ para cada $i\in\{1, \dots, n\}$.
-    
-    Seja $\rho_A$ a atribuição de $\{A_1, \dots, A_n\}$ à linguagem de $T$ tal que $\rho_A(A_i)=\varphi_i$ para cada $i\in\{1, \dots, n\}$ e seja $\rho_B$ a atribuição de $\{B_1, \dots, B_n\}$ à linguagem de $T$ tal que $\rho_B(B_i)=\psi_i$ para cada $i\in\{1, \dots, n\}$, ou seja, tal que $\rho_B\circ \rho=\rho_A$.    
     Então
     \[
-        T\vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i) \rightarrow (\subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A))
+        T\vdash \subst(\theta,\rho_\varphi)\leftrightarrow \subst(\theta,\rho_\psi).
     \]
-\end{metacorollary}
+\end{metatheorem}
 
 \begin{proof}
-    Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas},
+    Procedemos por indução na complexidade de $\theta$.
+    Para cada subfórmula $\eta$ de $\theta$, escreva
     \[
-    T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow \subst(A_i, \rho)) \rightarrow (\theta \leftrightarrow \subst(\theta, \rho)).
+        \eta^\varphi=\subst(\eta,\rho_\varphi)
+        \qquad\text{e}\qquad
+        \eta^\psi=\subst(\eta,\rho_\psi).
+    \]
+    Mostraremos que, para toda subfórmula $\eta$ de $\theta$,
+    \[
+        T\vdash \eta^\varphi\leftrightarrow \eta^\psi.
     \]
 
-    Assim, pelo Metateorema~\ref{mthm:substituicaoTeoremasTP},
+    Se $\eta$ é uma letra proposicional $A_i$, então $\eta^\varphi=\varphi_i$ e $\eta^\psi=\psi_i$.
+    Como $T\vdash \varphi_i\leftrightarrow\psi_i$, segue a tese.
+
+    Se $\eta$ é $\neg\chi$, então, por hipótese de indução, $T\vdash \chi^\varphi\leftrightarrow\chi^\psi$.
+    Pela preservação da negação por equivalências,
     \[
-    T \vdash \bigwedge_{i=1}^n (\subst(A_i, \rho_A) \leftrightarrow \subst(A_i, \rho_A)) \rightarrow (\subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A)).
+        T\vdash \neg\chi^\varphi\leftrightarrow\neg\chi^\psi.
     \]
-    Ou seja:
+
+    Se $\eta$ é $\chi\square\xi$, em que $\square$ é um conectivo binário, então, por hipótese de indução,
     \[
-    T \vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i) \rightarrow (\subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A)).
+        T\vdash \chi^\varphi\leftrightarrow\chi^\psi
+        \qquad\text{e}\qquad
+        T\vdash \xi^\varphi\leftrightarrow\xi^\psi.
     \]
-    Como $T\vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i)$, segue que $T\vdash \subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A)$.
+    Pela preservação dos conectivos por equivalências,
+    \[
+        T\vdash
+        (\chi^\varphi\square\xi^\varphi)
+        \leftrightarrow
+        (\chi^\psi\square\xi^\psi).
+    \]
+
+    Finalmente, suponha que $\eta$ é $Qx\chi$, em que $Q$ é $\forall$ ou $\exists$.
+    Por hipótese de indução,
+    \[
+        T\vdash \chi^\varphi\leftrightarrow\chi^\psi.
+    \]
+    Se $Q$ é $\forall$, a preservação do quantificador universal por equivalências implica $T\vdash \forall x\chi^\varphi\leftrightarrow\forall x\chi^\psi$.
+
+    Se $Q$ é $\exists$, a preservação do quantificador existencial por equivalências implica
+    \[
+        T\vdash \exists x\chi^\varphi\leftrightarrow\exists x\chi^\psi.
+    \]
+    Em ambos os casos,
+    \[
+        T\vdash \eta^\varphi\leftrightarrow\eta^\psi.
+    \]
+
+    Aplicando a conclusão à própria fórmula $\theta$, obtemos
+    \[
+        T\vdash \subst(\theta,\rho_\varphi)\leftrightarrow \subst(\theta,\rho_\psi).
+    \]
 \end{proof}
 
+\begin{example}
+    Suponha que $T\vdash \varphi\leftrightarrow\psi$.
+    Tomando $\theta$ como $\neg A_1$, obtemos
+    \[
+        T\vdash \neg\varphi\leftrightarrow\neg\psi.
+    \]
+    Assim, fórmulas equivalentes podem ser substituídas dentro de negações.
+\end{example}
+
+\begin{example}
+    Suponha que
+    \[
+        T\vdash \varphi\leftrightarrow\psi
+        \qquad\text{e}\qquad
+        T\vdash \chi\leftrightarrow\eta.
+    \]
+    Tomando $\theta$ como $(A_1\wedge A_2)\rightarrow A_1$, obtemos
+    \[
+        T\vdash
+        \bigl((\varphi\wedge\chi)\rightarrow\varphi\bigr)
+        \leftrightarrow
+        \bigl((\psi\wedge\eta)\rightarrow\psi\bigr).
+    \]
+    Esse exemplo ilustra que várias substituições equivalentes podem ser feitas simultaneamente.
+\end{example}
+
+\begin{example}
+    Suponha que $T\vdash \varphi\leftrightarrow\psi$.
+    Tomando $\theta$ como $\forall x A_1$, obtemos
+    \[
+        T\vdash \forall x\varphi\leftrightarrow\forall x\psi.
+    \]
+    Analogamente, tomando $\theta$ como $\exists x A_1$, obtemos
+    \[
+        T\vdash \exists x\varphi\leftrightarrow\exists x\psi.
+    \]
+    Portanto, a substituição por fórmulas equivalentes também é preservada sob quantificadores.
+\end{example}
+
+\begin{example}
+    Na linguagem da teoria dos conjuntos, suponha que
+    \[
+        T\vdash \varphi(z)\leftrightarrow\psi(z).
+    \]
+    Aplicando o metateorema ao esqueleto
+    \[
+        \theta \equiv \forall z(A_1\rightarrow A_2),
+    \]
+    com
+    \[
+        \rho_\varphi(A_1)=z\in a,\qquad
+        \rho_\psi(A_1)=z\in a,
+    \]
+    e
+    \[
+        \rho_\varphi(A_2)=\varphi(z),\qquad
+        \rho_\psi(A_2)=\psi(z),
+    \]
+    obtemos
+    \[
+        T\vdash
+        \forall z(z\in a\rightarrow\varphi(z))
+        \leftrightarrow
+        \forall z(z\in a\rightarrow\psi(z)).
+    \]
+    Esse exemplo ilustra que podemos substituir apenas uma parte de uma fórmula por outra equivalente, deixando o restante do contexto inalterado ao atribuir a mesma fórmula à letra proposicional correspondente nos dois lados.
+\end{example}
+
+\begin{example}
+    Suponha que, na linguagem da teoria dos conjuntos,
+    \[
+        T\vdash \varphi(z)\leftrightarrow\psi(z).
+    \]
+    Podemos substituir apenas uma das ocorrências de $\varphi(z)$ em uma fórmula onde ela aparece mais de uma vez.
+
+    Por exemplo, considere a fórmula
+    \[
+        \forall z\bigl(z\in a\rightarrow(\varphi(z)\rightarrow\varphi(z)\wedge z\in b)\bigr).
+    \]
+    Queremos substituir apenas a segunda ocorrência de $\varphi(z)$ por $\psi(z)$, mantendo a primeira ocorrência inalterada.
+
+    Para isso, tomemos o esqueleto
+    \[
+        \theta \equiv \forall z\bigl(A_1\rightarrow(A_2\rightarrow A_3\wedge A_4)\bigr),
+    \]
+    com
+    \[
+        \rho_\varphi(A_1)=z\in a,\qquad
+        \rho_\varphi(A_2)=\varphi(z),\qquad
+        \rho_\varphi(A_3)=\varphi(z),\qquad
+        \rho_\varphi(A_4)=z\in b,
+    \]
+    e
+    \[
+        \rho_\psi(A_1)=z\in a,\qquad
+        \rho_\psi(A_2)=\varphi(z),\qquad
+        \rho_\psi(A_3)=\psi(z),\qquad
+        \rho_\psi(A_4)=z\in b.
+    \]
+    Pelo metateorema, obtemos
+    \[
+        T\vdash
+        \forall z\bigl(z\in a\rightarrow(\varphi(z)\rightarrow\varphi(z)\wedge z\in b)\bigr)
+        \leftrightarrow
+        \forall z\bigl(z\in a\rightarrow(\varphi(z)\rightarrow\psi(z)\wedge z\in b)\bigr).
+    \]
+    Assim, uma mesma fórmula pode ocorrer várias vezes em um contexto, e podemos substituir apenas algumas de suas ocorrências, tratando-as por letras proposicionais distintas no esqueleto.
+\end{example}
+
+\subsection*{Exercícios}
+
+\begin{exercise}
+    Suponha que $T\vdash \varphi\leftrightarrow\psi$.
+    Use o Metateorema~\ref{mthm:substituicaoFormulasEquivalentes} para mostrar que:
+    \begin{enumerate}
+        \item $T\vdash \neg\varphi\leftrightarrow\neg\psi$;
+        \item $T\vdash (\varphi\wedge\chi)\leftrightarrow(\psi\wedge\chi)$;
+        \item $T\vdash (\chi\rightarrow\varphi)\leftrightarrow(\chi\rightarrow\psi)$;
+        \item $T\vdash (\varphi\rightarrow\chi)\leftrightarrow(\psi\rightarrow\chi)$.
+    \end{enumerate}
+    Em cada item, explicite o esqueleto proposicional $\theta$ e as atribuições utilizadas.
+\end{exercise}
+
+\begin{exercise}
+    Suponha que
+    \[
+        T\vdash \varphi\leftrightarrow\psi
+        \qquad\text{e}\qquad
+        T\vdash \chi\leftrightarrow\eta.
+    \]
+    Use o Metateorema~\ref{mthm:substituicaoFormulasEquivalentes} para concluir que
+    \[
+        T\vdash
+        ((\varphi\vee\chi)\rightarrow(\varphi\wedge\chi))
+        \leftrightarrow
+        ((\psi\vee\eta)\rightarrow(\psi\wedge\eta)).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Suponha que $T\vdash \varphi\leftrightarrow\psi$.
+    Conclua que
+    \[
+        T\vdash
+        \neg(\chi\wedge(\varphi\vee\eta))
+        \leftrightarrow
+        \neg(\chi\wedge(\psi\vee\eta)).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Seja $T$ uma teoria de primeira ordem e suponha que
+    \[
+        T\vdash \varphi_i\leftrightarrow\psi_i
+    \]
+    para cada $i\in\{1,\dots,n\}$.
+    Mostre, usando o Metateorema~\ref{mthm:substituicaoFormulasEquivalentes}, que
+    \[
+        T\vdash
+        \bigwedge_{i=1}^n\varphi_i
+        \leftrightarrow
+        \bigwedge_{i=1}^n\psi_i.
+    \]
+\end{exercise}
