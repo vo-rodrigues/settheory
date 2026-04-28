@@ -1,0 +1,664 @@
+\section{Regras para quantificadores}
+
+Passaremos agora às regras envolvendo quantificadores.
+Aqui aparecem as condições mais delicadas da seção, pois é preciso controlar cuidadosamente variáveis livres e substituições válidas.
+
+\subsection{Regras básicas}
+
+Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
+
+\begin{metaproposition}[Instanciação universal e generalização existencial]\label{mprop:instanciacaoUniversalGeneralizacaoExistencial}
+    Seja $T$ uma teoria de primeira ordem de léxico $L$.
+    Seja $\varphi$ uma $L$-fórmula, seja $x$ uma variável e seja $t$ um $L$-termo tal que $x$ é substituível por $t$ em $\varphi$.
+
+    Então:
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Instanciação universal.
+        
+        \[
+        \frac{T\vdash \forall x\varphi}
+             {T\vdash \varphi[x/t]}
+        \]
+        ``Como $\varphi$ vale para todo $x$, então vale para este termo $t$.''
+        \item Generalização existencial.
+        \[
+            \frac{T\vdash \varphi[x/t]}
+             {T\vdash \exists x\varphi}
+        \]
+        ``Como $\varphi$ vale para o termo $t$, então existe um $x$ tal que $\varphi$.''
+    \end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    Para (i), usamos FO14:
+    \[
+        \forall x\varphi\rightarrow\varphi[x/t].
+    \]
+    Como $T\vdash \forall x\varphi$, segue por modus ponens que $T\vdash \varphi[x/t]$.
+
+    Para (ii), usamos FO15:
+    \[
+        \varphi[x/t]\rightarrow\exists x\varphi.
+    \]
+    Como $T\vdash \varphi[x/t]$, segue por modus ponens que $T\vdash \exists x\varphi$.
+\end{proof}
+
+\begin{metaproposition}[Negação de quantificadores]\label{mprop:negacaoQuantificadores}
+    Seja $T$ uma teoria de primeira ordem, seja $\varphi$ uma fórmula da linguagem de $T$ e seja $x$ uma variável.
+    Então
+    \[
+        T\vdash \neg\exists x\varphi \leftrightarrow \forall x\neg\varphi.
+    \]
+\end{metaproposition}
+
+\begin{proof}
+    Primeiro, provemos que $T\vdash \neg\exists x\varphi \rightarrow \forall x\neg\varphi$.
+
+    Por FO15, aplicado ao termo $x$, temos $T\vdash \varphi\rightarrow\exists x\varphi$.
+    Pela contrapositiva,
+    \[
+        T\vdash \neg\exists x\varphi\rightarrow\neg\varphi.
+    \]
+    Como $x$ não ocorre livre em $\neg\exists x\varphi$, pela regra de introdução do quantificador universal,
+    \[
+        T\vdash \neg\exists x\varphi\rightarrow\forall x\neg\varphi.
+    \]
+
+    Reciprocamente, provemos que $T\vdash \forall x\neg\varphi\rightarrow\neg\exists x\varphi$.
+
+    Por FO14, aplicado à fórmula $\neg\varphi$ e ao termo $x$, temos
+    \[
+        T\vdash \forall x\neg\varphi\rightarrow\neg\varphi.
+    \]
+    Pela contrapositiva e pela equivalência entre $\neg\neg \varphi$ e $\varphi$, temos que $T\vdash \neg \neg\varphi\rightarrow\neg\forall x\neg\varphi$ e $T\vdash \varphi\rightarrow\neg\neg\varphi$.
+    Assim, pela transitividade de $\rightarrow$,
+    \[
+        T\vdash \varphi\rightarrow\neg\forall x\neg\varphi.
+    \]
+    Como $x$ não ocorre livre em $\neg\forall x\neg\varphi$, pela regra de introdução do quantificador existencial,
+    \[
+        T\vdash \exists x\varphi\rightarrow\neg\forall x\neg\varphi.
+    \]
+    Aplicando novamente a contrapositiva, $T\vdash \neg \neg \forall x\neg\varphi\rightarrow\neg\exists x\varphi$.
+    Como $T\vdash \forall x\neg\varphi\rightarrow\neg\neg\forall x\neg\varphi$, pela transitividade de $\rightarrow$,
+    \[
+        T\vdash \forall x\neg\varphi\rightarrow\neg\exists x\varphi.
+    \]
+
+    Pelas duas implicações, concluímos
+    \[
+        T\vdash \neg\exists x\varphi \leftrightarrow \forall x\neg\varphi.
+    \]
+\end{proof}
+
+\begin{metaproposition}[Quantificadores e implicações]\label{mprop:quantificadoresImplicacao}
+    Seja $T$ uma teoria de primeira ordem e $\varphi$, $\psi$ fórmulas da linguagem de $T$.
+    Seja $x$ uma variável.
+    Então:
+    \begin{enumerate}[label=(\roman*)]
+        \item Preservação do quantificador universal via implicação.
+        \[
+        \frac{T\vdash \varphi\rightarrow\psi}
+             {T\vdash \forall x\varphi\rightarrow\forall x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\varphi$ implica $\psi$, então, se $\varphi$ vale para todo $x$, então $\psi$ vale para todo $x$.''
+        \item Preservação do quantificador existencial via implicação.
+        \[
+        \frac{T\vdash \varphi\rightarrow\psi}
+             {T\vdash \exists x\varphi\rightarrow\exists x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\varphi$ implica $\psi$, então, se existe um $x$ tal que $\varphi$, então existe um $x$ tal que $\psi$.''
+        \item Preservação do quantificador universal via equivalência.
+        \[
+        \frac{T\vdash \varphi\leftrightarrow\psi}
+             {T\vdash \forall x\varphi\leftrightarrow\forall x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\varphi$ e $\psi$ são equivalentes, então, $\varphi$ vale para qualquer que seja $x$ se, e somente se, $\psi$ vale para qualquer que seja $x$.''
+        \item Preservação do quantificador existencial via equivalência.
+        
+        \[
+        \frac{T\vdash \varphi\leftrightarrow\psi}
+             {T\vdash \exists x\varphi\leftrightarrow\exists x\psi}
+        \]
+        ``Como para qualquer que seja $x$, $\varphi$ e $\psi$ são equivalentes, então, existe um $x$ tal que $\varphi$ se, e somente se, existe um $x$ tal que $\psi$.''
+    \end{enumerate}
+\end{metaproposition}
+\begin{proof}
+    (i) Por FO14, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \forall x\varphi\rightarrow\varphi$.
+    Como $T\vdash \varphi\rightarrow\psi$, pela transitividade de $\rightarrow$, $T\vdash \forall x\varphi\rightarrow\psi$.
+    Como $x$ não ocorre livre em $\forall x\varphi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\varphi\rightarrow\forall x\psi$.
+    (ii) Por FO15, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \psi\rightarrow\exists x\psi$.
+    Como $T\vdash \varphi\rightarrow\psi$, pela transitividade de $\rightarrow$, $T\vdash \varphi\rightarrow\exists x\psi$.
+    Como $x$ não ocorre livre em $\exists x\psi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow\exists x\psi$.
+
+    (iii) Se $T\vdash \varphi\leftrightarrow\psi$, então $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\varphi$.
+    Por (i), $T\vdash \forall x\varphi\rightarrow\forall x\psi$ e $T\vdash \forall x\psi\rightarrow\forall x\varphi$.
+    Assim, $T\vdash \forall x\varphi\leftrightarrow\forall x\psi$.
+
+    (iv) Se $T\vdash \varphi\leftrightarrow\psi$, então $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\varphi$.
+    Por (ii), $T\vdash \exists x\varphi\rightarrow\exists x\psi$ e $T\vdash \exists x\psi\rightarrow\exists x\varphi$.
+    Assim, $T\vdash \exists x\varphi\leftrightarrow\exists x\psi$.
+\end{proof}
+
+\begin{metacorollary}[Negação de quantificadores II]\label{mprop:negacaoQuantificadores2}
+    Seja $T$ uma teoria de primeira ordem, seja $\varphi$ uma fórmula da linguagem de $T$ e seja $x$ uma variável.
+    Então
+    \[
+        T\vdash \neg \forall x\varphi\leftrightarrow\exists x\neg \varphi.
+    \]
+\end{metacorollary}
+
+\begin{proof}
+    Sabemos que $T\vdash \neg\exists x\neg \varphi \leftrightarrow \forall x\neg\neg\varphi$.
+    
+    Como $T\vdash \neg\neg\varphi\leftrightarrow\varphi$, pela preservação do quantificador universal via equivalência, segue que $T\vdash \forall x\neg\neg\varphi\leftrightarrow\forall x\varphi$.
+
+    Pela transitividade de $\leftrightarrow$, $T\vdash \neg\exists x\neg \varphi \leftrightarrow \forall x\varphi$.
+    Pela preservação de negação por $\leftrightarrow$ e pela comutatividade de $\leftrightarrow$,
+    \[
+        T\vdash \neg\forall x\varphi \leftrightarrow \neg\neg\exists x\neg\varphi.
+    \]
+    Como $T\vdash \neg\neg\exists x\neg\varphi\leftrightarrow\exists x\neg\varphi$, pela transitividade de $\leftrightarrow$,
+    \[
+        T\vdash \neg\forall x\varphi \leftrightarrow \exists x\neg \varphi.
+    \]
+\end{proof}
+
+
+A seguir, precisaremos de uma forma simples de generalização universal.
+
+\begin{metalemma}[Generalização de teoremas]\label{mlem:generalizacaoDeTeoremas}
+    Seja $T$ uma teoria de primeira ordem, $\varphi$ uma fórmula da linguagem de $T$ e $x$ uma variável.
+    Se $T\vdash \varphi$, então $T\vdash \forall x\varphi$.
+
+    \[
+        \frac{T\vdash \varphi}
+             {T\vdash \forall x\varphi}.
+    \]
+
+    ``Temos que $\varphi$.
+    Como $x$ é arbitrário, $\varphi$ vale para todo $x$.''
+\end{metalemma}
+
+\begin{proof}
+    Escolha uma variável $z$ distinta de $x$.
+
+    Por FO16, $T\vdash z=z$.
+    Pela introdução de $\rightarrow$, $T\vdash z=z\rightarrow\varphi$.
+
+    Como $x$ não ocorre livre em $z=z$, podemos aplicar a regra de introdução do quantificador universal e obter
+    \[
+        T\vdash (z=z)\rightarrow\forall x\varphi.
+    \]
+    Por \emph{modus ponens} com $T\vdash z=z$, concluímos
+    \[
+        T\vdash \forall x\varphi.
+    \]
+\end{proof}
+
+Também usaremos a seguinte renomeação de variável ligada.
+
+\begin{metalemma}[Renomeação de variável universal]\label{mlem:renomeacaoVariavelUniversal}\index{renomeação de variável!universal}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $\varphi$ uma fórmula e sejam $x$ e $y$ variáveis.
+    Suponha que $y$ não ocorre em $\varphi$.
+
+    Então $T\vdash \forall x\varphi$ se, e somente se, $T\vdash \forall y\,\varphi[x/y]$.
+    
+    Ademais, para a implicação direta, basta que $x$ seja substituível por $y$ em $\varphi$.
+
+    \[
+        \frac{T\vdash \forall x\varphi}
+             {T\vdash \forall y\,\varphi[x/y]}
+        \qquad
+        \frac{T\vdash \forall y\,\varphi[x/y]}
+             {T\vdash \forall x\varphi}.
+    \]
+
+    ``Temos $\forall x\varphi$.
+    Renomeando $x$ para uma variável nova $y$, obtemos $\forall y\,\varphi[x/y]$.''
+\end{metalemma}
+
+\begin{proof}
+    Suponha primeiro que $T\vdash \forall x\varphi$.
+
+    Como $y$ não ocorre em $\varphi$, a substituição $\varphi[x/y]$ é válida.
+    Por instanciação universal,
+    \[
+        T\vdash \varphi[x/y].
+    \]
+    Pelo Metalema~\ref{mlem:generalizacaoDeTeoremas}, $T\vdash \forall y\,\varphi[x/y]$.
+    Note que só foi necessário que $x$ seja substituível por $y$ em $\varphi$.
+
+    Reciprocamente, suponha que
+    \[
+        T\vdash \forall y\,\varphi[x/y].
+    \]
+    Como $y$ não ocorre em $\varphi$, as ocorrências livres de $y$ em $\varphi[x/y]$ são exatamente aquelas que surgiram a partir das ocorrências livres de $x$ em $\varphi$.
+    Em particular, nenhuma dessas ocorrências está no escopo de um quantificador que age em $x$.
+    Logo, em $\varphi[x/y]$, a variável $y$ é substituível por $x$.
+
+    Pelo já provado, $T\vdash \forall x\,\varphi[x/y][y/x]$.
+    Como $\varphi[x/y][y/x]$ é a própria $\varphi$, segue a tese.
+\end{proof}
+
+\subsection{Generalização universal e instanciação existencial}
+
+Agora trataremos da prática de introduzir ``constantes temporárias''.
+Na prática matemática cotidiana, introduzimos frequentemente nomes temporários para um elemento arbitrário no formato a seguir.
+
+``Queremos mostrar que $\forall x \theta$.
+Fixe um tal $x$, digamos, $c$.
+Veremos que $\theta[x/c]$.''
+
+No cotidiano matemático, muitas vezes tal argumento acaba sendo escrito apenas como a seguir.
+
+``Queremos mostrar que $\forall x \theta$.
+Fixe $x$.
+Veremos que $\theta(x)$.''
+
+Ou seja, na prática, a letra $x$ muitas vezes é inalterada.
+Porém, a palavra ``fixe'' dá a entender que a partir daquele ponto do texto, $x$ será temporariamente tratada como um objeto particular, um nome para algum objeto fixado $x$ particular.
+A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a letra $x$.
+
+Essa prática é formalizada pelo seguinte metateorema.
+
+\begin{metatheorem}[Generalização Universal]\label{mlem:generalizacaoUniversal}
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem.
+    Seja $c$ um símbolo de constante que não pertence a $\mathcal L$.
+    Seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$, e seja $T(c)=(\mathcal L(c),\Sigma)$.
+
+    Seja $\theta$ uma $\mathcal L$-fórmula e seja $x$ uma variável.
+    Suponha que $T(c)\vdash \theta[x/c]$.
+    Então $T\vdash \forall x\theta$.
+
+    \[
+        \frac{T(c)\vdash \theta[x/c]}
+             {T\vdash \forall x\theta}.
+    \]
+\end{metatheorem}
+
+\begin{proof}
+    Seja $\theta_0,\dots,\theta_n$ uma demonstração de $\theta[x/c]$ em $T(c)$, com $\theta_n=\theta[x/c]$.
+
+    Como a demonstração é finita, escolha uma variável $y$ distinta de $x$ que não ocorre em $\theta$ nem em nenhuma das fórmulas $\theta_0,\dots,\theta_n$.
+    Em particular, $y$ não ocorre em nenhum termo que aparece na demonstração.
+
+    Para cada $i\leq n$, denote por $\theta_i^\dagger$ a fórmula obtida de $\theta_i$ substituindo todas as ocorrências do símbolo de constante $c$ pela variável $y$.
+
+    Formalmente, define-se, por recursão na complexidade de cada $L(c)$-termo $t$ no qual $y$ não ocorre, um termo $t^\dagger$ da seguinte forma:
+    \begin{itemize}
+        \item Se $t$ é uma variável, então $t^\dagger$ é o próprio $t$.
+        \item Se $t$ é um símbolo de constante diferente de $c$, então $t^\dagger$ é o próprio $t$.
+        \item Se $t$ é o símbolo de constante $c$, então $t^\dagger$ é a variável $y$.
+        \item Se $t$ é $f(t_1,\dots,t_k)$, então $t^\dagger$ é $f(t_1^\dagger,\dots,t_k^\dagger)$, onde $f$ é um símbolo de função de aridade $k\geq 1$.
+    \end{itemize}
+
+    Então, define-se, para cada $L(c)$-fórmula $\psi$ na qual $y$ não ocorre, a fórmula $\psi^\dagger$ da seguinte forma:
+    \begin{itemize}
+        \item Se $\psi$ é $t_1=t_2$, então $\psi^\dagger$ é $t_1^\dagger=t_2^\dagger$.
+        \item Se $\psi$ é $R(t_1,\dots,t_k)$, então $\psi^\dagger$ é $R(t_1^\dagger,\dots,t_k^\dagger)$, onde $R$ é um símbolo de predicado de aridade $k\geq 1$.
+        \item Se $\psi$ é $R$, então $\psi^\dagger$ é o próprio $R$, onde $R$ é um símbolo de predicado de aridade $0$.
+        \item Se $\psi$ é $\neg\chi$, então $\psi^\dagger$ é $\neg\chi^\dagger$.
+        \item Se $\psi$ é $\chi\square\eta$, então $\psi^\dagger$ é $\chi^\dagger\square\eta^\dagger$, onde $\square$ é um conectivo lógico binário.
+        \item Se $\psi$ é $Qz\chi$, então $\psi^\dagger$ é $Qz\chi^\dagger$, onde $Q$ é um quantificador e $z$ é uma variável.
+    \end{itemize}
+
+    Precisaremos das seguintes afirmações.
+
+    \begin{claim}\label{claim:termosInalterados}
+        Se $t$ é um $L$-termo, então $t^\dagger$ é o próprio $t$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $t$.
+
+        Se $t$ é uma variável, então $t^\dagger$ é o próprio $t$.
+        Se $t$ é um símbolo de constante, então tal constante não é $c$, pois $c$ não pertence a $L$.
+        Logo, também nesse caso, $t^\dagger$ é o próprio $t$.
+
+        Se $t$ é $f(t_1,\dots,t_k)$, então $t^\dagger=f(t_1^\dagger,\dots,t_k^\dagger)$.
+        Pela hipótese de indução, $t_i^\dagger$ é $t_i$ para cada $i\leq k$.
+        Assim, $t^\dagger=f(t_1,\dots,t_k)$, isto é, $t^\dagger$ é o próprio $t$.
+    \end{proof}
+
+    \begin{claim}\label{claim:formulasInalteradas}
+        Se $\psi$ é uma $L$-fórmula tal que $y$ não ocorre em $\psi$, então $\psi^\dagger$ é a própria $\psi$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $\psi$.
+
+        Se $\psi$ é $t_1=t_2$, $R(t_1,\dots,t_k)$ ou $R$, então $\psi^\dagger$ é a própria $\psi$, pois os termos envolvidos são $L$-termos e, portanto, são inalterados pela Afirmação~\ref{claim:termosInalterados}.
+
+        Se $\psi$ é $\neg\chi$, então $\psi^\dagger$ é $\neg\chi^\dagger$, que, por hipótese de indução, é $\neg\chi$, ou seja, a própria $\psi$.
+
+        Se $\psi$ é $\chi\square\eta$, então $\psi^\dagger$ é $\chi^\dagger\square\eta^\dagger$, que, por hipótese de indução, é $\chi\square\eta$, ou seja, a própria $\psi$.
+
+        Se $\psi$ é $Qz\chi$, então $\psi^\dagger$ é $Qz\chi^\dagger$, que, por hipótese de indução, é $Qz\chi$, ou seja, a própria $\psi$.
+    \end{proof}
+
+    \begin{claim}\label{claim:termosComY}
+        Seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$.
+        Então toda variável de $t^\dagger$ é ou uma variável de $t$ ou a variável $y$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $t$.
+
+        Se $t$ é uma variável, digamos, $z$, então $t^\dagger$ é o próprio $z$.
+        Assim, a única variável de $t^\dagger$ é uma variável de $t$.
+
+        Se $t$ é um símbolo de constante diferente de $c$, então $t^\dagger$ é o próprio $t$, que não possui variáveis.
+
+        Se $t$ é o símbolo de constante $c$, então $t^\dagger$ é a variável $y$.
+
+        Se $t$ é $f(t_1,\dots,t_k)$, então $t^\dagger=f(t_1^\dagger,\dots,t_k^\dagger)$.
+        As variáveis de $t^\dagger$ são as variáveis dos termos $t_1^\dagger,\dots,t_k^\dagger$.
+        Pela hipótese de indução, cada uma delas é uma variável de algum $t_i$ ou é a variável $y$.
+        Logo, cada variável de $t^\dagger$ é uma variável de $t$ ou é a variável $y$.
+    \end{proof}
+
+    \begin{claim}\label{claim:variaveisLivresComY}
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$.
+        Toda variável livre de $\varphi^\dagger$ é ou uma variável livre de $\varphi$ ou a variável $y$.
+    \end{claim}
+    \begin{proof}
+        Procede-se por indução na complexidade de $\varphi$.
+
+        Se $\varphi$ é $t_1=t_2$, $R(t_1,\dots,t_k)$ ou $R$, então o resultado segue diretamente da Afirmação~\ref{claim:termosComY}.
+
+        Se $\varphi$ é $\neg\chi$, então $\varphi^\dagger$ é $\neg\chi^\dagger$.
+        As variáveis livres de $\varphi^\dagger$ são as variáveis livres de $\chi^\dagger$.
+        Pela hipótese de indução, estas são variáveis livres de $\chi$ ou a variável $y$.
+        Portanto, são variáveis livres de $\varphi$ ou a variável $y$.
+
+        Se $\varphi$ é $\chi\square\eta$, então $\varphi^\dagger$ é $\chi^\dagger\square\eta^\dagger$.
+        As variáveis livres de $\varphi^\dagger$ são as variáveis livres de $\chi^\dagger$ ou de $\eta^\dagger$.
+        Pela hipótese de indução, estas são variáveis livres de $\chi$ ou de $\eta$, ou a variável $y$.
+        Portanto, são variáveis livres de $\varphi$ ou a variável $y$.
+
+        Se $\varphi$ é $Qz\chi$, então $\varphi^\dagger$ é $Qz\chi^\dagger$.
+        As variáveis livres de $\varphi^\dagger$ são as variáveis livres de $\chi^\dagger$ diferentes de $z$.
+        Pela hipótese de indução, estas são variáveis livres de $\chi$ ou a variável $y$.
+        Como $y$ não ocorre em $\varphi$, em particular $z$ não é $y$.
+        Logo, as variáveis livres de $\varphi^\dagger$ são variáveis livres de $\varphi$ ou a variável $y$.
+    \end{proof}
+
+    \begin{claim}\label{claim:substituicaoValidaDagger}
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$, e seja $z$ uma variável distinta de $y$.
+        Se $z$ é substituível por $t$ em $\varphi$, então $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$.
+    \end{claim}
+    \begin{proof}
+        Considere uma ocorrência livre de $z$ em $\varphi^\dagger$.
+        Como a operação $(\cdot)^\dagger$ apenas substitui o símbolo de constante $c$ pela variável $y$, essa ocorrência de $z$ já correspondia a uma ocorrência livre de $z$ em $\varphi$.
+
+        Suponha que essa ocorrência esteja no escopo de um quantificador que age em uma variável $w$ que ocorre em $t^\dagger$.
+        Como $y$ não ocorre em $\varphi$, a fórmula $\varphi^\dagger$ não possui quantificadores agindo em $y$.
+        Portanto, $w$ não é $y$.
+
+        Pela Afirmação~\ref{claim:termosComY}, como $w$ ocorre em $t^\dagger$ e $w\neq y$, então $w$ ocorre em $t$.
+        Assim, em $\varphi$, a ocorrência livre correspondente de $z$ estava no escopo de um quantificador que age em uma variável que ocorre em $t$, contrariando a hipótese de que $z$ é substituível por $t$ em $\varphi$.
+
+        Logo, nenhuma ocorrência livre de $z$ em $\varphi^\dagger$ está no escopo de um quantificador que age em uma variável que ocorre em $t^\dagger$.
+        Portanto, $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$.
+    \end{proof}
+
+    \begin{claim}\label{claim:daggerComutaSubstituicao}
+        Seja $\varphi$ uma $L(c)$-fórmula tal que $y$ não ocorre em $\varphi$, seja $z$ uma variável distinta de $y$ e seja $t$ um $L(c)$-termo tal que $y$ não ocorre em $t$.
+        Então
+        \[
+            (\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger].
+        \]
+    \end{claim}
+    \begin{proof}
+        Primeiro, provamos por indução na complexidade dos termos $s$ nos quais $y$ não ocorre que
+        \[
+            (s[z/t])^\dagger=s^\dagger[z/t^\dagger].
+        \]
+
+        Se $s$ é a variável $z$, então $s[z/t]$ é $t$, logo $(s[z/t])^\dagger=t^\dagger$.
+        Por outro lado, $s^\dagger$ é $z$, e $z[z/t^\dagger]$ é $t^\dagger$.
+
+        Se $s$ é uma variável diferente de $z$, então $s[z/t]$ é $s$, e ambos os lados são iguais a $s$.
+
+        Se $s$ é um símbolo de constante, então $s[z/t]$ é $s$, e ambos os lados são iguais a $s^\dagger$.
+
+        Se $s$ é $f(s_1,\dots,s_k)$, então, pela hipótese de indução aplicada aos $s_i$,
+        \[
+            (s[z/t])^\dagger
+            =
+            f((s_1[z/t])^\dagger,\dots,(s_k[z/t])^\dagger)
+            =
+            f(s_1^\dagger[z/t^\dagger],\dots,s_k^\dagger[z/t^\dagger])
+            =
+            s^\dagger[z/t^\dagger].
+        \]
+
+        Agora procedemos por indução na complexidade de $\varphi$.
+
+        Se $\varphi$ é $s_1=s_2$, $R(s_1,\dots,s_k)$ ou $R$, a conclusão segue do resultado já provado para termos.
+
+        Se $\varphi$ é $\neg\chi$, então
+        \[
+            (\varphi[z/t])^\dagger
+            =
+            \neg(\chi[z/t])^\dagger
+            =
+            \neg(\chi^\dagger[z/t^\dagger])
+            =
+            \varphi^\dagger[z/t^\dagger],
+        \]
+        pela hipótese de indução.
+
+        Se $\varphi$ é $\chi\square\eta$, então a conclusão segue imediatamente da hipótese de indução aplicada a $\chi$ e a $\eta$.
+
+        Se $\varphi$ é $Qw\chi$, com $w$ diferente de $z$, então
+        \[
+            (\varphi[z/t])^\dagger
+            =
+            Qw(\chi[z/t])^\dagger
+            =
+            Qw(\chi^\dagger[z/t^\dagger])
+            =
+            \varphi^\dagger[z/t^\dagger].
+        \]
+
+        Se $\varphi$ é $Qz\chi$, então $\varphi[z/t]$ é $\varphi$.
+        Logo, $(\varphi[z/t])^\dagger=\varphi^\dagger$.
+        Por outro lado, como a substituição por $z$ não atravessa um quantificador que age em $z$, temos $\varphi^\dagger[z/t^\dagger]=\varphi^\dagger$.
+        Portanto, $(\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger]$.
+    \end{proof}
+
+    \begin{claim}\label{claim:substituirConstantePorVariavel}
+        Seja $\varphi$ uma $L$-fórmula tal que $y$ não ocorre em $\varphi$, e seja $z$ uma variável distinta de $y$.
+        Então $(\varphi[z/c])^\dagger=\varphi[z/y]$.
+    \end{claim}
+    \begin{proof}
+        Pela Afirmação~\ref{claim:daggerComutaSubstituicao}, aplicada ao termo $c$, $(\varphi[z/c])^\dagger=\varphi^\dagger[z/c^\dagger]$.
+
+        Pela Afirmação~\ref{claim:formulasInalteradas}, como $\varphi$ é uma $L$-fórmula e $y$ não ocorre em $\varphi$, temos $\varphi^\dagger=\varphi$.
+        Além disso, $c^\dagger$ é $y$.
+        Logo, $(\varphi[z/c])^\dagger=\varphi[z/y]$.
+    \end{proof}
+
+    Provaremos, por indução em $i\leq n$, que $T\vdash \theta_i^\dagger$.
+    Suponha que a tese já tenha sido provada para todo $j<i$.
+    Veremos que $T\vdash \theta_i^\dagger$.
+
+    Se $\theta_i$ é um axioma de $T(c)$, então $\theta_i\in\Sigma$.
+    Como os axiomas de $\Sigma$ são $L$-sentenças, $\theta_i$ é uma $L$-fórmula.
+    Como $y$ não ocorre em $\theta_i$, pela Afirmação~\ref{claim:formulasInalteradas}, $\theta_i^\dagger$ é a própria $\theta_i$.
+    Assim, $T\vdash \theta_i^\dagger$.
+
+    Se $\theta_i$ é um axioma lógico de $L(c)$, então $\theta_i^\dagger$ é um axioma lógico de $L$.
+    De fato, como a operação $(\cdot)^\dagger$ comuta com os conectivos lógicos, cada instância de um dos esquemas FO1--FO13 é levada a uma instância do mesmo esquema.
+    O axioma FO16 é preservado imediatamente.
+
+    Quanto a FO17 e FO18, note que o novo símbolo $c$ é apenas um símbolo de constante.
+    Portanto, ele não é um símbolo funcional de aridade positiva nem um símbolo de predicado, e não introduz novos casos nesses esquemas.
+    Assim, instâncias de FO17 e FO18 em $L(c)$ são levadas a instâncias dos mesmos esquemas em $L$.
+
+    Resta verificar FO14 e FO15.
+    Se $\theta_i$ é uma instância de FO14, então $\theta_i$ é da forma $\forall z\varphi\rightarrow\varphi[z/t]$ em que $z$ é substituível por $t$ em $\varphi$.
+
+    Como $y$ não ocorre em $\theta_i$, temos que $y$ não ocorre em $\varphi$ e $z\neq y$.
+    Se $y$ ocorre em $t$, então, como $y$ não ocorre em $\varphi[z/t]$, a variável $z$ não ocorre livre em $\varphi$.
+    Nesse caso, $\varphi[z/t]=\varphi$, e portanto $\theta_i^\dagger$ é
+    \[
+        \forall z\varphi^\dagger\rightarrow\varphi^\dagger,
+    \]
+    que é uma instância de FO14 aplicada ao termo $z$.
+
+    Suponha agora que $y$ não ocorre em $t$.
+
+    Pelas Afirmações~\ref{claim:substituicaoValidaDagger} e~\ref{claim:daggerComutaSubstituicao}, temos que $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$ e $(\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger]$.
+    Portanto, $\theta_i^\dagger$ é $\forall z\varphi^\dagger\rightarrow\varphi^\dagger[z/t^\dagger]$, que é uma instância de FO14 em $L$.
+
+    O caso de FO15 é tratado de forma análoga.
+
+    Suponha agora que $\theta_i$ foi obtida por \emph{modus ponens}.
+    Então existem $j,k<i$ tais que $\theta_j$ é $\theta_k\rightarrow\theta_i$.
+    Pela hipótese de indução,
+    \[
+        T\vdash \theta_j^\dagger
+        \qquad\text{e}\qquad
+        T\vdash \theta_k^\dagger.
+    \]
+    Como $\theta_j^\dagger$ é $\theta_k^\dagger\rightarrow\theta_i^\dagger$, segue por \emph{modus ponens} que $T\vdash \theta_i^\dagger$.
+
+    Suponha que $\theta_i$ foi obtida pela regra de introdução do quantificador universal.
+    Então existem fórmulas $\chi$ e $\eta$, uma variável $z$ e $j<i$ tais que $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\chi\rightarrow\forall z\eta$, e $z$ não ocorre livre em $\chi$.
+
+    Pela hipótese de indução, $T\vdash \chi^\dagger\rightarrow\eta^\dagger$.
+    Como $y$ não ocorre em $\theta_i$, temos $z\neq y$.
+    Pela Afirmação~\ref{claim:variaveisLivresComY}, toda variável livre de $\chi^\dagger$ é uma variável livre de $\chi$ ou é $y$.
+    Como $z$ não ocorre livre em $\chi$ e $z\neq y$, segue que $z$ não ocorre livre em $\chi^\dagger$.
+
+    Pela regra de introdução do quantificador universal,
+    \[
+        T\vdash \chi^\dagger\rightarrow\forall z\eta^\dagger.
+    \]
+    Essa fórmula é exatamente $\theta_i^\dagger$.
+
+    Por fim, suponha que $\theta_i$ foi obtida pela regra de introdução do quantificador existencial.
+    Então existem fórmulas $\chi$ e $\eta$, uma variável $z$ e $j<i$ tais que $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\exists z\chi\rightarrow\eta$, e $z$ não ocorre livre em $\eta$.
+
+    Pela hipótese de indução, $T\vdash \chi^\dagger\rightarrow\eta^\dagger$.
+    Como $y$ não ocorre em $\theta_i$, temos $z\neq y$.
+    Pela Afirmação~\ref{claim:variaveisLivresComY}, toda variável livre de $\eta^\dagger$ é uma variável livre de $\eta$ ou é $y$.
+    Como $z$ não ocorre livre em $\eta$ e $z\neq y$, segue que $z$ não ocorre livre em $\eta^\dagger$.
+
+    Pela regra de introdução do quantificador existencial,
+    \[
+        T\vdash \exists z\chi^\dagger\rightarrow\eta^\dagger.
+    \]
+    Essa fórmula é exatamente $\theta_i^\dagger$.
+
+    Isso encerra a indução.
+    Em particular, para $i=n$, obtemos $T\vdash (\theta[x/c])^\dagger$.
+    Pela Afirmação~\ref{claim:substituirConstantePorVariavel}, segue que
+    \[
+        T\vdash \theta[x/y].
+    \]
+
+    Pelo Metalema~\ref{mlem:generalizacaoDeTeoremas},
+    \[
+        T\vdash \forall y\,\theta[x/y].
+    \]
+    Como $y$ não ocorre em $\theta$, pelo Metalema~\ref{mlem:renomeacaoVariavelUniversal}, concluímos que
+    \[
+        T\vdash \forall x\,\theta.
+    \]
+\end{proof}
+
+A seguir, formalizaremos a prática de instanciar uma hipótese existencial por meio de um nome temporário.
+
+É corriqueiro em matemática a necessidade de se demonstrar que se existe um objeto $x$ que satisfaz determinada propriedade $\varphi$, então alguma outra propriedade $\psi$ é satisfeita.
+Nessas hipóteses, o argumento a ser seguido é o seguinte.
+
+``Queremos mostrar que se existe um $x$ tal que $\varphi$, então $\psi$.
+Fixe um tal $x$, digamos, $c$ (...) assim, $\psi$.
+Logo, se existe um $x$ tal que $\varphi$, então $\psi$.''
+
+Note que, na prática, o nome temporário $c$ é muitas vezes escrito como $x$, e a letra $x$ é mantida.
+Porém, como já discutido na discussão sobre a generalização universal, a palavra ``fixe'' dá a entender que a partir daquele ponto do texto, $x$ será temporariamente tratada como constante.
+
+Essa técnica é formalizada pelo seguinte metateorema.
+
+\begin{metatheorem}[Instanciação existencial]\label{mthm:instanciacaoExistencial}
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, $x$ uma variável, e $\varphi$ uma fórmula da linguagem de $T$.
+    Seja $\psi$ uma $\mathcal L$-fórmula sem $x$ livre.
+
+
+    Seja $c$ um símbolo de constante que não pertence a $\mathcal L$, e seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$.
+    Seja $T(c)=(\mathcal L(c),\Sigma)$.
+    
+    Se $T(c)\vdash \varphi[x/c]\rightarrow\psi$, então $T\vdash \exists x\varphi\rightarrow\psi$.
+
+    \[
+       \frac{T(c)\vdash \varphi[x/c]\rightarrow\psi}
+             {T\vdash \exists x\varphi\rightarrow\psi}.
+    \]
+\end{metatheorem}
+
+\begin{proof}
+    Suponha que $T(c)\vdash \varphi[x/c]\rightarrow\psi$.
+    Como $\psi$ não possui $x$ livre, então $(\varphi\rightarrow \psi)[x/c]$ é $\varphi[x/c]\rightarrow\psi$.
+    Assim, $T(c)\vdash (\varphi\rightarrow \psi)[x/c]$.
+    Pelo Metalema~\ref{mlem:generalizacaoUniversal}, $T\vdash \forall x(\varphi\rightarrow \psi)$.
+    
+    Como a substituição de $x$ por $x$ é válida, segue da instanciação universal que $T\vdash \varphi\rightarrow \psi$.
+    Pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow \psi$.
+\end{proof}
+
+Como aplicação dos lemas dessa subseção, mostraremos que quantificadores do mesmo tipo comutam.
+
+\begin{metalemma}[Comutatividade de quantificadores de mesmo tipo]\label{mlem:comutatividadeQuantificadoresMesmoTipo}
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, seja $\varphi$ uma fórmula da linguagem de $T$ e sejam $x$ e $y$ variáveis.
+    Então
+    \[
+        \frac{T\vdash \forall x\,\forall y\,\varphi}
+             {T\vdash \forall y\,\forall x\,\varphi}
+        \qquad \text{e} \qquad
+        \frac{T\vdash \exists x\,\exists y\,\varphi}
+             {T\vdash \exists y\,\exists x\,\varphi}.
+    \]
+\end{metalemma}
+\begin{proof}
+    Se $x=y$, as duas regras são imediatas.
+    Suponha, portanto, que $x$ e $y$ são distintas.
+
+    Para a primeira parte, suponha que $T\vdash \forall x\,\forall y\,\varphi$.
+    Queremos provar que $T\vdash \forall y\,\forall x\,\varphi$.
+    ``Fixe $y$, digamos, $d$.''
+    Ou seja, introduza um símbolo de constante $d$ que não pertence a $\mathcal L$, e considere a teoria $T(d)$.
+    É suficiente provar que $T(d)\vdash \forall x\,\varphi[y/d]$.
+    Para tanto, ``fixe $x$, digamos, $c$.''
+    Ou seja, introduza um símbolo de constante $c$ que não pertence a $\mathcal L(d)$, e considere a teoria $T(d)(c)$.
+    Note que $T(d)(c)=T(c)(d)$.
+    pela generalização universal, é suficiente provar que $T(c)(d)\vdash \varphi[y/d][x/c]$.
+    Ora, como $T\vdash \forall x\,\forall y\,\varphi$, pela instanciação universal, $T(c)(d)\vdash \varphi[x/c][y/d]$.
+    Como $\varphi[x/c][y/d]=\varphi[y/d][x/c]$, segue a tese.
+
+    Para a segunda parte, é suficiente provar que $T\vdash \exists x\exists y\,\varphi\rightarrow \exists y\exists x\,\varphi$.
+
+    ``Fixe um tal $x$, tal que $\exists y\,\varphi$, digamos, $c$.''
+    Ou seja, seja $c$ um símbolo de constante que não pertence a $\mathcal L$.
+    Como $x$ não ocorre livre em $\exists y\exists x\,\varphi$, pela regra de instanciação existencial, basta provar que
+    \[
+        T(c)\vdash \exists y\,\varphi[x/c]\rightarrow \exists y\exists x\,\varphi.
+    \]
+
+    ``Fixe um tal $y$, tal que $\varphi[x/c]$, digamos, $d$.''
+
+    Ou seja, seja $d$ um símbolo de constante que não pertence a $\mathcal L(c)$.
+    Como $y$ não ocorre livre em $\exists y\exists x\,\varphi$, pela regra de instanciação existencial, basta provar que
+    \[
+        T(c)(d)\vdash \varphi[x/c][y/d]\rightarrow \exists y\exists x\,\varphi.
+    \]
+    Note que $\varphi[x/c][y/d]=\varphi[y/d][x/c]$.
+    Pela regra da introdução do quantificador existencial, $T(c)(d)\vdash \varphi[y/d][x/c]\rightarrow \exists x\,\varphi[y/d]$.
+
+    Novamente pela regra da introdução do quantificador existencial, temos que $T(c)(d)\vdash \exists x\,\varphi[y/d]\rightarrow \exists y\exists x\,\varphi$.
+
+    Pela transitividade da implicação e pela igualdade acima, $T(c)(d)\vdash \varphi[x/c][y/d]\rightarrow \exists y\exists x\,\varphi$, e segue a tese.
+\end{proof}
