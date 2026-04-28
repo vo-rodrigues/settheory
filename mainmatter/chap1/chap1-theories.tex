@@ -77,43 +77,30 @@ Para reforçar a ideia de que as demonstrações usuais em matemática poderiam,
 
 Começaremos ``importando'' teoremas da lógica proposicional para a lógica de primeira ordem.
 
-A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef:substituicaoProposicional} para a lógica proposicional, mas agora permite substituir letras proposicionais por fórmulas de uma linguagem de primeira ordem.
+A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef:substituicaoProposicional} para a lógica proposicional, mas agora é aplicada a fórmulas de primeira ordem.
 
-\begin{metadefinition}
-    A \emph{extensão da lógica proposicional para a lógica de primeira ordem} é a teoria cujos únicos símbolos não lógicos são letras proposicionais, isto é, símbolos de predicado $0$-ários $P_0$, $P_1$, $P_2,\dots$, e que não possui axiomas não lógicos.
-    Ela é denotada por $T_P$, e sua linguagem é denotada por $\mathcal L_P$.
-
-    Exceto caso explicitamente mencionado, vamos assumir que qualquer outra teoria que estudaremos não possui as letras proposicionais $P_0$, $P_1$, $P_2$, $\dots$ como símbolos de seu léxico.
-\end{metadefinition}
-
-Note que as fórmulas proposicionais são exatamente as $\mathcal L_P$-fórmulas sem quantificadores e sem símbolos de igualdade.
 \begin{metadefinition}
    Seja $\mathcal L$ um léxico de primeira ordem.
-   Considere uma coleção finita $\mathcal P$ de letras proposicionais de $\mathcal L_P$.
-   Uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas é um mapeamento tal que, para cada letra proposicional $P$ em $\mathcal P$, $\rho(P)$ é uma $\mathcal L$-fórmula.
+   Considere uma coleção finita de variáveis proposicionais $\mathcal P$.
+   Uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas é um mapeamento de modo que para cada variável proposicional $P$ em $\mathcal P$, $\rho(P)$ é uma $\mathcal L$-fórmula.
 
-   Se $\theta$ é uma $\mathcal L_P$-fórmula, dizemos que $\rho$ é uma atribuição para $\theta$ se toda letra proposicional que ocorre em $\theta$ está em $\mathcal P$.
+   Se $\theta$ é uma fórmula proposicional, dizemos que $\rho$ é uma atribuição para $\theta$ se toda variável proposicional que ocorre em $\theta$ está em $\mathcal P$.
 \end{metadefinition}
-
-Essa substituição é literal: ao substituir uma letra proposicional por uma fórmula, variáveis livres da fórmula substituída podem passar a ficar no escopo de quantificadores já presentes em $\theta$.
 
 \begin{metadefinition}[Substituição proposicional]\label{mdef:substituicaoProposicionalFO}\index{substituição!proposicional}
    Seja $\mathcal L$ um léxico de primeira ordem.
-   Considere uma coleção finita $\mathcal P$ de letras proposicionais de $\mathcal L_P$ e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas.
+   Considere uma coleção finita de variáveis proposicionais $\mathcal P$ e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas.
 
-   Recursivamente na complexidade de uma $\mathcal L_P$-fórmula $\theta$, definimos a substituição de $\theta$ via $\rho$, denotada por $\subst(\theta, \rho)$, a partir do seguinte algoritmo.
+   Recursivamente na complexidade de uma fórmula proposicional $\theta$, definimos a substituição de $\theta$ via $\rho$, denotada por $\subst(\theta, \rho)$, a partir do seguinte algoritmo.
    Se $\rho$ não é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é um símbolo $I$ que não faz parte da linguagem (que denota, intuitivamente, que $\subst(\theta, \rho)$ é indefinido).
    Caso contrário, procedemos como nos itens abaixo.
-   Note que como os únicos símbolos não lógicos de $\mathcal L_P$ são predicados $0$-ários, os únicos termos de $\mathcal L_P$ são variáveis.
     \begin{itemize}
         \item Se $\theta$ é uma variável proposicional $P$, então $\subst(\theta, \rho)$ é $\rho(P)$.
         \item Se $\theta$ é $\neg \psi$, então $\subst(\theta, \rho)$ é $\neg \subst(\psi, \rho)$.
-        \item Se $\theta$ é $x=y$, em que $x$ e $y$ são variáveis, então $\subst(\theta, \rho)$ é $x=y$.
         \item Se $\theta$ é $ \psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\subst(\theta, \rho)$ é $\subst(\psi, \rho) \square \subst(\eta, \rho)$.
-        \item Se $\theta$ é $\forall x \psi$ ou $\exists x \psi$, então $\subst(\theta, \rho)$ é $\forall x \subst(\psi, \rho)$ ou $\exists x \subst(\psi, \rho)$, respectivamente.
     \end{itemize}
 
-    Se $\theta$ é uma tautologia proposicional e $\rho$ é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é dita ser uma \emph{instância de tautologia}.
+    Se $\theta$ é uma tautologia e $\rho$ é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é dita ser uma \emph{instância de tautologia}.
 \end{metadefinition}
 
 \begin{metatheorem}
@@ -131,204 +118,22 @@ Essa substituição é literal: ao substituir uma letra proposicional por uma f�
 
     Assim, existe uma demonstração proposicional de $\theta$ a partir da coleção vazia de axiomas, digamos $\theta_0, \dots, \theta_n$, em que $\theta_n$ é $\theta$.
 
-    Seja $\mathcal P'$ uma coleção finita de letras proposicionais que contém $\mathcal P$ e todas as letras proposicionais que ocorrem em alguma das fórmulas $\theta_0,\dots,\theta_n$.
+    Seja $\mathcal P'$ uma coleção finita de variáveis proposicionais que contém $\mathcal P$ e todas as variáveis proposicionais que ocorrem em alguma das fórmulas $\theta_0,\dots,\theta_n$.
 
     Estenda $\rho$ a uma atribuição $\rho'$ de $\mathcal P'$ a $\mathcal L$-fórmulas.
-    Assim, $\rho'$ é uma atribuição para cada $\theta_i$ e coincide com $\rho$ em todas as letras proposicionais que ocorrem em $\theta$.
+    Assim, $\rho'$ é uma atribuição para cada $\theta_i$ e coincide com $\rho$ em todas as variáveis proposicionais que ocorrem em $\theta$.
 
     Para cada $i\leq n$, seja $\psi_i$ a fórmula $\subst(\theta_i, \rho')$.
     Note que $\psi_n$ é $\subst(\theta_n, \rho')$, que é $\subst(\theta, \rho)$, que é $\phi$.
 
     Veremos que $\psi_0, \dots, \psi_n$ é uma demonstração de $\phi$ que usa apenas os axiomas lógicos (FO1)--(FO13) e a regra de \emph{modus ponens}.
 
-    Com efeito, para cada $i\leq n$, $\theta_i$ é um axioma da lógica proposicional ou é obtida por \emph{modus ponens} de duas fórmulas anteriores.
-    Se $\theta_i$ é um axioma proposicional do tipo (PC1)--(PC13), então $\psi_i$ é um axioma lógico do tipo (FO1)--(FO13) (mesma numeração).
+    Com efeito, para cada $i\leq n$, $\theta_i$ é um axioma lógico ou é obtida por \emph{modus ponens} de duas fórmulas anteriores.
+    Se $\theta_i$ é um axioma lógico do tipo (PC1)-(PC13), então $\psi_i$ é um axioma lógico do tipo (FO1)-(FO13) (mesma numeração).
 
     Se $\theta_i$ é obtida por \emph{modus ponens} de $\theta_j$ e $\theta_k$, com $j, k<i$ e $\theta_j$ é $\theta_k \rightarrow \theta_i$, então $\psi_j$ é $\psi_k \rightarrow \psi_i$, e, portanto, $\psi_i$ é obtida por \emph{modus ponens} de $\psi_j$ e $\psi_k$.
 
     Assim, para toda teoria $T$ de léxico $\mathcal L$, temos $T\vdash_P \phi$.
-\end{proof}
-
-De forma similar, podemos transportar teoremas de $T_P$ para teorias de primeira ordem arbitrárias, desde que as letras proposicionais sejam substituídas por sentenças.
-
-\begin{metatheorem}\label{mthm:substituicaoTeoremasTP}
-    Seja $\mathcal L$ um léxico de primeira ordem.
-    Seja $\theta$ uma $\mathcal L_P$-fórmula sem igualdade, e seja $\rho$ uma atribuição para $\theta$ tal que, para cada letra proposicional $P$ que ocorre em $\theta$, $\rho(P)$ é uma $\mathcal L$-sentença.
-    Suponha que $\subst(\theta,\rho)$ é $\phi$.
-
-    Se $T_P\vdash \theta$, então, para toda teoria de primeira ordem $T$ de léxico $\mathcal L$,
-    \[
-        T\vdash \phi.
-    \]
-\end{metatheorem}
-
-Para prová-lo, precisaremos do seguinte.
-
-\begin{metalemma}\label{mlem:substituicaoProposicionalEmTeoremas}
-    Seja $\mathcal L$ um léxico de primeira ordem e $\psi$ uma $\mathcal L_P$-fórmula.
-    Suponha que $\rho$ é uma atribuição para $\psi$ tal que, para cada letra proposicional $P$ que ocorre em $\psi$, $\rho(P)$ é uma $\mathcal L$-sentença.
-
-    Então:
-    \begin{enumerate}[label=(\roman*)]
-        \item se $x$ não ocorre livre em $\psi$, então $x$ não ocorre livre em $\subst(\psi,\rho)$;
-
-        \item se $x$ e $y$ são variáveis e $x$ é substituível por $y$ em $\psi$, então $x$ é substituível por $y$ em $\subst(\psi,\rho)$ e
-        \[
-            \subst(\psi[x/y],\rho)=\subst(\psi,\rho)[x/y].
-        \]
-    \end{enumerate}
-\end{metalemma}
-
-\begin{proof}
-    Procedemos por indução na complexidade de $\psi$.
-
-    Se $\psi$ é uma letra proposicional $P$, então $\subst(\psi,\rho)$ é a sentença $\rho(P)$.
-    Logo, nenhuma variável ocorre livre em $\subst(\psi,\rho)$.
-    Além disso, $\psi[x/y]$ é $\psi$, e, como $\rho(P)$ é uma sentença,
-    \[
-        \subst(\psi[x/y],\rho)=\rho(P)=\rho(P)[x/y]=\subst(\psi,\rho)[x/y].
-    \]
-
-    Se $\psi$ é $u=v$, em que $u$ e $v$ são variáveis, então $\subst(\psi,\rho)$ é $u=v$.
-    Nesse caso, as duas afirmações seguem diretamente da definição de substituição em fórmulas.
-
-    O caso em que $\psi$ é $\neg\chi$ segue imediatamente da hipótese indutiva aplicada a $\chi$.
-
-    Similarmente, o caso em que $\psi$ é $\chi\square\eta$, com $\square$ igual a $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, segue imediatamente da hipótese indutiva aplicada a $\chi$ e a $\eta$.
-
-    Resta tratar o caso em que $\psi$ é $Qz\chi$, em que $Q$ é $\forall$ ou $\exists$.
-    Primeiro, suponha que $x$ não ocorre livre em $Qz\chi$.
-    Se $z=x$, então $x$ não ocorre livre em $Qx\subst(\chi,\rho)$.
-    Se $z\neq x$, então $x$ não ocorre livre em $\chi$, e, pela hipótese indutiva, $x$ não ocorre livre em $\subst(\chi,\rho)$.
-    Logo, em ambos os casos, $x$ não ocorre livre em $\subst(Qz\chi,\rho)$.
-
-    Agora suponha que $x$ é substituível por $y$ em $Qz\chi$.
-    Se $z=x$, então
-    \[
-        \subst((Qx\chi)[x/y],\rho)=\subst(Qx\chi,\rho)=Qx\subst(\chi,\rho),
-    \]
-    e também
-    \[
-        \subst(Qx\chi,\rho)[x/y]=(Qx\subst(\chi,\rho))[x/y]=Qx\subst(\chi,\rho).
-    \]
-    Além disso, $x$ é substituível por $y$ em $Qx\subst(\chi,\rho)$, pois não há ocorrências livres de $x$ nessa fórmula.
-
-    Suponha, então, que $z\neq x$.
-    Pelo Metalema~\ref{mlem:criteriosSubstituibilidade}, $x$ é substituível por $y$ em $\chi$ e, além disso, $x$ não ocorre livre em $\chi$ ou $z\neq y$.
-    Pela hipótese indutiva, $x$ é substituível por $y$ em $\subst(\chi,\rho)$ e
-    \[
-        \subst(\chi[x/y],\rho)=\subst(\chi,\rho)[x/y].
-    \]
-
-    Se $x$ não ocorre livre em $\chi$, então, pelo item (i), $x$ não ocorre livre em $\subst(\chi,\rho)$.
-    Se $z\neq y$, então $z$ não ocorre no termo $y$.
-    Em ambos os casos, pelo Metalema~\ref{mlem:criteriosSubstituibilidade}, $x$ é substituível por $y$ em $Qz\subst(\chi,\rho)$.
-
-    Por fim,
-    \[
-        \subst((Qz\chi)[x/y],\rho)
-        =
-        \subst(Qz(\chi[x/y]),\rho)
-        =
-        Qz\subst(\chi[x/y],\rho),
-    \]
-    que, pela hipótese indutiva, é
-    \[
-        Qz(\subst(\chi,\rho)[x/y])
-        =
-        (Qz\subst(\chi,\rho))[x/y]
-        =
-        \subst(Qz\chi,\rho)[x/y].
-    \]
-\end{proof}
-
-\begin{proof}[Demonstração do Metateorema~\ref{mthm:substituicaoTeoremasTP}]
-    Seja $\theta_0,\dots,\theta_n$ uma demonstração de $\theta$ a partir de $T_P$.
-
-    Como antes, estendendo $\rho$ se necessário, podemos supor que $\rho$ é uma atribuição para cada $\theta_i$ e que, para cada letra proposicional $P$ que ocorre em alguma das fórmulas $\theta_0,\dots,\theta_n$, $\rho(P)$ é uma $\mathcal L$-sentença.
-    Para isso, basta atribuir a cada nova letra proposicional uma sentença fixa, por exemplo $\forall z(z=z)$.
-
-    Para cada $i\leq n$, escreva
-    \[
-        \phi_i=\subst(\theta_i,\rho).
-    \]
-    Provaremos, por indução em $i\leq n$, que $T\vdash \phi_i$.
-
-    Suponha que $T\vdash \phi_j$ para todo $j<i$.
-    Veremos que $T\vdash \phi_i$.
-
-    Se $\theta_i$ é um axioma lógico do tipo (FO1)--(FO13), então $\phi_i$ é um axioma lógico do mesmo tipo na linguagem $\mathcal L$.
-    Logo, $T\vdash \phi_i$.
-
-    Se $\theta_i$ é um axioma do tipo (FO14), então existem uma $\mathcal L_P$-fórmula $\psi$ e variáveis $x$ e $y$ tais que $\theta_i$ é
-    \[
-        \forall x\psi\rightarrow \psi[x/y],
-    \]
-    em que $x$ é substituível por $y$ em $\psi$.
-    Pelo Metalema~\ref{mlem:substituicaoProposicionalEmTeoremas}, $x$ é substituível por $y$ em $\subst(\psi,\rho)$ e
-    \[
-        \subst(\psi[x/y],\rho)=\subst(\psi,\rho)[x/y].
-    \]
-    Portanto, $\phi_i$ é
-    \[
-        \forall x\subst(\psi,\rho)\rightarrow \subst(\psi,\rho)[x/y],
-    \]
-    que é um axioma lógico do tipo (FO14).
-    Logo, $T\vdash \phi_i$.
-
-    Se $\theta_i$ é um axioma do tipo (FO15), então existem uma $\mathcal L_P$-fórmula $\psi$ e variáveis $x$ e $y$ tais que $\theta_i$ é
-    \[
-        \psi[x/y]\rightarrow \exists x\psi,
-    \]
-    em que $x$ é substituível por $y$ em $\psi$.
-    Pelo Metalema~\ref{mlem:substituicaoProposicionalEmTeoremas}, $\phi_i$ é
-    \[
-        \subst(\psi,\rho)[x/y]\rightarrow \exists x\subst(\psi,\rho),
-    \]
-    que é um axioma lógico do tipo (FO15).
-    Logo, $T\vdash \phi_i$.
-
-    Se $\theta_i$ é um axioma do tipo (FO16), então $\phi_i$ é o mesmo axioma $x=x$.
-    Logo, $T\vdash \phi_i$.
-
-    Não há axiomas do tipo (FO17) em $\mathcal L_P$, pois $\mathcal L_P$ não possui símbolos funcionais de aridade positiva.
-    Quanto aos axiomas do tipo (FO18), a única possibilidade em $\mathcal L_P$ é o caso em que o símbolo de predicado considerado é o símbolo lógico de igualdade.
-    Nesse caso, $\phi_i$ é novamente o mesmo axioma lógico do tipo (FO18), agora visto como fórmula da linguagem $\mathcal L$.
-    Logo, $T\vdash \phi_i$.
-
-    Como $T_P$ não possui axiomas não lógicos, não há caso de axioma de $T_P$ a considerar.
-
-    Se $\theta_i$ é obtida por \emph{modus ponens} a partir de fórmulas anteriores, então existem $j,k<i$ tais que $\theta_j$ é $\theta_k\rightarrow \theta_i$.
-    Pela hipótese indutiva, $T\vdash \phi_k$ e $T\vdash \phi_j$.
-    Como $\phi_j$ é $\phi_k\rightarrow \phi_i$, concatenando as demonstrações de $\phi_k$ e de $\phi_k\rightarrow\phi_i$ e aplicando \emph{modus ponens}, obtemos $T\vdash \phi_i$.
-
-    Se $\theta_i$ é obtida pela regra de introdução do quantificador universal, então existem $\mathcal L_P$-fórmulas $\chi$ e $\eta$, uma variável $x$ e $j<i$ tais que $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\chi\rightarrow \forall x\eta$, e $x$ não ocorre livre em $\chi$.
-    Pela hipótese indutiva,
-    \[
-        T\vdash \subst(\chi,\rho)\rightarrow\subst(\eta,\rho).
-    \]
-    Pelo Metalema~\ref{mlem:substituicaoProposicionalEmTeoremas}, $x$ não ocorre livre em $\subst(\chi,\rho)$.
-    Aplicando a regra de introdução de quantificador universal, obtemos
-    \[
-        T\vdash \subst(\chi,\rho)\rightarrow \forall x\subst(\eta,\rho),
-    \]
-    isto é, $T\vdash \phi_i$.
-
-    Finalmente, se $\theta_i$ é obtida pela regra de introdução do quantificador existencial, então existem $\mathcal L_P$-fórmulas $\chi$ e $\eta$, uma variável $x$ e $j<i$ tais que $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\exists x\chi\rightarrow \eta$, e $x$ não ocorre livre em $\eta$.
-    Pela hipótese indutiva,
-    \[
-        T\vdash \subst(\chi,\rho)\rightarrow\subst(\eta,\rho).
-    \]
-    Pelo Metalema~\ref{mlem:substituicaoProposicionalEmTeoremas}, $x$ não ocorre livre em $\subst(\eta,\rho)$.
-    Aplicando a regra de introdução de quantificador existencial, obtemos
-    \[
-        T\vdash \exists x\subst(\chi,\rho)\rightarrow \subst(\eta,\rho),
-    \]
-    isto é, $T\vdash \phi_i$.
-
-    Portanto, $T\vdash \phi_i$ para todo $i\leq n$.
-    Como $\theta_n$ é $\theta$, temos $\phi_n=\subst(\theta,\rho)=\phi$.
-    Logo, $T\vdash \phi$.
 \end{proof}
 
 O resultado a seguir pode ser interpretado como a asserção de que resultados já provados podem ser usados para provar novos resultados.
@@ -350,7 +155,7 @@ O resultado a seguir pode ser interpretado como a asserção de que resultados j
 O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de $T$, então $T'$ prova todos os teoremas de $T$.
 
 \begin{metaproposition}\label{mprop:extensaoDeTeoria}
-    Sejam $T=(\mathcal L,\Sigma)$ e $T'=(\mathcal L',\Sigma')$ teorias de primeira ordem tais que todo símbolo de $\mathcal L$ é um símbolo de $\mathcal L'$ (com mesmo tipo e aridade).
+    Sejam $T=(\mathcal L,\Sigma)$ e $T'=(\mathcal L',\Sigma')$ teorias de primeira ordem tais que todo símbolo de $\mathcal L$ é um símbolo de $\mathcal L'$.
     Suponha que, para cada $\sigma\in\Sigma$, temos $T'\vdash \sigma$.
 
     Então, para cada $\mathcal L$-fórmula $\phi$, se $T\vdash \phi$, então $T'\vdash \phi$.
