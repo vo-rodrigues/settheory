@@ -549,6 +549,12 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
         \]
 
         ``Como $\varphi$ é equivalente a $\psi$ e $\psi$ é equivalente a $\theta$, temos que $\varphi$ é equivalente a $\theta$.''
+
+        \item Preservação de negação por $\leftrightarrow$.
+        \[
+            \frac{T\vdash \varphi\leftrightarrow\psi}
+                 {T\vdash \neg\varphi\leftrightarrow\neg\psi}.
+        \]
     \end{enumerate}
 \end{metaproposition}
 \begin{proof}
@@ -563,6 +569,8 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
     (iv) $((\varphi\leftrightarrow\psi)\leftrightarrow\theta)\rightarrow(\varphi\leftrightarrow(\psi\leftrightarrow\theta))$ e $(\varphi\leftrightarrow(\psi\leftrightarrow\theta)) \rightarrow ((\varphi\leftrightarrow \psi)\leftrightarrow \theta)$.
 
     (v) $(\varphi\leftrightarrow\psi)\rightarrow((\psi\leftrightarrow\theta)\rightarrow(\varphi\leftrightarrow\theta))$.
+
+    (vi) $(\varphi\leftrightarrow\psi)\rightarrow(\neg\varphi\leftrightarrow\neg\psi)$.
 \end{proof}
 
 \subsection{Regras para quantificadores}
@@ -675,7 +683,6 @@ Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
         \]
         ``Como para qualquer que seja $x$, $\varphi$ implica $\psi$, então, se existe um $x$ tal que $\varphi$, então existe um $x$ tal que $\psi$.''
         \item Preservação do quantificador universal via equivalência.
-        \item 
         \[
         \frac{T\vdash \varphi\leftrightarrow\psi}
              {T\vdash \forall x\varphi\leftrightarrow\forall x\psi}
@@ -691,13 +698,12 @@ Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
     \end{enumerate}
 \end{metaproposition}
 \begin{proof}
-    (i) Por FO14, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \forall x\varphi\rightarrow\phi$.
-    Como $T\vdash \phi\rightarrow\psi$, pela transitividade de $\rightarrow$, $T\vdash \forall x\varphi\rightarrow\psi$.
-    Como $x$ não ocorre livre em $\forall x\psi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\varphi\rightarrow\forall x\psi$.
-
-    (ii) Por FO15, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \varphi\rightarrow\exists x\phi$.
-    Como $T\vdash \phi\rightarrow\psi$, pela transitividade de $\rightarrow$, $T\vdash \varphi\rightarrow\exists x\psi$.
-    Como $x$ não ocorre livre em $\exists x\varphi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow\exists x\psi$.
+    (i) Por FO14, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \forall x\varphi\rightarrow\varphi$.
+    Como $T\vdash \varphi\rightarrow\psi$, pela transitividade de $\rightarrow$, $T\vdash \forall x\varphi\rightarrow\psi$.
+    Como $x$ não ocorre livre em $\forall x\varphi$, pela regra de introdução do quantificador universal, $T\vdash \forall x\varphi\rightarrow\forall x\psi$.
+    (ii) Por FO15, como a substituição de $x$ por $x$ é sempre válida, temos $T\vdash \psi\rightarrow\exists x\psi$.
+    Como $T\vdash \varphi\rightarrow\psi$, pela transitividade de $\rightarrow$, $T\vdash \varphi\rightarrow\exists x\psi$.
+    Como $x$ não ocorre livre em $\exists x\psi$, pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow\exists x\psi$.
 
     (iii) Se $T\vdash \varphi\leftrightarrow\psi$, então $T\vdash \varphi\rightarrow\psi$ e $T\vdash \psi\rightarrow\varphi$.
     Por (i), $T\vdash \forall x\varphi\rightarrow\forall x\psi$ e $T\vdash \forall x\psi\rightarrow\forall x\varphi$.
@@ -722,7 +728,14 @@ Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
     Como $T\vdash \neg\neg\varphi\leftrightarrow\varphi$, pela preservação do quantificador universal via equivalência, segue que $T\vdash \forall x\neg\neg\varphi\leftrightarrow\forall x\varphi$.
 
     Pela transitividade de $\leftrightarrow$, $T\vdash \neg\exists x\neg \varphi \leftrightarrow \forall x\varphi$.
-    Novamente pela contrapositiva, $T\vdash \neg\forall x\varphi \leftrightarrow \exists x\neg \varphi$.
+    Pela preservação de negação por $\leftrightarrow$ e pela comutatividade de $\leftrightarrow$,
+    \[
+        T\vdash \neg\forall x\varphi \leftrightarrow \neg\neg\exists x\neg\varphi.
+    \]
+    Como $T\vdash \neg\neg\exists x\neg\varphi\leftrightarrow\exists x\neg\varphi$, pela transitividade de $\leftrightarrow$,
+    \[
+        T\vdash \neg\forall x\varphi \leftrightarrow \exists x\neg \varphi.
+    \]
 \end{proof}
 
 
@@ -811,7 +824,8 @@ Formalmente, isso será feito acrescentando à linguagem um símbolo de constant
     Seja $c$ um símbolo de constante que não pertence a $\mathcal L$.
     Seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$, e seja $T(c)=(\mathcal L(c),\Sigma)$.
 
-    Suponha que $\theta$ é uma $\mathcal L$-fórmula com única variável possivelmente livre $x$, e que $T(c)\vdash \theta[x/c]$.
+    Seja $\theta$ uma $\mathcal L$-fórmula e seja $x$ uma variável.
+    Suponha que $T(c)\vdash \theta[x/c]$.
     Então $T\vdash \forall x\theta$.
 
     \[
@@ -969,7 +983,7 @@ A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a let
         \]
     \end{claim}
     \begin{proof}
-        Primeiro, provamos por indução na complexidade dos termos $s$ que
+        Primeiro, provamos por indução na complexidade dos termos $s$ nos quais $y$ não ocorre que
         \[
             (s[z/t])^\dagger=s^\dagger[z/t^\dagger].
         \]
@@ -1058,8 +1072,16 @@ A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a let
 
     Resta verificar FO14 e FO15.
     Se $\theta_i$ é uma instância de FO14, então $\theta_i$ é da forma $\forall z\varphi\rightarrow\varphi[z/t]$ em que $z$ é substituível por $t$ em $\varphi$.
-    Como $y$ não ocorre em $\theta_i$, temos que $y$ não ocorre em $\varphi$.
-    Podemos assumir que $y$ não ocorre em $t$, pois, caso contrário, como a substituição $\varphi[z/t]$ é válida, teríamos que $z$ não ocorre livre em $\varphi$ e, portanto, tal axioma é o mesmo que $\varphi\rightarrow\varphi[z/z]$.
+
+    Como $y$ não ocorre em $\theta_i$, temos que $y$ não ocorre em $\varphi$ e $z\neq y$.
+    Se $y$ ocorre em $t$, então, como $y$ não ocorre em $\varphi[z/t]$, a variável $z$ não ocorre livre em $\varphi$.
+    Nesse caso, $\varphi[z/t]=\varphi$, e portanto $\theta_i^\dagger$ é
+    \[
+        \forall z\varphi^\dagger\rightarrow\varphi^\dagger,
+    \]
+    que é uma instância de FO14 aplicada ao termo $z$.
+
+    Suponha agora que $y$ não ocorre em $t$.
 
     Pelas Afirmações~\ref{claim:substituicaoValidaDagger} e~\ref{claim:daggerComutaSubstituicao}, temos que $z$ é substituível por $t^\dagger$ em $\varphi^\dagger$ e $(\varphi[z/t])^\dagger=\varphi^\dagger[z/t^\dagger]$.
     Portanto, $\theta_i^\dagger$ é $\forall z\varphi^\dagger\rightarrow\varphi^\dagger[z/t^\dagger]$, que é uma instância de FO14 em $L$.
@@ -1125,7 +1147,7 @@ A seguir, formalizaremos a prática de instanciar uma hipótese existencial por 
 
 \begin{metatheorem}[Instanciação existencial]\label{mthm:instanciacaoExistencial}
     Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, $x$ uma variável, e $\varphi$ uma fórmula da linguagem de $T$.
-    Seja $\psi$ uma fórmula de $\mathcal L$ sem $x$ livre.
+    Seja $\psi$ uma $\mathcal L$-fórmula sem $x$ livre.
 
 
     Seja $c$ um símbolo de constante que não pertence a $\mathcal L$, e seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$.
