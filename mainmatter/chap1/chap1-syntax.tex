@@ -56,10 +56,12 @@ Por isso, o conceito de fecho universal será essencial.
     Se $\varphi$ é $x_1 = x_2$, então $\forall x_1 \forall x_2 \,(x_1 = x_2)$ é um fecho universal de $\varphi$.
 \end{example}
 
-Para trabalharmos com quantificadores, precisaremos da noção de substituição de símbolos em fórmulas, feita como se segue:
+Para trabalharmos com quantificadores, precisaremos da noção de substituição de símbolos em fórmulas, feita como se segue.
+Por razões técnicas, também definiremos a substituição de constantes.
+Sempre que considerarmos uma constante como alvo de substituição, suas ocorrências serão consideradas livres.
 
 \begin{metadefinition}[Substituição em termos]\label{mdef:substituicaoEmTermos}\index{substituição!em termos}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um $\mathcal L$-termo.
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável ou constante e $t$ um $\mathcal L$-termo.
 
     Dado um $\mathcal L$-termo $s$, $s[x/t]$ é o termo obtido a partir de $s$ substituindo-se todas as ocorrências de $x$ por $t$.
     Formalmente, define-se $s[x/t]$ por indução sobre a estrutura de $s$, como se segue.
@@ -81,6 +83,7 @@ Sigamos para alguns exemplos.
         \item $x_1[x_2/0]$ é $x_1$.
         \item $(x_1 + x_2)[x_1/0]$ é $0 + x_2$.
         \item $(x_1 + x_2)[x_2/(x_1 + x_2)]$ é $x_1 + (x_1 + x_2)$.
+        \item $(x_1 + 0)[0/(x_1 + x_2)]$ é $x_1 + (x_1 + x_2)$.
     \end{itemize}
 \end{example}
 
@@ -91,7 +94,7 @@ Mas, ao substituir $x$ por $y$, obtemos $\exists y \, \neg(y = y)$, uma fórmula
 
 Optaremos por definir a substituição formal em fórmulas sem se preocupar com este problema, e, a seguir, definir a noção de \emph{substituição válida}.
 \begin{metadefinition}[Substituição em fórmulas]\label{mdef:substituicaoEmFormulas}\index{substituição!em fórmulas}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um $\mathcal L$-termo.
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável ou constante e $t$ um $\mathcal L$-termo.
 
     Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida por uma substituição literal: substituem-se todas as ocorrências livres de $x$ por $t$, mesmo que variáveis que ocorrem em $t$ passem a ficar no escopo de quantificadores já presentes em $\varphi$.
     
@@ -103,7 +106,7 @@ Optaremos por definir a substituição formal em fórmulas sem se preocupar com 
         \item Se $\varphi$ é $\neg \psi$, então $\varphi[x/t]$ é $\neg \psi[x/t]$.
         \item Se $\varphi$ é $\psi \square \theta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\varphi[x/t]$ é $\psi[x/t] \square \theta[x/t]$.
         \item Se $\varphi$ é $\forall y \psi$ ou $\exists y \psi$, em que $y$ é uma variável diferente de $x$, então $\varphi[x/t]$ é $\forall y \psi[x/t]$ ou $\exists y \psi[x/t]$.
-        \item Se $\varphi$ é $\forall x \psi$ ou $\exists x \psi$, então $\varphi[x/t]$ é $\varphi$.
+        \item Se $x$ é variável e $\varphi$ é $\forall x \psi$ ou $\exists x \psi$, então $\varphi[x/t]$ é $\varphi$.
     \end{itemize}
 \end{metadefinition}
 
@@ -112,8 +115,10 @@ Novamente, por uma indução simples, prova-se que se $\varphi$ é uma fórmula,
 Por fim, apresentamos uma definição.
 
 \begin{metadefinition}\label{mdef:substituibilidade}\index{substituição!válida}\index{substituível}
-    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável e $t$ um $\mathcal L$-termo.
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável ou constante e $t$ um $\mathcal L$-termo.
     Dizemos que $x$ é substituível por $t$ em uma fórmula $\varphi$ (ou que a substituição $\varphi[x/t]$ é válida) se nenhuma ocorrência livre de $x$ em $\varphi$ estiver no escopo de um quantificador que age em alguma variável que ocorre em $t$.
+
+    Lembrete: considera-se que toda ocorrência de uma constante é livre.
 \end{metadefinition}
 
 Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando o conhecimento prévio do leitor, podemos justificar a Metadefinição~\ref{mdef:substituibilidade} com exemplos.
@@ -133,6 +138,325 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
     Notemos que para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, \neg(x = y)$ e $\varphi[y/t]$ é $\forall x \exists y \, \neg(x = y)$, ou seja, a fórmula é invariante por tais substituições.
 \end{example}
 
+Começaremos com algumas substituições válidas triviais.
+
+\begin{metalemma}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem e $x$ uma variável ou constante.
+    Então para todo $\mathcal L$-termo $t$, $t[x/x]=t$, e, para toda fórmula $\varphi$, $x$ é substituível por $x$ em $\varphi$ e $\varphi[x/x]$ é $\varphi$.
+\end{metalemma}
+\begin{proof}
+    Prova-se por indução sobre a estrutura de $t$ que $t[x/x]=t$.
+
+    Se $z$ é uma variável ou constante diferente de $x$, então $z[x/x]$ é $z$.
+    Se $z$ for $x$, então $z[x/x]=x=z$.
+    Em qualquer caso, na base da indução, temos $t[x/x]=t$.
+
+    Se $t$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário e $e_1, \dots, e_n$ são termos para os quais $e_1[x/x]=e_1$, \dots, $e_n[x/x]=e_n$, então $t[x/x]$ é $fe_1[x/x] \dots e_n[x/x]$, que é $fe_1 \dots e_n$.
+
+    Para a segunda afirmação, primeiro note que $x$ é substituível por $x$ em $\varphi$.
+    Se $x$ é variável, isso ocorre pois se uma ocorrência de $x$ está no escopo de um quantificador que age em $x$, então tal ocorrência não é livre.
+    Se $x$ é constante, isso ocorre pois o termo $x$ não contém variáveis.
+    
+    Considere uma fórmula atômica $R(e_1, \dots, e_n)$, em que $R$ é um símbolo de predicado $n$-ário e $e_1, \dots, e_n$ são termos.
+    Pelo já demonstrado, $R(e_1, \dots, e_n)[x/x]$ é $R(e_1[x/x], \dots, e_n[x/x])$, que é $R(e_1, \dots, e_n)$.
+
+    Se $\varphi$ é $\neg \psi$ e a tese já foi demonstrada para $\psi$, então $\varphi[x/x]$ é $\neg \psi[x/x]$, que é $\neg \psi$.
+
+    Se $\varphi$ é $\psi \square \theta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, e a tese já foi demonstrada para $\psi$ e para $\theta$, então $\varphi[x/x]$ é $\psi[x/x] \square \theta[x/x]$, que é $\psi \square \theta$.
+
+    Se $\varphi$ é $\forall y \psi$ ou $\exists y \psi$, em que $y$ é uma variável diferente de $x$, e a tese já foi demonstrada para $\psi$, então $\varphi[x/x]$ é $\forall y \psi[x/x]$ ou $\exists y \psi[x/x]$, que é $\forall y \psi$ ou $\exists y \psi$.
+
+    Finalmente, se $\varphi$ é $\forall x \psi$ ou $\exists x \psi$, e a tese já foi demonstrada para $\psi$, então $\varphi[x/x]$ é $\varphi$.
+\end{proof}
+
+Começaremos com algumas substituições válidas triviais.
+
+\begin{metalemma}\label{mlem:substituicaoTrivial}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem e $s$ um $\mathcal L$-termo no qual uma variável ou constante $x$ não ocorre.
+
+    Então para todo $\mathcal L$-termo $t$, $s[x/t]=s$, e, para toda fórmula $\varphi$ em que $x$ não ocorre livre, $x$ é substituível por $t$ em $\varphi$ e $\varphi[x/t]$ é $\varphi$.
+\end{metalemma}
+\begin{proof}
+    Prova-se por indução sobre a estrutura de $s$ que $s[x/t]=s$.
+    Se $z$ é uma variável ou constante na qual $x$ não ocorre, então $z\neq x$, de modo que $z[x/t]$ é $z$.
+
+    Se a tese já foi demonstrada para $e_1, \dots, e_n$, e $s$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário, então $s[x/t]$ é $fe_1[x/t] \dots e_n[x/t]$, que é $fe_1 \dots e_n$.
+
+    Para a segunda afirmação, primeiro note que $x$ é substituível por $t$ em $\varphi$, pois por hipótese $x$ não possui ocorrências livres em $\varphi$.
+
+    Considere uma fórmula atômica $R(e_1, \dots, e_n)$, em que $R$ é um símbolo de predicado $n$-ário e $e_1, \dots, e_n$ são termos.
+    Pelo já demonstrado, $R(e_1, \dots, e_n)[x/t]$ é $R(e_1[x/t], \dots, e_n[x/t])$, que é $R(e_1, \dots, e_n)$.
+
+    Se $\varphi$ é $\neg \psi$ e a tese já foi demonstrada para $\psi$, então $\varphi[x/t]$ é $\neg \psi[x/t]$, que é $\neg \psi$.
+
+    Se $\varphi$ é $\psi \square \theta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, e a tese já foi demonstrada para $\psi$ e para $\theta$, então $\varphi[x/t]$ é $\psi[x/t] \square \theta[x/t]$, que é $\psi \square \theta$.
+
+    Se $\varphi$ é $\forall y \psi$ ou $\exists y \psi$, em que $y$ é uma variável diferente de $x$, e a tese já foi demonstrada para $\psi$, então $\varphi[x/t]$ é $\forall y \psi[x/t]$ ou $\exists y \psi[x/t]$, que é $\forall y \psi$ ou $\exists y \psi$.
+
+    Finalmente, se $\varphi$ é $\forall x \psi$ ou $\exists x \psi$, e a tese já foi demonstrada para $\psi$, então $\varphi[x/t]$ é $\varphi$.
+\end{proof}
+
+O metalema abaixo nos mostra critérios úteis em induções para demonstrar que certas substituições são válidas.
+
+\begin{metalemma}\label{mlem:criteriosSubstituibilidade}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem.
+    Sejam $\varphi, \psi$ fórmulas, $x$ uma variável ou constante e $t$ um $\mathcal L$-termo.
+    Então:
+    \begin{itemize}
+        \item Se $\varphi$ é uma fórmula atômica, então $x$ é substituível por $t$ em $\varphi$.
+        \item $x$ é substituível por $t$ em $\neg \varphi$ se, e somente se, $x$ é substituível por $t$ em $\varphi$.
+        \item $x$ é substituível por $t$ em $\varphi \square \psi$ se, e somente se, $x$ é substituível por $t$ em $\varphi$ e em $\psi$.
+        \item Se $x$ é variável, $x$ é substituível por $t$ em $Q x \varphi$, em que $Q$ é $\forall$ ou $\exists$.
+        \item $x$ é substituível por $t$ em $Q y \varphi$, em que $Q$ é $\forall$ ou $\exists$ e $y$ é uma variável diferente de $x$, se, e somente se, $x$ é substituível por $t$ em $\varphi$ e ($x$ não ocorre livre em $\varphi$ ou $y$ não ocorre em $t$).
+    \end{itemize}
+\end{metalemma}
+\begin{proof}
+    O primeiro item é imediato, uma vez que fórmulas atômicas não possuem quantificadores.
+
+        Para o segundo item, note que os quantificadores de $\neg \varphi$ são exatamente os quantificadores de $\varphi$, com os mesmos escopos.
+    
+    Para o terceiro item, note que o escopo de um quantificador de $\varphi \square \psi$ é o escopo de um quantificador de $\varphi$ ou o escopo de um quantificador de $\psi$, e vice-versa.
+
+    Para o quarto item, não há ocorrências livres de $x$ em $Qx\varphi$.
+
+    Para o último item, suponha que $x$ é substituível por $t$ em $Qy\varphi$.
+    Então nenhuma ocorrência livre de $x$ em $Qy\varphi$ está no escopo de um quantificador que age em alguma variável de $t$.
+    Como $x\neq y$, as ocorrências livres de $x$ em $Qy\varphi$ são as mesmas que as ocorrências livres de $x$ em $\varphi$.
+    Logo, nenhuma ocorrência livre de $x$ em $\varphi$ está no escopo de um quantificador que age em alguma variável de $t$, ou seja, $x$ é substituível por $t$ em $\varphi$.
+
+    Além disso, se $x$ ocorre livre em $\varphi$, então ocorre livre em $Qy\varphi$, e, portanto, $y$ não ocorre em $t$.
+
+    Reciprocamente, suponha que $x$ é substituível por $t$ em $\varphi$ e que ($x$ não ocorre livre em $\varphi$ ou $y$ não ocorre em $t$).
+    Devemos ver que nenhuma ocorrência livre de $x$ em $Qy\varphi$ está no escopo de um quantificador que age em alguma variável de $t$.
+
+    Considere uma ocorrência livre de $x$ em $Qy\varphi$.
+    Tal ocorrência é uma ocorrência livre de $x$ em $\varphi$, e, portanto, por hipótese, $y$ não ocorre em $t$.
+    Seja $Qw\chi$ o escopo de um quantificador que age em uma variável $w$ que ocorre em $t$, em $Qy\varphi$.
+    Como $y\neq w$, tal escopo ocorre em $\varphi$; pela substituibilidade de $x$ por $t$ em $\varphi$, a ocorrência considerada de $x$ não pode estar nesse escopo.
+\end{proof}
+
+\begin{metalemma}\label{mlem:substituicaoInversaEmTermos}
+    Seja $t$ um $\mathcal L$-termo e sejam $x, y$ variáveis ou constantes.
+    Suponha que $y$ não ocorra em $t$.
+    Então $x$ não ocorre em $t[x/y]$ e $t[x/y][y/x]$ é $t$.
+\end{metalemma}
+\begin{proof}
+    Prova-se por indução sobre a estrutura de $t$ que $t[x/y][y/x]$ é $t$.
+    \begin{itemize}
+        \item Se $t$ é uma variável ou constante $z$ diferente de $x$, então $z$ também é diferente de $y$, e portanto $t[x/y][y/x]=z[y/x]=z=t$.
+        Note que $x$ não ocorre em $t[x/y]=z$.
+        \item Se $t$ é $x$, e $y$ não ocorre em $t$, então $x\neq y$.
+        Temos que $t[x/y][y/x]=y[y/x]=x=t$, e $t[x/y]$ é $y$, que não contém $x$.
+        \item Se $t$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário e $e_1, \dots, e_n$ são termos para os quais $e_1[x/y][y/x]=e_1$, \dots, $e_n[x/y][y/x]=e_n$, então $t[x/y][y/x]$ é $fe_1[x/y][y/x] \dots e_n[x/y][y/x]$, que é $fe_1 \dots e_n$.
+        Note que $t[x/y]$ é $fe_1[x/y] \dots e_n[x/y]$, que não contém $x$ porque nenhum dos $e_i[x/y]$ contém $x$.
+    \end{itemize}
+\end{proof}
+
+\begin{metalemma}\label{mlem:substituicaoInversaEmFormulas}
+    Seja $\varphi$ uma $\mathcal L$-fórmula e sejam $x, y$ variáveis ou constantes.
+    Suponha que $y$ não ocorra livre em $\varphi$ e que $x$ seja substituível por $y$ em $\varphi$.
+    Então $x$ não ocorre livre em $\varphi[x/y]$, $y$ é substituível por $x$ em $\varphi[x/y]$ e $\varphi[x/y][y/x]$ é $\varphi$.
+\end{metalemma}
+\begin{proof}
+    Prova-se por indução sobre a estrutura de $\varphi$.
+    Em cada caso, também verificaremos que $y$ é substituível por $x$ em $\varphi[x/y]$.
+
+    \begin{itemize}
+        \item Se $\varphi$ é $P e_1 \dots e_n$, em que $P$ é um símbolo de predicado $n$-ário ($n>0$) e $e_1, \dots, e_n$ são termos, então $\varphi[x/y]$ é $P e_1[x/y] \dots e_n[x/y]$.
+        Pelo Metalema~\ref{mlem:substituicaoInversaEmTermos}, $x$ não ocorre em cada $e_i[x/y]$.
+        Portanto, $x$ não ocorre livre em $\varphi[x/y]$.
+        Além disso, como $\varphi[x/y]$ é atômica, $y$ é substituível por $x$ em $\varphi[x/y]$.
+        Segue que $\varphi[x/y][y/x]$ é $P e_1[x/y][y/x] \dots e_n[x/y][y/x]$, que é $P e_1 \dots e_n$ pelo Metalema~\ref{mlem:substituicaoInversaEmTermos}.
+        \item Se $\varphi$ é $= e_1 e_2$, procedemos como no caso anterior.
+        \item Se $\varphi$ é um símbolo de predicado 0-ário $R$, então $\varphi[x/y]$ é $R$, que é $\varphi$.
+        \item Se $\varphi$ é $\neg \psi$, então, por hipótese indutiva, $x$ não ocorre livre em $\psi[x/y]$, $y$ é substituível por $x$ em $\psi[x/y]$ e $\psi[x/y][y/x]=\psi$.
+        Logo, $x$ não ocorre livre em $\neg\psi[x/y]$, $y$ é substituível por $x$ em $\neg\psi[x/y]$ e $\varphi[x/y][y/x]$ é $\neg \psi[x/y][y/x]$, que é $\neg \psi$.
+        \item Se $\varphi$ é $\psi \square \theta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então aplicamos a hipótese indutiva a $\psi$ e a $\theta$.
+        Logo, $x$ não ocorre livre em $\psi[x/y]\square\theta[x/y]$, $y$ é substituível por $x$ em $\psi[x/y]\square\theta[x/y]$ e $\varphi[x/y][y/x]$ é $\psi[x/y][y/x] \square \theta[x/y][y/x]$, que é $\psi \square \theta$.
+
+        \item Se $\varphi$ é $Q z \psi$, em que $Q$ é $\forall$ ou $\exists$ e $z$ é uma variável diferente de $x$, então $\varphi[x/y]$ é $Q z \psi[x/y]$.
+        
+        Verifiquemos que nesse caso, com mais detalhes, $y$ é substituível por $x$ em $Q z \psi[x/y]$.
+        Se $z=y$, isso é imediato, pois não há ocorrências livres de $y$ em $Qy\psi[x/y]$.
+        Se $z\neq y$, então $y$ não ocorre livre em $\psi$.
+        Além disso, pelo Metalema~\ref{mlem:criteriosSubstituibilidade}, $x$ é substituível por $y$ em $\psi$.
+        Portanto, por hipótese indutiva, $y$ é substituível por $x$ em $\psi[x/y]$.
+        Por hipótese, $z$ é diferente de $x$, logo, $z$ não ocorre em $x$.
+        Assim, $y$ é substituível por $x$ em $Q z \psi[x/y]$.
+
+        Se $z\neq y$, então, pela hipótese indutiva, $x$ não ocorre livre em $\psi[x/y]$.
+        Se $z=y$, então, como veremos abaixo, $x$ não ocorre livre em $\psi$ e, portanto, não ocorre livre em $\psi[x/y]$.
+        Logo, em qualquer caso, $x$ não ocorre livre em $Qz\psi[x/y]$.
+
+        Se $z\neq y$, então $\varphi[x/y][y/x]=Qz\psi[x/y][y/x]$, que é $Qz\psi$ pela hipótese indutiva.
+
+        Se $z=y$, então $\varphi[x/y][y/x]$ é $Qz\psi[x/y]$.
+        Como $x$ é substituível por $y$ em $Qy\psi$ e $y$ ocorre no termo $y$, segue do Metalema~\ref{mlem:criteriosSubstituibilidade} que $x$ não ocorre livre em $\psi$, e, portanto, $Qz\psi[x/y]$ é $Qz\psi$, ou seja, $\varphi$.
+
+        \item Se $\varphi$ é $Q x \psi$, em que $Q$ é $\forall$ ou $\exists$, então $\varphi[x/y]$ é $Q x \psi$, que é $\varphi$.
+        Como $y$ não ocorre livre em $\varphi$, $y$ não ocorre livre em $\varphi[x/y]=\varphi$, e, portanto, $y$ é substituível por $x$ em $\varphi[x/y]=\varphi$.
+        Ademais, como $y$ não ocorre livre em $\varphi$, segue que $\varphi[x/y][y/x]=\varphi[y/x]=\varphi$.
+    \end{itemize}
+\end{proof}
+
+Finalizamos essa seção com um lema técnico que será utilizado mais adiante.
+
+A substituição não é comutativa: considere, por exemplo, a fórmula $\varphi$ dada por $x=y$ na linguagem da teoria dos grupos.
+Considere a substituição $[x/x\cdot y]$ e a substituição $[y/x]$.
+Temos que $\varphi[x/x\cdot y][y/x]$ é $x\cdot x = x$, enquanto $\varphi[y/x][x/x\cdot y]$ é $x\cdot y = x\cdot y$.
+
+Nesse contexto, vale o seguinte metalema.
+
+\begin{metalemma}\label{mlem:substituicaoComposta}
+    Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem.
+    Sejam $x$ e $y$ variáveis ou constantes distintas, seja $t$ um $\mathcal L$-termo e seja $u$ um $\mathcal L$-termo no qual $x$ não ocorre.
+
+    Se $r$ é um $\mathcal L$-termo, então $r[x/t][y/u]$ é $r[y/u][x/t[y/u]]$.
+
+    Se $\varphi$ é uma $\mathcal L$-fórmula tal que $x$ é substituível por $t$ em $\varphi$ e $y$ é substituível por $u$ em $\varphi[x/t]$, então $y$ é substituível por $u$ em $\varphi$, $x$ é substituível por $t[y/u]$ em $\varphi[y/u]$ e $\varphi[x/t][y/u]$ é $\varphi[y/u][x/t[y/u]]$.
+\end{metalemma}
+
+\begin{proof}
+    Primeiro provaremos a afirmação para termos, por indução sobre a estrutura de $r$.
+
+    Se $r$ é uma variável ou constante $z$, temos três casos.
+
+    Se $z=x$, então, como $x\neq y$, $z[x/t][y/u]=t[y/u]=z[y/u][x/t[y/u]]$.
+
+    Se $z=y$, então $z[x/t][y/u]=u$.
+    Por outro lado, $z[y/u][x/t[y/u]]=u[x/t[y/u]]=u$, pois, por hipótese, $x$ não ocorre em $u$.
+    
+    Finalmente, se $z$ é diferente de $x$ e de $y$, então ambos os lados são $z$.
+
+    Se $r$ é $fe_1\dots e_n$, então, pela hipótese indutiva aplicada a $e_1,\dots,e_n$, $e_i[x/t][y/u]=e_i[y/u][x/t[y/u]]$ para cada $i\leq n$.
+     Portanto,
+    \[
+        r[x/t][y/u]
+        =
+        fe_1[x/t][y/u]\dots e_n[x/t][y/u]
+        =
+        fe_1[y/u][x/t[y/u]]\dots e_n[y/u][x/t[y/u]],
+    \]
+    que é exatamente $r[y/u][x/t[y/u]]$.
+
+    Agora provaremos a afirmação para fórmulas, por indução sobre a estrutura de $\varphi$.
+
+    Se $\varphi$ é $P e_1\dots e_n$, em que $P$ é um símbolo de predicado $n$-ário ($n>0$), então a substituibilidade é imediata, pois fórmulas atômicas não possuem quantificadores.
+    Além disso, pela parte já provada para termos, $e_i[x/t][y/u]=e_i[y/u][x/t[y/u]]$
+    para cada $i\leq n$.
+    Logo,
+    \[
+        \varphi[x/t][y/u]=\varphi[y/u][x/t[y/u]].
+    \]
+
+    O caso em que $\varphi$ é $=e_1e_2$ é análogo.
+    Se $\varphi$ é um símbolo de predicado 0-ário, nada há a provar.
+
+    Se $\varphi$ é $\neg\psi$, então, pelo Metalema~\ref{mlem:criteriosSubstituibilidade}, as hipóteses implicam que $x$ é substituível por $t$ em $\psi$ e que $y$ é substituível por $u$ em $\psi[x/t]$.
+    Pela hipótese indutiva, $y$ é substituível por $u$ em $\psi$, $x$ é substituível por $t[y/u]$ em $\psi[y/u]$ e
+    \[
+        \psi[x/t][y/u]=\psi[y/u][x/t[y/u]].
+    \]
+    Aplicando novamente o Metalema~\ref{mlem:criteriosSubstituibilidade}, obtemos as duas substituibilidades desejadas para $\neg\psi$, e a igualdade segue de
+    \[
+        (\neg\psi)[x/t][y/u]
+        =
+        \neg\psi[x/t][y/u]
+        =
+        \neg\psi[y/u][x/t[y/u]]
+        =
+        (\neg\psi)[y/u][x/t[y/u]].
+    \]
+
+    Se $\varphi$ é $\psi\square\theta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, procedemos da mesma forma, aplicando a hipótese indutiva a $\psi$ e a $\theta$.
+    Assim, $y$ é substituível por $u$ em $\psi$ e em $\theta$, e $x$ é substituível por $t[y/u]$ em $\psi[y/u]$ e em $\theta[y/u]$.
+    Logo, pelo Metalema~\ref{mlem:criteriosSubstituibilidade}, as substituibilidades desejadas valem para $\psi\square\theta$.
+    Além disso,
+    \[
+        (\psi\square\theta)[x/t][y/u]
+        =
+        \psi[x/t][y/u]\square\theta[x/t][y/u]
+        =
+        \psi[y/u][x/t[y/u]]\square\theta[y/u][x/t[y/u]],
+    \]
+    que é
+    \[
+        (\psi\square\theta)[y/u][x/t[y/u]].
+    \]
+
+    Resta o caso em que $\varphi$ é $Qz\psi$, em que $Q$ é $\forall$ ou $\exists$.
+
+    Se $x$ é variável e $z=x$, então $\varphi[x/t]=\varphi$.
+    Como, por hipótese, $y$ é substituível por $u$ em $\varphi[x/t]=\varphi$, a primeira substituibilidade desejada já está provada.
+    Além disso, como $x\neq y$, temos
+    \[
+        \varphi[y/u]=Qx\psi[y/u].
+    \]
+    Assim, $x$ não ocorre livre em $\varphi[y/u]$, de modo que $x$ é substituível por $t[y/u]$ em $\varphi[y/u]$.
+    Por fim, $\varphi[x/t][y/u]=\varphi[y/u]$ e
+    \[
+        \varphi[y/u][x/t[y/u]]=\varphi[y/u],
+    \]
+    pois a substituição por \(x\) não atravessa o quantificador inicial \(Qx\).
+
+    Suponha agora que $z$ é diferente de $x$.
+    Então
+    \[
+        \varphi[x/t]=Qz\psi[x/t].
+    \]
+
+    Se $y$ é variável e $z=y$, então $\varphi[y/u]=\varphi$.
+    Da hipótese de que $x$ é substituível por $t$ em $Qy\psi$, segue, pelo Metalema~\ref{mlem:criteriosSubstituibilidade}, que $x$ é substituível por $t$ em $\psi$ e que $x$ não ocorre livre em $\psi$ ou $y$ não ocorre em $t$.
+
+    Se $x$ não ocorre livre em $\psi$, então $x$ também não ocorre livre em $Qy\psi$, e a substituição por $x$ é trivial.
+    Se $y$ não ocorre em $t$, então $t[y/u]=t$, e a substituibilidade de $x$ por $t[y/u]$ em $Qy\psi$ é a mesma que a substituibilidade de $x$ por $t$ em $Qy\psi$.
+    Em qualquer caso, $x$ é substituível por $t[y/u]$ em $\varphi[y/u]=\varphi$.
+
+    A igualdade também segue nos mesmos dois subcasos.
+    Se $x$ não ocorre livre em $\psi$, então ambos os lados são $Qy\psi$.
+    Se $y$ não ocorre em $t$, então $t[y/u]=t$, e ambos os lados são $Qy\psi[x/t]$.
+
+    Finalmente, suponha que $z$ é diferente de $x$ e de $y$.
+    Como $x$ é substituível por $t$ em $Qz\psi$, o Metalema~\ref{mlem:criteriosSubstituibilidade} implica que $x$ é substituível por $t$ em $\psi$.
+    Como $y$ é substituível por $u$ em $Qz\psi[x/t]$, o mesmo metalema implica que $y$ é substituível por $u$ em $\psi[x/t]$.
+
+    Pela hipótese indutiva aplicada a $\psi$, temos que $y$ é substituível por $u$ em $\psi$, que $x$ é substituível por $t[y/u]$ em $\psi[y/u]$ e que
+    \[
+        \psi[x/t][y/u]=\psi[y/u][x/t[y/u]].
+    \]
+
+    Resta verificar as condições referentes ao quantificador inicial \(Qz\).
+    Da substituibilidade de $y$ por $u$ em $Qz\psi[x/t]$, temos que $y$ não ocorre livre em $\psi[x/t]$ ou $z$ não ocorre em $u$.
+    Se $z$ não ocorre em $u$, então a condição para que $y$ seja substituível por $u$ em $Qz\psi$ está satisfeita.
+    Se $y$ não ocorre livre em $\psi[x/t]$, então, como $x\neq y$, nenhuma ocorrência livre de $y$ em $\psi$ desaparece ao substituir $x$ por $t$; logo, $y$ não ocorre livre em $\psi$.
+    Portanto, em qualquer caso, $y$ é substituível por $u$ em $Qz\psi$.
+
+    Agora vejamos que $x$ é substituível por $t[y/u]$ em $Qz\psi[y/u]$.
+    Já sabemos que $x$ é substituível por $t[y/u]$ em $\psi[y/u]$.
+    Resta ver que $x$ não ocorre livre em $\psi[y/u]$ ou que $z$ não ocorre em $t[y/u]$.
+
+    Da substituibilidade de $x$ por $t$ em $Qz\psi$, temos que $x$ não ocorre livre em $\psi$ ou $z$ não ocorre em $t$.
+    Se $x$ não ocorre livre em $\psi$, então, como $x$ não ocorre em $u$, também $x$ não ocorre livre em $\psi[y/u]$.
+    Suponha, então, que $z$ não ocorre em $t$.
+    Se $z$ também não ocorre em $u$, então $z$ não ocorre em $t[y/u]$.
+    Se $z$ ocorre em $u$, então, pela substituibilidade de $y$ por $u$ em $Qz\psi[x/t]$, temos que $y$ não ocorre livre em $\psi[x/t]$.
+    Nesse caso, como uma ocorrência livre de $x$ em $\psi$ produziria uma ocorrência livre de $y$ em $\psi[x/t]$ caso $y$ ocorresse em $t$, concluímos que ou $x$ não ocorre livre em $\psi$, ou $y$ não ocorre em $t$.
+    No primeiro caso, $x$ não ocorre livre em $\psi[y/u]$.
+    No segundo, como $y$ não ocorre em $t$, temos $t[y/u]=t$, e portanto $z$ não ocorre em $t[y/u]$.
+
+    Assim, $x$ é substituível por $t[y/u]$ em $Qz\psi[y/u]$.
+
+    Por fim, usando a igualdade obtida pela hipótese indutiva,
+    \[
+        (Qz\psi)[x/t][y/u]
+        =
+        Qz\psi[x/t][y/u]
+        =
+        Qz\psi[y/u][x/t[y/u]]
+        =
+        (Qz\psi)[y/u][x/t[y/u]].
+    \]
+\end{proof}
 \subsection*{Exercícios}
 
 \begin{exercise}\label{exr:variaveisLivresELigadas}
