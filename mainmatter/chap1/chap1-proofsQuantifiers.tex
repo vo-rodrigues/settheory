@@ -46,8 +46,6 @@ Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
 
 Agora veremos que quantificadores de mesmo tipo comutam.
 
-Como aplicação dos lemas dessa subseção, mostraremos que quantificadores do mesmo tipo comutam.
-
 \begin{metalemma}[Comutatividade de quantificadores de mesmo tipo]\label{mlem:comutatividadeQuantificadoresMesmoTipo}
     Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, seja $\varphi$ uma fórmula da linguagem de $T$ e sejam $x$ e $y$ variáveis.
     Então
@@ -272,8 +270,11 @@ Também usaremos a seguinte renomeação de variável ligada.
         &\forall y\,\varphi[x/y]\rightarrow \forall x\varphi \tag{Introdução de $\forall$}\\
     \end{align*}
 
-    Note que $\varphi[x/y][y/x]$ é $\phi$, na primeira linha.
-    Nela, $y$ é substituível por $x$ em $\varphi[x/y]$ porque $y$ não ocorre livre em $\varphi$.
+    Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas}, como $y$ não ocorre livre em $\varphi$ e $x$ é substituível por $y$ em $\varphi$, temos que $y$ é substituível por $x$ em $\varphi[x/y]$ e
+    \[
+        \varphi[x/y][y/x]=\varphi.
+    \]
+    Além disso, o mesmo metalema garante que $x$ não ocorre livre em $\varphi[x/y]$, de modo que $x$ não ocorre livre em $\forall y\,\varphi[x/y]$.
 \end{proof}
 
 \subsection{Generalização universal e instanciação existencial}
@@ -318,7 +319,7 @@ Essa prática é formalizada pelo seguinte metateorema.
     Como a demonstração é finita, escolha uma variável $y$ distinta de $x$ que não ocorre em $\theta$ nem em nenhuma das fórmulas $\theta_0,\dots,\theta_n$.
     Em particular, $y$ não ocorre em nenhum termo que aparece na demonstração.
 
-    Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas}, para cada $i\leq n$, $\theta[c/y]$ não possui o símbolo $c$, e, portanto, é uma $\mathcal L$-fórmula.
+    Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas}, para cada $i\leq n$, $\theta_i[c/y]$ não possui o símbolo $c$, e, portanto, é uma $\mathcal L$-fórmula.
     Provaremos, por indução em $i\leq n$, que $T\vdash \theta_i[c/y]$.
 
     Suponha que a tese já tenha sido provada para todo $j<i$.
@@ -330,7 +331,7 @@ Essa prática é formalizada pelo seguinte metateorema.
     Como $c$ não ocorre em $\theta_i$, pelo Metalema~\ref{mlem:substituicaoTrivial}, $\theta_i[c/y]$ é a própria $\theta_i$.
     Assim, $T\vdash \theta_i[c/y]$.
 
-    \textbf{Caso 2.} Suponha que e $\theta_i$ é um axioma lógico de $\mathcal L(c)$. 
+    \textbf{Caso 2.} Suponha que $\theta_i$ é um axioma lógico de $\mathcal L(c)$.
     Então $\theta_i[c/y]$ é um axioma lógico de $\mathcal L$.
     De fato, como a operação $(\cdot)[c/y]$ comuta com os conectivos lógicos, cada instância de um dos esquemas FO1--FO13 é levada a uma instância do mesmo esquema.
     O axioma FO16 é preservado imediatamente.
@@ -348,7 +349,7 @@ Essa prática é formalizada pelo seguinte metateorema.
     \[
         \forall z\varphi[c/y]\rightarrow\varphi[c/y],
     \]
-    que é uma instância de FO14 (substitua $y$ por $y$, por exemplo).
+    que é uma instância de FO14, aplicada à fórmula $\varphi[c/y]$, à variável $z$ e ao termo $z$.
 
     Suponha agora que $y$ não ocorre em $t$.
 
@@ -396,12 +397,12 @@ Essa prática é formalizada pelo seguinte metateorema.
 
     Isso encerra a indução.
     Em particular, para $i=n$, obtemos $T\vdash \theta[x/c][c/y]$.
-    Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas}, segue que $T\vdash \theta[x/y]$.
-    Pelo Metalema~\ref{mlem:generalizacaoDeTeoremas},
+    Como $c$ não ocorre em $\theta$, pelo Metalema~\ref{mlem:substituicaoComposta} e pelo Metalema~\ref{mlem:substituicaoTrivial}, temos
     \[
-        T\vdash \forall y\,\theta[x/y].
+        \theta[x/c][c/y]=\theta[x/y].
     \]
-    Como $y$ não ocorre em $\theta$, pelo Metalema~\ref{mlem:renomeacaoVariavelUniversal}, concluímos que $T\vdash \forall x\,\theta$.
+    Portanto, $T\vdash \theta[x/y]$.
+    Como $y$ não ocorre em $\theta$, a variável $x$ é substituível por $y$ em $\theta$; pelo Metalema~\ref{mlem:renomeacaoVariavelUniversal}, concluímos que $T\vdash \forall x\,\theta$.
 \end{proof}
 
 A seguir, formalizaremos a prática de instanciar uma hipótese existencial por meio de um nome temporário.
@@ -438,7 +439,7 @@ Essa técnica é formalizada pelo seguinte metateorema.
     Suponha que $T(c)\vdash \varphi[x/c]\rightarrow\psi$.
     Como $\psi$ não possui $x$ livre, então $(\varphi\rightarrow \psi)[x/c]$ é $\varphi[x/c]\rightarrow\psi$.
     Assim, $T(c)\vdash (\varphi\rightarrow \psi)[x/c]$.
-    Pelo Metalema~\ref{mlem:generalizacaoUniversal}, $T\vdash \forall x(\varphi\rightarrow \psi)$.
+    Pelo Metateorema~\ref{mlem:generalizacaoUniversal}, $T\vdash \forall x(\varphi\rightarrow \psi)$.
     
     Como a substituição de $x$ por $x$ é válida, segue da instanciação universal que $T\vdash \varphi\rightarrow \psi$.
     Pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow \psi$.

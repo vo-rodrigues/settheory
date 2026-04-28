@@ -1,0 +1,129 @@
+\section{Substituição de fórmulas}\label{sec:substituicaoDeFormulas}
+
+Intuitivamente, se uma teoria prova que duas fórmulas são equivalentes, então elas podem ser substituídas uma pela outra em qualquer contexto.
+
+Nessa seção, formalizaremos esse raciocínio.
+
+Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão da lógica proposicional para a lógica de primeira ordem $T_P$, e a substituição de letras proposicionais por fórmulas de uma linguagem de primeira ordem.
+
+\begin{metalemma}\label{mlem:substituicaoInversaEmFormulas}
+    Sejam $A_1, \dots, A_n$ e $B_1, \dots, A_n$ letras proposicionais de $\mathcal L_P$.
+
+    Seja $\rho$ a atribuição de $\{A_1, \dots, A_n\}$ tal que $\rho(A_i)=B_i$ para cada $i\in\{1, \dots, n\}$.
+        
+    Então, para toda $\mathcal L_P$-fórmula $\theta$ sem ocorrências de igualdade e cujas únicas letras proposicionais estão dentre $A_1, \dots, A_n$, temos
+
+    \[
+        T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\theta \leftrightarrow \subst(\theta, \rho)).
+    \]
+\end{metalemma}
+\begin{proof}
+    Procedemos por indução na complexidade de $\theta$.
+    Denotemos $\subst(\theta, \rho)$ por $\theta^\dagger$.
+
+     Se $\theta$ é uma letra proposicional $A_i$, então $T_P \vdash A_i \leftrightarrow B_i$, e a fórmula desejada é $T_P \vdash (A_i \leftrightarrow B_i) \rightarrow (A_i \leftrightarrow B_i)$, que é uma tautologia.
+
+     Se $\theta$ é $\neg\psi$, então, por hipótese de indução, $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\psi \leftrightarrow \psi^\dagger)$.
+     Pelo Teorema da Dedução, $T_P \cup \{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\vdash \psi \leftrightarrow \psi^\dagger\}$.
+     Assim, pela preservação da negação por equivalências, $T_P \cup \{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\vdash \neg\psi \leftrightarrow \neg\psi^\dagger\}$.
+    Como $\neg\psi^\dagger$ é $\theta^\dagger$, segue novamente do Teorema da Dedução que
+    \[
+    T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\theta \leftrightarrow \theta^\dagger).
+    \]
+
+    Se $\theta$ é $\psi\square\chi$, onde $\square$ é um conectivo binário, então, por hipótese de indução, $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\psi \leftrightarrow \psi^\dagger)$ e $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\chi \leftrightarrow \chi^\dagger)$.
+    Pelo Teorema da Dedução, basta concluir que
+    \[
+        T_P \cup \left\{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\right\}\vdash \psi\square\chi \leftrightarrow \psi^\dagger\square\chi^\dagger.
+    \]
+
+    Pelo Teorema da Dedução, basta observar que sendo $X, Y, X', Y'$ variáveis proposicionais, as seguintes fórmulas são tautologias:
+    \begin{itemize}
+        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\wedge Y \leftrightarrow X'\wedge Y'))$,
+        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\vee Y \leftrightarrow X'\vee Y'))$,
+        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\rightarrow Y \leftrightarrow X'\rightarrow Y'))$.
+        \item $X\leftrightarrow X' \rightarrow (Y\leftrightarrow Y' \rightarrow (X\leftrightarrow Y \leftrightarrow X'\leftrightarrow Y'))$.
+    \end{itemize}
+
+    Se $\theta$ é $Qx\psi$, em que $Q$ é um quantificador e $x$ é uma variável, então, por hipótese de indução, $T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow B_i) \rightarrow (\psi \leftrightarrow \psi^\dagger)$.
+    Assim, pelo Teorema da Dedução, $T_P \cup \{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\vdash \psi \leftrightarrow \psi^\dagger\}$.
+
+    Novamente pelo Teorema da Dedução, é suficiente concluir que
+    \[
+        T_P \cup \left\{\bigwedge_{i=1}^n (A_i \leftrightarrow B_i)\right\}\vdash Qx\psi \leftrightarrow Qx\psi^\dagger.
+    \]
+
+    Mas isso segue, pois já vimos que a inserção de quantificadores é preservada por equivalências.
+\end{proof}
+
+Para concluir o resultado principal desta seção, precisaremos ver que a substituição de letras proposicionais respeita composição.
+
+\begin{metalemma}
+    Sejam $A_1, \dots, A_n$ e $B_1, \dots, A_n$ letras proposicionais de $\mathcal L_P$.
+
+    Seja $\rho$ a atribuição de $\{A_1, \dots, A_n\}$ tal que $\rho(A_i)=B_i$ para cada $i\in\{1, \dots, n\}$.
+        
+    Seja $\mathcal L$ um léxico de primeira ordem.
+    Seja $\rho_A$ uma atribuição de $\{A_1, \dots, A_n\}$ à $\mathcal L$-fórmulas e seja $\rho_B$ uma atribuição de $\{B_1, \dots, B_n\}$ à $\mathcal L$-fórmulas tal que $\rho_B(B_i)=\rho_A(A_i)$ para cada $i\in\{1, \dots, n\}$, ou seja, tal que $\rho_B\circ \rho=\rho_A$.
+
+    Então para toda $\mathcal L_P$-fórmula $\theta$ sem ocorrências de igualdade e cujas únicas letras proposicionais estão dentre $A_1, \dots, A_n$, temos
+    \[
+        \subst(\theta, \rho_B)=\subst(\subst(\theta, \rho), \rho_A).
+    \]
+\end{metalemma}
+\begin{proof}
+    Procedemos por indução na complexidade de $\theta$.
+
+    Se $\theta$ é uma letra proposicional $A_i$, então $\subst(\theta, \rho_B)=\rho_B(A_i)=\rho_A(A_i)=\subst(\subst(\theta, \rho), \rho_A)$.
+
+    Se $\theta$ é $\neg\psi$, então, por hipótese de indução, $\subst(\psi, \rho_B)=\subst(\subst(\psi, \rho), \rho_A)$.
+     Assim, $\subst(\theta, \rho_B)=\neg\subst(\psi, \rho_B)=\neg\subst(\subst(\psi, \rho), \rho_A)=\subst(\subst(\theta, \rho), \rho_A)$.
+
+    Se $\theta$ é $\psi\square\chi$, onde $\square$ é um conectivo binário, então, por hipótese de indução, $\subst(\psi, \rho_B)=\subst(\subst(\psi, \rho), \rho_A)$ e $\subst(\chi, \rho_B)=\subst(\subst(\chi, \rho), \rho_A)$.
+
+    Assim,
+    \begin{align*}
+         \subst(\theta, \rho_B) & =\subst(\psi\square\chi, \rho_B)\\
+         & =\subst(\psi, \rho_B)\square\subst(\chi, \rho_B)\\
+         & =\subst(\subst(\psi, \rho), \rho_A)\square\subst(\subst(\chi, \rho), \rho_A)\\
+         & =\subst(\subst(\theta, \rho), \rho_A).
+    \end{align*}
+    Se $\theta$ é $Qx\psi$, em que $Q$ é um quantificador e $x$ é uma variável, então, por hipótese de indução, $\subst(\psi, \rho_B)=\subst(\subst(\psi, \rho), \rho_A)$.
+
+    Isso conclui a indução.
+\end{proof}
+
+\begin{metacorollary}
+    Seja $T$ uma teoria de primeira ordem.
+    Sejam $\varphi_1, \dots, \varphi_n$ e $\psi_1, \dots, \psi_n$ fórmulas da linguagem de $T$ tais que $T\vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i)$.
+
+    Então se $\theta$ é uma fórmula formada por meio de $\varphi_1, \dots, \varphi_n$, a substituição de cada $\varphi_i$ por $\psi_i$ em $\theta$ é uma fórmula $\theta'$ tal que $T\vdash \theta \leftrightarrow \theta'$.
+
+    Formalmente, considere, na linguagem $\mathcal L_P$, letras proposicionais distintas $A_1, \dots, A_n$, $B_1, \dots, B_n$ e uma fórmula $\theta$ cujas únicas letras proposicionais estão dentre $A_1, \dots, A_n$.
+
+    Seja $\rho$ a atribuição de $\{A_1, \dots, A_n\}$ tal que $\rho(A_i)=B_i$ para cada $i\in\{1, \dots, n\}$.
+    
+    Seja $\rho_A$ a atribuição de $\{A_1, \dots, A_n\}$ à linguagem de $T$ tal que $\rho_A(A_i)=\varphi_i$ para cada $i\in\{1, \dots, n\}$ e seja $\rho_B$ a atribuição de $\{B_1, \dots, B_n\}$ à linguagem de $T$ tal que $\rho_B(B_i)=\psi_i$ para cada $i\in\{1, \dots, n\}$, ou seja, tal que $\rho_B\circ \rho=\rho_A$.    
+    Então
+    \[
+        T\vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i) \rightarrow (\subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A))
+    \]
+\end{metacorollary}
+
+\begin{proof}
+    Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas},
+    \[
+    T_P \vdash \bigwedge_{i=1}^n (A_i \leftrightarrow \subst(A_i, \rho)) \rightarrow (\theta \leftrightarrow \subst(\theta, \rho)).
+    \]
+
+    Assim, pelo Metateorema~\ref{mthm:substituicaoTeoremasTP},
+    \[
+    T \vdash \bigwedge_{i=1}^n (\subst(A_i, \rho_A) \leftrightarrow \subst(A_i, \rho_A)) \rightarrow (\subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A)).
+    \]
+    Ou seja:
+    \[
+    T \vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i) \rightarrow (\subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A)).
+    \]
+    Como $T\vdash \bigwedge_{i=1}^n (\varphi_i \leftrightarrow \psi_i)$, segue que $T\vdash \subst(\theta, \rho_A) \leftrightarrow \subst(\subst(\theta, \rho), \rho_A)$.
+\end{proof}
+
