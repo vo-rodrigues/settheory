@@ -493,3 +493,95 @@ Essa técnica é formalizada pelo seguinte metateorema.
     Pela regra de introdução do quantificador existencial, $T\vdash \exists x\varphi\rightarrow \psi$.
 \end{proof}
 
+\subsection*{Exercícios}
+
+\begin{exercise}
+    Adapte a prova do Metalema~\ref{mlem:comutatividadeQuantificadoresMesmoTipo} para mostrar que
+    \[
+        T\vdash
+        \forall x\,\forall y\,\varphi
+        \leftrightarrow
+        \forall y\,\forall x\,\varphi
+    \]
+    e que
+    \[
+        T\vdash
+        \exists x\,\exists y\,\varphi
+        \leftrightarrow
+        \exists y\,\exists x\,\varphi.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Prove que
+    \[
+        T\vdash \neg\forall x\neg\varphi\leftrightarrow\exists x\varphi
+    \]
+    e que
+    \[
+        T\vdash \neg\exists x\neg\varphi\leftrightarrow\forall x\varphi.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Suponha que $x$ não ocorre livre em $\psi$.
+    Mostre que
+    \[
+        T\vdash
+        \forall x(\psi\rightarrow\varphi)
+        \leftrightarrow
+        (\psi\rightarrow\forall x\varphi)
+    \]
+    e que
+    \[
+        T\vdash
+        \forall x(\varphi\rightarrow\psi)
+        \leftrightarrow
+        (\exists x\varphi\rightarrow\psi).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Suponha que $y$ não ocorre livre em $\varphi$ e que $x$ é substituível por $y$ em $\varphi$.
+    Prove que
+    \[
+        T\vdash
+        \forall x\varphi
+        \leftrightarrow
+        \forall y\,\varphi[x/y]
+    \]
+    e
+    \[
+        T\vdash
+        \exists x\varphi
+        \leftrightarrow
+        \exists y\,\varphi[x/y].
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Seja $c$ um símbolo de constante que não pertence ao léxico de $T$.
+    Seja $t$ um termo da linguagem de $T$ tal que $x$ é substituível por $t$ em $\theta$.
+    Mostre que, se
+    \[
+        T(c)\vdash \theta[x/c],
+    \]
+    então
+    \[
+        T\vdash \theta[x/t].
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Seja $c$ um símbolo de constante que não pertence ao léxico de $T$, e suponha que $\psi$ não possui $x$ livre.
+    Mostre que, se
+    \[
+        T(c)\vdash \varphi[x/c]\rightarrow\psi
+        \qquad\text{e}\qquad
+        T\vdash \exists x\varphi,
+    \]
+    então
+    \[
+        T\vdash \psi.
+    \]
+\end{exercise}
