@@ -179,6 +179,9 @@ A seguir, veremos que extensões por definição não aumentam nem o poder de pr
 Tudo o que é expressável ou demonstrável na linguagem estendida também é expressável ou demonstrável na linguagem original, respectivamente.
 Portanto, apesar de, formalmente, estarmos adicionando novos símbolos e axiomas, a extensão por definição captura as propriedades essenciais da prática de introduzir definições como abreviações.
 
+A mensagem principal desta seção é a seguinte: sempre que introduzirmos um novo símbolo por uma definição explícita, poderemos tratá-lo como uma abreviação conservativa da linguagem anterior. 
+As demonstrações técnicas abaixo justificam formalmente essa prática.
+Em uma primeira leitura, recomenda-se que o leitor foque primariamente no entendimento dos enunciados dos resultados.
 
 \subsection{Eliminação de símbolos definidos: termos}\label{subsec:eliminacaoSimbolosDefinidosTermos}
 \index{eliminação de símbolos definidos}
@@ -605,7 +608,7 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
         \item Se $\theta_i$ é um axioma lógico (no sentido do sistema fixado anteriormente),
         então $T\vdash \theta_i^\ast$.
         A verificação é sistemática: usa-se que $\ast$ comuta com conectivos e quantificadores e que termos são eliminados pelo Metalema~\ref{mlem:eliminacaoDeTermos}.
-        Nos axiomas de congruência, se o símbolo envolvido é novo, usa-se ainda que a fórmula definidora é uma $\mathcal L$-fórmula, a Lei da igualdade de Leibniz e, no caso de símbolos funcionais, a hipótese de unicidade exigida na Metadefinição~\ref{mdef:definicaoExplicita}.
+        Nos axiomas sobre igualdade, se o símbolo envolvido é novo, usa-se ainda que a fórmula definidora é uma $\mathcal L$-fórmula, a Lei da igualdade de Leibniz e, no caso de símbolos funcionais, a hipótese de unicidade exigida na Metadefinição~\ref{mdef:definicaoExplicita}.
         Assim, $T\vdash \theta_i^\ast$.
 
         \item Se $\theta_i$ é obtida por \emph{modus ponens} a partir de $\theta_j$ e $\theta_k=\theta_j\rightarrow \theta_i$,
