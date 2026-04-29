@@ -13,7 +13,7 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
         T\vdash \varphi_i\leftrightarrow\psi_i.
     \]
 
-    Considere, na linguagem $\mathcal L_P$, letras proposicionais distintas $A_1,\dots,A_n$ e uma $\mathcal L_P$-fórmula $\theta$ sem igualdade cujas únicas letras proposicionais estão dentre $A_1,\dots,A_n$.
+    Considere, na linguagem $\mathcal L_P$, letras proposicionais distintas $A_1,\dots,A_n$ e uma $\mathcal L_P$-fórmula $\theta$ em que todas as letras proposicionais que ocorrem em $\theta$ estão entre $A_1,\dots,A_n$.
 
     Sejam $\rho_\varphi$ e $\rho_\psi$ as atribuições dadas por
     \[
@@ -45,6 +45,9 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
     Se $\eta$ é uma letra proposicional $A_i$, então $\eta^\varphi=\varphi_i$ e $\eta^\psi=\psi_i$.
     Como $T\vdash \varphi_i\leftrightarrow\psi_i$, segue a tese.
 
+    Se $\eta$ é uma fórmula equacional $x=y$, então $\eta^\varphi=\eta^\psi=x=y$.
+    Portanto, $T\vdash \eta^\varphi\leftrightarrow\eta^\psi$, pois $(x=y)\leftrightarrow(x=y)$ é uma instância de tautologia.
+
     Se $\eta$ é $\neg\chi$, então, por hipótese de indução, $T\vdash \chi^\varphi\leftrightarrow\chi^\psi$.
     Pela preservação da negação por equivalências,
     \[
@@ -57,7 +60,7 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
         \qquad\text{e}\qquad
         T\vdash \xi^\varphi\leftrightarrow\xi^\psi.
     \]
-    Pela preservação dos conectivos por equivalências,
+    Por raciocínio proposicional, isto é, pela instância de tautologia correspondente à preservação de $\square$ por equivalências,
     \[
         T\vdash
         (\chi^\varphi\square\xi^\varphi)
@@ -86,6 +89,9 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
         T\vdash \subst(\theta,\rho_\varphi)\leftrightarrow \subst(\theta,\rho_\psi).
     \]
 \end{proof}
+
+Nos exemplos abaixo, usaremos livremente que, para toda fórmula $\alpha$, temos $T\vdash \alpha\leftrightarrow\alpha$ por uma instância de tautologia.
+Assim, para manter uma parte do contexto inalterada, basta atribuir a mesma fórmula à letra proposicional correspondente nas duas atribuições.
 
 \begin{example}
     Suponha que $T\vdash \varphi\leftrightarrow\psi$.
@@ -131,7 +137,7 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
     \[
         T\vdash \varphi(z)\leftrightarrow\psi(z).
     \]
-    Aplicando o metateorema ao esqueleto
+    Aplicando o Metateorema~\ref{mthm:substituicaoFormulasEquivalentes} ao esqueleto
     \[
         \theta \equiv \forall z(A_1\rightarrow A_2),
     \]
@@ -160,7 +166,7 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
     \[
         T\vdash \varphi(z)\leftrightarrow\psi(z).
     \]
-    Podemos substituir apenas uma das ocorrências de $\varphi(z)$ em uma fórmula onde ela aparece mais de uma vez.
+    Podemos substituir apenas uma das ocorrências de $\varphi(z)$ em uma fórmula em que ela aparece mais de uma vez.
 
     Por exemplo, considere a fórmula
     \[
@@ -186,7 +192,7 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
         \rho_\psi(A_3)=\psi(z),\qquad
         \rho_\psi(A_4)=z\in b.
     \]
-    Pelo metateorema, obtemos
+    Pelo Metateorema~\ref{mthm:substituicaoFormulasEquivalentes}, obtemos
     \[
         T\vdash
         \forall z\bigl(z\in a\rightarrow(\varphi(z)\rightarrow\varphi(z)\wedge z\in b)\bigr)
@@ -242,7 +248,7 @@ Lembremos que, na Seção~\ref{sec:teoriasPrimeiraOrdem}, definimos a extensão 
     \[
         T\vdash \varphi_i\leftrightarrow\psi_i
     \]
-    para cada $i\in\{1,\dots,n\}$.
+    para cada $i\in\{1,\dots,n\}$, com $n\geq 1$.
     Mostre, usando o Metateorema~\ref{mthm:substituicaoFormulasEquivalentes}, que
     \[
         T\vdash
