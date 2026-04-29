@@ -65,7 +65,7 @@ Agora veremos que quantificadores de mesmo tipo comutam.
         &\forall y\,\varphi\rightarrow \varphi \tag{FO14}\\
         &\forall x\,\forall y\,\varphi\rightarrow \varphi \tag{transitividade de $\rightarrow$}\\
         &\forall x\,\forall y\,\varphi\rightarrow \forall x\,\varphi \tag{Introdução de $\forall$}\\
-        &\forall x\,\forall y\,\varphi\rightarrow \forall y \forall x\,\varphi \tag{Introdução de $\forall$}\\
+        &\forall x\,\forall y\,\varphi\rightarrow \forall y\,\forall x\,\varphi \tag{Introdução de $\forall$}\\
     \end{align*}
 
     Para o segundo, considere a seguinte demonstração.
@@ -293,7 +293,7 @@ Fixe $x$.
 Veremos que $\theta(x)$.''
 
 Ou seja, na prática, a letra $x$ muitas vezes é inalterada.
-Porém, a palavra ``fixe'' dá a entender que a partir daquele ponto do texto, $x$ será temporariamente tratada como um objeto particular, um nome para algum objeto fixado $x$ particular.
+Porém, a palavra ``fixe'' dá a entender que, a partir daquele ponto do texto, a letra $x$ será temporariamente tratada como um nome para um objeto particular fixado.
 A partir desse ponto, $x$ é tratada como uma constante, apesar de mantida a letra $x$.
 
 Essa prática é formalizada pelo seguinte metateorema.
@@ -319,13 +319,14 @@ Essa prática é formalizada pelo seguinte metateorema.
     Como a demonstração é finita, escolha uma variável $y$ distinta de $x$ que não ocorre em $\theta$ nem em nenhuma das fórmulas $\theta_0,\dots,\theta_n$.
     Em particular, $y$ não ocorre em nenhum termo que aparece na demonstração.
 
+    Como $y$ não ocorre em nenhuma das fórmulas $\theta_i$, a substituição de $c$ por $y$ é válida em cada $\theta_i$.
     Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas}, para cada $i\leq n$, $\theta_i[c/y]$ não possui o símbolo $c$, e, portanto, é uma $\mathcal L$-fórmula.
     Provaremos, por indução em $i\leq n$, que $T\vdash \theta_i[c/y]$.
 
     Suponha que a tese já tenha sido provada para todo $j<i$.
     Veremos que $T\vdash \theta_i[c/y]$.
 
-    \textbf{Caso 1.} Suponha que$\theta_i$ é um axioma de $T(c)$.
+    \textbf{Caso 1.} Suponha que $\theta_i$ é um axioma de $T(c)$.
     Então $\theta_i\in\Sigma$.
     Como os axiomas de $\Sigma$ são $\mathcal L$-sentenças, $\theta_i$ é uma $\mathcal L$-fórmula.
     Como $c$ não ocorre em $\theta_i$, pelo Metalema~\ref{mlem:substituicaoTrivial}, $\theta_i[c/y]$ é a própria $\theta_i$.
@@ -402,12 +403,13 @@ Essa prática é formalizada pelo seguinte metateorema.
         \theta[x/c][c/y]=\theta[x/y].
     \]
     Portanto, $T\vdash \theta[x/y]$.
+    Pelo Metalema~\ref{mlem:generalizacaoDeTeoremas}, $T\vdash \forall y\,\theta[x/y]$.
     Como $y$ não ocorre em $\theta$, a variável $x$ é substituível por $y$ em $\theta$; pelo Metalema~\ref{mlem:renomeacaoVariavelUniversal}, concluímos que $T\vdash \forall x\,\theta$.
 \end{proof}
 
 A seguir, formalizaremos a prática de instanciar uma hipótese existencial por meio de um nome temporário.
 
-É corriqueiro em matemática a necessidade de se demonstrar que se existe um objeto $x$ que satisfaz determinada propriedade $\varphi$, então alguma outra propriedade $\psi$ é satisfeita.
+É corriqueira em matemática a necessidade de demonstrar que, se existe um objeto $x$ que satisfaz determinada propriedade $\varphi$, então alguma outra propriedade $\psi$ é satisfeita.
 Nessas hipóteses, o argumento a ser seguido é o seguinte.
 
 ``Queremos mostrar que se existe um $x$ tal que $\varphi$, então $\psi$.
@@ -415,14 +417,13 @@ Fixe um tal $x$, digamos, $c$ (...) assim, $\psi$.
 Logo, se existe um $x$ tal que $\varphi$, então $\psi$.''
 
 Note que, na prática, o nome temporário $c$ é muitas vezes escrito como $x$, e a letra $x$ é mantida.
-Porém, como já discutido na discussão sobre a generalização universal, a palavra ``fixe'' dá a entender que a partir daquele ponto do texto, $x$ será temporariamente tratada como constante.
+Porém, como já discutido acima, a palavra ``fixe'' dá a entender que, a partir daquele ponto do texto, $x$ será temporariamente tratada como constante.
 
 Essa técnica é formalizada pelo seguinte metateorema.
 
 \begin{metatheorem}[Instanciação existencial]\label{mthm:instanciacaoExistencial}
     Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, $x$ uma variável, e $\varphi$ uma fórmula da linguagem de $T$.
     Seja $\psi$ uma $\mathcal L$-fórmula sem $x$ livre.
-
 
     Seja $c$ um símbolo de constante que não pertence a $\mathcal L$, e seja $\mathcal L(c)$ a linguagem obtida de $\mathcal L$ acrescentando o símbolo $c$.
     Seja $T(c)=(\mathcal L(c),\Sigma)$.
@@ -437,7 +438,7 @@ Essa técnica é formalizada pelo seguinte metateorema.
 
 \begin{proof}
     Suponha que $T(c)\vdash \varphi[x/c]\rightarrow\psi$.
-    Como $\psi$ não possui $x$ livre, então $(\varphi\rightarrow \psi)[x/c]$ é $\varphi[x/c]\rightarrow\psi$.
+    Como $\psi$ não possui $x$ livre, $(\varphi\rightarrow \psi)[x/c]$ é $\varphi[x/c]\rightarrow\psi$.
     Assim, $T(c)\vdash (\varphi\rightarrow \psi)[x/c]$.
     Pelo Metateorema~\ref{mlem:generalizacaoUniversal}, $T\vdash \forall x(\varphi\rightarrow \psi)$.
     
