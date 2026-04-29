@@ -169,15 +169,13 @@ Portanto, apesar de, formalmente, estarmos adicionando novos símbolos e axiomas
 \subsection{Eliminação de símbolos definidos: termos}\label{subsec:eliminacaoSimbolosDefinidosTermos}
 \index{eliminação de símbolos definidos}
 
-Nessa subseção, veremos que ao estender a linguagem de uma teoria por definição, todos os novos termos da linguagem estendida podem ser expressos por fórmulas da linguagem original.
-
 A ideia central é associar a cada termo $t$ da linguagem $\mathcal L'$ uma fórmula da linguagem $\mathcal L$ que semanticamente descreve $t$.
 Isto substitui termos com símbolos definidos por uma descrição na linguagem original.
 
 \begin{metadefinition}[Fórmula do valor de um termo]\label{mdef:formulaDoValorDeUmTermo}\index{termo!fórmula do valor}\index{eliminação de símbolos definidos!termos}
     Suponha que $T'$ é uma extensão por definição de $T$, com léxicos $\mathcal L'$ e $\mathcal L$ respectivamente.
     Seja $t$ um termo de $\mathcal L'$.
-    Definimos por recursão, escolhendo sempre variáveis auxiliares novas, uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres estão entre as variáveis de $t$ e mais uma variável $y$, lida como
+    Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres estão entre as variáveis de $t$ e mais uma variável $y$, lida como
     ``$y$ é o valor do termo $t$'', como segue.
 
     \begin{enumerate}[label=(\roman*)]
@@ -192,12 +190,6 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
         e $y_1, \dots, y_m$ são variáveis auxiliares duas a duas distintas e distintas de $x_1,\ldots,x_n,y$.
     \end{enumerate}
 \end{metadefinition}
-
-A Metadefinição~\ref{mdef:formulaDoValorDeUmTermo} introduz variáveis auxiliares $y_1,\ldots,y_m$ na fórmula $\delta_t$,
-todas elas quantificadas existencialmente.
-Assim, a escolha dos nomes dessas variáveis auxiliares não altera o conteúdo lógico de $\delta_t$,
-pois renomeações de variáveis quantificadas produzem fórmulas logicamente equivalentes
-(cf.\ Metalema~\ref{mlem:renomeacaoVariavelUniversal} e seu análogo existencial).
 
 \begin{metalemma}[Eliminação de termos]\label{mlem:eliminacaoDeTermos}\index{eliminação de símbolos definidos!termos}
     Seja $T'$ uma extensão por definição de $T$, com $\mathcal L\subseteq \mathcal L'$.
@@ -450,7 +442,7 @@ Agora eliminamos símbolos definidos de fórmulas.
     \smallskip
     \textbf{Caso atômico 2:} $\psi$ é uma fórmula atômica com símbolo de predicado $R\in\mathcal L$.
 
-    Se $R$ tem aridade $0$, então $\psi^\ast$ é a própria fórmula $R$, e A e B são imediatas por uma instância de tautologia e, se necessário, por generalização de teoremas.
+    Se $R$ tem aridade $0$, então $\psi^\ast$ é a própria fórmula $R$, e A e B seguem por tautologia e generalização.
     Suponha, portanto, que $\psi$ é $R(t_1,\ldots,t_m)$ com $m>0$.
 
     \emph{Prova de A.}
@@ -482,7 +474,7 @@ Agora eliminamos símbolos definidos de fórmulas.
     \textbf{Caso atômico 3:} $\psi$ é uma fórmula atômica com símbolo de predicado $P\in\mathcal L'\setminus\mathcal L$.
 
     Aqui somente A é relevante (B não se aplica, pois $\psi$ não está em $\mathcal L$).
-    Se $P$ tem aridade $0$, então $\psi$ é $P$, $\psi^\ast$ é $\Def_P$, e a conclusão segue do axioma definidor $P\leftrightarrow\Def_P$ e, se necessário, por generalização de teoremas.
+    Se $P$ tem aridade $0$, então $\psi$ é $P$, $\psi^\ast$ é $\Def_P$, e a conclusão segue do axioma definidor $P\leftrightarrow\Def_P$ e de generalização.
     Suponha, portanto, que $\psi$ é $P(t_1,\ldots,t_m)$ com $m>0$.
 
     Pelo axioma definidor de $P$ em $T'$, temos
