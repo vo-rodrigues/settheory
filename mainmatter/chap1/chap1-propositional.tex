@@ -1,5 +1,5 @@
 \section{Lógica proposicional}\label{sec:logicaProposicional}\index{lógica!proposicional}
-Nosso objetivo nesta seção é fixar três ideias básicas: a definição de fórmula proposicional, a introdução da noção de dedução formal, e, por fim, como essa noção sintática de dedução se relaciona com a noção semântica de tautologia, que também será introduzida nesta seção.
+Nosso objetivo nesta seção é fixar três ideias básicas: a definição de fórmula proposicional, a introdução da noção de dedução formal e, por fim, a maneira como essa noção sintática de dedução se relaciona com a noção semântica de tautologia, que também será introduzida nesta seção.
 
 \subsection{Fórmulas proposicionais e convenções de escrita}\label{subsec:formulasProposicionaisConvencoes}
 
@@ -41,7 +41,7 @@ Utilizaremos as seguintes convenções de escrita.
 \end{itemize}
 Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
 
-Convencionaremos, a fim de eliminar boa parte do uso de parenteses, que a precedência do conectivo $\neg$ é maior do que a de todos os outros, de modo que, por exemplo, $\neg P_0 \vee P_1$ seja interpretado como $(\neg P_0) \vee P_1$.
+Convencionaremos, a fim de eliminar boa parte do uso de parênteses, que a precedência do conectivo $\neg$ é maior do que a de todos os outros, de modo que, por exemplo, $\neg P_0 \vee P_1$ seja interpretado como $(\neg P_0) \vee P_1$.
 
 Adicionalmente, convencionamos que $\rightarrow$ e $\leftrightarrow$ têm precedência menor do que $\wedge$ e $\vee$, de modo que, por exemplo, $P_0 \wedge P_1 \rightarrow P_2$ seja interpretado como $(P_0 \wedge P_1) \rightarrow P_2$.
 \end{convention}
@@ -66,13 +66,13 @@ Tal inferência é chamada de \emph{modus ponens}.
 Além disso, intuitivamente, $P_3\land P_4\rightarrow P_3$ é uma fórmula verdadeira, independentemente do que sejam $P_3$ e $P_4$.
 
 Para dar sentido a estes fatos intuitivos, introduziremos a noção de dedução formal da lógica proposicional.
-De forma geral, dedução formal é uma sequência de fórmulas válidas de modo que cada fórmula da sequência ou é um axioma do sistema ou é obtida a partir de uma regra de inferência aplicada a fórmulas anteriores.
+De forma geral, uma dedução formal é uma sequência de fórmulas bem formadas de modo que cada fórmula da sequência ou é um axioma do sistema ou é obtida a partir de uma regra de inferência aplicada a fórmulas anteriores.
 
 Iniciaremos delimitando axiomas para a lógica proposicional clássica.
 Não trataremos, neste texto, de outros sistemas de lógica proposicional, como a lógica proposicional intuicionista ou a lógica proposicional mínima.
 
 \begin{metadefinition}[Axiomas da lógica proposicional]\label{mdef:axiomasLogicaProposicional}\index{axioma!lógica proposicional}
-    Os axiomas da Lógica Proposicional Clássica são as fórmulas que podem ser escritas de alguma das seguintes formas, em que $\phi$, $\psi$ e $\chi$ são outras fórmulas proposicionais.
+    Os axiomas da Lógica Proposicional Clássica são as fórmulas que podem ser escritas de alguma das seguintes formas, em que $\phi$, $\psi$ e $\chi$ são fórmulas proposicionais.
 
     Mais precisamente, cada item abaixo é um \emph{esquema de axiomas}.
     Sempre que substituímos $\phi$, $\psi$ e $\chi$ por fórmulas proposicionais quaisquer, obtemos um axioma da lógica proposicional.
@@ -88,8 +88,8 @@ Não trataremos, neste texto, de outros sistemas de lógica proposicional, como 
         \item $\psi \rightarrow (\phi \lor \psi)$;
         \item $(\phi \rightarrow \chi) \rightarrow ((\psi \rightarrow \chi) \rightarrow ((\phi \lor \psi) \rightarrow \chi))$;
         \item $(\psi \leftrightarrow \phi) \rightarrow (\psi \rightarrow \phi)$;
-        \item $(\psi \leftrightarrow \phi) \rightarrow (\phi \rightarrow \psi)$.
-        \item $(\psi \rightarrow \phi) \rightarrow ((\phi \rightarrow \psi) \leftrightarrow (\psi \leftrightarrow \phi))$.
+        \item $(\psi \leftrightarrow \phi) \rightarrow (\phi \rightarrow \psi)$;
+        \item $(\psi \rightarrow \phi) \rightarrow ((\phi \rightarrow \psi) \leftrightarrow (\psi \leftrightarrow \phi))$;
         \item $\neg \neg \phi \rightarrow \phi$.
     \end{enumerate}
 \end{metadefinition}
@@ -109,7 +109,7 @@ Agora estamos prontos para definir o que é uma dedução formal na lógica prop
     
     Dizemos que uma fórmula \emph{$\psi$ é deduzida a partir de $\Gamma$}, ou que \emph{$\psi$ é uma consequência lógica de $\Gamma$}, ou que \emph{$\psi$ é um teorema de $\Gamma$}, e escrevemos $\Gamma \vdash_P \psi$, se existe uma dedução formal $\phi_0, \dots, \phi_n$ a partir de $\Gamma$ tal que $\phi_n$ é $\psi$.
 
-    Na notação do parágrafo anterior, $\Gamma$ é a coleção vazia de fórmulas proposicionais, então dizemos que \emph{$\psi$ é um teorema da lógica proposicional}, e escrevemos $\vdash_P \psi$.
+    Quando, na notação do parágrafo anterior, $\Gamma$ é a coleção vazia de fórmulas proposicionais, dizemos que \emph{$\psi$ é um teorema da lógica proposicional}, e escrevemos $\vdash_P \psi$.
 \end{metadefinition}
 
 Vamos começar com dois exemplos simples.
@@ -212,9 +212,9 @@ Como aplicação, provaremos a recíproca de PC13.
         \{\phi\} \vdash_P \neg \phi \rightarrow \phi.
     \]
 
-    Temos também que:
+    Temos também, pela Metaproposição~\ref{metaprop:PCreflexividade} e pela monotonicidade, que:
     \[
-        \{\phi\} \vdash_P \neg\phi\rightarrow \neg\phi
+        \{\phi\} \vdash_P \neg\phi\rightarrow \neg\phi.
     \]
     Por PC3, temos que:
     \[
@@ -245,9 +245,9 @@ Na lógica clássica, também temos acesso ao chamado \emph{modus tollens}.
     \]
     pelo axioma PC3.
 
-    Temos que $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P\phi \rightarrow \psi$, assim, por modus ponens, $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P (\phi \rightarrow \neg \psi)\rightarrow \neg \phi$.
+    Temos que $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \phi \rightarrow \psi$; assim, por modus ponens, $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P (\phi \rightarrow \neg \psi)\rightarrow \neg \phi$.
 
-    Temos que $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \neg \psi\rightarrow(\phi \rightarrow \neg \psi)$, pelo axioma PC1, e $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \neg \psi$, assim, por modus ponens, $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \phi \rightarrow \neg \psi$.
+    Temos que $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \neg \psi\rightarrow(\phi \rightarrow \neg \psi)$, pelo axioma PC1, e $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \neg \psi$; assim, por modus ponens, $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \phi \rightarrow \neg \psi$.
 
     Logo, novamente por modus ponens, $\{\phi \rightarrow \psi, \neg \psi\} \vdash_P \neg \phi$.
 
@@ -313,7 +313,7 @@ O objetivo será mostrar que, na lógica proposicional clássica, essas duas per
     Dizemos que \emph{$v$ é uma valoração de $\phi$} se $v$ é uma valoração que atribui um valor de verdade a cada variável proposicional que ocorre em $\phi$.
 \end{metadefinition}
 
-$T$ e $F$ são símbolos arbitrários que não fazem parte da linguagem da lógica de primeira ordem fixados para intuitivamente denotar os valores de verdade verdadeiro e falso, respectivamente.
+$T$ e $F$ são símbolos arbitrários que não fazem parte da linguagem da lógica proposicional, fixados para denotar intuitivamente os valores de verdade verdadeiro e falso, respectivamente.
 
 Notemos que se $v$ é uma valoração de $\phi$, então $v$ é uma valoração de cada subfórmula de $\phi$, de modo que a seguinte definição faz sentido.
 
@@ -386,7 +386,7 @@ Para tanto, utilizaremos as seguintes tabelas.
     Além dos símbolos $T$ e $F$ fixados acima, fixe também um símbolo $I$ (que abrevia \emph{indefinido}).
 
     Recursivamente na complexidade de $\phi$, definimos o valor de verdade de $\phi$ sob $v$, denotado por $v(\phi)$, a partir do seguinte algoritmo.
-    Se $v$ não é uma valoração para $\phi$, então $v(\phi)$ é $I$.
+    Se $v$ não é uma valoração de $\phi$, então $v(\phi)$ é $I$.
     Caso contrário, procedemos como segue.
     \begin{enumerate}
         \item Se $\phi$ é uma variável proposicional $P$, então $v(\phi)$ é o valor de verdade que $v$ atribui a $P$.
@@ -396,8 +396,8 @@ Para tanto, utilizaremos as seguintes tabelas.
     Dizemos que $\phi$ é uma \emph{tautologia} se $v(\phi)$ é $T$ para toda valoração $v$ de $\phi$.
 \end{metadefinition}
 
-Uma primeira observação é que valorações para $\phi$ que coincidem em todas as variáveis proposicionais que ocorrem em $\phi$ atribuem o mesmo valor de verdade a $\phi$.
-Deste modo, valores eventualmente atribuídos a variáveis proposicionais que não ocorrem em $\phi$ não afetam o valor de verdade de $\phi$.
+Uma primeira observação é que valorações de $\phi$ que coincidem em todas as variáveis proposicionais que ocorrem em $\phi$ atribuem o mesmo valor de verdade a $\phi$.
+Desse modo, valores eventualmente atribuídos a variáveis proposicionais que não ocorrem em $\phi$ não afetam o valor de verdade de $\phi$.
 
 \begin{metalemma}
     Sejam $v$ e $v'$ valorações de variáveis proposicionais tais que, para cada variável proposicional $P$ que ocorre em $\phi$, $v(P)$ é igual a $v'(P)$.
@@ -412,11 +412,11 @@ Deste modo, valores eventualmente atribuídos a variáveis proposicionais que n�
 
     \textbf{Caso 2:} $\phi$ é $\neg \psi$.
     Por hipótese indutiva, $v(\psi)$ é igual a $v'(\psi)$, e não é $I$.
-    Logo, $v(\phi)$ é $\neg v(\psi)$, e $v'(\phi)$ é $\neg v'(\psi)$, de modo que $v(\phi)$ é igual a $v'(\phi)$.
+    Logo, $v(\phi)$ é $\neg v(\psi)$, e $v'(\phi)$ é $\neg v'(\psi)$, de modo que $v(\phi)$ é igual a $v'(\phi)$, e não é $I$.
 
     \textbf{Caso 3:} $\phi$ é $ \psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$.
     Por hipótese indutiva, $v(\psi)$ é igual a $v'(\psi)$, e não é $I$, e $v(\eta)$ é igual a $v'(\eta)$, e não é $I$.
-    Logo, $v(\phi)$ é $v(\psi) \square v(\eta)$, e $v'(\phi)$ é $v'(\psi) \square v'(\eta)$, de modo que $v(\phi)$ é igual a $v'(\phi)$.
+    Logo, $v(\phi)$ é $v(\psi) \square v(\eta)$, e $v'(\phi)$ é $v'(\psi) \square v'(\eta)$, de modo que $v(\phi)$ é igual a $v'(\phi)$, e não é $I$.
 \end{proof}
 
 Veremos inicialmente que todo teorema da lógica é uma tautologia.
@@ -449,7 +449,7 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 
     Seja $\theta$ uma fórmula proposicional e $\rho$ uma atribuição de $\theta$ tal que, para cada variável proposicional $P$ que ocorre em $\theta$, $\rho(P)$ é uma fórmula proposicional de $\mathcal F$.
 
-    Seja $\hat v$ a valoração de variáveis proposicionais definida de modo que para cada variável proposicional $P$ que ocorre em $\theta$, $\hat v(P)$ é $v(\rho(P))$.
+    Seja $\hat v$ a valoração de variáveis proposicionais definida de modo que, para cada variável proposicional $P$ que ocorre em $\theta$, $\hat v(P)$ é $v(\rho(P))$.
 
     Então $v(\subst(\theta, \rho))$ é igual a $\hat v(\theta)$.
 \end{metalemma}
@@ -457,7 +457,7 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 \begin{proof}
     Agimos por indução na complexidade das fórmulas $\xi$ para mostrar que se $\xi$ é uma subfórmula de $\theta$, então $v(\subst(\xi, \rho))$ é igual a $\hat v(\xi)$.
 
-    Suponha que a tese é verdadeira para toda subfórmula própria de $\xi$
+    Suponha que a tese é verdadeira para toda subfórmula própria de $\xi$.
     Veremos que a tese é verdadeira para $\xi$.
     Podemos supor, então, que $\xi$ é uma subfórmula de $\theta$.
 
@@ -466,11 +466,11 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 
     \textbf{Caso 2:} $\xi$ é $\neg \psi$.
     Por hipótese indutiva, $v(\subst(\psi, \rho))$ é igual a $\hat v(\psi)$.
-    Deste modo, $v(\subst(\xi, \rho))$ é $\neg v(\subst(\psi, \rho))$, que é $\neg \hat v(\psi)$, que é $\hat v(\xi)$.
+    Desse modo, $v(\subst(\xi, \rho))$ é $\neg v(\subst(\psi, \rho))$, que é $\neg \hat v(\psi)$, que é $\hat v(\xi)$.
 
     \textbf{Caso 3:} $\xi$ é $ \psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$.
     Por hipótese indutiva, $v(\subst(\psi, \rho))$ é igual a $\hat v(\psi)$, e $v(\subst(\eta, \rho))$ é igual a $\hat v(\eta)$.
-    Deste modo, $v(\subst(\xi, \rho))$ é $v(\subst(\psi, \rho) \square \subst(\eta, \rho))$, que é $v(\subst(\psi, \rho)) \square v(\subst(\eta, \rho))$, que é $\hat v(\psi) \square \hat v(\eta)$, que é $\hat v(\xi)$.
+    Desse modo, $v(\subst(\xi, \rho))$ é $v(\subst(\psi, \rho) \square \subst(\eta, \rho))$, que é $v(\subst(\psi, \rho)) \square v(\subst(\eta, \rho))$, que é $\hat v(\psi) \square \hat v(\eta)$, que é $\hat v(\xi)$.
 \end{proof}
 
 \begin{metacorollary}
@@ -497,7 +497,7 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
 \end{metatheorem}
 \begin{proof}
     Primeiramente, vamos mostrar que cada axioma da lógica proposicional é uma tautologia.
-    Pelo corolário anterior, é suficiente mostrar que cada axioma da lógica da Metadefinição~\ref{mdef:axiomasLogicaProposicional} é uma tautologia quando $\psi$, $\phi$ e $\chi$ são variáveis proposicionais distintas, digamos, $P$, $Q$ e $R$.
+    Pelo corolário anterior, é suficiente mostrar que cada esquema de axiomas da Metadefinição~\ref{mdef:axiomasLogicaProposicional} é uma tautologia quando $\psi$, $\phi$ e $\chi$ são variáveis proposicionais distintas, digamos, $P$, $Q$ e $R$.
 
     Verificaremos isso diagramaticamente, através de tabelas-verdade.
     Na tabela, cada coluna à esquerda da última coluna corresponde a uma subfórmula do axioma, e a última coluna corresponde ao valor de verdade do axioma.
@@ -666,7 +666,7 @@ Ainda, é imediato da definição de substituição proposicional que, se $\thet
     
     Considere uma valoração $v$ de $\phi_i$.
     Estenda $v$ a uma valoração de $\phi_k$, digamos, $u$.
-    Deste modo, $u$ é uma valoração de $\phi_k\rightarrow \phi_i$.
+    Desse modo, $u$ é uma valoração de $\phi_k\rightarrow \phi_i$.
     Temos que $u(\phi_k)$ é $T$, pois $\phi_k$ é uma tautologia, e $u(\phi_k\rightarrow \phi_i)$ é $T$, pois $\phi_k\rightarrow \phi_i$ é uma tautologia.
 
     Como $u(\phi_k)$ é $T$ e $u(\phi_k\rightarrow \phi_i)$ é $T$, então $u(\phi_i)$ é $T$ (caso contrário $u(\phi_k\rightarrow \phi_i)$ seria $F$).
@@ -753,7 +753,7 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     Como $v(\psi)=T$, temos $\psi^v=\psi$.
     Pela hipótese indutiva,
     $\Gamma_v\vdash_P \psi$.
-    Pela Metaproposição~\ref{metaprop:PC13reciproca} e modus ponens, segue que, $\Gamma_v\vdash_P \neg\neg\psi$.
+    Pela Metaproposição~\ref{metaprop:PC13reciproca} e modus ponens, segue que $\Gamma_v\vdash_P \neg\neg\psi$.
     Desse modo, $\Gamma_v\vdash_P \theta^v$.
 
     \textbf{Caso 3:} $\theta$ é $\psi\land\eta$.
@@ -762,7 +762,7 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     Se $v(\psi)=T$ e $v(\eta)=T$, então $v(\psi\land\eta)=T$.
     Assim, $\theta^v=\psi\land\eta$.
     Como $\psi^v=\psi$ e $\eta^v=\eta$, pela hipótese indutiva, $\Gamma_v\vdash_P \psi$ e $\Gamma_v\vdash_P \eta$.
-    Por PC6, e duas aplicações sucessiva de modus ponens, temos $\Gamma_v\vdash_P \psi\land\eta$.
+    Por PC6 e duas aplicações sucessivas de modus ponens, temos $\Gamma_v\vdash_P \psi\land\eta$.
 
     Agora suponha que $v(\psi)=F$.
     Então $v(\psi\land\eta)=F$, de modo que $\theta^v=\neg(\psi\land\eta)$.
@@ -786,10 +786,10 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     Se $v(\psi)=T$, então $v(\psi\lor\eta)=T$.
     Logo, $\theta^v=\psi\lor\eta$.
     Como $\psi^v=\psi$, pela hipótese indutiva, $\Gamma_v\vdash_P \psi$.
-    Por PC7, $\Gamma_v\vdash_P \psi\lor\eta$.
+    Por PC7 e modus ponens, $\Gamma_v\vdash_P \psi\lor\eta$.
     Portanto, $\Gamma_v\vdash_P \theta^v$.
 
-    O caso em que $v(\eta)=T$ é análogo, utilizando PC8 ao invés de PC7.
+    O caso em que $v(\eta)=T$ é análogo, utilizando PC8 em vez de PC7.
 
     Resta o caso em que $v(\psi)=F$ e $v(\eta)=F$.
     Então $v(\psi\lor\eta)=F$, de modo que
@@ -802,7 +802,7 @@ O próximo metalema formaliza a seguinte ideia: fixada uma valoração $v$, se a
     \[
         \Gamma_v\vdash_P \neg\eta\rightarrow\neg\psi.
     \]
-    Aplicando o item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional} à implicação $\psi\rightarrow\eta$, obtemos
+    Aplicando o item (c) da Metaproposição~\ref{metaprop:modusTollensProposicional} à implicação $\neg\eta\rightarrow\neg\psi$, obtemos
     \[
         \Gamma_v\vdash_P \psi\rightarrow\eta.
     \]
@@ -1047,7 +1047,7 @@ A estratégia da prova é começar com atribuições completas de valores de ver
     \[
         s(\phi)=T.
     \]
-    Logo, pela definição de $\phi^s$, temos $\phi^s$ é $\phi$.
+    Logo, pela definição de $\phi^s$, temos que $\phi^s$ é $\phi$.
     Pelo Metalema~\ref{mlem:fundamentalValoracoes}, segue que $\Gamma_s\vdash_P \phi$.
     
     Agora suponha que $k\leq n$ e que $(\ast_{k+1})$ já foi provada.
@@ -1082,7 +1082,8 @@ A estratégia da prova é começar com atribuições completas de valores de ver
         \Gamma_s\vdash_P \phi.
     \]
 
-    Assim, $(\ast_0)$ é verdadeira.
+    Isso completa o passo indutivo.
+    Portanto, por indução decrescente, $(\ast_0)$ é verdadeira.
     Existe apenas uma $0$-atribuição parcial, a atribuição vazia.
     Para essa atribuição $s$, temos $\Gamma_s=\varnothing$ por vacuidade.
     Logo, $\vdash_P \phi$.
@@ -1113,7 +1114,7 @@ Uma consequência é a seguinte.
     Assim, $\Gamma=\Gamma'\cup\{\phi\}$, e $\Gamma'$ tem $n$ fórmulas.
 
     Suponha primeiro que $\Gamma\vdash_P \psi$.
-    Seja $v$ uma valoração de $\psi$ e de $\Gamma$ tal que $v(\xi)=T$ para cada $\xi\in \Gamma$.
+    Seja $v$ uma valoração de $\psi$ e de cada fórmula de $\Gamma$ tal que $v(\xi)=T$ para cada $\xi\in \Gamma$.
     Devemos ver que $v(\psi)=T$.
 
     Temos que $\Gamma'\cup\{\phi\}\vdash_P \psi$.
@@ -1130,7 +1131,7 @@ Uma consequência é a seguinte.
     Se $v(\phi)=F$, então $v(\phi\rightarrow \psi)=T$ e termina a demonstração.
 
     Se $v(\phi)=T$, então $v(\chi)=T$ para cada $\chi\in \Gamma$, de modo que $v(\psi)=T$, por hipótese.
-    logo, $v(\phi\rightarrow \psi)=T$, e termina a prova.
+    Logo, $v(\phi\rightarrow \psi)=T$, e termina a prova.
 \end{proof}
 
 \subsection*{Exercícios}
