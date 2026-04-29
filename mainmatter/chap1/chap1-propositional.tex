@@ -107,7 +107,7 @@ Agora estamos prontos para definir o que é uma dedução formal na lógica prop
         \item existem $j, k < i$ tais que $\phi_j$ é da forma $\phi_k \rightarrow \phi_i$.
     \end{itemize}
     
-    Dizemos que uma fórmula \emph{$\psi$ é deduzida a partir de $\Gamma$}, ou que \emph{$\psi$ é uma consequência lógica de $\Gamma$}, ou que \emph{$\psi$ é um teorema de $\Gamma$}, e escrevemos $\Gamma \vdash_P \psi$, se existe uma dedução formal $\phi_0, \dots, \phi_n$ a partir de $\Gamma$ tal que $\phi_n$ é $\psi$.
+    Dizemos que uma fórmula \emph{$\psi$ é deduzida a partir de $\Gamma$}, ou que \emph{$\psi$ é uma consequência dedutiva de $\Gamma$}, ou ainda que \emph{$\psi$ é um teorema de $\Gamma$}, e escrevemos $\Gamma \vdash_P \psi$, se existe uma dedução formal $\phi_0, \dots, \phi_n$ a partir de $\Gamma$ tal que $\phi_n$ é $\psi$.
 
     Quando, na notação do parágrafo anterior, $\Gamma$ é a coleção vazia de fórmulas proposicionais, dizemos que \emph{$\psi$ é um teorema da lógica proposicional}, e escrevemos $\vdash_P \psi$.
 \end{metadefinition}
@@ -1094,13 +1094,13 @@ Uma consequência é a seguinte.
 
 \begin{metadefinition}
     Seja $\Gamma$ uma coleção finita de fórmulas proposicionais, e $\psi$ uma fórmula proposicional.
-    Dizemos que $\psi$ é uma consequência tautológica de $\Gamma$, e escrevemos $\Gamma\models \psi$, se, e somente se, para toda valoração $v$ de $\psi$ e de cada fórmula $\xi\in \Gamma$, se $v(\xi)=T$ para cada $\xi\in \Gamma$, então $v(\psi)=T$.
+    Dizemos que $\psi$ é uma consequência tautológica de $\Gamma$, e escrevemos $\Gamma\models_P \psi$, se, e somente se, para toda valoração $v$ de $\psi$ e de cada fórmula $\xi\in \Gamma$, se $v(\xi)=T$ para cada $\xi\in \Gamma$, então $v(\psi)=T$.
 \end{metadefinition}
 
 \begin{metacorollary}\label{mcor:teoremaSemanticaProposicional}
     Seja $\Gamma$ uma coleção finita de fórmulas proposicionais, e seja $\psi$ uma fórmula proposicional.
     
-    Então $\Gamma\vdash_P \psi$ se, e somente se, $\Gamma\models \psi$.
+    Então $\Gamma\vdash_P \psi$ se, e somente se, $\Gamma\models_P \psi$.
 \end{metacorollary}
 
 \begin{proof}
@@ -1122,10 +1122,10 @@ Uma consequência é a seguinte.
     Pela hipótese indutiva, $\Gamma'\models \phi\rightarrow \psi$, de modo que $v(\phi\rightarrow \psi)=T$.
     Como $v(\phi)=T$ (pois $\phi\in \Gamma$), segue que $v(\psi)=T$.
 
-    Agora suponha que $\Gamma\models \psi$.
+    Agora suponha que $\Gamma\models_P \psi$.
     Devemos ver que $\Gamma\vdash_P \psi$.
     Equivalentemente, veremos que $\Gamma'\vdash_P \phi\rightarrow \psi$.
-    Por hipótese indutiva, basta ver que $\Gamma'\models \phi\rightarrow \psi$.
+    Por hipótese indutiva, basta ver que $\Gamma'\models_P \phi\rightarrow \psi$.
     Seja $v$ uma valoração de $\phi\rightarrow \psi$ e de cada fórmula de $\Gamma'$ tal que $v(\chi)=T$ para cada $\chi\in \Gamma'$.
 
     Se $v(\phi)=F$, então $v(\phi\rightarrow \psi)=T$ e termina a demonstração.
@@ -1224,7 +1224,7 @@ Uma consequência é a seguinte.
     Seja $\Gamma=\{\phi\rightarrow\psi,\phi\}$, em que $\phi$ e $\psi$ são fórmulas proposicionais.
     Mostre diretamente, pela definição de consequência tautológica, que
     \[
-        \Gamma\models \psi.
+        \Gamma\models_P \psi.
     \]
     Conclua que
     \[
