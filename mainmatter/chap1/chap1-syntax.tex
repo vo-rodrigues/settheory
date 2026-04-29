@@ -23,7 +23,7 @@ Nesta seção, trabalharemos um pouco mais com elementos e definições sintáti
     
         \item $\forall x (x = x)$ é uma sentença, pois a única variável que aparece nela é $x$, e todas as ocorrências de $x$ são ligadas.
     
-        \item $x = x \wedge \forall x \,(x \in x)$ não é uma sentença, pois a primeira ocorrência de $x$ é livre.
+        \item $x = x \wedge \forall x \,(x \in x)$ não é uma sentença, pois as duas primeiras ocorrências de $x$ são livres.
 \end{itemize}
 \end{example}
 
@@ -67,7 +67,7 @@ Sempre que considerarmos uma constante como alvo de substituição, suas ocorrê
     Formalmente, define-se $s[x/t]$ por indução sobre a estrutura de $s$, como se segue.
     \begin{itemize}
         \item Se $s$ é $x$, então $s[x/t]$ é $t$.
-        \item Se $s$ é constante ou uma variável diferente de $x$, então $s[x/t]$ é $s$.
+        \item Se $s$ é uma variável ou constante diferente de $x$, então $s[x/t]$ é $s$.
         \item Se $s$ é $fe_1 \dots e_n$, em que $f$ é um símbolo funcional $n$-ário e $e_1, \dots, e_n$ são termos para os quais $e_1[x/t], \dots, e_n[x/t]$ já foram definidos, então $s[x/t]$ é $fe_1[x/t] \dots e_n[x/t]$.
     \end{itemize}
 \end{metadefinition}
@@ -88,17 +88,17 @@ Sigamos para alguns exemplos.
 \end{example}
 
 A seguir, definiremos a substituição de termos em fórmulas.
-Conforme será discutido, é necessário cautela ao se substituir variáveis por termos que contém variáveis.
+Conforme será discutido, é necessária cautela ao se substituir variáveis por termos que contêm variáveis.
 Por exemplo, a fórmula $\exists y \, \neg(x = y)$ pode, intuitivamente, ter comportamento diferente conforme o valor atribuído a $x$.
 Mas, ao substituir $x$ por $y$, obtemos $\exists y \, \neg(y = y)$, uma fórmula de comportamento lógico completamente diferente.
 
-Optaremos por definir a substituição formal em fórmulas sem se preocupar com este problema, e, a seguir, definir a noção de \emph{substituição válida}.
+Optaremos por definir a substituição formal em fórmulas sem nos preocuparmos com este problema, e, a seguir, definir a noção de \emph{substituição válida}.
 \begin{metadefinition}[Substituição em fórmulas]\label{mdef:substituicaoEmFormulas}\index{substituição!em fórmulas}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem, $x$ uma variável ou constante e $t$ um $\mathcal L$-termo.
 
-    Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida por uma substituição literal: substituem-se todas as ocorrências livres de $x$ por $t$, mesmo que variáveis que ocorrem em $t$ passem a ficar no escopo de quantificadores já presentes em $\varphi$.
+    Dada uma fórmula $\varphi$, $\varphi[x/t]$ é a fórmula obtida por uma substituição literal: substituem-se todas as ocorrências livres de $x$ por $t$ (no caso de constantes, todas as ocorrências), mesmo que variáveis que ocorrem em $t$ passem a ficar no escopo de quantificadores já presentes em $\varphi$.
     
-    Formalmente, define-se $\varphi[x/t]$ por indução sobre a estrutura de $\varphi$ através do algoritmo a seguir.
+    Formalmente, define-se $\varphi[x/t]$ por indução sobre a estrutura de $\varphi$ pelo algoritmo a seguir.
     \begin{itemize}
         \item Se $\varphi$ é $P e_1 \dots e_n$, em que $P$ é um símbolo de predicado $n$-ário ($n>0$) e $e_1, \dots, e_n$ são termos, então $\varphi[x/t]$ é $P e_1[x/t] \dots e_n[x/t]$.
         \item Se $\varphi$ é $= e_1 e_2$, em que $e_1$ e $e_2$ são termos, então $\varphi[x/t]$ é $= e_1[x/t] e_2[x/t]$.
@@ -126,7 +126,7 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
 \begin{example}\label{exa:substituicaoInvalida}
     Considere a fórmula $\exists y \, \neg(x = y)$.
 
-    A variável $x$ não é substituível pelo termo $y$ nesta fórmula, pois a ocorrência livre de $x$ está no escopo de um quantificador de uma variável que ocorre em $y$ (o próprio $y$).
+    A variável $x$ não é substituível pelo termo $y$ nesta fórmula, pois a ocorrência livre de $x$ está no escopo de um quantificador que age em uma variável que ocorre em $y$ (o próprio $y$).
 
     Notemos que, ao substituir $x$ por $y$ nessa fórmula, obtemos $\exists y \, \neg(y = y)$.
 \end{example}
@@ -135,7 +135,7 @@ Ainda não apresentamos uma noção de verdade ou de dedução, mas, utilizando 
     Considere a fórmula $\varphi$ dada por $\forall x \exists y \, \neg(x = y)$.
 
     A substituição de $x$ e $y$ por qualquer termo $t$ é válida, pois a fórmula não possui variáveis livres.
-    Notemos que para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, \neg(x = y)$ e $\varphi[y/t]$ é $\forall x \exists y \, \neg(x = y)$, ou seja, a fórmula é invariante por tais substituições.
+    Notemos que, para qualquer termo $t$, $\varphi[x/t]$ é $\forall x \exists y \, \neg(x = y)$ e $\varphi[y/t]$ é $\forall x \exists y \, \neg(x = y)$, ou seja, a fórmula é invariante por tais substituições.
 \end{example}
 
 Começaremos com algumas substituições válidas triviais.
@@ -159,6 +159,7 @@ Começaremos com algumas substituições válidas triviais.
     
     Considere uma fórmula atômica $R(e_1, \dots, e_n)$, em que $R$ é um símbolo de predicado $n$-ário e $e_1, \dots, e_n$ são termos.
     Pelo já demonstrado, $R(e_1, \dots, e_n)[x/x]$ é $R(e_1[x/x], \dots, e_n[x/x])$, que é $R(e_1, \dots, e_n)$.
+    O caso de fórmulas equacionais é análogo, e o caso de predicados 0-ários é imediato.
 
     Se $\varphi$ é $\neg \psi$ e a tese já foi demonstrada para $\psi$, então $\varphi[x/x]$ é $\neg \psi[x/x]$, que é $\neg \psi$.
 
@@ -169,7 +170,7 @@ Começaremos com algumas substituições válidas triviais.
     Finalmente, se $\varphi$ é $\forall x \psi$ ou $\exists x \psi$, e a tese já foi demonstrada para $\psi$, então $\varphi[x/x]$ é $\varphi$.
 \end{proof}
 
-Começaremos com algumas substituições válidas triviais.
+Também usaremos a seguinte substituição válida trivial.
 
 \begin{metalemma}\label{mlem:substituicaoTrivial}
     Seja $\mathcal L$ um léxico para uma linguagem de primeira ordem e $s$ um $\mathcal L$-termo no qual uma variável ou constante $x$ não ocorre.
@@ -186,6 +187,7 @@ Começaremos com algumas substituições válidas triviais.
 
     Considere uma fórmula atômica $R(e_1, \dots, e_n)$, em que $R$ é um símbolo de predicado $n$-ário e $e_1, \dots, e_n$ são termos.
     Pelo já demonstrado, $R(e_1, \dots, e_n)[x/t]$ é $R(e_1[x/t], \dots, e_n[x/t])$, que é $R(e_1, \dots, e_n)$.
+    O caso de fórmulas equacionais é análogo, e o caso de predicados 0-ários é imediato.
 
     Se $\varphi$ é $\neg \psi$ e a tese já foi demonstrada para $\psi$, então $\varphi[x/t]$ é $\neg \psi[x/t]$, que é $\neg \psi$.
 
@@ -213,7 +215,7 @@ O metalema abaixo nos mostra critérios úteis em induções para demonstrar que
 \begin{proof}
     O primeiro item é imediato, uma vez que fórmulas atômicas não possuem quantificadores.
 
-        Para o segundo item, note que os quantificadores de $\neg \varphi$ são exatamente os quantificadores de $\varphi$, com os mesmos escopos.
+    Para o segundo item, note que os quantificadores de $\neg \varphi$ são exatamente os quantificadores de $\varphi$, com os mesmos escopos.
     
     Para o terceiro item, note que o escopo de um quantificador de $\varphi \square \psi$ é o escopo de um quantificador de $\varphi$ ou o escopo de um quantificador de $\psi$, e vice-versa.
 
@@ -397,7 +399,7 @@ Nesse contexto, vale o seguinte metalema.
     \[
         \varphi[y/u][x/t[y/u]]=\varphi[y/u],
     \]
-    pois a substituição por \(x\) não atravessa o quantificador inicial \(Qx\).
+    pois a substituição por $x$ não atravessa o quantificador inicial $Qx$.
 
     Suponha agora que $z$ é diferente de $x$.
     Então
@@ -406,6 +408,7 @@ Nesse contexto, vale o seguinte metalema.
     \]
 
     Se $y$ é variável e $z=y$, então $\varphi[y/u]=\varphi$.
+    Além disso, $y$ é substituível por $u$ em $\varphi$, pois a substituição por $y$ não atravessa o quantificador inicial $Qy$.
     Da hipótese de que $x$ é substituível por $t$ em $Qy\psi$, segue, pelo Metalema~\ref{mlem:criteriosSubstituibilidade}, que $x$ é substituível por $t$ em $\psi$ e que $x$ não ocorre livre em $\psi$ ou $y$ não ocorre em $t$.
 
     Se $x$ não ocorre livre em $\psi$, então $x$ também não ocorre livre em $Qy\psi$, e a substituição por $x$ é trivial.
@@ -425,7 +428,7 @@ Nesse contexto, vale o seguinte metalema.
         \psi[x/t][y/u]=\psi[y/u][x/t[y/u]].
     \]
 
-    Resta verificar as condições referentes ao quantificador inicial \(Qz\).
+    Resta verificar as condições referentes ao quantificador inicial $Qz$.
     Da substituibilidade de $y$ por $u$ em $Qz\psi[x/t]$, temos que $y$ não ocorre livre em $\psi[x/t]$ ou $z$ não ocorre em $u$.
     Se $z$ não ocorre em $u$, então a condição para que $y$ seja substituível por $u$ em $Qz\psi$ está satisfeita.
     Se $y$ não ocorre livre em $\psi[x/t]$, então, como $x\neq y$, nenhuma ocorrência livre de $y$ em $\psi$ desaparece ao substituir $x$ por $t$; logo, $y$ não ocorre livre em $\psi$.
@@ -440,7 +443,7 @@ Nesse contexto, vale o seguinte metalema.
     Suponha, então, que $z$ não ocorre em $t$.
     Se $z$ também não ocorre em $u$, então $z$ não ocorre em $t[y/u]$.
     Se $z$ ocorre em $u$, então, pela substituibilidade de $y$ por $u$ em $Qz\psi[x/t]$, temos que $y$ não ocorre livre em $\psi[x/t]$.
-    Nesse caso, como uma ocorrência livre de $x$ em $\psi$ produziria uma ocorrência livre de $y$ em $\psi[x/t]$ caso $y$ ocorresse em $t$, concluímos que ou $x$ não ocorre livre em $\psi$, ou $y$ não ocorre em $t$.
+    Nesse caso, pela substituibilidade de $x$ por $t$ em $Qz\psi$, uma ocorrência livre de $x$ em $\psi$ produziria uma ocorrência livre de $y$ em $\psi[x/t]$ caso $y$ ocorresse em $t$; concluímos que ou $x$ não ocorre livre em $\psi$, ou $y$ não ocorre em $t$.
     No primeiro caso, $x$ não ocorre livre em $\psi[y/u]$.
     No segundo, como $y$ não ocorre em $t$, temos $t[y/u]=t$, e portanto $z$ não ocorre em $t[y/u]$.
 
