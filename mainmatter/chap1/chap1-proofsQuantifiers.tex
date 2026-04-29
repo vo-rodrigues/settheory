@@ -8,8 +8,8 @@ Aqui aparecem as condições mais delicadas da seção, pois é preciso controla
 Comecemos com duas regras diretamente associadas aos axiomas FO14 e FO15.
 
 \begin{metaproposition}[Instanciação universal e generalização existencial]\label{mprop:instanciacaoUniversalGeneralizacaoExistencial}
-    Seja $T$ uma teoria de primeira ordem de léxico $L$.
-    Seja $\varphi$ uma $L$-fórmula, seja $x$ uma variável e seja $t$ um $L$-termo tal que $x$ é substituível por $t$ em $\varphi$.
+    Seja $T$ uma teoria de primeira ordem de léxico $\mathcal L$.
+    Seja $\varphi$ uma $\mathcal L$-fórmula, seja $x$ uma variável e seja $t$ um $\mathcal L$-termo tal que $x$ é substituível por $t$ em $\varphi$.
 
     Então:
 
@@ -327,7 +327,7 @@ Essa prática é formalizada pelo seguinte metateorema.
 
     \textbf{Caso 1.} Suponha que$\theta_i$ é um axioma de $T(c)$.
     Então $\theta_i\in\Sigma$.
-    Como os axiomas de $\Sigma$ são $L$-sentenças, $\theta_i$ é uma $L$-fórmula.
+    Como os axiomas de $\Sigma$ são $\mathcal L$-sentenças, $\theta_i$ é uma $\mathcal L$-fórmula.
     Como $c$ não ocorre em $\theta_i$, pelo Metalema~\ref{mlem:substituicaoTrivial}, $\theta_i[c/y]$ é a própria $\theta_i$.
     Assim, $T\vdash \theta_i[c/y]$.
 
@@ -338,7 +338,7 @@ Essa prática é formalizada pelo seguinte metateorema.
 
     Quanto a FO17 e FO18, note que o novo símbolo $c$ é apenas um símbolo de constante.
     Portanto, ele não é um símbolo funcional de aridade positiva nem um símbolo de predicado, e não introduz novos casos nesses esquemas.
-    Assim, instâncias de FO17 e FO18 em $L(c)$ são levadas a instâncias dos mesmos esquemas em $L$.
+    Assim, instâncias de FO17 e FO18 em $\mathcal L(c)$ são levadas a instâncias dos mesmos esquemas em $\mathcal L$.
 
     Resta verificar FO14 e FO15.
     Se $\theta_i$ é uma instância de FO14, então $\theta_i$ é da forma $\forall z\varphi\rightarrow\varphi[z/t]$ em que $z$ é substituível por $t$ em $\varphi$.

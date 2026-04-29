@@ -28,15 +28,15 @@ Por exemplo, o Metalema~\ref{mlem:modusPonens} (Modus Ponens) pode ser escrito c
 \]
 Tal notação nos diz que a partir de demonstrações formais de $\varphi$ e de $\varphi\rightarrow\psi$ em $T$, é possível construir uma demonstração formal de $\psi$ em $T$.
 
-Utilizaremos a convenção de que, se $T=(L,\Sigma)$ é uma teoria de primeira ordem e $\varphi$ é uma $L$-sentença, então $T\cup \{\varphi\}$ é a teoria $(L,\Sigma\cup\{\varphi\})$.
+Utilizaremos a convenção de que, se $T=(\mathcal L,\Sigma)$ é uma teoria de primeira ordem e $\varphi$ é uma $\mathcal L$-sentença, então $T\cup \{\varphi\}$ é a teoria $(\mathcal L,\Sigma\cup\{\varphi\})$.
 
 \subsection{O Teorema da Dedução}
 
 O Teorema da Dedução formaliza o uso de hipóteses temporárias.
-Ele justifica o procedimento usual de, para provar uma implicação $\varphi\rightarrow\psi$ em que $\varphi$ é uma $L$-sentença, assumir temporariamente $\varphi$ e, sob essa hipótese, provar $\psi$.
+Ele justifica o procedimento usual de, para provar uma implicação $\varphi\rightarrow\psi$ em que $\varphi$ é uma $\mathcal L$-sentença, assumir temporariamente $\varphi$ e, sob essa hipótese, provar $\psi$.
 
 \begin{metatheorem}[Teorema da Dedução]\label{mteo:teoremaDaDeducaoFO}\label{mthm:teoremaDaDeducao}
-    Seja $T=(L,\Sigma)$ uma teoria de primeira ordem, $\varphi$ uma $L$-sentença e seja $\psi$ uma $L$-fórmula.
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, $\varphi$ uma $\mathcal L$-sentença e seja $\psi$ uma $\mathcal L$-fórmula.
 
     Então $T\cup\{\varphi\}\vdash \psi$ se, e somente se, $T\vdash \varphi\rightarrow\psi$.
     Ou seja:
