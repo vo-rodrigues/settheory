@@ -77,30 +77,43 @@ Para reforçar a ideia de que as demonstrações usuais em matemática poderiam,
 
 Começaremos ``importando'' teoremas da lógica proposicional para a lógica de primeira ordem.
 
-A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef:substituicaoProposicional} para a lógica proposicional, mas agora é aplicada a fórmulas de primeira ordem.
+A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef:substituicaoProposicional} para a lógica proposicional, mas agora permite substituir letras proposicionais por fórmulas de uma linguagem de primeira ordem.
 
 \begin{metadefinition}
-   Seja $\mathcal L$ um léxico de primeira ordem.
-   Considere uma coleção finita de variáveis proposicionais $\mathcal P$.
-   Uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas é um mapeamento de modo que para cada variável proposicional $P$ em $\mathcal P$, $\rho(P)$ é uma $\mathcal L$-fórmula.
+    A \emph{extensão da lógica proposicional para a lógica de primeira ordem} é a teoria cujos únicos símbolos não lógicos são letras proposicionais, isto é, símbolos de predicado $0$-ários $P_0$, $P_1$, $P_2,\dots$, e que não possui axiomas não lógicos.
+    Ela é denotada por $T_P$, e sua linguagem é denotada por $\mathcal L_P$.
 
-   Se $\theta$ é uma fórmula proposicional, dizemos que $\rho$ é uma atribuição para $\theta$ se toda variável proposicional que ocorre em $\theta$ está em $\mathcal P$.
+    Exceto caso explicitamente mencionado, vamos assumir que qualquer outra teoria que estudaremos não possui as letras proposicionais $P_0$, $P_1$, $P_2$, $\dots$ como símbolos de seu léxico.
 \end{metadefinition}
+
+Note que as fórmulas proposicionais são exatamente as $\mathcal L_P$-fórmulas sem quantificadores e sem símbolos de igualdade.
+\begin{metadefinition}
+   Seja $\mathcal L$ um léxico de primeira ordem.
+   Considere uma coleção finita $\mathcal P$ de letras proposicionais de $\mathcal L_P$.
+   Uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas é um mapeamento tal que, para cada letra proposicional $P$ em $\mathcal P$, $\rho(P)$ é uma $\mathcal L$-fórmula.
+
+   Se $\theta$ é uma $\mathcal L_P$-fórmula, dizemos que $\rho$ é uma atribuição para $\theta$ se toda letra proposicional que ocorre em $\theta$ está em $\mathcal P$.
+\end{metadefinition}
+
+Essa substituição é literal: ao substituir uma letra proposicional por uma fórmula, variáveis livres da fórmula substituída podem passar a ficar no escopo de quantificadores já presentes em $\theta$.
 
 \begin{metadefinition}[Substituição proposicional]\label{mdef:substituicaoProposicionalFO}\index{substituição!proposicional}
    Seja $\mathcal L$ um léxico de primeira ordem.
-   Considere uma coleção finita de variáveis proposicionais $\mathcal P$ e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas.
+   Considere uma coleção finita $\mathcal P$ de letras proposicionais de $\mathcal L_P$ e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas.
 
-   Recursivamente na complexidade de uma fórmula proposicional $\theta$, definimos a substituição de $\theta$ via $\rho$, denotada por $\subst(\theta, \rho)$, a partir do seguinte algoritmo.
+   Recursivamente na complexidade de uma $\mathcal L_P$-fórmula $\theta$, definimos a substituição de $\theta$ via $\rho$, denotada por $\subst(\theta, \rho)$, a partir do seguinte algoritmo.
    Se $\rho$ não é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é um símbolo $I$ que não faz parte da linguagem (que denota, intuitivamente, que $\subst(\theta, \rho)$ é indefinido).
    Caso contrário, procedemos como nos itens abaixo.
+   Note que como os únicos símbolos não lógicos de $\mathcal L_P$ são predicados $0$-ários, os únicos termos de $\mathcal L_P$ são variáveis.
     \begin{itemize}
         \item Se $\theta$ é uma variável proposicional $P$, então $\subst(\theta, \rho)$ é $\rho(P)$.
         \item Se $\theta$ é $\neg \psi$, então $\subst(\theta, \rho)$ é $\neg \subst(\psi, \rho)$.
+        \item Se $\theta$ é $x=y$, em que $x$ e $y$ são variáveis, então $\subst(\theta, \rho)$ é $x=y$.
         \item Se $\theta$ é $ \psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\subst(\theta, \rho)$ é $\subst(\psi, \rho) \square \subst(\eta, \rho)$.
+        \item Se $\theta$ é $\forall x \psi$ ou $\exists x \psi$, então $\subst(\theta, \rho)$ é $\forall x \subst(\psi, \rho)$ ou $\exists x \subst(\psi, \rho)$, respectivamente.
     \end{itemize}
 
-    Se $\theta$ é uma tautologia e $\rho$ é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é dita ser uma \emph{instância de tautologia}.
+    Se $\theta$ é uma tautologia proposicional e $\rho$ é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é dita ser uma \emph{instância de tautologia}.
 \end{metadefinition}
 
 \begin{metatheorem}
@@ -118,18 +131,18 @@ A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef
 
     Assim, existe uma demonstração proposicional de $\theta$ a partir da coleção vazia de axiomas, digamos $\theta_0, \dots, \theta_n$, em que $\theta_n$ é $\theta$.
 
-    Seja $\mathcal P'$ uma coleção finita de variáveis proposicionais que contém $\mathcal P$ e todas as variáveis proposicionais que ocorrem em alguma das fórmulas $\theta_0,\dots,\theta_n$.
+    Seja $\mathcal P'$ uma coleção finita de letras proposicionais que contém $\mathcal P$ e todas as letras proposicionais que ocorrem em alguma das fórmulas $\theta_0,\dots,\theta_n$.
 
     Estenda $\rho$ a uma atribuição $\rho'$ de $\mathcal P'$ a $\mathcal L$-fórmulas.
-    Assim, $\rho'$ é uma atribuição para cada $\theta_i$ e coincide com $\rho$ em todas as variáveis proposicionais que ocorrem em $\theta$.
+    Assim, $\rho'$ é uma atribuição para cada $\theta_i$ e coincide com $\rho$ em todas as letras proposicionais que ocorrem em $\theta$.
 
     Para cada $i\leq n$, seja $\psi_i$ a fórmula $\subst(\theta_i, \rho')$.
     Note que $\psi_n$ é $\subst(\theta_n, \rho')$, que é $\subst(\theta, \rho)$, que é $\phi$.
 
     Veremos que $\psi_0, \dots, \psi_n$ é uma demonstração de $\phi$ que usa apenas os axiomas lógicos (FO1)--(FO13) e a regra de \emph{modus ponens}.
 
-    Com efeito, para cada $i\leq n$, $\theta_i$ é um axioma lógico ou é obtida por \emph{modus ponens} de duas fórmulas anteriores.
-    Se $\theta_i$ é um axioma lógico do tipo (PC1)-(PC13), então $\psi_i$ é um axioma lógico do tipo (FO1)-(FO13) (mesma numeração).
+    Com efeito, para cada $i\leq n$, $\theta_i$ é um axioma da lógica proposicional ou é obtida por \emph{modus ponens} de duas fórmulas anteriores.
+    Se $\theta_i$ é um axioma proposicional do tipo (PC1)--(PC13), então $\psi_i$ é um axioma lógico do tipo (FO1)--(FO13) (mesma numeração).
 
     Se $\theta_i$ é obtida por \emph{modus ponens} de $\theta_j$ e $\theta_k$, com $j, k<i$ e $\theta_j$ é $\theta_k \rightarrow \theta_i$, então $\psi_j$ é $\psi_k \rightarrow \psi_i$, e, portanto, $\psi_i$ é obtida por \emph{modus ponens} de $\psi_j$ e $\psi_k$.
 
