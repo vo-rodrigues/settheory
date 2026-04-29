@@ -1,0 +1,437 @@
+\section{Regras derivadas para igualdade}\label{sec:regrasDerivadasParaIgualdade}
+
+Nesta seção, extrairemos algumas regras usuais para manipular igualdade.
+
+Os axiomas (FO16)--(FO18) afirmam, respectivamente, a reflexividade da igualdade e a compatibilidade da igualdade com símbolos funcionais e símbolos de predicado.
+A partir deles, podemos justificar os raciocínios usuais ``se duas coisas são iguais, elas satisfazem as mesmas propriedades''.
+
+Começaremos registrando uma forma conveniente dos axiomas de congruência.
+
+\begin{metalemma}[Congruência com termos]\label{mlem:congruenciaComTermos}
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem.
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $f$ é um símbolo funcional $n$-ário da linguagem de $\mathcal L$, com $n>0$, e se $s_1,\dots,s_n,t_1,\dots,t_n$ são termos da linguagem de $T$, então
+        \[
+            T\vdash
+            \left(\bigwedge_{i=1}^n s_i=t_i\right)
+            \rightarrow
+            f(s_1,\dots,s_n)=f(t_1,\dots,t_n).
+        \]
+
+        \item Se $P$ é um símbolo de predicado $n$-ário da linguagem de $\mathcal L $, com $n>0$, ou se $P$ é o símbolo lógico de igualdade, e se $s_1,\dots,s_n,t_1,\dots,t_n$ são termos da linguagem de $T$, então
+        \[
+            T\vdash
+            \left(\bigwedge_{i=1}^n s_i=t_i\right)
+            \rightarrow
+            \bigl(P(s_1,\dots,s_n)\leftrightarrow P(t_1,\dots,t_n)\bigr).
+        \]
+        No caso em que $P$ é o símbolo lógico de igualdade, entende-se que $n=2$ e que $P(s_1,s_2)$ é a fórmula $s_1=s_2$.
+    \end{enumerate}
+\end{metalemma}
+
+\begin{proof}
+    As fórmulas acima são obtidas a partir dos axiomas (FO17) e (FO18), tomando fechos universais desses axiomas e aplicando instanciação universal aos termos indicados.
+\end{proof}
+
+Como primeira consequência, obtemos as propriedades elementares da igualdade.
+
+\begin{metaproposition}[Propriedades elementares da igualdade]\label{mprop:propriedadesElementaresIgualdade}
+    Seja $T$ uma teoria de primeira ordem e sejam $r,s,t$ termos da linguagem de $T$.
+    Então:
+
+    \begin{enumerate}
+        \item $T\vdash r=r$.
+
+        \item $T\vdash r=s\rightarrow s=r$.
+
+        \item $T\vdash (r=s\wedge s=t)\rightarrow r=t$.
+    \end{enumerate}
+\end{metaproposition}
+
+\begin{proof}
+    O item (1) é obtido a partir de (FO16) por instanciação universal.
+
+    Para o item (2), pelo item (2) do Metalema~\ref{mlem:congruenciaComTermos}, aplicado ao símbolo lógico de igualdade, temos
+    \[
+        T\vdash
+        (r=s\wedge r=r)\rightarrow(r=r\leftrightarrow s=r).
+    \]
+    Como $T\vdash r=r$, segue, por raciocínio tautológico, que
+    \[
+        T\vdash r=s\rightarrow s=r.
+    \]
+
+    Para o item (3), pelo item (2), temos
+    \[
+        T\vdash r=s\rightarrow s=r.
+    \]
+    Logo, por raciocínio  tautológico,
+    \[
+        T\vdash (r=s\wedge s=t)\rightarrow(s=r\wedge s=t).
+    \]
+    Novamente pelo item (2) do Metalema~\ref{mlem:congruenciaComTermos}, aplicado ao símbolo lógico de igualdade,
+    \[
+        T\vdash
+        (s=r\wedge s=t)\rightarrow(s=s\leftrightarrow r=t).
+    \]
+    Como $T\vdash s=s$, segue que
+    \[
+        T\vdash (s=r\wedge s=t)\rightarrow r=t.
+    \]
+    Portanto,
+    \[
+        T\vdash (r=s\wedge s=t)\rightarrow r=t.
+    \]
+\end{proof}
+
+Em particular, podemos usar simetria e transitividade da igualdade como regras derivadas:
+\[
+    \frac{T\vdash r=s}{T\vdash s=r}
+    \qquad\text{e}\qquad
+    \frac{T\vdash r=s \quad T\vdash s=t}{T\vdash r=t}.
+\]
+
+Passamos agora à substituição de termos iguais dentro de termos.
+
+\begin{metalemma}[Substituição de iguais em termos]\label{mlem:substituicaoIguaisTermos}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $x$ uma variável, sejam $s$ e $t$ termos da linguagem de $T$, e seja $r$ um termo da linguagem de $T$.
+
+    Então
+    \[
+        T\vdash s=t\rightarrow r[x/s]=r[x/t].
+    \]
+\end{metalemma}
+
+\begin{proof}
+    Procedemos por indução sobre a estrutura do termo $r$.
+
+    Se $r$ é a variável $x$, então $r[x/s]$ é $s$ e $r[x/t]$ é $t$.
+    Logo, a conclusão é
+    \[
+        T\vdash s=t\rightarrow s=t,
+    \]
+    que é uma instância de tautologia.
+
+    Se $r$ é uma variável diferente de $x$, ou se $r$ é uma constante, então $r[x/s]$ e $r[x/t]$ são ambos $r$.
+    Como $T\vdash r=r$, segue que
+    \[
+        T\vdash s=t\rightarrow r=r.
+    \]
+
+    Finalmente, suponha que $r$ é $f(r_1,\dots,r_n)$, em que $f$ é um símbolo funcional $n$-ário e $n>0$.
+    Pela hipótese de indução, para cada $i\in\{1,\dots,n\}$,
+    \[
+        T\vdash s=t\rightarrow r_i[x/s]=r_i[x/t].
+    \]
+    Por raciocínio proposicional, obtemos
+    \[
+        T\vdash
+        s=t\rightarrow
+        \bigwedge_{i=1}^n r_i[x/s]=r_i[x/t].
+    \]
+    Pelo Metalema~\ref{mlem:congruenciaComTermos},
+    \[
+        T\vdash
+        \left(\bigwedge_{i=1}^n r_i[x/s]=r_i[x/t]\right)
+        \rightarrow
+        f(r_1[x/s],\dots,r_n[x/s])
+        =
+        f(r_1[x/t],\dots,r_n[x/t]).
+    \]
+    Portanto,
+    \[
+        T\vdash
+        s=t\rightarrow r[x/s]=r[x/t].
+    \]
+\end{proof}
+
+Agora veremos que a mesma ideia vale para fórmulas atômicas.
+
+\begin{metalemma}[Substituição de iguais em fórmulas atômicas]\label{mlem:substituicaoIguaisAtomicas}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $x$ uma variável, sejam $s$ e $t$ termos da linguagem de $T$, e seja $\alpha$ uma fórmula atômica da linguagem de $T$.
+
+    Então
+    \[
+        T\vdash s=t\rightarrow(\alpha[x/s]\leftrightarrow\alpha[x/t]).
+    \]
+\end{metalemma}
+
+\begin{proof}
+    Se $\alpha$ é um símbolo de predicado $0$-ário, então $\alpha[x/s]$ e $\alpha[x/t]$ são ambas $\alpha$.
+    Logo,
+    \[
+        T\vdash s=t\rightarrow(\alpha\leftrightarrow\alpha).
+    \]
+
+    Suponha que $\alpha$ é $P(r_1,\dots,r_n)$, em que $P$ é um símbolo de predicado $n$-ário e $n>0$.
+    Pelo Metalema~\ref{mlem:substituicaoIguaisTermos}, para cada $i\in\{1,\dots,n\}$,
+    \[
+        T\vdash s=t\rightarrow r_i[x/s]=r_i[x/t].
+    \]
+    Assim, por raciocínio proposicional,
+    \[
+        T\vdash
+        s=t\rightarrow
+        \bigwedge_{i=1}^n r_i[x/s]=r_i[x/t].
+    \]
+    Pelo Metalema~\ref{mlem:congruenciaComTermos},
+    \[
+        T\vdash
+        \left(\bigwedge_{i=1}^n r_i[x/s]=r_i[x/t]\right)
+        \rightarrow
+        \bigl(P(r_1[x/s],\dots,r_n[x/s])
+        \leftrightarrow
+        P(r_1[x/t],\dots,r_n[x/t])\bigr).
+    \]
+    Portanto,
+    \[
+        T\vdash s=t\rightarrow(\alpha[x/s]\leftrightarrow\alpha[x/t]).
+    \]
+
+    Finalmente, se $\alpha$ é uma fórmula equacional $r_1=r_2$, procedemos da mesma forma, usando o item (2) do Metalema~\ref{mlem:congruenciaComTermos} aplicado ao símbolo lógico de igualdade.
+\end{proof}
+
+Precisaremos do seguinte.
+
+\begin{metalemma}[Quantificação de equivalências sob hipótese]\label{mlem:quantificacaoEquivalenciasSobHipotese}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $y$ uma variável e sejam $\theta,\alpha,\beta$ fórmulas da linguagem de $T$.
+    Suponha que $y$ não ocorra livre em $\theta$.
+
+    Então, para $Q$ sendo $\forall$ ou $\exists$, vale a seguinte regra derivada:
+    \[
+        \frac{T\vdash \theta\rightarrow(\alpha\leftrightarrow\beta)}
+             {T\vdash \theta\rightarrow(Qy\,\alpha\leftrightarrow Qy\,\beta)}.
+    \]
+\end{metalemma}
+
+\begin{proof}
+    Para $\forall$, observe primeiro que $T\vdash \theta\rightarrow\forall y \theta$, pela introdução do quantificador universal.
+    Agora note que, da generalização da hipótese do metalema, $T\vdash \forall y(\theta\rightarrow (\alpha\leftrightarrow\beta))$, e que, portanto, $T\vdash \forall y \theta\rightarrow \forall y(\alpha\leftrightarrow\beta)$.
+    Assim, pela transitividade de $\rightarrow$, $T\vdash \theta\rightarrow \forall y(\alpha\leftrightarrow\beta)$.
+
+    Como a passagem de $\forall y(\alpha\leftrightarrow\beta)$ para $\forall y\,\alpha\leftrightarrow\forall y\,\beta$ é uma regra derivada das regras para quantificadores, segue, pela transitividade de $\rightarrow$, que
+    \[
+        T\vdash \theta\rightarrow(\forall y\,\alpha\leftrightarrow\forall y\,\beta).'
+    \]
+    
+    Para $\exists$, temos da hipótese que $T\vdash \theta\rightarrow(\neg \alpha\leftrightarrow\neg \beta)$ por raciocínio tautológico.
+    Da primeira parte, temos $T\vdash \theta\rightarrow(\forall y\,\neg \alpha\leftrightarrow \forall y\,\neg \beta)$.
+    Novamente de raciocínio tautológico, $T\vdash \theta\rightarrow(\neg\forall y\,\neg \alpha\leftrightarrow \neg\forall y\,\neg \beta)$.
+    
+    Como $T\vdash \neg\forall y\,\neg \alpha\leftrightarrow \exists y\,\alpha$ e $T\vdash \neg\forall y\,\neg \beta\leftrightarrow \exists y\,\beta$, segue que $T\vdash \theta\rightarrow(\exists y\,\alpha\leftrightarrow \exists y\,\beta)$.
+\end{proof}
+
+Agora estamos prontos para demonstrar a Lei de Leibniz.
+
+\begin{metatheorem}[Lei da igualdade de Leibniz]\label{mthm:leiIgualdadeLeibniz}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $x$ uma variável, sejam $s$ e $t$ termos da linguagem de $T$, e seja $\varphi$ uma fórmula da linguagem de $T$.
+
+    Suponha que $x$ seja substituível por $s$ e por $t$ em $\varphi$.
+    Então
+    \[
+        T\vdash s=t\rightarrow(\varphi[x/s]\leftrightarrow\varphi[x/t]).
+    \]
+\end{metatheorem}
+
+\begin{proof}
+    Procedemos por indução sobre a estrutura de $\varphi$.
+
+    Se $\varphi$ é atômica, a conclusão é exatamente o Metalema~\ref{mlem:substituicaoIguaisAtomicas}.
+
+    Se $\varphi$ é $\neg\psi$, então, por hipótese de indução,
+    \[
+        T\vdash s=t\rightarrow(\psi[x/s]\leftrightarrow\psi[x/t]).
+    \]
+    
+    Ademais, $T\vdash (\psi[x/s]\leftrightarrow\psi[x/t])\rightarrow (\neg\psi[x/s]\leftrightarrow\neg\psi[x/t])$.
+    Pela transitividade de $\rightarrow$, obtemos
+    \[
+        T\vdash s=t\rightarrow(\neg\psi[x/s]\leftrightarrow\neg\psi[x/t]).
+    \]
+
+    Se $\varphi$ é $\psi\square\chi$, em que $\square$ é um conectivo binário, então, pelas hipóteses de indução aplicadas a $\psi$ e a $\chi$,
+    \[
+        T\vdash s=t\rightarrow(\psi[x/s]\leftrightarrow\psi[x/t])
+    \]
+    e
+    \[
+        T\vdash s=t\rightarrow(\chi[x/s]\leftrightarrow\chi[x/t]).
+    \]
+    Ademais, $T\vdash
+    ((\psi[x/s]\leftrightarrow\psi[x/t])\wedge(\chi[x/s]\leftrightarrow\chi[x/t]))\rightarrow ((\psi[x/s]\square\chi[x/s])\leftrightarrow(\psi[x/t]\square\chi[x/t]))$.
+    Assim, 
+    \[
+        T\vdash
+        s=t\rightarrow
+        \bigl((\psi[x/s]\square\chi[x/s])
+        \leftrightarrow
+        (\psi[x/t]\square\chi[x/t])\bigr).
+    \]
+    
+    Resta tratar o caso em que $\varphi$ é $Qy\,\psi$, em que $Q$ é $\forall$ ou $\exists$.
+
+    Se $y=x$, então as substituições por $x$ não atravessam o quantificador inicial.
+    Assim,
+    \[
+        \varphi[x/s]=\varphi=\varphi[x/t],
+    \]
+    e a conclusão segue de
+    \[
+        T\vdash s=t\rightarrow(\varphi\leftrightarrow\varphi).
+    \]
+
+    Suponha, então, que $y$ é diferente de $x$.
+    Por hipótese, $x$ é substituível por $s$ e por $t$ em $Qy\,\psi$, e, portanto, em $\psi$.
+
+    Se $x$ não ocorre livre em $\psi$, então
+    \[
+        \psi[x/s]=\psi=\psi[x/t],
+    \]
+    e a conclusão segue imediatamente.
+
+    Suponha, então, que $x$ ocorre livre em $\psi$.
+    Como $x$ é substituível por $s$ e por $t$ em $Qy\,\psi$, a variável $y$ não ocorre em $s$ nem em $t$.
+    Portanto, $y$ não ocorre livre em $s=t$.
+
+    Pela hipótese de indução,
+    \[
+        T\vdash s=t\rightarrow(\psi[x/s]\leftrightarrow\psi[x/t]).
+    \]
+    Aplicando o Metalema~\ref{mlem:quantificacaoEquivalenciasSobHipotese}, com $\theta$ sendo $s=t$, obtemos
+    \[
+        T\vdash
+        s=t\rightarrow
+        \bigl(Qy\,\psi[x/s]\leftrightarrow Qy\,\psi[x/t]\bigr).
+    \]
+\end{proof}
+
+Em linguagem informal, a Lei da igualdade de Leibniz diz que objetos iguais satisfazem as mesmas fórmulas, desde que as substituições envolvidas sejam válidas.
+
+Como regra de inferência derivada, obtemos a forma usual de substituição de iguais por iguais.
+
+\begin{metacorollary}[Substituição de iguais por iguais]\label{mcor:substituicaoIguaisPorIguais}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $x$ uma variável, sejam $s$ e $t$ termos da linguagem de $T$, e seja $\varphi$ uma fórmula da linguagem de $T$.
+    Suponha que $x$ seja substituível por $s$ e por $t$ em $\varphi$.
+
+    Então vale a seguinte regra de inferência:
+    \[
+        \frac{T\vdash s=t \qquad T\vdash \varphi[x/s]}
+             {T\vdash \varphi[x/t]}.
+    \]
+\end{metacorollary}
+
+\begin{proof}
+    Pelo Metateorema~\ref{mthm:leiIgualdadeLeibniz},
+    \[
+        T\vdash s=t\rightarrow(\varphi[x/s]\leftrightarrow\varphi[x/t]).
+    \]
+    Como $T\vdash s=t$, segue que
+    \[
+        T\vdash \varphi[x/s]\leftrightarrow\varphi[x/t].
+    \]
+    Em particular,
+    \[
+        T\vdash \varphi[x/s]\rightarrow\varphi[x/t].
+    \]
+    Como $T\vdash \varphi[x/s]$, concluímos
+    \[
+        T\vdash \varphi[x/t].
+    \]
+\end{proof}
+
+\begin{example}
+    Na linguagem da teoria dos conjuntos, suponha que
+    \[
+        T\vdash a=b.
+    \]
+    Aplicando a Lei da igualdade de Leibniz à fórmula $z\in u$, com a variável $u$, obtemos
+    \[
+        T\vdash a=b\rightarrow(z\in a\leftrightarrow z\in b).
+    \]
+    Portanto,
+    \[
+        T\vdash z\in a\leftrightarrow z\in b.
+    \]
+\end{example}
+
+\begin{example}
+    Suponha que $a,b,c,u,z$ são variáveis distintas na linguagem da teoria dos conjuntos.
+    Aplicando a Lei da igualdade de Leibniz à fórmula
+    \[
+        \forall z(z\in u\rightarrow z\in c),
+    \]
+    com a variável $u$, obtemos
+    \[
+        T\vdash
+        a=b\rightarrow
+        \Bigl(
+        \forall z(z\in a\rightarrow z\in c)
+        \leftrightarrow
+        \forall z(z\in b\rightarrow z\in c)
+        \Bigr).
+    \]
+    Aqui a hipótese de substituibilidade é satisfeita porque a variável $z$ não ocorre nos termos $a$ e $b$.
+\end{example}
+
+\begin{example}
+    Na linguagem da teoria dos grupos, suponha que $x,y,z$ são variáveis.
+    Pelo Metalema~\ref{mlem:substituicaoIguaisTermos}, aplicado ao termo $x\cdot z$, temos
+    \[
+        T\vdash x=y\rightarrow x\cdot z=y\cdot z.
+    \]
+    Analogamente,
+    \[
+        T\vdash x=y\rightarrow z\cdot x=z\cdot y.
+    \]
+    Assim, a igualdade é compatível com a multiplicação em cada coordenada.
+\end{example}
+
+\subsection*{Exercícios}
+
+\begin{exercise}
+    Use a Metaproposição~\ref{mprop:propriedadesElementaresIgualdade} para justificar as seguintes regras derivadas:
+    \[
+        \frac{T\vdash r=s}{T\vdash s=r}
+        \qquad\text{e}\qquad
+        \frac{T\vdash r=s \quad T\vdash s=t}{T\vdash r=t}.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Seja $T$ uma teoria de primeira ordem e sejam $r,s,t$ termos da linguagem de $T$.
+    Escolha uma variável $u$ que não ocorre em $r$, $s$ nem $t$.
+    Use a Lei da igualdade de Leibniz, aplicada à fórmula $r=u$, para mostrar que
+    \[
+        T\vdash s=t\rightarrow(r=s\leftrightarrow r=t).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Na linguagem da teoria dos conjuntos, use a Lei da igualdade de Leibniz para mostrar que
+    \[
+        T\vdash a=b\rightarrow
+        \bigl(a\in c\leftrightarrow b\in c\bigr)
+    \]
+    e que
+    \[
+        T\vdash a=b\rightarrow
+        \bigl(c\in a\leftrightarrow c\in b\bigr).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Na linguagem da teoria dos grupos, use o Metalema~\ref{mlem:substituicaoIguaisTermos} para mostrar que
+    \[
+        T\vdash x=y\rightarrow x^{-1}=y^{-1}.
+    \]
+    Depois, mostre que
+    \[
+        T\vdash x=y\rightarrow (x\cdot z)^{-1}=(y\cdot z)^{-1}.
+    \]
+\end{exercise}
