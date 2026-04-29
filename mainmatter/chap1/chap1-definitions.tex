@@ -37,6 +37,20 @@ Isso é formalizado pelo resultado a seguir.
     Seja $\varphi$ uma fórmula.
     Se $y$ e $z$ são variáveis distintas de $x$, distintas entre si, e que não ocorrem em $\varphi$, então as duas fórmulas obtidas ao expandir
     $\exists!x\,\varphi$ pela Equação~\eqref{eq:existsUnique} usando $y$ ou usando $z$ são equivalentes em qualquer teoria de primeira ordem.
+
+    Ou seja, se
+
+    \begin{equation}
+        (\exists x\,\varphi)\ \wedge\ \forall x\,\forall y\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr),
+    \end{equation}
+
+    então
+
+    \begin{equation}
+        (\exists x\,\varphi)\ \wedge\ \forall x\,\forall z\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr),
+    \end{equation}
+
+    e vice-versa.
 \end{metalemma}
 
 \begin{proof}
