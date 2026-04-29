@@ -25,3 +25,4 @@ Metacorolário
 monotonicidade
 subvetor
 metalema
+subexpressões
