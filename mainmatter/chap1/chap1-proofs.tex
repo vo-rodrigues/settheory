@@ -7,7 +7,7 @@ Na seção anterior, definimos demonstrações formais em teorias de primeira or
 A definição de demonstração formal é bastante rígida: é uma sequência de fórmulas, cada uma das quais é um axioma lógico, um axioma da teoria, ou é obtida a partir de fórmulas anteriores por uma das regras de inferência explicitamente permitidas.
 
 Na prática, demonstrações matemáticas são escritas de forma muito mais flexível.
-Escreve-se, a todo momento, expressões como ``suponha que $\varphi$'', ``fixe $x$ arbitrário'', ``tome $x$ tal que $\varphi(x)$'', ``dividimos em casos'' ou ``basta provar que $\psi$'', dentre muitas outras formas de raciocínio que não estão explicitamente previstas na definição de demonstração formal.
+Escrevem-se, a todo momento, expressões como ``suponha que $\varphi$'', ``fixe $x$ arbitrário'', ``tome $x$ tal que $\varphi(x)$'', ``dividimos em casos'' ou ``basta provar que $\psi$'', dentre muitas outras formas de raciocínio que não estão explicitamente previstas na definição de demonstração formal.
 O objetivo desta seção é justificar, a partir desta noção formal, várias das principais formas de raciocínio usadas na prática.
 
 As regras que aparecerão nesta seção não são novas regras primitivas acrescentadas ao sistema.
@@ -36,7 +36,7 @@ O Teorema da Dedução formaliza o uso de hipóteses temporárias.
 Ele justifica o procedimento usual de, para provar uma implicação $\varphi\rightarrow\psi$ em que $\varphi$ é uma $\mathcal L$-sentença, assumir temporariamente $\varphi$ e, sob essa hipótese, provar $\psi$.
 
 \begin{metatheorem}[Teorema da Dedução]\label{mteo:teoremaDaDeducaoFO}\label{mthm:teoremaDaDeducao}
-    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, $\varphi$ uma $\mathcal L$-sentença e seja $\psi$ uma $\mathcal L$-fórmula.
+    Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem, $\varphi$ uma $\mathcal L$-sentença e $\psi$ uma $\mathcal L$-fórmula.
 
     Então $T\cup\{\varphi\}\vdash \psi$ se, e somente se, $T\vdash \varphi\rightarrow\psi$.
     Ou seja:
@@ -49,7 +49,7 @@ Ele justifica o procedimento usual de, para provar uma implicação $\varphi\rig
 
 \begin{proof}
     Suponha primeiramente que $T\vdash \varphi\rightarrow\psi$.
-    Da monotonicidade da dedução, segue que $T\cup\{\varphi\}\vdash \varphi\rightarrow\psi$.
+    Pela Metaproposição~\ref{mprop:extensaoDeTeoria}, segue que $T\cup\{\varphi\}\vdash \varphi\rightarrow\psi$.
     Note que $T\cup\{\varphi\}\vdash \varphi$.
     Dessa forma, $T\cup\{\varphi\}\vdash \psi$ por modus ponens.
     
@@ -184,9 +184,9 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
                  {T\vdash \varphi\rightarrow\psi}
         \]
 
-        ``Como $\psi$ é verdadeiro, $\varphi$ implica $\psi$ independentemente de $\varphi$.''
+        ``Como vale $\psi$, $\varphi$ implica $\psi$ independentemente de $\varphi$.''
 
-        ``Como o antecedente $\varphi$ é falso, $\varphi$ implica $\psi$ trivialmente.''
+        ``Como vale $\neg\varphi$, $\varphi$ implica $\psi$ trivialmente.''
 
 
         \item Reflexividade de $\rightarrow$.
@@ -234,7 +234,7 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
                  {T\vdash \varphi}.
         \]
         
-        ``Como não vale $\neg \varphi$, temos $\varphi$.''
+        ``Como obtemos $\neg\neg\varphi$, podemos eliminar a dupla negação e obter $\varphi$.''
 
         \item Redução ao absurdo (Reductio ad absurdum). Se $\varphi$ é uma sentença, então
         \[
@@ -242,7 +242,7 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
                  {T\vdash \neg\varphi}.
         \]
 
-        ``Suponha por absurdo que vale $\varphi$ (...) como $\psi$ e $\neg\psi$, temos um absurdo.
+        ``Suponha por absurdo que vale $\varphi$ (...) como obtemos $\psi$ e $\neg\psi$, temos um absurdo.
         Logo, $\neg\varphi$.''
     \end{enumerate}
 \end{metaproposition}
@@ -261,7 +261,7 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
     Aplicando modus ponens duas vezes, obtemos $T\vdash \neg\varphi$.
 \end{proof}
 
-\begin{metaproposition}[Regras proposicionais para conjunção]\label{mprop:regrasProposicionaisConjuncao}
+\begin{metaproposition}[Regras proposicionais para conjunção]\label{mprop:regrasProposicionaisConjuncao}\label{mprop:principioDaExplosao}
     Seja $T$ uma teoria de primeira ordem e sejam $\varphi$, $\psi$ e $\theta$ fórmulas da linguagem de $T$.
 
     Então valem as seguintes regras de inferência.
@@ -292,7 +292,7 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
             T\vdash \neg(\varphi\land\neg\varphi).
         \]
 
-        ``$\varphi$ e $\neg\varphi$ não podem ambos ser verdadeiros.''
+        ``Não vale simultaneamente $\varphi$ e $\neg\varphi$.''
 
         \item Princípio da explosão.
         \[
@@ -348,20 +348,20 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
 
         ``Como temos $\psi$, temos $\varphi\lor\psi$.''
 
-        \item Introdução de casos. Se $\varphi$ e $\psi$ são sentenças, então
+        \item Prova por casos. Se $\varphi$ e $\psi$ são sentenças, então
         \[
             \frac{T\vdash \varphi\lor\psi \quad T\cup\{\varphi\}\vdash \theta \quad T\cup\{\psi\}\vdash \theta}
                  {T\vdash \theta}.
         \]
 
-        ``Temos $\varphi\lor\psi$. Suponha que $\varphi$ seja verdadeira. Então, $\theta$ é verdadeira. Suponha que $\psi$ seja verdadeira. Então, $\theta$ é verdadeira. Logo, $\theta$ é verdadeira.''
+        ``Temos $\varphi\lor\psi$. Suponha $\varphi$. Então obtemos $\theta$. Suponha $\psi$. Então obtemos $\theta$. Logo, $\theta$.''
 
         \item Princípio do terceiro excluído.
         \[
             T\vdash \varphi\lor\neg\varphi.
         \]
 
-        ``Pelo princípio do terceiro excluído, ou $\varphi$ é verdadeira, ou $\neg\varphi$ é verdadeira.''
+        ``Pelo princípio do terceiro excluído, vale $\varphi$ ou vale $\neg\varphi$.''
 
         \item Disjunção de casos. Se $\varphi$ é uma sentença, então
         \[
@@ -370,7 +370,7 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
         \]
 
         ``Queremos mostrar $\psi$.
-        Dividimos em casos: suponha que $\varphi$ seja verdadeira (...) então $\psi$ é verdadeira; suponha que $\varphi$ seja falsa (...) então $\psi$ é verdadeira. Logo, $\psi$ é verdadeira.''
+        Dividimos em casos: suponha $\varphi$ (...) então $\psi$; suponha $\neg\varphi$ (...) então $\psi$. Logo, $\psi$.''
 
         \item Prova de disjunção. Se $\varphi$ é uma sentença, então
         \[
@@ -379,7 +379,7 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
         \]
 
         ``Queremos mostrar $\varphi\lor\psi$.
-        É suficiente assumir $\neg\varphi$ e mostrar que, nesse caso, $\psi$ é verdadeira.''
+        É suficiente assumir $\neg\varphi$ e mostrar, nesse caso, $\psi$.''
 
         \item Comutatividade de $\lor$.
         \[
@@ -460,8 +460,8 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
         \item Idempotência de $\lor$.
         
         \[
-            \frac{T\vdash \varphi\lor \varphi}{
-                 T\vdash \varphi}
+            \frac{T\vdash \varphi\lor \varphi}
+                 {T\vdash \varphi}
         \]
 
         ``Temos $\varphi\lor\varphi$.
@@ -555,6 +555,8 @@ Elas são consequências diretas dos axiomas FO1--FO13, do fato de que instânci
             \frac{T\vdash \varphi\leftrightarrow\psi}
                  {T\vdash \neg\varphi\leftrightarrow\neg\psi}.
         \]
+
+        ``Fórmulas equivalentes têm negações equivalentes.''
     \end{enumerate}
 \end{metaproposition}
 \begin{proof}

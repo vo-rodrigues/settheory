@@ -245,7 +245,8 @@ O metalema abaixo nos mostra critérios úteis em induções para demonstrar que
 \begin{proof}
     Prova-se por indução sobre a estrutura de $t$ que $t[x/y][y/x]$ é $t$.
     \begin{itemize}
-        \item Se $t$ é uma variável ou constante $z$ diferente de $x$, então $z$ também é diferente de $y$, e portanto $t[x/y][y/x]=z[y/x]=z=t$.
+        \item Se $t$ é uma variável ou constante $z$ diferente de $x$, então $z$ também é diferente de $y$.
+        Portanto, $t[x/y][y/x]=z[y/x]=z=t$.
         Note que $x$ não ocorre em $t[x/y]=z$.
         \item Se $t$ é $x$, e $y$ não ocorre em $t$, então $x\neq y$.
         Temos que $t[x/y][y/x]=y[y/x]=x=t$, e $t[x/y]$ é $y$, que não contém $x$.
