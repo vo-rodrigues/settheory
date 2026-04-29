@@ -1,13 +1,13 @@
 \section{Adição de símbolos por definição}\label{sec:adicaoSimbolosPorDefinicao}
 \index{definição!extensão por definição}
 
-A teoria dos conjuntos é uma teoria cuja linguagem não lógica inicial consiste apenas no símbolo de pertencimento ($\in$).
-Conforme veremos, precisaremos rapidamente de símbolos funcionais adicionais, como o símbolo de constante $\emptyset$ (que representa o conjunto vazio), o operador binário de união de dois conjuntos ($\cup$), e o operador unário do conjunto das partes ($\mathcal{P}$).
+A Teoria dos Conjuntos é uma teoria cuja linguagem não lógica inicial consiste apenas no símbolo de pertencimento ($\in$).
+Conforme veremos, precisaremos rapidamente de símbolos funcionais adicionais, como o símbolo de constante $\emptyset$ (que representa o conjunto vazio), o operador binário de união de dois conjuntos ($\cup$) e o operador unário do conjunto das partes ($\mathcal{P}$).
 Analogamente, também passaremos a utilizar símbolos relacionais adicionais, como o binário $\subseteq$.
 
 Neste texto, tais símbolos serão introduzidos \emph{por definição}.
 Intuitivamente, isto significa que eles servem apenas como abreviações: em vez de escrever repetidamente uma fórmula longa, introduzimos um símbolo novo cujo comportamento é \emph{explicitamente} fixado por um axioma.
-O ponto central desta seção é formalizar essa prática e justificar que ela não aumenta o poder de prova da teoria com respeito às sentenças da linguagem original.
+O ponto central desta seção é formalizar essa prática e justificar que ela não aumenta o poder de prova da teoria em relação às sentenças da linguagem original.
 
 \subsection{O quantificador \texorpdfstring{$\exists!$}{∃!}}\label{subsec:quantificadorExistsUnique}
 \index{quantificador!existência única}
@@ -40,17 +40,28 @@ Isso é formalizado pelo resultado a seguir.
 \end{metalemma}
 
 \begin{proof}
-    Sejam $y, z$ variáveis que não ocorrem em $\varphi$.
+    Seja $T$ uma teoria de primeira ordem.
+    Sejam $y, z$ variáveis que não ocorrem em $\varphi$, distintas de $x$ e distintas entre si.
     Suponha que $T\vdash (\exists x\,\varphi)\ \wedge\ \forall x\,\forall y\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr)$.
     Veremos que $T\vdash (\exists x\,\varphi)\ \wedge\ \forall x\,\forall z\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr)$.
     A recíproca é análoga.
 
-    Para isso, basta concluir que $T\vdash \forall z\,\forall x \bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr)$.
-
-    Fixe uma constante $c$ para $z$.
-    Basta ver que na teoria expandida podemos provar $\forall x \bigl((\varphi[z/c] \wedge \varphi[x/z][z/c])\rightarrow x=c\bigr)$, ou seja, que $\forall x \bigl((\varphi \wedge \varphi[x/c])\rightarrow x=c\bigr)$.
-
-    Portanto, podemos instanciar $y$ em $c$, obtendo $\forall x\bigl((\varphi \wedge \varphi[x/c])\rightarrow x=c\bigr)$, como desejado.
+    A parte existencial $\exists x\,\varphi$ já é a mesma nas duas expansões.
+    Para a parte de unicidade, pela comutatividade dos quantificadores universais obtemos
+    \[
+        T\vdash \forall y\,\forall x\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr).
+    \]
+    Como $z$ não ocorre em $\varphi$, podemos renomear o quantificador externo de $y$ para $z$.
+    Usando o Metalema~\ref{mlem:renomeacaoVariavelUniversal} e a igualdade
+    $\varphi[x/y][y/z]=\varphi[x/z]$, concluímos
+    \[
+        T\vdash \forall z\,\forall x\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr).
+    \]
+    Aplicando novamente a comutatividade de quantificadores universais, segue
+    \[
+        T\vdash \forall x\,\forall z\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr),
+    \]
+    como queríamos.
 \end{proof}
 
 \subsection{Definindo definições}\label{subsec:definindoDefinicoes}
@@ -98,19 +109,21 @@ Quando for conveniente, escreveremos essa fórmula como
 \]
 conforme o caso.
 
-Além disso, se $P$, $f$ ou $c$ são símbolos destes respectivos tipos em $\mathcal L$, convencionamos:
+Além disso, se $P$, $f$ ou $c$ são símbolos dos tipos correspondentes em $\mathcal L$, convencionamos:
 
 \begin{itemize}
     \item $\Def_P(x_1,\ldots,x_n)$ é a fórmula $P(x_1,\ldots,x_n)$.
+    No caso $n=0$, $\Def_P$ é a fórmula $P$.
     \item $\Def_f(x_1,\ldots,x_n,y)$ é a fórmula $f(x_1,\ldots,x_n)=y$.
     \item $\Def_c(y)$ é a fórmula $c=y$.
     \item Se $z$ é uma variável, então $\Def_{z}(z, y)$ é a fórmula $y=z$.
 \end{itemize}
 
-Note que nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são $\mathcal L$-fórmulas.
+Note que, nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são fórmulas da linguagem de $\mathcal L$.
 \end{metadefinition}
 
-\begin{example}\label{exa:definicoesExplicitas}Ainda que não tenhamos apresentado a Teoria dos Conjuntos, vejamos alguns exemplos.
+\begin{example}\label{exa:definicoesExplicitas}
+Ainda que não tenhamos apresentado a Teoria dos Conjuntos, vejamos alguns exemplos.
 \begin{itemize}
     \item \textbf{Teoria dos conjuntos.}
     Uma definição natural de $x\subseteq y$ na linguagem de $\in$ é:
@@ -118,11 +131,11 @@ Note que nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são $\mathcal 
         \forall x\,\forall y\Bigl(x\subseteq y\ \leftrightarrow\ \forall z\,(z\in x\rightarrow z\in y)\Bigr).
     \]
     Aqui $\subseteq$ é um novo símbolo de predicado binário, definido por uma $\mathcal L$-fórmula (em que $\mathcal L=\{\in\}$).
-    Nesse caso, $\Def_\subseteq$ é a fórmula $\forall z\,(z\in x\rightarrow z\in y)$.
+    Nesse caso, $\Def_{\subseteq}$ é a fórmula $\forall z\,(z\in x\rightarrow z\in y)$.
 
     \item \textbf{Teoria dos grupos.}
     Considere a teoria de grupos na linguagem \emph{sem} símbolo de constante para a identidade,
-    i.e.\ apenas com o símbolo de função binária $\cdot$.
+    isto é, apenas com o símbolo de função binária $\cdot$.
     Uma definição explícita (quando possível em uma teoria dada) para um símbolo novo de constante $e$ é:
     \[
         \forall y\Bigl(e=y\ \leftrightarrow\ \forall x\,\bigl(x\cdot y=x \wedge y\cdot x=x\bigr)\Bigr).
@@ -163,18 +176,20 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
 \begin{metadefinition}[Fórmula do valor de um termo]\label{mdef:formulaDoValorDeUmTermo}\index{termo!fórmula do valor}\index{eliminação de símbolos definidos!termos}
     Suponha que $T'$ é uma extensão por definição de $T$, com léxicos $\mathcal L'$ e $\mathcal L$ respectivamente.
     Seja $t$ um termo de $\mathcal L'$.
-    Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres são as mesmas variáveis de $t$ e mais uma nova variável $y$, lida como
+    Definimos por recursão, escolhendo sempre variáveis auxiliares novas, uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres estão entre as variáveis de $t$ e mais uma variável $y$, lida como
     ``$y$ é o valor do termo $t$'', como segue.
 
     \begin{enumerate}[label=(\roman*)]
         \item Se $t$ é um símbolo de constante $c$, então $\delta_t(y)$ é a fórmula $\Def_c(y)$.
-        \item Se $t$ é um símbolo de variável $z$, então $\delta_t(z,y)$ é a fórmula $y=z$, ou seja, $\Def_z(z,y)$.
+        \item Se $t$ é uma variável $z$, então $\delta_t(z,y)$ é a fórmula $y=z$, ou seja, $\Def_z(z,y)$.
         \item Se $t$ é $f(t_1,\ldots,t_m)$, então $\delta_t(x_1, \dots, x_n,y)$ é:
         \[
             \exists y_1\ldots \exists y_m\Bigl(
             \bigwedge_{i=1}^m \delta_{t_i}(x_1, \dots, x_n,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr),
         \]
-        em que $x_1, \dots, x_n$ são variáveis que ocorrem em $t$ (e elas incluem as de $t_1, \dots, t_m$), $y_1, \dots, y_m$ são as variáveis auxiliares introduzidas para descrever os termos $t_1, \dots, t_m$ (alteradas para serem distintas de $x_1, \dots, x_n$, se necessário), e $y$ é distinta de todas as outras.
+        em que $x_1, \dots, x_n$ é uma lista que contém todas as variáveis que ocorrem em $t$,
+        $y_1, \dots, y_m$ são variáveis auxiliares duas a duas distintas e distintas de $x_1,\ldots,x_n,y$,
+        e as variáveis auxiliares internas das fórmulas $\delta_{t_i}$ são renomeadas, se necessário, para evitar colisões.
     \end{enumerate}
 \end{metadefinition}
 
@@ -218,9 +233,8 @@ $\forall y\,(c=y\leftrightarrow \Def_c(y))$ é uma instância de tautologia.
 $T\vdash \exists!y\,\Def_c(y)$.
 Se $c\in\mathcal L$, então $\Def_c(y)$ é $c=y$; provamos $T\vdash \exists!y\,(c=y)$:
 \begin{itemize}
-    \item \emph{Existência.} Do axioma de igualdade $x=x$ obtemos $\forall x(x=x)$ como axioma lógico, e pela instanciação universal
-    (esquema (2)) segue $T\vdash c=c$.
-    Aplicando o esquema (5) à fórmula $\phi(y)\equiv (c=y)$ com o termo $t=c$, obtemos o axioma lógico
+    \item \emph{Existência.} Pela reflexividade da igualdade, $T\vdash c=c$.
+    Aplicando FO15 à fórmula $\phi(y)\equiv (c=y)$ com o termo $t=c$, obtemos o axioma lógico
     $(c=c)\rightarrow \exists y(c=y)$; por \emph{modus ponens}, $T\vdash \exists y(c=y)$.
     \item \emph{Unicidade.} Dos axiomas de igualdade, temos $c=y\rightarrow y=c$ (simetria) e
     $y=c\wedge c=z\rightarrow y=z$ (transitividade). Assim,
@@ -235,7 +249,7 @@ $\forall y\,(c=y\leftrightarrow \Def_c(y))$ é tautológica; logo vale em $T$.
 Pela Metadefinição~\ref{mdef:formulaDoValorDeUmTermo}, $\delta_t(z,y)$ é $y=z$, isto é, $\Def_{z}(z,y)$.
 
 \emph{(1).} Queremos $T'\vdash \forall z\,\forall y\,(z=y\leftrightarrow y=z)$.
-Pelo axioma lógico de simetria da igualdade (esquema (8)), temos
+Pela simetria da igualdade, temos
 $T'\vdash z=y\rightarrow y=z$ e também $T'\vdash y=z\rightarrow z=y$.
 Por uma instância da tautologia proposicional
 \[
@@ -244,8 +258,8 @@ Por uma instância da tautologia proposicional
 obtemos $T'\vdash z=y\leftrightarrow y=z$, e tomando fecho universal em $z,y$ concluímos (1).
 
 \emph{(2).} Provamos $T\vdash \forall z\,\exists!y\,(y=z)$.
-A existência segue de $z=z$ (instância de $\forall x(x=x)$) e do esquema (5) aplicado a $\phi(y)\equiv (y=z)$ com o termo $t=z$.
-A unicidade segue de $(y=z\wedge y'=z)\rightarrow y=y'$, obtida por simetria e transitividade da igualdade.
+A existência segue de $T\vdash z=z$ e de FO15 aplicado a $\phi(y)\equiv (y=z)$ com o termo $t=z$.
+A unicidade segue de $(y=z\wedge w=z)\rightarrow y=w$, obtida por simetria e transitividade da igualdade.
 Logo vale (2) no caso variável.
 
 \emph{(3).} Como variáveis já pertencem à linguagem, o argumento de (1) funciona igualmente dentro de $T$.
@@ -277,7 +291,7 @@ pois ou $f\in\mathcal L$ e então isto é tautológico pela convenção $\Def_f(
 ou $f$ é novo e esta é precisamente a sentença definidora de $f$.
 Logo podemos substituir $\Def_f(\bar y,y)$ por $f(\bar y)=y$ dentro de $T'$.
 
-Com isso, e usando o axioma lógico de congruência para funções (esquema (10)) e a transitividade da igualdade (esquema (9)),
+Com isso, e usando a congruência para funções e a transitividade da igualdade,
 temos a equivalência (em $T'$):
 \[
 f(t_1,\ldots,t_m)=y\ \leftrightarrow\ \exists \bar y\Bigl(\bigwedge_{i=1}^m (t_i=y_i)\wedge f(\bar y)=y\Bigr).
@@ -300,8 +314,8 @@ Agora mostramos que existe um único $y$ tal que $\Def_f(y_1,\ldots,y_m,y)$:
     \item Se $f$ é novo, isto é exatamente a condição da Metadefinição~\ref{mdef:definicaoExplicita}:
     $T\vdash \forall \bar u\,\exists!v\,\Def_f(\bar u,v)$.
     \item Se $f\in\mathcal L$, então $\Def_f(\bar u,v)$ é $f(\bar u)=v$.
-    Para a existência, a partir de $\forall x(x=x)$ obtemos $f(\bar u)=f(\bar u)$ por instanciação universal com o termo $f(\bar u)$,
-    e então pelo esquema (5) aplicado à fórmula $\phi(v)\equiv (f(\bar u)=v)$ com o termo $t=f(\bar u)$, segue $\exists v\,f(\bar u)=v$.
+    Para a existência, a reflexividade da igualdade dá $T\vdash f(\bar u)=f(\bar u)$,
+    e então FO15, aplicado à fórmula $\phi(v)\equiv (f(\bar u)=v)$ com o termo $t=f(\bar u)$, dá $\exists v\,f(\bar u)=v$.
     Para a unicidade, de $f(\bar u)=v$ e $f(\bar u)=w$ obtemos $v=w$ por simetria e transitividade da igualdade.
 \end{itemize}
 Portanto, existe um único $y$ tal que $\Def_f(y_1,\ldots,y_m,y)$.
@@ -337,6 +351,7 @@ Agora eliminamos símbolos definidos de fórmulas.
 \begin{metadefinition}[Tradução $\psi\mapsto \psi^\ast$]\label{mdef:traducaoFormulas}\index{eliminação de símbolos definidos!fórmulas}
     Seja $\psi$ uma fórmula da linguagem $\mathcal L'$ cujas variáveis livres estejam entre $x_1,\ldots,x_n$.
     Definimos por recursão uma $\mathcal L$-fórmula $\psi^\ast$ (com as mesmas variáveis livres) como segue.
+    Em todos os casos atômicos abaixo, as variáveis auxiliares $u,v,u_1,\ldots,u_m$ são escolhidas novas e distintas das variáveis livres listadas.
 
     \begin{enumerate}[label=(\roman*)]
         \item Se $\psi$ é $t_1=t_2$, então
@@ -344,12 +359,16 @@ Agora eliminamos símbolos definidos de fórmulas.
             \psi^\ast\ :=\ \exists u\,\exists v\bigl(\delta_{t_1}(\bar x,u)\wedge \delta_{t_2}(\bar x,v)\wedge u=v\bigr).
         \]
 
-        \item Se $\psi$ é $R(t_1,\ldots,t_m)$, onde $R\in\mathcal L$ é predicado $m$-ário, então
+        \item Se $\psi$ é um predicado $0$-ário $R\in\mathcal L$, então $\psi^\ast:=R$.
+
+        \item Se $\psi$ é $R(t_1,\ldots,t_m)$, em que $R\in\mathcal L$ é predicado $m$-ário e $m>0$, então
         \[
             \psi^\ast\ :=\ \exists u_1\ldots \exists u_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,u_i)\ \wedge\ R(u_1,\ldots,u_m)\Bigr).
         \]
 
-        \item Se $\psi$ é $P(t_1,\ldots,t_m)$, onde $P\in\mathcal L'\setminus\mathcal L$ é predicado $m$-ário definido por $\Def_P$, então
+        \item Se $\psi$ é um predicado $0$-ário $P\in\mathcal L'\setminus\mathcal L$ definido por $\Def_P$, então $\psi^\ast:=\Def_P$.
+
+        \item Se $\psi$ é $P(t_1,\ldots,t_m)$, em que $P\in\mathcal L'\setminus\mathcal L$ é predicado $m$-ário definido por $\Def_P$ e $m>0$, então
         \[
             \psi^\ast\ :=\ \exists u_1\ldots \exists u_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,u_i)\ \wedge\ \Def_P(u_1,\ldots,u_m)\Bigr).
         \]
@@ -429,14 +448,17 @@ Agora eliminamos símbolos definidos de fórmulas.
     \]
 
     \smallskip
-    \textbf{Caso atômico 2:} $\psi$ é $R(t_1,\ldots,t_m)$ com $R\in\mathcal L$.
+    \textbf{Caso atômico 2:} $\psi$ é uma fórmula atômica com símbolo de predicado $R\in\mathcal L$.
+
+    Se $R$ tem aridade $0$, então $\psi^\ast$ é a própria fórmula $R$, e A e B são imediatas por uma instância de tautologia e, se necessário, por generalização de teoremas.
+    Suponha, portanto, que $\psi$ é $R(t_1,\ldots,t_m)$ com $m>0$.
 
     \emph{Prova de A.}
     Pelo item (1) do Metalema~\ref{mlem:eliminacaoDeTermos}, para cada $i\le m$,
     \[
         T'\vdash \forall \bar x\,\forall u_i\,(t_i=u_i\leftrightarrow \delta_{t_i}(\bar x,u_i)).
     \]
-    Usando essas equivalências e o axioma lógico de congruência para predicados (11),
+    Usando essas equivalências e a congruência para predicados,
     obtemos em $T'$:
     \[
         T'\vdash \forall \bar x\Bigl(R(t_1,\ldots,t_m)\ \leftrightarrow\
@@ -457,9 +479,12 @@ Agora eliminamos símbolos definidos de fórmulas.
     \]
 
     \smallskip
-    \textbf{Caso atômico 3:} $\psi$ é $P(t_1,\ldots,t_m)$ com $P\in\mathcal L'\setminus\mathcal L$.
+    \textbf{Caso atômico 3:} $\psi$ é uma fórmula atômica com símbolo de predicado $P\in\mathcal L'\setminus\mathcal L$.
 
     Aqui somente A é relevante (B não se aplica, pois $\psi$ não está em $\mathcal L$).
+    Se $P$ tem aridade $0$, então $\psi$ é $P$, $\psi^\ast$ é $\Def_P$, e a conclusão segue do axioma definidor $P\leftrightarrow\Def_P$ e, se necessário, por generalização de teoremas.
+    Suponha, portanto, que $\psi$ é $P(t_1,\ldots,t_m)$ com $m>0$.
+
     Pelo axioma definidor de $P$ em $T'$, temos
     \[
         T'\vdash \forall \bar u\,(P(\bar u)\leftrightarrow \Def_P(\bar u)).
@@ -547,7 +572,7 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
     em que $\theta_n$ é $\phi$.
 
     Para cada $i$, considere a fórmula $\theta_i^\ast$ obtida pela tradução da Metadefinição~\ref{mdef:traducaoFormulas}.
-    Cada $\theta_i^\ast$ é uma $\mathcal L$-sentença.
+    Cada $\theta_i^\ast$ é uma fórmula da linguagem $\mathcal L$.
 
     \smallskip
     \textbf{Afirmação.} Para todo $i\le n$, vale $T\vdash \theta_i^\ast$.
@@ -559,25 +584,50 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
     \begin{itemize}
         \item Se $\theta_i$ é um axioma de $T$, então $\theta_i$ é uma $\mathcal L$-sentença.
         Pelo Metalema~\ref{mlem:eliminacaoDeFormulas} (aplicado a uma fórmula já na linguagem $\mathcal L$),
-        temos $T'\vdash \theta_i\leftrightarrow \theta_i^\ast$.
+        temos $T\vdash \theta_i\leftrightarrow \theta_i^\ast$.
         Em particular, $\theta_i^\ast$ é consequência lógica proposicional de $\theta_i$ e de uma instância de tautologia;
         como $\theta_i$ é axioma de $T$, concluímos $T\vdash \theta_i^\ast$.
 
         \item Se $\theta_i$ é uma sentença definidora (axioma de definição) de algum símbolo novo, então,
-        por construção, $\theta_i^\ast$ é uma tautologia do tipo $\forall\bar x(\alpha\leftrightarrow \alpha)$,
-        onde $\alpha$ é uma $\mathcal L$-fórmula.
-        Logo $\theta_i^\ast$ é um axioma lógico (instância de tautologia), e portanto $T\vdash \theta_i^\ast$.
+        $T\vdash \theta_i^\ast$.
+        De fato, a tradução substitui o símbolo definido pela sua fórmula definidora e substitui os termos variáveis por suas fórmulas de valor, que são equivalentes a igualdades triviais pelo Metalema~\ref{mlem:eliminacaoDeTermos}.
+        Como as fórmulas definidoras já são fórmulas de $\mathcal L$, a segunda parte do Metalema~\ref{mlem:eliminacaoDeFormulas} identifica cada fórmula definidora com sua própria tradução dentro de $T$.
+        Assim, no caso de predicados, a tradução da sentença definidora se reduz em $T$ a uma instância de $\alpha\leftrightarrow\alpha$; nos casos de funções e constantes, reduz-se do mesmo modo após eliminar o termo definido pelo lado que usa $\Def_f$ ou $\Def_c$.
 
         \item Se $\theta_i$ é um axioma lógico (no sentido do sistema fixado anteriormente),
-        então $\theta_i^\ast$ é demonstrável na lógica pura na linguagem $\mathcal L$.
-        A verificação é sistemática: usa-se que $\ast$ comuta com conectivos e quantificadores e que termos são eliminados pelo
-        Metalema~\ref{mlem:eliminacaoDeTermos}.
+        então $T\vdash \theta_i^\ast$.
+        A verificação é sistemática: usa-se que $\ast$ comuta com conectivos e quantificadores e que termos são eliminados pelo Metalema~\ref{mlem:eliminacaoDeTermos}.
+        Nos axiomas de congruência, se o símbolo envolvido é novo, usa-se ainda que a fórmula definidora é uma $\mathcal L$-fórmula, a Lei da igualdade de Leibniz e, no caso de símbolos funcionais, a hipótese de unicidade exigida na Metadefinição~\ref{mdef:definicaoExplicita}.
         Assim, $T\vdash \theta_i^\ast$.
 
         \item Se $\theta_i$ é obtida por \emph{modus ponens} a partir de $\theta_j$ e $\theta_k=\theta_j\rightarrow \theta_i$,
         com $j,k<i$, então por hipótese de indução $T\vdash \theta_j^\ast$ e $T\vdash (\theta_j\rightarrow \theta_i)^\ast$.
         Pela definição de $\ast$, $(\theta_j\rightarrow \theta_i)^\ast$ é $\theta_j^\ast\rightarrow \theta_i^\ast$.
         Logo, por \emph{modus ponens}, $T\vdash \theta_i^\ast$.
+
+        \item Se $\theta_i$ é obtida pela regra de introdução do quantificador universal, então existem fórmulas $\chi,\eta$, uma variável $x$ e $j<i$ tais que
+        $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\chi\rightarrow\forall x\,\eta$, e $x$ não ocorre livre em $\chi$.
+        Pela hipótese de indução,
+        \[
+            T\vdash (\chi\rightarrow\eta)^\ast,
+        \]
+        isto é, $T\vdash \chi^\ast\rightarrow\eta^\ast$.
+        Como $\chi^\ast$ tem as mesmas variáveis livres que $\chi$, a variável $x$ não ocorre livre em $\chi^\ast$.
+        Pela regra de introdução do quantificador universal,
+        \[
+            T\vdash \chi^\ast\rightarrow\forall x\,\eta^\ast,
+        \]
+        que é exatamente $\theta_i^\ast$.
+
+        \item Se $\theta_i$ é obtida pela regra de introdução do quantificador existencial, então existem fórmulas $\chi,\eta$, uma variável $x$ e $j<i$ tais que
+        $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\exists x\,\chi\rightarrow\eta$, e $x$ não ocorre livre em $\eta$.
+        Pela hipótese de indução, $T\vdash \chi^\ast\rightarrow\eta^\ast$.
+        Como $\eta^\ast$ tem as mesmas variáveis livres que $\eta$, a variável $x$ não ocorre livre em $\eta^\ast$.
+        Pela regra de introdução do quantificador existencial,
+        \[
+            T\vdash \exists x\,\chi^\ast\rightarrow\eta^\ast,
+        \]
+        que é exatamente $\theta_i^\ast$.
     \end{itemize}
 
     Isso conclui a indução, e em particular $T\vdash \theta_n^\ast=\phi^\ast$.
