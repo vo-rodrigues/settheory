@@ -277,6 +277,53 @@ Também usaremos a seguinte renomeação de variável ligada.
     Além disso, o mesmo metalema garante que $x$ não ocorre livre em $\varphi[x/y]$, de modo que $x$ não ocorre livre em $\forall y\,\varphi[x/y]$.
 \end{proof}
 
+Registramos também o análogo existencial.
+
+\begin{metalemma}[Renomeação de variável existencial]\label{mlem:renomeacaoVariavelExistencial}\index{renomeação de variável!existencial}
+    Seja $T$ uma teoria de primeira ordem.
+    Seja $\varphi$ uma fórmula e sejam $x$ e $y$ variáveis.
+    Suponha que $y$ não ocorre livre em $\varphi$ e que $x$ é substituível por $y$ em $\varphi$.
+
+    Então $T\vdash \exists x\varphi$ se, e somente se, $T\vdash \exists y\,\varphi[x/y]$.
+
+    \[
+        \frac{T\vdash \exists x\varphi}
+             {T\vdash \exists y\,\varphi[x/y]}
+        \qquad
+        \frac{T\vdash \exists y\,\varphi[x/y]}
+             {T\vdash \exists x\varphi}.
+    \]
+
+    ``Temos $\exists x\varphi$.
+    Renomeando $x$ para uma variável nova $y$, obtemos $\exists y\,\varphi[x/y]$.''
+\end{metalemma}
+
+\begin{proof}
+    Pelo Metalema~\ref{mlem:substituicaoInversaEmFormulas}, como $y$ não ocorre livre em $\varphi$ e $x$ é substituível por $y$ em $\varphi$, temos que $y$ é substituível por $x$ em $\varphi[x/y]$,
+    \[
+        \varphi[x/y][y/x]=\varphi,
+    \]
+    e $x$ não ocorre livre em $\varphi[x/y]$.
+
+    Para a primeira implicação, considere a seguinte demonstração.
+
+    \begin{align*}
+        &\varphi\rightarrow \exists y\,\varphi[x/y] \tag{FO15 e substituição inversa}\\
+        &\exists x\varphi\rightarrow \exists y\,\varphi[x/y] \tag{Introdução de $\exists$}
+    \end{align*}
+
+    A introdução de $\exists$ é válida, pois $x$ não ocorre livre em $\exists y\,\varphi[x/y]$.
+
+    Para a outra implicação, considere a seguinte demonstração.
+
+    \begin{align*}
+        &\varphi[x/y]\rightarrow \exists x\varphi \tag{FO15}\\
+        &\exists y\,\varphi[x/y]\rightarrow \exists x\varphi \tag{Introdução de $\exists$}
+    \end{align*}
+
+    A introdução de $\exists$ é válida, pois $y$ não ocorre livre em $\exists x\varphi$.
+\end{proof}
+
 \subsection{Generalização universal e instanciação existencial}
 
 Agora trataremos da prática de introduzir ``constantes temporárias''.
