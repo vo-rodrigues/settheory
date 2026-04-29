@@ -25,8 +25,8 @@ Enfatizamos, desde já, que consideraremos a igualdade como um símbolo lógico,
             \item $\exists$ (quantificador existencial, binário).
         \end{itemize}
         \item $=$, o símbolo de igualdade (binário).
-        \item Uma infinidade (enumerável) de símbolos de variáveis, que denotaremos por $v_0, v_1, v_2, \dots$ (aridade 0).
-        \end{itemize}
+        \item Uma infinidade (enumerável) de símbolos de variáveis, que denotaremos por $v_0, v_1, v_2, \dots$ (aridade $0$).
+    \end{itemize}
 \end{metadefinition}
 
 Observamos que, neste formalismo, os quantificadores, $\forall$ e $\exists$, são símbolos binários.
@@ -38,7 +38,7 @@ Por exemplo, a Teoria dos Conjuntos necessita do símbolo de pertencimento, $\in
 Tais símbolos são chamados de \emph{símbolos não lógicos} e, conforme veremos, compõem o léxico de uma teoria de primeira ordem.
 
 A segunda dúvida diz respeito ao fato de que nem toda expressão na notação polonesa é o que consideramos ser uma fórmula matemática válida.
-Por exemplo, considere a expressão na notação polonesa $\wedge v_1 = v_2 \neg v_3$ -- o que, na notação usual, sugeriria algo como $v_1 \wedge (v_2 = \neg v_3)$ -- ela não é uma fórmula bem formada de primeira ordem.
+Por exemplo, considere a expressão na notação polonesa ${\wedge} v_1 {=} v_2 \neg v_3$ --- o que, na notação usual, sugeriria algo como $v_1 \wedge (v_2 = \neg v_3)$ --- ela não é uma fórmula bem formada de primeira ordem.
 De fato, conforme veremos, nem toda expressão na notação polonesa é uma fórmula bem formada de primeira ordem.
 
 Iniciaremos trabalhando a primeira dúvida.
@@ -69,7 +69,7 @@ Dando exemplos explícitos de léxicos:
 \end{example}
 Em textos de álgebra, podem existir diferenças na escolha dos símbolos funcionais.
 Por exemplo, alguns livros podem dar a entender que a inversão não é um ente primitivo da teoria dos grupos.
-Nestes textos, prova-se que em todo grupo, todo elemento possui único inverso, e, então, introduz-se a inversão por definição.
+Nesses textos, prova-se que, em todo grupo, todo elemento possui um único inverso e, então, introduz-se a inversão por definição.
 Trataremos de extensões da linguagem via definição mais adiante.
 
 Vale a pena, neste ponto, darmos uma atenção especial aos símbolos de aridade $0$.
@@ -80,11 +80,11 @@ A distinção entre as notações de variáveis e constantes é feita pelo conte
 
 Já os símbolos de predicado não lógicos de aridade $0$ são chamados de \emph{letras proposicionais}.
 Eles formam fórmulas atômicas que não contêm variáveis.
-Em uma linguagem expandida, tais símbolos podem ser usados para abreviar fórmulas fechadas específicas, desde que essa abreviação seja explicitamente fixada.
+Quando introduzidos por definição em uma linguagem expandida, tais símbolos podem ser usados para abreviar fórmulas fechadas específicas, desde que essa abreviação seja explicitamente fixada.
 Por exemplo, poderíamos introduzir símbolos como $\AC$ ou $\CH$ para abreviar, respectivamente, formulações fixadas do Axioma da Escolha ou da Hipótese do Contínuo.
 
 Agora devemos trabalhar a segunda dúvida.
-Para isso, devemos definir, precisamente, o que são termos e fórmulas.
+Para isso, devemos definir precisamente o que são termos e fórmulas.
 
 Iniciaremos pelos termos.
 
@@ -108,10 +108,10 @@ Vamos dar alguns exemplos.
 \begin{example}\label{exa:termosPrimeiraOrdem}Utilizando a notação do Exemplo~\ref{exa:exemplosLexicos}, temos os seguintes termos.
     \begin{itemize}
         \item Na teoria dos grupos, $\cdot v_1 e$ é um termo (na notação usual, $v_1 \cdot e$).
-        \item Na teoria dos anéis, $+ v_1 \cdot -v_20$ é um termo (na notação usual, $v_1 + (-v_2 \cdot 0)$).
-        \item Considere o léxico básico da teoria de conjuntos.
+        \item Na teoria dos anéis, ${+} v_1 {\cdot} {-}v_2 0$ é um termo (na notação usual, $v_1 + (-v_2 \cdot 0)$).
+        \item Considere o léxico básico da teoria dos conjuntos.
         Os únicos termos são as variáveis (adiante, veremos que mais termos podem ser introduzidos por definição).
-        \item Na teoria de grupos, $\wedge v_1 e$ não é um termo, pois $\wedge$ é um símbolo de conectivo lógico, e não um símbolo funcional.
+        \item Na teoria dos grupos, ${\wedge} v_1 e$ não é um termo, pois $\wedge$ é um símbolo de conectivo lógico, e não um símbolo funcional.
     \end{itemize}
 \end{example}
 
@@ -120,19 +120,19 @@ Agora podemos definir o que são fórmulas.
 \begin{metadefinition}\label{mdef:formulasPrimeiraOrdem}\index{fórmula}\index{fórmula!atômica}\index{fórmula!equacional}\index{subfórmula}
     Dado um léxico $\mathcal L$ para uma teoria de primeira ordem, as fórmulas de $\mathcal L$ são definidas recursivamente da seguinte forma.
 \begin{enumerate}[label=(\roman*)]
-    \item Se $P$ é um símbolo de predicado de aridade $n>0$ e $t_1,\dots,t_n$ são termos, então $Pt_1\dots t_n$ é uma fórmula.
-    \item Se $P$ é um símbolo de predicado de aridade $0$, então $P$ é uma fórmula.
+    \item Se $P$ é um símbolo de predicado não lógico de aridade $n>0$ e $t_1,\dots,t_n$ são termos, então $Pt_1\dots t_n$ é uma fórmula.
+    \item Se $P$ é um símbolo de predicado não lógico de aridade $0$, então $P$ é uma fórmula.
     \item Se $t_1$ e $t_2$ são termos, então ${=}t_1t_2$ é uma fórmula.
     \item Se $\varphi$ é uma fórmula, então $\neg\varphi$ é uma fórmula.
     \item Se $\varphi$ e $\psi$ são fórmulas, então ${\wedge}\varphi\psi$, ${\vee}\varphi\psi$, ${\rightarrow}\varphi\psi$ e ${\leftrightarrow}\varphi\psi$ são fórmulas.
-    \item Se  $x$ é uma variável e $\varphi$ é uma fórmula, então $\forall x\varphi$ e $\exists x\varphi$ são fórmulas.
+    \item Se $x$ é uma variável e $\varphi$ é uma fórmula, então $\forall x\varphi$ e $\exists x\varphi$ são fórmulas.
     \item Todas as fórmulas são obtidas a partir de um número finito de aplicações das regras anteriores.
 \end{enumerate}
 
 Fórmulas dos tipos (i), (ii) e (iii) são chamadas de \emph{fórmulas atômicas}.
 Fórmulas do tipo (iii) são chamadas de \emph{fórmulas equacionais}.
 Vale a pena destacar que o símbolo de igualdade, $=$, se comporta sintaticamente exatamente como um símbolo de predicado binário.
-Tal símbolo já ``vem no pacote'' da lógica de primeira ordem, diferente do que ocorre, por exemplo, com o símbolo $\in$, presente na Teoria dos Conjuntos.
+Tal símbolo já ``vem no pacote'' da lógica de primeira ordem, diferentemente do que ocorre, por exemplo, com o símbolo $\in$, presente na Teoria dos Conjuntos.
 
 Finalmente, dizemos que uma \emph{subfórmula} de uma fórmula $\varphi$ é uma subexpressão de $\varphi$ que também é uma fórmula.
 \end{metadefinition}
@@ -143,14 +143,14 @@ Vamos dar alguns exemplos.
     \begin{itemize}
         \item Na teoria dos grupos, $\cdot v_1 e$ não é uma fórmula, pois $\cdot$ é um símbolo funcional, e não um símbolo de predicado.
         Por outro lado, é um termo (usualmente denotado por $v_1 \cdot e$).
-        \item Na teoria dos grupos, $= \cdot v_1 e v_2$ é uma fórmula equacional (na notação usual, $v_1 \cdot e = v_2$).
-        \item Na teoria de conjuntos, $\in v_1 v_2$ é uma fórmula atômica (na notação usual, $v_1 \in v_2$).
-        \item Em qualquer léxico para uma teoria de primeira ordem ${=}v_1 v_2$ é uma fórmula equacional (na notação usual, $v_1 = v_2$).
+        \item Na teoria dos grupos, ${=} {\cdot} v_1 e v_2$ é uma fórmula equacional (na notação usual, $v_1 \cdot e = v_2$).
+        \item Na teoria dos conjuntos, ${\in} v_1 v_2$ é uma fórmula atômica (na notação usual, $v_1 \in v_2$).
+        \item Em qualquer léxico para uma teoria de primeira ordem, ${=} v_1 v_2$ é uma fórmula equacional (na notação usual, $v_1 = v_2$).
         \item Na teoria dos conjuntos, ${\wedge} {\in} v_1 v_2 {=} v_2 v_3$ é uma fórmula (na notação usual, $(v_1 \in v_2) \wedge (v_2 = v_3)$).
-        \item Na teoria dos conjuntos, ${\in}{\wedge} v_1 v_2 {=} v_2 v_3$ não é uma fórmula, pois a única chance de uma expressão começada por $\in$ ser fórmula é pela regra (i), mas, nesse caso, deveria haver um termo contendo $\wedge$, o que não é possível.
+        \item Na teoria dos conjuntos, ${\in}{\wedge} v_1 v_2 {=} v_2 v_3$ não é uma fórmula, pois a única chance de uma expressão iniciada por $\in$ ser fórmula é pela regra (i), mas, nesse caso, deveria haver um termo contendo $\wedge$, o que não é possível.
         Na notação usual, a expressão acima se traduziria como $(v_1 \wedge v_2) \in (v_2 = v_3)$.
-        \item No léxico da teoria de conjuntos, $\forall v_1 {\in} v_1 v_2$ é uma fórmula (na notação usual, $\forall v_1 (v_1 \in v_2)$).
-        \item No léxico da teoria dos grupos, $\exists e {=} e {\cdot} e e$ não é uma fórmula, pois $e$ é um símbolo de constante, e não uma variável, e a única forma de uma fórmula iniciada por $\exists$ ser uma fórmula é pela regra (vi).
+        \item No léxico da teoria dos conjuntos, $\forall v_1 {\in} v_1 v_2$ é uma fórmula (na notação usual, $\forall v_1 (v_1 \in v_2)$).
+        \item No léxico da teoria dos grupos, $\exists e {=} e {\cdot} e e$ não é uma fórmula, pois $e$ é um símbolo de constante, e não uma variável, e a única forma de uma fórmula iniciada por $\exists$ ser fórmula é pela regra (vi).
         Na notação usual, a expressão acima sugeriria algo como $\exists e (e = e \cdot e)$.
     \end{itemize}
 \end{example}
@@ -182,23 +182,23 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
 
     \begin{enumerate}[label=(\roman*)]
         \item $\cdot v_0 e$;
-        \item $= \cdot v_1 e v_2$;
+        \item ${=} {\cdot} v_1 e v_2$;
         \item ${\wedge} {\cdot} v_1 e {=} v_2 v_3$;
-        \item $\exists e {=} e{\cdot} e e$;
+        \item $\exists e {=} e {\cdot} e e$;
         \item $\cdot \cdot v_1 e v_2$;
-        \item $=\wedge \cdot v_1 e v_2$.
+        \item ${=} {\wedge} {\cdot} v_1 e v_2$.
     \end{enumerate}
 \end{exercise}
 
 \begin{exercise}\label{exr:aneisNotacaoPolonesa}
     Considere a linguagem da Teoria dos Anéis do Exemplo~\ref{exa:exemplosLexicos}.
-    Escreva as expressões abaixo, que estão escritas na notação usual, na notação polonesa.
+    Escreva, na notação polonesa, as expressões abaixo, que estão escritas na notação usual.
     Decida quais delas são termos e quais são fórmulas.
     \begin{enumerate}[label=(\roman*)]
         \item $v_1 + (-v_2 \cdot 0)$;
         \item $\exists v_1 (v_1 + v_1 = 0)$;
         \item $v_1 + v_2 = v_3$;
-        \item $(v_1+v_2)\cdot v_3$;
+        \item $(v_1 + v_2)\cdot v_3$;
         \item $\forall v_1 \exists v_2 (v_1 + v_2 = 0)$;
         \item $\forall v_1 (v_1 = v_1) \wedge \exists v_1 (v_1 = v_1)$;
         \item $\forall v_1 (v_1 = v_1 \wedge \exists v_1 (v_1 = v_1))$.
@@ -214,5 +214,5 @@ Utilizaremos parênteses para eliminar ambiguidades sempre que for necessário.
 \end{exercise}
 \begin{exercise}\label{exr:subexpressoesDeFormula}
     Seja $\varphi$ uma fórmula.
-    Mostre que uma subexpressão de $\varphi$ é uma fórmula se, e somente se, ela é o escopo de uma ocorrência de um conectivo lógico, de um quantificador, do símbolo de igualdade, ou de um símbolo de predicado, incluindo o caso de predicados de aridade $0$.
+    Mostre que uma subexpressão de $\varphi$ é uma fórmula se, e somente se, ela é o escopo de uma ocorrência de um símbolo que inicia fórmulas: um conectivo lógico, um quantificador, o símbolo de igualdade ou um símbolo de predicado, incluindo o caso de predicados de aridade $0$.
 \end{exercise}
