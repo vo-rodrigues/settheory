@@ -2,12 +2,12 @@
 \index{teoria da prova}
 \index{sistema de Hilbert}
 Até aqui, discutimos o que é uma linguagem de primeira ordem e aprendemos a identificar termos, sentenças e fórmulas.
-O próximo passo é entender teorias, teoremas e demonstrações, de teorias de primeira ordem.
+O próximo passo é entender teorias, teoremas e demonstrações de teorias de primeira ordem.
 
 A apresentação exata dos axiomas lógicos adotados varia muito de texto para texto.
 Há quem diga que há tantas formas de axiomatizar a lógica quanto há textos de lógica.
 Acreditamos que, em algum sentido, este texto somará 1 a essa contagem, mesmo sem apresentar nenhuma inovação.
-Não comentaremos outras formas de fazer com profundidade.
+Não comentaremos outras formas de axiomatização com profundidade.
 
 Agora estamos prontos para enunciar os axiomas lógicos adotados neste texto.
 Como fizemos com a lógica proposicional, adotamos um sistema de axiomas estilo Hilbert.
@@ -26,12 +26,12 @@ Ressaltamos novamente que esse não é o único modo de formalizar a dedução l
         \item $\psi \rightarrow (\phi \lor \psi)$;
         \item $(\phi \rightarrow \chi) \rightarrow ((\psi \rightarrow \chi) \rightarrow ((\phi \lor \psi) \rightarrow \chi))$;
         \item $(\psi \leftrightarrow \phi) \rightarrow (\psi \rightarrow \phi)$;
-        \item $(\psi \leftrightarrow \phi) \rightarrow (\phi \rightarrow \psi)$.
-        \item $(\psi \rightarrow \phi) \rightarrow ((\phi \rightarrow \psi) \leftrightarrow (\psi \leftrightarrow \phi))$.
-        \item $\neg \neg \phi \rightarrow \phi$.
-        \item $\forall x \phi \rightarrow \phi[x/t]$, se $x$ é substituível por $t$ em $\phi$.
-        \item $\phi[x/t] \rightarrow \exists x \phi$, se $x$ é substituível por $t$ em $\phi$.
-        \item $x=x$.
+        \item $(\psi \leftrightarrow \phi) \rightarrow (\phi \rightarrow \psi)$;
+        \item $(\psi \rightarrow \phi) \rightarrow ((\phi \rightarrow \psi) \leftrightarrow (\psi \leftrightarrow \phi))$;
+        \item $\neg \neg \phi \rightarrow \phi$;
+        \item $\forall x \phi \rightarrow \phi[x/t]$, se $x$ é substituível por $t$ em $\phi$;
+        \item $\phi[x/t] \rightarrow \exists x \phi$, se $x$ é substituível por $t$ em $\phi$;
+        \item $x=x$;
         \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (f(x_1, \dots, x_n)=f(y_1, \dots, y_n))$, para cada símbolo funcional $f$ de aridade $n>0$.
         \item $\bigl(\bigwedge_{i=1}^n x_i=y_i\bigr) \rightarrow (P(x_1, \dots, x_n) \leftrightarrow P(y_1, \dots, y_n))$, em que $P$ é um símbolo de predicado não lógico de aridade $n>0$, ou o símbolo lógico de igualdade $=$ (que possui aridade 2).
         \end{enumerate}
@@ -46,7 +46,7 @@ Os axiomas (FO14) e (FO15) governam o comportamento dos quantificadores em rela�
 
 Por fim, (FO16)--(FO18) são os axiomas que governam a igualdade e sua compatibilidade com símbolos funcionais e relacionais.
 
-A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
+A seguir, definiremos as noções de teoria, demonstração e teorema.
 
 \begin{metadefinition}[Teoria]\label{mdef:teoriaPrimeiraOrdem}\index{teoria}\index{axioma!não lógico}
     Uma \emph{teoria de primeira ordem} consiste em um par $T = (\mathcal L, \Sigma)$, em que $\mathcal L$ é um léxico de primeira ordem e $\Sigma$ é uma coleção de $\mathcal L$-sentenças, chamadas de \emph{axiomas não lógicos} de $T$, ou simplesmente de \emph{axiomas} de $T$.
@@ -69,7 +69,7 @@ A seguir, definiremos a noção de teoria, de demonstração, e de teorema.
     Caso exista uma demonstração de $\phi$ a partir de $T$, dizemos que $\phi$ é um \emph{teorema} de $T$, e escrevemos $T \vdash \phi$.
     Sendo $T=(\mathcal L, \Sigma)$, também podemos escrever $\Sigma \vdash_\mathcal L \phi$.
 
-    Se tal demonstração só usa, além dos axiomas de $T$, os axiomas lógicos (FO1)--(FO13) e a regra de \emph{modus ponens}, dizemos que $\phi$ é uma \emph{consequência proposicional} de $T$, e escrevemos $T \vdash_P \phi$.
+    Se tal demonstração só usa, além dos axiomas de $T$, os axiomas proposicionais de primeira ordem (FO1)--(FO13) e a regra de \emph{modus ponens}, dizemos que $\phi$ é uma \emph{consequência proposicional} de $T$, e escrevemos $T \vdash_P \phi$.
 \end{metadefinition}
 
 Na prática, raramente escrevemos, em matemática, uma demonstração tão formal quanto a Metadefinição~\ref{mdef:demonstracaoFormal} exige.
@@ -80,10 +80,9 @@ Começaremos ``importando'' teoremas da lógica proposicional para a lógica de 
 A definição abaixo é similar àquela apresentada em Metadefinição~\ref{mdef:substituicaoProposicional} para a lógica proposicional, mas agora permite substituir letras proposicionais por fórmulas de uma linguagem de primeira ordem.
 
 \begin{metadefinition}
-    A \emph{extensão da lógica proposicional para a lógica de primeira ordem} é a teoria cujos únicos símbolos não lógicos são letras proposicionais, isto é, símbolos de predicado $0$-ários $P_0$, $P_1$, $P_2,\dots$, e que não possui axiomas não lógicos.
-    Ela é denotada por $T_P$, e sua linguagem é denotada por $\mathcal L_P$.
+    A \emph{extensão da lógica proposicional para a lógica de primeira ordem} é a teoria $T_P=(\mathcal L_P,\varnothing)$, em que os únicos símbolos não lógicos de $\mathcal L_P$ são letras proposicionais, isto é, símbolos de predicado $0$-ários $P_0$, $P_1$, $P_2,\dots$.
 
-    Exceto caso explicitamente mencionado, vamos assumir que qualquer outra teoria que estudaremos não possui as letras proposicionais $P_0$, $P_1$, $P_2$, $\dots$ como símbolos de seu léxico.
+    Exceto quando explicitamente mencionado, vamos assumir que qualquer outra teoria que estudaremos não possui as letras proposicionais $P_0$, $P_1$, $P_2$, $\dots$ como símbolos de seu léxico.
 \end{metadefinition}
 
 Note que as fórmulas proposicionais são exatamente as $\mathcal L_P$-fórmulas sem quantificadores e sem símbolos de igualdade.
@@ -102,18 +101,18 @@ Essa substituição é literal: ao substituir uma letra proposicional por uma f�
    Considere uma coleção finita $\mathcal P$ de letras proposicionais de $\mathcal L_P$ e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas.
 
    Recursivamente na complexidade de uma $\mathcal L_P$-fórmula $\theta$, definimos a substituição de $\theta$ via $\rho$, denotada por $\subst(\theta, \rho)$, a partir do seguinte algoritmo.
-   Se $\rho$ não é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é um símbolo $I$ que não faz parte da linguagem (que denota, intuitivamente, que $\subst(\theta, \rho)$ é indefinido).
+   Se $\rho$ não é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é um símbolo $I$ que não faz parte da linguagem (indicando, intuitivamente, que $\subst(\theta, \rho)$ é indefinido).
    Caso contrário, procedemos como nos itens abaixo.
-   Note que como os únicos símbolos não lógicos de $\mathcal L_P$ são predicados $0$-ários, os únicos termos de $\mathcal L_P$ são variáveis.
+   Note que, como os únicos símbolos não lógicos de $\mathcal L_P$ são predicados $0$-ários, os únicos termos de $\mathcal L_P$ são variáveis.
     \begin{itemize}
-        \item Se $\theta$ é uma variável proposicional $P$, então $\subst(\theta, \rho)$ é $\rho(P)$.
+        \item Se $\theta$ é uma letra proposicional $P$, então $\subst(\theta, \rho)$ é $\rho(P)$.
         \item Se $\theta$ é $\neg \psi$, então $\subst(\theta, \rho)$ é $\neg \subst(\psi, \rho)$.
         \item Se $\theta$ é $x=y$, em que $x$ e $y$ são variáveis, então $\subst(\theta, \rho)$ é $x=y$.
-        \item Se $\theta$ é $ \psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\subst(\theta, \rho)$ é $\subst(\psi, \rho) \square \subst(\eta, \rho)$.
+        \item Se $\theta$ é $\psi \square \eta$, em que $\square$ é $\vee$, $\wedge$, $\rightarrow$ ou $\leftrightarrow$, então $\subst(\theta, \rho)$ é $\subst(\psi, \rho) \square \subst(\eta, \rho)$.
         \item Se $\theta$ é $\forall x \psi$ ou $\exists x \psi$, então $\subst(\theta, \rho)$ é $\forall x \subst(\psi, \rho)$ ou $\exists x \subst(\psi, \rho)$, respectivamente.
     \end{itemize}
 
-    Se $\theta$ é uma tautologia proposicional e $\rho$ é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é dita ser uma \emph{instância de tautologia}.
+    Se $\theta$ é uma tautologia proposicional e $\rho$ é uma atribuição para $\theta$, então $\subst(\theta, \rho)$ é dita uma \emph{instância de tautologia}.
 \end{metadefinition}
 
 \begin{metatheorem}
@@ -125,7 +124,7 @@ Essa substituição é literal: ao substituir uma letra proposicional por uma f�
 \end{metatheorem}
 
 \begin{proof}
-    Seja $\theta$ uma tautologia e $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas tal que $\subst(\theta, \rho)$ é $\phi$.
+    Seja $\theta$ uma tautologia proposicional, seja $\mathcal P$ uma coleção finita de letras proposicionais e seja $\rho$ uma atribuição de $\mathcal P$ a $\mathcal L$-fórmulas tal que $\subst(\theta, \rho)$ é $\phi$.
 
     Como $\theta$ é uma tautologia, $\theta$ é um teorema da lógica proposicional, ou seja, $\vdash_P \theta$.
 
@@ -133,13 +132,13 @@ Essa substituição é literal: ao substituir uma letra proposicional por uma f�
 
     Seja $\mathcal P'$ uma coleção finita de letras proposicionais que contém $\mathcal P$ e todas as letras proposicionais que ocorrem em alguma das fórmulas $\theta_0,\dots,\theta_n$.
 
-    Estenda $\rho$ a uma atribuição $\rho'$ de $\mathcal P'$ a $\mathcal L$-fórmulas.
+    Estenda $\rho$ a uma atribuição $\rho'$ de $\mathcal P'$ a $\mathcal L$-fórmulas, atribuindo arbitrariamente $\mathcal L$-fórmulas às letras de $\mathcal P'\setminus\mathcal P$.
     Assim, $\rho'$ é uma atribuição para cada $\theta_i$ e coincide com $\rho$ em todas as letras proposicionais que ocorrem em $\theta$.
 
     Para cada $i\leq n$, seja $\psi_i$ a fórmula $\subst(\theta_i, \rho')$.
     Note que $\psi_n$ é $\subst(\theta_n, \rho')$, que é $\subst(\theta, \rho)$, que é $\phi$.
 
-    Veremos que $\psi_0, \dots, \psi_n$ é uma demonstração de $\phi$ que usa apenas os axiomas lógicos (FO1)--(FO13) e a regra de \emph{modus ponens}.
+    Veremos que $\psi_0, \dots, \psi_n$ é uma demonstração de $\phi$ que usa apenas os axiomas proposicionais de primeira ordem (FO1)--(FO13) e a regra de \emph{modus ponens}.
 
     Com efeito, para cada $i\leq n$, $\theta_i$ é um axioma da lógica proposicional ou é obtida por \emph{modus ponens} de duas fórmulas anteriores.
     Se $\theta_i$ é um axioma proposicional do tipo (PC1)--(PC13), então $\psi_i$ é um axioma lógico do tipo (FO1)--(FO13) (mesma numeração).
@@ -150,8 +149,8 @@ Essa substituição é literal: ao substituir uma letra proposicional por uma f�
 \end{proof}
 
 O resultado a seguir pode ser interpretado como a asserção de que resultados já provados podem ser usados para provar novos resultados.
-\begin{metalemma}(Modus ponens)\label{mlem:modusPonens}
-    Seja $T$ uma teoria de primeira ordem e $\phi, \psi$ $\mathcal L$-fórmulas, em que $\mathcal L$ é o léxico de $T$.
+\begin{metalemma}[Modus ponens]\label{mlem:modusPonens}
+    Seja $T$ uma teoria de primeira ordem e sejam $\phi$ e $\psi$ $\mathcal L$-fórmulas, em que $\mathcal L$ é o léxico de $T$.
     Se $T \vdash \phi$ e $T \vdash \phi \rightarrow \psi$, então $T \vdash \psi$.
 \end{metalemma}
 \begin{proof}
@@ -162,10 +161,10 @@ O resultado a seguir pode ser interpretado como a asserção de que resultados j
     \end{equation*}
 
     A sequência $\psi_0, \dots, \psi_n, \psi'_0, \dots, \psi'_{m}$, por ser uma concatenação de duas demonstrações, satisfaz claramente as condições para ser uma demonstração.
-    Ao acrescentar $\psi$ ao final da sequência, ainda temos as condições satisfeitas, uma vez que $\psi$ é obtida a partir de \emph{modus ponens} de $\phi$ e $\phi \rightarrow \psi$, que são, respectivamente, $\psi_n$ e $\psi'_m$.
+    Ao acrescentar $\psi$ ao final da sequência, ainda temos as condições satisfeitas, uma vez que $\psi$ é obtida por \emph{modus ponens} a partir de $\phi$ e $\phi \rightarrow \psi$, que são, respectivamente, $\psi_n$ e $\psi'_m$.
 \end{proof}
 
-O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de $T$, então $T'$ prova todos os teoremas de $T$.
+O resultado a seguir nos diz que se uma teoria $T'$ prova todos os axiomas de $T$, então $T'$ prova todos os teoremas de $T$.
 
 \begin{metaproposition}\label{mprop:extensaoDeTeoria}
     Sejam $T=(\mathcal L,\Sigma)$ e $T'=(\mathcal L',\Sigma')$ teorias de primeira ordem tais que todo símbolo de $\mathcal L$ é um símbolo de $\mathcal L'$.
@@ -198,7 +197,7 @@ O resultado a seguir nos diz que se uma teoria $T'$ prova todas as premissas de 
     Como $\phi_n$ é $\phi$, segue que $T'\vdash \phi$.
 \end{proof}
 
-Os resultados acima concluem que ``existem demonstrações''.
+Os resultados acima afirmam que ``existem demonstrações''.
 É importante observar que tais provas existenciais são construtivas: elas de fato fornecem um algoritmo para, dados os objetos declarados nas hipóteses, efetivamente redigir uma demonstração.
 
 Abaixo, provaremos, como exemplo, um teorema da lógica pura que intuitivamente diz que o universo de discurso é não vazio.
