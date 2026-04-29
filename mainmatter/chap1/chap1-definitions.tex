@@ -25,7 +25,7 @@ Introduziremos este operador como uma abreviação, conforme explicitado na defi
     \begin{equation}\label{eq:existsUnique}
         (\exists x\,\varphi)\ \wedge\ \forall x\,\forall y\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr),
     \end{equation}
-    em que $y$ é uma variável que não ocorre em $\varphi$.
+        em que $y$ é a primeira variável distinta de $x$ que não ocorre em $\varphi$.
 \end{metadefinition}
 
 Na Metadefinição~\ref{mdef:quantificadorExistenciaUnica}, a variável $y$ é tomada como uma variável auxiliar.
@@ -35,12 +35,22 @@ Isso é formalizado pelo resultado a seguir.
 
 \begin{metalemma}[Independência do auxiliar em $\exists!$]\label{mlem:independenciaAuxiliarExistsUnique}
     Seja $\varphi$ uma fórmula.
-    Se $y$ e $z$ são variáveis que não ocorrem em $\varphi$, então as duas fórmulas obtidas ao expandir
-    $\exists!x\,\varphi$ pela Equação~\eqref{eq:existsUnique} usando $y$ ou usando $z$ são logicamente equivalentes.
+    Se $y$ e $z$ são variáveis distintas de $x$, distintas entre si, e que não ocorrem em $\varphi$, então as duas fórmulas obtidas ao expandir
+    $\exists!x\,\varphi$ pela Equação~\eqref{eq:existsUnique} usando $y$ ou usando $z$ são equivalentes em qualquer teoria de primeira ordem.
 \end{metalemma}
 
 \begin{proof}
-    Ver o Exercício~\ref{exr:independenciaAuxiliarExistsUnique}.
+    Sejam $y, z$ variáveis que não ocorrem em $\varphi$.
+    Suponha que $T\vdash (\exists x\,\varphi)\ \wedge\ \forall x\,\forall y\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr)$.
+    Veremos que $T\vdash (\exists x\,\varphi)\ \wedge\ \forall x\,\forall z\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr)$.
+    A recíproca é análoga.
+
+    Para isso, basta concluir que $T\vdash \forall z\,\forall x \bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr)$.
+
+    Fixe uma constante $c$ para $z$.
+    Basta ver que na teoria expandida podemos provar $\forall x \bigl((\varphi[z/c] \wedge \varphi[x/z][z/c])\rightarrow x=c\bigr)$, ou seja, que $\forall x \bigl((\varphi \wedge \varphi[x/c])\rightarrow x=c\bigr)$.
+
+    Portanto, podemos instanciar $y$ em $c$, obtendo $\forall x\bigl((\varphi \wedge \varphi[x/c])\rightarrow x=c\bigr)$, como desejado.
 \end{proof}
 
 \subsection{Definindo definições}\label{subsec:definindoDefinicoes}
@@ -56,7 +66,7 @@ Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mat
     \[
         \forall x_1\ldots \forall x_n\bigl(P(x_1,\ldots,x_n)\leftrightarrow \varphi(x_1,\ldots,x_n)\bigr),
     \]
-    em que $\varphi$ é uma $\mathcal L$-fórmula.
+    em que $x_1,\ldots,x_n$ são variáveis duas a duas distintas e $\varphi$ é uma $\mathcal L$-fórmula cujas variáveis livres estão entre $x_1,\ldots,x_n$.
     No caso $n=0$, uma $T$-definição de $P$ é uma sentença $P\leftrightarrow \varphi$,
     com $\varphi$ uma $\mathcal L$-sentença.
 
@@ -66,7 +76,7 @@ Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mat
     \[
         \forall x_1\ldots \forall x_n\,\forall y\bigl(f(x_1,\ldots,x_n)=y \leftrightarrow \varphi(x_1,\ldots,x_n,y)\bigr),
     \]
-    em que $\varphi$ é uma $\mathcal L$-fórmula tal que
+    em que $x_1,\ldots,x_n,y$ são variáveis duas a duas distintas e $\varphi$ é uma $\mathcal L$-fórmula cujas variáveis livres estão entre $x_1,\ldots,x_n,y$, tal que
     \[
         T\vdash \forall x_1\ldots \forall x_n\,\exists!y\,\varphi(x_1,\ldots,x_n,y).
     \]
@@ -78,7 +88,7 @@ Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mat
     \[
         \forall y\bigl(c=y \leftrightarrow \varphi(y)\bigr),
     \]
-    em que $\varphi$ é uma $\mathcal L$-fórmula tal que $T\vdash \exists!y\,\varphi(y)$.
+    em que $\varphi$ é uma $\mathcal L$-fórmula cujas variáveis livres estão entre $y$, tal que $T\vdash \exists!y\,\varphi(y)$.
 \end{enumerate}
 
 Em cada um dos casos acima, dizemos que $\varphi$ é a \emph{fórmula definidora} do símbolo novo.
@@ -484,21 +494,28 @@ Agora eliminamos símbolos definidos de fórmulas.
 
     \smallskip
     \textbf{Quantificadores.}
-    Suponha que A (e, quando aplicável, B) vale para $\theta$.
-    Pela hipótese indutiva,
-    $T'\vdash \forall\bar x\,(\theta\leftrightarrow \theta^\ast)$.
-    Como $\forall z$ e $\exists z$ comutam com equivalências por instâncias apropriadas de tautologias
-    (por exemplo, $(A\leftrightarrow B)\rightarrow(\forall z\,A\leftrightarrow \forall z\,B)$ e análogo para $\exists$),
-    concluímos
+    Suponha que A vale para $\theta$.
+    No caso de $\forall z\,\theta$, aplicamos a hipótese indutiva a $\theta$ considerando suas variáveis livres entre $\bar x,z$.
+    Assim,
     \[
-        T'\vdash \forall\bar x\,(\forall z\,\theta \leftrightarrow \forall z\,\theta^\ast)
-        \quad\text{e}\quad
-        T'\vdash \forall\bar x\,(\exists z\,\theta \leftrightarrow \exists z\,\theta^\ast).
+        T'\vdash \forall \bar x\,\forall z\,(\theta\leftrightarrow \theta^\ast).
     \]
-    Como, por definição, $(\forall z\,\theta)^\ast=\forall z(\theta^\ast)$ e $(\exists z\,\theta)^\ast=\exists z(\theta^\ast)$,
-    isso é exatamente A.
-    O mesmo argumento vale em $T$ quando $\forall z\,\theta$ (resp. $\exists z\,\theta$) está em $\mathcal L$,
-    o que equivale a $\theta$ estar em $\mathcal L$, provando B.
+    Pelas regras derivadas para quantificadores e para bicondicional, obtemos
+    \[
+        T'\vdash \forall \bar x\,(\forall z\,\theta \leftrightarrow \forall z\,\theta^\ast).
+    \]
+    Como $(\forall z\,\theta)^\ast=\forall z\,\theta^\ast$, isso prova A para $\forall z\,\theta$.
+
+    O caso de $\exists z\,\theta$ é análogo, usando a equivalência
+    \[
+        \forall z\,(\theta\leftrightarrow\theta^\ast)
+    \]
+    para obter
+    \[
+        \exists z\,\theta\leftrightarrow \exists z\,\theta^\ast.
+    \]
+
+    O mesmo argumento, realizado em $T$, prova B quando a fórmula quantificada pertence à linguagem $\mathcal L$.
 
     \smallskip
     Isso conclui a indução e prova simultaneamente as duas afirmações, logo o metalema.
@@ -508,7 +525,7 @@ Agora eliminamos símbolos definidos de fórmulas.
 
 \begin{metadefinition}[Extensão conservativa]\label{mdef:extensaoConservativa}\index{extensão!conservativa}
     Seja $T$ uma teoria de primeira ordem com léxico $\mathcal L$, e seja $T'$ uma teoria com léxico $\mathcal L'$ estendendo $\mathcal L$.
-    Dizemos que $T'$ é uma \emph{extensão conservativa} de $T$ se, cada axioma de $T$ é também um axioma de $T'$, e para cada $\mathcal L$-sentença $\phi$,
+    Dizemos que $T'$ é uma \emph{extensão conservativa} de $T$ se cada axioma de $T$ é também um axioma de $T'$ e, para cada $\mathcal L$-sentença $\phi$,
     \[
         T'\vdash \phi \ \Longrightarrow\ T\vdash \phi.
     \]
@@ -571,8 +588,3 @@ O teorema a seguir formaliza a ideia de que definições são apenas abreviaçõ
     e portanto $\phi$ é consequência proposicional de $\phi^\ast$.
     Como $T\vdash \phi^\ast$, segue $T\vdash \phi$.
 \end{proof}
-
-\section*{Exercícios}
-\begin{exercise}\label{exr:independenciaAuxiliarExistsUnique}
-    Prove o Metalema~\ref{mlem:independenciaAuxiliarExistsUnique}.
-\end{exercise}
