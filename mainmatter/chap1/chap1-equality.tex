@@ -11,7 +11,7 @@ Começaremos registrando uma forma conveniente dos axiomas de congruência.
     Seja $T=(\mathcal L,\Sigma)$ uma teoria de primeira ordem.
 
     \begin{enumerate}[label=(\roman*)]
-        \item Se $f$ é um símbolo funcional $n$-ário da linguagem de $\mathcal L$, com $n>0$, e se $s_1,\dots,s_n,t_1,\dots,t_n$ são termos da linguagem de $T$, então
+        \item Se $f$ é um símbolo funcional $n$-ário do léxico $\mathcal L$, com $n>0$, e se $s_1,\dots,s_n,t_1,\dots,t_n$ são termos da linguagem de $T$, então
         \[
             T\vdash
             \left(\bigwedge_{i=1}^n s_i=t_i\right)
@@ -19,7 +19,7 @@ Começaremos registrando uma forma conveniente dos axiomas de congruência.
             f(s_1,\dots,s_n)=f(t_1,\dots,t_n).
         \]
 
-        \item Se $P$ é um símbolo de predicado $n$-ário da linguagem de $\mathcal L $, com $n>0$, ou se $P$ é o símbolo lógico de igualdade, e se $s_1,\dots,s_n,t_1,\dots,t_n$ são termos da linguagem de $T$, então
+        \item Se $P$ é um símbolo de predicado $n$-ário do léxico $\mathcal L$, com $n>0$, ou se $P$ é o símbolo lógico de igualdade, e se $s_1,\dots,s_n,t_1,\dots,t_n$ são termos da linguagem de $T$, então
         \[
             T\vdash
             \left(\bigwedge_{i=1}^n s_i=t_i\right)
@@ -31,7 +31,19 @@ Começaremos registrando uma forma conveniente dos axiomas de congruência.
 \end{metalemma}
 
 \begin{proof}
-    As fórmulas acima são obtidas a partir dos axiomas (FO17) e (FO18), tomando fechos universais desses axiomas e aplicando instanciação universal aos termos indicados.
+    Escolha variáveis $u_1,\dots,u_n,v_1,\dots,v_n$, distintas entre si, que não ocorram em nenhum dos termos $s_1,\dots,s_n,t_1,\dots,t_n$.
+    Para o item (i), aplicamos (FO17) às variáveis $u_i$ e $v_i$:
+    \[
+        T\vdash
+        \left(\bigwedge_{i=1}^n u_i=v_i\right)
+        \rightarrow
+        f(u_1,\dots,u_n)=f(v_1,\dots,v_n).
+    \]
+    Pelo Metalema~\ref{mlem:generalizacaoDeTeoremas}, podemos tomar o fecho universal dessa fórmula nas variáveis $u_i$ e $v_i$.
+    Como essas variáveis não ocorrem nos termos indicados, as instanciações universais por $s_i$ e $t_i$ são válidas, e obtemos a conclusão do item (i).
+
+    O item (ii) é análogo, usando (FO18) no lugar de (FO17).
+    Quando $P$ é o símbolo lógico de igualdade, usamos (FO18) no caso particular em que esse símbolo é tomado como predicado binário.
 \end{proof}
 
 Como primeira consequência, obtemos as propriedades elementares da igualdade.
@@ -50,7 +62,7 @@ Como primeira consequência, obtemos as propriedades elementares da igualdade.
 \end{metaproposition}
 
 \begin{proof}
-    O item (1) é obtido a partir de (FO16) por instanciação universal.
+    O item (1) é obtido escolhendo uma variável $u$ que não ocorra em $r$, generalizando a instância $u=u$ de (FO16) e instanciando o resultado universal pelo termo $r$.
 
     Para o item (2), pelo item (2) do Metalema~\ref{mlem:congruenciaComTermos}, aplicado ao símbolo lógico de igualdade, temos
     \[
@@ -66,7 +78,7 @@ Como primeira consequência, obtemos as propriedades elementares da igualdade.
     \[
         T\vdash r=s\rightarrow s=r.
     \]
-    Logo, por raciocínio  tautológico,
+    Logo, por raciocínio tautológico,
     \[
         T\vdash (r=s\wedge s=t)\rightarrow(s=r\wedge s=t).
     \]
@@ -160,7 +172,7 @@ Agora veremos que a mesma ideia vale para fórmulas atômicas.
 \end{metalemma}
 
 \begin{proof}
-    Se $\alpha$ é um símbolo de predicado $0$-ário, então $\alpha[x/s]$ e $\alpha[x/t]$ são ambas $\alpha$.
+    Se $\alpha$ é uma fórmula atômica dada por um símbolo de predicado $0$-ário, então $\alpha[x/s]$ e $\alpha[x/t]$ são ambas $\alpha$.
     Logo,
     \[
         T\vdash s=t\rightarrow(\alpha\leftrightarrow\alpha).
@@ -209,20 +221,62 @@ Precisaremos do seguinte.
 \end{metalemma}
 
 \begin{proof}
-    Para $\forall$, observe primeiro que $T\vdash \theta\rightarrow\forall y \theta$, pela introdução do quantificador universal.
-    Agora note que, da generalização da hipótese do metalema, $T\vdash \forall y(\theta\rightarrow (\alpha\leftrightarrow\beta))$, e que, portanto, $T\vdash \forall y \theta\rightarrow \forall y(\alpha\leftrightarrow\beta)$.
-    Assim, pela transitividade de $\rightarrow$, $T\vdash \theta\rightarrow \forall y(\alpha\leftrightarrow\beta)$.
-
-    Como a passagem de $\forall y(\alpha\leftrightarrow\beta)$ para $\forall y\,\alpha\leftrightarrow\forall y\,\beta$ é uma regra derivada das regras para quantificadores, segue, pela transitividade de $\rightarrow$, que
+    Tratemos primeiro o caso $Q=\forall$.
+    Como $y$ não ocorre livre em $\theta$, a regra de introdução do quantificador universal dá
     \[
-        T\vdash \theta\rightarrow(\forall y\,\alpha\leftrightarrow\forall y\,\beta).'
+        T\vdash \theta\rightarrow\forall y\,\theta.
     \]
-    
-    Para $\exists$, temos da hipótese que $T\vdash \theta\rightarrow(\neg \alpha\leftrightarrow\neg \beta)$ por raciocínio tautológico.
-    Da primeira parte, temos $T\vdash \theta\rightarrow(\forall y\,\neg \alpha\leftrightarrow \forall y\,\neg \beta)$.
-    Novamente de raciocínio tautológico, $T\vdash \theta\rightarrow(\neg\forall y\,\neg \alpha\leftrightarrow \neg\forall y\,\neg \beta)$.
-    
-    Como $T\vdash \neg\forall y\,\neg \alpha\leftrightarrow \exists y\,\alpha$ e $T\vdash \neg\forall y\,\neg \beta\leftrightarrow \exists y\,\beta$, segue que $T\vdash \theta\rightarrow(\exists y\,\alpha\leftrightarrow \exists y\,\beta)$.
+    Pela preservação do quantificador universal via implicação, aplicada à hipótese
+    \[
+        T\vdash \theta\rightarrow(\alpha\leftrightarrow\beta),
+    \]
+    obtemos
+    \[
+        T\vdash
+        \forall y\,\theta\rightarrow \forall y(\alpha\leftrightarrow\beta).
+    \]
+    Pela transitividade de $\rightarrow$,
+    \[
+        T\vdash \theta\rightarrow \forall y(\alpha\leftrightarrow\beta).
+    \]
+
+    Das regras para quantificadores, temos
+    \[
+        T\vdash
+        \forall y(\alpha\leftrightarrow\beta)
+        \rightarrow
+        (\forall y\,\alpha\leftrightarrow\forall y\,\beta).
+    \]
+    Logo,
+    \[
+        T\vdash \theta\rightarrow(\forall y\,\alpha\leftrightarrow\forall y\,\beta).
+    \]
+
+    Para $Q=\exists$, a hipótese implica, por raciocínio tautológico,
+    \[
+        T\vdash \theta\rightarrow(\neg\alpha\leftrightarrow\neg\beta).
+    \]
+    Pela parte universal já provada,
+    \[
+        T\vdash
+        \theta\rightarrow(\forall y\,\neg\alpha\leftrightarrow \forall y\,\neg\beta).
+    \]
+    Novamente por raciocínio tautológico,
+    \[
+        T\vdash
+        \theta\rightarrow(\neg\forall y\,\neg\alpha\leftrightarrow \neg\forall y\,\neg\beta).
+    \]
+
+    Pelas leis de negação de quantificadores e pela eliminação de dupla negação,
+    \[
+        T\vdash \neg\forall y\,\neg\alpha\leftrightarrow \exists y\,\alpha
+        \qquad\text{e}\qquad
+        T\vdash \neg\forall y\,\neg\beta\leftrightarrow \exists y\,\beta.
+    \]
+    Portanto,
+    \[
+        T\vdash \theta\rightarrow(\exists y\,\alpha\leftrightarrow \exists y\,\beta).
+    \]
 \end{proof}
 
 Agora estamos prontos para demonstrar a Lei de Leibniz.
@@ -243,18 +297,26 @@ Agora estamos prontos para demonstrar a Lei de Leibniz.
 
     Se $\varphi$ é atômica, a conclusão é exatamente o Metalema~\ref{mlem:substituicaoIguaisAtomicas}.
 
-    Se $\varphi$ é $\neg\psi$, então, por hipótese de indução,
+    Se $\varphi$ é $\neg\psi$, então $x$ é substituível por $s$ e por $t$ em $\psi$.
+    Por hipótese de indução,
     \[
         T\vdash s=t\rightarrow(\psi[x/s]\leftrightarrow\psi[x/t]).
     \]
     
-    Ademais, $T\vdash (\psi[x/s]\leftrightarrow\psi[x/t])\rightarrow (\neg\psi[x/s]\leftrightarrow\neg\psi[x/t])$.
+    Ademais, por raciocínio tautológico,
+    \[
+        T\vdash
+        (\psi[x/s]\leftrightarrow\psi[x/t])
+        \rightarrow
+        (\neg\psi[x/s]\leftrightarrow\neg\psi[x/t]).
+    \]
     Pela transitividade de $\rightarrow$, obtemos
     \[
         T\vdash s=t\rightarrow(\neg\psi[x/s]\leftrightarrow\neg\psi[x/t]).
     \]
 
-    Se $\varphi$ é $\psi\square\chi$, em que $\square$ é um conectivo binário, então, pelas hipóteses de indução aplicadas a $\psi$ e a $\chi$,
+    Se $\varphi$ é $\psi\square\chi$, em que $\square$ é um conectivo binário, então $x$ é substituível por $s$ e por $t$ em $\psi$ e em $\chi$.
+    Pelas hipóteses de indução aplicadas a $\psi$ e a $\chi$,
     \[
         T\vdash s=t\rightarrow(\psi[x/s]\leftrightarrow\psi[x/t])
     \]
@@ -262,8 +324,13 @@ Agora estamos prontos para demonstrar a Lei de Leibniz.
     \[
         T\vdash s=t\rightarrow(\chi[x/s]\leftrightarrow\chi[x/t]).
     \]
-    Ademais, $T\vdash
-    ((\psi[x/s]\leftrightarrow\psi[x/t])\wedge(\chi[x/s]\leftrightarrow\chi[x/t]))\rightarrow ((\psi[x/s]\square\chi[x/s])\leftrightarrow(\psi[x/t]\square\chi[x/t]))$.
+    Ademais, por raciocínio tautológico,
+    \[
+        T\vdash
+        ((\psi[x/s]\leftrightarrow\psi[x/t])\wedge(\chi[x/s]\leftrightarrow\chi[x/t]))
+        \rightarrow
+        ((\psi[x/s]\square\chi[x/s])\leftrightarrow(\psi[x/t]\square\chi[x/t])).
+    \]
     Assim, 
     \[
         T\vdash
@@ -275,7 +342,7 @@ Agora estamos prontos para demonstrar a Lei de Leibniz.
     
     Resta tratar o caso em que $\varphi$ é $Qy\,\psi$, em que $Q$ é $\forall$ ou $\exists$.
 
-    Se $y=x$, então as substituições por $x$ não atravessam o quantificador inicial.
+    Se $y=x$, então as substituições de $x$ por $s$ e por $t$ não atravessam o quantificador inicial.
     Assim,
     \[
         \varphi[x/s]=\varphi=\varphi[x/t],
@@ -292,7 +359,11 @@ Agora estamos prontos para demonstrar a Lei de Leibniz.
     \[
         \psi[x/s]=\psi=\psi[x/t],
     \]
-    e a conclusão segue imediatamente.
+    e, portanto, $\varphi[x/s]=\varphi=\varphi[x/t]$.
+    Nesse caso, a conclusão segue de
+    \[
+        T\vdash s=t\rightarrow(\varphi\leftrightarrow\varphi).
+    \]
 
     Suponha, então, que $x$ ocorre livre em $\psi$.
     Como $x$ é substituível por $s$ e por $t$ em $Qy\,\psi$, a variável $y$ não ocorre em $s$ nem em $t$.
@@ -308,6 +379,7 @@ Agora estamos prontos para demonstrar a Lei de Leibniz.
         s=t\rightarrow
         \bigl(Qy\,\psi[x/s]\leftrightarrow Qy\,\psi[x/t]\bigr).
     \]
+    Como $y$ não ocorre em $s$ nem em $t$, os lados dessa equivalência são exatamente $\varphi[x/s]$ e $\varphi[x/t]$.
 \end{proof}
 
 Em linguagem informal, a Lei da igualdade de Leibniz diz que objetos iguais satisfazem as mesmas fórmulas, desde que as substituições envolvidas sejam válidas.
