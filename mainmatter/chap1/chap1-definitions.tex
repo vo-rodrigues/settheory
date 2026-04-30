@@ -9,6 +9,10 @@ Neste texto, tais símbolos serão introduzidos \emph{por definição}.
 Intuitivamente, isto significa que eles servem apenas como abreviações: em vez de escrever repetidamente uma fórmula longa, introduzimos um símbolo novo cujo comportamento é \emph{explicitamente} fixado por um axioma.
 O ponto central desta seção é formalizar essa prática e justificar que ela não aumenta o poder de prova da teoria em relação às sentenças da linguagem original.
 
+Nessa seção, a partir da seção 1.10.2, em que lidaremos principalmente com sentenças, usaremos as regras de inferência discutidas nas seções anteriores sem aviso prévio.
+O leitor interessado pode se atentar aos usos do Teorema da Dedução, introdução de quantificadores, introdução de constantes, etc.
+Em suma, escreveremos essa seção do modo matemático ``usual''.
+
 \subsection{O quantificador \texorpdfstring{$\exists!$}{∃!}}\label{subsec:quantificadorExistsUnique}
 \index{quantificador!existência única}
 
@@ -38,18 +42,18 @@ Isso é formalizado pelo resultado a seguir.
     Se $y$ e $z$ são variáveis distintas de $x$, distintas entre si, e que não ocorrem em $\varphi$, então as duas fórmulas obtidas ao expandir
     $\exists!x\,\varphi$ pela Equação~\eqref{eq:existsUnique} usando $y$ ou usando $z$ são equivalentes em qualquer teoria de primeira ordem.
 
-    Ou seja, se
-
-    \begin{equation}
-        (\exists x\,\varphi)\ \wedge\ \forall x\,\forall y\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr),
-    \end{equation}
-
-    então
-
-    \begin{equation}
-        (\exists x\,\varphi)\ \wedge\ \forall x\,\forall z\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr),
-    \end{equation}
-
+    Ou seja, para toda teoria de primeira ordem $T$,
+    \[
+        T\vdash
+        (\exists x\,\varphi)\ \wedge\ 
+        \forall x\,\forall y\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr)
+    \]
+    implica
+    \[
+        T\vdash
+        (\exists x\,\varphi)\ \wedge\ 
+        \forall x\,\forall z\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr),
+    \]
     e vice-versa.
 \end{metalemma}
 
@@ -66,8 +70,11 @@ Isso é formalizado pelo resultado a seguir.
         T\vdash \forall y\,\forall x\bigl((\varphi \wedge \varphi[x/y])\rightarrow x=y\bigr).
     \]
     Como $z$ não ocorre em $\varphi$, podemos renomear o quantificador externo de $y$ para $z$.
-    Usando o Metalema~\ref{mlem:renomeacaoVariavelUniversal} e a igualdade
-    $\varphi[x/y][y/z]=\varphi[x/z]$, concluímos
+    Usando o Metalema~\ref{mlem:renomeacaoVariavelUniversal} e o
+    Metalema~\ref{mlem:substituicaoComposta}, aplicado às substituições
+    $[x/y]$ e $[y/z]$, obtemos
+    $\varphi[x/y][y/z]=\varphi[x/z]$.
+    Concluímos, portanto,
     \[
         T\vdash \forall z\,\forall x\bigl((\varphi \wedge \varphi[x/z])\rightarrow x=z\bigr).
     \]
@@ -81,7 +88,7 @@ Isso é formalizado pelo resultado a seguir.
 \subsection{Definindo definições}\label{subsec:definindoDefinicoes}
 Agora estamos prontos para falar formalmente sobre definições.
 
-\begin{metadefinition}[Definição explícita]\label{mdef:definicaoExplicita}\index{definição!explícita}\index{símbolo!não lógico!definido}
+\begin{metadefinition}[Definições]\label{mdef:definicaoExplicita}\index{definição!explícita}\index{símbolo!não lógico!definido}
 Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mathcal L'$ um léxico que estende $\mathcal L$.
 
 \begin{enumerate}[label=(\roman*)]
@@ -105,7 +112,7 @@ Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$, e seja $\mat
     \[
         T\vdash \forall x_1\ldots \forall x_n\,\exists!y\,\varphi(x_1,\ldots,x_n,y).
     \]
-    (Intuitivamente, $T$ prova que $\varphi$ define \emph{unicamente} um valor $y$ para cada entrada $x_1,\ldots,x_n$.)
+    (Intuitivamente, $T$ prova que $\varphi$ determina \emph{unicamente} um valor $y$ para cada entrada $x_1,\ldots,x_n$.)
 
     \item \textbf{Constantes.}
     Seja $c\in\mathcal L'\setminus\mathcal L$ um símbolo de constante.
@@ -131,9 +138,10 @@ Além disso, se $P$, $f$ ou $c$ são símbolos dos tipos correspondentes em $\ma
     \item $\Def_f(x_1,\ldots,x_n,y)$ é a fórmula $f(x_1,\ldots,x_n)=y$.
     \item $\Def_c(y)$ é a fórmula $c=y$.
     \item Se $z$ é uma variável, então $\Def_{z}(z, y)$ é a fórmula $y=z$.
+    \item $\Def_{=}(x_1, x_2)$ é a fórmula $x_1=x_2$.
 \end{itemize}
 
-Note que, nesses casos, $\Def_P$, $\Def_f$, $\Def_c$ e $\Def_{z}$ são fórmulas da linguagem de $\mathcal L$.
+Note que, nesses casos, $\Def_P$, $\Def_f$, $\Def_c$, $\Def_z$ e $\Def_=$ são fórmulas da linguagem de $\mathcal L$.
 \end{metadefinition}
 
 \begin{example}\label{exa:definicoesExplicitas}
@@ -145,7 +153,10 @@ Ainda que não tenhamos apresentado a Teoria dos Conjuntos, vejamos alguns exemp
         \forall x\,\forall y\Bigl(x\subseteq y\ \leftrightarrow\ \forall z\,(z\in x\rightarrow z\in y)\Bigr).
     \]
     Aqui $\subseteq$ é um novo símbolo de predicado binário, definido por uma $\mathcal L$-fórmula (em que $\mathcal L=\{\in\}$).
-    Nesse caso, $\Def_{\subseteq}$ é a fórmula $\forall z\,(z\in x\rightarrow z\in y)$.
+    Nesse caso, $\Def_{\subseteq}(x,y)$ é a fórmula
+    \[
+        \forall z\,(z\in x\rightarrow z\in y).
+    \]
 
     \item \textbf{Teoria dos grupos.}
     Considere a teoria de grupos na linguagem \emph{sem} símbolo de constante para a identidade,
@@ -163,12 +174,12 @@ Ainda que não tenhamos apresentado a Teoria dos Conjuntos, vejamos alguns exemp
 Agora podemos definir a noção de extensão por definição, uma formalização da prática de introduzir definições como abreviações.
 
 \begin{metadefinition}[Extensão por definição]\label{mdef:extensaoPorDefinicao}\index{definição!extensão por definição}
-    Seja $T$ uma teoria de primeira ordem cujo léxico é $\mathcal L$.
-    Dizemos que uma teoria $T'$ é uma \emph{extensão por definição} de $T$ se:
+    Seja $T=(\mathcal L, \Sigma)$ uma teoria de primeira ordem cujo léxico é $\mathcal L$.
+    Dizemos que uma teoria $T'=(\mathcal L', \Sigma')$ é uma \emph{extensão por definição} de $T$ se:
     \begin{itemize}
-        \item o léxico de $T'$ é um léxico $\mathcal L'$ que estende $\mathcal L$;
-        \item os axiomas de $T'$ consistem nos axiomas de $T$ e, para cada símbolo novo de $\mathcal L'\setminus\mathcal L$,
-        em uma (única) definição explícita no sentido da Metadefinição~\ref{mdef:definicaoExplicita}.
+        \item $\mathcal L'$ estende $\mathcal L$;
+        \item os axiomas de $\Sigma'$ consistem nos axiomas de $T$ e, para cada símbolo novo de $\mathcal L'\setminus\mathcal L$,
+        em uma (única) definição no sentido da Metadefinição~\ref{mdef:definicaoExplicita}.
     \end{itemize}
 \end{metadefinition}
 
@@ -193,7 +204,7 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
 
 \begin{metadefinition}[Fórmula do valor de um termo]\label{mdef:formulaDoValorDeUmTermo}\index{termo!fórmula do valor}\index{eliminação de símbolos definidos!termos}
     Suponha que $T'$ é uma extensão por definição de $T$, com léxicos $\mathcal L'$ e $\mathcal L$ respectivamente.
-    Seja $t$ um termo de $\mathcal L'$.
+    Seja $t$ um $\mathcal L'$-termo.
     Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres estão entre as variáveis de $t$ e mais uma variável $y$, lida como
     ``$y$ é o valor do termo $t$'', como segue.
 
@@ -209,6 +220,32 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
         e $y_1, \dots, y_m$ são variáveis auxiliares duas a duas distintas e distintas de $x_1,\ldots,x_n,y$.
     \end{enumerate}
 \end{metadefinition}
+
+É imediato das definições que $\delta_t$ é uma $\mathcal L$-fórmula com as mesmas variáveis livres de $t$ e mais uma variável $y$.
+Escrevemos $\delta_t(x_1,\ldots,x_n,y)$ para indicar que as variáveis livres de $\delta_t$ estão entre $x_1,\ldots,x_n,y$, porém, pode ser que nem todas essas variáveis estejam de fato livres em $\delta_t$.
+Isso de forma alguma será um problema.
+
+Antes de provar o metalema abaixo, façamos algumas considerações.
+Se $T=(\mathcal L, \Sigma)$ e $c \in \mathcal L$ é um símbolo de constante, então temos que:
+\[
+    T\vdash \forall y\bigl(c=y \leftrightarrow \Def_c(y)\bigr)
+\]
+e
+\[
+    T\vdash \exists!y\,\Def_c(y).
+\]
+Analogamente, se $f \in \mathcal L$ é um símbolo de função $n$-ário, em que $n \geq 1$, então temos que:
+\[
+    T\vdash \forall x_1\ldots \forall x_n\,\forall y\bigl(f(x_1,\ldots,x_n)=y \leftrightarrow \Def_f(x_1,\ldots,x_n,y)\bigr)
+\]
+e
+\[
+    T\vdash \forall x_1\ldots \forall x_n\,\exists!y\,\Def_f(x_1,\ldots,x_n,y).
+\]
+Algo similiar vale para símbolos relacionais.
+Se $R$ é um símbolo de predicado $0$-ário, então $T\vdash R\leftrightarrow \Def_R$, e, se $R$ é um símbolo de predicado $n$-ário, em que $n\geq 1$, então $T\vdash \forall x_1\ldots \forall x_n\bigl(R(x_1,\ldots,x_n)\leftrightarrow \Def_R(x_1,\ldots,x_n)\bigr)$.
+
+Essas observações são consequências diretas da definição de $\Def_c$, $\Def_f$ e $\Def_R$ para símbolos de $\mathcal L$.
 
 \begin{metalemma}[Eliminação de termos]\label{mlem:eliminacaoDeTermos}\index{eliminação de símbolos definidos!termos}
     Seja $T'$ uma extensão por definição de $T$, com $\mathcal L\subseteq \mathcal L'$.
@@ -229,7 +266,6 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
 
 \begin{proof}
 Provaremos (1), (2) e (3) simultaneamente por indução sobre a complexidade do termo $t$.
-Escreva $\bar x$ para $x_1,\ldots,x_n$.
 
 \smallskip
 \textbf{Base 1: $t$ é uma constante $c$.}
@@ -237,19 +273,17 @@ Escreva $\bar x$ para $x_1,\ldots,x_n$.
 
 \emph{(1).} Se $c\in\mathcal L'\setminus\mathcal L$, então a sentença definidora de $c$ pertence a $T'$ e tem a forma
 $\forall y\,(c=y\leftrightarrow \Def_c(y))$, que é exatamente (1).
-Se $c\in\mathcal L$, então por convenção $\Def_c(y)$ é $c=y$, logo
-$\forall y\,(c=y\leftrightarrow \Def_c(y))$ é uma instância de tautologia.
+Se $c\in\mathcal L$, então, conforme definido, $\Def_c(y)$ é $c=y$, logo
+$\forall y\,(c=y\leftrightarrow \Def_c(y))$ é a generalização de uma tautologia.
 
-\emph{(2).} Se $c$ é novo, a própria hipótese de ``introdução por definição'' garante
+\emph{(2).} Se $c\in \mathcal L'\setminus \mathcal L$, a própria hipótese de ``introdução por definição'' garante
 $T\vdash \exists!y\,\Def_c(y)$.
 Se $c\in\mathcal L$, então $\Def_c(y)$ é $c=y$; provamos $T\vdash \exists!y\,(c=y)$:
 \begin{itemize}
     \item \emph{Existência.} Pela reflexividade da igualdade, $T\vdash c=c$.
-    Aplicando FO15 à fórmula $\phi(y)\equiv (c=y)$ com o termo $t=c$, obtemos o axioma lógico
-    $(c=c)\rightarrow \exists y(c=y)$; por \emph{modus ponens}, $T\vdash \exists y(c=y)$.
-    \item \emph{Unicidade.} Dos axiomas de igualdade, temos $c=y\rightarrow y=c$ (simetria) e
-    $y=c\wedge c=z\rightarrow y=z$ (transitividade). Assim,
-    $(c=y\wedge c=z)\rightarrow y=z$, e portanto a parte de unicidade de $\exists!y(c=y)$.
+    Daí, pela introdução de $\exists$, $T\vdash \exists y\,(c=y)$.
+    \item \emph{Unicidade.} Devemos provar $T\vdash (c=y\wedge c=z)\rightarrow y=z$.
+    Isso decorre da simetria e da transitividade da igualdade.
 \end{itemize}
 
 \emph{(3).} Se $t$ é um $\mathcal L$-termo, então necessariamente $c\in\mathcal L$ e, como acima,
@@ -259,97 +293,111 @@ $\forall y\,(c=y\leftrightarrow \Def_c(y))$ é tautológica; logo vale em $T$.
 \textbf{Base 2: $t$ é uma variável $z$.}
 Pela Metadefinição~\ref{mdef:formulaDoValorDeUmTermo}, $\delta_t(z,y)$ é $y=z$, isto é, $\Def_{z}(z,y)$.
 
-\emph{(1).} Queremos $T'\vdash \forall z\,\forall y\,(z=y\leftrightarrow y=z)$.
-Pela simetria da igualdade, temos
-$T'\vdash z=y\rightarrow y=z$ e também $T'\vdash y=z\rightarrow z=y$.
-Por uma instância da tautologia proposicional
-\[
-(P\rightarrow Q)\rightarrow\bigl((Q\rightarrow P)\rightarrow (P\leftrightarrow Q)\bigr),
-\]
-obtemos $T'\vdash z=y\leftrightarrow y=z$, e tomando fecho universal em $z,y$ concluímos (1).
+\emph{(1).} Queremos $T'\vdash \forall z\,\forall y\,(z=y\leftrightarrow y=z)$, o que é uma generalização da simetria da igualdade.
 
 \emph{(2).} Provamos $T\vdash \forall z\,\exists!y\,(y=z)$.
-A existência segue de $T\vdash z=z$ e de FO15 aplicado a $\phi(y)\equiv (y=z)$ com o termo $t=z$.
-A unicidade segue de $(y=z\wedge w=z)\rightarrow y=w$, obtida por simetria e transitividade da igualdade.
-Logo vale (2) no caso variável.
 
-\emph{(3).} Como variáveis já pertencem à linguagem, o argumento de (1) funciona igualmente dentro de $T$.
+Introduzindo uma constante $c$, é suficiente ver que $T(c)\vdash \exists!y\,(y=c)$.
+Isso é completamente análogo ao caso de uma constante $c$ já realizado.
+
+\emph{(3).} Idêntico à (1).
 
 \smallskip
 \textbf{Passo indutivo: $t=f(t_1,\ldots,t_m)$.}
-Sejam $\bar x$ as variáveis que ocorrem em $t$ (no sentido da sua convenção: todas as variáveis livres estão dentre $\bar x$).
-Pela Metadefinição~\ref{mdef:formulaDoValorDeUmTermo},
-\[
-\delta_t(\bar x,y)\ \equiv\ \exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr).
-\]
+Sejam $x_1,\ldots,x_n$ as variáveis que ocorrem em $t$.
 
 \smallskip
-\emph{(1) Trabalhando em $T'$.}
+\emph{(1) e (3).}
+Trabalhando em $T'$ para (1). e $T$ para (3), queremos ver que
+\[
+\forall x_1\ldots\forall x_n\,\forall y\bigl(f(t_1,\ldots,t_m)=y \leftrightarrow \exists y_1\ldots\exists y_m\bigl(\bigwedge_{i=1}^m \delta_{t_i}(x_1,\ldots,x_n,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\bigr)\bigr).
+\]
+
+Fixadas constantes $a_1,\ldots,a_n$ e $b$ para as variáveis $x_1,\ldots,x_n$ e $y$, respectivamente, queremos mostrar
+\[
+f(t_1',\ldots,t_m')=b\ \leftrightarrow\ \exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,b)\Bigr).
+\]
+em que cada $t_i'=t_i[x_1/a_1]\cdots[x_n/a_n]$ é o resultado de substituir cada $x_j$ por $a_j$ em $t_i$.
+
 Pela hipótese de indução aplicada a cada $t_i$, temos
 \[
-T'\vdash \forall \bar x\,\forall y_i\bigl(t_i=y_i\leftrightarrow \delta_{t_i}(\bar x,y_i)\bigr)\qquad (i=1,\ldots,m).
+\forall x_1\ldots\forall x_n\,\forall y_i\bigl(t_i=y_i\leftrightarrow \delta_{t_i}(x_1,\ldots,x_n,y_i)\bigr)\qquad (i=1,\ldots,m).
 \]
-Usando essas equivalências dentro do existencial (raciocínio proposicional), obtemos em $T'$:
+Dado $i$ de $1$ a $m$, instanciando cada $x_j$ por $a_j$ e $y_i$ por $t_i'$, obtemos
 \[
-\delta_t(\bar x,y)\ \leftrightarrow\
-\exists \bar y\Bigl(\bigwedge_{i=1}^m (t_i=y_i)\ \wedge\ \Def_f(\bar y,y)\Bigr).
+t_i'=t'_i\leftrightarrow \delta_{t_i}(a_1,\ldots,a_n,t_i').
 \]
-Agora, em $T'$ temos sempre
-\[
-\forall \bar u\,\forall v\bigl(f(\bar u)=v\leftrightarrow \Def_f(\bar u,v)\bigr),
-\]
-pois ou $f\in\mathcal L$ e então isto é tautológico pela convenção $\Def_f(\bar u,v)\equiv f(\bar u)=v$,
-ou $f$ é novo e esta é precisamente a sentença definidora de $f$.
-Logo podemos substituir $\Def_f(\bar y,y)$ por $f(\bar y)=y$ dentro de $T'$.
 
-Com isso, e usando a congruência para funções e a transitividade da igualdade,
-temos a equivalência (em $T'$):
+Assim:
 \[
-f(t_1,\ldots,t_m)=y\ \leftrightarrow\ \exists \bar y\Bigl(\bigwedge_{i=1}^m (t_i=y_i)\wedge f(\bar y)=y\Bigr).
+\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,t_i').
 \]
-Juntando com a equivalência anterior para $\delta_t(\bar x,y)$, concluímos
+Temos ainda:
 \[
-T'\vdash \forall \bar x\,\forall y\bigl(t=y\leftrightarrow \delta_t(\bar x,y)\bigr),
+\forall u_1\ldots\forall u_m\,\forall v\bigl(f(u_1,\ldots,u_m)=v\leftrightarrow \Def_f(u_1,\ldots,u_m,v)\bigr).
 \]
-isto é, (1).
 
-\smallskip
-\emph{(2) Trabalhando em $T$.}
-Pela hipótese de indução, para cada $i\le m$,
+Instanciando cada $u_j$ em $t_j'$ e $v$ em $b$, obtemos
 \[
-T\vdash \forall\bar x\,\exists!y_i\,\delta_{t_i}(\bar x,y_i).
+f(t_1',\ldots,t_m')=b\leftrightarrow \Def_f(t_1',\ldots,t_m',b).
 \]
-Fixe $\bar x$. Pela parte existencial, existem (únicos) $y_1,\ldots,y_m$ tais que $\delta_{t_i}(\bar x,y_i)$.
-Agora mostramos que existe um único $y$ tal que $\Def_f(y_1,\ldots,y_m,y)$:
-\begin{itemize}
-    \item Se $f$ é novo, isto é exatamente a condição da Metadefinição~\ref{mdef:definicaoExplicita}:
-    $T\vdash \forall \bar u\,\exists!v\,\Def_f(\bar u,v)$.
-    \item Se $f\in\mathcal L$, então $\Def_f(\bar u,v)$ é $f(\bar u)=v$.
-    Para a existência, a reflexividade da igualdade dá $T\vdash f(\bar u)=f(\bar u)$,
-    e então FO15, aplicado à fórmula $\phi(v)\equiv (f(\bar u)=v)$ com o termo $t=f(\bar u)$, dá $\exists v\,f(\bar u)=v$.
-    Para a unicidade, de $f(\bar u)=v$ e $f(\bar u)=w$ obtemos $v=w$ por simetria e transitividade da igualdade.
-\end{itemize}
-Portanto, existe um único $y$ tal que $\Def_f(y_1,\ldots,y_m,y)$.
-Logo existe um único $y$ tal que
+Assim, temos:
+
 \[
-\exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,y)\Bigr),
+f(t_1',\ldots,t_m')=b\leftrightarrow\Def_f(t_1',\ldots,t_m',b)\wedge \bigl(\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,t_i')\bigr).
 \]
-isto é, $\exists!y\,\delta_t(\bar x,y)$.
-Como $\bar x$ foi arbitrário, concluímos (2):
+
+Daí, para a direção $\rightarrow$ já segue que:
+
 \[
-T\vdash \forall \bar x\,\exists!y\,\delta_t(\bar x,y).
+f(t_1',\ldots,t_m')=b\rightarrow \exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,b)\Bigr).
 \]
+
+Reciprocamente, pelo Teorema da Dedução, assuma que
+\[
+\exists y_1\ldots\exists y_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,y_i)\ \wedge\ \Def_f(y_1,\ldots,y_m,b)\Bigr).
+\]
+Fixe $y_1',\ldots,y_m'$ tais que $\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,y_i')\ \wedge\ \Def_f(y_1',\ldots,y_m',b)$.
+Como para cada índice $i$, temos $\delta_{t_i}(a_1,\ldots,a_n,y_i')$ e $\delta_{t_i}(a_1,\ldots,a_n,t_i')$, segue da hipótese de indução que $y_i'=t_i'$ para cada $i$.
+Como temos que $\Def_f(y_1',\ldots,y_m',b)$, e $y_i'=t_i'$ para cada $i$, segue que $\Def_f(t_1',\ldots,t_m',b)$.
+Desse modo, $f(t_1',\ldots,t_m')=b$.
 
 \smallskip
-\emph{(3) Caso adicional: $t$ é um $\mathcal L$-termo.}
-Se $t$ é um $\mathcal L$-termo, então $f\in\mathcal L$ e cada $t_i$ também é $\mathcal L$-termo.
-Pela hipótese de indução (3) aplicada a cada $t_i$, temos as equivalências $t_i=y_i\leftrightarrow \delta_{t_i}(\bar x,y_i)$ agora em $T$.
-Repetindo o argumento de (1) inteiramente dentro de $T$ (e usando que $\Def_f(\bar y,y)$ é $f(\bar y)=y$ por convenção),
-obtemos
+\emph{(2).}
+Trabalhando em $T$, vamos iniciar provando a existência, ou seja, que
 \[
-T\vdash \forall \bar x\,\forall y\bigl(t=y\leftrightarrow \delta_t(\bar x,y)\bigr),
+\forall x_1\ldots\forall x_n\,\exists y\,\delta_t(x_1,\ldots,x_n,y).
 \]
-isto é, (3).
+Para tanto, fixe constantes $a_1,\ldots,a_n$ para as variáveis $x_1,\ldots,x_n$.
+Veremos que $\exists y\,\delta_t(a_1,\ldots,a_n,y)$.
+
+Por hipótese de indução aplicada a cada $t_i$, temos
+\[
+\forall x_1\ldots\forall x_n\,\exists y_i\,\delta_{t_i}(x_1,\ldots,x_n,y_i)\qquad (i=1,\ldots,m).
+\]
+Instanciando cada $x_j$ por $a_j$, obtemos $\exists y_i\,\delta_{t_i}(a_1,\ldots,a_n,y_i)$ para cada $i$.
+Instanciando cada $y_i$ por uma nova constante $b_i$, obtemos $\delta_{t_i}(a_1,\ldots,a_n,b_i)$ para cada $i$.
+Pela definição de definição, $\exists y\,\Def_f(b_1,\ldots,b_m,y)$.
+Fixando tal $y$ por uma nova constante $b$, temos $\Def_f(b_1,\ldots,b_m,b)$.
+Assim, temos $\delta_t(a_1,\ldots,a_n,b)$, e, por isso, $\exists y\,\delta_t(a_1,\ldots,a_n,y)$.
+
+Para a unicidade, devemos ver que
+\[
+    \forall x_1\ldots\forall x_n\,\forall y\,\forall z\bigl((\delta_t(x_1,\ldots,x_n,y)\wedge \delta_t(x_1,\ldots,x_n,z))\rightarrow y=z\bigr).
+\]
+
+Fixe $a_1,\ldots,a_n$ para as variáveis $x_1,\ldots,x_n$, e $b$ e $c$ para as variáveis $y$ e $z$, respectivamente.
+Temos que $\delta_t(a_1,\ldots,a_n,b)$ e $\delta_t(a_1,\ldots,a_n,c)$.
+Pela definição de $\delta_t$, temos que existem $b_1,\ldots,b_m$ e $c_1,\ldots,c_m$ tais que
+\[
+\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,b_i)\ \wedge\ \Def_f(b_1,\ldots,b_m,b)
+\]
+e
+\[
+\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,c_i)\ \wedge\ \Def_f(c_1,\ldots,c_m,c).
+\]
+Pela hipótese de indução aplicada ao item (2), temos $b_i=c_i$ para cada $i$.
+Pela unicidade correspondente a $\Def_f$, aplicada às mesmas entradas, obtemos então $b=c$.
 
 Isso conclui a indução e a prova do metalema.
 \end{proof}
@@ -360,31 +408,21 @@ Isso conclui a indução e a prova do metalema.
 Agora eliminamos símbolos definidos de fórmulas.
 
 \begin{metadefinition}[Tradução $\psi\mapsto \psi^\ast$]\label{mdef:traducaoFormulas}\index{eliminação de símbolos definidos!fórmulas}
+    Seja $T=(\mathcal L, \Sigma)$ uma teoria de primeira ordem e $T'=(\mathcal L', \Sigma')$ uma extensão por definição de $T$.
+
     Seja $\psi$ uma fórmula da linguagem $\mathcal L'$ cujas variáveis livres estejam entre $x_1,\ldots,x_n$.
     Definimos por recursão uma $\mathcal L$-fórmula $\psi^\ast$ (com as mesmas variáveis livres) como segue.
     Em todos os casos atômicos abaixo, as variáveis auxiliares $u,v,u_1,\ldots,u_m$ são escolhidas novas e distintas das variáveis livres listadas.
 
     \begin{enumerate}[label=(\roman*)]
-        \item Se $\psi$ é $t_1=t_2$, então
+        \item Se $\psi$ é um predicado $0$-ário $P\in\mathcal L'$, então $\psi^\ast:=\Def_P$.
+
+        \item Se $\psi$ é $P(t_1,\ldots,t_m)$, em que $P\in\mathcal L'$ é predicado $m$-ário, ou $P$ é a igualdade e $m=2$, então
         \[
-            \psi^\ast\ :=\ \exists u\,\exists v\bigl(\delta_{t_1}(\bar x,u)\wedge \delta_{t_2}(\bar x,v)\wedge u=v\bigr).
+            \psi^\ast\ :=\ \exists u_1\ldots \exists u_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(x_1,\ldots,x_n,u_i)\ \wedge\ \Def_P(u_1,\ldots,u_m)\Bigr).
         \]
 
-        \item Se $\psi$ é um predicado $0$-ário $R\in\mathcal L$, então $\psi^\ast:=R$.
-
-        \item Se $\psi$ é $R(t_1,\ldots,t_m)$, em que $R\in\mathcal L$ é predicado $m$-ário e $m>0$, então
-        \[
-            \psi^\ast\ :=\ \exists u_1\ldots \exists u_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,u_i)\ \wedge\ R(u_1,\ldots,u_m)\Bigr).
-        \]
-
-        \item Se $\psi$ é um predicado $0$-ário $P\in\mathcal L'\setminus\mathcal L$ definido por $\Def_P$, então $\psi^\ast:=\Def_P$.
-
-        \item Se $\psi$ é $P(t_1,\ldots,t_m)$, em que $P\in\mathcal L'\setminus\mathcal L$ é predicado $m$-ário definido por $\Def_P$ e $m>0$, então
-        \[
-            \psi^\ast\ :=\ \exists u_1\ldots \exists u_m\Bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,u_i)\ \wedge\ \Def_P(u_1,\ldots,u_m)\Bigr).
-        \]
-
-        \item Conectivos e quantificadores:
+        \item Para conectivos e quantificadores, definimos que
         \[
             (\neg\theta)^\ast:=\neg(\theta^\ast),\quad
             (\theta\square\eta)^\ast:=\theta^\ast\square\eta^\ast,
@@ -397,11 +435,12 @@ Agora eliminamos símbolos definidos de fórmulas.
     \end{enumerate}
 \end{metadefinition}
 
+Por um argumento indutivo simples, mostra-se que $\psi^\ast$ é uma $\mathcal L$-fórmula com as mesmas variáveis livres de $\psi$.
+
 \begin{metalemma}[Eliminação de fórmulas]\label{mlem:eliminacaoDeFormulas}\index{eliminação de símbolos definidos!fórmulas}
     Seja $T'$ uma extensão por definição de $T$.
     Para toda fórmula $\psi(x_1, \dots, x_n)$ da linguagem $\mathcal L'$,
-    existe uma fórmula $\psi^\ast$ na linguagem $\mathcal L$ (como na Metadefinição~\ref{mdef:traducaoFormulas})
-    com as mesmas variáveis livres que $\psi$ tal que
+    
     \[
         T'\vdash \forall x_1\ldots \forall x_n\,(\psi\leftrightarrow \psi^\ast).
     \]
@@ -413,145 +452,110 @@ Agora eliminamos símbolos definidos de fórmulas.
 \end{metalemma}
 
 \begin{proof}
-    Provaremos por indução sobre a estrutura de $\psi$ a seguinte afirmação simultânea.
+    Provaremos por indução sobre a estrutura de $\psi$ ambas as afirmações do enunciado.
 
     \smallskip
-    \textbf{Afirmação A.} Para toda fórmula $\psi(\bar x)$ de $\mathcal L'$, vale
+    \textbf{Caso atômico:} $\psi$ é uma fórmula atômica com símbolo atômico $R$,
+    em que $R$ é um símbolo de predicado de $\mathcal L'$ ou $R$ é o símbolo lógico de igualdade.
+
+    Caso $R$ seja o símbolo lógico de igualdade ou $R \in \mathcal L$, devemos provar ambas as afirmações do enunciado.
+    Caso $R \in \mathcal L'\setminus\mathcal L$, somente a primeira é relevante.
+    Em todos os casos, a argumentação é similar.
+    Para a primeira afirmação, argumentamos em $T'$, e para a segunda, em $T$.
+
+    Se $R$ tem aridade $0$, então $\psi$ é $R$ e $\psi^\ast$ é $\Def_R$.
+    Se $R\in\mathcal L$, então $\Def_R$ é $R$, e a tese é trivial.
+    Se $R\in\mathcal L'\setminus\mathcal L$, a tese é exatamente a definição explícita de $R$ em $T'$.
+
+    Suponha, portanto, que $R$ tem aridade $m>0$.
+    Devemos mostrar que
     \[
-        T'\vdash \forall \bar x\,(\psi\leftrightarrow \psi^\ast).
+        \forall x_1\ldots \forall x_n\,\Bigl(R(t_1,\ldots,t_m)\leftrightarrow
+        \exists u_1\ldots \exists u_m\bigl(\bigwedge_{i=1}^m \delta_{t_i}(x_1,\ldots,x_n,u_i)\wedge \Def_R(u_1,\ldots,u_m)\bigr)\Bigr),
     \]
 
-    \textbf{Afirmação B.} Se, além disso, $\psi(\bar x)$ é uma fórmula de $\mathcal L$, então
+    Fixemos constantes $a_1,\ldots,a_n$ para as variáveis $x_1,\ldots,x_n$.
+    Para cada $i$ de $1$ a $m$, seja $t_i'=t_i[x_1/a_1]\ldots[x_n/a_n]$ o resultado de substituir cada $x_j$ por $a_j$ em $t_i$.
+    Devemos mostrar que
     \[
-        T\vdash \forall \bar x\,(\psi\leftrightarrow \psi^\ast).
+        R(t_1',\ldots,t_m')\ \leftrightarrow\
+        \exists u_1\ldots \exists u_m\bigl(\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,u_i)\wedge \Def_R(u_1,\ldots,u_m)\bigr).
     \]
 
-    \smallskip
-    Em cada caso, $\psi^\ast$ é a tradução definida na Metadefinição~\ref{mdef:traducaoFormulas}.
-
-    \smallskip
-    \textbf{Caso atômico 1:} $\psi$ é $t_1=t_2$.
-
-    \emph{Prova de A.}
-    Pelo item (1) do Metalema~\ref{mlem:eliminacaoDeTermos},
+    Pelos itens (1) ou (3) do Metalema~\ref{mlem:eliminacaoDeTermos}, para cada índice $i$ de $1$ a $m$, temos
     \[
-        T'\vdash \forall \bar x\,\forall u\,(t_1=u\leftrightarrow \delta_{t_1}(\bar x,u))
-        \quad\text{e}\quad
-        T'\vdash \forall \bar x\,\forall v\,(t_2=v\leftrightarrow \delta_{t_2}(\bar x,v)).
+        \forall x_1\ldots \forall x_n\,\forall u_i\,(t_i=u_i\leftrightarrow \delta_{t_i}(x_1,\ldots,x_n,u_i)).
     \]
-    Usando raciocínio proposicional (instâncias de tautologias) e substitutividade da igualdade, obtemos em $T'$:
+    Instanciando cada $x_j$ por $a_j$ e $u_i$ por $t_i'$, como $t_i'=t_i'$, obtemos
     \[
-        T'\vdash \forall \bar x\Bigl(t_1=t_2 \ \leftrightarrow\ \exists u\,\exists v\bigl(\delta_{t_1}(\bar x,u)\wedge \delta_{t_2}(\bar x,v)\wedge u=v\bigr)\Bigr),
+        \bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,t_i').
     \]
-    e o lado direito é, por definição, $\psi^\ast$.
+    Pela definição de $\Def_R$, temos
+    \[
+        R(t_1',\ldots,t_m')\leftrightarrow \Def_R(t_1',\ldots,t_m').
+    \]
+    Juntando isso com
+    \[
+        \bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,t_i'),
+    \]
+    obtemos
+    \[
+        R(t_1',\ldots,t_m')\rightarrow
+        \exists u_1\ldots \exists u_m
+        \bigl(\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,u_i)
+        \wedge \Def_R(u_1,\ldots,u_m)\bigr).
+    \]
+    
+    Resta a implicação inversa.
+    Suponha que $\exists u_1\ldots \exists u_m\bigl(\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,u_i)\wedge \Def_R(u_1,\ldots,u_m)\bigr)$.
+    Fixe constantes $u_1',\ldots,u_m'$ tais que $\bigwedge_{i=1}^m \delta_{t_i}(a_1,\ldots,a_n,u_i')\wedge \Def_R(u_1',\ldots,u_m')$.
 
-    \emph{Prova de B.}
-    Suponha agora que $\psi$ é uma $\mathcal L$-fórmula; então $t_1$ e $t_2$ são $\mathcal L$-termos.
-    Pelo item (3) do Metalema~\ref{mlem:eliminacaoDeTermos},
-    \[
-        T\vdash \forall \bar x\,\forall u\,(t_1=u\leftrightarrow \delta_{t_1}(\bar x,u))
-        \quad\text{e}\quad
-        T\vdash \forall \bar x\,\forall v\,(t_2=v\leftrightarrow \delta_{t_2}(\bar x,v)).
-    \]
-    O mesmo raciocínio proposicional usado acima (agora dentro de $T$) dá
-    \[
-        T\vdash \forall \bar x\,(\psi\leftrightarrow \psi^\ast).
-    \]
+    Como, para cada $i$, temos $\delta_{t_i}(a_1,\ldots,a_n,u_i')$ e
+    $\delta_{t_i}(a_1,\ldots,a_n,t_i')$, segue da unicidade dada pelo
+    Metalema~\ref{mlem:eliminacaoDeTermos} que $u_i'=t_i'$ para cada $i$.
 
-    \smallskip
-    \textbf{Caso atômico 2:} $\psi$ é uma fórmula atômica com símbolo de predicado $R\in\mathcal L$.
-
-    Se $R$ tem aridade $0$, então $\psi^\ast$ é a própria fórmula $R$, e A e B seguem por tautologia e generalização.
-    Suponha, portanto, que $\psi$ é $R(t_1,\ldots,t_m)$ com $m>0$.
-
-    \emph{Prova de A.}
-    Pelo item (1) do Metalema~\ref{mlem:eliminacaoDeTermos}, para cada $i\le m$,
-    \[
-        T'\vdash \forall \bar x\,\forall u_i\,(t_i=u_i\leftrightarrow \delta_{t_i}(\bar x,u_i)).
-    \]
-    Usando essas equivalências e a congruência para predicados,
-    obtemos em $T'$:
-    \[
-        T'\vdash \forall \bar x\Bigl(R(t_1,\ldots,t_m)\ \leftrightarrow\
-        \exists u_1\ldots \exists u_m\bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,u_i)\wedge R(u_1,\ldots,u_m)\bigr)\Bigr),
-    \]
-    e o lado direito é exatamente $\psi^\ast$.
-
-    \emph{Prova de B.}
-    Se $\psi$ é uma $\mathcal L$-fórmula, então cada $t_i$ é um $\mathcal L$-termo.
-    Pelo item (3) do Metalema~\ref{mlem:eliminacaoDeTermos}, para cada $i$,
-    \[
-        T\vdash \forall \bar x\,\forall u_i\,(t_i=u_i\leftrightarrow \delta_{t_i}(\bar x,u_i)).
-    \]
-    Repetindo o mesmo argumento (congruência para $R$ e raciocínio proposicional), agora em $T$,
-    concluímos
-    \[
-        T\vdash \forall \bar x\,(\psi\leftrightarrow \psi^\ast).
-    \]
-
-    \smallskip
-    \textbf{Caso atômico 3:} $\psi$ é uma fórmula atômica com símbolo de predicado $P\in\mathcal L'\setminus\mathcal L$.
-
-    Aqui somente A é relevante (B não se aplica, pois $\psi$ não está em $\mathcal L$).
-    Se $P$ tem aridade $0$, então $\psi$ é $P$, $\psi^\ast$ é $\Def_P$, e a conclusão segue do axioma definidor $P\leftrightarrow\Def_P$ e de generalização.
-    Suponha, portanto, que $\psi$ é $P(t_1,\ldots,t_m)$ com $m>0$.
-
-    Pelo axioma definidor de $P$ em $T'$, temos
-    \[
-        T'\vdash \forall \bar u\,(P(\bar u)\leftrightarrow \Def_P(\bar u)).
-    \]
-    Combinando isso com o item (1) do Metalema~\ref{mlem:eliminacaoDeTermos} aplicado a cada $t_i$
-    e com raciocínio proposicional, obtemos
-    \[
-        T'\vdash \forall \bar x\Bigl(P(t_1,\ldots,t_m)\leftrightarrow
-        \exists u_1\ldots \exists u_m\bigl(\bigwedge_{i=1}^m \delta_{t_i}(\bar x,u_i)\wedge \Def_P(u_1,\ldots,u_m)\bigr)\Bigr),
-    \]
-    que é precisamente $\forall\bar x(\psi\leftrightarrow \psi^\ast)$.
+    Assim, $\Def_R(u_1',\ldots,u_m')$ e $u_i'=t_i'$ para cada $i$ implicam $\Def_R(t_1',\ldots,t_m')$, e, portanto, $R(t_1',\ldots,t_m')$.
 
     \smallskip
     \textbf{Conectivos.}
-    Suponha que A (e, quando aplicável, B) valem para $\theta$ e $\eta$.
+    Suponha que a hipótese vale para $\mathcal L'$-fórmulas (ou $\mathcal L$-fórmulas, para a segunda afirmação) $\theta$ e $\eta$.
 
-    Para a negação, da hipótese indutiva $T'\vdash \forall\bar x(\theta\leftrightarrow \theta^\ast)$
-    e de uma instância de tautologia proposicional
-    $(A\leftrightarrow B)\rightarrow(\neg A\leftrightarrow \neg B)$,
-    obtemos $T'\vdash \forall\bar x(\neg\theta\leftrightarrow \neg\theta^\ast)$,
-    e pela definição $(\neg\theta)^\ast=\neg(\theta^\ast)$, isto é exatamente A para $\neg\theta$.
-    O mesmo argumento vale em $T$ quando $\theta$ está em $\mathcal L$, provando B.
+    Para a negação, da hipótese indutiva temos $\forall x_1\ldots \forall x_n\,(\theta\leftrightarrow \theta^\ast)$.
+    Fixados $a_1,\ldots,a_n$ para as variáveis $x_1,\ldots,x_n$, e escrevendo $\theta'=\theta[x_1/a_1]\ldots[x_n/a_n]$ e $\theta'^\ast=\theta^\ast[x_1/a_1]\ldots[x_n/a_n]$, temos $\theta'\leftrightarrow \theta'^\ast$.
+    Assim, $\neg\theta'\leftrightarrow \neg\theta'^\ast$, o que prova a negação.
 
     Para os conectivos binários $\square\in\{\wedge,\vee,\rightarrow,\leftrightarrow\}$,
-    usamos instâncias de tautologias do tipo
-    \[
-        (A\leftrightarrow A')\wedge(B\leftrightarrow B')\ \rightarrow\ ((A\square B)\leftrightarrow(A'\square B')),
-    \]
-    junto com as hipóteses indutivas para $\theta$ e $\eta$,
-    e a definição $(\theta\square\eta)^\ast=\theta^\ast\square\eta^\ast$.
-    Isso prova A (e também B quando $\theta,\eta$ são fórmulas de $\mathcal L$).
+    por hipótese indutiva, temos $\forall x_1\ldots \forall x_n\,(\theta\leftrightarrow \theta^\ast)$ e $\forall x_1\ldots \forall x_n\,(\eta\leftrightarrow \eta^\ast)$.
+    Fixados $a_1,\ldots,a_n$, sendo $\theta'$ e $\eta'$ como no caso da negação, temos $\theta'\leftrightarrow \theta'^\ast$ e $\eta'\leftrightarrow \eta'^\ast$.
+    Assim, $\theta'\square \eta'\leftrightarrow \theta'^\ast\square \eta'^\ast$, o que completa a prova para o passo indutivo dos conectivos binários.
 
     \smallskip
     \textbf{Quantificadores.}
-    Suponha que A vale para $\theta$.
-    No caso de $\forall z\,\theta$, aplicamos a hipótese indutiva a $\theta$ considerando suas variáveis livres entre $\bar x,z$.
-    Assim,
-    \[
-        T'\vdash \forall \bar x\,\forall z\,(\theta\leftrightarrow \theta^\ast).
-    \]
-    Pelas regras derivadas para quantificadores e para bicondicional, obtemos
-    \[
-        T'\vdash \forall \bar x\,(\forall z\,\theta \leftrightarrow \forall z\,\theta^\ast).
-    \]
-    Como $(\forall z\,\theta)^\ast=\forall z\,\theta^\ast$, isso prova A para $\forall z\,\theta$.
+    Suponha que a tese vale para $\theta$.
+    Considere a fórmula $Qz\theta$, em que $Q$ é $\forall$ ou $\exists$ e $z$ é uma variável.
+    Suponha que a tese vale para $\theta$.
 
-    O caso de $\exists z\,\theta$ é análogo, usando a equivalência
+    Considere que as variáveis livres de $Qz\theta$ estão entre $x_1,\ldots,x_n$.
+    Devemos ver que:
     \[
-        \forall z\,(\theta\leftrightarrow\theta^\ast)
+        \forall x_1\ldots \forall x_n\,\bigl(Qz\,\theta\leftrightarrow Qz\,\theta^\ast\bigr),
     \]
-    para obter
-    \[
-        \exists z\,\theta\leftrightarrow \exists z\,\theta^\ast.
-    \]
+    Fixados $a_1,\ldots,a_n$ para as variáveis $x_1,\ldots,x_n$, e escrevendo
+    $\theta'=\theta[x_1/a_1]\ldots[x_n/a_n]$ e
+    $\theta'^\ast=\theta^\ast[x_1/a_1]\ldots[x_n/a_n]$, basta ver que
+    $Qz\,\theta'\leftrightarrow Qz\,\theta'^\ast$.
 
-    O mesmo argumento, realizado em $T$, prova B quando a fórmula quantificada pertence à linguagem $\mathcal L$.
+    Pela hipótese de indução aplicada a $\theta$, cujas variáveis livres estão entre
+    $x_1,\ldots,x_n,z$, temos
+    \[
+        \forall x_1\ldots \forall x_n\,\forall z\,(\theta\leftrightarrow \theta^\ast).
+    \]
+    Instanciando cada $x_j$ por $a_j$, temos
+    \[
+        \forall z\,(\theta'\leftrightarrow \theta'^\ast).
+    \]
+    Se $Q$ é $\forall$, então, como $\forall z(\theta'\leftrightarrow \theta'^\ast)\rightarrow (\forall z\,\theta'\leftrightarrow \forall z\,\theta'^\ast)$, segue que $\forall z\,\theta'\leftrightarrow \forall z\,\theta'^\ast$.
+    Se $Q$ é $\exists$, então, como $\forall z(\theta'\leftrightarrow \theta'^\ast)\rightarrow (\exists z\,\theta'\leftrightarrow \exists z\,\theta'^\ast)$, segue que $\exists z\,\theta'\leftrightarrow \exists z\,\theta'^\ast$.
 
     \smallskip
     Isso conclui a indução e prova simultaneamente as duas afirmações, logo o metalema.
@@ -567,85 +571,16 @@ Agora eliminamos símbolos definidos de fórmulas.
     \]
 \end{metadefinition}
 
-O teorema a seguir formaliza a ideia de que definições são apenas abreviações.
+O metateorema a seguir finaliza a formalização da ideia de que definições agem como meras abreviações.
+Já vimos que elas não introduzem expressabilidade da linguagem: todo termo ou fórmula da linguagem estendida possui uma ``tradução canônica'' para a linguagem original.
+O resultado a seguir mostra que tudo que pode ser expresso na linguagem original e provado na teoria estendida já podia ser provado na teoria original.
+
+Em suma, se $\phi$ é uma fórmula de $T'$, ela possui uma tradução $\phi^\ast$ para a linguagem de $T$.
+Para concluir a conservatividade, resta mostrar que demonstrações em $T'$ podem ser traduzidas em demonstrações, em $T$, das fórmulas traduzidas.
 
 \begin{metatheorem}\label{mthm:conservatividadeDaExtensaoPorDefinicao}\index{definição!extensão por definição!conservatividade}
     Seja $T$ uma teoria de primeira ordem e $T'$ uma extensão por definição de $T$.
     Então $T'$ é uma extensão conservativa de $T$.
 \end{metatheorem}
 
-\begin{proof}
-    Seja $\phi$ uma $\mathcal L$-sentença e suponha $T'\vdash \phi$.
-    Considere uma demonstração formal de $\phi$ a partir de $T'$,
-    \[
-        \theta_0,\theta_1,\ldots,\theta_n,
-    \]
-    em que $\theta_n$ é $\phi$.
-
-    Para cada $i$, considere a fórmula $\theta_i^\ast$ obtida pela tradução da Metadefinição~\ref{mdef:traducaoFormulas}.
-    Cada $\theta_i^\ast$ é uma fórmula da linguagem $\mathcal L$.
-
-    \smallskip
-    \textbf{Afirmação.} Para todo $i\le n$, vale $T\vdash \theta_i^\ast$.
-
-    \smallskip
-    Provaremos por indução em $i$.
-    Suponha provado para todos $j<i$.
-
-    \begin{itemize}
-        \item Se $\theta_i$ é um axioma de $T$, então $\theta_i$ é uma $\mathcal L$-sentença.
-        Pelo Metalema~\ref{mlem:eliminacaoDeFormulas} (aplicado a uma fórmula já na linguagem $\mathcal L$),
-        temos $T\vdash \theta_i\leftrightarrow \theta_i^\ast$.
-        Em particular, $\theta_i^\ast$ é consequência lógica proposicional de $\theta_i$ e de uma instância de tautologia;
-        como $\theta_i$ é axioma de $T$, concluímos $T\vdash \theta_i^\ast$.
-
-        \item Se $\theta_i$ é uma sentença definidora (axioma de definição) de algum símbolo novo, então,
-        $T\vdash \theta_i^\ast$.
-        De fato, a tradução substitui o símbolo definido pela sua fórmula definidora e substitui os termos variáveis por suas fórmulas de valor, que são equivalentes a igualdades triviais pelo Metalema~\ref{mlem:eliminacaoDeTermos}.
-        Como as fórmulas definidoras já são fórmulas de $\mathcal L$, a segunda parte do Metalema~\ref{mlem:eliminacaoDeFormulas} identifica cada fórmula definidora com sua própria tradução dentro de $T$.
-        Assim, no caso de predicados, a tradução da sentença definidora se reduz em $T$ a uma instância de $\alpha\leftrightarrow\alpha$; nos casos de funções e constantes, reduz-se do mesmo modo após eliminar o termo definido pelo lado que usa $\Def_f$ ou $\Def_c$.
-
-        \item Se $\theta_i$ é um axioma lógico (no sentido do sistema fixado anteriormente),
-        então $T\vdash \theta_i^\ast$.
-        A verificação é sistemática: usa-se que $\ast$ comuta com conectivos e quantificadores e que termos são eliminados pelo Metalema~\ref{mlem:eliminacaoDeTermos}.
-        Nos axiomas sobre igualdade, se o símbolo envolvido é novo, usa-se ainda que a fórmula definidora é uma $\mathcal L$-fórmula, a Lei da igualdade de Leibniz e, no caso de símbolos funcionais, a hipótese de unicidade exigida na Metadefinição~\ref{mdef:definicaoExplicita}.
-        Assim, $T\vdash \theta_i^\ast$.
-
-        \item Se $\theta_i$ é obtida por \emph{modus ponens} a partir de $\theta_j$ e $\theta_k=\theta_j\rightarrow \theta_i$,
-        com $j,k<i$, então por hipótese de indução $T\vdash \theta_j^\ast$ e $T\vdash (\theta_j\rightarrow \theta_i)^\ast$.
-        Pela definição de $\ast$, $(\theta_j\rightarrow \theta_i)^\ast$ é $\theta_j^\ast\rightarrow \theta_i^\ast$.
-        Logo, por \emph{modus ponens}, $T\vdash \theta_i^\ast$.
-
-        \item Se $\theta_i$ é obtida pela regra de introdução do quantificador universal, então existem fórmulas $\chi,\eta$, uma variável $x$ e $j<i$ tais que
-        $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\chi\rightarrow\forall x\,\eta$, e $x$ não ocorre livre em $\chi$.
-        Pela hipótese de indução,
-        \[
-            T\vdash (\chi\rightarrow\eta)^\ast,
-        \]
-        isto é, $T\vdash \chi^\ast\rightarrow\eta^\ast$.
-        Como $\chi^\ast$ tem as mesmas variáveis livres que $\chi$, a variável $x$ não ocorre livre em $\chi^\ast$.
-        Pela regra de introdução do quantificador universal,
-        \[
-            T\vdash \chi^\ast\rightarrow\forall x\,\eta^\ast,
-        \]
-        que é exatamente $\theta_i^\ast$.
-
-        \item Se $\theta_i$ é obtida pela regra de introdução do quantificador existencial, então existem fórmulas $\chi,\eta$, uma variável $x$ e $j<i$ tais que
-        $\theta_j$ é $\chi\rightarrow\eta$, $\theta_i$ é $\exists x\,\chi\rightarrow\eta$, e $x$ não ocorre livre em $\eta$.
-        Pela hipótese de indução, $T\vdash \chi^\ast\rightarrow\eta^\ast$.
-        Como $\eta^\ast$ tem as mesmas variáveis livres que $\eta$, a variável $x$ não ocorre livre em $\eta^\ast$.
-        Pela regra de introdução do quantificador existencial,
-        \[
-            T\vdash \exists x\,\chi^\ast\rightarrow\eta^\ast,
-        \]
-        que é exatamente $\theta_i^\ast$.
-    \end{itemize}
-
-    Isso conclui a indução, e em particular $T\vdash \theta_n^\ast=\phi^\ast$.
-
-    \smallskip
-    Resta observar que, como $\phi$ já está na linguagem $\mathcal L$ e é sentença,
-    o Metalema~\ref{mlem:eliminacaoDeFormulas} dá $T\vdash \phi\leftrightarrow \phi^\ast$,
-    e portanto $\phi$ é consequência proposicional de $\phi^\ast$.
-    Como $T\vdash \phi^\ast$, segue $T\vdash \phi$.
-\end{proof}
+Uma prova completa será apresentada em uma versão futura deste texto.

@@ -21,3 +21,4 @@
 {"rule":"MORFOLOGIK_RULE_PT_BR","sentence":"^\\QTal operação é comum em programação; em PHP, por exemplo, a função arrayslice possui exatamente esse comportamento.\\E$"}
 {"rule":"MORFOLOGIK_RULE_PT_BR","sentence":"^\\Qnamedaxiom #3\\E$"}
 {"rule":"MORFOLOGIK_RULE_PT_BR","sentence":"^\\QUma teoria menos poderosa, que, de alguma forma, parece possuir o “mínimo necessário” para formalizar uma metateoria para a discussão sobre léxicos, lógica e provas de consistência, é a Aritmética Primitiva Recursiva (Primitive Recursive Arithmetic, PRA).\\E$"}
+{"rule":"PT_REDUNDANCY_REPLACE_AVISO_PRÉVIO","sentence":"^\\QNessa seção, a partir da seção 1.10.2, em que lidaremos principalmente com sentenças, usaremos as regras de inferência discutidas nas seções anteriores sem aviso prévio.\\E$"}
