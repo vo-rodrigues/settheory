@@ -205,24 +205,23 @@ Isto substitui termos com símbolos definidos por uma descrição na linguagem o
 \begin{metadefinition}[Fórmula do valor de um termo]\label{mdef:formulaDoValorDeUmTermo}\index{termo!fórmula do valor}\index{eliminação de símbolos definidos!termos}
     Suponha que $T'$ é uma extensão por definição de $T$, com léxicos $\mathcal L'$ e $\mathcal L$ respectivamente.
     Seja $t$ um $\mathcal L'$-termo.
-    Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres estão entre as variáveis de $t$ e mais uma variável $y$, lida como
+    Definimos por recursão uma $\mathcal L$-fórmula $\delta_t$ cujas variáveis livres estão entre as variáveis de $t$ e mais uma variável $y$ que não ocorre em $t$, lida como
     ``$y$ é o valor do termo $t$'', como segue.
 
-    Sendo $x_1, \dots, x_n$ uma lista de variáveis distintas que contém todas as variáveis que ocorrem em $t$, denotamos $\delta_t(x_1,\ldots,x_n,y)$ a fórmula associada a $t$.
-    Por $\delta_t(z_1, \dots, z_n, w)$, denotamos a fórmula $\delta_t$ em que as variáveis $x_1, \dots, x_n$ e $y$ são substituídas por $z_1, \dots, z_n$ e $w$ respectivamente.
-    Utilizamos a convenção que a última posição da lista $(x_1, \dots, x_n, y)$ é reservada para a variável adicional $y$.
+    Sempre que $x'_1, \dots, x'_n$ for uma lista de variáveis distintas que contém todas as variáveis que ocorrem em $t$, denotamos como $\delta_t(x'_1,\ldots,x'_n,y)$ a fórmula $\delta_t$.
+    Nesse contexto, por $\delta_t(u_1, \dots, u_n, w)$, denotamos a fórmula $\delta_t$ em que as variáveis $x'_1, \dots, x'_n$ e $y$ são substituídas por $u_1, \dots, u_n$ e $w$ respectivamente.
+    Utilizamos a convenção que a última posição da lista $(x'_1, \dots, x'_n, y)$ é reservada para a variável adicional $y$.
 
     \begin{enumerate}[label=(\roman*)]
         \item Se $t$ é um símbolo de constante $c$, então $\delta_t(y)$ é a fórmula $\Def_c(y)$.
         \item Se $t$ é uma variável $x$, então $\delta_t(x,y)$ é a fórmula $y=x$, ou seja, $\Def_x(x,y)$.
-        \item Se $t$ é $f(t_1,\ldots,t_m)$, então $\delta_t(x_1, \dots, x_n,y)$ é:
+        \item Se $t$ é $f(t_1,\ldots,t_m)$, em que $f$ é um símbolo de função $m$-ário e $\delta_{t_1}, \dots, \delta_{t_m}$ já foram definidos, sejam $x_1, \dots, x_n$ as variáveis que ocorrem em $t$.
+        Substitua se necessário as variáveis livres de $\Def_f$, escrevendo-a na forma $\Def_f(z_1,\ldots,z_m,y)$ de modo que $z_1, \dots, z_m, y$ sejam variáveis distintas entre si, distintas de $x_1, \dots, x_n$, e que não ocorrem em $\delta_{t_1}, \dots, \delta_{t_m}$.
+        Então $\delta_t(x_1, \dots, x_n,y)$ é:
         \[
             \exists z_1\ldots \exists z_m\Bigl(
-            \bigwedge_{i=1}^m \delta_{t_i}(x_1, \dots, x_n,z_i)\ \wedge\ \Def_f(z_1,\ldots,z_m,y)\Bigr),
+            \bigwedge_{i=1}^m \delta_{t_i}(x_1, \dots, x_n,z_i)\ \wedge\ \Def_f(z_1,\ldots,z_m,y)\Bigr).
         \]
-        em que $x_1, \dots, x_n$ é uma lista que contém todas as variáveis que ocorrem em $t$,
-        e $z_1, \dots, z_m$ são variáveis que não ocorrem em $t$, $\Def_f$, $\delta_{t_1}, \dots, \delta_{t_m}$.
-        Se necessário, renomeamos também $y$ para garantir que $y$ não ocorra em $t$, $\Def_f$, $\delta_{t_1}, \dots, \delta_{t_m}$.
     \end{enumerate}
 \end{metadefinition}
 
